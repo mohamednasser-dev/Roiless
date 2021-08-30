@@ -54,8 +54,8 @@
                                         <div class="dw-user-box">
                                             <div class="u-img"><img src="{{ asset('/assets/images/users/1.jpg') }}" alt="user"></div>
                                             <div class="u-text">
-                                                <h4>{{Auth::user()->name}}</h4>
-                                                <p class="text-muted">{{Auth::user()->email}}</p>
+{{--                                                <h4>{{Auth::user()->name}}</h4>--}}
+{{--                                                <p class="text-muted">{{Auth::user()->email}}</p>--}}
                                             </div>
                                         </div>
                                     </li>
