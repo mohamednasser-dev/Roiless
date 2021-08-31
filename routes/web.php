@@ -23,10 +23,24 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+
     //users  routes
     Route::resource('users', 'Admin\usersController');
     Route::get('users/{id}/delete', 'Admin\usersController@destroy')->name('users.delete');
     Route::get('users/{id}/details', 'Admin\usersController@show')->name('users.details');
     Route::post('users/actived', 'Admin\usersController@update_Actived')->name('users.actived');
+
+    //sliders
+    Route::get('/sliders', 'Admin\sliderController@index')->name('sliders');
+
+
+    //categories
+        Route::get('/categories', 'Admin\categoriesController@index')->name('categories');
+        Route::get('categories/create','Admin\categoriesController@create')->name('categories.add');
+        Route::post('/categories/store','Admin\categoriesController@store')->name('categories.store');
+        Route::get('/categories/edit/{id}','Admin\categoriesController@edit')->name('categories.edit');
+        Route::post('/categories/update/{id}','Admin\categoriesController@update')->name('categories.update');
+        Route::post('/categories/delete/{id}','Admin\categoriesController@destroy')->name('categories.delete');
+
 
 });
