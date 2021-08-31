@@ -2,10 +2,8 @@
 namespace App\Http\Controllers\Admin;
 
 use RealRashid\SweetAlert\Facades\Alert;
-use Spatie\Permission\Models\Model_has_role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Exception;
@@ -14,14 +12,13 @@ class usersController extends Controller{
     public $objectName;
     public $folderView;
     public function __construct(User $model){
-        $this->middleware(['permission:employees']);
         $this->objectName = $model;
         $this->folderView = 'admin.users.';
     }
 
-    
+
     public function index(){
-        $users = $this->objectName::where('deleted','0')->where('type','user')->orderBy('name','desc')->paginate(10);
+        $users = $this->objectName::where('type','user')->orderBy('name','desc')->paginate(10);
         return view($this->folderView.'users',compact('users'));
     }
 
@@ -31,8 +28,8 @@ class usersController extends Controller{
     }
 
     public function create(){
-        $roles = Role::all();
-        return view($this->folderView.'create_user',compact('roles'));
+
+        return view($this->folderView.'create_user');
     }
 
     public function store(Request $request){
