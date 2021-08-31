@@ -12,18 +12,16 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function __construct()
-
+    function MoveImage($request_file,$public_path)
     {
-//        $this->middleware(function ($request, $next) {
-//
-//            if (session('success_message')) {
-//                Alert::success('Success Title', session('success_message'));
-//            }
-//
-//            return $next($request);
-//        });
-
+        // This is Image Information ...
+        $file = $request_file;
+        $ext = $file->getClientOriginalExtension();
+        $size = $file->getSize();
+        // Move Image To Folder ..
+        $fileNewName = 'file' . $size . '_' . time() . '.' . $ext;
+        $file->move(public_path($public_path), $fileNewName);
+        return $fileNewName;
     }
-    }
+}
 
