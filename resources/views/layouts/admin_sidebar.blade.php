@@ -13,6 +13,9 @@
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('categories')}}" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu"></span>الاقسام</a>
                     </li>
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{route('services.index')}}" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu"></span>الخدمات</a>
+                    </li>
                 </ul>
             </nav>
             <!-- End Sidebar navigation -->
@@ -26,3 +29,4 @@
         <!-- Container fluid  -->
         <!-- ============================================================== -->
         <div class="container-fluid">
+

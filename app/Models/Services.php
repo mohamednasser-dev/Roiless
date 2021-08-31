@@ -13,5 +13,13 @@ class Services extends Model
         return $this->hasMany(Service_details::class);
     }
 
+    public function getImageAttribute($img)
+    {
+        if ($img)
+            return asset('/uploads/services') . '/' . $img;
+        else
+            return asset('/uploads/users_images/default_avatar.jpg') ;
+    }
+
 }
 

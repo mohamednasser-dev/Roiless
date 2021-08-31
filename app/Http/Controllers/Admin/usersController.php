@@ -57,7 +57,7 @@ class usersController extends Controller{
             $user = User::create($data);
             if($user->save()){
 //                $user->assignRole($request['role_id']);
-                session()->flash('عملية ناجحة', 'تم الاضافة بنجاح');
+                Alert::success('تمت العمليه', 'تم انشاء موظف جديد');
                 return redirect(url('users/create'));
             }
         }
