@@ -30,6 +30,7 @@
       <change afterPath="$PROJECT_DIR$/resources/views/admin/users/users.blade.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/resources/views/admin/users/users_old.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Moldes/categories.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/uploads/orders/file1493067_1611417987.png" beforeDir="false" />
@@ -47,6 +48,8 @@
       <change beforePath="$PROJECT_DIR$/public/uploads/products/file9876_1627143871.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin_sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin_sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+=======
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,7 +261,7 @@
       <workItem from="1630237222175" duration="5355000" />
       <workItem from="1630320017581" duration="7000" />
       <workItem from="1630320613332" duration="10535000" />
-      <workItem from="1630396120452" duration="8252000" />
+      <workItem from="1630396120452" duration="9183000" />
     </task>
     <servers />
   </component>
