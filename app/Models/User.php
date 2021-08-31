@@ -11,7 +11,7 @@ class User extends Authenticatable
 
 
     protected $fillable = [
-        'name', 'image','email', 'password','type','role_id','cat_id',
+        'name', 'image','email', 'password','type','role_id','cat_id','phone'
     ];
 
 
@@ -27,4 +27,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getImageAttribute($img)
+    {
+        if ($img)
+            return asset('/uploads/users_images') . '/' . $img;
+        else
+            return asset('/uploads/users_images/default_avatar.jpg') ;
+    }
 }
