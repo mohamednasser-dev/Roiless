@@ -19,6 +19,7 @@ class usersController extends Controller{
         $this->folderView = 'admin.users.';
     }
 
+    
     public function index(){
         $users = $this->objectName::where('deleted','0')->where('type','user')->orderBy('name','desc')->paginate(10);
         return view($this->folderView.'users',compact('users'));
