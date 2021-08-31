@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c76e1250-0dda-415a-a55f-bba638b62797" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Roiless.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Roiless.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_30_000000_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_30_000000_create_categories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_08_31_000001_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_08_30_000001_create_users_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +214,7 @@
       <workItem from="1630237222175" duration="5355000" />
       <workItem from="1630320017581" duration="7000" />
       <workItem from="1630320613332" duration="10535000" />
-      <workItem from="1630396120452" duration="5178000" />
+      <workItem from="1630396120452" duration="7108000" />
     </task>
     <servers />
   </component>

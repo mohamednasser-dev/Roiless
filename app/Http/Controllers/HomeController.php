@@ -22,8 +22,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        Alert::success('Success Title', 'test');
 
-
-        return view('home')->withSuccessMessage('a7o');
+        return view('home');
     }
 }
