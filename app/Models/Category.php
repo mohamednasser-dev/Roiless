@@ -13,4 +13,9 @@ class category extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function Funds()
+    {
+        return $this->hasMany(Fund::class);
+    }
 }

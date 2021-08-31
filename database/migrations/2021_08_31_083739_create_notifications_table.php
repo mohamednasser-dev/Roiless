@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->Increments('id');
             $table->string('title_ar');
             $table->string('title_en');
-            $table->string('image')->nullable();
-            $table->enum('type',['cat','f'])->default('cat');
-            $table->double('financing_ratio');
+            $table->string('body_ar');
+            $table->string('body_en');
+            $table->string('string')->nullable();
             $table->timestamps();
-
         });
     }
 
@@ -32,6 +31,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('notifications');
     }
 }

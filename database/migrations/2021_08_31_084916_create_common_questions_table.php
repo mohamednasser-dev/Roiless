@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateCommonQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->Increments('id');
-            $table->string('title_ar');
-            $table->string('title_en');
+        Schema::create('common_questions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('question');
+            $table->string('answer');
             $table->string('image')->nullable();
-            $table->enum('type',['cat','f'])->default('cat');
-            $table->double('financing_ratio');
             $table->timestamps();
-
         });
     }
 
@@ -32,6 +29,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('common_questions');
     }
 }
