@@ -38,8 +38,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('categories/create','Admin\categoriesController@create')->name('categories.add');
         Route::post('/categories/store','Admin\categoriesController@store')->name('categories.store');
         Route::get('/categories/edit/{id}','Admin\categoriesController@edit')->name('categories.edit');
-        Route::post('/categories/update/{id}','Admin\categoriesController@update')->name('categories.update');
-        Route::post('/categories/delete/{id}','Admin\categoriesController@destroy')->name('categories.delete');
+        Route::put('/categories/update/{id}','Admin\categoriesController@update')->name('categories.update');
+        Route::delete('/categories/delete/{id}','Admin\categoriesController@destroy')->name('categories.delete');
 
 
  //services  routes
