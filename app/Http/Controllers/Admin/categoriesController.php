@@ -46,14 +46,13 @@ class categoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $file_name = $this->saveImage($request->file('image'),'images/category' );
+        $file_name = $this->saveImage($request->file('image'),'uploads/category' );
         
 
         $Category = Category::create([
             'title_ar' => $request->title_ar,
             'title_en' => $request->title_en,
             'image' => $file_name,
-            'financing_ratio' => $request->financing_ratio,
 
 
         ]);
@@ -98,18 +97,16 @@ class categoriesController extends Controller
 
 
         if($request->hasFile('image')) {
-            $file_name = $this->saveImage($request->file('image'),'images/category' );  
+            $file_name = $this->saveImage($request->file('image'),'uploads/category' );  
             $category->update([
                 'title_ar' => $request->title_ar,
                 'title_en' => $request->title_en,
                 'image' => $file_name,
-                'financing_ratio' => $request->financing_ratio,
             ]);
         }else{
             $category->update([
                 'title_ar' => $request->title_ar,
                 'title_en' => $request->title_en,
-                'financing_ratio' => $request->financing_ratio,
     
             ]);
         }

@@ -34,7 +34,7 @@
                 <tr>
                     
                     <td class="text-lg-center ">
-                        <div class="pro-img m-t-20"><img style="height: 150px; width:200px;" src= "{{ asset ('images/slider/'.$slider->image) }}" ></div>
+                        <div class="pro-img m-t-20"><img style="height: 150px; width:200px;" src= "{{ asset ('uploads/slider/'.$slider->image) }}" ></div>
                     </td>
                     <td class="text-lg-center ">
 

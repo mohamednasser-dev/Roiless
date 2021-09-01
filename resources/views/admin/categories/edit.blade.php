@@ -31,13 +31,7 @@
                                     <label for="emailAddress1">Image :</label>
                                     <input type="file" name="image" class="form-control" id="emailAddress1"> </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="location1">financing_ratio  :</label>
-                                    <input type="text" value="{{ $category->financing_ratio }}" name="financing_ratio" class="form-control" id="phoneNumber1"> </div>
-
-                                </div>
-                            </div>
+                           
                            
                         </div>
                         

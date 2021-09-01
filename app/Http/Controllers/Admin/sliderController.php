@@ -46,7 +46,7 @@ class sliderController extends Controller
      */
     public function store(Request $request)
     {
-        $file_name = $this->saveImage($request->file('image'),'images/slider' );
+        $file_name = $this->saveImage($request->file('image'),'uploads/slider' );
         
 
         $Slider = Slider::create([
@@ -92,7 +92,7 @@ class sliderController extends Controller
         $Slider=Slider::findOrFail($id);
 
 
-            $file_name = $this->saveImage($request->file('image'),'images/slider' );  
+            $file_name = $this->saveImage($request->file('image'),'uploads/slider' );  
             $Slider->update([
                 'image' => $file_name,
             ]);
