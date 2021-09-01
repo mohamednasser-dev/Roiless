@@ -10,6 +10,7 @@
             <div class="card-body wizard-content">
                
                 <form class="tab-wizard wizard-circle" method="POST" action="{{ route('categories.update' ,$category->id) }}" enctype="multipart/form-data">
+                    @method('PUT')
                    @csrf
                     <section>
                         <div class="row">

@@ -31,6 +31,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     //sliders
     Route::get('/sliders', 'Admin\sliderController@index')->name('sliders');
+    Route::get('sliders/create','Admin\sliderController@create')->name('sliders.add');
+    Route::post('/sliders/store','Admin\sliderController@store')->name('sliders.store');
+    Route::get('/sliders/edit/{id}','Admin\sliderController@edit')->name('sliders.edit');
+    Route::put('/sliders/update/{id}','Admin\sliderController@update')->name('sliders.update');
+    Route::delete('/sliders/delete/{id}','Admin\sliderController@destroy')->name('sliders.delete');
 
 
     //categories

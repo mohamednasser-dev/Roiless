@@ -93,16 +93,27 @@ class categoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $file_name = $this->saveImage($request->file('image'),'images/category' );  
+
         $category=Category::findOrFail($id);
-        $category->update([
-            'title_ar' => $request->title_ar,
-            'title_en' => $request->title_en,
-            'image' => $file_name,
-            'financing_ratio' => $request->financing_ratio,
 
 
-        ]);
+        if($request->hasFile('image')) {
+            $file_name = $this->saveImage($request->file('image'),'images/category' );  
+            $category->update([
+                'title_ar' => $request->title_ar,
+                'title_en' => $request->title_en,
+                'image' => $file_name,
+                'financing_ratio' => $request->financing_ratio,
+            ]);
+        }else{
+            $category->update([
+                'title_ar' => $request->title_ar,
+                'title_en' => $request->title_en,
+                'financing_ratio' => $request->financing_ratio,
+    
+            ]);
+        }
+       
         return redirect()->route('categories');
     }
 

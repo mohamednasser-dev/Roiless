@@ -14,6 +14,9 @@
                         <a class="waves-effect waves-dark" href="{{route('categories')}}" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu"></span>الاقسام</a>
                     </li>
                     <li>
+                        <a class="waves-effect waves-dark" href="{{route('sliders')}}" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu"></span>Slider</a>
+                    </li>
+                    <li>
                         <a class="waves-effect waves-dark" href="{{route('services.index')}}" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu"></span>الخدمات</a>
                     </li>
                 </ul>
