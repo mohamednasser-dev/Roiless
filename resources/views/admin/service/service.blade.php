@@ -37,9 +37,13 @@
                         <div class="pro-img m-t-20"><img style="height: 80px;" src="{{$Service->image}}"></div>
                     </td>
                     <td class="text-lg-center ">
-                        <li><a title="حذف" onclick="return confirm('هل انت متكد من حذف الخدمه')"
-                               href="{{route('services.delete',$Service->id)}}"><i class="fa fa-trash"></i></a></li>
+                        <a title="حذف" onclick="return confirm('هل انت متكد من حذف الخدمه')"
+                           href="{{route('services.delete',$Service->id)}}"><i class="fa fa-trash"></i></a>
+                        <br><br>
+                        <a title="تعديل"
+                           href="{{route('services.edit',$Service->id)}}"><i class="fa fa-edit"></i></a>
                     </td>
+
                 </tr>
             @endforeach
             </tbody>

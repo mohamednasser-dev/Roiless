@@ -5,12 +5,12 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">{{trans('admin.add_new_user')}}</h3>
+            <h3 class="text-themecolor">انشاء خدمه</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.add_new_user')}}</li>
-                <li class="breadcrumb-item"><a href="{{url('users')}}">{{trans('admin.nav_users')}}</a></li>
+                <li class="breadcrumb-item">انشاء خدمه</li>
+                <li class="breadcrumb-item"><a href="ٌ{{route('services')}}">الخدمات</a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.nav_home')}}</a></li>
             </ol>
         </div>
@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-sm-12">
 
-            {{ Form::open( ['url'  => ['services'],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
+            {{ Form::open( ['route'  => ['services.store'],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">بيانات الخدمه</h4>

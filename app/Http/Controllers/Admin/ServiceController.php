@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Services;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Exception;
+
 
 
 class ServiceController extends Controller
@@ -31,11 +31,6 @@ class ServiceController extends Controller
     }
 
 
-    public function show($id)
-    {
-        $data = $this->objectName::where('id', $id)->first();
-        return view($this->folderView . 'details', compact('data'));
-    }
 
     public function create()
     {
@@ -70,7 +65,7 @@ class ServiceController extends Controller
 
     public function edit($id)
     {
-        $Service = $this->objectName::where('id', $id)->first();
+         $Service = $this->objectName::where('id', $id)->first();
         return view($this->folderView . 'edit', compact('Service'));
     }
 
@@ -83,41 +78,41 @@ class ServiceController extends Controller
                 'image' => '',
 
             ]);
-
         try {
+            DB::beginTransaction();
 
             $Service = $this->objectName::find($id);
-            if (!$Service)
+            if (!$Service){
                 Alert::warning('خطاء', 'هذه الخدمه ليست موجوه');
             return redirect()->route(' $this->folderView');
+            }
 
-            DB::beginTransaction();
-            if ($request->has('photo')) {
-                $fileName = uploadImage('brands', $request->photo);
-                Brand::where('id', $id)
+
+            if ($request->image != null) {
+                $image = $this->MoveImage($request->image, 'uploads/services');
+
+
+                $this->objectName::where('id', $id)
                     ->update([
-                        'photo' => $fileName,
+                        'image' => $image,
                     ]);
             }
 
-            if (!$request->has('is_active'))
-                $request->request->add(['is_active' => 0]);
-            else
-                $request->request->add(['is_active' => 1]);
+            $Service->update($request->except('_token', 'id', 'photo'));
+            $Service->save();
 
-            $brand->update($request->except('_token', 'id', 'photo'));
-
-            //save translations
-            $brand->name = $request->name;
-            $brand->save();
 
             DB::commit();
-            return redirect()->route('admin.brands')->with(['success' => 'تم ألتحديث بنجاح']);
+            Alert::success('تمت العمليه', 'تم تحديث الخدمه بنجاح');
+            return redirect()->route('services');
 
         } catch (\Exception $ex) {
 
             DB::rollback();
-            return redirect()->route('admin.brands')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+            Alert::warning('هنالك خطاء', 'لم يتم التحديث');
+
+            return redirect()->route('services');
+
         }
     }
 
@@ -130,25 +125,11 @@ class ServiceController extends Controller
 
     public function destroy($id)
     {
-        try {
-            //get specific categories and its translations
-            $Service = $this->objectName::find($id);
+        $Services=$this->objectName::findOrFail($id);
+        $Services->delete();
+        Alert::success('تمت العمليه', 'تم حذف الخدمه بنجاح');
 
-            if (!$Service)
-
-
-            Alert::warning('خطاء', 'هذه الخدمه ليست موجوه');
-            return redirect()->route('services.index');
-
-            $Service->delete();
-
-            Alert::success('تمت العمليه', 'تم انشاء خدمه جديده');
-
-            return redirect()->route('services.index');
-
-        } catch (\Exception $ex) {
-            return redirect()->route('admin.brands')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-        }
+        return redirect()->back();
     }
 
 }

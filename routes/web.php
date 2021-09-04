@@ -47,11 +47,20 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/categories/delete/{id}','Admin\categoriesController@destroy')->name('categories.delete');
 
 
- //services  routes
-    Route::resource('services', 'ServiceController');
-//    Route::get('services', 'ServiceController@index')->name('services.index');
-    Route::get('services/delete/{id}', 'ServiceController@destroy')->name('services.delete');
-//    Route::get('services/{id}/details', 'ServiceController@show')->name('services.details');
-//    Route::post('services/actived', 'ServiceController@update_Actived')->name('services.actived');
+    Route::group(['namespace' =>'Admin'], function () {
+        Route::get('/services', 'ServiceController@index')->name('services');
+        Route::get('services/create','ServiceController@create')->name('services.add');
+        Route::post('/services/store','ServiceController@store')->name('services.store');
+        Route::get('/services/edit/{id}','ServiceController@edit')->name('services.edit');
+        Route::post('/services/update/{id}','ServiceController@update')->name('services.update');
+        Route::get('/services/delete/{id}','ServiceController@destroy')->name('services.delete');
+    });
+//
+// //services  routes
+//    Route::resource('services', 'ServiceController');
+////    Route::get('services', 'ServiceController@index')->name('services.index');
+//    Route::get('services/delete/{id}', 'ServiceController@destroy')->name('services.delete');
+////    Route::get('services/{id}/details', 'ServiceController@show')->name('services.details');
+////    Route::post('services/actived', 'ServiceController@update_Actived')->name('services.actived');
 
 });

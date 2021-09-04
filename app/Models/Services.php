@@ -18,7 +18,7 @@ class Services extends Model
         if ($img)
             return asset('/uploads/services') . '/' . $img;
         else
-            return asset('/uploads/users_images/default_avatar.jpg') ;
+            return asset('/uploads/users_images/default_service.jpg') ;
     }
 
 }
