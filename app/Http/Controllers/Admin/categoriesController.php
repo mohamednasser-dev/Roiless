@@ -22,7 +22,7 @@ class categoriesController extends Controller
      */
     public function index()
     {
-            $categories = Category::all();
+        $categories = Category::where('type','cat')->get();
         return view ('admin.categories.index' , compact('categories'));
 
     }
@@ -47,7 +47,7 @@ class categoriesController extends Controller
     public function store(Request $request)
     {
         $file_name = $this->saveImage($request->file('image'),'uploads/category' );
-        
+
 
         $Category = Category::create([
             'title_ar' => $request->title_ar,
@@ -97,7 +97,7 @@ class categoriesController extends Controller
 
 
         if($request->hasFile('image')) {
-            $file_name = $this->saveImage($request->file('image'),'uploads/category' );  
+            $file_name = $this->saveImage($request->file('image'),'uploads/category' );
             $category->update([
                 'title_ar' => $request->title_ar,
                 'title_en' => $request->title_en,
@@ -107,10 +107,10 @@ class categoriesController extends Controller
             $category->update([
                 'title_ar' => $request->title_ar,
                 'title_en' => $request->title_en,
-    
+
             ]);
         }
-       
+
         return redirect()->route('categories');
     }
 

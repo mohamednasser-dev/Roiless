@@ -24,7 +24,6 @@
                 <th class="text-lg-center">عنوان القسم بالعربي</th>
                 <th class="text-lg-center">عنوان القسم بالانجليزي</th>
                 <th class="text-lg-center">الصوره</th>
-                <th class="text-lg-center"> النوع</th>
                 <th class="text-lg-center">الاعدادات</th>
             </tr>
             </thead>
@@ -37,7 +36,6 @@
                     <td class="text-lg-center ">
                         <div class="pro-img m-t-20"><img style="height: 80px;" src= "{{ asset ('uploads/category/'.$category->image) }}" ></div>
                     </td>
-                    <td class="text-lg-center">{{ $category->type }}</td>
                     <td class="text-lg-center ">
                         <button>
                         <a href="{{ route('categories.edit', $category->id )}}" > <i class="fa fa-edit"></i> </a>
