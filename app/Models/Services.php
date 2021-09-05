@@ -8,7 +8,7 @@ class Services extends Model
 {
     protected $guarded = [];
 
-    public function ServicesDetail()
+    public function Services()
     {
         return $this->hasMany(Service_details::class);
     }

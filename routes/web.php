@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -20,7 +21,7 @@ Auth::routes();
 Route::post('/login_user', 'Admin\LoginController@login')->name('login_user');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
 
 
     //users  routes
@@ -46,6 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/categories/update/{id}','Admin\categoriesController@update')->name('categories.update');
         Route::delete('/categories/delete/{id}','Admin\categoriesController@destroy')->name('categories.delete');
 
+    // services
 
     Route::group(['namespace' =>'Admin'], function () {
         Route::get('/services', 'ServiceController@index')->name('services');
@@ -54,13 +56,22 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/services/edit/{id}','ServiceController@edit')->name('services.edit');
         Route::post('/services/update/{id}','ServiceController@update')->name('services.update');
         Route::get('/services/delete/{id}','ServiceController@destroy')->name('services.delete');
+
+        // services details
+
+        Route::get('/services/details/{id}','ServiceController@details')->name('services.details');
+        Route::get('/services/create_serv_detail/{id}','ServiceController@detcreate')->name('services.details.create');
+        Route::post('/services/store_serv_detail','ServiceController@detstore')->name('services.details.store');
+        Route::get('/services/store_serv_detail/{id}','ServiceController@detedit')->name('services.details.edit');
+        Route::post('/services/store_serv_update/{id}','ServiceController@detupdate')->name('services.details.update');
+        Route::get('/services/deletes_serv_detail/{id}','ServiceController@detdestroy')->name('services.details.delete');
+
     });
-//
-// //services  routes
-//    Route::resource('services', 'ServiceController');
-////    Route::get('services', 'ServiceController@index')->name('services.index');
-//    Route::get('services/delete/{id}', 'ServiceController@destroy')->name('services.delete');
-////    Route::get('services/{id}/details', 'ServiceController@show')->name('services.details');
-////    Route::post('services/actived', 'ServiceController@update_Actived')->name('services.actived');
+    // Setting
+
+    Route::group(['namespace' =>'Admin'], function () {
+        Route::get('/Setting/edit','SettingController@edit')->name('Setting.edit');
+        Route::post('/Setting/update/{id}','SettingController@update')->name('Setting.update');
+    });
 
 });

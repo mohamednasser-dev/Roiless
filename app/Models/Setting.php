@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
 {
-    //
+    public function getImageAttribute($img)
+    {
+        if ($img)
+            return asset('/uploads/setting') . '/' . $img;
+        else
+            return asset('/uploads/setting/logo.png') ;
+    }
 }

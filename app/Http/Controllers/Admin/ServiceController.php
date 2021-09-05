@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Service_details;
 use App\Models\Services;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\Controller;
@@ -26,8 +27,8 @@ class ServiceController extends Controller
     public function index()
     {
 
-        $Services = $this->objectName::paginate(10);
-        return view($this->folderView . 'service', compact('Services'));
+        $Services = $this->objectName::get();
+        return view($this->folderView . 'index', compact('Services'));
     }
 
 
@@ -35,8 +36,9 @@ class ServiceController extends Controller
     public function create()
     {
 
-        return view($this->folderView . 'create_service');
+        return view($this->folderView . 'create');
     }
+
 
     public function store(Request $request)
     {
@@ -48,19 +50,36 @@ class ServiceController extends Controller
                 'image' => '',
 
             ]);
-
+        try
+        {
+            DB::beginTransaction();
         //store images
         if ($request->image != null) {
             $data['image'] = $this->MoveImage($request->image, 'uploads/services');
         }
 
+
         $Service = Services::create($data);
-        if ($Service->save()) {
-            Alert::success('تمت العمليه', 'تم انشاء خدمه جديده');
 
-            return redirect(url('services'));
+        foreach ($request->rows as $row) {
+            if ($row['title_ar'] != null && $row['title_en'] != null && $row['desc_ar'] != null && $row['desc_en'] != null) {
+
+                $row['Service_id'] = $Service->id;
+                Service_details::create($row);
+            }
         }
+            DB::commit();
+            Alert::success('تمت العمليه', 'تم اضافه الخدمه بنجاح');
+            return redirect()->route('services');
 
+        } catch (\Exception $ex) {
+
+            DB::rollback();
+            Alert::warning('هنالك خطاء', 'لم يتم التحديث');
+
+            return redirect()->route('services');
+
+        }
     }
 
     public function edit($id)
@@ -100,7 +119,7 @@ class ServiceController extends Controller
 
 
             DB::commit();
-            Alert::success('تمت العمليه', 'تم تحديث الخدمه بنجاح');
+            Alert::success('تمت العمليه', 'تم التحديث بنجاح');
             return redirect()->route('services');
 
         } catch (\Exception $ex) {
@@ -113,18 +132,83 @@ class ServiceController extends Controller
         }
     }
 
-    public function update_Actived(Request $request)
-    {
-        $data['status'] = $request->status;
-        $user = User::where('id', $request->id)->update($data);
-        return 1;
-    }
+
 
     public function destroy($id)
     {
         $Services=$this->objectName::findOrFail($id);
         $Services->delete();
-        Alert::success('تمت العمليه', 'تم حذف الخدمه بنجاح');
+        Alert::success('تمت العمليه', 'تم الحذف بنجاح');
+
+        return redirect()->back();
+    }
+
+    public function details($id)
+    {
+        $services_details = Service_details::where('service_id',$id)->get();
+        return view($this->folderView . 'details.details',compact('services_details','id'));
+
+    }
+
+    public function detcreate($id)
+    {
+        $services_details = Service_details::where('service_id',$id)->get();
+        return view($this->folderView . 'details.create' ,compact('services_details','id'));
+    }
+
+
+    public function detstore(Request $request)
+    {
+        $data = $this->validate(request(),
+            [
+                'title_ar' => 'required',
+                'title_en' => 'required',
+                'desc_ar' => 'required',
+                'desc_en' => 'required',
+                'service_id' => 'required',
+
+            ]);
+
+            $service_details = Service_details::create($data);
+
+
+            Alert::success('تمت العمليه', 'تم الاضافه بنجاح');
+            return redirect()->route('services.details',$request->service_id);
+
+
+    }
+
+    public function detedit($id)
+    {
+        $service_details = Service_details::where('id', $id)->first();
+        return view($this->folderView . 'details.edit', compact('service_details'));
+    }
+
+    public function detupdate(Request $request, $id)
+    {
+//return $request;
+        $data = $this->validate(\request(),
+            [
+                'title_ar' => 'required',
+                'title_en' => 'required',
+                'desc_ar' => 'required',
+                'desc_en' => 'required',
+
+            ]);
+
+
+            Service_details::where('id',$id)->update($data);
+
+            Alert::success('تمت العمليه', 'تم التعديل بنجاح');
+        return redirect()->route('services.details',$request->service_id);
+
+    }
+
+    public function detdestroy($id)
+    {
+        $Services=Service_details::findOrFail($id);
+        $Services->delete();
+        Alert::success('تمت العمليه', 'تم حذف بنجاح');
 
         return redirect()->back();
     }

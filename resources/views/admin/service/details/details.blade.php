@@ -2,19 +2,20 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">الموظفيين</h3>
+            <h3 class="text-themecolor">تفاصيل الخدمه</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">الخدمات</li>
+                <li class="breadcrumb-item">تفاصيل الخدمه</li>
+                <li class="breadcrumb-item"><a href="{{route('services')}}">الخدمات</a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">الصفحة الرئيسية</a></li>
             </ol>
         </div>
     </div>
     <!-- /.card-header -->
     <div class="title">
-        <a href="{{url('services/create')}} "
-           class="btn btn-info btn-bg">أضافة خدمه جديده</a>
+        <a href="{{route('services.details.create',$id)}} "
+           class="btn btn-info btn-bg">أضافة تفصيله جديده</a>
     </div>
     <br>
     <div class="row">
@@ -23,25 +24,28 @@
             <tr>
                 <th class="text-lg-center">عنوان الخدمه بالعربي</th>
                 <th class="text-lg-center">عنوان الخدمه بالانجليزي</th>
-                <th class="text-lg-center">الصوره</th>
-                <th class="text-lg-center">الاعدادات</th>
+                <th class="text-lg-center">محتوي الخدمه بالعربي</th>
+                <th class="text-lg-center">محتوي الخدمه بالانجليزي</th>
+                <th class="text-lg-center">الاجرائات</th>
             </tr>
             </thead>
 
             <tbody>
-            @foreach($Services as $Service)
+            @foreach($services_details as $services_detail)
                 <tr>
-                    <td class="text-lg-center">{{$Service->title_ar}}</td>
-                    <td class="text-lg-center">{{$Service->title_en}}</td>
+                    <td class="text-lg-center">{{$services_detail->title_ar}}</td>
+                    <td class="text-lg-center">{{$services_detail->title_en}}</td>
+                    <td class="text-lg-center">{{$services_detail->desc_ar}}</td>
+                    <td class="text-lg-center">{{$services_detail->desc_en}}</td>
+
                     <td class="text-lg-center ">
-                        <div class="pro-img m-t-20"><img style="height: 80px;" src="{{$Service->image}}"></div>
-                    </td>
-                    <td class="text-lg-center ">
-                        <a title="حذف" onclick="return confirm('هل انت متكد من حذف الخدمه')"
-                           href="{{route('services.delete',$Service->id)}}"><i class="fa fa-trash"></i></a>
-                        <br><br>
-                        <a title="تعديل"
-                           href="{{route('services.edit',$Service->id)}}"><i class="fa fa-edit"></i></a>
+
+                        <a class='btn btn-info btn-circle' title="تعديل"
+                           href="{{route('services.details.edit',$services_detail->id)}}"><i class="fa fa-edit"></i></a>
+
+                        <a class='btn btn-danger btn-circle' title="حذف" onclick="return confirm('هل انت متكد من حذف تقاصيل الخدمه')"
+                           href="{{route('services.details.delete',$services_detail->id)}}"><i class="fa fa-trash"></i></a>
+
                     </td>
 
                 </tr>

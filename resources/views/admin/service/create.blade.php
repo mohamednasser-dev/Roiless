@@ -10,17 +10,17 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">انشاء خدمه</li>
-                <li class="breadcrumb-item"><a href="ٌ{{route('services')}}">الخدمات</a></li>
+                <li class="breadcrumb-item"> <a href="{{route('services')}}">الخدمات </a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.nav_home')}}</a></li>
             </ol>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
-
-            {{ Form::open( ['route'  => ['services.store'],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
             <div class="card">
                 <div class="card-body">
+
+                    {{ Form::open( ['route'  => ['services.store'],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
                     <h4 class="card-title">بيانات الخدمه</h4>
                     <hr>
                     <div class="form-group m-t-40 row">
@@ -29,40 +29,42 @@
                             {{ Form::text('title_ar',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
+
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">عنوان الخدمه بالانجليزي</label>
                         <div class="col-md-10">
                             {{ Form::text('title_en',null,["class"=>"form-control" ,"required"]) }}
                         </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">صورة الخدمه</h4>
-                            <input type="file" name="image" id="input-file-now" class="dropify"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">صورة الخدمه</h4>
+                                    <input type="file" name="image" id="input-file-now" class="dropify"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <div class="center">
-                        {{ Form::submit('اضافه' ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
+                    <div class="card m-b-20">
+                        <div class="card-header" style='text-align:right'><strong> تفاصيل للخدمه </strong>
+                            <div class="card-body parent" style='text-align:right' id="parent">
+                                <button type='button' value='Add Button' id='addButton'>
+                                    <i class="fa fa-plus"></i></button>
+                                <div class="panel" style='text-align:right'>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="center">
+                        {{ Form::submit( 'اضافه' ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
+                    </div>
+                    {{ Form::close() }}
                 </div>
-
             </div>
-            {{ Form::close() }}
         </div>
-    @endsection
-    @section('scripts')
-        <!-- ============================================================== -->
-            <!-- Plugins for this page -->
-            <!-- ============================================================== -->
-            <!-- jQuery file upload -->
-
+        @endsection
+        @section('scripts')
             <script src="{{ asset('/assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
             <script>
                 $(document).ready(function () {
@@ -106,5 +108,44 @@
                     })
                 });
             </script>
+            <script>
+                $(document).ready(function () {
+                    var i = 0;
+
+                    $("#addButton").click(function () {
+                        var options = '';
+
+                        var html = '';
+                        html += ' <div id="" class="form-group row">';
+                        html += "<div class='col-sm-6'>" +
+                            "<input  name='rows[" + i + "][title_ar]' class='form-control' type='text' step ='0.01'  placeholder='ادخل العنوان بالعربي'>" +
+
+                            "</div>" +
+
+                            "<div class='col-sm-6'>" +
+                            "<input   name='rows[" + i + "][title_en]' class='form-control' type='text' step ='0.01'  placeholder='ادخل التفاصيل بالعربي'>" +
+
+                            "</div>" +
+                            "</br>" +
+                            "</br>" +
+                        "<div class='col-sm-6'>" +
+                            "<input  name='rows[" + i + "][desc_ar]' class='form-control' type='text' step ='0.01'  placeholder='ادخل العنوان بالانجليزي'>" +
+
+                            "</div>" +
+
+                            "<div class='col-sm-6'>" +
+                            "<input  name='rows[" + i + "][desc_en]' class='form-control' type='text' step ='0.01'  placeholder='ادخل التفاصيل بالانجليزي'>" +
+
+                            "</div>" +
+                            "</hr>" +
+
+                            "</div>";
+                        $('#parent').append(html);
+
+                        i++;
+                    });
+                });
+            </script>
+
 @endsection
 
