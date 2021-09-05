@@ -71,6 +71,7 @@ class ServiceController extends Controller
 
     public function update(Request $request, $id)
     {
+//        dd($request->all());
         $data = $this->validate(\request(),
             [
                 'title_ar' => 'required',
@@ -78,7 +79,9 @@ class ServiceController extends Controller
                 'image' => '',
 
             ]);
-        try {
+
+        try
+        {
             DB::beginTransaction();
 
             $Service = $this->objectName::find($id);
@@ -88,18 +91,12 @@ class ServiceController extends Controller
             }
 
 
-            if ($request->image != null) {
-                $image = $this->MoveImage($request->image, 'uploads/services');
-
-
-                $this->objectName::where('id', $id)
-                    ->update([
-                        'image' => $image,
-                    ]);
+            if($request->hasFile('image')) {
+                $file_name = $this->MoveImage($request->file('image'),'uploads/services' );
+                $data['image'] = $file_name;
             }
 
-            $Service->update($request->except('_token', 'id', 'photo'));
-            $Service->save();
+            $this->objectName::where('id',$id)->update($data);
 
 
             DB::commit();
