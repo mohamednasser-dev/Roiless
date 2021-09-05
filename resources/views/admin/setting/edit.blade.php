@@ -33,7 +33,6 @@
                         </div>
 
                         <div class="col-lg-12 col-md-6">
-
                             <div class="form-group m-t-40 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label"> اسم الموقع
                                     بالعربيه</label>
@@ -44,96 +43,115 @@
                             </div>
                         </div>
 
-                        <div class="form-group m-t-40 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label"> اسم الموقع
-                                بالانجليزيه</label>
-                            <div class="col-md-10">
-                                {{ Form::text('name_en',$setting->name_en,["class"=>"form-control" ,"required"]) }}
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label"> اسم الموقع
+                                    بالانجليزيه</label>
+                                <div class="col-md-10">
+                                    {{ Form::text('name_en',$setting->name_en,["class"=>"form-control" ,"required"]) }}
 
+                                </div>
                             </div>
                         </div>
 
-                        <div class="form-group m-t-40 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label">الشروط و الاحكام
-                                بالعربيه</label>
-                            <div class="col-md-10">
-                                {{ Form::text('terms_ar',$setting->terms_ar,["class"=>"form-control" ,"required"]) }}
-                            </div>
-                        </div>
-                        <div class="form-group m-t-40 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label">الشروط و الاحكام
-                                بالانجليزيه</label>
-                            <div class="col-md-10">
-                                {{ Form::text('terms_en',$setting->terms_en,["class"=>"form-control" ,"required"]) }}
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">الشروط و الاحكام
+                                    بالعربيه</label>
+                                <div class="col-md-10">
+                                    {{ Form::text('terms_ar',$setting->terms_ar,["class"=>"form-control" ,"required"]) }}
+                                </div>
                             </div>
                         </div>
 
-
-                        <div class="form-group m-t-40 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label">الخصوصيه بالعربيه</label>
-                            <div class="col-md-10">
-                                {{ Form::text('privacy_ar',$setting->privacy_ar,["class"=>"form-control" ,"required"]) }}
-                            </div>
-                        </div>
-                        <div class="form-group m-t-40 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label">الخصوصيه بالانجليزي</label>
-                            <div class="col-md-10">
-                                {{ Form::text('privacy_en',$setting->privacy_en,["class"=>"form-control" ,"required"]) }}
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">الشروط و الاحكام
+                                    بالانجليزيه</label>
+                                <div class="col-md-10">
+                                    {{ Form::text('terms_en',$setting->terms_en,["class"=>"form-control" ,"required"]) }}
+                                </div>
                             </div>
                         </div>
 
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">Facebook</span>
-                            <input type="text" class="form-control" placeholder="Enterfacebook"
-                                   aria-describedby="basic-addon1">
-                        </div>
-
-                        <div class="form-group m-t-40 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label">youtube</label>
-                            <div class="col-md-10">
-                                {{ Form::text('youtube',$setting->youtube,["class"=>"form-control" ,"required"]) }}
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">الخصوصيه
+                                    بالعربيه</label>
+                                <div class="col-md-10">
+                                    {{ Form::text('privacy_ar',$setting->privacy_ar,["class"=>"form-control" ,"required"]) }}
+                                </div>
                             </div>
                         </div>
 
-
-                        <div class="form-group m-t-40 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label">facebook</label>
-                            <div class="col-md-10">
-                                {{ Form::text('privacy_en',$setting->privacy_en,["class"=>"form-control" ,"required"]) }}
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">الخصوصيه
+                                    بالانجليزي</label>
+                                <div class="col-md-10">
+                                    {{ Form::text('privacy_en',$setting->privacy_en,["class"=>"form-control" ,"required"]) }}
+                                </div>
                             </div>
                         </div>
 
-
-                        <div class="form-group m-t-40 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label">gmail</label>
-                            <div class="col-md-10">
-                                {{ Form::text('gmail',$setting->gmail,["class"=>"form-control" ,"required"]) }}
+                        <div class="col-lg-6 col-md-6">
+                            <div class="input-group">
+                               <span class="input-group-addon" id="basic-addon1">
+                                    <i class="icon-social-facebook"></i>
+                                </span>
+                                {{ Form::url('facebook',$setting->facebook,["class"=>"form-control" ,"required"]) }}
                             </div>
                         </div>
 
-
-                        <div class="form-group m-t-40 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label">instagram</label>
-                            <div class="col-md-10">
-                                {{ Form::text('instagram',$setting->instagram,["class"=>"form-control" ,"required"]) }}
+                        <div class="col-lg-6 col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">
+                                    <i class="icon-social-youtube"></i>
+                                </span>
+                                {{ Form::url('youtube',$setting->youtube,["class"=>"form-control" ,"required"]) }}
                             </div>
                         </div>
 
 
-                        <div class="form-group m-t-40 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label">twitter</label>
-                            <div class="col-md-10">
-                                {{ Form::text('twitter',$setting->twitter,["class"=>"form-control" ,"required"]) }}
+                        <div class="col-lg-6 col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">
+                                    <i class=" icon-social-gplus"></i>
+                                </span>
+                                {{ Form::url('youtube',$setting->gmail,["class"=>"form-control" ,"required"]) }}
                             </div>
                         </div>
 
 
-                        <div class="form-group m-t-40 row">
-                            <label for="example-text-input" class="col-md-2 col-form-label">linkedin</label>
-                            <div class="col-md-10">
-                                {{ Form::text('linkedin',$setting->linkedin,["class"=>"form-control" ,"required"]) }}
+                        <div class="col-lg-6 col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">
+                                    <i class="icon-social-twitter"></i>
+                                </span>
+                                {{ Form::url('youtube',$setting->twitter,["class"=>"form-control" ,"required"]) }}
                             </div>
                         </div>
+
+
+                        <div class="col-lg-6 col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">
+                                    <i class="icon-social-linkedin"></i>
+                                </span>
+                                {{ Form::url('youtube',$setting->linkedin,["class"=>"form-control" ,"required"]) }}
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-6 col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">
+                                    <i class="icon-social-instagram"></i>
+                                </span>
+                                {{ Form::url('youtube',$setting->twitter,["class"=>"form-control" ,"required"]) }}
+                            </div>
+                        </div>
+
 
 
                         <div class="card">

@@ -19,7 +19,6 @@ class CreateCategoriesTable extends Migration
             $table->string('title_en');
             $table->string('image')->nullable();
             $table->enum('type',['cat','f'])->default('cat');
-            $table->double('financing_ratio');
             $table->timestamps();
 
         });

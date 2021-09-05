@@ -19,7 +19,6 @@ class CreateFundsTable extends Migration
             $table->string('name_ar');
             $table->string('name_en');
             $table->json('columns');
-
             $table->timestamps();
             $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
 
