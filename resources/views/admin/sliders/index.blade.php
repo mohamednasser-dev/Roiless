@@ -42,7 +42,7 @@
                     <form style="display:inline;" action="{{ route('sliders.delete' ,$slider->id) }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button onclick="return confirm('هل انت متكد من حذف الخدمه')"   type="submit" ><i class="fa fa-trash"></i></button>
+                        <button onclick="return confirm('هل انت متكد من حذف الصورة')"   type="submit" ><i class="fa fa-trash"></i></button>
 
                     </form>
                     </td>

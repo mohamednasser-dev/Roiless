@@ -35,4 +35,9 @@ class User extends Authenticatable
         else
             return asset('/uploads/users_images/default_avatar.jpg') ;
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

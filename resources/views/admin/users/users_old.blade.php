@@ -24,6 +24,8 @@
                     <tr>
                         <td class="text-lg-center">{{$user->name}}</td>
                         <td class="text-lg-center">{{$user->email}}</td>
+                        <td class="text-lg-center">{{$user->category->title_ar}}</td>
+
                         <td class="text-lg-center">
                             <div class="switch">
                                 <label>

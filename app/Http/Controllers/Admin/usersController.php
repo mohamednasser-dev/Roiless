@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Category;
 use Exception;
 
 class usersController extends Controller{
@@ -28,8 +29,8 @@ class usersController extends Controller{
     }
 
     public function create(){
-
-        return view($this->folderView.'create_user');
+         $categories = Category::all();
+        return view($this->folderView.'create_user',compact('categories'));
     }
 
     public function store(Request $request){
@@ -45,6 +46,7 @@ class usersController extends Controller{
         ]);
         if($request['password'] != null  && $request['password_confirmation'] != null ){
             $data['password'] = bcrypt(request('password'));
+            $data['cat_id'] = $request->category_id;
 //            if($request->status == 'on'){
 //                $data['status'] = 'active';
 //            }else{
