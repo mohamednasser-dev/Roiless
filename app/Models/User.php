@@ -35,4 +35,13 @@ class User extends Authenticatable
         else
             return asset('/uploads/users_images/default_avatar.jpg') ;
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function notifications(){
+        return $this->belongsToMany('App\Models\Notification' ,'user_notifications', 'user_id', 'notification_id','id','id');
+    }
 }
