@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Notification;
 use Exception;
 
 class usersController extends Controller{
@@ -57,6 +58,9 @@ class usersController extends Controller{
                 $data['image'] = $this->MoveImage($request->image,'uploads/users_images');
             }
             $user = User::create($data);
+            $notification=$request['notification'];
+            $users=new User();
+            $users->notifications()->attach($notification);
             if($user->save()){
 //                $user->assignRole($request['role_id']);
                 Alert::success('تمت العمليه', 'تم انشاء موظف جديد');

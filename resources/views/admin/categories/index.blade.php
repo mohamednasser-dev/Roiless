@@ -14,7 +14,7 @@
     <!-- /.card-header -->
     <div class="title">
         <a href="{{ route('categories.add') }}"
-           class="btn btn-info btn-bg">أضافة قسم جديده</a>
+           class="btn btn-info btn-bg">أضافة قسم جديد</a>
     </div>
     <br>
     <div class="row">
@@ -39,9 +39,10 @@
                     </td>
                     <td class="text-lg-center">{{ $category->type }}</td>
                     <td class="text-lg-center ">
-
+                        <button>
                         <a href="{{ route('categories.edit', $category->id )}}" > <i class="fa fa-edit"></i> </a>
-                    <form style="display:inline;" action="{{ route('categories.delete' ,$category->id) }}" method="post">
+                    </button>
+                        <form style="display:inline;" action="{{ route('categories.delete' ,$category->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button onclick="return confirm('هل انت متكد من حذف الخدمه')"   type="submit" ><i class="fa fa-trash"></i></button>

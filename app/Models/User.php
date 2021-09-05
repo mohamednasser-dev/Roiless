@@ -40,4 +40,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function notifications(){
+        return $this->belongsToMany('App\Models\Notification' ,'user_notifications', 'user_id', 'notification_id','id','id');
+    }
 }
