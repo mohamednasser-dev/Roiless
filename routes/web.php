@@ -74,4 +74,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/Setting/update/{id}','SettingController@update')->name('Setting.update');
     });
 
+  // questios
+
+    Route::group(['namespace' =>'Admin'], function () {
+        Route::get('/question', 'QuestionController@index')->name('question');
+        Route::get('question/create','QuestionController@create')->name('question.add');
+        Route::post('/question/store','QuestionController@store')->name('question.store');
+        Route::get('/question/edit/{id}','QuestionController@edit')->name('question.edit');
+        Route::post('/question/update/{id}','QuestionController@update')->name('question.update');
+        Route::get('/question/delete/{id}','QuestionController@destroy')->name('question.delete');
+    });
+
 });
