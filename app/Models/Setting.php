@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
 {
-    public function getImageAttribute($img)
+    public function getlogoAttribute($img)
     {
         if ($img)
             return asset('/uploads/setting') . '/' . $img;

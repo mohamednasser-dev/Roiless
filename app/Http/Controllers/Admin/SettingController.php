@@ -29,8 +29,8 @@ class SettingController extends Controller
 //    return $request;
         $data = $this->validate(\request(),
             [
-                'name_ar' => 'required',
-                'name_en' => 'required',
+                'title_ar' => 'required',
+                'title_en' => 'required',
                 'terms_ar' => 'required',
                 'terms_en' => 'required',
                 'privacy_ar' => 'required',
@@ -41,7 +41,7 @@ class SettingController extends Controller
                 'instagram' => 'required',
                 'twitter' => 'required',
                 'linkedin' => 'required',
-                'image' => '',
+                'logo' => '',
 
             ]);
 
@@ -55,9 +55,9 @@ class SettingController extends Controller
             }
 
 
-            if($request->hasFile('image')) {
-                $file_name = $this->MoveImage($request->file('image'),'uploads/setting' );
-                $data['image'] = $file_name;
+            if($request->hasFile('logo')) {
+                $file_name = $this->MoveImage($request->file('logo'),'uploads/setting' );
+                $data['logo'] = $file_name;
             }
 
             $this->objectName::where('id',$id)->update($data);

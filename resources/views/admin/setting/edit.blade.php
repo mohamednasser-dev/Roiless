@@ -12,208 +12,210 @@
             </ol>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12">
+    @isset($setting)
+        <div class="row">
+            <div class="col-sm-12">
 
-            {{ Form::open( ['route'  =>  ['Setting.update',$setting->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">بيانات الموقع</h4>
-                    <hr>
-                    <div class="row">
-                        <div class="col-lg-12 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">لوجو الموقع</h4>
-                                    {{--                                    <div class="pro-img m-t-20"><img style="height: 80px;" src="{{$setting->image}}"></div>--}}
-                                    <input type="file" name="image" data-default-file="{{$setting->image}}"
-                                           id="input-file-now" class="dropify"/>
+                {{ Form::open( ['route'  =>  ['Setting.update',$setting->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">بيانات الموقع</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">لوجو الموقع</h4>
+                                        <input type="file" name="logo" data-default-file="{{$setting->logo}}"
+                                               id="input-file-now" class="dropify"/>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-lg-12 col-md-6">
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input" class="col-md-2 col-form-label"> اسم الموقع
-                                    بالعربيه</label>
-                                <div class="col-md-10">
-                                    {{ Form::text('name_ar',$setting->name_ar,["class"=>"form-control" ,"required"]) }}
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input" class="col-md-2 col-form-label"> اسم الموقع
+                                        بالعربيه</label>
+                                    <div class="col-md-10">
+                                        {{ Form::text('title_ar',$setting->title_ar,["class"=>"form-control" ,"required"]) }}
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-lg-12 col-md-6">
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input" class="col-md-2 col-form-label"> اسم الموقع
-                                    بالانجليزيه</label>
-                                <div class="col-md-10">
-                                    {{ Form::text('name_en',$setting->name_en,["class"=>"form-control" ,"required"]) }}
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input" class="col-md-2 col-form-label"> اسم الموقع
+                                        بالانجليزيه</label>
+                                    <div class="col-md-10">
+                                        {{ Form::text('title_en',$setting->title_en,["class"=>"form-control" ,"required"]) }}
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-lg-12 col-md-6">
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input" class="col-md-2 col-form-label">الشروط و الاحكام
-                                    بالعربيه</label>
-                                <div class="col-md-10">
-                                    {{ Form::text('terms_ar',$setting->terms_ar,["class"=>"form-control" ,"required"]) }}
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input" class="col-md-2 col-form-label">الشروط و الاحكام
+                                        بالعربيه</label>
+                                    <div class="col-md-10">
+                                        {{ Form::text('terms_ar',$setting->terms_ar,["class"=>"form-control" ,"required"]) }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-lg-12 col-md-6">
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input" class="col-md-2 col-form-label">الشروط و الاحكام
-                                    بالانجليزيه</label>
-                                <div class="col-md-10">
-                                    {{ Form::text('terms_en',$setting->terms_en,["class"=>"form-control" ,"required"]) }}
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input" class="col-md-2 col-form-label">الشروط و الاحكام
+                                        بالانجليزيه</label>
+                                    <div class="col-md-10">
+                                        {{ Form::text('terms_en',$setting->terms_en,["class"=>"form-control" ,"required"]) }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-lg-12 col-md-6">
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input" class="col-md-2 col-form-label">الخصوصيه
-                                    بالعربيه</label>
-                                <div class="col-md-10">
-                                    {{ Form::text('privacy_ar',$setting->privacy_ar,["class"=>"form-control" ,"required"]) }}
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input" class="col-md-2 col-form-label">الخصوصيه
+                                        بالعربيه</label>
+                                    <div class="col-md-10">
+                                        {{ Form::text('privacy_ar',$setting->privacy_ar,["class"=>"form-control" ,"required"]) }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-lg-12 col-md-6">
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input" class="col-md-2 col-form-label">الخصوصيه
-                                    بالانجليزي</label>
-                                <div class="col-md-10">
-                                    {{ Form::text('privacy_en',$setting->privacy_en,["class"=>"form-control" ,"required"]) }}
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input" class="col-md-2 col-form-label">الخصوصيه
+                                        بالانجليزي</label>
+                                    <div class="col-md-10">
+                                        {{ Form::text('privacy_en',$setting->privacy_en,["class"=>"form-control" ,"required"]) }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-lg-6 col-md-6">
-                            <div class="input-group">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="input-group">
                                <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-facebook"></i>
                                 </span>
-                                {{ Form::url('facebook',$setting->facebook,["class"=>"form-control" ,"required"]) }}
+                                    {{ Form::url('facebook',$setting->facebook,["class"=>"form-control" ,"required"]) }}
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-lg-6 col-md-6">
-                            <div class="input-group">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-youtube"></i>
                                 </span>
-                                {{ Form::url('youtube',$setting->youtube,["class"=>"form-control" ,"required"]) }}
+                                    {{ Form::url('youtube',$setting->youtube,["class"=>"form-control" ,"required"]) }}
+                                </div>
                             </div>
-                        </div>
 
 
-                        <div class="col-lg-6 col-md-6">
-                            <div class="input-group">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i class=" icon-social-gplus"></i>
                                 </span>
-                                {{ Form::url('youtube',$setting->gmail,["class"=>"form-control" ,"required"]) }}
+                                    {{ Form::url('gmail',$setting->gmail,["class"=>"form-control" ,"required"]) }}
+                                </div>
                             </div>
-                        </div>
 
 
-                        <div class="col-lg-6 col-md-6">
-                            <div class="input-group">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-twitter"></i>
                                 </span>
-                                {{ Form::url('youtube',$setting->twitter,["class"=>"form-control" ,"required"]) }}
+                                    {{ Form::url('instagram',$setting->twitter,["class"=>"form-control" ,"required"]) }}
+                                </div>
                             </div>
-                        </div>
 
 
-                        <div class="col-lg-6 col-md-6">
-                            <div class="input-group">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-linkedin"></i>
                                 </span>
-                                {{ Form::url('youtube',$setting->linkedin,["class"=>"form-control" ,"required"]) }}
+                                    {{ Form::url('linkedin',$setting->linkedin,["class"=>"form-control" ,"required"]) }}
+                                </div>
                             </div>
-                        </div>
 
 
-                        <div class="col-lg-6 col-md-6">
-                            <div class="input-group">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-instagram"></i>
                                 </span>
-                                {{ Form::url('youtube',$setting->twitter,["class"=>"form-control" ,"required"]) }}
+                                    {{ Form::url('twitter',$setting->twitter,["class"=>"form-control" ,"required"]) }}
+                                </div>
                             </div>
-                        </div>
 
 
-
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="center">
-                                    {{ Form::submit('تحديث' ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="center">
+                                        {{ Form::submit('تحديث' ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        {{ Form::close() }}
                     </div>
-                    {{ Form::close() }}
                 </div>
             </div>
-        @endsection
-        @section('scripts')
-            <!-- ============================================================== -->
-                <!-- Plugins for this page -->
-                <!-- ============================================================== -->
-                <!-- jQuery file upload -->
+            @endisset
+        </div>
+@endsection
+@section('scripts')
+    <!-- ============================================================== -->
+    <!-- Plugins for this page -->
+    <!-- ============================================================== -->
+    <!-- jQuery file upload -->
 
-                <script src="{{ asset('/assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
-                <script>
-                    $(document).ready(function () {
-                        // Basic
-                        $('.dropify').dropify();
+    <script src="{{ asset('/assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            // Basic
+            $('.dropify').dropify();
 
-                        // Translated
-                        $('.dropify-fr').dropify({
-                            messages: {
-                                default: 'Glissez-déposez un fichier ici ou cliquez',
-                                replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
-                                remove: 'Supprimer',
-                                error: 'Désolé, le fichier trop volumineux'
-                            }
-                        });
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
 
-                        // Used events
-                        var drEvent = $('#input-file-events').dropify();
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
 
-                        drEvent.on('dropify.beforeClear', function (event, element) {
-                            return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
-                        });
+            drEvent.on('dropify.beforeClear', function (event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
 
-                        drEvent.on('dropify.afterClear', function (event, element) {
-                            alert('File deleted');
-                        });
+            drEvent.on('dropify.afterClear', function (event, element) {
+                alert('File deleted');
+            });
 
-                        drEvent.on('dropify.errors', function (event, element) {
-                            console.log('Has Errors');
-                        });
+            drEvent.on('dropify.errors', function (event, element) {
+                console.log('Has Errors');
+            });
 
-                        var drDestroy = $('#input-file-to-destroy').dropify();
-                        drDestroy = drDestroy.data('dropify')
-                        $('#toggleDropify').on('click', function (e) {
-                            e.preventDefault();
-                            if (drDestroy.isDropified()) {
-                                drDestroy.destroy();
-                            } else {
-                                drDestroy.init();
-                            }
-                        })
-                    });
-                </script>
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function (e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+        });
+    </script>
 @endsection
 
