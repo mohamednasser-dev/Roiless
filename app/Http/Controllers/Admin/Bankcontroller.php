@@ -18,13 +18,13 @@ class Bankcontroller extends Controller
 
 
     public function index(){
-    $banks = User::where('type','bank')->orderBy('name','desc')->paginate(10);
+    $banks = User::where('type','bank')->orderBy('name','desc')->get();
     return view($this->folderView.'banks',compact('banks'));
 }
 
    public function show($id){
-    $data = User::where('id',$id)->first();
-    return view($this->folderView.'details',compact('data'));
+    $banks = User::where('id',$id)->first();
+    return view($this->folderView.'details',compact('banks'));
 }
 
     public function create(){
@@ -67,69 +67,54 @@ class Bankcontroller extends Controller
         }
     }
 }
-/*
+
     public function edit($id)
 {
-    $roles = Role::all();
-    $user_data = $this->objectName::where('id', $id)->first();
-    return view($this->folderView.'edit', \compact('user_data','roles'));
+
+    $bank = User::where('id', $id)->first();
+    return view($this->folderView.'edit', \compact('bank'));
 }
 
-    public function update(Request $request, $id)
-{
-    if($request['password'] != null){
-        $data = $this->validate(\request(),
-            [
-                'name' => 'required',
-                'email' => 'required|unique:users,email,'.$id,
-                'password' => 'required|min:6|confirmed',
-                'role_id' => 'required|exists:roles,id'
-            ]);
-    }else{
-        $data = $this->validate(\request(),
-            [
-                'name' => 'required',
-                'email' => 'required|unique:users,email,'.$id,
-                'role_id' => 'required|exists:roles,id'
-            ]);
-    }
-    if($request['password'] != null  && $request['password_confirmation'] != null ){
-        $data['password'] = bcrypt(request('password'));
-        $newData['name'] =$request['name'];
-        User::where('id',$id)->update($data);
-        DB::table('model_has_roles')
-            ->where('model_id', $id)
-            ->update(['role_id' => $request['role_id']]);
-        session()->flash('success',  trans('admin.updatSuccess'));
-        return redirect(url('users'));
-    }else{
-        unset($data['password']);
-        unset($data['password_confirmation']);
-        User::where('id',$id)->update($data);
-        DB::table('model_has_roles')
-            ->where('model_id', $id)
-            ->update(['role_id' => $request['role_id']]);
-        session()->flash('success',  trans('admin.updatSuccess'));
-        return redirect(url('users'));
-    }
-}
+        public function update(Request $request, $id)
+    {
 
-    public function update_Actived(Request $request){
-    $data['status'] = $request->status ;
-    $user = User::where('id', $request->id)->update($data);
-    return 1;
-}
+        if($request['password'] != null){
+            $data = $this->validate(\request(),
+                [
+                    'name' => 'required',
+                    'email' => 'required|unique:users,email,'.$id,
+                    'password' => 'required|min:6|confirmed',
+
+                ]);
+        }else{
+            $data = $this->validate(\request(),
+                [
+                    'name' => 'required',
+                    'email' => 'required|unique:users,email,'.$id,
+
+                ]);
+        }
+
+        if($request['password'] != null  && $request['password_confirmation'] != null ){
+            $data['password'] = bcrypt(request('password'));
+            User::where('id',$id)->update($data);
+
+            return redirect()->route('banks.index');
+        }else{
+            unset($data['password']);
+            unset($data['password_confirmation']);
+            User::where('id',$id)->update($data);
+            return redirect()->route('banks.index');
+        }
+    }
 
     public function destroy($id){
-    $user = $this->objectName::where('id', $id)->first();
-    try {
-        $user->deleted = '1';
-        $user->save();
-        Alert::warning('الحذف', trans('admin.deleteSuccess'));
-    }catch(Exception $exception){
-        session()->flash('danger', trans('admin.emp_no_delete'));
-    }
-    return back();
+        $bank=User::findOrFail($id);
+
+        $bank->delete();
+        Alert::success('تمت العمليه', 'تم حذف بنجاح');
+
+        return redirect()->route('banks.index');
 }
-*/
+
 }
