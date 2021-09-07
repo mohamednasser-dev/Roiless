@@ -4,7 +4,9 @@
 @endsection
 @section('content')
     <div class="row page-titles">
-
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">تعديل اعدادات الموقع</h3>
+        </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">اعدادات الموقع</li>
@@ -12,7 +14,7 @@
             </ol>
         </div>
     </div>
-    @isset($setting)
+
         <div class="row">
             <div class="col-sm-12">
 
@@ -165,7 +167,6 @@
                     </div>
                 </div>
             </div>
-            @endisset
         </div>
 @endsection
 @section('scripts')

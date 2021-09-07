@@ -4,7 +4,7 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Admin Pro</p>
+            <p class="loader__label">{{getlogoimage()->title_ar}}</p>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -20,9 +20,9 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{{route('home')}}">
                         <span>
-                            <img src="{{ asset('/assets/images/side_bar_image.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 45px;"/>
+                            <img src="{{getlogoimage()->logo}}" alt="homepage" class="dark-logo" style="width: 165px; height: 70px;"/>
                         </span>
                     </a>
                 </div>

@@ -13,6 +13,10 @@
                             class="mdi mdi-account-location"></i><span class="hide-menu"></span>الموظفين</a>
                 </li>
                 <li>
+                    <a class="waves-effect waves-dark" href="{{route('banks.index')}}" aria-expanded="false"><i
+                            class="mdi mdi-account-location"></i><span class="hide-menu"></span>البنوك</a>
+                </li>
+                <li>
                     <a class="waves-effect waves-dark" href="{{route('categories')}}" aria-expanded="false"><i
                             class="mdi mdi-account-location"></i><span class="hide-menu"></span>الاقسام</a>
                 </li>

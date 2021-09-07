@@ -16,7 +16,7 @@
         <link href="{{ asset('/css/pages/login-register-lock.css') }}" rel="stylesheet">
         <!-- Custom CSS -->
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
-        
+
         <!-- You can change the theme colors from here -->
         <link href="{{ asset('/css/colors/default-dark.css') }}" id="theme" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -45,7 +45,7 @@
                     <form class="form-horizontal form-material" id="loginform" method="POST" action="{{route('login_user') }}">
                          @csrf
                         <a href="javascript:void(0)" class="text-center db">
-                            <img src="{{ asset('/assets/images/logo.png') }}" style="width: 150px; height: 150px;" alt="Home" />
+                            <img src="{{getlogoimage()->logo}}" style="width: 200px; height: 100px;" alt="Home" />
                         </a>
                         @include('layouts.errors')
                         @include('layouts.messages')
@@ -69,7 +69,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="form-group text-center m-t-20">
                             <div class="col-xs-12">
                                 <button class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" type="submit">{{trans('admin.login')}} </button>
@@ -97,9 +97,9 @@
             $(function() {
                 $('[data-toggle="tooltip"]').tooltip()
             });
-            // ============================================================== 
-            // Login and Recover Password 
-            // ============================================================== 
+            // ==============================================================
+            // Login and Recover Password
+            // ==============================================================
             $('#to-recover').on("click", function() {
                 $("#loginform").slideUp();
                 $("#recoverform").fadeIn();

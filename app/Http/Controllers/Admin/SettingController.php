@@ -20,7 +20,27 @@ class SettingController extends Controller
     }
     public function edit()
     {
+
         $setting = $this->objectName::get()->first();
+
+        if (!$setting ){
+            Setting::create([
+                'title_ar' => '',
+                'title_en' => '',
+                'terms_ar' => '',
+                'terms_en' => '',
+                'privacy_ar' => '',
+                'privacy_en' => '',
+                'facebook' => '',
+                'youtube' => '',
+                'gmail' => '',
+                'instagram' => '',
+                'twitter' => '',
+                'linkedin' => '',
+                'logo' => '',
+
+            ]);
+        }
         return view($this->folderView .'.'. 'edit' , compact('setting'));
     }
 

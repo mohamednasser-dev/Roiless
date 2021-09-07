@@ -24,32 +24,31 @@
                     <h4 class="card-title">بيانات السؤال</h4>
                     <hr>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الخدمه بالعربي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان السؤال بالعربي</label>
                         <div class="col-md-10">
                             {{ Form::text('question_ar',$question->question_ar,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الخدمه بالانجليزي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان السؤال بالانجليزي</label>
                         <div class="col-md-10">
                             {{ Form::text('question_en',$question->question_en,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الخدمه بالانجليزي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الجواب بالانجليزي</label>
                         <div class="col-md-10">
                             {{ Form::text('answer_ar',$question->answer_ar,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الخدمه بالانجليزي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الجواب بالانجليزي</label>
                         <div class="col-md-10">
                             {{ Form::text('answer_en',$question->answer_en,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
-                    @isset($question->image)
 
                         <div class="row">
                             <div class="col-lg-12 col-md-6">
@@ -62,7 +61,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endisset
+
                     <div class="card">
                         <div class="card-body">
                             <div class="center">

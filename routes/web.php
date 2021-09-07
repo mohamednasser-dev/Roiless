@@ -30,6 +30,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('users/{id}/details', 'Admin\usersController@show')->name('users.details');
     Route::post('users/actived', 'Admin\usersController@update_Actived')->name('users.actived');
 
+    //banks  routes
+    Route::resource('banks', 'Admin\Bankcontroller');
+    Route::get('banks/{id}/delete', 'Admin\Bankcontroller@destroy')->name('banks.delete');
+    Route::get('banks/{id}/details', 'Admin\Bankcontroller@show')->name('banks.details');
+    Route::post('banks/actived', 'Admin\Bankcontroller@update_Actived')->name('banks.actived');
+
     //sliders
     Route::get('/sliders', 'Admin\sliderController@index')->name('sliders');
     Route::get('sliders/create','Admin\sliderController@create')->name('sliders.add');

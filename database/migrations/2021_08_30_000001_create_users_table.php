@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->index()->unique();
             $table->string('image')->nullable();
             $table->string('email')->unique()->nullable();
-            $table->enum('type', ['user', 'admin','employer,bank']);
+            $table->enum('type', ['user', 'admin','employer','bank']);
             $table->enum('status', ['active', 'unactive']);
             $table->string('role_id')->nullable();
             $table->integer('cat_id')->unsigned()->nullable();

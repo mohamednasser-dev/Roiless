@@ -19,7 +19,7 @@ class LoginController extends Controller
                 session()->flash('danger', trans('admin.not_auth'));
                 return redirect('login');
             }else{
-                return redirect('/home');
+                return redirect('/');
             }
         }else{
             session()->flash('danger',trans('admin.invaldemailorpassword'));
