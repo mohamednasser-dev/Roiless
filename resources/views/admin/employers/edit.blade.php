@@ -2,12 +2,12 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">تعديل بيانات البنك</h3>
+            <h3 class="text-themecolor">تعديل بيانات الموظف</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">تعديل البنك</li>
-                <li class="breadcrumb-item"><a href="{{route('banks.index')}}">البنوك</a></li>
+                <li class="breadcrumb-item">تعديل الموظف</li>
+                <li class="breadcrumb-item"><a href="{{route('employer.index')}}">الموظفين</a></li>
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">الرئسيه</a></li>
             </ol>
         </div>
@@ -18,18 +18,18 @@
                 <div class="card-body">
                     <h4 class="card-title">بيانات البنك</h4>
                     <hr>
-                    {!! Form::model($bank, ['route' => ['banks.update',$bank->id] , 'method'=>'put','files'=> true]) !!}
+                    {!! Form::model($employer, ['route' => ['employer.update',$employer->id] , 'method'=>'put','files'=> true]) !!}
                     {{ csrf_field() }}
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">اسم البنك</label>
                         <div class="col-md-10">
-                            {{ Form::text('name',$bank->name,["class"=>"form-control" ,"required"]) }}
+                            {{ Form::text('name',$employer->name,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.email')}}</label>
                         <div class="col-md-10">
-                            {{ Form::email('email',$bank->email,["class"=>"form-control" ,"required"]) }}
+                            {{ Form::email('email',$employer->email,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group row">

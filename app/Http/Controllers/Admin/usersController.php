@@ -84,14 +84,14 @@ class usersController extends Controller{
                     'name' => 'required',
                     'email' => 'required|unique:users,email,'.$id,
                     'password' => 'required|min:6|confirmed',
-                    'role_id' => 'required|exists:roles,id'
+//                    'role_id' => 'required|exists:roles,id'
                 ]);
         }else{
             $data = $this->validate(\request(),
                 [
                     'name' => 'required',
                     'email' => 'required|unique:users,email,'.$id,
-                    'role_id' => 'required|exists:roles,id'
+//                    'role_id' => 'required|exists:roles,id'
                 ]);
         }
         if($request['password'] != null  && $request['password_confirmation'] != null ){

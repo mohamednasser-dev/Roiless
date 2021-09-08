@@ -19,7 +19,7 @@ class CreateNotificationsTable extends Migration
             $table->string('title_en');
             $table->string('body_ar');
             $table->string('body_en');
-            $table->string('string')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

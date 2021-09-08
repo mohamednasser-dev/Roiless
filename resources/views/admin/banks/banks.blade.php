@@ -14,7 +14,7 @@
     <!-- /.card-header -->
     <div class="title">
         <a href="{{url('banks/create')}} "
-           class="btn btn-info btn-bg">أضافة البنوك جديد</a>
+           class="btn btn-info btn-bg">أضافة بنك جديد</a>
     </div>
     <br>
     <div class="row">
@@ -26,7 +26,7 @@
                         <h3 class="m-b-0">{{$bank->name}}</h3>
                         <ul class="list-inline soc-pro m-t-30">
                             <li><a title="تعديل" href="{{url('banks/'.$bank->id.'/edit')}}"><i class="fa fa-edit"></i></a></li>
-                            <li><a title="التفاصيل" href="{{route('banks.details',$banks->id)}}"><i class="fa fa-eye"></i></a></li>
+                            <li><a title="التفاصيل" href="{{route('banks.details',$bank->id)}}"><i class="fa fa-eye"></i></a></li>
                             <li><a title="حذف" onclick="return confirm('هل انت متاكد من حذف البنك')"
                                    href="{{route('banks.delete',$bank->id)}}"><i class="fa fa-trash"></i></a></li>
                         </ul>
