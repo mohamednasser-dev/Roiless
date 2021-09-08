@@ -33,6 +33,10 @@
                             class="mdi mdi-format-align-justify"></i><span class="hide-menu"></span>الخدمات</a>
                 </li>
                 <li>
+                    <a class="waves-effect waves-dark" href="{{route('notifications.index')}}" aria-expanded="false"><i
+                            class=" ti-world"></i><span class="hide-menu"></span>الاشعارت</a>
+                </li>
+                <li>
                     <a class="waves-effect waves-dark" href="{{route('Setting.edit')}}" aria-expanded="false"><i
                             class="mdi mdi-settings"></i><span class="hide-menu"></span>الاعدادات</a>
                 </li>

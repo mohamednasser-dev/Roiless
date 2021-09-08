@@ -73,6 +73,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/services/deletes_serv_detail/{id}','ServiceController@detdestroy')->name('services.details.delete');
 
     });
+    //notifications
+    Route::group(['namespace' =>'Admin'], function () {
+        Route::resource('/notifications','NotificationsController');
+    });
     // Setting
 
     Route::group(['namespace' =>'Admin'], function () {
