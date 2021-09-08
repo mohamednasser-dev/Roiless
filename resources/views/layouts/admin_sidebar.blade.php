@@ -10,19 +10,23 @@
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{route('users.index')}}" aria-expanded="false"><i
-                            class="mdi mdi-account-location"></i><span class="hide-menu"></span>الموظفين</a>
+                            class="mdi mdi-account-location"></i><span class="hide-menu"></span>المستخدمين</a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="{{route('employer.index')}}" aria-expanded="false"><i
+                            class="mdi mdi-headphones"></i><span class="hide-menu"></span>الموظفين</a>
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{route('banks.index')}}" aria-expanded="false"><i
-                            class="mdi mdi-account-location"></i><span class="hide-menu"></span>البنوك</a>
+                            class="mdi mdi-bank"></i><span class="hide-menu"></span>البنوك</a>
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{route('categories')}}" aria-expanded="false"><i
-                            class="mdi mdi-account-location"></i><span class="hide-menu"></span>الاقسام</a>
+                            class="mdi mdi-briefcase"></i><span class="hide-menu"></span>الاقسام</a>
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{route('sliders')}}" aria-expanded="false"><i
-                            class="mdi mdi-account-location"></i><span class="hide-menu"></span>Slider</a>
+                            class="mdi mdi-image"></i><span class="hide-menu"></span>Slider</a>
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{route('question')}}" aria-expanded="false"><i
@@ -31,6 +35,10 @@
                 <li>
                     <a class="waves-effect waves-dark" href="{{route('services')}}" aria-expanded="false"><i
                             class="mdi mdi-format-align-justify"></i><span class="hide-menu"></span>الخدمات</a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="{{route('notifications.index')}}" aria-expanded="false"><i
+                            class=" ti-world"></i><span class="hide-menu"></span>الاشعارت</a>
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{route('Setting.edit')}}" aria-expanded="false"><i

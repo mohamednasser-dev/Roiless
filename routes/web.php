@@ -30,6 +30,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('users/{id}/details', 'Admin\usersController@show')->name('users.details');
     Route::post('users/actived', 'Admin\usersController@update_Actived')->name('users.actived');
 
+
+    //emploers  routes
+    Route::resource('employer', 'Admin\employerController');
+    Route::get('employer/{id}/delete', 'Admin\employerController@destroy')->name('employer.delete');
+    Route::get('employer/{id}/details', 'Admin\employerController@show')->name('employer.details');
+    Route::post('employer/actived', 'Admin\employerController@update_Actived')->name('employer.actived');
+
     //banks  routes
     Route::resource('banks', 'Admin\Bankcontroller');
     Route::get('banks/{id}/delete', 'Admin\Bankcontroller@destroy')->name('banks.delete');
@@ -72,6 +79,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/services/store_serv_update/{id}','ServiceController@detupdate')->name('services.details.update');
         Route::get('/services/deletes_serv_detail/{id}','ServiceController@detdestroy')->name('services.details.delete');
 
+    });
+    //notifications
+    Route::group(['namespace' =>'Admin'], function () {
+        Route::resource('/notifications','NotificationsController');
     });
     // Setting
 
