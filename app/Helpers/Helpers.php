@@ -13,3 +13,22 @@ function msgdata($request, $status, $key, $data)
     $msg['data'] = $data;
     return $msg;
 }
+
+
+function msg($request, $status, $key)
+{
+    $msg['status'] = $status;
+    $msg['msg'] = Config::get('response.' . $key . '.' . $request->header('lang'));
+
+    return $msg;
+}
+
+function success()
+{
+    return 200;
+}
+
+function failed()
+{
+    return 401;
+}

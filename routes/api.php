@@ -23,4 +23,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['namespace' =>'API'], function () {
     Route::post("/login","AuthController@login");
+
+    Route::post("/update-profile","AuthController@updateProfile");
+
+    Route::post('forgot/password','AuthController@forgot_password_post')
+        ->name('admin.forgot.to.reset.password');;
+
+    Route::get('check_token/','AuthController@reset_password');
+
+    Route::post('reset/password/','AuthController@reset_password_post');
+
 });
