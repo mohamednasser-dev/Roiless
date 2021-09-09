@@ -14,7 +14,7 @@ class UserUnhashedPassword extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('unhashedtable')->unique()
+            $table->string('unhashedtable')
             ->nullable()
             ->default(null);       
         });
