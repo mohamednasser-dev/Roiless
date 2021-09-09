@@ -118,5 +118,15 @@ class employerController extends Controller
         return redirect()->route('employer.index');
     }
 
+    public function changeStatus(Request $request) {
+
+        User::where('id',$request->id)->update([
+            'status' => $request->status
+        ]);
+
+        return 1;
+
+    }
+
 }
 

@@ -37,6 +37,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('employer/{id}/details', 'Admin\employerController@show')->name('employer.details');
     Route::post('employer/actived', 'Admin\employerController@update_Actived')->name('employer.actived');
 
+    // change status
+    Route::post('employer/change/status', 'Admin\employerController@changeStatus')->name('employer.change.status');
+
+
     //banks  routes
     Route::resource('banks', 'Admin\Bankcontroller');
     Route::get('banks/{id}/delete', 'Admin\Bankcontroller@destroy')->name('banks.delete');
