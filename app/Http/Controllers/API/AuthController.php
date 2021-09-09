@@ -60,7 +60,7 @@ class AuthController extends Controller
                         return msgdata($request, success(), 'package_ended', array('user' => $user));
                     }
                     
-                    
+
                 } else {
                     $parent_user = User::where('id', Auth::user()->parent_id)->first();
                     $user = Auth::user();
@@ -78,6 +78,10 @@ class AuthController extends Controller
                 return response()->json(msg($request, failed(), 'login_warrning'));
             }
         }
+    }
+    public function register()
+    {
+        
     }
 
     public function verify_email(Request $request)
