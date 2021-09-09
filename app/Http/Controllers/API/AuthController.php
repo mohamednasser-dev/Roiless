@@ -66,13 +66,13 @@ class AuthController extends Controller
                     $user = Auth::user();
                     $user->api_token = Str::random(60);
                     $user->save();
-                    /*
+                    
                     if ($parent_user->expiry_package == 'n') {
                         return msgdata($request, success(), 'login_success', array('user' => $user));
                     } else {
                         return msgdata($request, success(), 'package_ended', array('user' => $user));
                     }
-                    */
+                    
                 }
             } else {
                 return response()->json(msg($request, failed(), 'login_warrning'));
@@ -81,7 +81,7 @@ class AuthController extends Controller
     }
     public function register()
     {
-
+        
     }
 
     public function verify_email(Request $request)
@@ -233,5 +233,35 @@ class AuthController extends Controller
         }
     }
 
-    
+    public function changePassword(Request $request)
+    {
+        $user = check_api_token($request->header('api_token'));
+        $rules = [
+            'old_password' => '',
+            'password' => 'required|min:6',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        }
+        if ($user != null) {
+            if ($request->old_password == null) {
+                $user->code = null;
+                $user->password = Hash::make($request->password);
+                $user->save();
+                return response()->json(msg($request, success(), 'reseted'));
+            } else {
+                if (\Hash::check($request->old_password, $user->password)) {
+                    $user->code = null;
+                    $user->password = Hash::make($request->password);
+                    $user->save();
+                    return response()->json(msg($request, success(), 'reseted'));
+                } else {
+                    return sendResponse(401, trans('site_lang.check_pass_again'), null);
+                }
+            }
+        } else {
+            return sendResponse(403, trans('site_lang.loginWarning'), null);
+        }
+    }
 }
