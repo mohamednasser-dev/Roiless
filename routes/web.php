@@ -102,4 +102,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/question/delete/{id}','QuestionController@destroy')->name('question.delete');
     });
 
+
+
+
+   
+    
+
 });
