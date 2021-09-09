@@ -30,12 +30,43 @@
                             <li><a title="حذف" onclick="return confirm('هل انت متاكد من حذف البنك')"
                                    href="{{route('employer.delete',$employer->id)}}"><i class="fa fa-trash"></i></a></li>
                         </ul>
+
+                        <div class="switch">
+                            <label>
+                                <input type="checkbox" onchange="update_active(this)" value="{{$employer->id}}" name="active" @if($employer->status == 'active') checked @endif ><span class="lever switch-col-green"></span></label>
+                        </div>
+
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
 @endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        function update_active(el) {
+            if (el.checked)
+                var status = 'active';
+            else
+                var status = 'unactive';
+
+            $.post('{{ route('employer.change.status') }}', {
+                _token: '{{ csrf_token() }}',
+                id: el.value,
+                status: status
+            }, function (data) {
+                if (data == 1) {
+                    toastr.success("{{trans('admin.statuschanged')}}");
+                } else {
+                    toastr.error("{{trans('admin.statuschanged')}}");
+                }
+            });
+        }
+    </script>
+@endsection
+
+
 {{--@section('scripts')--}}
 {{--    <script type="text/javascript">--}}
 {{--        function update_active(el) {--}}
