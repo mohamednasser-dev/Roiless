@@ -23,7 +23,7 @@ class NotificationsController extends Controller
     public function index()
     {
 
-        $notifications = $this->objectName::get();
+        $notifications = Notification::get();
         return view($this->folderView . 'index', compact('notifications'));
     }
 
@@ -37,7 +37,6 @@ class NotificationsController extends Controller
 
     public function store(Request $request)
     {
-
         $data = $this->validate(request(),
             [
                 'title_ar' => 'required',
@@ -45,36 +44,21 @@ class NotificationsController extends Controller
                 'body_ar' => 'required',
                 'body_en' => 'required',
                 'image' => '',
-            ]);
-            $this->validate(request(),
-            [
                 'users_id'=>'required',
-            ]
-        );
-    
-        
-
+            ]);
         try {
-            DB::beginTransaction();
             //store images
             if ($request->image != null) {
                 $data['image'] = $this->MoveImage($request->image, 'uploads/notification');
             }
-    
-
-            $notifications = $this->objectName::create($data)->user()->attach($request->users_id);
-            DB::commit();
-                 
+            unset($data['users_id']);
+            $notifications = Notification::create($data)->user()->attach($request->users_id);
             Alert::success('تمت العمليه', 'تم اضافه الاشعار بنجاح');
             return redirect()->route('notifications.create');
-
         } catch (\Exception $ex) {
-
             DB::rollback();
             Alert::warning('هنالك خطاء', 'لم يتم التحديث');
-
             return redirect()->route('notifications.create');
-
         }
     }
 

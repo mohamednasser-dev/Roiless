@@ -17,7 +17,7 @@
         </style>
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/assets/images/favicon.png') }}">
-        <title>Roiless</title>
+        <title>{{getlogoimage()->title_ar}}</title>
         <!-- Bootstrap Core CSS -->
         <link href="{{ asset('/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
