@@ -80,13 +80,19 @@ class AuthController extends Controller
     }
 
 
-    public function updateProfile(Request $request)
+    public function updateProfile(Request $request, $id)
     {
+
+        $user = User::find($id);
+        if(!$user)
+            return response()->json(['status' => 401, 'msg' => 'User Not Found']);
+
+
         $rules = [
             'name' => 'required|regex:/^[\pL\s\-]+$/u',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'required',
-            'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users,phone',
+            'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users,phone,'.$id,
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -94,7 +100,8 @@ class AuthController extends Controller
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
 
-            $user = User::where('id', $request->id)->update([
+
+            $user->update([
                 'name' => $request->name,
                 'password' => bcrypt($request->password),
                 'email' => $request->email,
