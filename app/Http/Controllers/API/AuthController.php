@@ -42,7 +42,7 @@ class AuthController extends Controller
         } else {
             if (Auth::attempt([
                 'phone' => $request->input('phone'),
-                'password' => $request->input('password')
+                'password' => bcrypt($request->input('password'))
             ])) {
                 if(Auth::user()->verified == '0'){
                     Auth::logout();
@@ -66,28 +66,19 @@ class AuthController extends Controller
                     $user = Auth::user();
                     $user->api_token = Str::random(60);
                     $user->save();
-<<<<<<< HEAD
 
-=======
-                    
->>>>>>> b1238cd141c09702b30b049d4e66ca80f66105d3
                     if ($parent_user->expiry_package == 'n') {
                         return msgdata($request, success(), 'login_success', array('user' => $user));
                     } else {
                         return msgdata($request, success(), 'package_ended', array('user' => $user));
                     }
-<<<<<<< HEAD
-
-=======
-                    
->>>>>>> b1238cd141c09702b30b049d4e66ca80f66105d3
                 }
             } else {
                 return response()->json(msg($request, failed(), 'login_warrning'));
             }
         }
     }
-<<<<<<< HEAD
+
 
 
     public function updateProfile(Request $request) {
@@ -145,7 +136,8 @@ class AuthController extends Controller
         }
     }
 
-    public function reset_password_post( Request $request) {
+    public function reset_password_post( Request $request)
+    {
 
         $rules = [
             'email' => 'required',
@@ -158,23 +150,19 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
-        $check_token = DB::table('password_resets')->where('token', $request->token)->where('created_at', '>', Carbon::now()->subHours(1))->first();
-        if (!empty($check_token)) {
-            $user = User::where('email', $check_token->email)->update(['email' => $check_token->email, 'password' => bcrypt($request->password),
-            ]);
-            DB::table('password_resets')->where('email', $request->email)->delete();
-            return response()->json(msg($request, success(), 'reseted'));
-        } else {
-            return response()->json(msg($request, failed(), 'not_reseted'));
+            $check_token = DB::table('password_resets')->where('token', $request->token)->where('created_at', '>', Carbon::now()->subHours(1))->first();
+            if (!empty($check_token)) {
+                $user = User::where('email', $check_token->email)->update(['email' => $check_token->email, 'password' => bcrypt($request->password),
+                ]);
+                DB::table('password_resets')->where('email', $request->email)->delete();
+                return response()->json(msg($request, success(), 'reseted'));
+            } else {
+                return response()->json(msg($request, failed(), 'not_reseted'));
+            }
         }
-        }
-=======
-    public function register()
-    {
-        
->>>>>>> b1238cd141c09702b30b049d4e66ca80f66105d3
     }
 
+/*
     public function verify_email(Request $request)
     {
         $rules = [
@@ -358,3 +346,5 @@ class AuthController extends Controller
     }
 >>>>>>> b1238cd141c09702b30b049d4e66ca80f66105d3
 }
+
+*/
