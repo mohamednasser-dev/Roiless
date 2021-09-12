@@ -14,12 +14,14 @@ class LoginController extends Controller
         if(auth::guard('web')->attempt( ['email'=>Request('email'),'password'=>Request('password') ],$remeber) ){
             //Check if active user or not
 
-            if(Auth::user()->status != 'active'){
-                Auth::logout();
-                session()->flash('danger', trans('admin.not_auth'));
-                return redirect('login');
-            }else{
-                return redirect('/');
+            if(Auth::user()->type !== 'user') {
+                if(Auth::user()->status != 'active'){
+                    Auth::logout();
+                    session()->flash('danger', trans('admin.not_auth'));
+                    return redirect('login');
+                }else{
+                    return redirect('/');
+                }
             }
         }else{
             session()->flash('danger',trans('admin.invaldemailorpassword'));

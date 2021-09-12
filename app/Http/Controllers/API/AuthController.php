@@ -51,11 +51,20 @@ class AuthController extends Controller
                  $credentials['type']="user";
                  $token=Auth::guard('user-api')->attempt($credentials);
                   //return tokin
-                 if(!$token)
-                 return  $this->returnError('e001', ' بيانات الدخول غير صحيحه');
+                 if(!$token){
+                    return  $this->returnError('e001', ' بيانات الدخول غير صحيحه');
+                 }
                  $user=Auth::guard('user-api')->user();
                 // $admin=Admin::find($token);
                  $user->api_token=$token;
+                 if ($user->verified == '0') {
+                    Auth::guard('user-api')->logout();
+                    return msgdata($request, not_active(), 'verify_phone_first', null);
+                }
+                if ($user->status !== 'active') {
+                    Auth::guard('user-api')->logout();
+                    return msgdata($request, not_active(), 'Your_Account_NotActive', null);
+                }
                  return msgdata($request, success(), 'login_success', array('user' => $user));
          }catch(Exception $e){
             return  $this->returnError($e->getCode(), $e->getMessage());
@@ -64,7 +73,7 @@ class AuthController extends Controller
     }
     public function Register(Request $request)
     {
-        $data = $request->only('name', 'email', 'password','phone');
+        $data = $request->all();
         $validator = Validator::make($data, [
             'name' => 'required|string',
             'phone' => 'required|unique:users',
@@ -77,19 +86,14 @@ class AuthController extends Controller
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         }
         //Request is valid, create new user
-        $user = User::create([
-        	'name' => $request->name,
-        	'email' => $request->email,
-        	'password' => bcrypt($request->password),
-            'phone'=>$request->phone,
-        ]);
-        if($user)
-        {
+        $data['password'] = bcrypt($request->password) ;
+        $user = User::create($data);
+        if($user) {
             $token=Auth::guard('user-api')->attempt(['email'=>$request->email,'password'=>$request->password]);
              $user->token_api=$token;
-
                //User created, return success response
-               return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+               return msgdata($request, success(), 'login_success', array('user' => $user));
+              
         }
     }
 
@@ -115,6 +119,7 @@ class AuthController extends Controller
                 'success' => false,
                 'message' => 'Sorry, user cannot be logged out'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
+
         }
     }
 
@@ -126,7 +131,6 @@ class AuthController extends Controller
         $user = User::find($id);
         if(!$user)
             return response()->json(['status' => 401, 'msg' => 'User Not Found']);
-
 
         $rules = [
             'name' => 'required|regex:/^[\pL\s\-]+$/u',
