@@ -48,6 +48,10 @@ class AuthController extends Controller
                     Auth::logout();
                     return msgdata($request, not_active(), 'verify_phone_first', null);
                 }
+                if (Auth::user()->status !== 'active') {
+                    Auth::logout();
+                    return msgdata($request, not_active(), 'Your_Account_NotActive', null);
+                }
                 if (Auth::user()->parent_id == null) {
                     $user = Auth::user();
                     $user->api_token = Str::random(60);
@@ -86,7 +90,6 @@ class AuthController extends Controller
         $user = User::find($id);
         if(!$user)
             return response()->json(['status' => 401, 'msg' => 'User Not Found']);
-
 
         $rules = [
             'name' => 'required|regex:/^[\pL\s\-]+$/u',
