@@ -99,15 +99,29 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        
+        $token=$request->header('authorization');
+        return response()->json(["ds"=>$token]);
+        if($token)
+        {   
+            JWTAuth::setToken($token)->invalidate();
+            return response()->json([
+                'success' => true,
+                'message' => 'User has been logged out'
+            ]);
+        }else{
+            return response()->json(['dss'=>'dsddds']);
+        }
         //valid credential
-        $validator = Validator::make($request->only('token'), [
-            'token' => 'required'
+      /*  $validator = Validator::make($request->only('Authorization'), [
+            'Authorization' => 'required'
         ]);
          //Send failed response if request is not valid
          if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         }
         try {
+       //     JWTAuth::setToken($token)->invalidate();
             JWTAuth::invalidate($request->token);
  
             return response()->json([
@@ -120,7 +134,8 @@ class AuthController extends Controller
                 'message' => 'Sorry, user cannot be logged out'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
 
-        }
+        }*/
+        
     }
 
   
