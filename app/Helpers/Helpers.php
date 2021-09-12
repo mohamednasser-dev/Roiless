@@ -3,6 +3,12 @@
 use App\User;
 use Illuminate\Support\Facades\Validator;
 
+
+function getlogoimage()
+{
+    $setting = \App\Models\Setting::get()->first();
+    return $setting;
+}
 function getParentId()
 {
     if (auth()->user()->parent_id != null) {

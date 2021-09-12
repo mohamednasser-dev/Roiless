@@ -16,7 +16,7 @@
     <div class="row">
         <!-- Column -->
         <div class="col-lg-4 col-xlg-3 col-md-5">
-            <div class="card"> <img class="card-img" src="{{$banks->image}}" alt="Card image">
+            <div class="card"> <img class="card-img" src="{{$data->image}}" alt="Card image">
                 <div class="card-img-overlay card-inverse social-profile d-flex ">
                     <div class="align-self-center">
                     </div>

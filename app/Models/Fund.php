@@ -17,5 +17,12 @@ class Fund extends Model
         return $this->belongsTo(category::class,'cat_id');
     }
 
+    public function getImageAttribute($img)
+    {
+        if ($img)
+            return asset('/uploads/funds') . '/' . $img;
+
+    }
+
 
 }

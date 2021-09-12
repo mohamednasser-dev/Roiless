@@ -5,75 +5,18 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">تعديل سؤال</h3>
+            <h3 class="text-themecolor">تعديل تمويل</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">تعديل سؤال</li>
-                <li class="breadcrumb-item"><a href="ٌ{{route('question')}}">الخدمات</a></li>
+                <li class="breadcrumb-item">تعديل تمويل</li>
+                <li class="breadcrumb-item"><a href="{{route('fund')}}">التمويلات</a></li>
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">الرئيسيه</a></li>
             </ol>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12">
 
-            {{ Form::open( ['route'  =>  ['question.update',$question->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">بيانات السؤال</h4>
-                    <hr>
-                    <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان السؤال بالعربي</label>
-                        <div class="col-md-10">
-                            {{ Form::text('question_ar',$question->question_ar,["class"=>"form-control" ,"required"]) }}
-                        </div>
-                    </div>
-
-                    <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان السؤال بالانجليزي</label>
-                        <div class="col-md-10">
-                            {{ Form::text('question_en',$question->question_en,["class"=>"form-control" ,"required"]) }}
-                        </div>
-                    </div>
-
-                    <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الجواب بالانجليزي</label>
-                        <div class="col-md-10">
-                            {{ Form::text('answer_ar',$question->answer_ar,["class"=>"form-control" ,"required"]) }}
-                        </div>
-                    </div>
-                    <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الجواب بالانجليزي</label>
-                        <div class="col-md-10">
-                            {{ Form::text('answer_en',$question->answer_en,["class"=>"form-control" ,"required"]) }}
-                        </div>
-                    </div>
-
-                        <div class="row">
-                            <div class="col-lg-12 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">صورة السؤال</h4>
-                                        <input type="file" data-default-file="{{$question->image}}" name="image"
-                                               id="input-file-now" class="dropify"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="center">
-                                {{ Form::submit('تعديل' ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        {{ Form::close() }}
     </div>
 @endsection
 @section('scripts')
