@@ -106,13 +106,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/question/delete/{id}','QuestionController@destroy')->name('question.delete');
     });
 
-<<<<<<< Updated upstream
 
-
-
-   
-    
-=======
   // funds
 
     Route::group(['namespace' =>'Admin'], function () {
@@ -123,6 +117,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/fund/update/{id}','fundController@update')->name('fund.update');
         Route::get('/fund/delete/{id}','fundController@destroy')->name('fund.delete');
     });
->>>>>>> Stashed changes
+
 
 });
