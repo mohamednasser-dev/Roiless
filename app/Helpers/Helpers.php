@@ -85,8 +85,7 @@ function msgdata($request, $status, $key, $data)
 function msg($request, $status, $key)
 {
     $msg['status'] = $status;
-    $msg['msg'] = Config::get('response.' . $key . '.' . $request->header('lang'));
-
+    $msg['msg'] = $key;
     return $msg;
 }
 

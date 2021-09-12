@@ -21,11 +21,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 });
 
+
+
 Route::group(['namespace' =>'API','middleware'=>['api']], function () {
     Route::post("/login","AuthController@login");
     Route::post("/Register","AuthController@Register");
     Route::post("/logout","AuthController@logout")->middleware('jwt.verify');
-    Route::get("/home","HomeController@getall");
+
 
     Route::post("/update-profile/{id}","AuthController@updateProfile")->middleware('jwt.verify');
 
