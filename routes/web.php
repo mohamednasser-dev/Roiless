@@ -106,10 +106,23 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/question/delete/{id}','QuestionController@destroy')->name('question.delete');
     });
 
+<<<<<<< Updated upstream
 
 
 
    
     
+=======
+  // funds
+
+    Route::group(['namespace' =>'Admin'], function () {
+        Route::get('/fund', 'fundController@index')->name('fund');
+        Route::get('fund/create','fundController@create')->name('fund.create');
+        Route::post('/fund/store','fundController@store')->name('fund.store');
+        Route::get('/fund/edit/{id}','fundController@edit')->name('fund.edit');
+        Route::post('/fund/update/{id}','fundController@update')->name('fund.update');
+        Route::get('/fund/delete/{id}','fundController@destroy')->name('fund.delete');
+    });
+>>>>>>> Stashed changes
 
 });

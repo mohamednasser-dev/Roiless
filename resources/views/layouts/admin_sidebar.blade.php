@@ -21,6 +21,10 @@
                             class="mdi mdi-bank"></i><span class="hide-menu"></span>البنوك</a>
                 </li>
                 <li>
+                    <a class="waves-effect waves-dark" href="{{route('fund')}}" aria-expanded="false"><i
+                            class="mdi mdi-cash-multiple"></i><span class="hide-menu"></span>التمويلات</a>
+                </li>
+                <li>
                     <a class="waves-effect waves-dark" href="{{route('categories')}}" aria-expanded="false"><i
                             class="mdi mdi-briefcase"></i><span class="hide-menu"></span>الاقسام</a>
                 </li>

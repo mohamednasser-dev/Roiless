@@ -15,7 +15,7 @@ class CreateFundsTable extends Migration
     {
         Schema::create('funds', function (Blueprint $table) {
             $table->Increments('id');
-            $table->integer('cat_id')->unsigned()->nullable();
+            $table->integer('cat_id')->unsigned();
             $table->string('name_ar');
             $table->string('name_en');
             $table->json('columns');
