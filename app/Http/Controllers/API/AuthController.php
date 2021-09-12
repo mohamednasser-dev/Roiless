@@ -12,9 +12,11 @@ use App\Sessions;
 use App\Verification;
 use Illuminate\Http\Request;
 use App\Permission;
+use App\Traits\GeneralTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use Validator;
 use App\Models\User;
 use PDF;
@@ -22,6 +24,7 @@ use DB;
 
 class AuthController extends Controller
 {
+    use GeneralTrait;
     public $objectName;
 
     public function __construct(User $model)
@@ -31,54 +34,91 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $rules = [
-            'phone' => 'required',
-            'password' => 'required',
-
-        ];
-        $validator = Validator::make($request->all(), $rules);
+        //validation
+        try{
+            $rules = [
+                'phone' => 'required|exists:users,phone',
+                'password' => 'required',
+            ];
+               $validator=Validator::make($request->all(),$rules);
+                 if($validator->fails())
+                 {
+                  return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+                 }  
+                  //login
+                 $credentials=$request->only(['phone','password']);
+                 //to check the type of user not admine
+                 $credentials['type']="user";
+                 $token=Auth::guard('user-api')->attempt($credentials);
+                  //return tokin
+                 if(!$token)
+                 return  $this->returnError('e001', ' بيانات الدخول غير صحيحه');
+                 $user=Auth::guard('user-api')->user();
+                // $admin=Admin::find($token);
+                 $user->api_token=$token;
+                 return msgdata($request, success(), 'login_success', array('user' => $user));
+         }catch(Exception $e){
+            return  $this->returnError($e->getCode(), $e->getMessage());
+     }
+          
+    }
+    public function Register(Request $request)
+    {
+        $data = $request->only('name', 'email', 'password','phone');
+        $validator = Validator::make($data, [
+            'name' => 'required|string',
+            'phone' => 'required|unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:6|max:50',
+            
+        ]);
+        //Request is valid, create new user
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
-        } else {
-            if (Auth::attempt([
-                'phone' => $request->input('phone'),
-                'password' => $request->input('password')
-            ])) {
-                if (Auth::user()->verified == '0') {
-                    Auth::logout();
-                    return msgdata($request, not_active(), 'verify_phone_first', null);
-                }
-                if (Auth::user()->parent_id == null) {
-                    $user = Auth::user();
-                    $user->api_token = Str::random(60);
-                    $user->save();
+        }
+        //Request is valid, create new user
+        $user = User::create([
+        	'name' => $request->name,
+        	'email' => $request->email,
+        	'password' => bcrypt($request->password),
+            'phone'=>$request->phone,
+        ]);
+        if($user)
+        {
+            $token=Auth::guard('user-api')->attempt(['email'=>$request->email,'password'=>$request->password]);
+             $user->token_api=$token;
 
-
-                    if (Auth::user()->expiry_package == 'n') {
-                        return msgdata($request, success(), 'login_success', array('user' => $user));
-                    } else {
-                        return msgdata($request, success(), 'package_ended', array('user' => $user));
-                    }
-
-
-                } else {
-                    $parent_user = User::where('id', Auth::user()->parent_id)->first();
-                    $user = Auth::user();
-                    $user->api_token = Str::random(60);
-                    $user->save();
-
-                    if ($parent_user->expiry_package == 'n') {
-                        return msgdata($request, success(), 'login_success', array('user' => $user));
-                    } else {
-                        return msgdata($request, success(), 'package_ended', array('user' => $user));
-                    }
-                }
-            } else {
-                return response()->json(msg($request, failed(), 'login_warrning'));
-            }
+               //User created, return success response
+               return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         }
     }
 
+    public function logout(Request $request)
+    {
+        //valid credential
+        $validator = Validator::make($request->only('token'), [
+            'token' => 'required'
+        ]);
+         //Send failed response if request is not valid
+         if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        }
+        try {
+            JWTAuth::invalidate($request->token);
+ 
+            return response()->json([
+                'success' => true,
+                'message' => 'User has been logged out'
+            ]);
+        } catch (JWTException $exception) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, user cannot be logged out'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+  
 
     public function updateProfile(Request $request, $id)
     {
