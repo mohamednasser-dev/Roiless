@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
-use App\Models\funde;
-use App\Models\Services;
+use App\Models\Fund;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,10 +13,9 @@ class HomeController extends Controller
    public function getall()
        {
          $slider=Slider::select(['id','image'])->get();
-         $service=Services::select(['id','title_ar','title_en','image'])->get();
+         $funds=Fund::select(['name_ar','name_en','cat_id','image'])->wherein('featured',['1'])->get();
          $data['slider']=$slider;
-         $data['service']=$service;
-        // $funds=Slider::select()->where();
+         $data['funds']=$funds;
          return response()->json(['data'=>$data]);
        }
 

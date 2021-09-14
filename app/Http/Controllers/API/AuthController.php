@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\API;
 use App\Mail\UserRestPasswordApi;
 use Carbon\Carbon;
@@ -78,8 +77,7 @@ class AuthController extends Controller
             'name' => 'required|string',
             'phone' => 'required|unique:users',
             'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:6|max:50',
-            
+            'password' => 'required|string|min:6|max:50'
         ]);
         //Request is valid, create new user
         if ($validator->fails()) {
@@ -96,49 +94,49 @@ class AuthController extends Controller
               
         }
     }
-
     public function logout(Request $request)
     {
         
-        $token=$request->header('authorization');
-        return response()->json(["ds"=>$token]);
+       $token=$request->header('authorization');
+  
+         $token=explode("Bearer", $token); 
+         $token=$token[1];
         if($token)
         {   
-            JWTAuth::setToken($token)->invalidate();
+            JWTAuth::invalidate($token);
             return response()->json([
                 'success' => true,
                 'message' => 'User has been logged out'
             ]);
         }else{
-            return response()->json(['dss'=>'dsddds']);
+            return response()->json(['error'=>'some thing wrong']);
         }
-        //valid credential
-      /*  $validator = Validator::make($request->only('Authorization'), [
-            'Authorization' => 'required'
-        ]);
-         //Send failed response if request is not valid
-         if ($validator->fails()) {
-            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
-        }
-        try {
-       //     JWTAuth::setToken($token)->invalidate();
-            JWTAuth::invalidate($request->token);
- 
-            return response()->json([
-                'success' => true,
-                'message' => 'User has been logged out'
+    }  
+        public function loginasguest(Request $request)
+        {
+            $data = $request->only(['phone','name']);
+            $validator=Validator::make($data,[
+                'name' => 'required|string|unique:users',
+                'phone' => 'required|unique:users',
             ]);
-        } catch (JWTException $exception) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Sorry, user cannot be logged out'
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-
-        }*/
-        
-    }
-
-  
+            $password=Str::random(8);
+            $data['password'] = bcrypt($password);
+             //Request is valid, create new user
+        if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        }else{
+             //Request is valid, create new user
+              $user=User::create($data);
+              if($user)
+              {
+                $token=Auth::guard('user-api')->attempt(['phone'=>$request->phone,'password'=>$password]);
+                $user->token_api=$token;
+                return msgdata($request, success(), 'login_success', array('user' => $user));
+              }
+        }
+          
+          
+        }
 
     public function updateProfile(Request $request, $id)
     {
