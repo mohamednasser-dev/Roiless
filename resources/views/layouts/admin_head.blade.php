@@ -22,7 +22,7 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="{{route('home')}}">
                         <span>
-                            <img src="{{getlogoimage()->logo}}" alt="homepage" class="dark-logo" style="width: 165px; height: 70px;"/>
+                            <img src="{{getlogoimage()->logo}}" href="{{route('home')}}" alt="homepage" class="dark-logo" style="width: 165px; height: 70px;"/>
                         </span>
                     </a>
                 </div>

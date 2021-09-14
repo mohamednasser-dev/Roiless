@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Traits\offerTrait;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class sliderController extends Controller
@@ -47,11 +47,12 @@ class sliderController extends Controller
     public function store(Request $request)
     {
         $file_name = $this->saveImage($request->file('image'),'uploads/slider' );
-        
+
 
         $Slider = Slider::create([
             'image' => $file_name,
         ]);
+        Alert::success('تمت العمليه', 'تم اضافه الاعلان بنجاح');
         return redirect()->route('sliders');
     }
 
@@ -92,12 +93,13 @@ class sliderController extends Controller
         $Slider=Slider::findOrFail($id);
 
 
-            $file_name = $this->saveImage($request->file('image'),'uploads/slider' );  
+            $file_name = $this->saveImage($request->file('image'),'uploads/slider' );
             $Slider->update([
                 'image' => $file_name,
             ]);
-      
-       
+        Alert::success('تمت العمليه', 'تم تعديل الاعلان بنجاح');
+
+
         return redirect()->route('sliders');
     }
 
@@ -111,8 +113,9 @@ class sliderController extends Controller
     {
         $Slider=Slider::findOrFail($id);
         $Slider->delete();
+        Alert::success('تمت العمليه', 'تم حذف الاعلان بنجاح');
 
-         return redirect()->back();
+         return redirect()->route('sliders');
 
     }
 }

@@ -18,5 +18,10 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\Fund','cat_id')->select('id','name_'. Session('api_lang').' as name','image','cat_id');
     }
-    
+    public function getImageAttribute($img)
+    {
+        if ($img)
+            return asset('/uploads/category') . '/' . $img;
+
+    }
 }

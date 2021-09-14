@@ -33,7 +33,6 @@ Route::group( [ 'middleware'=> 'auth:admin' , 'namespace'=> 'Admin' ] , function
 });
 
 Route::group(['middleware' => ['auth']], function () {
-   // Route::get('/', 'HomeController@index')->name('home');
 
 
     //users  routes
@@ -65,7 +64,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/sliders/store','Admin\sliderController@store')->name('sliders.store');
     Route::get('/sliders/edit/{id}','Admin\sliderController@edit')->name('sliders.edit');
     Route::put('/sliders/update/{id}','Admin\sliderController@update')->name('sliders.update');
-    Route::delete('/sliders/delete/{id}','Admin\sliderController@destroy')->name('sliders.delete');
+    Route::get('/sliders/delete/{id}','Admin\sliderController@destroy')->name('sliders.delete');
 
 
     //categories
@@ -74,7 +73,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/categories/store','Admin\categoriesController@store')->name('categories.store');
         Route::get('/categories/edit/{id}','Admin\categoriesController@edit')->name('categories.edit');
         Route::put('/categories/update/{id}','Admin\categoriesController@update')->name('categories.update');
-        Route::delete('/categories/delete/{id}','Admin\categoriesController@destroy')->name('categories.delete');
+        Route::get('/categories/delete/{id}','Admin\categoriesController@destroy')->name('categories.delete');
 
     // services
 
@@ -130,6 +129,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/fund/update/{id}','fundController@update')->name('fund.update');
         Route::get('/fund/delete/{id}','fundController@destroy')->name('fund.delete');
         Route::post('/fund/change/featured', 'fundController@changeStatus')->name('fund.change.featured');
+    });
+    // inbox
+  Route::group(['namespace' =>'Admin'], function () {
+        Route::get('/inbox', 'InboxController@index')->name('inbox');
+        Route::get('/inbox/delete/{id}','InboxController@destroy')->name('inbox.delete');
     });
 
 

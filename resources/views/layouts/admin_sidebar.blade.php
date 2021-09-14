@@ -30,7 +30,7 @@
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{route('sliders')}}" aria-expanded="false"><i
-                            class="mdi mdi-image"></i><span class="hide-menu"></span>Slider</a>
+                            class="mdi mdi-image"></i><span class="hide-menu"></span>الاعلانات</a>
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{route('question')}}" aria-expanded="false"><i
@@ -45,6 +45,9 @@
                             class=" ti-world"></i><span class="hide-menu"></span>الاشعارت</a>
                 </li>
                 <li>
+                    <a class="waves-effect waves-dark" href="{{route('inbox')}}" aria-expanded="false"><i
+                            class="mdi mdi-inbox-arrow-down"></i><span class="hide-menu"></span>التواصل</a>
+                </li>  <li>
                     <a class="waves-effect waves-dark" href="{{route('Setting.edit')}}" aria-expanded="false"><i
                             class="mdi mdi-settings"></i><span class="hide-menu"></span>الاعدادات</a>
                 </li>
