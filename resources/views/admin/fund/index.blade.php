@@ -28,7 +28,7 @@
                 <th class="text-lg-center"> القسم</th>
                 <th class="text-lg-center">رسوم الطلب</th>
                 <th class="text-lg-center"> الصوره</th>
-                <th class="text-lg-center"> الحاله</th>
+                <th class="text-lg-center">الظهور الرئيسيه</th>
                 <th class="text-lg-center">الاجرائات</th>
             </tr>
             </thead>
