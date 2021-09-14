@@ -64,6 +64,12 @@ class SettingController extends Controller
                 'linkedin' => 'required',
                 'about_us_ar' => 'required',
                 'about_us_en' => 'required',
+                'facebook' => '',
+                'youtube' => '',
+                'gmail' => '',
+                'instagram' => '',
+                'twitter' => '',
+                'linkedin' => '',
                 'logo' => '',
 
             ]);
@@ -81,6 +87,8 @@ class SettingController extends Controller
             if($request->hasFile('logo')) {
                 $file_name = $this->MoveImage($request->file('logo'),'uploads/setting' );
                 $data['logo'] = $file_name;
+            }else{
+                unset($data['logo']);
             }
 
             $this->objectName::where('id',$id)->update($data);
@@ -89,7 +97,5 @@ class SettingController extends Controller
             DB::commit();
             Alert::success('تمت العمليه', 'تم التحديث بنجاح');
             return redirect()->route('Setting.edit');
-
-
     }
 }

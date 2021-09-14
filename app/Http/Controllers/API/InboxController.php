@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class InboxController extends Controller
 {
-    use GeneralTrait;
+
 
     public function store(Request $request)
     {

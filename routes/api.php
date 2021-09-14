@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     //api_token_authentication
 });
 Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
-    /************************user********************* */
+//user
     Route::post("/login", "AuthController@login");
     Route::post("/Register", "AuthController@Register");
     Route::post("/loginasguest", "AuthController@loginasguest");
@@ -39,5 +39,30 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::post('make/inbox', 'InboxController@store');
 
         Route::post("/update-password", "HomeController@updatePassword");
+
+//home page and services
+        Route::get("/home", "HomeController@getall");
+        Route::get("/services", "ServiceController@getallservices");
+        Route::get("/services_detailes/{id}", "ServiceController@getservicedetailes");
+
+//categories
+
+        Route::get("/categories","CategoryController@getall");
+//fund detailes
+        Route::get("/fund/detailes/{id}","FundController@getfunddetailes");
+        Route::post("/addfund","FundController@addfund");
+
+//user update
+            Route::post("/update-profile/{id}","UsersController@updateProfile");
+            Route::post('forgot/password','UsersController@forgot_password_post')
+                ->name('admin.forgot.to.reset.password');;
+            Route::get('check_token/','UsersController@reset_password');
+            Route::post('reset/password/','UsersController@reset_password_post');
+
+// inbox
+        Route::post('make/inbox', 'InboxController@store');
+// setting
+        Route::get('/setting', 'SettingController@index');
+
     });
 });

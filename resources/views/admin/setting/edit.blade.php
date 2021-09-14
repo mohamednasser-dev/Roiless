@@ -123,7 +123,7 @@
                                <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-facebook"></i>
                                 </span>
-                                    {{ Form::url('facebook',$setting->facebook,["class"=>"form-control" ,"required"]) }}
+                                    {{ Form::url('facebook',$setting->facebook,["class"=>"form-control"]) }}
                                 </div>
                             </div>
 
@@ -132,7 +132,7 @@
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-youtube"></i>
                                 </span>
-                                    {{ Form::url('youtube',$setting->youtube,["class"=>"form-control" ,"required"]) }}
+                                    {{ Form::url('youtube',$setting->youtube,["class"=>"form-control" ]) }}
                                 </div>
                             </div>
 
@@ -142,7 +142,7 @@
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i class=" icon-social-gplus"></i>
                                 </span>
-                                    {{ Form::url('gmail',$setting->gmail,["class"=>"form-control" ,"required"]) }}
+                                    {{ Form::url('gmail',$setting->gmail,["class"=>"form-control" ]) }}
                                 </div>
                             </div>
 
@@ -152,7 +152,7 @@
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-twitter"></i>
                                 </span>
-                                    {{ Form::url('instagram',$setting->twitter,["class"=>"form-control" ,"required"]) }}
+                                    {{ Form::url('instagram',$setting->instagram,["class"=>"form-control" ]) }}
                                 </div>
                             </div>
 
@@ -162,7 +162,7 @@
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-linkedin"></i>
                                 </span>
-                                    {{ Form::url('linkedin',$setting->linkedin,["class"=>"form-control" ,"required"]) }}
+                                    {{ Form::url('linkedin',$setting->linkedin,["class"=>"form-control"]) }}
                                 </div>
                             </div>
 
@@ -172,7 +172,7 @@
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-instagram"></i>
                                 </span>
-                                    {{ Form::url('twitter',$setting->twitter,["class"=>"form-control" ,"required"]) }}
+                                    {{ Form::url('twitter',$setting->twitter,["class"=>"form-control" ]) }}
                                 </div>
                             </div>
 

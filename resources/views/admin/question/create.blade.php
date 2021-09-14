@@ -24,27 +24,27 @@
                     <h4 class="card-title">بيانات الخدمه</h4>
                     <hr>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الخدمه بالعربي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">السؤال بالعربيه</label>
                         <div class="col-md-10">
                             {{ Form::text('question_ar',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الخدمه بالانجليزي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">السؤال بالانجليزيه</label>
                         <div class="col-md-10">
                             {{ Form::text('question_en',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الخدمه بالانجليزي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">الاجابه بالعربيه</label>
                         <div class="col-md-10">
                             {{ Form::text('answer_ar',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الخدمه بالانجليزي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">الاجابه بالانجليزيه</label>
                         <div class="col-md-10">
                             {{ Form::text('answer_en',null,["class"=>"form-control" ,"required"]) }}
                         </div>
@@ -53,7 +53,7 @@
                         <div class="col-lg-12 col-md-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">صورة الخدمه</h4>
+                                    <h4 class="card-title">صورة السؤال</h4>
                                     <input type="file" name="image" id="input-file-now" class="dropify"/>
                                 </div>
                             </div>

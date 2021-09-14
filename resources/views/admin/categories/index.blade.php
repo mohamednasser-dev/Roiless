@@ -7,7 +7,7 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">الاقسام</li>
-                <li class="breadcrumb-item active"><a href="{{url('home')}}">الصفحة الرئيسية</a></li>
+                <li class="breadcrumb-item active"><a href="{{route('home')}}">الصفحة الرئيسية</a></li>
             </ol>
         </div>
     </div>
@@ -34,18 +34,16 @@
                     <td class="text-lg-center">{{ $category->title_ar }}</td>
                     <td class="text-lg-center">{{ $category->title_en }}</td>
                     <td class="text-lg-center ">
-                        <div class="pro-img m-t-20"><img style="height: 80px;" src= "{{ asset ('uploads/category/'.$category->image) }}" ></div>
+                        <div class="pro-img m-t-20"><img style="height: 80px;" src= "{{$category->image}}" ></div>
                     </td>
                     <td class="text-lg-center ">
-                        <button>
-                        <a href="{{ route('categories.edit', $category->id )}}" > <i class="fa fa-edit"></i> </a>
-                    </button>
-                        <form style="display:inline;" action="{{ route('categories.delete' ,$category->id) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button onclick="return confirm('هل انت متكد من حذف الخدمه')"   type="submit" ><i class="fa fa-trash"></i></button>
 
-                    </form>
+                        <a class='btn btn-info btn-circle' title="تعديل"
+                           href="{{ route('categories.edit', $category->id )}}"><i class="fa fa-edit"></i></a>
+
+                        <a class='btn btn-danger btn-circle' title="حذف" onclick="return confirm('هل انت متكد من حذف الخدمه')"
+                           href="{{ route('categories.delete' ,$category->id) }}"><i class="fa fa-trash"></i></a>
+
                     </td>
                 </tr>
             @endforeach

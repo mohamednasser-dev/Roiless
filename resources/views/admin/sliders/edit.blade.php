@@ -3,17 +3,28 @@
     <link rel="stylesheet" href="{{ asset('/assets/plugins/dropify/dist/css/dropify.min.css') }}">
 @endsection
 @section('content')
-
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">تعديل الاعلان</h3>
+        </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">تعديل الاعلان</li>
+                <li class="breadcrumb-item"><a href="{{route('sliders')}}">الاعلانات</a></li>
+                <li class="breadcrumb-item active"><a href="{{route('home')}}">الرئيسيه</a></li>
+            </ol>
+        </div>
+    </div>
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body wizard-content">
-               
+
                 <form class="tab-wizard wizard-circle" method="POST" action="{{ route('sliders.update' ,$Slider->id) }}" enctype="multipart/form-data">
                     @method('PUT')
                    @csrf
                     <section>
-                  
+
                         {{-- <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -26,19 +37,19 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">الصورة</h4>
-                                        <input type="file" name="image" id="input-file-now" class="dropify"/>
+                                        <input type="file" name="image"  data-default-file="{{$Slider->image}}" id="input-file-now" class="dropify"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div style="text-align: center" class="row">
                             <div class="col-md-12" style="text-align:center;">
                                 <button type="submit" style=" background-color:#0d3d0b; border:none;" class="btn btn-success">تعديل</button>
                             </div>
                         </div>
                     </section>
-                 
+
 
                 </form>
             </div>
