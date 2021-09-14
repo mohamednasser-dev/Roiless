@@ -55,7 +55,8 @@
         <!-- For Data Table -->
         <!-- ============================================================== -->
         <script src="{{ asset('/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-
+        <script src={{asset('/assets/plugins/html5-editor/wysihtml5-0.3.0.js')}}></script>
+        <script src={{asset('/assets/plugins/html5-editor/bootstrap-wysihtml5.js')}}></script>
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
@@ -65,6 +66,13 @@
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
         @yield('scripts')
 
+        <script>
+            $(document).ready(function() {
+                $('.textarea_editor1').wysihtml5();
+                $('.textarea_editor2').wysihtml5();
+
+            });
+        </script>
         <script>
         $(document).ready(function() {
             $(document).ready(function() {

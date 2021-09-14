@@ -55,7 +55,7 @@ class UsersController extends Controller
             if ($user) {
                 return msgdata($request, success(), 'update_profile_success', array('user' => $user));
             } else {
-                return response()->json(msg($request, failed(), 'update_profile_warrning'));
+                return response()->json(msg($request, failed(), 'update_profile_warning'));
             }
         }
     }
@@ -72,7 +72,7 @@ class UsersController extends Controller
                 'created_at' => Carbon::now(),
             ]);
             Mail::to($user->email)->send(new UserRestPasswordApi(['data' => $user, 'token' => $token]));
-            return msgdata($request, success(), 'send_reset', array('token' => $token));
+            return msgdata($request, success(), 'send_reset_link', array('token' => $token));
         } else
             return response()->json(msg($request, failed(), 'not_found'));
     }

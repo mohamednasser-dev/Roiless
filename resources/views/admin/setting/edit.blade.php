@@ -96,6 +96,28 @@
                                 </div>
                             </div>
 
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input" class="col-md-2 col-form-label">
+                                        عن االتطبيق بالعربيه
+                                        </label>
+                                    <div class="col-md-10">
+                                        {{ Form::textarea('about_us_ar',$setting->about_us_ar,["class"=>"form-control textarea_editor1" , "rows" => "15" ,"required"]) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input" class="col-md-2 col-form-label">عن التطبيق
+                                        بالانجليزي</label>
+                                    <div class="col-md-10">
+                                        {{ Form::textarea('about_us_en',$setting->about_us_en,["class"=>"form-control textarea_editor2" , "rows" => "15" ,"required"]) }}
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div class="col-lg-6 col-md-6">
                                 <div class="input-group">
                                <span class="input-group-addon" id="basic-addon1">

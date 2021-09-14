@@ -3,6 +3,14 @@ return [
 
     //new
     'should_choose_category' => 'يجب اختيار مخزن اولا',
+    'wrong_old_password' => 'من فضلك ادخل الباسورد صحيح',
+    'Updated_Successfully' => 'تم التعديل بنجاح',
+    'update_profile_success' => 'تم تعديل البروفايل بنجاح',
+    'update_profile_warning' => 'حدث خطأ ما يرجى المحاولة مره اخرى ',
+    'not_reseted' => 'حدث خطأ ما يرجى المحاولة مره اخرى ',
+    'send_reset_link' => 'تم ارسال اللينك بنجاح',
+    'successfully_get_data_Profile' => 'تم ارسال البيانات بنجاح',
+    'token_confirmed' => 'تم تاكيد الكود',
     'gomla_price' => 'سعر الجملة',
     'buy_price' => 'سعر البيع',
     'edit_customer' => 'تعديل بيانات العميل',

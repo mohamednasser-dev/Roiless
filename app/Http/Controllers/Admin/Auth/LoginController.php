@@ -21,18 +21,18 @@ class LoginController extends Controller
             if(Auth::guard('admin')->user()->status != 'active'){
                 Auth::guard('admin')->logout();
                 session()->flash('danger', trans('admin.not_auth'));
-                return redirect()->route('admin.login');
+                return redirect()->route('login');
             }else{
                 return redirect()->route('home');
             }
         }else{
             session()->flash('danger',trans('admin.invaldemailorpassword'));
-            return redirect(route('admin.login'));
+            return redirect(route('login'));
         }
     }
     public function logout(){
         Auth::guard('admin')->logout();
-        return redirect()->route('admin.login');
+        return redirect()->route('login');
     }
 
 }
