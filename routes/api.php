@@ -37,7 +37,11 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::post('forgot/password', 'UsersController@forgot_password_post')->name('admin.forgot.to.reset.password');;
         Route::get('check_token/', 'UsersController@reset_password');
         Route::post('reset/password/', 'UsersController@reset_password_post');
+
+
         // inbox
         Route::post('make/inbox', 'InboxController@store');
+        // inbox
+        Route::get('/setting', 'SettingController@index');
     });
 });

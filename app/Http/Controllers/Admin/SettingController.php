@@ -55,12 +55,12 @@ class SettingController extends Controller
                 'terms_en' => 'required',
                 'privacy_ar' => 'required',
                 'privacy_en' => 'required',
-                'facebook' => 'required',
-                'youtube' => 'required',
-                'gmail' => 'required',
-                'instagram' => 'required',
-                'twitter' => 'required',
-                'linkedin' => 'required',
+                'facebook' => '',
+                'youtube' => '',
+                'gmail' => '',
+                'instagram' => '',
+                'twitter' => '',
+                'linkedin' => '',
                 'logo' => '',
 
             ]);
@@ -78,6 +78,8 @@ class SettingController extends Controller
             if($request->hasFile('logo')) {
                 $file_name = $this->MoveImage($request->file('logo'),'uploads/setting' );
                 $data['logo'] = $file_name;
+            }else{
+                unset($data['logo']);
             }
 
             $this->objectName::where('id',$id)->update($data);

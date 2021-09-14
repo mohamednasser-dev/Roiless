@@ -33,7 +33,6 @@ Route::group( [ 'middleware'=> 'auth:admin' , 'namespace'=> 'Admin' ] , function
 });
 
 Route::group(['middleware' => ['auth']], function () {
-   // Route::get('/', 'HomeController@index')->name('home');
 
 
     //users  routes
