@@ -40,7 +40,9 @@
                     <td class="text-lg-center">
                         <div class="switch">
                             <label>
-                                <input type="checkbox" onchange="update_active(this)" value="{{$fund->id}}" name="featured" @if($fund->featured == '1') checked @endif ><span class="lever switch-col-green"></span></label>
+                                <input type="checkbox" onchange="update_active(this)" value="{{$fund->id}}"
+                                       name="featured" @if($fund->featured == '1') checked @endif ><span
+                                    class="lever switch-col-green"></span></label>
                         </div>
                     </td>
                     <td class="text-lg-center ">
@@ -61,8 +63,13 @@
             </tbody>
         </table>
     </div>
+
+
+
+
 @endsection
 @section('scripts')
+
     <script type="text/javascript">
         function update_active(el) {
             if (el.checked)
