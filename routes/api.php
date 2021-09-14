@@ -13,50 +13,31 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-        //api_token_authentication
+    //api_token_authentication
 });
-
-
-
-Route::group(['namespace' =>'API','middleware'=>['api']], function () {
+Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
     /************************user********************* */
-    Route::post("/login","AuthController@login");
-    Route::post("/Register","AuthController@Register");
-    Route::post("/loginasguest","AuthController@loginasguest");
-    Route::group(['middleware'=>['jwt.verify']],function()
-    {
-        Route::post("/logout","AuthController@logout");
+    Route::post("/login", "AuthController@login");
+    Route::post("/Register", "AuthController@Register");
+    Route::post("/loginasguest", "AuthController@loginasguest");
+    Route::group(['middleware' => ['jwt.verify']], function () {
+        Route::post("/logout", "AuthController@logout");
         /********************************************* */
         /*******************home page and services*********************/
-        Route::get("/home","HomeController@getall");
-        Route::get("/services","ServiceController@getallservices");
-        Route::get("/services_detailes/{id}","ServiceController@getservicedetailes");
+        Route::get("/home", "HomeController@getall");
+        Route::get("/services", "ServiceController@getallservices");
+        Route::get("/services_detailes/{id}", "ServiceController@getservicedetailes");
         /*************************************************************/
         /****************************categories**************************** */
-        Route::get("/categories","CategoryController@getall");
-         /*************************user update********************************** */
-            Route::post("/update-profile/{id}","UsersController@updateProfile");
-            Route::post('forgot/password','UsersController@forgot_password_post')
-                ->name('admin.forgot.to.reset.password');;
-            Route::get('check_token/','UsersController@reset_password');
-            Route::post('reset/password/','UsersController@reset_password_post');
+        Route::get("/categories", "CategoryController@getall");
+        /*************************user update********************************** */
+        Route::post("/update-profile/{id}", "UsersController@updateProfile");
+        Route::post('forgot/password', 'UsersController@forgot_password_post')->name('admin.forgot.to.reset.password');;
+        Route::get('check_token/', 'UsersController@reset_password');
+        Route::post('reset/password/', 'UsersController@reset_password_post');
+        // inbox
+        Route::post('make/inbox', 'InboxController@store');
     });
-
-
-    Route::post("/logout","AuthController@logout")->middleware('jwt.verify');
-
-    Route::get("/get-data-profile/","UserController@getDataProfile")->middleware('jwt.verify');
-
-    Route::post("/update-profile/","AuthController@updateProfile")->middleware('jwt.verify');
-
-    Route::post('forgot/password','AuthController@forgot_password_post')
-        ->name('admin.forgot.to.reset.password');;
-
-    Route::get('check_token/','AuthController@reset_password');
-
-    Route::post('reset/password/','AuthController@reset_password_post');
-
 });

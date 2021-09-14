@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\category;
@@ -15,6 +15,6 @@ class CategoryController extends Controller
          $category=category::with('fund')->get();
          return response()->json(['data'=>$category]);
        }
-    
+
 
 }
