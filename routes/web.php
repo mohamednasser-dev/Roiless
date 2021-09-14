@@ -14,14 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+// Auth::routes();
 
 
 
-Route::post('/login_user', 'Admin\LoginController@login')->name('login_user');
+ // Route::post('/login_user', 'Admin\LoginController@login')->name('login_user');
+
+Route::group( [ 'middleware'=> 'guest:admin' , 'namespace'=> 'Admin\Auth' ] , function () {
+    Route::get('/login', 'LoginController@login')->name('admin.login');
+    Route::post('/login-store', 'LoginController@loginBank')->name('admin.login.store');
+});
+
+Route::group( [ 'middleware'=> 'auth:admin' , 'namespace'=> 'Admin' ] , function () {
+    Route::get('/', 'DashboardController@index')->name('home');
+
+    Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
+});
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/', 'HomeController@index')->name('home');
+   // Route::get('/', 'HomeController@index')->name('home');
 
 
     //users  routes

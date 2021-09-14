@@ -15,8 +15,6 @@ class Bankcontroller extends Controller
     $this->objectName = $model;
     $this->folderView = 'admin.banks.';
 }
-
-
     public function index(){
     $banks = User::where('type','bank')->orderBy('name','desc')->get();
     return view($this->folderView.'banks',compact('banks'));

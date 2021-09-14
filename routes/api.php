@@ -13,13 +13,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
     //api_token_authentication
 });
-
-
 Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
     /************************user********************* */
     Route::post("/login", "AuthController@login");
@@ -40,14 +37,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::post('forgot/password', 'UsersController@forgot_password_post')->name('admin.forgot.to.reset.password');;
         Route::get('check_token/', 'UsersController@reset_password');
         Route::post('reset/password/', 'UsersController@reset_password_post');
-
-
         // inbox
         Route::post('make/inbox', 'InboxController@store');
-
-
-
     });
-
-
 });
