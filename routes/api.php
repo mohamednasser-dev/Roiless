@@ -44,7 +44,19 @@ Route::group(['namespace' =>'API','middleware'=>['api']], function () {
             Route::get('check_token/','UsersController@reset_password');
             Route::post('reset/password/','UsersController@reset_password_post');
     });
-    
-   
+
+
+    Route::post("/logout","AuthController@logout")->middleware('jwt.verify');
+
+    Route::get("/get-data-profile/","UserController@getDataProfile")->middleware('jwt.verify');
+
+    Route::post("/update-profile/","AuthController@updateProfile")->middleware('jwt.verify');
+
+    Route::post('forgot/password','AuthController@forgot_password_post')
+        ->name('admin.forgot.to.reset.password');;
+
+    Route::get('check_token/','AuthController@reset_password');
+
+    Route::post('reset/password/','AuthController@reset_password_post');
 
 });
