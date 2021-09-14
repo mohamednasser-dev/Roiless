@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class category extends Model
+class Category extends Model
 {
     protected $guarded = [];
 
@@ -17,5 +17,11 @@ class category extends Model
     public function Funds()
     {
         return $this->hasMany(Fund::class);
+    }
+    public function getImageAttribute($img)
+    {
+        if ($img)
+            return asset('/uploads/category') . '/' . $img;
+
     }
 }

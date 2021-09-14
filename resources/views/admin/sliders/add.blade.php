@@ -3,23 +3,27 @@
     <link rel="stylesheet" href="{{ asset('/assets/plugins/dropify/dist/css/dropify.min.css') }}">
 @endsection
 @section('content')
-
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">انشاء اعلان</h3>
+        </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">انشاء اعلان</li>
+                <li class="breadcrumb-item"><a href="{{route('sliders')}}">اعلانات</a></li>
+                <li class="breadcrumb-item active"><a href="{{('home')}}">الصفحه الرائيسيه</a></li>
+            </ol>
+        </div>
+    </div>
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body wizard-content">
-               
+
                 <form class="tab-wizard wizard-circle" method="POST" action="{{ route('sliders.store') }}" enctype="multipart/form-data">
                    @csrf
                     <section>
-                      
-                        {{-- <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="emailAddress1">Image :</label>
-                                    <input type="file" name="image" class="form-control" id="emailAddress1"> </div>
-                            </div>
-                        </div> --}}
+
 
                         <div class="row">
                             <div class="col-lg-12 col-md-6">
@@ -31,14 +35,16 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div style="text-align: center" class="row">
                             <div class="col-md-12" style="text-align:center;">
-                                <button type="submit" style=" background-color:#0641997a; border:none;" class="btn btn-success">اضافة</button>
+                                <button type="submit" style=" margin:10px"
+                                        class="btn btn-info">انشاء
+                                </button>
                             </div>
                         </div>
                     </section>
-                 
+
 
                 </form>
             </div>
@@ -48,7 +54,7 @@
 
 
     @endsection
-    
+
     @section('scripts')
         <!-- ============================================================== -->
             <!-- Plugins for this page -->

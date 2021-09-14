@@ -46,7 +46,7 @@
                         <a class='btn btn-info btn-circle' title="تعديل"
                            href="{{route('question.edit',$question->id)}}"><i class="fa fa-edit"></i></a>
 
-                        <a class='btn btn-danger btn-circle' title="حذف" onclick="return confirm('هل انت متكد من حذف الخدمه')"
+                        <a class='btn btn-danger btn-circle' title="حذف" onclick="return confirm('هل انت متكد من حذف السؤال')"
                            href="{{route('question.delete',$question->id)}}"><i class="fa fa-trash"></i></a>
 
                     </td>

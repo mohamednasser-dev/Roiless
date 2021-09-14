@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Traits\offerTrait;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class categoriesController extends Controller
@@ -56,6 +56,7 @@ class categoriesController extends Controller
 
 
         ]);
+        Alert::success('تمت العمليه', 'تم اضافه القسم بنجاح');
         return redirect()->route('categories');
     }
 
@@ -110,6 +111,7 @@ class categoriesController extends Controller
 
             ]);
         }
+        Alert::success('تمت العمليه', 'تم تعديل القسم');
 
         return redirect()->route('categories');
     }
@@ -125,7 +127,9 @@ class categoriesController extends Controller
         $category=Category::findOrFail($id);
         $category->delete();
 
-         return redirect()->back();
+        Alert::success('تمت العمليه', 'تم الحذف بنجاح');
+
+        return redirect()->route('categories');
 
     }
 }
