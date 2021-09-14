@@ -11,6 +11,7 @@ class Bank extends Authenticatable
 {
     use SoftDeletes;
     protected $table = 'banks';
+    protected $guarded = [];
 
 }
 

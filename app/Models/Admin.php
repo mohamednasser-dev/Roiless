@@ -14,4 +14,5 @@ class Admin extends Authenticatable
     use Notifiable;
     use softdeletes;
     protected $table = 'admins';
+    protected $guarded = [];
 }
