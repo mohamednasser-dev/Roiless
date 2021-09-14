@@ -46,6 +46,19 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+            'hash' => false,
+        ],
+
+        'bank' => [
+            'driver' => 'session',
+            'provider' => 'banks',
+            'hash' => false,
+        ],
+
         'user-api' => [
             'driver' => 'jwt',
             'provider' => 'users',
@@ -75,9 +88,15 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'users' => [
+
+        'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Admin::class,
+        ],
+
+        'banks' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Bank::class,
         ],
 
         // 'users' => [

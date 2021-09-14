@@ -9,11 +9,7 @@
         <meta name="author" content="">
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/assets/images/favicon.png') }}">
-<<<<<<< Updated upstream
         <title>{{getlogoimage()->title_ar}}</title>
-=======
-        <title>تسجيل دخول</title>
->>>>>>> Stashed changes
         <!-- Bootstrap Core CSS -->
         <link href="{{ asset('/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
         <!-- page css -->
