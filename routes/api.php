@@ -37,6 +37,8 @@ Route::group(['namespace' =>'API','middleware'=>['api']], function () {
         /*************************************************************/
         /****************************categories**************************** */
         Route::get("/categories","CategoryController@getall");
+        /***************************fund detailes********************** */
+        Route::get("/fund/detailes/{id}","FundController@getfunddetailes");
          /*************************user update********************************** */
             Route::post("/update-profile/{id}","UsersController@updateProfile");
             Route::post('forgot/password','UsersController@forgot_password_post')

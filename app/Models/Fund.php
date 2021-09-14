@@ -5,16 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class Fund extends Model
 {
     use softdeletes;
 
     protected $guarded = [];
     protected $date = ['delete_at'];
+    protected $hidden = ['cat_id'];
 
-    public function category()
+    public function Category()
     {
-        return $this->belongsTo(category::class,'cat_id');
+        return $this->belongsTo(Category::class,'cat_id');
     }
 
     public function getImageAttribute($img)
