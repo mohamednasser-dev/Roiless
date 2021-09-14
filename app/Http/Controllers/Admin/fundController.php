@@ -45,7 +45,10 @@ class fundController extends Controller
                 'columns' => 'required|array|min:1',
                 'name_ar' => 'required',
                 'name_en' => 'required',
+                'desc_ar' => 'required',
+                'desc_en' => 'required',
                 'financing_ratio' => 'required|numeric',
+                'cost' => 'required',
                 'cat_id' => 'required|numeric',
                 'image' => '',
 

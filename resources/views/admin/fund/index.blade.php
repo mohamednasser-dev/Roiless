@@ -23,7 +23,10 @@
             <tr>
                 <th class="text-lg-center">اسم التمويل بالعربي</th>
                 <th class="text-lg-center"> اسم التمويل بالانجليزيه</th>
+                <th class="text-lg-center">وصف التمويل بالعربي</th>
+                <th class="text-lg-center">وصف التمويل بالانجليزي</th>
                 <th class="text-lg-center"> القسم</th>
+                <th class="text-lg-center">رسوم الطلب</th>
                 <th class="text-lg-center"> الصوره</th>
                 <th class="text-lg-center"> الحاله</th>
                 <th class="text-lg-center">الاجرائات</th>
@@ -35,7 +38,10 @@
                 <tr>
                     <td class="text-lg-center">{{$fund->name_ar}}</td>
                     <td class="text-lg-center">{{$fund->name_en}}</td>
+                    <td class="text-lg-center">{{$fund->desc_ar}}</td>
+                    <td class="text-lg-center">{{$fund->desc_en}}</td>
                     <td class="text-lg-center">{{$fund->category->title_ar}}</td>
+                    <td class="text-lg-center">{{$fund->cost}}</td>
                     <td class="text-lg-center"><img src="{{$fund->image}}" style="width: 120px"></td>
                     <td class="text-lg-center">
                         <div class="switch">

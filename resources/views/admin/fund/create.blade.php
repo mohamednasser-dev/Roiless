@@ -37,7 +37,26 @@
                             {{ Form::text('name_en',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
+
                     <div class="form-group m-t-40 row">
+                        <label for="example-text-input" class="col-md-2 col-form-label">وصف التمويل بالعربي</label>
+                        <div class="col-md-10">
+                            {{ Form::text('desc_ar',null,["class"=>"form-control" ,"required"]) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group m-t-40 row">
+                        <label for="example-text-input" class="col-md-2 col-form-label">وصف التمويل بالانجليزي</label>
+                        <div class="col-md-10">
+                            {{ Form::text('desc_en',null,["class"=>"form-control" ,"required"]) }}
+                        </div>
+                    </div>
+                    <div class="form-group m-t-40 row">
+                        <label for="example-text-input" class="col-md-2 col-form-label">رسوم الطلب</label>
+                        <div class="col-md-10">
+                            {{ Form::text('cost',null,["class"=>"form-control" ,"required"]) }}
+                        </div>
+                    </div>    <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">نسبة التمويل</label>
                         <div class="col-md-10">
                             {{ Form::text('financing_ratio',null,["class"=>"form-control" ,"required"]) }}
@@ -56,7 +75,7 @@
 
 
                     <div class="form-group row">
-                        <label for="example-month-input" class="col-md-2 col-form-label">اختر الم</label>
+                        <label for="example-month-input" class="col-md-2 col-form-label">اختر المطلوب</label>
                         <div class="col-md-10">
                             <select name="columns[]" class="select2 m-b-10 select2-multiple" style="width: 100%"
                                     multiple="multiple" data-placeholder="Choose">
