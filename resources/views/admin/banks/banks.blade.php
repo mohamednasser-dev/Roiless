@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-body little-profile text-center">
                         <div class="pro-img m-t-20"><img src="{{$bank->image}}" alt="user"></div>
-                        <h3 class="m-b-0">{{$bank->name}}</h3>
+                        <h3 class="m-b-0">{{$bank->name_ar}}</h3>
                         <ul class="list-inline soc-pro m-t-30">
                             <li><a title="تعديل" href="{{url('banks/'.$bank->id.'/edit')}}"><i class="fa fa-edit"></i></a></li>
                             <li><a title="التفاصيل" href="{{route('banks.details',$bank->id)}}"><i class="fa fa-eye"></i></a></li>

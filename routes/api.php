@@ -35,11 +35,11 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::post('forgot/password', 'UsersController@forgot_password_post')->name('admin.forgot.to.reset.password');;
         Route::get('check_token/', 'UsersController@reset_password');
         Route::post('reset/password/', 'UsersController@reset_password_post');
+        Route::post("/update-password", "HomeController@updatePassword");
         // inbox
         Route::post('make/inbox', 'InboxController@store');
-
-        Route::post("/update-password", "HomeController@updatePassword");
-
+        // about_us
+            Route::get('about_us' , 'HomeController@aboutUs');
 //home page and services
         Route::get("/home", "HomeController@getall");
         Route::get("/services", "ServiceController@getallservices");

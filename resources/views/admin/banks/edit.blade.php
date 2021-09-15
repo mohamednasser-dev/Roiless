@@ -21,9 +21,15 @@
                     {!! Form::model($bank, ['route' => ['banks.update',$bank->id] , 'method'=>'put','files'=> true]) !!}
                     {{ csrf_field() }}
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">اسم البنك</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label"> اسم البنك بالعربيه </label>
                         <div class="col-md-10">
-                            {{ Form::text('name',$bank->name,["class"=>"form-control" ,"required"]) }}
+                            {{ Form::text('name_ar',$bank->name_ar,["class"=>"form-control" ,"required"]) }}
+                        </div>
+                    </div>
+                    <div class="form-group m-t-40 row">
+                        <label for="example-text-input" class="col-md-2 col-form-label">اسم البنك بالانجليزي</label>
+                        <div class="col-md-10">
+                            {{ Form::text('name_en',$bank->name_en,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">

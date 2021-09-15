@@ -24,8 +24,10 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <small class="text-muted">الاسم</small>
-                    <h6>{{$banks->name}}</h6>
+                    <small class="text-muted">الاسم بالعربي </small>
+                    <h6>{{$banks->name_ar}}</h6>
+                    <small class="text-muted">الاسم بالانجليزي </small>
+                    <h6>{{$banks->name_en}}</h6>
                     <small class="text-muted">البريد الإلكتروني</small>
                     <h6>{{$banks->email}}</h6>
                     <small class="text-muted p-t-30 db">رقم الهاتف</small>

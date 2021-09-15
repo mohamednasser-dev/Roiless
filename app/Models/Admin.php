@@ -15,4 +15,9 @@ class Admin extends Authenticatable
     use softdeletes;
     protected $table = 'admins';
     protected $guarded = [];
+
+    public function notifications()
+    {
+        return $this->belongsToMany('App\Models\Notification', 'user_notifications', 'admin_id', 'notification_id', 'id', 'id');
+    }
 }
