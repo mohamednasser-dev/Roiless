@@ -13,5 +13,7 @@ Route::group(['middleware'=> 'auth:bank', 'namespace'=> 'Bank' ], function () {
 
     Route::post('/logout', 'Auth\LoginController@logout')->name('bank.logout');
 
+    Route::get('/funds', 'FundController@getFund')->name('bank.get.fund');
+
 
 });
