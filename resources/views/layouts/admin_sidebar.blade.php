@@ -25,6 +25,10 @@
                             class="mdi mdi-cash-multiple"></i><span class="hide-menu"></span>التمويلات</a>
                 </li>
                 <li>
+                    <a class="waves-effect waves-dark" href="{{route('userfunds')}}" aria-expanded="false"><i
+                            class="mdi mdi-cash-multiple"></i><span class="hide-menu"></span>التمويلات المطلوبه</a>
+                </li>
+                <li>
                     <a class="waves-effect waves-dark" href="{{route('categories')}}" aria-expanded="false"><i
                             class="mdi mdi-briefcase"></i><span class="hide-menu"></span>الاقسام</a>
                 </li>
