@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'CheckUserToken' => \App\Http\Middleware\CheckUserToken::class,
         'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
 
-        
+
+
     ];
 }

@@ -14,14 +14,19 @@ class CreateUserFundsTable extends Migration
     public function up()
     {
         Schema::create('user_funds', function (Blueprint $table) {
+
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('fund_id')->unsigned();
+            $table->integer('cat_id')->unsigned();
             $table->json('dataform');
             $table->double('annual_sales_size');
             $table->double('fund_amonut');
-            $table->enum('user_status',['pending','payed_success','payed_rejected','under_revision','finail_accept','finail_rejected'])->default('pending');
+            $table->enum('user_status', ['pending', 'payed_success', 'payed_rejected', 'under_revision', 'finail_accept', 'finail_rejected'])->default('pending');
+            $table->integer('emp_id')->unsigned()->nullable();
             $table->timestamps();
+            $table->foreign('emp_id')->references('id')->on('admins')->onDelete('cascade');
+            $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('fund_id')->references('id')->on('funds')->onDelete('cascade');
         });

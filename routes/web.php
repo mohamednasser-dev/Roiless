@@ -132,4 +132,12 @@ Route::group(['middleware' => ['auth:admin']], function () {
         Route::get('/inbox', 'InboxController@index')->name('inbox');
         Route::get('/inbox/delete/{id}', 'InboxController@destroy')->name('inbox.delete');
     });
+
+    // inbox
+    Route::group(['namespace' => 'Admin'], function () {
+        Route::get('/fundsrequested', 'UserfundsController@index')->name('userfunds');
+       Route::get('/fundsrequested/employer.chosen/{id}', 'UserfundsController@employerchosen')->name('employerchosen');
+       Route::get('/fundsrequested/fund.request.review/{id}', 'UserfundsController@review')->name('review');
+       Route::get('/fundsrequested/employer.unchosen/{id}/{emp_id}', 'UserfundsController@employerunchosen')->name('employerunchosen');
+    });
 });

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Database\Seeder;
 
 class AdminSeeder extends Seeder
@@ -12,15 +12,26 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        Admin::create([
             'name'  => 'admin',
-            'phone'  => '01000000000',
+            'phone'  => '012',
             'image'  => '',
             'email'  => 'admin@admin.com',
             'type'  => 'admin',
             'status'  => 'active',
-            'role_id'  => '',
             'password'  => bcrypt('123456'),
+
+
+        ]);
+        Admin::create([
+            'name'  => 'employer',
+            'phone'  => '010',
+            'image'  => '',
+            'email'  => 'employer@employer.com',
+            'type'  => 'employer',
+            'status'  => 'active',
+            'password'  => bcrypt('123456'),
+
 
         ]);
     }
