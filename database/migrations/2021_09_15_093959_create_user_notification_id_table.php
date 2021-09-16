@@ -14,8 +14,8 @@ class CreateUserNotificationIdTable extends Migration
     public function up()
     {
         Schema::table('user_notifications', function (Blueprint $table) {
-            $table->integer('bank_id')->unsigned();
-            $table->integer('admin_id')->unsigned();
+            $table->integer('bank_id')->unsigned()->nullable();
+            $table->integer('admin_id')->unsigned()->nullable();
         });
     }
 

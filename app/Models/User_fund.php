@@ -12,4 +12,8 @@ class User_fund extends Model
     {
         return $this->belongsTo(Fund::class,'fund_id');
     }
+    public function fund_file()
+    {
+        return $this->hasOne('App\Models\Fund_file','user_fund_id');
+    }
 }

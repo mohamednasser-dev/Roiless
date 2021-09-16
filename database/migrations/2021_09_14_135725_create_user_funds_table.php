@@ -18,10 +18,10 @@ class CreateUserFundsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('fund_id')->unsigned();
-            $table->integer('cat_id')->unsigned();
+            $table->integer('cat_id')->unsigned()->nullable();
             $table->json('dataform');
-            $table->double('annual_sales_size');
-            $table->double('fund_amonut');
+            $table->double('annual_sales_size')->nullable();
+            $table->double('fund_amount');
             $table->enum('user_status', ['pending', 'payed_success', 'payed_rejected', 'under_revision', 'finail_accept', 'finail_rejected'])->default('pending');
             $table->integer('emp_id')->unsigned()->nullable();
             $table->timestamps();
