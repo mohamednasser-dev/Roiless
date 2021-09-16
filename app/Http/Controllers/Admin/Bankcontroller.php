@@ -21,7 +21,7 @@ class Bankcontroller extends Controller
 
     public function index()
     {
-        $banks = Bank::orderBy('name', 'desc')->get();
+        $banks = Bank::orderBy('name_en', 'desc')->get();
         return view($this->folderView . 'banks', compact('banks'));
     }
 
@@ -33,7 +33,7 @@ class Bankcontroller extends Controller
 
     public function create()
     {
-        $banks = Bank::orderBy('name', 'desc');
+        $banks = Bank::orderBy('name_en', 'desc');
         return view($this->folderView . 'create_bank', compact('banks'));
     }
 
