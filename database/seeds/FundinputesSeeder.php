@@ -15,15 +15,15 @@ class FundinputesSeeder extends Seeder
     {
         Fundinput::create([
             'name' => 'الاسم الثلاثي',
-            'slug' => 'الاسم_الثلاثي',
+            'slug' => 'user_name',
         ]);
         Fundinput::create([
-            'name' => 'صوره البطاقه',
-            'slug' => 'صوره_البطاقه',
+            'name' => 'رقم الجوال',
+            'slug' => 'phone',
         ]);
         Fundinput::create([
-            'name' => 'صوره الفيش',
-            'slug' => 'صوره_الفيش',
+            'name' => 'البريد الإلكتروني',
+            'slug' => 'email',
         ]);
     }
 }
