@@ -14,7 +14,7 @@ class User extends Authenticatable implements JWTSubject
     use softdeletes;
     protected $table='users';
 
-     
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

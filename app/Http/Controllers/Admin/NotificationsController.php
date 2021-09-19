@@ -53,6 +53,8 @@ class NotificationsController extends Controller
             }
             unset($data['users_id']);
             $notifications = Notification::create($data)->user()->attach($request->users_id);
+            activity('admin')->log('تم اضافه الاشعار بنجاح');
+
             Alert::success('تمت العمليه', 'تم اضافه الاشعار بنجاح');
             return redirect()->route('notifications.create');
         } catch (\Exception $ex) {
@@ -98,6 +100,7 @@ class NotificationsController extends Controller
 
             $this->objectName::where('id', $id)->update($data);
 
+            activity('admin')->log('تم تحديث الاشعار بنجاح');
 
             DB::commit();
             Alert::success('تمت العمليه', 'تم التحديث بنجاح');
@@ -118,6 +121,8 @@ class NotificationsController extends Controller
     {
         $question = $this->objectName::findOrFail($id);
         $question->delete();
+        activity('admin')->log('تم حذف الاشعار بنجاح');
+
         Alert::success('تمت العمليه', 'تم الحذف بنجاح');
 
         return redirect()->route('question');

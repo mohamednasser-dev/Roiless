@@ -28,6 +28,8 @@ class InboxController extends Controller
     {
         $inbox = $this->objectName::findOrFail($id);
         $inbox->delete();
+        activity('admin')->log('تم حذف رساله التواصل معنا بنجاح');
+
         Alert::success('تمت العمليه', 'تم الحذف بنجاح');
 
         return redirect()->route('inbox');

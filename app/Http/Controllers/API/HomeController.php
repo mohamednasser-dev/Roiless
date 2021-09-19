@@ -51,7 +51,7 @@ class HomeController extends Controller
             return response()->json(msg($request, failed(), 'Lang_field_required'));
         } else {
             if (\Auth::check()) {
-                $aboutUS = Setting::select('about_us_' . $request->header('lang'))->get();
+                $aboutUS = Setting::select('about_us_' . $request->header('lang') . ' AS about')->get();
                 return msgdata($request, success(), 'success_data', array('about_us' => $aboutUS));
             }
         }

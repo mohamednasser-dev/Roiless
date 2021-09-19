@@ -58,6 +58,8 @@ class usersController extends Controller{
                 $data['image'] = $this->MoveImage($request->image,'uploads/users_images');
             }
             $user = User::create($data);
+            activity('admin')->log('تم اضافه مستخدم  بنجاح');
+
             $notification=$request['notification'];
             $users=new User();
             $users->notifications()->attach($notification);
@@ -98,6 +100,8 @@ class usersController extends Controller{
             $data['password'] = bcrypt(request('password'));
             $newData['name'] =$request['name'];
             User::where('id',$id)->update($data);
+            activity('admin')->log('تم تحديث مستخدم  بنجاح');
+
             DB::table('model_has_roles')
                 ->where('model_id', $id)
                 ->update(['role_id' => $request['role_id']]);
@@ -118,6 +122,8 @@ class usersController extends Controller{
     public function update_Actived(Request $request){
         $data['status'] = $request->status ;
         $user = User::where('id', $request->id)->update($data);
+        activity('admin')->log('تم تحديث حاله المستخدم  بنجاح');
+
         return 1;
     }
 
@@ -126,6 +132,8 @@ class usersController extends Controller{
         try {
             $user->deleted = '1';
             $user->save();
+            activity('admin')->log('تم حذف مستخدم  بنجاح');
+
             Alert::warning('الحذف', trans('admin.deleteSuccess'));
         }catch(Exception $exception){
             session()->flash('danger', trans('admin.emp_no_delete'));

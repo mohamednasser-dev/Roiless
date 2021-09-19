@@ -32,6 +32,7 @@ class UserfundsController extends Controller
 
         if(  User_Fund::where('id',$id)->whereNull('emp_id')->exists()  ){
             User_Fund::where('id', $id)->update(['emp_id' => auth()->user()->id]) ;
+            activity('admin')->log('تم اضافه هذا التمويل لوظائفك بنجاح');
             Alert::success('تمت العمليه', 'تم اضافه هذا التمويل لوظائفك بنجاح');
             return redirect()->route('review',$id);
         }else{
@@ -50,6 +51,7 @@ class UserfundsController extends Controller
     public function employerunchosen($id,$emp_id){
 
         User_Fund::where('id', $id)->update(['emp_id' =>null]) ;
+        activity('admin')->log('تم الغاء طلب المراجع');
         Alert::success('تمت العمليه', 'تم الغاء طلب المراجعه');
         return redirect()->route('userfunds');
 

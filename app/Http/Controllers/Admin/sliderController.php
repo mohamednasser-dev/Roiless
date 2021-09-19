@@ -52,6 +52,8 @@ class sliderController extends Controller
         $Slider = Slider::create([
             'image' => $file_name,
         ]);
+        activity('admin')->log('تم اضافه الاعلان بنجاح');
+
         Alert::success('تمت العمليه', 'تم اضافه الاعلان بنجاح');
         return redirect()->route('sliders');
     }
@@ -97,6 +99,9 @@ class sliderController extends Controller
             $Slider->update([
                 'image' => $file_name,
             ]);
+
+        activity('admin')->log('تم تحديث الاعلان بنجاح');
+
         Alert::success('تمت العمليه', 'تم تعديل الاعلان بنجاح');
 
 
@@ -113,6 +118,8 @@ class sliderController extends Controller
     {
         $Slider=Slider::findOrFail($id);
         $Slider->delete();
+        activity('admin')->log('تم حذف الاعلان بنجاح');
+
         Alert::success('تمت العمليه', 'تم حذف الاعلان بنجاح');
 
          return redirect()->route('sliders');

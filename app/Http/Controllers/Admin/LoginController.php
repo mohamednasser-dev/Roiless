@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Activitylog\Models\Activity;
 
 class LoginController extends Controller
 {
@@ -20,6 +21,7 @@ class LoginController extends Controller
                     session()->flash('danger', trans('admin.not_auth'));
                     return redirect('login');
                 }else{
+                    activity()->log('Login Successfully');
                     return redirect('/');
                 }
             }

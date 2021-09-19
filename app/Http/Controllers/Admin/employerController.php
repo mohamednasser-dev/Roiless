@@ -66,6 +66,7 @@ class employerController extends Controller
             unset($data['password_confirmation']);
             $data['type'] = 'employer';
             $employee = Admin::create($data);
+            activity('admin')->log('تم اضافه الموظف بنجاح');
             $notification = $request['notification'];
             $employees = new Admin();
             $employees->notifications()->attach($notification);
@@ -106,12 +107,15 @@ class employerController extends Controller
         if ($request['password'] != null && $request['password_confirmation'] != null) {
             $data['password'] = bcrypt(request('password'));
             Admin::where('id', $id)->update($data);
+            activity('admin')->log('تم تحديث الموظف بنجاح');
 
             return redirect()->route('employer.index');
         } else {
             unset($data['password']);
             unset($data['password_confirmation']);
             Admin::where('id', $id)->update($data);
+            activity('admin')->log('تم تحديث الموظف بنجاح');
+
             return redirect()->route('employer.index');
         }
     }
@@ -120,6 +124,8 @@ class employerController extends Controller
     {
         $employer = Admin::findOrFail($id);
         $employer->delete();
+        activity('admin')->log('تم حذف الموظف بنجاح');
+
         Alert::success('تمت العمليه', 'تم حذف بنجاح');
 
         return redirect()->route('employer.index');
