@@ -133,11 +133,12 @@ Route::group(['middleware' => ['auth:admin']], function () {
         Route::get('/inbox/delete/{id}', 'InboxController@destroy')->name('inbox.delete');
     });
 
-    // inbox
+    // userfunds
     Route::group(['namespace' => 'Admin'], function () {
-        Route::get('/fundsrequested', 'UserfundsController@index')->name('userfunds');
-       Route::get('/fundsrequested/employer.chosen/{id}', 'UserfundsController@employerchosen')->name('employerchosen');
-       Route::get('/fundsrequested/fund.request.review/{id}', 'UserfundsController@review')->name('review');
-       Route::get('/fundsrequested/employer.unchosen/{id}/{emp_id}', 'UserfundsController@employerunchosen')->name('employerunchosen');
+        Route::get('/funds/requests', 'UserfundsController@index')->name('userfunds');
+       Route::get('/funds/requests/employer/chosen/{id}', 'UserfundsController@employerchosen')->name('employerchosen');
+       Route::get('/funds/requests/fund/request/review/{id}', 'UserfundsController@review')->name('review');
+       Route::post('/fund/redirect/emp/{id}', 'UserfundsController@redirect_emp')->name('fund.redirect.emp');
+       Route::post('/fund/redirect/bank/{id}', 'UserfundsController@redirect_bank')->name('fund.redirect.bank');
     });
 });

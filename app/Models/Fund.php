@@ -12,7 +12,7 @@ class Fund extends Model
 
     protected $guarded = [];
     protected $date = ['delete_at'];
-    protected $hidden = ['cat_id'];
+//    protected $hidden = ['cat_id'];
 
     public function Category()
     {
