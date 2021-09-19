@@ -80,7 +80,7 @@
                             <select name="columns[]" class="select2 m-b-10 select2-multiple" style="width: 100%"
                                     multiple="multiple" data-placeholder="Choose">
                                 @foreach($fundsinputs as $fundsinput)
-                                    <option value="{{$fundsinput->slug}}">{{$fundsinput->name}}</option>
+                                    <option value="{{$fundsinput->name}}">{{$fundsinput->name}}</option>
                                 @endforeach
                             </select>
                         </div>

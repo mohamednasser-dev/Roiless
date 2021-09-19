@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserNotificationIdTable extends Migration
+class UpdateUserFundsBankTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateUserNotificationIdTable extends Migration
      */
     public function up()
     {
-        Schema::table('user_notifications', function (Blueprint $table) {
+        Schema::table('user_funds', function (Blueprint $table) {
+
+
             $table->integer('bank_id')->unsigned()->nullable();
-            $table->integer('admin_id')->unsigned()->nullable();
+            $table->foreign('bank_id')->references('id')->on('banks')->onDelete('cascade');
         });
     }
 
@@ -26,6 +28,6 @@ class CreateUserNotificationIdTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_notification_id');
+        //
     }
 }

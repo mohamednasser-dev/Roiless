@@ -15,6 +15,7 @@ class User extends Authenticatable implements JWTSubject
     protected $table='users';
 
 
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -71,5 +72,9 @@ class User extends Authenticatable implements JWTSubject
     public function notifications()
     {
         return $this->belongsToMany('App\Models\Notification', 'user_notifications', 'user_id', 'notification_id', 'id', 'id');
+    }
+    public function Funds()
+    {
+        return $this->belongsToMany('App\Models\Fund','User_funds','User_id','fund_id','id','id');
     }
 }

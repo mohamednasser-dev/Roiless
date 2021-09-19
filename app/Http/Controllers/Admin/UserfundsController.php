@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use App\Models\Bank;
+use App\Models\Fund;
 use App\Models\User_Fund;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -16,14 +19,19 @@ class UserfundsController extends Controller
     public function __construct(User_Fund $model)
     {
         $this->objectName = $model;
-        $this->folderView = 'admin.usefunds.';
+        $this->folderView = 'admin.userfunds.';
     }
 
 
-    public function index(){
-        $usefunds=User_Fund::where('cat_id',auth()->user()->cat_id)->get();
+    public function index()
+    {
+        $user_category = auth()->user()->cat_id;
 
-        return   view($this->folderView . 'index', compact('usefunds'));
+        $usefunds = User_Fund::with(['Fund' => function ($query) use ($user_category) {
+            $query->where('cat_id', $user_category);
+        }])->get();
+
+        return view($this->folderView . 'index', compact('usefunds'));
 
     }
 
@@ -41,11 +49,17 @@ class UserfundsController extends Controller
         }
     }
 
-    public function review($id){
-
-        $requestreview =User_Fund::where('id',$id)->first();
-        return   view($this->folderView . 'details', compact('requestreview'));
-
+    public function review($id)
+    {
+        $requestreview = User_Fund::find($id);
+        $empolyers = Admin::where('type', 'employer')->where('id', '!=', auth()->user()->id)->get();
+        $banks = Bank::all();
+        if ($requestreview->emp_id == auth()->user()->id) {
+            return view($this->folderView . 'details', compact('requestreview', 'empolyers', 'banks'));
+        } else {
+            Alert::warning('تنبية', 'مرفوض الدخول');
+            return redirect()->back();
+        }
     }
 
     public function employerunchosen($id,$emp_id){

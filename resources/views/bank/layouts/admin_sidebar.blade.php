@@ -5,8 +5,8 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li>
-                    <a class="waves-effect waves-dark" href="{{route('bank.home')}}" aria-expanded="false"><i
-                            class="mdi mdi-home"></i><span class="hide-menu"></span>الصفحة الرئيسية</a>
+                    <a class="waves-effect waves-dark" href="{{route('funds.request')}}" aria-expanded="false"><i
+                            class="mdi mdi-home"></i><span class="hide-menu"></span>التمويلات</a>
                 </li>
             </ul>
         </nav>

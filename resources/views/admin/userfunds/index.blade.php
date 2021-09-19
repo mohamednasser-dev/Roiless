@@ -30,7 +30,7 @@
 
                         <tr>
 
-                            <td class="text-lg-center">{{$usefund->userfunds->name_ar}}</td>
+                            <td class="text-lg-center">{{$usefund->Fund->name_ar}}</td>
                             <td class="text-lg-center ">
                                 @if(is_null($usefund->emp_id))
                                 <a class='btn btn-danger btn-circle' title="المراجعه"

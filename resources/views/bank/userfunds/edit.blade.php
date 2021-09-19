@@ -21,45 +21,44 @@
             <div class="card">
                 <div class="card-body">
 
-                    {{ Form::open( ['route'  => ['fund.store'],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
+                    {{ Form::open( ['route'  => ['fund.update',$fund->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
                     <h4 class="card-title">بيانات التمويل</h4>
                     <hr>
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">عنوان التمويل بالعربي</label>
                         <div class="col-md-10">
-                            {{ Form::text('name_ar',null,["class"=>"form-control" ,"required"]) }}
+                            {{ Form::text('name_ar',$fund->name_ar,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">عنوان التمويل بالانجليزي</label>
                         <div class="col-md-10">
-                            {{ Form::text('name_en',null,["class"=>"form-control" ,"required"]) }}
+                            {{ Form::text('name_en',$fund->name_en,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
-
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">وصف التمويل بالعربي</label>
                         <div class="col-md-10">
-                            {{ Form::text('desc_ar',null,["class"=>"form-control" ,"required"]) }}
+                            {{ Form::text('desc_ar',$fund->desc_ar,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">وصف التمويل بالانجليزي</label>
                         <div class="col-md-10">
-                            {{ Form::text('desc_en',null,["class"=>"form-control" ,"required"]) }}
+                            {{ Form::text('desc_en',$fund->desc_en,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">رسوم الطلب</label>
                         <div class="col-md-10">
-                            {{ Form::text('cost',null,["class"=>"form-control" ,"required"]) }}
+                            {{ Form::text('cost',$fund->cost,["class"=>"form-control" ,"required"]) }}
                         </div>
-                    </div>    <div class="form-group m-t-40 row">
+                    </div>        <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">نسبة التمويل</label>
                         <div class="col-md-10">
-                            {{ Form::text('financing_ratio',null,["class"=>"form-control" ,"required"]) }}
+                            {{ Form::text('financing_ratio',$fund->financing_ratio,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group row">
@@ -67,8 +66,11 @@
                         <div class="col-md-10">
                             <select class="custom-select col-12 multiple" id="inlineFormCustomSelect" name="cat_id">
                                 @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->title_ar}}</option>
+
+                                    <option value="{{$category->id }}"   @if($category->id == $category->id) selected @endif>{{$category->title_ar}} </option>
+
                                 @endforeach
+
                             </select>
                         </div>
                     </div>
@@ -80,7 +82,7 @@
                             <select name="columns[]" class="select2 m-b-10 select2-multiple" style="width: 100%"
                                     multiple="multiple" data-placeholder="Choose">
                                 @foreach($fundsinputs as $fundsinput)
-                                    <option value="{{$fundsinput->slug}}">{{$fundsinput->name}}</option>
+                                    <option value="{{$fundsinput->name}}"   @if($fundsinput->name == $fundsinput->name) selected @endif> {{$fundsinput->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -91,7 +93,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">صورة التمويل</h4>
-                                    <input type="file" name="image" id="input-file-now" class="dropify" required/>
+                                    <input type="file" name="image"   data-default-file="{{$fund->image}}" id="input-file-now" class="dropify"/>
                                 </div>
                             </div>
                         </div>
