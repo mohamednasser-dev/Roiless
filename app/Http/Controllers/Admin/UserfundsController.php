@@ -12,7 +12,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UserfundsController extends Controller
 {
-
+// new push
     public $objectName;
     public $folderView;
 
@@ -70,4 +70,23 @@ class UserfundsController extends Controller
         return redirect()->route('userfunds');
 
     }
+    public function redirect_emp(Request $request, $id)
+    {
+        $requestreview = User_Fund::find($id);
+        $requestreview->emp_id = $request->emp_id;
+        $requestreview->save();
+        Alert::success('عملية ناجحة', 'تم التحويل بنجاح');
+        return redirect()->route('userfunds');
+    }
+
+    public function redirect_bank(Request $request, $id)
+    {
+//    return $request->all();
+        $requestreview = User_Fund::find($id);
+        $requestreview->bank_id = $request->bank_id;
+        $requestreview->save();
+        Alert::success('عملية ناجحة', 'تم التحويل الي البنك');
+        return redirect()->route('userfunds');
+    }
+
 }
