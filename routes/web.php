@@ -140,5 +140,6 @@ Route::group(['middleware' => ['auth:admin']], function () {
        Route::get('/funds/requests/fund/request/review/{id}', 'UserfundsController@review')->name('review');
        Route::post('/fund/redirect/emp/{id}', 'UserfundsController@redirect_emp')->name('fund.redirect.emp');
        Route::post('/fund/redirect/bank/{id}', 'UserfundsController@redirect_bank')->name('fund.redirect.bank');
+       Route::post('/fund/redirect/user/{id}', 'UserfundsController@redirect_user')->name('fund.redirect.user');
     });
 });

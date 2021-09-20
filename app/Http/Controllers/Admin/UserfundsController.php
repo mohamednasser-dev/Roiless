@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Bank;
+use App\Models\Fhistory;
 use App\Models\Fund;
 use App\Models\User_Fund;
 use Illuminate\Http\Request;
@@ -35,15 +36,16 @@ class UserfundsController extends Controller
 
     }
 
-    public function employerchosen($id){
+    public function employerchosen($id)
+    {
 
 
-        if(  User_Fund::where('id',$id)->whereNull('emp_id')->exists()  ){
-            User_Fund::where('id', $id)->update(['emp_id' => auth()->user()->id]) ;
+        if (User_Fund::where('id', $id)->whereNull('emp_id')->exists()) {
+            User_Fund::where('id', $id)->update(['emp_id' => auth()->user()->id]);
             activity('admin')->log('تم اضافه هذا التمويل لوظائفك بنجاح');
             Alert::success('تمت العمليه', 'تم اضافه هذا التمويل لوظائفك بنجاح');
-            return redirect()->route('review',$id);
-        }else{
+            return redirect()->route('review', $id);
+        } else {
             Alert::success('تمت العمليه', 'تم تحويل هذا الطلب بالفعل الي موظف');
             return redirect()->route('userfunds');
         }
@@ -52,7 +54,7 @@ class UserfundsController extends Controller
     public function review($id)
     {
         $requestreview = User_Fund::find($id);
-        $empolyers = Admin::where('type', 'employer')->where('id', '!=', auth()->user()->id)->get();
+        $empolyers = Admin::where('type', 'employer')->where('cat_id', auth()->user()->cat_id)->where('id', '<>', auth()->user()->id)->get();
         $banks = Bank::all();
         if ($requestreview->emp_id == auth()->user()->id) {
             return view($this->folderView . 'details', compact('requestreview', 'empolyers', 'banks'));
@@ -62,30 +64,72 @@ class UserfundsController extends Controller
         }
     }
 
-    public function employerunchosen($id,$emp_id){
+    public function employerunchosen($id)
+    {
 
-        User_Fund::where('id', $id)->update(['emp_id' =>null]) ;
+        User_Fund::where('id', $id)->update(['emp_id' => null]);
         activity('admin')->log('تم الغاء طلب المراجع');
         Alert::success('تمت العمليه', 'تم الغاء طلب المراجعه');
         return redirect()->route('userfunds');
 
     }
+
     public function redirect_emp(Request $request, $id)
     {
-        $requestreview = User_Fund::find($id);
-        $requestreview->emp_id = $request->emp_id;
-        $requestreview->save();
+        $emp = $this->validate(request(),
+            [
+                'emp_id' => 'required|string',
+            ]);
+        $data = $this->validate(request(),
+            [
+                'note_ar' => 'required|string',
+                'note_en' => 'required|string',
+            ]);
+
+        $Emp_request_redirect = User_Fund::find($id);
+        $Emp_request_redirect->emp_id = $request->emp_id;
+        $Emp_request_redirect->save();
+
+
+        $data['emp_id'] = auth()->user()->id;
+        $data['type'] = 'emp';
+        $data['status'] = 'pending';
+        $data['user_fund_id'] = $id;
+        Fhistory::create($data);
         Alert::success('عملية ناجحة', 'تم التحويل بنجاح');
         return redirect()->route('userfunds');
     }
 
     public function redirect_bank(Request $request, $id)
     {
-//    return $request->all();
+
+
         $requestreview = User_Fund::find($id);
         $requestreview->bank_id = $request->bank_id;
         $requestreview->save();
         Alert::success('عملية ناجحة', 'تم التحويل الي البنك');
+        return redirect()->route('userfunds');
+    }
+
+
+    public function redirect_user(Request $request, $id)
+    {
+//        $user=User_Fund::where('id',$id)->value('user_id');
+//        return $user;
+        $data = $this->validate(request(),
+            [
+                'note_ar' => 'required|string',
+                'note_en' => 'required|string',
+            ]);
+        $data['status']='reject';
+        $data['type']='user';
+        $data['user_fund_id'] = $id;
+        $data['user_id']=User_Fund::where('id',$id)->value('user_id');
+        Fhistory::create($data);
+        //تعديل الحاله user_status في ال user_funds
+
+
+        Alert::success('عملية ناجحة', 'تم تحويل الملحوظات الي المستحدم بنجاح');
         return redirect()->route('userfunds');
     }
 
