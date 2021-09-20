@@ -15,8 +15,8 @@ Route::group(['middleware'=> 'auth:bank', 'namespace'=> 'Bank' ], function () {
 
 // userfunds
     Route::get('/Requests', 'UserfundsController@index')->name('funds.request');
-    Route::get('/view_details/{$id}', 'UserfundsController@index')->name('request.review');
-//    Route::get('/view_details/{$id}', 'UserfundsController@show_details')->name('request.review');
+    Route::get('/view_details/{id}', 'UserfundsController@details')->name('request.review');
+
 
 
 });

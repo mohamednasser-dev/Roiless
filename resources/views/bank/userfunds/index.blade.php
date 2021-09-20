@@ -7,7 +7,7 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">التمويلات المطلوبه</li>
-                <li class="breadcrumb-item active"><a href="{{route('home')}}">الصفحة الرئيسية</a></li>
+                <li class="breadcrumb-item active"><a href="{{route('bank.home')}}">الصفحة الرئيسية</a></li>
             </ol>
         </div>
     </div>
@@ -34,9 +34,9 @@
                             <td class="text-lg-center">{{$userfund->Fund->name_ar}}</td>
                             <td class="text-lg-center">{{$userfund->ُEmployer->name}}</td>
                             <td class="text-lg-center ">
+{{--{{$userfund->id}}--}}
 
-                                <a class='btn btn-danger btn-circle' title="المراجعه"
-
+                                <a class='btn btn-info btn-circle' title="تفاصيل"
                                    href="{{route('request.review',$userfund->id)}}"><i class="fa fa-eye"></i></a>
 
                             </td>

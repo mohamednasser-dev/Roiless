@@ -1,4 +1,4 @@
-@extends('admin_temp')
+@extends('bank.bank_temp')
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
@@ -6,20 +6,17 @@
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">مراجعه التمويلات</li>
-                <li class="breadcrumb-item active"><a href="{{route('home')}}">الصفحة الرئيسية</a></li>
+                <li class="breadcrumb-item">مراجعه طلب التمويل</li>
+                <li class="breadcrumb-item active"><a href="{{route('bank.home')}}">الصفحة الرئيسية</a></li>
             </ol>
         </div>
     </div>
-    <!-- /.card-header -->
-    {{--    <div class="title">--}}
-    {{--        <a href=" "--}}
-    {{--           class="btn btn-danger btn-bg"></a>--}}
-    {{--    </div>--}}
+
+
+    {{--
     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Empoloyers">
         لا يمكنني اتخاذ القرار
     </button>
-
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#banks">
         الموافقه علي الطلب
     </button>
@@ -96,5 +93,5 @@
 
 
     </div>
-
+ --}}
 @endsection

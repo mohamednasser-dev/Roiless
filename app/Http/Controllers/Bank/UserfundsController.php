@@ -34,12 +34,11 @@ class UserfundsController extends Controller
 
     }
 
-    public function show_details($id)
+    public function details($id)
     {
-        dd('here');
-        $usefunds = User_Fund::where('$id', $id)->get();
-        return $usefunds;
 
+        $usefund = User_Fund::where('id', $id)->get();
+        return view($this->folderView . 'details', compact('usefund'));
     }
     /*
             public function review($id)
