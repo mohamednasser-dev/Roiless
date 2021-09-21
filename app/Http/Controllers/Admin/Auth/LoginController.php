@@ -11,7 +11,7 @@ class LoginController extends Controller
         return view('admin.auth.login');
     }
 
-    public function loginBank(Request $request) {
+    public function loginAdmin(Request $request) {
 
         $remeber= $request->Remember==1? true:false ;
 
@@ -23,6 +23,12 @@ class LoginController extends Controller
                 session()->flash('danger', trans('admin.not_auth'));
                 return redirect()->route('login');
             }else{
+              //  activity('admin')->log('Login Successfully');
+/*
+                activity('admin')
+                    ->causedBy(Auth::guard('admin')->user()->id)
+                    ->log('Login Successfully');
+  */
                 return redirect()->route('home');
             }
         }else{
@@ -30,8 +36,12 @@ class LoginController extends Controller
             return redirect(route('login'));
         }
     }
+
     public function logout(){
         Auth::guard('admin')->logout();
+        /*
+        activity('admin')->log('Logout Successfully');
+        */
         return redirect()->route('login');
     }
 

@@ -61,6 +61,7 @@ class fundController extends Controller
 
         $funds = $this->objectName::create($data);
 
+        activity('admin')->log('تم اضافه التمويل بنجاح');
 
         DB::commit();
         Alert::success('تمت العمليه', 'تم اضافه التمويل بنجاح');
@@ -115,6 +116,7 @@ class fundController extends Controller
             }
             $this->objectName::where('id', $id)->update($data);
 
+            activity('admin')->log('تم تحديث التمويل بنجاح');
 
             DB::commit();
             Alert::success('تمت العمليه', 'تم التحديث بنجاح');
@@ -134,6 +136,8 @@ class fundController extends Controller
     {
         $fund = $this->objectName::findOrFail($id);
         $fund->delete();
+        activity('admin')->log('تم حذف التمويل بنجاح');
+
         Alert::success('تمت العمليه', 'تم الحذف بنجاح');
 
         return redirect()->route('fund');

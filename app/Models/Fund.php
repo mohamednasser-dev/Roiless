@@ -12,14 +12,20 @@ class Fund extends Model
 
     protected $guarded = [];
     protected $date = ['delete_at'];
-    protected $hidden = ['cat_id'];
+//    protected $hidden = ['cat_id'];
 
     public function Category()
     {
         return $this->belongsTo(Category::class,'cat_id');
     }
 
-    
+    public function Fund()
+    {
+        return $this->belongsTo(Fund::class,'fund_id');
+    }
+
+
+
     public function getImageAttribute($img)
     {
         if ($img)

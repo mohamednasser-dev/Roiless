@@ -13,14 +13,13 @@ use Illuminate\Http\Request;
 
 class FundController extends Controller
 {
-      
-    public function getfunddetailes(Request $request,$id)
+
+    public function getfunddetailes(Request $request, $id)
     {
-          try{
+        try {
             $lang = $request->header('lang');
-            if(empty($lang))
-            {
-              $lang="en";
+            if (empty($lang)) {
+                $lang = "en";
             }
             $Funddetailes=Fund::select('id','name_'.$lang.' as name','image','columns')->where('id',$id)->first();
             $bank=Bank::select('name_'.$lang.' as name','image')->get();
@@ -30,41 +29,41 @@ class FundController extends Controller
               $data['Funddetailes']=$Funddetailes;
               $data['banks']=$bank;
               return msgdata($request, success(), 'funddetailes_success', $data);
+
             }
-          
-          }catch(Exception $e){
-            return  $this->returnError($e->getCode(), $e->getMessage());
-          } 
+
+        } catch (Exception $e) {
+            return $this->returnError($e->getCode(), $e->getMessage());
+        }
     }
+
     public function addfund(Request $request)
     {
-      $user = auth()->user();
-      
-      $myJSON = json_encode($request->dataform);
-    
-    //  return response()->json(["dataform"=>$user]);
-        try{
-                $rules = [
-                  'fund_id'=>'required',
-                  'dataform'=>'required',
-                  'file' => 'required',
-                 ];
-              $validator = Validator::make($request->all(), $rules);
-              if ($request->hasFile('file'))
-              {
-                    // Get filename with the extension
-                    $filenameWithExt = $request->file('file')->getClientOriginalName();
-                    //Get just filename
-                    $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-                    // Get just ext
-                    $extension = $request->file('file')->getClientOriginalExtension();
-                    // Filename to store
-                    $fileNameToStore = $filename.'_'.time().'.'.$extension;
-                    // Upload Image
-                    $path = $request->file('file')->storeAs('public/Documents/Funds_file',$fileNameToStore);
-              }
-              if ($validator->fails())
-              {
+        $user = auth()->user();
+
+        $myJSON = json_encode($request->dataform);
+
+        //  return response()->json(["dataform"=>$user]);
+        try {
+            $rules = [
+                'fund_id' => 'required',
+                'dataform' => 'required',
+                'file' => 'required',
+            ];
+            $validator = Validator::make($request->all(), $rules);
+            if ($request->hasFile('file')) {
+                // Get filename with the extension
+                $filenameWithExt = $request->file('file')->getClientOriginalName();
+                //Get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just ext
+                $extension = $request->file('file')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+                // Upload Image
+                $path = $request->file('file')->storeAs('public/Documents/Funds_file', $fileNameToStore);
+            }
+            if ($validator->fails()) {
                 return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
               }else{
                   $fund=Fund::find($request->fund_id);  

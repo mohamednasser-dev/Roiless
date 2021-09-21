@@ -63,6 +63,7 @@ class employerController extends Controller
             unset($data['password_confirmation']);
             $data['type'] = 'employer';       
             $employee = Admin::create($data);
+            activity('admin')->log('تم اضافه الموظف بنجاح');
             $notification = $request['notification'];
             $employees = new Admin();
             $employees->notifications()->attach($notification);
@@ -136,9 +137,11 @@ class employerController extends Controller
         ]);
         if ($request->image != null) {
             $employee=Admin::find($id);
-            unlink("uploads/admins_image/".$employee->image);
+            
             $data['image'] = $this->MoveImage($request->image,'uploads/admins_image');
             Admin::where('id', $id)->update($data);
+            unlink("uploads/admins_image/".$employee->image);
+            activity('admin')->log('تم تحديث الموظف بنجاح');
             Alert::success('تمت العمليه','تم تحديث صوره الحساب');
             return redirect()->route('viewprofile',Auth::user()->id);    
         }else{
@@ -149,6 +152,8 @@ class employerController extends Controller
     {
         $employer = Admin::findOrFail($id);
         $employer->delete();
+        activity('admin')->log('تم حذف الموظف بنجاح');
+
         Alert::success('تمت العمليه', 'تم حذف بنجاح');
 
         return redirect()->route('employer.index');

@@ -56,6 +56,7 @@ class QuestionController extends Controller
 
             $questios = $this->objectName::create($data);
 
+            activity('admin')->log('تم اضافه السؤال  بنجاح');
 
             DB::commit();
             Alert::success('تمت العمليه', 'تم اضافه الخدمه بنجاح');
@@ -107,6 +108,7 @@ class QuestionController extends Controller
 
             $this->objectName::where('id', $id)->update($data);
 
+            activity('admin')->log('تم تحديث السؤال بنجاح');
 
             DB::commit();
             Alert::success('تمت العمليه', 'تم التحديث بنجاح');
@@ -127,6 +129,8 @@ class QuestionController extends Controller
     {
         $question = $this->objectName::findOrFail($id);
         $question->delete();
+        activity('admin')->log('تم حذف السؤال بنجاح');
+
         Alert::success('تمت العمليه', 'تم الحذف بنجاح');
 
         return redirect()->route('question');

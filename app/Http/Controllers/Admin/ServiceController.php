@@ -68,6 +68,8 @@ class ServiceController extends Controller
                 Service_details::create($row);
             }
         }
+            activity('admin')->log('تم اضافه الخدمه بنجاح');
+
             DB::commit();
             Alert::success('تمت العمليه', 'تم اضافه الخدمه بنجاح');
             return redirect()->route('services');

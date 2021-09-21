@@ -56,6 +56,8 @@ class categoriesController extends Controller
 
 
         ]);
+        activity('admin')->log('تم اضافه القسم بنجاح');
+
         Alert::success('تمت العمليه', 'تم اضافه القسم بنجاح');
         return redirect()->route('categories');
     }
@@ -111,6 +113,8 @@ class categoriesController extends Controller
 
             ]);
         }
+        activity('admin')->log('تم تحديث القسم بنجاح');
+
         Alert::success('تمت العمليه', 'تم تعديل القسم');
 
         return redirect()->route('categories');
@@ -126,6 +130,7 @@ class categoriesController extends Controller
     {
         $category=Category::findOrFail($id);
         $category->delete();
+        activity('admin')->log('تم حذف القسم بنجاح');
 
         Alert::success('تمت العمليه', 'تم الحذف بنجاح');
 

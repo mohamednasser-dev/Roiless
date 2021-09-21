@@ -1,4 +1,4 @@
-@extends('admin_temp')
+@extends('bank.bank_temp')
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
@@ -7,7 +7,7 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">التمويلات المطلوبه</li>
-                <li class="breadcrumb-item active"><a href="{{route('home')}}">الصفحة الرئيسية</a></li>
+                <li class="breadcrumb-item active"><a href="{{route('bank.home')}}">الصفحة الرئيسية</a></li>
             </ol>
         </div>
     </div>
@@ -18,6 +18,7 @@
             <thead>
             <tr>
                 <th class="text-lg-center">اسم التمويل</th>
+                <th class="text-lg-center">اسم الموظف</th>
                 <th class="text-lg-center">المراجعه</th>
 
             </tr>
@@ -25,24 +26,13 @@
 
             <tbody>
 
-            @foreach($usefunds as $usefund)
-
-
+            @foreach($userfunds as $userfund)
                         <tr>
-
-                            <td class="text-lg-center">{{$usefund->userfunds->name_ar}}</td>
+                            <td class="text-lg-center">{{$userfund->Fund->name_ar}}</td>
+                            <td class="text-lg-center">{{$userfund->ُEmployer->name}}</td>
                             <td class="text-lg-center ">
-                                @if(is_null($usefund->emp_id))
-                                <a class='btn btn-danger btn-circle' title="المراجعه"
-
-                                   href="{{route('employerchosen',$usefund->id)}}"><i class="fa fa-eye"></i></a>
-                                @endif
-
-                                @if(($usefund->emp_id == auth()->user()->id))
-                                <a class='btn btn-info btn-circle' title="متابعه"
-
-                                   href="{{route('review',$usefund->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                                @endif
+                                <a class='btn btn-info btn-circle' title="تفاصيل"
+                                   href="{{route('request.review',$userfund->id)}}"><i class="fa fa-eye"></i></a>
 
                             </td>
                         </tr>

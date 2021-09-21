@@ -17,6 +17,7 @@
         "laravel/ui": "2.4",
         "laravelcollective/html": "^6.2",
         "realrashid/sweet-alert": "^4.0",
+        "spatie/laravel-activitylog": "^3.17",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {

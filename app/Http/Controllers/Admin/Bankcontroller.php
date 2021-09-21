@@ -69,6 +69,7 @@ class Bankcontroller extends Controller
             $bank = Bank::create($data);
             $notification = $request['notification'];
             $banks = new Bank();
+            activity('admin')->log('تم اضافه البنك بنجاح');
             $banks->notifications()->attach($notification);
             if ($bank->save()) {
 //                $user->assignRole($request['role_id']);
@@ -89,16 +90,16 @@ class Bankcontroller extends Controller
         if ($request['password'] != null) {
             $data = $this->validate(\request(),
                 [
-                    'name_ar' => 'required|unique:banks,name_ar' . $id,
-                    'name_en' => 'required|unique:banks,name_en' . $id,
+                    'name_ar' => 'required|unique:banks,name_ar,' . $id,
+                    'name_en' => 'required|unique:banks,name_en,' . $id,
                     'email' => 'required|unique:users,email,' . $id,
                     'password' => 'required|min:6|confirmed',
                 ]);
         } else {
             $data = $this->validate(\request(),
                 [
-                    'name_ar' => 'required|unique:banks,name_ar' . $id,
-                    'name_en' => 'required|unique:banks,name_en' . $id,
+                    'name_ar' => 'required|unique:banks,name_ar,' . $id,
+                    'name_en' => 'required|unique:banks,name_en,'  . $id,
                     'email' => 'required|unique:users,email,' . $id,
                 ]);
         }
@@ -112,6 +113,8 @@ class Bankcontroller extends Controller
             unset($data['password']);
             unset($data['password_confirmation']);
             Bank::where('id', $id)->update($data);
+            activity('admin')->log('تم تحديث البنك بنجاح');
+
             return redirect()->route('banks.index');
         }
     }
@@ -120,6 +123,7 @@ class Bankcontroller extends Controller
     {
         $bank = Bank::findOrFail($id);
         $bank->delete();
+        activity('admin')->log('تم حذف البنك بنجاح');
         Alert::success('تمت العمليه', 'تم حذف بنجاح');
         return redirect()->route('banks.index');
     }

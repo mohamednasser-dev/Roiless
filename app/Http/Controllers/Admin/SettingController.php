@@ -93,6 +93,7 @@ class SettingController extends Controller
 
             $this->objectName::where('id',$id)->update($data);
 
+            activity('admin')->log('تم تحديث الاعدادات بنجاح');
 
             DB::commit();
             Alert::success('تمت العمليه', 'تم التحديث بنجاح');
