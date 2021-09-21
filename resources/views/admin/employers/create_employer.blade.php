@@ -25,26 +25,26 @@
                     <h4 class="card-title">بيانات الموظف</h4>
                     <hr>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">اسم الموظف</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">الاسم</label>
                         <div class="col-md-10">
                             {{ Form::text('name',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">رقم هاتف الموظف</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">رقم هاتف </label>
                         <div class="col-md-10">
                             {{ Form::number('phone',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">بريد الكتروني الموظف</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">البريد الالكتروني</label>
                         <div class="col-md-10">
                             {{ Form::email('email',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-password-input"
-                               class="col-md-2 col-form-label">باسورد الموظف</label>
+                               class="col-md-2 col-form-label"> الرقم السري</label>
                         <div class="col-md-10">
                             <input class="form-control" type="password" name="password" id="example-password-input"
                                    required>
@@ -58,14 +58,16 @@
                                    id="example-password-input2" required>
                         </div>
                     </div>
-{{--                    <div class="form-group row">--}}
-{{--                        <label  class="form-label">الاقسام </label>--}}
-{{--                        <select name="category_id" class="form-control"  >--}}
-{{--                            @foreach($categories as $category)--}}
-{{--                                <option value="{{$category->id}}">{{$category->title_ar}}</option>--}}
-{{--                            @endforeach--}}
-{{--                        </select>--}}
-{{--                    </div>--}}
+                    <div class="form-group row">
+                        <label for="example-month-input" class="col-md-2 col-form-label"> القسم</label>
+                        <div class="col-md-10">
+                            <select class="custom-select col-12 multiple" id="inlineFormCustomSelect" name="cat_id">
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->title_ar}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">

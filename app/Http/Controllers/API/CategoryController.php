@@ -22,6 +22,6 @@ class CategoryController extends Controller
         }catch(Exception $e){
           return  $this->returnError($e->getCode(), $e->getMessage());
         }
-         return response()->json(['data'=>$category]);
+        return msgdata($request, success(), 'get categories success',$category);
        }
 }

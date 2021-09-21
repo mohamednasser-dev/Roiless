@@ -36,11 +36,15 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::resource('users', 'Admin\usersController');
     Route::get('users/{id}/delete', 'Admin\usersController@destroy')->name('users.delete');
     Route::get('users/{id}/details', 'Admin\usersController@show')->name('users.details');
+    Route::get('viewprofile/{id}', 'HomeController@viewprofile')->name('viewprofile');
     Route::post('users/actived', 'Admin\usersController@update_Actived')->name('users.actived');
 
-
+   
     //emploers  routes
     Route::resource('employer', 'Admin\employerController');
+    Route::post('employer/update', 'Admin\employerController@update')->name('employers.update');
+    Route::post('employer/update/password', 'Admin\employerController@updatepassword')->name('employers.update.password');
+    Route::post('employer/update/image', 'Admin\employerController@updateimage')->name('employers.update.image');
     Route::get('employer/{id}/delete', 'Admin\employerController@destroy')->name('employer.delete');
     Route::get('employer/{id}/details', 'Admin\employerController@show')->name('employer.details');
     Route::post('employer/actived', 'Admin\employerController@update_Actived')->name('employer.actived');

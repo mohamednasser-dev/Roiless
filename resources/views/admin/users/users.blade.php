@@ -22,7 +22,7 @@
             <div class="col-lg-3 col-xlg-3">
                 <div class="card">
                     <div class="card-body little-profile text-center">
-                        <div class="pro-img m-t-20"><img src="{{$user->image}}" alt="user"></div>
+                        <div class="pro-img m-t-20"><img src="{{asset('/uploads/admins_image') . '/' . $user->image}}" alt="user"></div>
                         <h3 class="m-b-0">{{$user->name}}</h3>
                         <ul class="list-inline soc-pro m-t-30">
                             <li><a title="تعديل" href="{{url('users/'.$user->id.'/edit')}}"><i class="fa fa-edit"></i></a></li>

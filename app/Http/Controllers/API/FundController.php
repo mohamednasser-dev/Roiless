@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
@@ -30,8 +29,7 @@ class FundController extends Controller
             {
               $data['Funddetailes']=$Funddetailes;
               $data['banks']=$bank;
-              return msgdata($request, success(), 'funddetailes_success', array('data' =>$data));
-              return response()->json(['data'=>$Funddetailes]);
+              return msgdata($request, success(), 'funddetailes_success', $data);
             }
           
           }catch(Exception $e){
@@ -80,15 +78,10 @@ class FundController extends Controller
                 $intialpass="kkkk";
                 $user_fund=User_Fund::latest()->first();
                 $user_fund->fund_file()->create(['file_name'=>$intialpass]);
+               return response()->json(['status'=>'200','msg'=>'add user fund successfully']);
                // Fund_file::create(['user_fund_id'=>$user_fund,'file_name'=>$intialpass]);
               }  
               }catch(Exception $e){
-
               }
-
           }  
-  
  }
-
-
-

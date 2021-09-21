@@ -22,7 +22,7 @@
             <div class="col-lg-3 col-xlg-3">
                 <div class="card">
                     <div class="card-body little-profile text-center">
-                        <div class="pro-img m-t-20"><img src="{{$employer->image}}" alt="user"></div>
+                        <div class="pro-img m-t-20"><img @if($employer->image==null)src="{{asset('/uploads/admins_image/default.jpg')}}" @endif src="{{ asset('/uploads/admins_image') . '/' . $employer->image}}" alt="user"></div>
                         <h3 class="m-b-0">{{$employer->name}}</h3>
                         <ul class="list-inline soc-pro m-t-30">
                             <li><a title="تعديل" href="{{url('employer/'.$employer->id.'/edit')}}"><i class="fa fa-edit"></i></a></li>

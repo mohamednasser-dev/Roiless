@@ -11,18 +11,30 @@ use Illuminate\Http\Request;
 class ServiceController extends Controller
 {
 
-    public function getallservices()
+    public function getallservices(Request $request)
     {
-        $Services = Services::select(['title_ar', 'title_en', 'image'])->get();
+        $lang = $request->header('lang');
+        if(empty($lang))
+        {
+            $lang="ar";
+        }
+        $Services = Services::select(['title_'.$lang.' as title', 'image'])->get();
         $data = $Services;
-        return response()->json(['data' => $data]);
+        return msgdata($request, success(), 'get services sucess',$Services);
+        
     }
 
-    public function getservicedetailes($id)
+    public function getservicedetailes(Request $request, $id)
     {
-        $service_detailes = Service_details::find($id);
+        $lang = $request->header('lang');
+        if(empty($lang))
+        {
+            $lang="ar";
+        }
+        $service_detailes = Service_details::select(['title_'.$lang.' as title','desc_'.$lang.' as desc'])->find($id);
         unset($service_detailes['created_at'], $service_detailes['updated_at']);
-        return response()->json(["service_detailes" => $service_detailes]);
+        return msgdata($request, success(), 'get services detailes success',$service_detailes);
+        
     }
 
 }

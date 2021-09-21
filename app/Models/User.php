@@ -58,9 +58,9 @@ class User extends Authenticatable implements JWTSubject
     public function getImageAttribute($img)
     {
         if ($img)
-            return asset('/uploads/users_images') . '/' . $img;
+            return asset('/uploads/admins_image') . '/' . $img;
         else
-            return asset('/uploads/users_images/default_avatar.jpg');
+            return asset('/uploads/admins_image/default_avatar.jpg');
     }
 
     public function category()
