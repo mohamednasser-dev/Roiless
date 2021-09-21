@@ -54,7 +54,7 @@ class UserfundsController extends Controller
         $data['type']='bank';
         $data['user_fund_id']=$id;
         $data['user_id']= $user_fund_id->value('user_id');
-        $data['emp_id   ']= $user_fund_id->value('emp_id');
+        $data['emp_id']= $user_fund_id->value('emp_id');
 //        return $data;
         Fhistory::create($data);
         User_Fund::where('id',$id)->update(['bank_id'=>null]);

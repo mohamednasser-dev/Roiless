@@ -55,8 +55,11 @@ class UserfundsController extends Controller
         $requestreview = User_Fund::find($id);
         $empolyers = Admin::where('type', 'employer')->where('cat_id', auth()->user()->cat_id)->where('id', '<>', auth()->user()->id)->get();
         $banks = Bank::all();
+        $histories=Fhistory::where('user_fund_id',$id)->get();
+
+
         if ($requestreview->emp_id == auth()->user()->id) {
-            return view($this->folderView . 'details', compact('requestreview', 'empolyers', 'banks'));
+            return view($this->folderView . 'details', compact('requestreview', 'empolyers', 'banks','histories'));
         } else {
             Alert::warning('تنبية', 'مرفوض الدخول');
             return redirect()->back();
@@ -75,6 +78,8 @@ class UserfundsController extends Controller
 
     public function redirect_emp(Request $request, $id)
     {
+
+
         $emp = $this->validate(request(),
             [
                 'emp_id' => 'required|string',
@@ -83,6 +88,7 @@ class UserfundsController extends Controller
             [
                 'note_ar' => 'required|string',
                 'note_en' => 'required|string',
+
             ]);
 
         $Emp_request_redirect = User_Fund::find($id);
@@ -91,8 +97,9 @@ class UserfundsController extends Controller
 
 
         $data['emp_id'] = auth()->user()->id;
+        $data['return_emp_id'] =$request->emp_id;
         $data['type'] = 'emp';
-        $data['status'] = 'pending';
+        $data['status'] = 'return';
         $data['user_fund_id'] = $id;
         Fhistory::create($data);
         Alert::success('عملية ناجحة', 'تم التحويل بنجاح');
@@ -103,10 +110,26 @@ class UserfundsController extends Controller
     {
 
 
+        $data = $this->validate(request(),
+            [
+                'note_ar' => 'required|string',
+                'note_en' => 'required|string',
+                'bank_id' => 'required',
+
+
+            ]);
+
+
         $requestreview = User_Fund::find($id);
         $requestreview->bank_id = $request->bank_id;
         $requestreview->save();
         Alert::success('عملية ناجحة', 'تم التحويل الي البنك');
+
+        $data['emp_id']=auth()->user()->id;
+        $data['user_fund_id']=$id;
+        $data['type']='bank';
+        $data['status']='accept';
+        Fhistory::create($data);
         return redirect()->route('userfunds');
     }
 
