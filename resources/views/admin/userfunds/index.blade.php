@@ -25,6 +25,7 @@
 
             <tbody>
 
+
             @foreach($usefunds as $usefund)
 
 
@@ -32,13 +33,14 @@
 
                             <td class="text-lg-center">{{$usefund->Fund->name_ar}}</td>
                             <td class="text-lg-center ">
+
                                 @if(is_null($usefund->emp_id))
                                 <a class='btn btn-danger btn-circle' title="المراجعه"
 
                                    href="{{route('employerchosen',$usefund->id)}}"><i class="fa fa-eye"></i></a>
                                 @endif
 
-                                @if(($usefund->emp_id == auth()->user()->id))
+                                @if(($usefund->emp_id == auth()->user()->id) && $usefund->bank_id == null)
                                 <a class='btn btn-info btn-circle' title="متابعه"
 
                                    href="{{route('review',$usefund->id)}}"><i class="fa fa-pencil-square-o"></i></a>
