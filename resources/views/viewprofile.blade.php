@@ -35,7 +35,7 @@
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-body">
-                                <center class="m-t-30"> <img @if(Auth::user()->image==null)src="{{asset('/uploads/admins_image/default.jpg')}}" @endif id='output' src="{{asset('/uploads/admins_image') . '/' . Auth::user()->image}}" class="img-circle" width="150" />
+                                <center class="m-t-30"> <img  id='output' src="{{ Auth::user()->image}}" class="img-circle" width="150" />
                                     <h4 class="card-title m-t-10">{{Auth::user()->name}}</h4>
                                  
                                      <form action="{{route('employers.update.image')}}" class="form-horizontal form-material" method="POST"enctype="multipart/form-data" >
@@ -73,7 +73,11 @@
                                 <div class="tab-pane active" id="home" role="tabpanel">
                                     <div class="card-body">
                                       
-
+                                    @if(Session::has('wrong_pass'))
+                                        <div class="alert alert-danger" role="alert">
+                                        {{Session::get('wrong_pass')}}
+                                        </div>
+                                    @endif
                                     <div class="tab-pane" id="settings" role="tabpanel">
                                     <div class="card-body">
                                         <form action="{{route('employers.update')}}" class="form-horizontal form-material" method="POST">
@@ -118,6 +122,12 @@
                                     <form action="{{route('employers.update.password')}}" class="form-horizontal form-material" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{Auth::user()->id}}"> 
+                                           <div class="form-group">
+                                                <label class="col-md-12"> كلمه المرور القديمه</label>
+                                                <div class="col-md-12">
+                                                    <input type="password" name="old_password"  class="form-control form-control-line">
+                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <label class="col-md-12">كلمه المرور</label>
                                                 <div class="col-md-12">

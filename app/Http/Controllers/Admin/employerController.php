@@ -9,6 +9,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Admin;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 class employerController extends Controller
 
 {
@@ -110,18 +111,27 @@ class employerController extends Controller
         else{
             return redirect()->back();
         }
-        if ($request['password'] != null && $request['password_confirmation'] != null) {
+        if ($request['password'] != null && $request['password_confirmation'] != null ) {
             $data = $this->validate(\request(),
                 [
+                     'old_password'=>['required'],
                      'password' => ['required', 'string', 'min:6', 'confirmed'],
                 ]);
-                $data['password'] = bcrypt(request('password'));
-                Admin::where('id', $id)->update($data);
-                Alert::success('تمت العمليه','تم تحديث كلمه مرور الحساب');
-                return redirect()->route('viewprofile',Auth::user()->id);    
-        } else{
-            return redirect()->back();
-        }
+              $employer=Admin::find($id);
+              //  $old_password=Hash::make($request->old_Password);
+                //dd($old_password);
+                
+                if(Hash::check($request->old_password, $employer->password)){
+                    $data['password'] = bcrypt(request('password'));
+                    unset($data['old_password']);
+                    Admin::where('id', $id)->update($data);
+                    Alert::success('تمت العمليه','تم تحديث كلمه مرور الحساب');
+                    return redirect()->route('viewprofile',Auth::user()->id); 
+                }
+                else{
+                    return redirect()->back()->with(["wrong_pass"=>'كلمه المرور القديمه خاطئه']);;
+                }
+        } 
      }
      public function updateimage(Request $request)
      {
@@ -140,8 +150,11 @@ class employerController extends Controller
             
             $data['image'] = $this->MoveImage($request->image,'uploads/admins_image');
             Admin::where('id', $id)->update($data);
-            unlink("uploads/admins_image/".$employee->image);
-            activity('admin')->log('تم تحديث الموظف بنجاح');
+            // if( $employee->image == null){
+            //     unlink("uploads/admins_image/".$employee->image);
+            // }
+           
+            // activity('admin')->log('تم تحديث الموظف بنجاح');
             Alert::success('تمت العمليه','تم تحديث صوره الحساب');
             return redirect()->route('viewprofile',Auth::user()->id);    
         }else{

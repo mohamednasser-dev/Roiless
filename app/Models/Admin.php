@@ -41,7 +41,7 @@ class Admin extends Authenticatable
         if ($img)
             return asset('/uploads/admins_image') . '/' . $img;
         else
-            return asset('/uploads/admins_image/defultAvatar.jpg') ;
+            return asset('/uploads/admins_image/default.jpg') ;
 
     }
     public function notifications()
