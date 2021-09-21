@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Bank;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
-use App\Models\Bank;
-use App\Models\Fund;
-use App\Models\User;
+use App\Models\Fhistory;
 use App\Models\User_Fund;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -37,41 +34,34 @@ class UserfundsController extends Controller
     public function details($id)
     {
 
-        $usefund = User_Fund::where('id', $id)->get();
-        return view($this->folderView . 'details', compact('usefund'));
+        $userfund = User_Fund::findorfail($id);
+
+        return view($this->folderView . 'details', compact('userfund'));
+
+
     }
-    /*
-            public function review($id)
-            {
-                $requestreview = User_Fund::find($id);
-                $empolyers = Admin::where('type', 'employer')->where('id', '!=', auth()->user()->id)->get();
-                $banks = Bank::all();
-                if ($requestreview->emp_id == auth()->user()->id) {
-                    return view($this->folderView . 'details', compact('requestreview', 'empolyers', 'banks'));
-                } else {
-                    Alert::warning('تنبية', 'مرفوض الدخول');
-                    return redirect()->back();
-                }
-            }
 
-            public function redirect_emp(Request $request, $id)
-            {
-                $requestreview = User_Fund::find($id);
-                $requestreview->emp_id = $request->emp_id;
-                $requestreview->save();
-                Alert::success('عملية ناجحة', 'تم التحويل بنجاح');
-                return redirect()->route('userfunds');
-            }
+    public function redirectEmployer(Request $request, $id)
+    {
 
-            public function redirect_bank(Request $request, $id)
-            {
-        //    return $request->all();
-                $requestreview = User_Fund::find($id);
-                $requestreview->bank_id = $request->bank_id;
-                $requestreview->save();
-                Alert::success('عملية ناجحة', 'تم التحويل الي البنك');
-                return redirect()->route('userfunds');
-            }
-        */
+        $data = $this->validate(request(),
+            [
+                'note_ar' => 'required|string',
+                'note_en' => 'required|string',
+            ]);
+        $user_fund_id= User_Fund::findOrfail($id);
+        $data['status']='reject';
+        $data['type']='bank';
+        $data['user_fund_id']=$id;
+        $data['user_id']= $user_fund_id->value('user_id');
+        $data['emp_id   ']= $user_fund_id->value('emp_id');
+//        return $data;
+        Fhistory::create($data);
+        User_Fund::where('id',$id)->update(['bank_id'=>null]);
+        Alert::success('عملية ناجحة', 'تم تحويل طلب المراجعه مره اخري الي الموظف ');
+        return redirect()->route('funds.request');
+
+    }
+
 
 }

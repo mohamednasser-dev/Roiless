@@ -27,15 +27,10 @@
             <tbody>
 
             @foreach($userfunds as $userfund)
-
-
                         <tr>
-
                             <td class="text-lg-center">{{$userfund->Fund->name_ar}}</td>
                             <td class="text-lg-center">{{$userfund->ُEmployer->name}}</td>
                             <td class="text-lg-center ">
-{{--{{$userfund->id}}--}}
-
                                 <a class='btn btn-info btn-circle' title="تفاصيل"
                                    href="{{route('request.review',$userfund->id)}}"><i class="fa fa-eye"></i></a>
 

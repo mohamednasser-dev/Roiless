@@ -26,11 +26,10 @@ class UserfundsController extends Controller
 
     public function index()
     {
-        $user_category = auth()->user()->cat_id;
-
-        $usefunds = User_Fund::with(['Fund' => function ($query) use ($user_category) {
-            $query->where('cat_id', $user_category);
+        $usefunds = User_Fund::with(['Fund' => function ($query) {
+            $query->where('cat_id',  auth()->user()->cat_id);
         }])->get();
+
 
         return view($this->folderView . 'index', compact('usefunds'));
 
@@ -114,8 +113,7 @@ class UserfundsController extends Controller
 
     public function redirect_user(Request $request, $id)
     {
-//        $user=User_Fund::where('id',$id)->value('user_id');
-//        return $user;
+
         $data = $this->validate(request(),
             [
                 'note_ar' => 'required|string',

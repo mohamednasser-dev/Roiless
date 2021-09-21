@@ -12,7 +12,9 @@
         </div>
     </div>
 
-
+    <button
+        type="button" class="btn btn-info"  data-target="#">الموافقه علي الطلب
+    </button>
     <button
         type="button" class="btn btn-dark" data-toggle="modal" data-target="#user">مراجعه الطلب
     </button>
@@ -26,7 +28,7 @@
                                 aria-hidden="true">&times;</span></button>
                     </div>
                     <form class="form"
-                          action=""
+                          action="{{route('request.rejected',$userfund->id)}}"
                           method="POST">
                         @csrf
                         <div class="col-md-12">

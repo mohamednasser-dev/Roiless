@@ -34,6 +34,13 @@ class Bank extends Authenticatable
         return "This model has been {$eventName}";
     }
 
+    public function getImageAttribute($img)
+    {
+        if ($img)
+            return asset('/uploads/banks_image') . '/' . $img;
+
+    }
+
     public function notifications()
     {
         return $this->belongsToMany('App\Models\Notification', 'user_notifications', 'bank_id', 'notification_id', 'id', 'id');

@@ -36,7 +36,14 @@ class Admin extends Authenticatable
     {
         return "This model has been {$eventName}";
     }
+    public function getImageAttribute($img)
+    {
+        if ($img)
+            return asset('/uploads/admins_image') . '/' . $img;
+        else
+            return asset('/uploads/admins_image/defultAvatar.jpg') ;
 
+    }
     public function notifications()
     {
         return $this->belongsToMany('App\Models\Notification', 'user_notifications', 'admin_id', 'notification_id', 'id', 'id');

@@ -19,6 +19,11 @@ class Fund extends Model
         return $this->belongsTo(Category::class,'cat_id');
     }
 
+    public function Fund()
+    {
+        return $this->belongsTo(Fund::class,'fund_id');
+    }
+
 
 
     public function getImageAttribute($img)
