@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\User_fund;
 use App\Models\Fund_file;
 use Validator;
+use Str;
 use Illuminate\Http\Request;
 
 class FundController extends Controller
@@ -51,34 +52,33 @@ class FundController extends Controller
                 'file' => 'required',
             ];
             $validator = Validator::make($request->all(), $rules);
-            if ($request->hasFile('file')) {
-                // Get filename with the extension
-                $filenameWithExt = $request->file('file')->getClientOriginalName();
-                //Get just filename
-                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-                // Get just ext
-                $extension = $request->file('file')->getClientOriginalExtension();
-                // Filename to store
-                $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-                // Upload Image
-                $path = $request->file('file')->storeAs('public/Documents/Funds_file', $fileNameToStore);
+            if ($request->file) {
+                    $length= count($request->file);
+                    for($i=0;$i<$length;$i++)
+                    {
+                        $image = $request->file[0];  // your base64 encoded
+                        $image = str_replace('data:image/png;base64,', '', $image);
+                        $image = str_replace(' ', '+', $image);
+                        $imageName[$i] = Str::random(8).'.'.'png';
+                        \File::put('uploads/fund_file/' . $imageName[$i], base64_decode($image));
+                    }
             }
             if ($validator->fails()) {
                 return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
               }else{
                   $fund=Fund::find($request->fund_id);  
-            //    return response()->json(["fdf"=>$fund->id]);
                   $user_funds=$user->Funds()->attach($request->fund_id,
                   [
                     'fund_amount'=>$fund->cost,
                     'dataform'=>json_encode($request->dataform),
                   ]        
                 ); 
-                $intialpass="kkkk";
                 $user_fund=User_Fund::latest()->first();
-                $user_fund->fund_file()->create(['file_name'=>$intialpass]);
+                for($i=0;$i<$length;$i++)
+                {
+                    $user_fund->fund_file()->create(['file_name'=>$imageName[$i]]);
+                }    
                return response()->json(['status'=>'200','msg'=>'add user fund successfully']);
-               // Fund_file::create(['user_fund_id'=>$user_fund,'file_name'=>$intialpass]);
               }  
               }catch(Exception $e){
               }

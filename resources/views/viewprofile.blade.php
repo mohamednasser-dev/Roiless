@@ -1,10 +1,5 @@
 @extends('admin_temp')
 @section('content')
-
-
-
-
-
 <div class="container-fluid">
                 <!-- ============================================================== -->
                 <!-- Bread crumb and right sidebar toggle -->
@@ -16,7 +11,7 @@
                     <div class="col-md-7 align-self-center">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">الحساب</li>
-                            <li class="breadcrumb-item active"><a href="{{route('home')}}">الصفحة الرئيسية</a></li>
+                            <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.nav_home')}}</a></li>
                         </ol>
                     </div>
                     <div>
@@ -35,16 +30,20 @@
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-body">
-                                <center class="m-t-30"> <img  id='output' src="{{ Auth::user()->image}}" class="img-circle" width="150" />
-                                    <h4 class="card-title m-t-10">{{Auth::user()->name}}</h4>
-                                 
-                                     <form action="{{route('employers.update.image')}}" class="form-horizontal form-material" method="POST"enctype="multipart/form-data" >
+                                <div class="cont-image">
+                                  <center class="m-t-30"> <img  id='output' src="{{ Auth::user()->image}}" class="img-circle" width="150" />
+                                  <label for="file" style="cursor: pointer;"><i class="fas fa-camera fa-2x"></i></label>
+                                </div>
+                                     <div>
+                                     <center class="m-t-30"> <h4 class="card-title m-t-10">{{Auth::user()->name}}</h4>
+                                    </div>
+                                    <center class="m-t-30"> <form action="{{route('employers.update.image')}}" class="form-horizontal form-material" method="POST"enctype="multipart/form-data" >
                                      @csrf
                                     <input type="hidden" name="id" value="{{Auth::user()->id}}">
                                      <div class="form-group">
                                                 <div class="col-sm-12">
                                                 <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(this)" style="display: none;"></p>
-                                                <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+
                                                     <button class="btn btn-success">تغيير صوره الحساب</button>
                                                 </div>
                                             </div>
@@ -275,7 +274,7 @@
 var url = event.value;
 console.log(url);
 var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
- if (event.files && event.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
+ if (event.files && event.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg" || ext == "webp")) {
 
     var image = document.getElementById('output');
       image.src = URL.createObjectURL(event.files[0]);
