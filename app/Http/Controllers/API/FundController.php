@@ -59,7 +59,7 @@ class FundController extends Controller
                         $image = $request->file[0];  // your base64 encoded
                         $image = str_replace('data:image/png;base64,', '', $image);
                         $image = str_replace(' ', '+', $image);
-                        $imageName[$i] = Str::random(8).'.'.'png';
+                        $imageName[$i] = Str::random(12).'.'.'png';
                         \File::put('uploads/fund_file/' . $imageName[$i], base64_decode($image));
                     }
             }
@@ -73,7 +73,8 @@ class FundController extends Controller
                     'dataform'=>json_encode($request->dataform),
                   ]        
                 ); 
-                $user_fund=User_Fund::latest()->first();
+                $user_fund=User_Fund::latest('id')->first();
+             
                 for($i=0;$i<$length;$i++)
                 {
                     $user_fund->fund_file()->create(['file_name'=>$imageName[$i]]);
