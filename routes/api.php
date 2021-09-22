@@ -39,7 +39,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         // inbox
         Route::post('make/inbox', 'InboxController@store');
         // about_us
-            Route::get('about_us' , 'HomeController@aboutUs');
+        Route::get('about_us', 'HomeController@aboutUs');
 //home page and services
         Route::get("/home", "HomeController@getall");
         Route::get("/services", "ServiceController@getallservices");
@@ -47,22 +47,29 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 
 //categories
 
-        Route::get("/categories","CategoryController@getall");
+        Route::get("/categories", "CategoryController@getall");
 //fund detailes
-        Route::get("/fund/detailes/{id}","FundController@getfunddetailes");
-        Route::post("/addfund","FundController@addfund");
+        Route::get("/fund/detailes/{id}", "FundController@getfunddetailes");
+        Route::post("/addfund", "FundController@addfund");
 
 //user update
-            Route::post("/update-profile/{id}","UsersController@updateProfile");
-            Route::post('forgot/password','UsersController@forgot_password_post')
-                ->name('admin.forgot.to.reset.password');;
-            Route::get('check_token/','UsersController@reset_password');
-            Route::post('reset/password/','UsersController@reset_password_post');
+        Route::post("/update-profile/{id}", "UsersController@updateProfile");
+        Route::post('forgot/password', 'UsersController@forgot_password_post')
+            ->name('admin.forgot.to.reset.password');;
+        Route::get('check_token/', 'UsersController@reset_password');
+        Route::post('reset/password/', 'UsersController@reset_password_post');
 
-// inbox
+        // inbox
         Route::post('make/inbox', 'InboxController@store');
-// setting
+        // setting
         Route::get('/setting', 'SettingController@index');
+        // userFunds
+        Route::get('/userfunds', 'UserfundsController@index');
+
+        // userFundsHistory
+        Route::get('/userFundsHistory', 'UserFundsHistoryController@index');
 
     });
+
+
 });
