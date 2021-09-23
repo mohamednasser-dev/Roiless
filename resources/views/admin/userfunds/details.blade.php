@@ -115,9 +115,9 @@
                 /* Full-width containers */
                 .container {
                     width: 100%;
-                    padding-left: 70px;
-                    padding-right: 25px;
                 }
+                .timeline-all {
+                    padding: 16px 13px 0px;}
 
                 /* Make sure that all arrows are pointing leftwards */
                 .container::before {
@@ -137,8 +137,11 @@
                     left: 0%;
                 }
             }
-            .time-line{margin-right: 47px;}
-            .timeline-date:before{
+            .time-line{
+                margin-right: 47px;
+                position: relative;
+            }
+            /*.timeline-date:before{
                 content: "15 اكتوبر";
                 position: absolute;
                 width: 60px;
@@ -146,17 +149,23 @@
                 text-align: center;
                 z-index: 38;
                 right: 6px;
-            }
+            }*/
             .timeline-list{
                 border-right: 3px solid #ccc;
                 position: relative;
                 height: auto;
                 margin-bottom: 20px;
             }
+            .time-line label{
+                position: absolute;
+                top: 0px;
+                right: -46px;
+                text-align: center;
+            }
             .timeline-list:before{
                 content: "";
                 position: absolute;
-                top: 10px;
+                top: 0px;
                 right: -14px;
                 width: 25px;
                 height: 25px;
@@ -168,8 +177,7 @@
             .timeline-all{
                 margin-right: 36px;
                 position: relative;
-                background: #ccc;
-                border-radius: 10px;
+                border-radius: 10px 0 10px 10px;
                 padding: 25px 25px 0px;
                 text-align: right;
             }
@@ -179,14 +187,16 @@
                 border-style: solid;
                 border-color: transparent transparent transparent #ccc;
                 position: absolute;
-                top: 9px;
-                right: -26px;
+                top: 0px;
+                right: -28px;
             }
             .time-line .img img{
                 width: 50px;
                 height: 50px;
                 border-radius: 50%;
             }
+            .timeline-all p{color:#fff}
+
         </style>
 
     @endsection
@@ -215,8 +225,8 @@
         </button>
     </div>
     
-    <div class="row">
-        <div class="col-6">
+    <div class="row row-cols-2">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">
@@ -254,7 +264,7 @@
         </div>
 
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
         <div class="card">
 
             <div class="card-body">
@@ -268,30 +278,29 @@
 
                                 @foreach($histories as $history)
                                     <div class="time-line">
+                                        
                                         <div class="container">
-                                            <div class="timeline-date">
-                                                <div class="timeline-list">
-                                                    <div class="timeline-all">
-                                                    <div class="row">
-                                                        <div class="col-3">
-                                                            <div class="img">
-                                                                <img  src="{{asset('/assets/images/users/2.jpg')}}">
-                                                                <!-- <span></span> -->
+                                        <label>15 <br> october</label>
+                                                <div class="timeline-list ">
+                                                    <div class="timeline-all @if($history->status == 'accept') bg-success @elseif($history->status =='reject') bg-danger @endif ">
+                                                        <div class="row">
+                                                            <div class="col-3">
+                                                                <div class="img">
+                                                                     <img  data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top" src="{{asset('/assets/images/users/2.jpg')}}">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-9">
-                                                            <div class="para">
-                                                                <p>هذا النص هو مثال لنص يمكن ان يستبدل في نفس المساحه , لقد تم تولبد هذا النص من مولد النص العربي , حيث يمكنك ان تولد مثل هذا النص او العديد من النصوص الاخري</p>
+                                                            <div class="col-9">
+                                                                <div class="para">
+                                                                    <p>هذا النص هو مثال لنص يمكن ان يستبدل في نفس المساحه , لقد تم تولبد هذا النص من مولد النص العربي , حيث يمكنك ان تولد مثل هذا النص او العديد من النصوص الاخري</p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
                         </div>
                     </div>
                 </div>
