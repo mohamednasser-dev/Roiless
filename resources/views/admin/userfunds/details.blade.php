@@ -132,109 +132,6 @@
                 left: 15px;
             }
 
-<<<<<<< HEAD
-            /* The actual content */
-            .content {
-                padding: 20px 30px;
-                background-color: white;
-                position: relative;
-                border-radius: 6px;
-            }
-
-            /* Media queries - Responsive timeline on screens less than 600px wide */
-            @media screen and (max-width: 600px) {
-                /* Place the timelime to the left */
-                .timeline::after {
-                    left: 31px;
-                }
-
-                /* Full-width containers */
-                .container {
-                    width: 100%;
-                }
-                .timeline-all {
-                    padding: 16px 13px 0px;}
-
-                /* Make sure that all arrows are pointing leftwards */
-                .container::before {
-                    left: 60px;
-                    border: medium solid white;
-                    border-width: 10px 10px 10px 0;
-                    border-color: transparent white transparent transparent;
-                }
-
-                /* Make sure all circles are at the same spot */
-                .left::after, .right::after {
-                    left: 15px;
-                }
-
-                /* Make all right containers behave like the left ones */
-                .right {
-                    left: 0%;
-                }
-            }
-            .time-line{
-                margin-right: 47px;
-                position: relative;
-            }
-            /*.timeline-date:before{
-                content: "15 اكتوبر";
-                position: absolute;
-                width: 60px;
-                height: 53px;
-                text-align: center;
-                z-index: 38;
-                right: 6px;
-            }*/
-            .timeline-list{
-                border-right: 3px solid #ccc;
-                position: relative;
-                height: auto;
-                margin-bottom: 20px;
-            }
-            .time-line label{
-                position: absolute;
-                top: 0px;
-                right: -46px;
-                text-align: center;
-            }
-            .timeline-list:before{
-                content: "";
-                position: absolute;
-                top: 0px;
-                right: -14px;
-                width: 25px;
-                height: 25px;
-                text-align: center;
-                z-index: 11;
-                background: rgb(204, 204, 204);
-                border-radius: 50%;
-            }
-            .timeline-all{
-                margin-right: 36px;
-                position: relative;
-                border-radius: 10px 0 10px 10px;
-                padding: 25px 25px 0px;
-                text-align: right;
-            }
-            .timeline-all:before{
-                content: "";
-                border-width: 14px;
-                border-style: solid;
-                border-color: transparent transparent transparent #ccc;
-                position: absolute;
-                top: 0px;
-                right: -28px;
-            }
-            .time-line .img img{
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-            }
-            .timeline-all p{color:#fff}
-
-        </style>
-=======
             /* Make all right containers behave like the left ones */
             .right {
                 left: 0%;
@@ -300,7 +197,6 @@
             border-radius: 50%;
         }
     </style>
->>>>>>> 580ec0cd658703eab9b282bf93588035de1f1daf
 
 @endsection
 <div class="row page-titles">
@@ -316,27 +212,12 @@
 </div>
 
 
-<<<<<<< HEAD
-        <button
-            type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">مراجعه الطلب
-        </button>
-    </div>
-    
-    <div class="row row-cols-2">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-title">
-                        <h3>بيانات التمويل</h3>
-                    </div>
-=======
 <div class="row">
     <div class="col-6">
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
                     <h3>بيانات التمويل</h3>
->>>>>>> 580ec0cd658703eab9b282bf93588035de1f1daf
                 </div>
             </div>
         </div>
@@ -370,13 +251,8 @@
             </div>
         </div>
 
-<<<<<<< HEAD
-        </div>
-        <div class="col-md-6">
-=======
     </div>
     <div class="col-6">
->>>>>>> 580ec0cd658703eab9b282bf93588035de1f1daf
         <div class="card">
 
             <div class="card-body">
@@ -388,25 +264,6 @@
                         <div>
 
 
-<<<<<<< HEAD
-                                @foreach($histories as $history)
-                                    <div class="time-line">
-                                        
-                                        <div class="container">
-                                        <label>15 <br> october</label>
-                                                <div class="timeline-list ">
-                                                    <div class="timeline-all @if($history->status == 'accept') bg-success @elseif($history->status =='reject') bg-danger @endif ">
-                                                        <div class="row">
-                                                            <div class="col-3">
-                                                                <div class="img">
-                                                                     <img  data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top" src="{{asset('/assets/images/users/2.jpg')}}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-9">
-                                                                <div class="para">
-                                                                    <p>هذا النص هو مثال لنص يمكن ان يستبدل في نفس المساحه , لقد تم تولبد هذا النص من مولد النص العربي , حيث يمكنك ان تولد مثل هذا النص او العديد من النصوص الاخري</p>
-                                                                </div>
-=======
                             @foreach($histories as $history)
                                 <div class="time-line">
                                     <div class="container">
@@ -426,160 +283,161 @@
                                                                     لقد تم تولبد هذا النص من مولد النص العربي , حيث
                                                                     يمكنك ان تولد مثل هذا النص او العديد من النصوص
                                                                     الاخري</p>
->>>>>>> 580ec0cd658703eab9b282bf93588035de1f1daf
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-<<<<<<< HEAD
-                                            
-                                        </div>
-                                    </div>
-                                @endforeach
-                        </div>
-=======
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                        @endforeach
->>>>>>> 580ec0cd658703eab9b282bf93588035de1f1daf
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+        <div class="card ">
+            <div class="row">
+            <div class="card-body  " STYLE="width: 1340px">
+                    <div class="card-title center">
+
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
+                            التحويل لموظف اخر
+                        </button>
+
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
+                            الموافقه علي الطلب
+                        </button>
+
+                        <button
+                            type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">مراجعه الطلب
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="row">
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
-            التحويل لموظف اخر
-        </button>
+        <div class="modal fade" id="Empoloyers" tabindex="-1" role="dialog" aria-labelledby="EmpoloyersLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="EmpoloyersLabel1">اختر الموظف</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <form class="form"
+                          action="{{route('fund.redirect.emp',$requestreview->id)}}"
+                          method="POST">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="form-group has-success">
 
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
-            الموافقه علي الطلب
-        </button>
+                                <label class="control-label"> ملحوظه بالعربيه </label>
+                                <input type="text" class="form-control" name="note_ar" required>
+                                <label class="control-label"> ملحوظه بالانجليزيه </label>
+                                <input type="text" class="form-control" name="note_en" required>
+                                <label class="control-label"> الموظفين </label>
 
-        <button
-            type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">مراجعه الطلب
-        </button>
-    </div>
-
-<div class="row">
-    <div class="modal fade" id="Empoloyers" tabindex="-1" role="dialog" aria-labelledby="EmpoloyersLabel1">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="EmpoloyersLabel1">اختر الموظف</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <form class="form"
-                      action="{{route('fund.redirect.emp',$requestreview->id)}}"
-                      method="POST">
-                    @csrf
-                    <div class="col-md-12">
-                        <div class="form-group has-success">
-
-                            <label class="control-label"> ملحوظه بالعربيه </label>
-                            <input type="text" class="form-control" name="note_ar" required>
-                            <label class="control-label"> ملحوظه بالانجليزيه </label>
-                            <input type="text" class="form-control" name="note_en" required>
-                            <label class="control-label"> الموظفين </label>
-
-                            <select class="form-control custom-select" name="emp_id" required>
-                                @foreach($empolyers as $empolyer )
-                                    <option value=""></option>
-                                    <option value="{{$empolyer->id}}">{{$empolyer->name}}</option>
-                                @endforeach
-                            </select>
+                                <select class="form-control custom-select" name="emp_id" required>
+                                    @foreach($empolyers as $empolyer )
+                                        <option value=""></option>
+                                        <option value="{{$empolyer->id}}">{{$empolyer->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">اختيار</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">اختيار</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="modal fade" id="banks" tabindex="-1" role="dialog" aria-labelledby="banksLabel1">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="banksLabel1">اختر الموظف</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <form class="form"
-                      action="{{route('fund.redirect.bank',$requestreview->id)}}"
-                      method="POST">
-                    @csrf
-                    <div class="col-md-12">
-                        <div class="form-group has-success">
-                            <label class="control-label"> ملحوظه بالعربيه </label>
-                            <input type="text" class="form-control" name="note_ar" required>
-                            <label class="control-label"> ملحوظه بالانجليزيه </label>
-                            <input type="text" class="form-control" name="note_en" required>
-                            <br>
-                            <label class="control-label"> البنوك </label>
-                            <select class="form-control custom-select" name="bank_id">
-                                @foreach($banks as $bank)
-                                    <option value="{{$bank->id}}">{{$bank->name_ar}}</option>
-                                @endforeach
-                            </select>
+    <div class="row">
+        <div class="modal fade" id="banks" tabindex="-1" role="dialog" aria-labelledby="banksLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="banksLabel1">اختر الموظف</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <form class="form"
+                          action="{{route('fund.redirect.bank',$requestreview->id)}}"
+                          method="POST">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="form-group has-success">
+                                <label class="control-label"> ملحوظه بالعربيه </label>
+                                <input type="text" class="form-control" name="note_ar" required>
+                                <label class="control-label"> ملحوظه بالانجليزيه </label>
+                                <input type="text" class="form-control" name="note_en" required>
+                                <br>
+                                <label class="control-label"> البنوك </label>
+                                <select class="form-control custom-select" name="bank_id">
+                                    @foreach($banks as $bank)
+                                        <option value="{{$bank->id}}">{{$bank->name_ar}}</option>
+                                    @endforeach
+                                </select>
+
+                            </div>
 
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">اختيار</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">اختيار</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="modal fade" id="user" tabindex="-1" role="dialog" aria-labelledby="userLabel1">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="banksLabel1">مراجعه الورق المطلوب مره اخري</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <form class="form"
-                      action="{{route('fund.redirect.user',$requestreview->id)}}"
-                      method="POST">
-                    @csrf
-                    <div class="col-md-12">
-                        <div class="form-group has-success">
+    <div class="row">
+        <div class="modal fade" id="user" tabindex="-1" role="dialog" aria-labelledby="userLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="banksLabel1">مراجعه الورق المطلوب مره اخري</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <form class="form"
+                          action="{{route('fund.redirect.user',$requestreview->id)}}"
+                          method="POST">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="form-group has-success">
 
-                            <label class="control-label"> ملحوظه بالعربيه </label>
-                            <input type="text" class="form-control" name="note_ar" required>
-                            <label class="control-label"> ملحوظه بالانجليزيه </label>
-                            <input type="text" class="form-control" name="note_en" required>
+                                <label class="control-label"> ملحوظه بالعربيه </label>
+                                <input type="text" class="form-control" name="note_ar" required>
+                                <label class="control-label"> ملحوظه بالانجليزيه </label>
+                                <input type="text" class="form-control" name="note_en" required>
+                            </div>
+
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">اختيار</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">اختيار</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
-@section('scripts')
-    <script src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js')}}"></script>
-    <script type="text/javascript">
-        $('#slimtest1, #slimtest2, #slimtest3, #slimtest4').perfectScrollbar();
-    </script>
+    @endsection
+    @section('scripts')
+        <script src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
+        <script
+            src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js')}}"></script>
+        <script type="text/javascript">
+            $('#slimtest1, #slimtest2, #slimtest3, #slimtest4').perfectScrollbar();
+        </script>
 @endsection
