@@ -115,8 +115,6 @@
             /* Full-width containers */
             .container {
                 width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
             }
 
             /* Make sure that all arrows are pointing leftwards */
@@ -140,18 +138,14 @@
 
         .time-line {
             margin-right: 47px;
+            position:relative
         }
-
-        .timeline-date:before {
-            content: "15 اكتوبر";
+        .time-line label{
             position: absolute;
-            width: 60px;
-            height: 53px;
+            top: 0;
+            right: -48px;
             text-align: center;
-            z-index: 38;
-            right: 6px;
         }
-
         .timeline-list {
             border-right: 3px solid #ccc;
             position: relative;
@@ -162,7 +156,7 @@
         .timeline-list:before {
             content: "";
             position: absolute;
-            top: 10px;
+            top: 0;
             right: -14px;
             width: 25px;
             height: 25px;
@@ -176,7 +170,7 @@
             margin-right: 36px;
             position: relative;
             background: #ccc;
-            border-radius: 10px;
+            border-radius: 10px 0 10px 10px;
             padding: 25px 25px 0px;
             text-align: right;
         }
@@ -187,8 +181,8 @@
             border-style: solid;
             border-color: transparent transparent transparent #ccc;
             position: absolute;
-            top: 9px;
-            right: -26px;
+            top: 0px;
+            right: -27px;
         }
 
         .time-line .img img {
@@ -212,8 +206,8 @@
 </div>
 
 
-<div class="row">
-    <div class="col-6">
+<div class="row row-cols-2">
+    <div class="col-md-6">
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
@@ -252,7 +246,7 @@
         </div>
 
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
         <div class="card">
 
             <div class="card-body">
@@ -267,6 +261,7 @@
                             @foreach($histories as $history)
                                 <div class="time-line">
                                     <div class="container">
+                                        <label>15 <br> October</label>
                                         <div class="timeline-date">
                                             <div class="timeline-list">
                                                 <div class="timeline-all">
