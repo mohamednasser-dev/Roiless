@@ -440,4 +440,4 @@
         <script type="text/javascript">
             $('#slimtest1, #slimtest2, #slimtest3, #slimtest4').perfectScrollbar();
         </script>
-@endsection
+    @endsection
