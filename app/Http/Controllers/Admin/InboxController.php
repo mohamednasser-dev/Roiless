@@ -17,6 +17,7 @@ class InboxController extends Controller
         $this->objectName = $model;
         $this->folderView = 'admin.inbox.';
     }
+
     public function index()
     {
 

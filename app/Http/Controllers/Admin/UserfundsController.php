@@ -27,7 +27,7 @@ class UserfundsController extends Controller
     public function index()
     {
         $usefunds = User_Fund::with(['Fund' => function ($query) {
-            $query->where('cat_id',  auth()->user()->cat_id);
+            $query->where('cat_id', auth()->user()->cat_id);
         }])->get();
 
 
@@ -55,11 +55,9 @@ class UserfundsController extends Controller
         $requestreview = User_Fund::find($id);
         $empolyers = Admin::where('type', 'employer')->where('cat_id', auth()->user()->cat_id)->where('id', '<>', auth()->user()->id)->get();
         $banks = Bank::all();
-        $histories=Fhistory::where('user_fund_id',$id)->get();
-
-
+        $histories = Fhistory::where('user_fund_id', $id)->orderBy('created_at', 'DESC')->get();
         if ($requestreview->emp_id == auth()->user()->id) {
-            return view($this->folderView . 'details', compact('requestreview', 'empolyers', 'banks','histories'));
+            return view($this->folderView . 'details', compact('requestreview', 'empolyers', 'banks', 'histories'));
         } else {
             Alert::warning('تنبية', 'مرفوض الدخول');
             return redirect()->back();
@@ -68,18 +66,14 @@ class UserfundsController extends Controller
 
     public function employerunchosen($id)
     {
-
         User_Fund::where('id', $id)->update(['emp_id' => null]);
         activity('admin')->log('تم الغاء طلب المراجع');
         Alert::success('تمت العمليه', 'تم الغاء طلب المراجعه');
         return redirect()->route('userfunds');
-
     }
 
     public function redirect_emp(Request $request, $id)
     {
-
-
         $emp = $this->validate(request(),
             [
                 'emp_id' => 'required|string',
@@ -90,14 +84,13 @@ class UserfundsController extends Controller
                 'note_en' => 'required|string',
 
             ]);
-
         $Emp_request_redirect = User_Fund::find($id);
         $Emp_request_redirect->emp_id = $request->emp_id;
         $Emp_request_redirect->save();
 
 
         $data['emp_id'] = auth()->user()->id;
-        $data['return_emp_id'] =$request->emp_id;
+        $data['return_emp_id'] = $request->emp_id;
         $data['type'] = 'emp';
         $data['status'] = 'return';
         $data['user_fund_id'] = $id;
@@ -125,10 +118,10 @@ class UserfundsController extends Controller
         $requestreview->save();
         Alert::success('عملية ناجحة', 'تم التحويل الي البنك');
 
-        $data['emp_id']=auth()->user()->id;
-        $data['user_fund_id']=$id;
-        $data['type']='bank';
-        $data['status']='accept';
+        $data['emp_id'] = auth()->user()->id;
+        $data['user_fund_id'] = $id;
+        $data['type'] = 'bank';
+        $data['status'] = 'accept';
         Fhistory::create($data);
         return redirect()->route('userfunds');
     }
@@ -142,10 +135,10 @@ class UserfundsController extends Controller
                 'note_ar' => 'required|string',
                 'note_en' => 'required|string',
             ]);
-        $data['status']='reject';
-        $data['type']='user';
+        $data['status'] = 'reject';
+        $data['type'] = 'user';
         $data['user_fund_id'] = $id;
-        $data['user_id']=User_Fund::where('id',$id)->value('user_id');
+        $data['user_id'] = User_Fund::where('id', $id)->value('user_id');
         Fhistory::create($data);
         //تعديل الحاله user_status في ال user_funds
 
