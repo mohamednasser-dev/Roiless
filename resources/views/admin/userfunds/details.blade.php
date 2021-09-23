@@ -31,15 +31,15 @@
             }
 
             /* Container around content */
-            .container {
+            /*.container {
                 padding: 10px 40px;
                 position: relative;
                 background-color: inherit;
                 width: 50%;
-            }
+            }*/
 
             /* The circles on the timeline */
-            .container::after {
+            /*.container::after {
                 content: '';
                 position: absolute;
                 width: 25px;
@@ -50,7 +50,7 @@
                 top: 15px;
                 border-radius: 50%;
                 z-index: 1;
-            }
+            }*/
 
             /* Place the container to the left */
             .left {
@@ -135,8 +135,59 @@
                     left: 0%;
                 }
             }
+            .time-line{margin-right: 47px;}
+            .timeline-date:before{
+                content: "15 اكتوبر";
+                position: absolute;
+                width: 60px;
+                height: 53px;
+                text-align: center;
+                z-index: 38;
+                right: 6px;
+            }
+            .timeline-list{
+                border-right: 3px solid #ccc;
+                position: relative;
+                height: auto;
+                margin-bottom: 20px;
+            }
+            .timeline-list:before{
+                content: "";
+                position: absolute;
+                top: 10px;
+                right: -14px;
+                width: 25px;
+                height: 25px;
+                text-align: center;
+                z-index: 11;
+                background: rgb(204, 204, 204);
+                border-radius: 50%;
+            }
+            .timeline-all{
+                margin-right: 36px;
+                position: relative;
+                background: #ccc;
+                border-radius: 10px;
+                padding: 25px 25px 0px;
+                text-align: right;
+            }
+            .timeline-all:before{
+                content: "";
+                border-width: 14px;
+                border-style: solid;
+                border-color: transparent transparent transparent #ccc;
+                position: absolute;
+                top: 9px;
+                right: -26px;
+            }
+            .time-line .img img{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+            }
         </style>
-    @endsection()
+
+    @endsection
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
             <h3 class="text-themecolor">مراجعه التمويلات</h3>
@@ -149,7 +200,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-7">
+        <div class="col-6">
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">
@@ -158,7 +209,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-5">
+        <div class="col-6">
             <div class="card">
 
                 <div class="card-body">
@@ -171,33 +222,25 @@
 
 
                                 @foreach($histories as $history)
-
-                                    <div class="card
-                                    @if($history->status =='accept' ) bg-success @endif
-                                    @if($history->status =='reject' ) bg-danger @endif
-                                    @if($history->status =='pending' ) bg-info @endif
-                                    @if($history->status =='return' ) bg-dark @endif
-                                        ">
-                                        <div class="card-body">
-                                            <div>
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <h6 class="text-white m-t-10 m-b-0">{{$history->ُEmployer->name}}</h6>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <h6 class="text-white m-t-10 m-b-0">{{$history->note_ar}}</h6>
-                                                    </div>
-                                                    @if($history->return_emp_id ==! null )
-
-                                                        <div class="col-lg-6">
-                                                            <h6 class="text-white m-t-10 m-b-0">الموظف المنقول اليه</h6>
+                                    <div class="time-line">
+                                        <div class="container">
+                                            <div class="timeline-date">
+                                                <div class="timeline-list">
+                                                    <div class="timeline-all">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <div class="img">
+                                                                <img  src="{{asset('/assets/images/users/2.jpg')}}">
+                                                                <!-- <span></span> -->
+                                                            </div>
                                                         </div>
-                                                        <div class="col-lg-6">
-                                                            <h6 class="text-white m-t-10 m-b-0">{{ $history->ُEmployerReturned->name}}</h6>
+                                                        <div class="col-9">
+                                                            <div class="para">
+                                                                <p>هذا النص هو مثال لنص يمكن ان يستبدل في نفس المساحه , لقد تم تولبد هذا النص من مولد النص العربي , حيث يمكنك ان تولد مثل هذا النص او العديد من النصوص الاخري</p>
+                                                            </div>
                                                         </div>
-
-
-                                                    @endif
+                                                    </div>
+                                                </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -342,44 +385,55 @@
 
 
     </div>
-{{--<div class="timeline">--}}
-{{--    <div class="container left">--}}
-{{--        <div class="content">--}}
-{{--            <h2>2017</h2>--}}
-{{--            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="container right">--}}
-{{--        <div class="content">--}}
-{{--            <h2>2016</h2>--}}
-{{--            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="container left">--}}
-{{--        <div class="content">--}}
-{{--            <h2>2015</h2>--}}
-{{--            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="container right">--}}
-{{--        <div class="content">--}}
-{{--            <h2>2012</h2>--}}
-{{--            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="container left">--}}
-{{--        <div class="content">--}}
-{{--            <h2>2011</h2>--}}
-{{--            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="container right">--}}
-{{--        <div class="content">--}}
-{{--            <h2>2007</h2>--}}
-{{--            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
+    <div class="time-line">
+        <div class="container">
+            <div class="timeline-date">
+                <div class="timeline-list">
+                    <div class="timeline-all">
+                         
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+<!-- <div class="timeline">
+    <div class="container left">
+        <div class="content">
+            <h2>2017</h2>
+            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+        </div>
+    </div>
+    <div class="container right">
+        <div class="content">
+            <h2>2016</h2>
+            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+        </div>
+    </div>
+    <div class="container left">
+        <div class="content">
+            <h2>2015</h2>
+            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+        </div>
+    </div>
+    <div class="container right">
+        <div class="content">
+            <h2>2012</h2>
+            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+        </div>
+    </div>
+    <div class="container left">
+        <div class="content">
+            <h2>2011</h2>
+            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+        </div>
+    </div>
+    <div class="container right">
+        <div class="content">
+            <h2>2007</h2>
+            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+        </div>
+    </div>
+</div> -->
 @endsection
 @section('scripts')
     <script type="text/javascript">
