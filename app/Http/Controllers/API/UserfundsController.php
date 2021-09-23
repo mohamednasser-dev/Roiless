@@ -11,14 +11,12 @@ class UserfundsController extends Controller
     public function index(Request $request)
     {
         $user = auth()->user()->id;
-        try {
-            $lang = $request->header('lang');
-            Session()->put('api_lang', $lang);
-            $userfunds = User_fund::where('id',$user)->with('Fund')->get();
-            $userfunds->makeHidden(['emp_id','bank_id']);
-            return msgdata($request, success(), 'get all user funds ', $userfunds);
-        } catch (\Exception $e) {
-            return msgdata($request, failed(), '', $userfunds);
-        }
+        $lang = $request->header('lang');
+        Session()->put('api_lang', $lang);
+        $userfunds = User_fund::where('user_id', $user)->with('Fund')->get();
+
+        $userfunds->makeHidden(['emp_id', 'bank_id']);
+        return msgdata($request, success(), 'get all user funds ', $userfunds);
+
     }
 }

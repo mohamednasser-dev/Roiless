@@ -42,23 +42,21 @@ class FundController extends Controller
     {
         $user = auth()->user();
 
-        $myJSON = json_encode($request->dataform);
-
-        //  return response()->json(["dataform"=>$user]);
-        try {
+        $myJSON = json_encode($request->dataform);    
             $rules = [
                 'fund_id' => 'required',
                 'dataform' => 'required',
-                'file' => 'required',
+                'file' => '',
             ];
             $validator = Validator::make($request->all(), $rules);
             if ($request->file) {
                     $length= count($request->file);
                     for($i=0;$i<$length;$i++)
                     {
-                        $image = $request->file[0];  // your base64 encoded
-                        $image = str_replace('data:image/png;base64,', '', $image);
-                        $image = str_replace(' ', '+', $image);
+                        $image = $request->file[$i];  // your base64 encode
+                         $image = str_replace( 'data:image/png;base64,', '', $image);  
+                         $image = str_replace(' ', '+', $image);
+                      
                         $imageName[$i] = Str::random(12).'.'.'png';
                         \File::put('uploads/fund_file/' . $imageName[$i], base64_decode($image));
                     }
@@ -66,22 +64,20 @@ class FundController extends Controller
             if ($validator->fails()) {
                 return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
               }else{
-                  $fund=Fund::find($request->fund_id);  
-                  $user_funds=$user->Funds()->attach($request->fund_id,
-                  [
-                    'fund_amount'=>$fund->cost,
-                    'dataform'=>json_encode($request->dataform),
-                  ]        
-                ); 
-                $user_fund=User_Fund::latest('id')->first();
-             
-                for($i=0;$i<$length;$i++)
-                {
-                    $user_fund->fund_file()->create(['file_name'=>$imageName[$i]]);
-                }    
-               return response()->json(['status'=>'200','msg'=>'add user fund successfully']);
-              }  
-              }catch(Exception $e){
-              }
-          }  
+                $fund=Fund::find($request->fund_id);  
+                $user_fund_data['fund_amount'] = $fund->cost ;
+                $user_fund_data['dataform'] = json_encode($request->dataform) ;
+                $user_fund_data['fund_id'] = $request->fund_id ;
+                $user_fund_data['user_id'] = $user->id ;
+                $user_funds = User_fund::create($user_fund_data);
+                if($request->file != null){
+                    foreach($request->file as $key => $row){
+                        $file_data['user_fund_id'] = $user_funds->id ;
+                        $file_data['file_name'] = $imageName[$key];
+                        Fund_file::create($file_data);
+                    }
+                }
+            return response()->json(['status'=>'200','msg'=>'add user fund successfully']);         
+        }
+    }  
  }

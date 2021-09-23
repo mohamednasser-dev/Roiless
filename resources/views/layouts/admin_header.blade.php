@@ -48,15 +48,6 @@
 
         <!--font awsom -->
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-
-        <style>
-            .cont-image{
-                position: relative;
-            }
-            .cont-img img { display: block; }
-            .cont-image .fa-camera { position: absolute; bottom:0; left:100; }
-
-        </style>
         @yield('styles')
     </head>
 

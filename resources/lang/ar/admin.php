@@ -2,6 +2,7 @@
 return [
 
     //new
+    'banks' => 'البنوك',
     'should_choose_category' => 'يجب اختيار مخزن اولا',
     'wrong_old_password' => 'من فضلك ادخل الباسورد صحيح',
     'Updated_Successfully' => 'تم التعديل بنجاح',
