@@ -1,145 +1,204 @@
 @extends('admin_temp')
 @section('content')
 @section('styles')
-
     <link href="{{asset('/assets/plugins/Magnific-Popup-master/dist/magnific-popup.css')}}" rel="stylesheet">
     <link href="{{asset('/css/pages/user-card.css')}}" rel="stylesheet">
-    {{--    <style>--}}
-    {{--        * {--}}
-    {{--            box-sizing: border-box;--}}
-    {{--        }--}}
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    {{--        body {--}}
-    {{--            background-color: #0A0A0A;--}}
-    {{--            font-family: Helvetica, sans-serif;--}}
-    {{--        }--}}
+        body {
+            background-color: #0A0A0A;
+            font-family: Helvetica, sans-serif;
+        }
 
-    {{--        /* The actual timeline (the vertical ruler) */--}}
-    {{--        .timeline {--}}
-    {{--            position: relative;--}}
-    {{--            max-width: 1200px;--}}
-    {{--            margin: 0 auto;--}}
-    {{--        }--}}
+        /* The actual timeline (the vertical ruler) */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    {{--        /* The actual timeline (the vertical ruler) */--}}
-    {{--        .timeline::after {--}}
-    {{--            content: '';--}}
-    {{--            position: absolute;--}}
-    {{--            width: 6px;--}}
-    {{--            background-color: white;--}}
-    {{--            top: 0;--}}
-    {{--            bottom: 0;--}}
-    {{--            left: 50%;--}}
-    {{--            margin-left: -3px;--}}
-    {{--        }--}}
+        /* The actual timeline (the vertical ruler) */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: white;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
 
-    {{--        /* Container around content */--}}
-    {{--        .container {--}}
-    {{--            padding: 10px 40px;--}}
-    {{--            position: relative;--}}
-    {{--            background-color: inherit;--}}
-    {{--            width: 50%;--}}
-    {{--        }--}}
+        /* Container around content */
+        /*.container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }*/
 
-    {{--        /* The circles on the timeline */--}}
-    {{--        .container::after {--}}
-    {{--            content: '';--}}
-    {{--            position: absolute;--}}
-    {{--            width: 25px;--}}
-    {{--            height: 25px;--}}
-    {{--            right: -17px;--}}
-    {{--            background-color: white;--}}
-    {{--            border: 4px solid #FF9F55;--}}
-    {{--            top: 15px;--}}
-    {{--            border-radius: 50%;--}}
-    {{--            z-index: 1;--}}
-    {{--        }--}}
+        /* The circles on the timeline */
+        /*.container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid #FF9F55;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }*/
 
-    {{--        /* Place the container to the left */--}}
-    {{--        .left {--}}
-    {{--            left: 0;--}}
-    {{--        }--}}
+        /* Place the container to the left */
+        .left {
+            left: 0;
+        }
 
-    {{--        /* Place the container to the right */--}}
-    {{--        .right {--}}
-    {{--            left: 50%;--}}
-    {{--        }--}}
+        /* Place the container to the right */
+        .right {
+            left: 50%;
+        }
 
-    {{--        /* Add arrows to the left container (pointing right) */--}}
-    {{--        .left::before {--}}
-    {{--            content: " ";--}}
-    {{--            height: 0;--}}
-    {{--            position: absolute;--}}
-    {{--            top: 22px;--}}
-    {{--            width: 0;--}}
-    {{--            z-index: 1;--}}
-    {{--            right: 30px;--}}
-    {{--            border: medium solid white;--}}
-    {{--            border-width: 10px 0 10px 10px;--}}
-    {{--            border-color: transparent transparent transparent white;--}}
-    {{--        }--}}
+        /* Add arrows to the left container (pointing right) */
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
 
-    {{--        /* Add arrows to the right container (pointing left) */--}}
-    {{--        .right::before {--}}
-    {{--            content: " ";--}}
-    {{--            height: 0;--}}
-    {{--            position: absolute;--}}
-    {{--            top: 22px;--}}
-    {{--            width: 0;--}}
-    {{--            z-index: 1;--}}
-    {{--            left: 30px;--}}
-    {{--            border: medium solid white;--}}
-    {{--            border-width: 10px 10px 10px 0;--}}
-    {{--            border-color: transparent white transparent transparent;--}}
-    {{--        }--}}
+        /* Add arrows to the right container (pointing left) */
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
 
-    {{--        /* Fix the circle for containers on the right side */--}}
-    {{--        .right::after {--}}
-    {{--            left: -16px;--}}
-    {{--        }--}}
+        /* Fix the circle for containers on the right side */
+        .right::after {
+            left: -16px;
+        }
 
-    {{--        /* The actual content */--}}
-    {{--        .content {--}}
-    {{--            padding: 20px 30px;--}}
-    {{--            background-color: white;--}}
-    {{--            position: relative;--}}
-    {{--            border-radius: 6px;--}}
-    {{--        }--}}
+        /* The actual content */
+        .content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+        }
 
-    {{--        /* Media queries - Responsive timeline on screens less than 600px wide */--}}
-    {{--        @media screen and (max-width: 600px) {--}}
-    {{--            /* Place the timelime to the left */--}}
-    {{--            .timeline::after {--}}
-    {{--                left: 31px;--}}
-    {{--            }--}}
+        /* Media queries - Responsive timeline on screens less than 600px wide */
+        @media screen and (max-width: 600px) {
+            /* Place the timelime to the left */
+            .timeline::after {
+                left: 31px;
+            }
 
-    {{--            /* Full-width containers */--}}
-    {{--            .container {--}}
-    {{--                width: 100%;--}}
-    {{--                padding-left: 70px;--}}
-    {{--                padding-right: 25px;--}}
-    {{--            }--}}
+            /* Full-width containers */
+            .container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
 
-    {{--            /* Make sure that all arrows are pointing leftwards */--}}
-    {{--            .container::before {--}}
-    {{--                left: 60px;--}}
-    {{--                border: medium solid white;--}}
-    {{--                border-width: 10px 10px 10px 0;--}}
-    {{--                border-color: transparent white transparent transparent;--}}
-    {{--            }--}}
+            /* Make sure that all arrows are pointing leftwards */
+            .container::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
 
-    {{--            /* Make sure all circles are at the same spot */--}}
-    {{--            .left::after, .right::after {--}}
-    {{--                left: 15px;--}}
-    {{--            }--}}
+            /* Make sure all circles are at the same spot */
+            .left::after, .right::after {
+                left: 15px;
+            }
 
-    {{--            /* Make all right containers behave like the left ones */--}}
-    {{--            .right {--}}
-    {{--                left: 0%;--}}
-    {{--            }--}}
-    {{--        }--}}
-    {{--    </style>--}}
-@endsection()
+            /* Make all right containers behave like the left ones */
+            .right {
+                left: 0%;
+            }
+        }
+
+        .time-line {
+            margin-right: 47px;
+        }
+
+        .timeline-date:before {
+            content: "15 اكتوبر";
+            position: absolute;
+            width: 60px;
+            height: 53px;
+            text-align: center;
+            z-index: 38;
+            right: 6px;
+        }
+
+        .timeline-list {
+            border-right: 3px solid #ccc;
+            position: relative;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .timeline-list:before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            right: -14px;
+            width: 25px;
+            height: 25px;
+            text-align: center;
+            z-index: 11;
+            background: rgb(204, 204, 204);
+            border-radius: 50%;
+        }
+
+        .timeline-all {
+            margin-right: 36px;
+            position: relative;
+            background: #ccc;
+            border-radius: 10px;
+            padding: 25px 25px 0px;
+            text-align: right;
+        }
+
+        .timeline-all:before {
+            content: "";
+            border-width: 14px;
+            border-style: solid;
+            border-color: transparent transparent transparent #ccc;
+            position: absolute;
+            top: 9px;
+            right: -26px;
+        }
+
+        .time-line .img img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+    </style>
+
+@endsection
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
         <h3 class="text-themecolor">مراجعه التمويلات</h3>
@@ -151,42 +210,14 @@
         </ol>
     </div>
 </div>
+
+
 <div class="row">
-    <div class="col-7">
+    <div class="col-6">
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
                     <h3>بيانات التمويل</h3>
-
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="home" role="tabpanel">
-                            <div class="card-body">
-                                <div class="profiletimeline">
-                                    <div class="sl-item">
-                                        <div class="sl-right">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <small class="text-muted">الحاله</small>
-                                                    <p>{{$requestreview->user_status}}</p></div>
-                                                <div class="col-6">
-                                                    <small class="text-muted">مبلغ التمويل</small>
-                                                    <p>{{$requestreview->fund_amount}}</p></div>
-                                                <div class="col-6">
-                                                    <small class="text-muted">تاريخ الطلب</small>
-                                                    <p>{{$requestreview->created_at}}</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <small class="text-muted">الحاله</small>
-                                                    <p>{{$requestreview->user_status}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -198,7 +229,8 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="card">
                         <div class="el-card-item">
-                            <div class="el-card-avatar el-overlay-1"><img src="{{asset('/assets/images/big/img1.jpg')}}" alt="user"/>
+                            <div class="el-card-avatar el-overlay-1"><img src="{{asset('/assets/images/big/img1.jpg')}}"
+                                                                          alt="user"/>
                                 <div class="el-overlay">
                                     <ul class="el-info">
                                         <li><a class="btn default btn-outline image-popup-vertical-fit"
@@ -218,10 +250,9 @@
 
             </div>
         </div>
+
     </div>
-
-
-    <div class="col-5">
+    <div class="col-6">
         <div class="card">
 
             <div class="card-body">
@@ -234,59 +265,53 @@
 
 
                             @foreach($histories as $history)
-
-                                <div class="card
-                                    @if($history->status =='accept' ) bg-success @endif
-                                @if($history->status =='reject' ) bg-danger @endif
-                                @if($history->status =='pending' ) bg-info @endif
-                                @if($history->status =='return' ) bg-dark @endif
-                                    ">
-                                    <div class="card-body">
-                                        <div>
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <h6 class="text-white m-t-10 m-b-0">{{$history->ُEmployer->name}}</h6>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <h6 class="text-white m-t-10 m-b-0">{{$history->note_ar}}</h6>
-                                                </div>
-                                                @if($history->return_emp_id ==! null )
-
-                                                    <div class="col-lg-6">
-                                                        <h6 class="text-white m-t-10 m-b-0">الموظف المنقول اليه</h6>
+                                <div class="time-line">
+                                    <div class="container">
+                                        <div class="timeline-date">
+                                            <div class="timeline-list">
+                                                <div class="timeline-all">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <div class="img">
+                                                                <img src="{{asset('/assets/images/users/2.jpg')}}">
+                                                                <!-- <span></span> -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <div class="para">
+                                                                <p>هذا النص هو مثال لنص يمكن ان يستبدل في نفس المساحه ,
+                                                                    لقد تم تولبد هذا النص من مولد النص العربي , حيث
+                                                                    يمكنك ان تولد مثل هذا النص او العديد من النصوص
+                                                                    الاخري</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-lg-6">
-                                                        <h6 class="text-white m-t-10 m-b-0">{{ $history->ُEmployerReturned->name}}</h6>
-                                                    </div>
-
-
-                                                @endif
+                                                </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
-                            @endforeach
-                        </div>
+
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
-<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
-    التحويل لموظف اخر
-</button>
+    <div class="row">
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
+            التحويل لموظف اخر
+        </button>
 
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
-    الموافقه علي الطلب
-</button>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
+            الموافقه علي الطلب
+        </button>
 
-<button
-    type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">مراجعه الطلب
-</button>
+        <button
+            type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">مراجعه الطلب
+        </button>
+    </div>
 
 <div class="row">
     <div class="modal fade" id="Empoloyers" tabindex="-1" role="dialog" aria-labelledby="EmpoloyersLabel1">
@@ -316,9 +341,7 @@
                                     <option value="{{$empolyer->id}}">{{$empolyer->name}}</option>
                                 @endforeach
                             </select>
-
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -328,8 +351,6 @@
             </div>
         </div>
     </div>
-
-
 </div>
 <div class="row">
     <div class="modal fade" id="banks" tabindex="-1" role="dialog" aria-labelledby="banksLabel1">
@@ -369,8 +390,6 @@
             </div>
         </div>
     </div>
-
-
 </div>
 <div class="row">
     <div class="modal fade" id="user" tabindex="-1" role="dialog" aria-labelledby="userLabel1">
@@ -403,47 +422,7 @@
             </div>
         </div>
     </div>
-
-
 </div>
-{{--<div class="timeline">--}}
-{{--    <div class="container left">--}}
-{{--        <div class="content">--}}
-{{--            <h2>2017</h2>--}}
-{{--            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="container right">--}}
-{{--        <div class="content">--}}
-{{--            <h2>2016</h2>--}}
-{{--            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="container left">--}}
-{{--        <div class="content">--}}
-{{--            <h2>2015</h2>--}}
-{{--            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="container right">--}}
-{{--        <div class="content">--}}
-{{--            <h2>2012</h2>--}}
-{{--            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="container left">--}}
-{{--        <div class="content">--}}
-{{--            <h2>2011</h2>--}}
-{{--            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="container right">--}}
-{{--        <div class="content">--}}
-{{--            <h2>2007</h2>--}}
-{{--            <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
 @endsection
 @section('scripts')
     <script src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
