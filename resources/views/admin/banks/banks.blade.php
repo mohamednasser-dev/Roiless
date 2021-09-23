@@ -6,8 +6,8 @@
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">البنوك</li>
-                <li class="breadcrumb-item active"><a href="{{route('home')}}">الصفحة الرئيسية</a></li>
+                <li class="breadcrumb-item">{{ trans('admin.banks')}}</li>
+                <li class="breadcrumb-item active"><a href="{{route('home')}}"> الصفحة الرئيسية</a></li>
             </ol>
         </div>
     </div>

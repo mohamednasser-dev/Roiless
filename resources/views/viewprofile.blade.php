@@ -1,4 +1,27 @@
 @extends('admin_temp')
+@section('styles')
+       <style>
+            .cont-image{
+             position: relative;
+           
+             }
+            .cont-img img { display: block; }
+            .img-circle{
+                height: 180px;
+                width: 175px;
+            }
+            .cont-image .fa-camera {position: absolute;
+                bottom: 0;
+                left: 85px;
+                background: #d5ffff;
+                font-size: 21px;
+                width: 35px;
+                height: 35px;
+                text-align: center;
+                line-height: 35px;
+                border-radius: 50%; }
+        </style>
+@endsection
 @section('content')
 <div class="container-fluid">
                 <!-- ============================================================== -->
@@ -31,7 +54,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="cont-image">
-                                  <center class="m-t-30"> <img  id='output' src="{{ Auth::user()->image}}" class="img-circle" width="150" />
+                                  <center class="m-t-30"> <img  id='output' src="{{ Auth::user()->image}}" class="img-circle" width="150" / >
                                   <label for="file" style="cursor: pointer;"><i class="fas fa-camera fa-2x"></i></label>
                                 </div>
                                      <div>
