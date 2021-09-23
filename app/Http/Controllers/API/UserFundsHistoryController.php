@@ -4,26 +4,18 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Fhistory;
+use App\Models\User_fund;
 use Illuminate\Http\Request;
 
 class UserFundsHistoryController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request,$id)
     {
-//        return $request->header('id');
-        try {
-            $lang = $request->header('lang');
-            $user_fund_id = $request->header('id');
-            Session()->put('api_lang', $lang);
-
-          $userfunds = Fhistory::select('id', 'note_' . $lang . ' as note', 'status', 'created_at')->where('user_fund_id', $user_fund_id)->get();
-            if ($userfunds!==null){
-                return msgdata($request, success(), 'there is no history for this id ', $userfunds);
-            }
-                return msgdata($request, success(), 'userfunds history for the id ', $userfunds);
-
-        } catch (\Exception $e) {
-            return msgdata($request, failed(), '', $userfunds);
-        }
+        $user = auth()->user()->id;
+        $lang = $request->header('lang');
+        $data['user_fund']=User_fund::where('user_id',$user)->where('id',$id)->with('Fund')->get();
+        Session()->put('api_lang', $lang);
+        $data['history'] = Fhistory::select('id', 'note_' . $lang . ' as note', 'status', 'created_at')->where('user_fund_id', $id)->get();
+        return msgdata($request, success(), 'there is no history for this id ', $data);
     }
 }

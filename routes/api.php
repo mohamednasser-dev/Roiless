@@ -67,7 +67,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::get('/userfunds', 'UserfundsController@index');
 
         // userFundsHistory
-        Route::get('/userFundsHistory', 'UserFundsHistoryController@index');
+        Route::get('/userFundsHistory/{id}', 'UserFundsHistoryController@index');
 
     });
 
