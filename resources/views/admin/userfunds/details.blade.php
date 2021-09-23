@@ -202,6 +202,20 @@
         </div>
     </div>
     <div class="row">
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
+            التحويل لموظف اخر
+        </button>
+
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
+            الموافقه علي الطلب
+        </button>
+
+        <button
+            type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">مراجعه الطلب
+        </button>
+    </div>
+    
+    <div class="row">
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
@@ -210,8 +224,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
+            <div class="card">
             <div class="row el-element-overlay">
                 <div class="col-md-12">
                     <h4 class="card-title">Gallery page</h4>
@@ -239,10 +252,9 @@
 
             </div>
         </div>
-    </div>
 
-
-    <div class="col-5">
+        </div>
+        <div class="col-6">
         <div class="card">
 
             <div class="card-body">
@@ -285,21 +297,9 @@
                 </div>
             </div>
         </div>
-
     </div>
+   
 
-</div>
-<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
-    التحويل لموظف اخر
-</button>
-
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
-    الموافقه علي الطلب
-</button>
-
-<button
-    type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">مراجعه الطلب
-</button>
 
 <div class="row">
     <div class="modal fade" id="Empoloyers" tabindex="-1" role="dialog" aria-labelledby="EmpoloyersLabel1">
@@ -410,6 +410,7 @@
             </div>
         </div>
     </div>
+</div>  
 @endsection
 @section('scripts')
     <script src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
