@@ -30,14 +30,12 @@ class FundController extends Controller
               $data['Funddetailes']=$Funddetailes;
               $data['banks']=$bank;
               return msgdata($request, success(), 'funddetailes_success', $data);
-
             }
 
         } catch (Exception $e) {
             return $this->returnError($e->getCode(), $e->getMessage());
         }
     }
-
     public function addfund(Request $request)
     {
         $user = auth()->user();
@@ -53,12 +51,13 @@ class FundController extends Controller
                     $length= count($request->file);
                     for($i=0;$i<$length;$i++)
                     {
-                        $image = $request->file[$i];  // your base64 encode
+                         $image = $request->file[$i];  // your base64 encode
                          $image = str_replace( 'data:image/png;base64,', '', $image);  
-                         $image = str_replace(' ', '+', $image);
-                      
-                        $imageName[$i] = Str::random(12).'.'.'png';
-                        \File::put('uploads/fund_file/' . $imageName[$i], base64_decode($image));
+                          //   $extension = explode('/', mime_content_type($image))[1];
+                          //  $ext = base64_decode($image)->getClientOriginalExtension();
+                          //  dd($ext);
+                         $imageName[$i] = Str::random(12).'.'.'png';
+                         \File::put('uploads/fund_file/' . $imageName[$i], base64_decode($image));
                     }
             }
             if ($validator->fails()) {
