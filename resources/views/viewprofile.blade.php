@@ -29,7 +29,7 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center">
-                        <h3 class="text-themecolor">Profile</h3>
+                        <h3 class="text-themecolor">{{trans('admin.profile')}}</h3>
                     </div>
                     <div class="col-md-7 align-self-center">
                         <ol class="breadcrumb">
@@ -165,7 +165,7 @@
                                            
                                             <div class="form-group">
                                                 <div class="col-sm-12">
-                                                    <button class="btn btn-success">تغيير كلمه المرور</button>
+                                                    <button class="btn btn-success">{{trans('admin.change_password')}}</button>
                                                 </div>
                                             </div>
                                           

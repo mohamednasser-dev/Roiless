@@ -5,13 +5,13 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">اضافه بنك جديد</h3>
+            <h3 class="text-themecolor">{{trans('admin.add_new_bank')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">اضافه بنك جديد</li>
-                <li class="breadcrumb-item"><a href="{{route('banks.index')}}">البنوك</a></li>
-                <li class="breadcrumb-item active"><a href="{{route('home')}}">الرئيسيه</a></li>
+                <li class="breadcrumb-item">{{trans('admin.add_new_bank')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('banks.index')}}">{{trans('admin.banks')}}</a></li>
+                <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home')}}</a></li>
             </ol>
         </div>
     </div>
@@ -22,35 +22,35 @@
             {{ Form::open( ['route'  => ['banks.store'],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">بيانات البنك</h4>
+                    <h4 class="card-title">{{trans('admin.bank_information')}}</h4>
                     <hr>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">اسم البنك بالعربيه</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.arabic_bank_name')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('name_ar',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">اسم البنك بالانجليزي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.english_bank_name')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('name_en',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">رقم هاتف البنك</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.bank_phone')}}</label>
                         <div class="col-md-10">
                             {{ Form::number('phone',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">بريد الكتروني للبنك</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.email_of_bank')}}</label>
                         <div class="col-md-10">
                             {{ Form::email('email',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-password-input"
-                               class="col-md-2 col-form-label">باسورد البنك</label>
+                               class="col-md-2 col-form-label">{{trans('admin.bank_password')}}</label>
                         <div class="col-md-10">
                             <input class="form-control" type="password" name="password" id="example-password-input"
                                    required>
@@ -58,14 +58,14 @@
                     </div>
                     <div class="form-group row">
                         <label for="example-password-input2"
-                               class="col-md-2 col-form-label">تاكيد باسورد البنك</label>
+                               class="col-md-2 col-form-label">{{trans('admin.confirm_bank_password')}}</label>
                         <div class="col-md-10">
                             <input class="form-control" type="password" name="password_confirmation"
                                    id="example-password-input2" required>
                         </div>
                     </div>
 {{--                    <div class="form-group row">--}}
-{{--                        <label  class="form-label">الاقسام </label>--}}
+{{--                        <label  class="form-label">{{trans('admin.category')}} </label>--}}
 {{--                        <select name="category_id" class="form-control"  >--}}
 {{--                            @foreach($categories as $category)--}}
 {{--                                <option value="{{$category->id}}">{{$category->title_ar}}</option>--}}
@@ -78,7 +78,7 @@
                 <div class="col-lg-12 col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">صورة البنك</h4>
+                            <h4 class="card-title">{{trans('admin.bank_image')}}</h4>
                             <input type="file" name="image" id="input-file-now" class="dropify"/>
                         </div>
                     </div>

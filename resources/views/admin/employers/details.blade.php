@@ -24,11 +24,11 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <small class="text-muted">الاسم</small>
+                    <small class="text-muted">{{trans('admin.name')}}</small>
                     <h6>{{$employers->name}}</h6>
-                    <small class="text-muted">البريد الإلكتروني</small>
+                    <small class="text-muted">{{trans('admin.email')}}</small>
                     <h6>{{$employers->email}}</h6>
-                    <small class="text-muted p-t-30 db">رقم الهاتف</small>
+                    <small class="text-muted p-t-30 db">{{trans('admin.phone_num')}}</small>
                     <h6>{{$employers->phone}}</h6>
                     <br/>
                     <a class="btn btn-circle btn-secondary" title="تعديل" href="{{url('employer/'.$employers->id.'/edit')}}"><i class="fa fa-edit"></i></a>

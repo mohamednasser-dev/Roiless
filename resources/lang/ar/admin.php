@@ -2,17 +2,96 @@
 return [
 
     //new
-    'change_photo'=>'تغيير صوره الحساب',
-    'email'=>'البريد الالكتروني',
-    'user_info'=>'بيانات المستخدم',
-    'full_name'=>'الاسم كامل',
-    'phone_num'=>'رقم الهاتف',
-    'update_profile'=>'تحديث الحساب',
-    'password'=>'كلمه المرور',
-    'old_password'=>'كلمه المرور القديمه',
-    'confirm_password'=>'تاكيد كلمه المرور',
 
-    // 'banks' => 'البنوك',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    'change_photo'=>'تغيير الصوره',
+    'email'=>'البريد الالكتروني',
+    'phone'=>'رقم الهاتف ',
+    'full_name'=>'الاسم كامل',
+    'user_info'=>'معلومات المستخدم',
+    'phone_num'=>'رقم الهاتف ',
+    'update_profile'=>'تحديث الحساب',
+    'password'=>'الرقم السري',
+    'old_password'=>'الرقم السري القديم',
+     'confirm_password'=>'تاكييد الرقم السري',
+     'change_password'=>'تغيير الرقم السري',
+     'profile'=>'الحساب',
+     'banks' => 'البنوك',
+      'home_page'=>'الصفحه الرئيسيه',
+      'add_bank'=>'اضافه بنك',
+      'home'=>'الصفحه الرئيسيه',
+      'add_new_bank'=>'اضافه بنك جديد',
+       'bank_information'=>'معلومات البنك',
+       'arabic_bank_name'=>'اسم البنك بالعربي',
+       'english_bank_name'=>'اسم البنك بالغه الانجليزيه',
+       'bank_phone'=>'هاتف البنك',
+       'email_of_bank'=>'البريسد الالكتروني للبنك',
+       'bank_password'=>'الرقم السري للبنك',
+       'confirm_bank_password'=>'تاكييد الرقم السري للبنك',
+       'bank_image'=>'صوره البنك',
+       'public_Add'=>'اضافه',
+       'name_in_arabic'=>'الاسم بالغه العربيه',
+       'name_in_english'=>'الاسم بالغه الانجليزيه',
+       'add_categories'=>'اضافه قسم جديد',
+       'categories'=>'الاقسام',
+       'category'=>'القسم',
+       'categorie_image'=>'صوره القسم',
+       'add'=>'اضافه',
+       'edit_categorie'=>'تعدييل القسم',
+       'edit'=>'تعديل',
+       'add_new_employer'=>'اضافه موظف جديد',
+       'employers'=>'الموظفيين',
+       'name'=>'الاسم',
+       'employee_image'=>'صوره الموظف',
+       'employee_info'=>'معلومات الموظف',
+        'edite_employer'=>'تعديل الموظف',
+       'fund_address_in_arabic'=>'عنوان التموييل بالعربي',
+       'fund_address_in_english'=>'عنوان التموييل بالانجليزي',
+       'fund_desc_in_arabic'=>'وصف التمويل بالعربي',
+       'fund_desc_in_english'=>'وصف التمويل بالغه الانجليزيه',
+       'Application_fee'=>'رسم الاستماره',
+       'fund_ratio'=>'نسبه التموييل',
+       'choose_categories'=>'اختر الاقسام',
+       'fund_image'=>'صوره التمويل  ',
+       'choose_requires'=>'اختر المتطلبات',
+       'create_fund'=>'انشاء تموييل',
+       'funds'=>'التمويلات',
+       'fund'=>'التمويل', 
+       'name_arabic'=>'الاسم بالعربي',
+       'english_name'=>'الاسم بالانجليزي',
+       'category_name'=>'اسم القسم',
+       'fund_ratio'=>'نسبه التمويل',
+       'edit_fund'=>'تعديل التمويل',
+       'fund_info'=>'معلومات التمويل',
+       'fund_name_in_english'=>'اسم التمويل بالانجليزي',
+       'fund_name_in_arabic'=>'اسم التمويل بالعربي',
+       'main_appairance'=>'الظهور الرئيسي',
+       'fund_name_in_arabic'=>'الاسم كامل بالعربي',
+       'common_questions'=>'الاسئله الشائعه',
+       'communication'=>'التواصل',
+       'message'=>'الرسائل',
+       'main_Measures'=>'قائمه الاجرائات',
+       'Measures'=>' الاجرائات',
+       'user'=>'المستخدم',
+    
+        'add_fund'=>'اضافه تمويل جديد',
+
     // 'should_choose_category' => 'يجب اختيار مخزن اولا',
     // 'wrong_old_password' => 'من فضلك ادخل الباسورد صحيح',
     // 'Updated_Successfully' => 'تم التعديل بنجاح',

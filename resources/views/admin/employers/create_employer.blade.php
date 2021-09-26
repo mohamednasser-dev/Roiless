@@ -5,13 +5,13 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">اضافه موظف جديد</h3>
+            <h3 class="text-themecolor">{{trans('admin.add_new_employer')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">اضافه موظف جديد</li>
-                <li class="breadcrumb-item"><a href="{{route('employer.index')}}">موظفين</a></li>
-                <li class="breadcrumb-item active"><a href="{{route('home')}}">الرئيسيه</a></li>
+                <li class="breadcrumb-item">{{trans('admin.add_new_employer')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('employer.index')}}">{{trans('admin.employers')}}</a></li>
+                <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>
@@ -22,29 +22,29 @@
             {{ Form::open( ['route'  => ['employer.store'],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">بيانات الموظف</h4>
+                    <h4 class="card-title">{{trans('admin.employers_info')}}</h4>
                     <hr>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">الاسم</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.name')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('name',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">رقم هاتف </label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.phone_num')}} </label>
                         <div class="col-md-10">
                             {{ Form::number('phone',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">البريد الالكتروني</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.email')}}</label>
                         <div class="col-md-10">
                             {{ Form::email('email',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-password-input"
-                               class="col-md-2 col-form-label"> الرقم السري</label>
+                               class="col-md-2 col-form-label">{{trans('admin.password')}}</label>
                         <div class="col-md-10">
                             <input class="form-control" type="password" name="password" id="example-password-input"
                                    required>
@@ -52,14 +52,14 @@
                     </div>
                     <div class="form-group row">
                         <label for="example-password-input2"
-                               class="col-md-2 col-form-label">تاكيد باسورد الموظف</label>
+                               class="col-md-2 col-form-label">{{trans('admin.confirm_password')}}</label>
                         <div class="col-md-10">
                             <input class="form-control" type="password" name="password_confirmation"
                                    id="example-password-input2" required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="example-month-input" class="col-md-2 col-form-label"> القسم</label>
+                        <label for="example-month-input" class="col-md-2 col-form-label"> {{trans('admin.category')}}</label>
                         <div class="col-md-10">
                             <select class="custom-select col-12 multiple" id="inlineFormCustomSelect" name="cat_id">
                                 @foreach($categories as $category)
@@ -74,7 +74,7 @@
                 <div class="col-lg-12 col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">صورة الموظف</h4>
+                            <h4 class="card-title">{{trans('admin.employee_image')}}</h4>
                             <input type="file" name="image" id="input-file-now" class="dropify"/>
                         </div>
                     </div>

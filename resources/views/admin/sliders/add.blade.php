@@ -11,7 +11,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">انشاء اعلان</li>
                 <li class="breadcrumb-item"><a href="{{route('sliders')}}">اعلانات</a></li>
-                <li class="breadcrumb-item active"><a href="{{('home')}}">الصفحه الرائيسيه</a></li>
+                <li class="breadcrumb-item active"><a href="{{('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>

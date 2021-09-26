@@ -9,7 +9,7 @@
                 <li class="breadcrumb-item">انشاء تفاصيل خدمه</li>
                 <li class="breadcrumb-item"><a href="{{route('services.details',$id)}}">تفاصيل الخدمه </a></li>
                 <li class="breadcrumb-item"><a href="{{route('services')}}">الخدمات </a></li>
-                <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.nav_home')}}</a></li>
+                <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>

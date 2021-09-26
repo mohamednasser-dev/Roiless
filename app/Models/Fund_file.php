@@ -12,9 +12,10 @@ class Fund_file extends Model
     protected $hidden=['created_at','updated_at'];
     public $timestamps=false;
 
+
     public function user_funds()
     {
         return $this->belongsTo('App\Models\User_fund','user_fund_id');
     }
-       
+
 }

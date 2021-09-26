@@ -2,6 +2,29 @@
 return [
 
     //new
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     'change_photo'=>'change photo',
     'email'=>'email',
     'phone'=>'phone ',
@@ -12,6 +35,70 @@ return [
     'password'=>'password',
     'old_password'=>'old password',
      'confirm_password'=>'confirm password',
+     'change_password'=>'change password',
+     'profile'=>'profile',
+     'banks' => 'banks',
+      'home_page'=>'home page',
+      'add_bank'=>'add bank',
+      'home'=>'home',
+      'add_new_bank'=>'add new bank',
+       'bank_information'=>'bank information',
+       'arabic_bank_name'=>'arabic bank name',
+       'english_bank_name'=>'english bank name',
+       'bank_phone'=>'bank phone',
+       'email_of_bank'=>'email of bank',
+       'bank_password'=>'bank password',
+       'confirm_bank_password'=>'confirm bank password',
+       'bank_image'=>'bank image',
+       'public_Add'=>'add',
+       'name_in_arabic'=>'name in arabic',
+       'name_in_english'=>'name in english',
+       'add_categories'=>'add new categories',
+       'categories'=>'categories',
+       'category'=>'category',
+       'categorie_image'=>'categorie image',
+       'add'=>'add',
+       'edit_categorie'=>'edit category',
+       'edit'=>'edit',
+       'add_new_employer'=>'add new employer',
+       'employers'=>'employers',
+       'name'=>'name',
+       'employee_image'=>'employee image',
+       'employee_info'=>'employer info',
+        'edite_employer'=>'edite employer',
+       'fund_address_in_arabic'=>'fund address in arabic',
+       'fund_address_in_english'=>'fund address in english',
+       'fund_desc_in_arabic'=>'fund description in arabic',
+       'fund_desc_in_english'=>'fund description in english',
+       'Application_fee'=>'Application fee',
+       'fund_ratio'=>'fund ratio',
+       'choose_categories'=>'choose categories',
+       'fund_image'=>'fund image',
+       'choose_requires'=>'choose requires',
+       'create_fund'=>'create fund',
+       'funds'=>'funds',
+       'fund'=>'fund', 
+       'name_arabic'=>'arabic name',
+       'english_name'=>'english name',
+       'category_name'=>'category_name',
+       'fund_ratio'=>'fund ratio',
+       'edit_fund'=>'edit fund',
+       'fund_info'=>'fund information',
+       'fund_name_in_english'=>'fund name in english',
+       'fund_name_in_arabic'=>'fund name in arabic',
+       'main_appairance'=>'main appairance',
+       'fund_name_in_arabic'=>'fund name in arabic',
+       'common_questions'=>'commonm questions',
+       'communication'=>'communication',
+       'message'=>'message',
+       'main_Measures'=>'main Measures',
+       'Measures'=>' Measures',
+       'user'=>'user',
+       'main_Measures'=>'main Measures',
+       'main_Measures'=>'main Measures',
+        'add_fund'=>'add new fund',
+
+
     // 'should_choose_category' => 'يجب اختيار مخزن اولا',
     // 'wrong_old_password' => 'من فضلك ادخل الباسورد صحيح',
     // 'Updated_Successfully' => 'تم التعديل بنجاح',

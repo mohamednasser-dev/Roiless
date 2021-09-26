@@ -2,34 +2,34 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">التمويلات</h3>
+            <h3 class="text-themecolor">{{trans('admin.funds')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">التمويلات</li>
-                <li class="breadcrumb-item active"><a href="{{route('home')}}">الصفحة الرئيسية</a></li>
+                <li class="breadcrumb-item">{{trans('admin.funds')}}</li>
+                <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>
     <!-- /.card-header -->
     <div class="title">
         <a href="{{route('fund.create')}} "
-           class="btn btn-info btn-bg">أضافة تمويل جديد</a>
+           class="btn btn-info btn-bg">{{trans('admin.add_fund')}}</a>
     </div>
     <br>
     <div class="row">
         <table class="table full-color-table full-primary-table">
             <thead>
             <tr>
-                <th class="text-lg-center">اسم التمويل بالعربي</th>
-                <th class="text-lg-center"> اسم التمويل بالانجليزيه</th>
-                <th class="text-lg-center">وصف التمويل بالعربي</th>
-                <th class="text-lg-center">وصف التمويل بالانجليزي</th>
-                <th class="text-lg-center"> القسم</th>
-                <th class="text-lg-center">رسوم الطلب</th>
-                <th class="text-lg-center"> الصوره</th>
-                <th class="text-lg-center">الظهور الرئيسيه</th>
-                <th class="text-lg-center">الاجرائات</th>
+                <th class="text-lg-center">{{trans('admin.fund_name_in_arabic')}}</th>
+                <th class="text-lg-center"> {{trans('admin.fund_name_in_english')}}</th>
+                <th class="text-lg-center">{{trans('admin.fund_desc_in_arabic')}}</th>
+                <th class="text-lg-center">{{trans('admin.fund_desc_in_english')}}</th>
+                <th class="text-lg-center"> {{trans('admin.categories')}}</th>
+                <th class="text-lg-center">{{trans('admin.Application_fee')}}</th>
+                <th class="text-lg-center">{{trans('admin.fund_image')}}</th>
+                <th class="text-lg-center">{{trans('admin.main_appairance')}}</th>
+                <th class="text-lg-center">{{trans('admin.main_Measures')}}</th>
             </tr>
             </thead>
 
