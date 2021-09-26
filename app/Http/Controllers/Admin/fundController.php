@@ -150,7 +150,6 @@ class fundController extends Controller
             'featured' => $request->status
         ]);
 
-        return 1;
 
     }
 
