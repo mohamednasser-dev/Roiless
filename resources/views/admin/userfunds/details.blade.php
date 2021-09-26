@@ -297,7 +297,7 @@
                 <div id="image-popups" class="row">
                     @foreach($requestreview->Files as $file)
                         <div class="col-lg-2 col-md-4">
-                            <a href="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
+                            <a href="{{asset('/uploads/fund_file').'/'.$file->file_name}}" 
                                data-effect="mfp-zoom-in"><img
                                     src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
                                     class="img-responsive"/></a>
