@@ -210,6 +210,7 @@
 
 
 <div class="row row-cols-2">
+
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
@@ -219,42 +220,12 @@
                     @foreach(json_decode($requestreview->dataform, true) as $data)
 
                         <h3 class="control-label">{{ $data['name'] }}</h3>
-                        <input type="text" id="firstName" class="form-control"value="{{ $data['value'] }} " readonly>
+                        <input type="text" id="firstName" class="form-control" value="{{ $data['value'] }} " readonly>
                     @endforeach
                 </div>
             </div>
         </div>
 
-
-
-
-        <div class="card">
-            <div class="card-title">
-                <h3>مرفاقات التمويل</h3>
-            </div>
-            @foreach($requestreview->Files as $file)
-            <div class="card">
-                <div class="row el-element-overlay">
-                    <div class="el-card-item ">
-                        <div class="el-card-avatar el-overlay-1"><img
-                                src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
-                                alt="user"/>
-                            <div class="el-overlay">
-                                <ul class="el-info">
-                                    <li><a class="btn default btn-outline image-popup-vertical-fit"
-                                           href="{{asset('/uploads/fund_file').'/'.$file->file_name}}"><i
-
-                                                class="icon-magnifier"></i></a></li>
-                                    <li><a class="btn default btn-outline" href="javascript:void(0);"><i
-                                                class="icon-link"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
 
     </div>
     <div class="col-md-6">
@@ -311,24 +282,48 @@
             </div>
         </div>
     </div>
-    <div class="card ">
-        <div class="row">
-            <div class="card-body  " STYLE="width: 1340px">
-                <div class="card-title center">
+</div>
 
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
-                        التحويل لموظف اخر
-                    </button>
 
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
-                        الموافقه علي الطلب
-                    </button>
+<div class="row">
+    <div class="col-12">
 
-                    <button
-                        type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">مراجعه الطلب
-                    </button>
+        <div class="card">
+
+            <div class="card-body">
+                <div class="card-title">
+                    <h5>صور التمويل</h5>
+                </div>
+                <div id="image-popups" class="row">
+                    @foreach($requestreview->Files as $file)
+                        <div class="col-lg-2 col-md-4">
+                            <a href="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
+                               data-effect="mfp-zoom-in"><img
+                                    src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
+                                    class="img-responsive"/></a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="card col-12 ">
+        <div class="card-body  center" >
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
+                    التحويل لموظف اخر
+                </button>
+
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
+                    الموافقه علي الطلب
+                </button>
+
+                <button
+                    type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">مراجعه الطلب
+                </button>
+
         </div>
     </div>
 </div>
@@ -444,6 +439,8 @@
         </div>
     </div>
 </div>
+
+
 @endsection
 @section('scripts')
     <script src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
