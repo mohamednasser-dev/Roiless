@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
@@ -22,61 +23,58 @@ class FundController extends Controller
             if (empty($lang)) {
                 $lang = "en";
             }
-            $Funddetailes=Fund::select('id','name_'.$lang.' as name','image','columns')->where('id',$id)->first();
-            $bank=Bank::select('name_'.$lang.' as name','image')->get();
-            $Funddetailes->columns =json_decode($Funddetailes->columns);
-            if($Funddetailes)
-            {
-              $data['Funddetailes']=$Funddetailes;
-              $data['banks']=$bank;
-              return msgdata($request, success(), 'funddetailes_success', $data);
+            $Funddetailes = Fund::select('id', 'name_' . $lang . ' as name', 'image', 'columns')->where('id', $id)->first();
+            $bank = Bank::select('name_' . $lang . ' as name', 'image')->get();
+            $Funddetailes->columns = json_decode($Funddetailes->columns);
+            if ($Funddetailes) {
+                $data['Funddetailes'] = $Funddetailes;
+                $data['banks'] = $bank;
+                return msgdata($request, success(), 'funddetailes_success', $data);
             }
 
         } catch (Exception $e) {
             return $this->returnError($e->getCode(), $e->getMessage());
         }
     }
+
     public function addfund(Request $request)
     {
         $user = auth()->user();
 
-        $myJSON = json_encode($request->dataform);    
-            $rules = [
-                'fund_id' => 'required',
-                'dataform' => 'required',
-                'file' => '',
-            ];
-            $validator = Validator::make($request->all(), $rules);
-            if ($request->file) {
-                    $length= count($request->file);
-                    for($i=0;$i<$length;$i++)
-                    {
-                         $image = $request->file[$i];  // your base64 encode
-                         $image = str_replace( 'data:image/png;base64,', '', $image);  
-                          //   $extension = explode('/', mime_content_type($image))[1];
-                          //  $ext = base64_decode($image)->getClientOriginalExtension();
-                          //  dd($ext);
-                         $imageName[$i] = Str::random(12).'.'.'png';
-                         \File::put('uploads/fund_file/' . $imageName[$i], base64_decode($image));
-                    }
+        $myJSON = json_encode($request->dataform);
+        $rules = [
+            'fund_id' => 'required',
+            'dataform' => 'required',
+            'file' => '',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($request->file) {
+            $length = count($request->file);
+            foreach ($request->file as $key => $row) {
+                $image = $request->file[$key]['value'];  // your base64 encode
+                $image = str_replace('data:image/png;base64,', '', $image);
+                $ext = $request->file[$key]['ext'];
+                $imageName[$key] = Str::random(12) . '.' . $ext;
+                \File::put('uploads/fund_file/' . $imageName[$key], base64_decode($image));
             }
-            if ($validator->fails()) {
-                return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
-              }else{
-                $fund=Fund::find($request->fund_id);  
-                $user_fund_data['fund_amount'] = $fund->cost ;
-                $user_fund_data['dataform'] = json_encode($request->dataform) ;
-                $user_fund_data['fund_id'] = $request->fund_id ;
-                $user_fund_data['user_id'] = $user->id ;
-                $user_funds = User_fund::create($user_fund_data);
-                if($request->file != null){
-                    foreach($request->file as $key => $row){
-                        $file_data['user_fund_id'] = $user_funds->id ;
-                        $file_data['file_name'] = $imageName[$key];
-                        Fund_file::create($file_data);
-                    }
-                }
-            return response()->json(['status'=>'200','msg'=>'add user fund successfully']);         
         }
-    }  
- }
+        if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        } else {
+            $fund = Fund::find($request->fund_id);
+            $user_fund_data['fund_amount'] = $fund->cost;
+            $user_fund_data['dataform'] = json_encode($request->dataform);
+            $user_fund_data['fund_id'] = $request->fund_id;
+            $user_fund_data['user_id'] = $user->id;
+            $user_funds = User_fund::create($user_fund_data);
+            if ($request->file != null) {
+                foreach ($request->file as $key => $row) {
+                    $file_data['user_fund_id'] = $user_funds->id;
+                    $file_data['file_name'] = $imageName[$key];
+                    Fund_file::create($file_data);
+                }
+            }
+            return response()->json(['status' => '200', 'msg' => 'add user fund successfully']);
+        }
+    }
+}

@@ -67,7 +67,7 @@
                                                 <div class="col-sm-12">
                                                 <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(this)" style="display: none;"></p>
 
-                                                    <button class="btn btn-success">تغيير صوره الحساب</button>
+                                                    <button class="btn btn-success">{{trans('admin.change_photo')}}</button>
                                                 </div>
                                             </div>
                                       </form>
@@ -75,8 +75,8 @@
                             </div>
                             <div>
                                 <hr> </div>
-                            <div class="card-body"> <small class="text-muted">Email address </small>
-                                <h6>{{Auth::user()->email}}</h6> <small class="text-muted p-t-30 db">Phone</small>
+                            <div class="card-body"> <small class="text-muted">{{trans('admin.email')}} </small>
+                                <h6>{{Auth::user()->email}}</h6> <small class="text-muted p-t-30 db">{{trans('admin.phone')}}</small>
                                <p>{{Auth::user()->phone}}</p>
                             </div>
                         </div>
@@ -87,8 +87,8 @@
                         <div class="card">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs profile-tab" role="tablist">
-                                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab">بيانات المستخدم</a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab">كلمه المرور</a> </li>
+                                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab">{{trans('admin.user_info')}}</a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab">{{trans('admin.password')}}</a> </li>
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
@@ -106,27 +106,27 @@
                                         @csrf
                                             <input type="hidden" name="id" value="{{Auth::user()->id}}"> 
                                             <div class="form-group">
-                                                <label class="col-md-12">Full Name</label>
+                                                <label class="col-md-12">{{trans('admin.full_name')}}</label>
                                                 <div class="col-md-12">
                                                     <input name="name" type="text" value="{{Auth::user()->name}}" class="form-control form-control-line">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="example-email" class="col-md-12">Email</label>
+                                                <label for="example-email" class="col-md-12">{{trans('admin.email')}}</label>
                                                 <div class="col-md-12">
                                                     <input type="email" value="{{Auth::user()->email}}" class="form-control form-control-line" name="email" id="example-email">
                                                 </div>
                                             </div>
                                            
                                             <div class="form-group">
-                                                <label class="col-md-12">Phone No</label>
+                                                <label class="col-md-12">{{trans('admin.phone_num')}}</label>
                                                 <div class="col-md-12">
                                                     <input name="phone" type="text" value="{{Auth::user()->phone}}" class="form-control form-control-line">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-sm-12">
-                                                    <button class="btn btn-success" type="submit">تحديث الحساب</button>
+                                                    <button class="btn btn-success" type="submit">{{trans('admin.update_profile')}}</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -145,19 +145,19 @@
                                         @csrf
                                         <input type="hidden" name="id" value="{{Auth::user()->id}}"> 
                                            <div class="form-group">
-                                                <label class="col-md-12"> كلمه المرور القديمه</label>
+                                                <label class="col-md-12">{{trans('admin.old_password')}}</label>
                                                 <div class="col-md-12">
                                                     <input type="password" name="old_password"  class="form-control form-control-line">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-md-12">كلمه المرور</label>
+                                                <label class="col-md-12">{{trans('admin.password')}}</label>
                                                 <div class="col-md-12">
                                                     <input type="password" name="password"  class="form-control form-control-line">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="example-email" class="col-md-12">تاكيد كلمه المرور</label>
+                                                <label for="example-email" class="col-md-12">{{trans('admin.confirm_password')}}</label>
                                                 <div class="col-md-12">
                                                     <input type="password" name="password_confirmation" class="form-control form-control-line" name="example-email" id="example-email">
                                                 </div>
