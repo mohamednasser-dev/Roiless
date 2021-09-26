@@ -15,7 +15,7 @@
             </ol>
         </div>
     </div>
-     
+
     <div class="row">
         <div class="col-sm-12">
 
@@ -84,7 +84,6 @@
                         {{ Form::submit( trans('admin.public_Add') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
                     </div>
                 </div>
-
             </div>
             {{ Form::close() }}
         </div>
