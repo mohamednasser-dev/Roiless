@@ -45,8 +45,26 @@
                        <!-- Language -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-us"></i></a>
-                            <div class="dropdown-menu dropdown-menu-right animated bounceInDown"> <a class="dropdown-item" href="{{route('change_lang')}}/ar"><i class="flag-icon flag-icon-kw"></i> العربيه</a> </div>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                            @if(app()->getLocale() == 'en')
+                            <i class="flag-icon flag-icon-us"></i>
+                            @else
+                            <i class="flag-icon flag-icon-kw"></i>
+                            @endif
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right animated bounceInDown"> 
+                                @if(app()->getLocale() == 'en')
+                                <a class="dropdown-item" href="{{url('change_lang/ar')}}">
+                                    <i class="flag-icon flag-icon-kw"></i> 
+                                    العربيه
+                                </a>
+                                @else
+                                <a class="dropdown-item" href="{{url('change_lang/en')}}">
+                                    <i class="flag-icon flag-icon-us"></i> 
+                                    English
+                                </a>
+                                @endif
+                             </div>
                         </li>
                         <!-- ============================================================== -->
                         <!-- ============================================================== -->
