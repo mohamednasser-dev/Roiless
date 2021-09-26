@@ -19,4 +19,8 @@ class HomeController extends Controller
     {
         return view('viewprofile');
     }
+    public function change_lang(Request $request)
+    {
+       return $request->all();
+    }
 }

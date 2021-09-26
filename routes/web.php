@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/test', function(){
-    return view('testhome');
-});
+
 // Auth::routes();
 
 
@@ -39,6 +37,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('users/{id}/delete', 'Admin\usersController@destroy')->name('users.delete');
     Route::get('users/{id}/details', 'Admin\usersController@show')->name('users.details');
     Route::get('viewprofile/{id}', 'HomeController@viewprofile')->name('viewprofile');
+    Route::get('change_lang', 'HomeController@change_lang')->name('change_lang');
     Route::post('users/actived', 'Admin\usersController@update_Actived')->name('users.actived');
 
    
