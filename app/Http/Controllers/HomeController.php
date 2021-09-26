@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -19,8 +20,13 @@ class HomeController extends Controller
     {
         return view('viewprofile');
     }
-    public function change_lang(Request $request)
+    public function change_lang(Request $request,$lang)
     {
-       return $request->all();
+        if (session()->has('lang')) {
+            session()->forget('lang');
+        }
+        session()->put('lang', $lang);
+        \App::setLocale($lang);
+        return back();
     }
 }
