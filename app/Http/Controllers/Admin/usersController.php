@@ -130,11 +130,12 @@ class usersController extends Controller{
     public function destroy($id){
         $user = $this->objectName::where('id', $id)->first();
         try {
-            $user->deleted = '1';
+            $user->delete();
             $user->save();
             activity('admin')->log('تم حذف مستخدم  بنجاح');
             Alert::warning('الحذف', trans('admin.deleteSuccess'));
-        }catch(Exception $exception){
+        }catch(Exception $ex){
+            return $ex;
             session()->flash('danger', trans('admin.emp_no_delete'));
         }
         return back();
