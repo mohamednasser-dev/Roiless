@@ -52,6 +52,14 @@ class UserfundsController extends Controller
 
     public function review($id)
     {
+
+        $userfund = User_Fund::find($id);
+
+        if (!$userfund){
+            Alert::warning('تنبية', 'لا يوجد طلب تمويل');
+            return redirect()->back();
+        }
+
         $requestreview = User_Fund::find($id);
         $empolyers = Admin::where('type', 'employer')->where('cat_id', auth()->user()->cat_id)->where('id', '<>', auth()->user()->id)->get();
         $banks = Bank::all();

@@ -1,4 +1,5 @@
 @extends('admin_temp')
+@extends('admin_temp')
 @section('styles')
     <link rel="stylesheet" href="{{ asset('/assets/plugins/dropify/dist/css/dropify.min.css') }}">
     <link href="{{ asset('/assets/plugins/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css">
