@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('users/{id}/delete', 'Admin\usersController@destroy')->name('users.delete');
     Route::get('users/{id}/details', 'Admin\usersController@show')->name('users.details');
     Route::get('viewprofile/{id}', 'HomeController@viewprofile')->name('viewprofile');
-    Route::get('change_lang', 'HomeController@change_lang')->name('change_lang');
+    Route::get('change_lang/{lang}', 'HomeController@change_lang')->name('change_lang');
     Route::post('users/actived', 'Admin\usersController@update_Actived')->name('users.actived');
 
    
