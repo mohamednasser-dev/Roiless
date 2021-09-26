@@ -20,6 +20,7 @@
         <div class="col-sm-12">
 
             {{ Form::open( ['route'  => ['employer.store'],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
+
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">{{trans('admin.employers_info')}}</h4>
