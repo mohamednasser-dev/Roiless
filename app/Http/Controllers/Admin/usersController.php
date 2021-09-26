@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Notification;
 use Exception;
+use Str;
 
 class usersController extends Controller{
     public $objectName;
@@ -73,9 +74,8 @@ class usersController extends Controller{
 
     public function edit($id)
     {
-        $roles = Role::all();
         $user_data = $this->objectName::where('id', $id)->first();
-        return view($this->folderView.'edit', \compact('user_data','roles'));
+        return view($this->folderView.'edit', \compact('user_data'));
     }
 
     public function update(Request $request, $id)
@@ -86,34 +86,34 @@ class usersController extends Controller{
                     'name' => 'required',
                     'email' => 'required|unique:users,email,'.$id,
                     'password' => 'required|min:6|confirmed',
-//                    'role_id' => 'required|exists:roles,id'
                 ]);
         }else{
             $data = $this->validate(\request(),
                 [
                     'name' => 'required',
                     'email' => 'required|unique:users,email,'.$id,
-//                    'role_id' => 'required|exists:roles,id'
                 ]);
         }
+            $user = User::find($id);
         if($request['password'] != null  && $request['password_confirmation'] != null ){
             $data['password'] = bcrypt(request('password'));
             $newData['name'] =$request['name'];
+            $data['image']  = Str::after($user->image, 'users_images/');
+            if($request->image != null){
+                $data['image'] = $this->MoveImage($request->image,'uploads/users_images');
+            }
             User::where('id',$id)->update($data);
             activity('admin')->log('تم تحديث مستخدم  بنجاح');
-
-            DB::table('model_has_roles')
-                ->where('model_id', $id)
-                ->update(['role_id' => $request['role_id']]);
             session()->flash('success',  trans('admin.updatSuccess'));
             return redirect(url('users'));
         }else{
             unset($data['password']);
             unset($data['password_confirmation']);
+            $data['image']  = Str::after($user->image, 'users_images/');
+            if($request->image != null){
+                $data['image'] = $this->MoveImage($request->image,'uploads/users_images');
+            }
             User::where('id',$id)->update($data);
-            DB::table('model_has_roles')
-                ->where('model_id', $id)
-                ->update(['role_id' => $request['role_id']]);
             session()->flash('success',  trans('admin.updatSuccess'));
             return redirect(url('users'));
         }
@@ -133,7 +133,6 @@ class usersController extends Controller{
             $user->deleted = '1';
             $user->save();
             activity('admin')->log('تم حذف مستخدم  بنجاح');
-
             Alert::warning('الحذف', trans('admin.deleteSuccess'));
         }catch(Exception $exception){
             session()->flash('danger', trans('admin.emp_no_delete'));

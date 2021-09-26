@@ -7,7 +7,7 @@ return [
 
 
 
-
+    'employers_info'=>'معلومات الموظف',
 
 
 
@@ -89,7 +89,6 @@ return [
        'main_Measures'=>'قائمه الاجرائات',
        'Measures'=>' الاجرائات',
        'user'=>'المستخدم',
-    
         'add_fund'=>'اضافه تمويل جديد',
 
     // 'should_choose_category' => 'يجب اختيار مخزن اولا',
