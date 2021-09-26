@@ -115,8 +115,6 @@
             /* Full-width containers */
             .container {
                 width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
             }
 
             /* Make sure that all arrows are pointing leftwards */
@@ -140,18 +138,14 @@
 
         .time-line {
             margin-right: 47px;
+            position:relative
         }
-
-        .timeline-date:before {
-            content: "15 اكتوبر";
+        .time-line label{
             position: absolute;
-            width: 60px;
-            height: 53px;
+            top: 0;
+            right: -48px;
             text-align: center;
-            z-index: 38;
-            right: 6px;
         }
-
         .timeline-list {
             border-right: 3px solid #ccc;
             position: relative;
@@ -162,7 +156,7 @@
         .timeline-list:before {
             content: "";
             position: absolute;
-            top: 10px;
+            top: 0;
             right: -14px;
             width: 25px;
             height: 25px;
@@ -176,7 +170,7 @@
             margin-right: 36px;
             position: relative;
             background: #ccc;
-            border-radius: 10px;
+            border-radius: 10px 0 10px 10px;
             padding: 25px 25px 0px;
             text-align: right;
         }
@@ -187,8 +181,8 @@
             border-style: solid;
             border-color: transparent transparent transparent #ccc;
             position: absolute;
-            top: 9px;
-            right: -26px;
+            top: 0px;
+            right: -27px;
         }
 
         .time-line .img img {
@@ -212,8 +206,8 @@
 </div>
 
 
-<div class="row">
-    <div class="col-6">
+<div class="row row-cols-2">
+    <div class="col-md-6">
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
@@ -252,7 +246,7 @@
         </div>
 
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
         <div class="card">
 
             <div class="card-body">
@@ -267,6 +261,7 @@
                             @foreach($histories as $history)
                                 <div class="time-line">
                                     <div class="container">
+                                        <label>15 <br> October</label>
                                         <div class="timeline-date">
                                             <div class="timeline-list">
                                                 <div class="timeline-all">
@@ -292,142 +287,152 @@
                                     </div>
                                 </div>
 
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+        <div class="card ">
+            <div class="row">
+            <div class="card-body  " STYLE="width: 1340px">
+                    <div class="card-title center">
+
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
+                            التحويل لموظف اخر
+                        </button>
+
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
+                            الموافقه علي الطلب
+                        </button>
+
+                        <button
+                            type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">مراجعه الطلب
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="row">
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
-            التحويل لموظف اخر
-        </button>
+        <div class="modal fade" id="Empoloyers" tabindex="-1" role="dialog" aria-labelledby="EmpoloyersLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="EmpoloyersLabel1">اختر الموظف</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <form class="form"
+                          action="{{route('fund.redirect.emp',$requestreview->id)}}"
+                          method="POST">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="form-group has-success">
 
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
-            الموافقه علي الطلب
-        </button>
+                                <label class="control-label"> ملحوظه بالعربيه </label>
+                                <input type="text" class="form-control" name="note_ar" required>
+                                <label class="control-label"> ملحوظه بالانجليزيه </label>
+                                <input type="text" class="form-control" name="note_en" required>
+                                <label class="control-label"> الموظفين </label>
 
-        <button
-            type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">مراجعه الطلب
-        </button>
-    </div>
-
-<div class="row">
-    <div class="modal fade" id="Empoloyers" tabindex="-1" role="dialog" aria-labelledby="EmpoloyersLabel1">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="EmpoloyersLabel1">اختر الموظف</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <form class="form"
-                      action="{{route('fund.redirect.emp',$requestreview->id)}}"
-                      method="POST">
-                    @csrf
-                    <div class="col-md-12">
-                        <div class="form-group has-success">
-
-                            <label class="control-label"> ملحوظه بالعربيه </label>
-                            <input type="text" class="form-control" name="note_ar" required>
-                            <label class="control-label"> ملحوظه بالانجليزيه </label>
-                            <input type="text" class="form-control" name="note_en" required>
-                            <label class="control-label"> الموظفين </label>
-
-                            <select class="form-control custom-select" name="emp_id" required>
-                                @foreach($empolyers as $empolyer )
-                                    <option value=""></option>
-                                    <option value="{{$empolyer->id}}">{{$empolyer->name}}</option>
-                                @endforeach
-                            </select>
+                                <select class="form-control custom-select" name="emp_id" required>
+                                    @foreach($empolyers as $empolyer )
+                                        <option value=""></option>
+                                        <option value="{{$empolyer->id}}">{{$empolyer->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">اختيار</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">اختيار</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="modal fade" id="banks" tabindex="-1" role="dialog" aria-labelledby="banksLabel1">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="banksLabel1">اختر الموظف</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <form class="form"
-                      action="{{route('fund.redirect.bank',$requestreview->id)}}"
-                      method="POST">
-                    @csrf
-                    <div class="col-md-12">
-                        <div class="form-group has-success">
-                            <label class="control-label"> ملحوظه بالعربيه </label>
-                            <input type="text" class="form-control" name="note_ar" required>
-                            <label class="control-label"> ملحوظه بالانجليزيه </label>
-                            <input type="text" class="form-control" name="note_en" required>
-                            <br>
-                            <label class="control-label"> البنوك </label>
-                            <select class="form-control custom-select" name="bank_id">
-                                @foreach($banks as $bank)
-                                    <option value="{{$bank->id}}">{{$bank->name_ar}}</option>
-                                @endforeach
-                            </select>
+    <div class="row">
+        <div class="modal fade" id="banks" tabindex="-1" role="dialog" aria-labelledby="banksLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="banksLabel1">اختر الموظف</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <form class="form"
+                          action="{{route('fund.redirect.bank',$requestreview->id)}}"
+                          method="POST">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="form-group has-success">
+                                <label class="control-label"> ملحوظه بالعربيه </label>
+                                <input type="text" class="form-control" name="note_ar" required>
+                                <label class="control-label"> ملحوظه بالانجليزيه </label>
+                                <input type="text" class="form-control" name="note_en" required>
+                                <br>
+                                <label class="control-label"> البنوك </label>
+                                <select class="form-control custom-select" name="bank_id">
+                                    @foreach($banks as $bank)
+                                        <option value="{{$bank->id}}">{{$bank->name_ar}}</option>
+                                    @endforeach
+                                </select>
+
+                            </div>
 
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">اختيار</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">اختيار</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="modal fade" id="user" tabindex="-1" role="dialog" aria-labelledby="userLabel1">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="banksLabel1">مراجعه الورق المطلوب مره اخري</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <form class="form"
-                      action="{{route('fund.redirect.user',$requestreview->id)}}"
-                      method="POST">
-                    @csrf
-                    <div class="col-md-12">
-                        <div class="form-group has-success">
+    <div class="row">
+        <div class="modal fade" id="user" tabindex="-1" role="dialog" aria-labelledby="userLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="banksLabel1">مراجعه الورق المطلوب مره اخري</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <form class="form"
+                          action="{{route('fund.redirect.user',$requestreview->id)}}"
+                          method="POST">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="form-group has-success">
 
-                            <label class="control-label"> ملحوظه بالعربيه </label>
-                            <input type="text" class="form-control" name="note_ar" required>
-                            <label class="control-label"> ملحوظه بالانجليزيه </label>
-                            <input type="text" class="form-control" name="note_en" required>
+                                <label class="control-label"> ملحوظه بالعربيه </label>
+                                <input type="text" class="form-control" name="note_ar" required>
+                                <label class="control-label"> ملحوظه بالانجليزيه </label>
+                                <input type="text" class="form-control" name="note_en" required>
+                            </div>
+
                         </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">اختيار</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">اختيار</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
-@section('scripts')
-    <script src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js')}}"></script>
-    <script type="text/javascript">
-        $('#slimtest1, #slimtest2, #slimtest3, #slimtest4').perfectScrollbar();
-    </script>
-@endsection
+    @endsection
+    @section('scripts')
+        <script src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
+        <script
+            src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js')}}"></script>
+        <script type="text/javascript">
+            $('#slimtest1, #slimtest2, #slimtest3, #slimtest4').perfectScrollbar();
+        </script>
+    @endsection
