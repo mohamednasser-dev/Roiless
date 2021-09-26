@@ -10,6 +10,8 @@ use App\Models\Admin;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Str;
+
 class employerController extends Controller
 
 {
@@ -31,7 +33,7 @@ class employerController extends Controller
 
     public function show($id)
     {
-        
+
         $employers = Admin::where('id', $id)->first();
         return view($this->folderView . 'details', compact('employers'));
     }
@@ -39,7 +41,7 @@ class employerController extends Controller
     public function create()
     {
         $employers = Admin::where('type', 'employer')->orderBy('name', 'desc');
-        $categories=Category::get();
+        $categories=  Category::get();
         return view($this->folderView . 'create_employer', compact('employers','categories'));
     }
 
@@ -62,7 +64,7 @@ class employerController extends Controller
                 $data['image'] = $this->MoveImage($request->image, 'uploads/admins_image');
             }
             unset($data['password_confirmation']);
-            $data['type'] = 'employer';       
+            $data['type'] = 'employer';
             $employee = Admin::create($data);
             activity('admin')->log('تم اضافه الموظف بنجاح');
             $notification = $request['notification'];
@@ -82,29 +84,41 @@ class employerController extends Controller
         return view($this->folderView . 'edit', \compact('employer'));
     }
 
-    public function update(Request $request )
+    public function update(Request $request ,$id )
     {
-      
-        if($request->id==Auth::user()->id){
-            $id=$request->id;
-        }
-        else{
-            return redirect()->back();
-        }
-      
+        $employee = Admin::find($id);
+        if($request['password'] != null && $request['password_confirmation'] != null){
             $data = $this->validate(\request(),
                 [
-                     'name' => 'required',
-                     'email' => 'required|unique:admins,email,' . $id,
-                     'phone'=>'required|unique:admins,phone,'.$id
+                    'name' => 'required|unique:admins,name,'.$id,
+                    'email' => 'required|unique:admins,email,'.$id,
+                    'phone' => 'required|unique:admins,phone,'.$id,
+                    'password' => 'required|min:6|confirmed',
+                    'password_confirmation' => 'required|min:6',
                 ]);
-            Admin::where('id', $id)->update($data);
-            Alert::success('تمت العمليه','تم تحديث معلومات الحساب');
-            return redirect()->route('viewprofile',Auth::user()->id);    
+            $data['password'] = bcrypt(request('password'));
+            unset($data['password_confirmation']);
+        }else{
+            $data = $this->validate(\request(),
+                [
+                    'name' => 'required|unique:admins,name,'.$id,
+                    'email' => 'required|unique:admins,email,'.$id,
+                    'phone' => 'required|unique:admins,phone,'.$id,
+                ]);
+        }
+        $data['type'] = 'employer';
+        $data['image']  = Str::after($employee->image, 'admins_image/');
+        if($request->image != null){
+            $data['image'] = $this->MoveImage($request->image,'uploads/admins_image');
+        }
+        Admin::where('id', $id)->update($data);
+        Alert::success('تمت العمليه','تم تحديث معلومات الحساب');
+        return redirect()->route('employer.index');
+
     }
      public function updatepassword(Request $request)
      {
-       
+
         if($request->id==Auth::user()->id){
             $id=$request->id;
         }
@@ -115,14 +129,14 @@ class employerController extends Controller
         [
              'old_password'=>['required'],
              'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);      
-                  $employer=Admin::find($id);  
+        ]);
+                  $employer=Admin::find($id);
                 if(Hash::check($request->old_password, $employer->password)){
                         $data['password'] = bcrypt(request('password'));
                         unset($data['old_password']);
                         Admin::where('id', $id)->update($data);
                         Alert::success('تمت العمليه','تم تحديث كلمه مرور الحساب');
-                        return redirect()->route('viewprofile',Auth::user()->id); 
+                        return redirect()->route('viewprofile',Auth::user()->id);
                     }
                     else{
                         return redirect()->back()->with(["wrong_pass"=>'كلمه المرور القديمه خاطئه']);;
@@ -149,10 +163,10 @@ class employerController extends Controller
                if( $employee->image !== null){
                   unlink("uploads/admins_image/".$image[$length]);
               }
-           
+
             // activity('admin')->log('تم تحديث الموظف بنجاح');
             Alert::success('تمت العمليه','تم تحديث صوره الحساب');
-            return redirect()->route('viewprofile',Auth::user()->id);    
+            return redirect()->route('viewprofile',Auth::user()->id);
         }else{
             return redirect()->back();
         }

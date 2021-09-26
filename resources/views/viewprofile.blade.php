@@ -3,7 +3,7 @@
        <style>
             .cont-image{
              position: relative;
-           
+
              }
             .cont-img img { display: block; }
             .img-circle{
@@ -94,7 +94,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="home" role="tabpanel">
                                     <div class="card-body">
-                                      
+
                                     @if(Session::has('wrong_pass'))
                                         <div class="alert alert-danger" role="alert">
                                         {{Session::get('wrong_pass')}}
@@ -104,7 +104,7 @@
                                     <div class="card-body">
                                         <form action="{{route('employers.update')}}" class="form-horizontal form-material" method="POST">
                                         @csrf
-                                            <input type="hidden" name="id" value="{{Auth::user()->id}}"> 
+                                            <input type="hidden" name="id" value="{{Auth::user()->id}}">
                                             <div class="form-group">
                                                 <label class="col-md-12">{{trans('admin.full_name')}}</label>
                                                 <div class="col-md-12">
@@ -117,7 +117,7 @@
                                                     <input type="email" value="{{Auth::user()->email}}" class="form-control form-control-line" name="email" id="example-email">
                                                 </div>
                                             </div>
-                                           
+
                                             <div class="form-group">
                                                 <label class="col-md-12">{{trans('admin.phone_num')}}</label>
                                                 <div class="col-md-12">
@@ -141,7 +141,7 @@
                                     <div class="card-body">
                                     <form action="{{route('employers.update.password')}}" class="form-horizontal form-material" method="POST">
                                         @csrf
-                                        <input type="hidden" name="id" value="{{Auth::user()->id}}"> 
+                                        <input type="hidden" name="id" value="{{Auth::user()->id}}">
                                            <div class="form-group">
                                                 <label class="col-md-12">{{trans('admin.old_password')}}</label>
                                                 <div class="col-md-12">
@@ -160,18 +160,18 @@
                                                     <input type="password" name="password_confirmation" class="form-control form-control-line" name="example-email" id="example-email">
                                                 </div>
                                             </div>
-                                           
+
                                             <div class="form-group">
                                                 <div class="col-sm-12">
                                                     <button class="btn btn-success">{{trans('admin.change_password')}}</button>
                                                 </div>
                                             </div>
-                                          
+
                                         </form>
                                     </div>
                                 </div>
                                 </div>
-                               
+
                             </div>
                         </div>
                     </div>
