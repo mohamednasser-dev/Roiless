@@ -6,15 +6,15 @@
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{ trans('admin.banks')}}</li>
-                <li class="breadcrumb-item active"><a href="{{route('home')}}"> الصفحة الرئيسية</a></li>
+                <li class="breadcrumb-item">{{trans('admin.banks')}}</li>
+                <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>
     <!-- /.card-header -->
     <div class="title">
         <a href="{{url('banks/create')}} "
-           class="btn btn-info btn-bg">أضافة بنك جديد</a>
+           class="btn btn-info btn-bg">{{trans('admin.add_bank')}}</a>
     </div>
     <br>
     <div class="row">

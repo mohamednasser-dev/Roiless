@@ -7,8 +7,8 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">تعديل البنك</li>
-                <li class="breadcrumb-item"><a href="{{route('banks.index')}}">البنوك</a></li>
-                <li class="breadcrumb-item active"><a href="{{route('home')}}">الرئسيه</a></li>
+                <li class="breadcrumb-item"><a href="{{route('banks.index')}}">{{trans('admin.banks')}}</a></li>
+                <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>
@@ -16,18 +16,18 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">بيانات البنك</h4>
+                    <h4 class="card-title">{{trans('admin.bank_information')}}</h4>
                     <hr>
                     {!! Form::model($bank, ['route' => ['banks.update',$bank->id] , 'method'=>'put','files'=> true]) !!}
                     {{ csrf_field() }}
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label"> اسم البنك بالعربيه </label>
+                        <label for="example-text-input" class="col-md-2 col-form-label"> {{trans('admin.arabic_bank_name')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('name_ar',$bank->name_ar,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">اسم البنك بالانجليزي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.english_bank_name')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('name_en',$bank->name_en,["class"=>"form-control" ,"required"]) }}
                         </div>
@@ -39,13 +39,13 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="example-password-input" class="col-md-2 col-form-label">كلمه المرور</label>
+                        <label for="example-password-input" class="col-md-2 col-form-label">{{trans('admin.bank_password')}}</label>
                         <div class="col-md-10">
                             <input class="form-control" type="password" name="password" id="example-password-input">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="example-password-input2" class="col-md-2 col-form-label">تاكيد كلمه المرور</label>
+                        <label for="example-password-input2" class="col-md-2 col-form-label">{{trans('admin.confirm_password')}}</label>
                         <div class="col-md-10">
                             <input class="form-control" type="password" name="password_confirmation"
                                    id="example-password-input2">

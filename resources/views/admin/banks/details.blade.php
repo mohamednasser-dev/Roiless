@@ -24,13 +24,13 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <small class="text-muted">الاسم بالعربي </small>
+                    <small class="text-muted">{{trans('admin.name_in_arabic')}} </small>
                     <h6>{{$banks->name_ar}}</h6>
-                    <small class="text-muted">الاسم بالانجليزي </small>
+                    <small class="text-muted">{{trans('admin.name_in_english')}} </small>
                     <h6>{{$banks->name_en}}</h6>
-                    <small class="text-muted">البريد الإلكتروني</small>
+                    <small class="text-muted">{{trans('admin.email')}}</small>
                     <h6>{{$banks->email}}</h6>
-                    <small class="text-muted p-t-30 db">رقم الهاتف</small>
+                    <small class="text-muted p-t-30 db">{{trans('admin.phone_num')}}</small>
                     <h6>{{$banks->phone}}</h6>
                     <br/>
                     <a class="btn btn-circle btn-secondary" title="تعديل" href="{{url('users/'.$banks->id.'/edit')}}"><i class="fa fa-edit"></i></a>

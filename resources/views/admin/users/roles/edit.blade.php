@@ -8,7 +8,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">{{trans('admin.edit_role')}}</li>
                 <li class="breadcrumb-item active"><a href="{{url('roles')}}">{{trans('admin.nav_permissions')}}</a></li>
-                <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.nav_home')}}</a></li>
+                <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>

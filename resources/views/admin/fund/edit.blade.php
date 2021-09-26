@@ -6,13 +6,13 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">انشاء تمويل</h3>
+            <h3 class="text-themecolor">{{trans('admin.edit_fund')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">انشاء تمويل</li>
-                <li class="breadcrumb-item"><a href="{{route('fund')}}">التمويلات </a></li>
-                <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.nav_home')}}</a></li>
+                <li class="breadcrumb-item"><a href="{{route('fund')}}">{{trans('admin.funds')}} </a></li>
+                <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>
@@ -22,47 +22,47 @@
                 <div class="card-body">
 
                     {{ Form::open( ['route'  => ['fund.update',$fund->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
-                    <h4 class="card-title">بيانات التمويل</h4>
+                    <h4 class="card-title">{{trans('admin.fund_info')}}</h4>
                     <hr>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان التمويل بالعربي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_address_in_arabic')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('name_ar',$fund->name_ar,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان التمويل بالانجليزي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_address_in_english')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('name_en',$fund->name_en,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">وصف التمويل بالعربي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_desc_in_arabic')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('desc_ar',$fund->desc_ar,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">وصف التمويل بالانجليزي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_desc_in_english')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('desc_en',$fund->desc_en,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">رسوم الطلب</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Application_fee')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('cost',$fund->cost,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>        <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">نسبة التمويل</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_ratio')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('financing_ratio',$fund->financing_ratio,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="example-month-input" class="col-md-2 col-form-label">اختر القسم</label>
+                        <label for="example-month-input" class="col-md-2 col-form-label">{{trans('admin.choose_categories')}}</label>
                         <div class="col-md-10">
                             <select class="custom-select col-12 multiple" id="inlineFormCustomSelect" name="cat_id">
                                 @foreach($categories as $category)
@@ -77,7 +77,7 @@
 
 
                     <div class="form-group row">
-                        <label for="example-month-input" class="col-md-2 col-form-label">اختر المطلوب</label>
+                        <label for="example-month-input" class="col-md-2 col-form-label">{{trans('admin.choose_requires')}}</label>
                         <div class="col-md-10">
                             <select name="columns[]" class="select2 m-b-10 select2-multiple" style="width: 100%"
                                     multiple="multiple" data-placeholder="Choose">
@@ -92,7 +92,7 @@
                         <div class="col-lg-12 col-md-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">صورة التمويل</h4>
+                                    <h4 class="card-title">{{trans('admin.fund_image')}}</h4>
                                     <input type="file" name="image"   data-default-file="{{$fund->image}}" id="input-file-now" class="dropify"/>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                     </div>
 
                     <div class="center">
-                        {{ Form::submit( 'اضافه' ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
+                        {{ Form::submit( trans('admin.edit') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
                     </div>
                     {{ Form::close() }}
                 </div>

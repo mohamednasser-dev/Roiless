@@ -11,7 +11,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">تعديل سؤال</li>
                 <li class="breadcrumb-item"><a href="ٌ{{route('question')}}">الخدمات</a></li>
-                <li class="breadcrumb-item active"><a href="{{route('home')}}">الرئيسيه</a></li>
+                <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>

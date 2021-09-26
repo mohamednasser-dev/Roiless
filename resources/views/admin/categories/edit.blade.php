@@ -5,13 +5,13 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">تعديل قسم جديد</h3>
+            <h3 class="text-themecolor">{{trans('admin.edit_categorie')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">تعديل قسم جديد</li>
-                <li class="breadcrumb-item"><a href="{{route('categories')}}">الاقسام </a></li>
-                <li class="breadcrumb-item active"><a href="{{route('home')}}">الصفحه الرائيسه</a></li>
+                <li class="breadcrumb-item">{{trans('admin.edit_categorie')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('categories')}}">{{trans('admin.categories')}} </a></li>
+                <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>
@@ -27,12 +27,12 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="firstName1">العنوان بالعربيه</label>
+                                    <label for="firstName1">{{trans('admin.name_in_arabic')}}</label>
                                     <input type="text" value="{{ $category->title_ar }}" name="title_ar" class="form-control" id="firstName1"> </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="lastName1">العنوان بالانجليزيه</label>
+                                    <label for="lastName1">{{trans('admin.name_in_english')}}</label>
                                     <input type="text" value="{{ $category->title_en }}" name="title_en" class="form-control" id="lastName1"> </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                             <div class="col-lg-12 col-md-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">صورة السؤال</h4>
+                                        <h4 class="card-title">{{trans('admin.categorie_image')}}</h4>
                                         <input type="file" data-default-file="{{$category->image}}" name="image"
                                                id="input-file-now" class="dropify"/>
                                     </div>
@@ -51,7 +51,7 @@
                         <div style="text-align: center" class="row">
                             <div class="col-md-12" style="text-align:center;">
                                 <button type="submit" style=" margin:10px"
-                                        class="btn btn-info">تعديل
+                                        class="btn btn-info">{{trans('admin.edit')}}
                                 </button>
                             </div>
                         </div>

@@ -2,12 +2,12 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">الاسئله الشائعه</h3>
+            <h3 class="text-themecolor">{{trans('admin.common_questions')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">التواصل</li>
-                <li class="breadcrumb-item active"><a href="{{route('home')}}">الصفحة الرئيسية</a></li>
+                <li class="breadcrumb-item">{{trans('admin.communication')}}</li>
+                <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>
@@ -17,12 +17,12 @@
         <table class="table full-color-table full-primary-table">
             <thead>
             <tr>
-                <th class="text-lg-center">الاسم</th>
-                <th class="text-lg-center">رقم الموبيل</th>
-                <th class="text-lg-center">الايميل</th>
-                <th class="text-lg-center">الرساله</th>
-                <th class="text-lg-center">الاجرائات</th>
-{{--                <th class="text-lg-center">المستخدم</th>--}}
+                <th class="text-lg-center">{{trans('admin.name')}}</th>
+                <th class="text-lg-center">{{trans('admin.phone_num')}}</th>
+                <th class="text-lg-center">{{trans('admin.email')}}</th>
+                <th class="text-lg-center">{{trans('admin.message')}}</th>
+                <th class="text-lg-center">{{trans('admin.Measures')}}</th>
+{{--                <th class="text-lg-center">{{trans('admin.user')}}</th>--}}
             </tr>
             </thead>
 
