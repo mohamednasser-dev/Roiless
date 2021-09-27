@@ -70,6 +70,7 @@ class FundController extends Controller
             if ($request->file != null) {
                 foreach ($request->file as $key => $row) {
                     $file_data['user_fund_id'] = $user_funds->id;
+                    $file_data['file_ext'] = $request->file[$key]['ext'] ;
                     $file_data['file_name'] = $imageName[$key];
                     Fund_file::create($file_data);
                 }
