@@ -38,7 +38,7 @@
                     <td class="text-lg-center">{{$question->answer_ar}}</td>
                     <td class="text-lg-center">{{$question->answer_en}}</td>
                     <td class="text-lg-center ">
-                        <div class="pro-img m-t-20"><img style="height: 80px;" src="{{$question->image}}"></div>
+                        <div class="pro-img"><img style="height: 80px; width: 80px; border-radius: 50%" src="{{$question->image}}"></div>
                     </td>
 
                     <td class="text-lg-center ">

@@ -22,6 +22,7 @@ class Category extends Model
     {
         if ($img)
             return asset('/uploads/category') . '/' . $img;
-
+        else
+            return asset('/uploads/category/default.jpg') ;
     }
 }

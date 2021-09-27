@@ -13,6 +13,7 @@ class common_question extends Model
     {
         if ($img)
             return asset('/uploads/question') . '/' . $img;
-
+        else
+            return asset('/uploads/question/default.jpg') ;
     }
 }

@@ -33,7 +33,7 @@
                     <small class="text-muted p-t-30 db">{{trans('admin.phone_num')}}</small>
                     <h6>{{$banks->phone}}</h6>
                     <br/>
-                    <a class="btn btn-circle btn-secondary" title="تعديل" href="{{url('users/'.$banks->id.'/edit')}}"><i class="fa fa-edit"></i></a>
+                    <a class="btn btn-circle btn-secondary" title="تعديل" href="{{url('banks/'.$banks->id.'/edit')}}"><i class="fa fa-edit"></i></a>
                     <a class="btn btn-circle btn-secondary" title="حذف" onclick="return confirm('هل انت متاكد من حذف هذا البنك')" href="{{route('banks.delete',$banks->id)}}"><i class="fa fa-trash"></i></a>
 
                 </div>

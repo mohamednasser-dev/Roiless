@@ -10,4 +10,13 @@ class Notification extends Model
     public function user(){
         return $this->belongsToMany('App\Models\User' ,'user_notifications','notification_id', 'user_id','id','id');
     }
+
+    public function getImageAttribute($img)
+    {
+        if ($img)
+            return asset('/uploads/notification') . '/' . $img;
+        else
+            return asset('/uploads/notification/default.png') ;
+    }
+
 }

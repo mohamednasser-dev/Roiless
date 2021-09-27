@@ -5,8 +5,8 @@ Email: khalidelfishawy@gmail.com
 */
 
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
-/******************* 
-Global Styles 
+/*******************
+Global Styles
 *******************/
 @import url(../scss/icons/font-awesome/css/font-awesome.min.css);
 @import url(../scss/icons/simple-line-icons/css/simple-line-icons.css);
@@ -967,8 +967,8 @@ File: scss
 /*Light colors*/
 /*Normal Color*/
 /*Extra Variable*/
-/*============================================================== 
- For all pages 
+/*==============================================================
+ For all pages
  ============================================================== */
 #main-wrapper {
   width: 100%;
@@ -1056,8 +1056,8 @@ File: scss
     .topbar .top-navbar .navbar-nav > .nav-item.show {
       background: rgba(0, 0, 0, 0.05); }
   .topbar .profile-pic {
-    width: 30px;
-    border-radius: 100%; }
+    width: 50px;height: 50px;
+    border-radius: 50%; }
   .topbar .dropdown-menu {
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
     -webkit-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
@@ -1084,8 +1084,9 @@ File: scss
           display: inline-block;
           vertical-align: top; }
           .topbar ul.dropdown-user li .dw-user-box .u-img img {
-            width: 100%;
-            border-radius: 5px; }
+            width: 50px;
+              height: 50px;
+            border-radius: 50%; }
         .topbar ul.dropdown-user li .dw-user-box .u-text {
           display: inline-block;
           padding-left: 10px; }
@@ -2489,7 +2490,7 @@ Buttons
   color: #ffffff;
   background-color: #171515; }
 
-/*============================================================== 
+/*==============================================================
  Buttons page
  ============================================================== */
 .button-group .btn {
@@ -2640,7 +2641,7 @@ Form summernote
 .label {
   display: inline-block; }
 
-/*============================================================== 
+/*==============================================================
 Form addons page
 ============================================================== */
 /*Bootstrap select*/
@@ -2687,7 +2688,7 @@ Form addons page
 .input-form .btn {
   padding: 8px 12px; }
 
-/*============================================================== 
+/*==============================================================
 Form Material page
  ============================================================== */
 /*Material inputs*/
@@ -2737,13 +2738,13 @@ Form Material page
     border-bottom: 1px solid #398bf7; }
 
 /*******************
-Form validation error 
+Form validation error
 ******************/
 .error .help-block {
   color: #fb3a3a; }
 
 /*******************
-File Upload 
+File Upload
 ******************/
 .fileupload {
   overflow: hidden;
@@ -5636,8 +5637,8 @@ Author: Wrappixel
 Email: niravjoshi87@gmail.com
 File: scss
 */
-/*============================================================== 
- For Laptop & above all (1650px) 
+/*==============================================================
+ For Laptop & above all (1650px)
  ============================================================== */
 @media (min-width: 1650px) {
   .widget-app-columns {
@@ -5657,8 +5658,8 @@ File: scss
   .auto-height {
     min-height: 240px; } }
 
-/*============================================================== 
- For Laptop & above all (1370px) 
+/*==============================================================
+ For Laptop & above all (1370px)
  ============================================================== */
 @media (max-width: 1370px) {
   .widget-app-columns {
@@ -5670,8 +5671,8 @@ File: scss
   .auto-height {
     min-height: 186px; } }
 
-/*-- ============================================================== 
- Small Desktop & above all (1024px) 
+/*-- ==============================================================
+ Small Desktop & above all (1024px)
  ============================================================== */
 @media (min-width: 1024px) {
   .page-wrapper {
@@ -5705,8 +5706,8 @@ File: scss
       display: -ms-flexbox !important;
       display: flex !important; } }
 
-/*-- ============================================================== 
- Ipad & above all(768px) 
+/*-- ==============================================================
+ Ipad & above all(768px)
  ============================================================== */
 @media (min-width: 768px) {
   .navbar-header {
@@ -5737,8 +5738,8 @@ File: scss
     left: 0;
     right: auto; } }
 
-/*-- ============================================================== 
- Phone and below ipad(767px) 
+/*-- ==============================================================
+ Phone and below ipad(767px)
  ============================================================== */
 @media (max-width: 767px) {
   .container-fluid {
@@ -5994,8 +5995,8 @@ File: scss
   border-right: 1px solid rgba(120, 130, 140, 0.13) !important;
   border-left: 0px !important; }
 
-/*-- ============================================================== 
- Small Desktop & above all (1024px) this is for the page wrapper 
+/*-- ==============================================================
+ Small Desktop & above all (1024px) this is for the page wrapper
  ============================================================== */
 @media (min-width: 1024px) {
   .page-wrapper {
@@ -6039,8 +6040,8 @@ File: scss
     left: 0px;
     right: 0px; } }
 
-/*-- ============================================================== 
- This is for tthe sidebar 
+/*-- ==============================================================
+ This is for tthe sidebar
  ============================================================== */
 .sidebar-footer {
   right: 0px; }
@@ -6060,7 +6061,7 @@ File: scss
   margin-left: 10px;
   margin-right: 0px; }
 
-/*-- ============================================================== 
+/*-- ==============================================================
  This is for Header part
  ============================================================== */
 .topbar .top-navbar {
@@ -6101,7 +6102,7 @@ File: scss
   left: 0;
   right: auto; }
 
-/*-- ============================================================== 
+/*-- ==============================================================
  This is for General Elemtnes
  ============================================================== */
 .modal-footer > :not(:last-child) {
@@ -6129,7 +6130,7 @@ File: scss
 .btn-label {
   margin: -6px -14px -6px 12px; }
 
-/*-- ============================================================== 
+/*-- ==============================================================
  This is for Dahboard 1
  ============================================================== */
 th {
@@ -6186,7 +6187,7 @@ th {
       margin-right: -17px;
       padding-right: 3px; }
 
-/*-- ============================================================== 
+/*-- ==============================================================
  This is for Dahboard 2
  ============================================================== */
 .steamline {
@@ -6208,7 +6209,7 @@ th {
 .feeds li span {
   float: left; }
 
-/*-- ============================================================== 
+/*-- ==============================================================
  This is for Dahboard 3
  ============================================================== */
 .profiletimeline {
@@ -6227,7 +6228,7 @@ th {
   margin-left: 0px;
   margin-right: 5px; }
 
-/*-- ============================================================== 
+/*-- ==============================================================
  This is for chat page
  ============================================================== */
 .chat-main-box .chat-left-aside {
@@ -6243,7 +6244,7 @@ th {
   border-left: 1px solid rgba(120, 130, 140, 0.13);
   border-right: 0px; }
 
-/*-- ============================================================== 
+/*-- ==============================================================
  This is for Tab page
  ============================================================== */
 .vtabs .tabs-vertical {
@@ -6259,7 +6260,7 @@ th {
   margin-left: -1px;
   border-radius: 0; }
 
-/*-- ============================================================== 
+/*-- ==============================================================
  This is for Ribbon page
  ============================================================== */
 .ribbon-vertical-r {
@@ -6275,7 +6276,7 @@ th {
 .ribbon-vwrapper {
   padding: 15px 50px 15px 15px; }
 
-/*-- ============================================================== 
+/*-- ==============================================================
  This is for Form page
  ============================================================== */
 .custom-control {
@@ -6317,7 +6318,7 @@ th {
   border-bottom-left-radius: 0rem;
   border-top-left-radius: 0rem; }
 
-/*-- ============================================================== 
+/*-- ==============================================================
  This is for Form addons page
  ============================================================== */
 .bootstrap-select > .dropdown-toggle {
@@ -6354,7 +6355,7 @@ ul.wysihtml5-toolbar > li {
 .wysihtml5-sandbox {
   direction: rtl; }
 
-/*-- ============================================================== 
+/*-- ==============================================================
  This is for Form wizrd page
  ============================================================== */
 .wizard-content .wizard > .steps > ul > li:after {

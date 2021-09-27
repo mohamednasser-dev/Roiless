@@ -2,11 +2,11 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">الاسئله الشائعه</h3>
+            <h3 class="text-themecolor">الأشعارات</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">الاسئله الشائعه</li>
+                <li class="breadcrumb-item"> الأشعارات</li>
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
@@ -38,7 +38,7 @@
                     <td class="text-lg-center">{{$notification->body_ar}}</td>
                     <td class="text-lg-center">{{$notification->body_en}}</td>
                     <td class="text-lg-center ">
-                        <div class="pro-img m-t-20"><img style="height: 80px;" src="{{$notification->image}}"></div>
+                        <div class="pro-img"><img style="height: 50px; width: 50px; border-radius: 50%" src="{{$notification->image}}"></div>
                     </td>
 
                     <td class="text-lg-center ">
