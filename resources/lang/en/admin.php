@@ -137,18 +137,17 @@ return [
         'add_fund'=>'add fund',
         'created_at'=>'created_at',
         'log_name'=>'log name',
-
            // start user fund details page
-    'funds_need'=>'funds',
-    'fund_review'=>'fund review',
-    'fund_history'=>'fund history',
-    'date_preview'=>'date_preview',
-    'pdf_preview'=>' pdf preview',
-    'img_preview'=>'img preview',
-    'emp_transfer'=>'emp transfer',
-    'user_transfer'=>'user transfer',
-    'fund_accept'=>'fund accept',
-// end user fund details page
+            'funds_need'=>'funds',
+            'fund_review'=>'fund review',
+            'fund_history'=>'fund history',
+            'date_preview'=>'date_preview',
+            'pdf_preview'=>' pdf preview',
+            'img_preview'=>'img preview',
+            'emp_transfer'=>'emp transfer',
+            'user_transfer'=>'user transfer',
+            'fund_accept'=>'fund accept',
+           // end user fund details page
 
     // 'should_choose_category' => 'يجب اختيار مخزن اولا',
     // 'wrong_old_password' => 'من فضلك ادخل الباسورد صحيح',

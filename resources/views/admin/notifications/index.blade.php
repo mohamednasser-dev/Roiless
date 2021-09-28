@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.notification')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('notifications.index')}}">{{trans('admin.notification')}}</a></li>
 
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
@@ -49,7 +49,7 @@
                            href="{{route('notifications.edit',$notification->id)}}"><i class="fa fa-edit"></i></a>
 
                         <a class='btn btn-danger btn-circle' title="حذف" onclick="return confirm('هل انت متكد من حذف الخدمه')"
-                           href="{{route('question.delete',$notification->id)}}"><i class="fa fa-trash"></i></a>
+                           href="{{route('notification.delete',$notification->id)}}"><i class="fa fa-trash"></i></a>
 
                     </td>
 

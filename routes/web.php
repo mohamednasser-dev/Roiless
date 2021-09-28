@@ -99,12 +99,15 @@ Route::group(['middleware' => ['auth:admin']], function () {
     //notifications
     Route::group(['namespace' => 'Admin'], function () {
         Route::resource('/notifications', 'NotificationsController');
+        Route::post('/notifications/update/{id}', 'NotificationsController@update')->name('notifications.update');
+        Route::get('/notifications/delete/{id}', 'NotificationsController@destroy')->name('notification.delete');
     });
     // Setting
 
     Route::group(['namespace' => 'Admin'], function () {
         Route::get('/Setting/edit', 'SettingController@edit')->name('Setting.edit');
         Route::post('/Setting/update/{id}', 'SettingController@update')->name('Setting.update');
+        
     });
 
     // questios
