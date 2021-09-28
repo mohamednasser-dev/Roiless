@@ -3,17 +3,10 @@ return [
 
     //new
     'updatSuccess'=>'تم التعديل بنجاح',
+    'logout'=>'تسجيل الخروج',
+    'notification_data'=>'معلومات الاشعار',
+    'edit_notification'=>'تعديل الاشعار',
     ''=>'',
-    ''=>'',
-    ''=>'',
-
-    ''=>'',
-    ''=>'',
-    
-
-
-
-
     'employers_info'=>'معلومات الموظف',
     'service_info'=>'معلومات الخدمه ',
     'question_in_arabic'=>'السؤال بالعربي',
@@ -81,7 +74,7 @@ return [
     'old_password'=>'الرقم السري القديم',
      'confirm_password'=>'تاكييد الرقم السري',
      'change_password'=>'تغيير الرقم السري',
-     'profile'=>'الحساب',
+     'profile'=>'الملف الشخصي',
      'banks' => 'البنوك',
       'home_page'=>'الصفحه الرئيسيه',
       'add_bank'=>'اضافه بنك',
@@ -140,7 +133,25 @@ return [
        'Measures'=>' الاجرائات',
        'user'=>'المستخدم',
         'add_fund'=>'اضافه تمويل جديد',
+        'created_at'=>'انشات في',
+        'log_name'=>'اسم السجل',
 
+      // start user fund details page
+    'funds_need'=>'التمويلات',
+    'fund_review'=>'مراجعه التمويلات',
+    'fund_history'=>'العمليات على التمويل',
+    'date_preview'=>'بيانات التمويل',
+    'pdf_preview'=>'مرفقات التمويل',
+    'img_preview'=>'صور التمويل',
+    'emp_transfer'=>'التحويل لموظف اخر',
+    'user_transfer'=>'مراجعه الطلب',
+    'fund_accept'=>'الموافقه علي الطلب',
+// end user fund details page
+      
+
+        'description'=>'',
+        'description'=>'',
+        'description'=>'',
     // 'should_choose_category' => 'يجب اختيار مخزن اولا',
     // 'wrong_old_password' => 'من فضلك ادخل الباسورد صحيح',
     // 'Updated_Successfully' => 'تم التعديل بنجاح',

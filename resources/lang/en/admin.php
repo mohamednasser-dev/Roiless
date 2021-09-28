@@ -2,9 +2,12 @@
 return [
 
     //new
-
-
-
+    
+    'updatSuccess'=>'updated successfully',
+    'logout'=>'logout',
+    'profile'=>'profile',
+    'notification_data'=>'notification data',
+    'edit_notification'=>'edit notification',
     'employers_info'=>'employee information',
     'service_info'=>'service information',
     'question_in_arabic'=>'question in arabic',
@@ -131,7 +134,21 @@ return [
        'main_Measures'=>'main Measures',
        'main_Measures'=>'main Measures',
         'add_fund'=>'add new fund',
+        'add_fund'=>'add fund',
+        'created_at'=>'created_at',
+        'log_name'=>'log name',
 
+           // start user fund details page
+    'funds_need'=>'funds',
+    'fund_review'=>'fund review',
+    'fund_history'=>'fund history',
+    'date_preview'=>'date_preview',
+    'pdf_preview'=>' pdf preview',
+    'img_preview'=>'img preview',
+    'emp_transfer'=>'emp transfer',
+    'user_transfer'=>'user transfer',
+    'fund_accept'=>'fund accept',
+// end user fund details page
 
     // 'should_choose_category' => 'يجب اختيار مخزن اولا',
     // 'wrong_old_password' => 'من فضلك ادخل الباسورد صحيح',

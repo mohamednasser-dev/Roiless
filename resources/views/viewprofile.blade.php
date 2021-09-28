@@ -125,7 +125,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-sm-12">
-                                                    <button class="btn btn-success" type="submit">{{trans('admin.update_profile')}}</button>
+                                                    <button class="btn btn-success" type="submit">{{trans('admin.edit')}}</button>
                                                 </div>
                                             </div>
                                         </form>

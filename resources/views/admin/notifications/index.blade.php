@@ -46,7 +46,7 @@
                     <td class="text-lg-center ">
 
                         <a class='btn btn-info btn-circle' title="تعديل"
-                           href="{{route('question.edit',$notification->id)}}"><i class="fa fa-edit"></i></a>
+                           href="{{route('notifications.edit',$notification->id)}}"><i class="fa fa-edit"></i></a>
 
                         <a class='btn btn-danger btn-circle' title="حذف" onclick="return confirm('هل انت متكد من حذف الخدمه')"
                            href="{{route('question.delete',$notification->id)}}"><i class="fa fa-trash"></i></a>
