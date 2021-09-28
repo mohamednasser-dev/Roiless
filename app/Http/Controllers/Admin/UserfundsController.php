@@ -26,18 +26,18 @@ class UserfundsController extends Controller
 
     public function index()
     {
-       
+
         $usefunds = User_Fund::with('Fund')->whereHas('Fund',function($q){
                 $q->where('cat_id', auth()->user()->cat_id);
         })->get();
-        
-        
-        
+
+
+
         // with(['Fund' => function ($query) {
         //     $query->where('cat_id', auth()->user()->cat_id);
         // }])
 
-      
+
         return view($this->folderView . 'index', compact('usefunds'));
 
     }
@@ -135,7 +135,8 @@ class UserfundsController extends Controller
 
         $data['emp_id'] = auth()->user()->id;
         $data['user_fund_id'] = $id;
-        $data['type'] = 'bank';
+        $data['type'] = 'emp';
+        $data['status'] = 'accept';
         $data['status'] = 'accept';
         Fhistory::create($data);
         return redirect()->route('userfunds');

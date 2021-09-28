@@ -43,7 +43,7 @@ class UserfundsController extends Controller
 
     public function redirectEmployer(Request $request, $id)
     {
-
+        $bank_id = auth()->guard('bank')->user()->id;
         $data = $this->validate(request(),
             [
                 'note_ar' => 'required|string',
@@ -55,6 +55,7 @@ class UserfundsController extends Controller
         $data['user_fund_id']=$id;
         $data['user_id']= $user_fund_id->value('user_id');
         $data['emp_id']= $user_fund_id->value('emp_id');
+        $data['bank_id']=$bank_id ;
 //        return $data;
         Fhistory::create($data);
         User_Fund::where('id',$id)->update(['bank_id'=>null]);

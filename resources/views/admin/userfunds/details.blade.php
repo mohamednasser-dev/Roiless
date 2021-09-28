@@ -257,15 +257,29 @@
                                                 @if($history->status == 'reject') bg-danger @endif
                                                 @if($history->status == 'pending') bg-info   @endif
                                                 @if($history->status == 'return') bg-warning  @endif">
+
+
+                                                    <h4 class="text-center text-white  ">
+                                                        @if($history->status == 'pending') {{trans('admin.start_fund')}} @endif
+
+                                                        @if($history->status == 'reject' & $history->type == 'bank') {{trans('admin.bank_reject')}} {{$history->bank->name_ar}} @endif
+
+                                                        @if($history->status == 'accept' & $history->type == 'emp' )  {{trans('admin.emp_accept')}} {{$history->ُEmployer->name}} @endif
+
+                                                        @if($history->status == 'return') {{trans('admin.emp_return')}} {{$history->ُEmployer->name}} {{trans('admin.to')}} {{$history->ُEmployerReturned->name}}     @endif
+                                                    </h4>
+
+
+
                                                     <div class="row">
                                                         <div class="col-3">
                                                             <div class="img">
                                                                 @if($history->type == 'bank') <i
-                                                                    class="fa fa-bank (alias) fa-3x"></i> @endif
+                                                                    class="fa fa-bank (alias) fa-3x " style="color: white ;padding-bottom: 20px;"></i> @endif
                                                                 @if($history->type == 'emp') <i
-                                                                    class="fa fa-user-edit fa-2x"></i> @endif
+                                                                    class="fa fa-mail-reply-all (alias) fa-2x" style="color: white ;padding-bottom: 20px;"></i> @endif
                                                                 @if($history->type == 'user') <i
-                                                                    class="fa fa-user-circle fa-3x"></i> @endif
+                                                                    class="fa fa-user-circle fa-3x" style="color: white ;padding-bottom: 20px;"></i> @endif
                                                             </div>
                                                         </div>
                                                         <div class="col-9">
