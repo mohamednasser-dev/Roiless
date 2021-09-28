@@ -39,14 +39,18 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('viewprofile/{id}', 'HomeController@viewprofile')->name('viewprofile');
     Route::get('change_lang/{lang}', 'HomeController@change_lang')->name('change_lang');
     Route::post('users/actived', 'Admin\usersController@update_Actived')->name('users.actived');
+
     //viewprofile routes
     Route::post('employer/update', 'Admin\ProfileController@update')->name('employers.update');
     Route::post('employer/update/password', 'Admin\ProfileController@updatepassword')->name('employers.update.password');
     Route::post('employer/update/image', 'Admin\ProfileController@updateimage')->name('employers.update.image');
+
     //emploers  routes
     Route::resource('employer', 'Admin\employerController');
     Route::get('employer/{id}/delete', 'Admin\employerController@destroy')->name('employer.delete');
     Route::get('employer/{id}/details', 'Admin\employerController@show')->name('employer.details');
+    Route::get('employer/{id}/view/log', 'Admin\employerController@showLog')->name('employer.view.log');
+    Route::get('employer/view/logs', 'Admin\employerController@showLogs')->name('employer.view.logs');
     Route::post('employer/actived', 'Admin\employerController@update_Actived')->name('employer.actived');
 
     // change status

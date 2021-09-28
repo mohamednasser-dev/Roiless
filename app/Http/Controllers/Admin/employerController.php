@@ -11,6 +11,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Str;
+use Spatie\Activitylog\Models\Activity;
 
 class employerController extends Controller
 
@@ -80,8 +81,9 @@ class employerController extends Controller
 
     public function edit($id)
     {
+        $categories=  Category::get();
         $employer = Admin::where('id', $id)->first();
-        return view($this->folderView . 'edit', \compact('employer'));
+        return view($this->folderView . 'edit', \compact('employer' , 'categories'));
     }
     public function update(Request $request,$id)
     {
@@ -94,6 +96,7 @@ class employerController extends Controller
                     'phone' => 'required|unique:admins,phone,'.$id,
                     'password' => 'required|min:6|confirmed',
                     'password_confirmation' => 'required|min:6',
+                    'cat_id'=>'required'
                 ]);
             $data['password'] = bcrypt(request('password'));
             unset($data['password_confirmation']);
@@ -103,6 +106,7 @@ class employerController extends Controller
                     'name' => 'required|unique:admins,name,'.$id,
                     'email' => 'required|unique:admins,email,'.$id,
                     'phone' => 'required|unique:admins,phone,'.$id,
+                    'cat_id'=>'required'
                 ]);
         }
         $data['type'] = 'employer';
@@ -111,8 +115,8 @@ class employerController extends Controller
             $data['image'] = $this->MoveImage($request->image,'uploads/admins_image');
         }
         Admin::where('id', $id)->update($data);
-        Alert::success( 'تمت العمليه','تم تحديث معلومات الحساب');
-        return redirect()->back();
+        Alert::success('تمت العمليه','تم تحديث الموظف بنجاح');
+        return redirect()->route('employer.index');
     }
     public function destroy($id)
     {
@@ -132,6 +136,17 @@ class employerController extends Controller
         ]);
         return 1;
     }
+
+    public function showLog ($id) {
+        $activities = Activity::where('causer_id',$id)->get();
+        return view($this->folderView . 'viewLog', \compact( 'activities'));
+    }
+
+    public function showLogs () {
+        $activities = Activity::with('employees')->get();
+        return view($this->folderView . 'showLogs', \compact( 'activities'));
+    }
+
 
 }
 

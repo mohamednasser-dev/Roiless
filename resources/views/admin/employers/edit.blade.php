@@ -54,7 +54,16 @@
                                    id="example-password-input2">
                         </div>
                     </div>
-
+                    <div class="form-group row">
+                        <label for="example-month-input" class="col-md-2 col-form-label"> {{trans('admin.category')}}</label>
+                        <div class="col-md-10">
+                            <select class="custom-select col-12 multiple" id="inlineFormCustomSelect" name="cat_id">
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}" @if($category->id == $employer->cat_id) selected @endif >{{$category->title_ar}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-6">
                             <div class="card">

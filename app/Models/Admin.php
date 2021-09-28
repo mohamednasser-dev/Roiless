@@ -36,6 +36,11 @@ class Admin extends Authenticatable
     {
         return "This model has been {$eventName}";
     }
+
+    public function activity() {
+        return $this->belongsTo('App\Models\Admin', 'id', 'causer_id');
+    }
+
     public function getImageAttribute($img)
     {
         if ($img)
