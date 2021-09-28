@@ -27,10 +27,7 @@
 
 
             @foreach($usefunds as $usefund)
-
-
                         <tr>
-
                             <td class="text-lg-center">{{$usefund->Fund->name_ar}}</td>
                             <td class="text-lg-center ">
 

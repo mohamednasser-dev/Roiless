@@ -2,29 +2,66 @@
 return [
 
     //new
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
+    'updatSuccess'=>'updated successfully',
+    'logout'=>'logout',
+    'profile'=>'profile',
+    'notification_data'=>'notification data',
+    'edit_notification'=>'edit notification',
+    'employers_info'=>'employee information',
+    'service_info'=>'service information',
+    'question_in_arabic'=>'question in arabic',
+    'question_in_englishe'=>'question in english',
+    'answer_in_arabic'=>'answer in arabic',
+    'answer_in_english'=>'answer in english',
+    'question_image'=>'question image',
+    'create_question'=>'create question',
+    'edit_question'=>'edite question',
+    'question_data'=>'quetion data',
+    'common_question'=>'common question',
+    'add_new_question'=>'add new quetion',
+    'notification_info'=>'notification information',
+     'notification_address_in_arabic'=>'notification address in arabic',
+     'notification_address_in_english'=>'notification address in english',
+     'content_in_arabic'=>'content in arabic',
+     'content_in_english'=>'content in english',
+     'create_notification'=>'create notification',
+      'notification_image'=>'notification image',
+      'notification'=>'notifications',
+     'notification_in_arabic'=>'notification in arabic',
+     'notification_in_english'=>'notification in english',
+     'notification_content_in_arabic'=>'content in arabic',
+     'notification_in_english'=>'content in english',
+     'add_new_notification'=>'add new notification',
+     'info_detailes_service'=>'information detailes service',
+     'address_in_arabic'=>'address in arabic',
+     'address_in_english'=>'address in english',
+     'detailes_info'=>'detailes information',
+     'services'=>'services',
+     'add_new_detailes'=>'Add new detailes',
+     'create_service'=>'create service',
+     'service_address_in_arabic'=>'service address in arabic',
+     'service_address_in_english'=>'service address in english',
+     'service_image'=>'service image',
+     'service_detailes'=>'service detailes',
+     'detailes'=>'detailes',
+     'edit_setting_of_website'=>'edite setting of website',
+     'website_info'=>'website information',
+     'website_logo'=>'website logo',
+     'website_name_in_english'=>'website name in english',
+     'Terms_and_Conditions_in_english'=>'Terms and Conditions in english',
+     'Terms_and_Conditions_in_arabic'=>'Terms and Conditions in arabic',
+     'privacey_in_arabic'=>'privacey in arabic',
+     'privacey_in_english'=>'privacey in english',
+     'about_application_in_arabic'=>'about application in arabic',
+     'about_application_in_english'=>'about application in english',
+     'website_name_in_arabic'=>'website name in arabic',
+     'website_setting'=>'website setting',
+     'create_advertisment'=>'create advertisment',
+     'advertisment'=>'advertisment',
+     'iamge'=>'image',
+     'password_confirmation'=>'password confirmation',
+     'login'=>'login',
     'change_photo'=>'change photo',
     'email'=>'email',
     'phone'=>'phone ',
@@ -97,7 +134,21 @@ return [
        'main_Measures'=>'main Measures',
        'main_Measures'=>'main Measures',
         'add_fund'=>'add new fund',
+        'add_fund'=>'add fund',
+        'created_at'=>'created_at',
+        'log_name'=>'log name',
 
+           // start user fund details page
+    'funds_need'=>'funds',
+    'fund_review'=>'fund review',
+    'fund_history'=>'fund history',
+    'date_preview'=>'date_preview',
+    'pdf_preview'=>' pdf preview',
+    'img_preview'=>'img preview',
+    'emp_transfer'=>'emp transfer',
+    'user_transfer'=>'user transfer',
+    'fund_accept'=>'fund accept',
+// end user fund details page
 
     // 'should_choose_category' => 'يجب اختيار مخزن اولا',
     // 'wrong_old_password' => 'من فضلك ادخل الباسورد صحيح',

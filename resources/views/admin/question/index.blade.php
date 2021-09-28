@@ -2,11 +2,11 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">الاسئله الشائعه</h3>
+            <h3 class="text-themecolor">{{trans('admin.common_question')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">الاسئله الشائعه</li>
+                <li class="breadcrumb-item">{{trans('admin.common_question')}}</li>
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
@@ -14,19 +14,19 @@
     <!-- /.card-header -->
     <div class="title">
         <a href="{{url('question/create')}} "
-           class="btn btn-info btn-bg">أضافة سؤال جديده</a>
+           class="btn btn-info btn-bg">{{trans('admin.add_new_question')}}</a>
     </div>
     <br>
     <div class="row">
         <table class="table full-color-table full-primary-table">
             <thead>
             <tr>
-                <th class="text-lg-center">السؤال بالعربيه</th>
-                <th class="text-lg-center">السؤال بالانجليزيه</th>
-                <th class="text-lg-center">الجواب بالعربيه</th>
-                <th class="text-lg-center">الجواب بالانجليزيه</th>
-                <th class="text-lg-center">الصوره</th>
-                <th class="text-lg-center">الاجرائات</th>
+                <th class="text-lg-center">{{trans('admin.question_in_arabic')}}</th>
+                <th class="text-lg-center">{{trans('admin.question_in_englishe')}}</th>
+                <th class="text-lg-center">{{trans('admin.answer_in_arabic')}}</th>
+                <th class="text-lg-center">{{trans('admin.answer_in_english')}}</th>
+                <th class="text-lg-center">{{trans('admin.question_image')}}</th>
+                <th class="text-lg-center">{{trans('admin.Measures')}}</th>
             </tr>
             </thead>
 

@@ -2,24 +2,67 @@
 return [
 
     //new
-
-
-
-
-
+    'updatSuccess'=>'تم التعديل بنجاح',
+    'logout'=>'تسجيل الخروج',
+    'notification_data'=>'معلومات الاشعار',
+    'edit_notification'=>'تعديل الاشعار',
+    ''=>'',
     'employers_info'=>'معلومات الموظف',
-
-
-
-
-
-
-
-
-
-
-
-
+    'service_info'=>'معلومات الخدمه ',
+    'question_in_arabic'=>'السؤال بالعربي',
+    'question_in_englishe'=>'السؤال بالانجليزي',
+    'answer_in_arabic'=>'الاجابه بالعربي',
+    'answer_in_english'=>'الاجابه بالانجليزي',
+    'question_image'=>'صوره السؤال',
+    'create_question'=>'انشاء سؤال',
+    'edit_question'=>'تعديل سؤال',
+    'question_data'=>'بيانات السؤال',
+    'common_question'=>'الاسئله الشائعه',
+    'add_new_question'=>'اضافه سؤال جديد',
+     'create_notification'=>'انشاء اشعار',
+     'notification_info'=>'معلومات الاشعار',
+     'notification_address_in_arabic'=>'عنوان الاشعار بالعربي',
+     'notification_address_in_english'=>'عنوان الاشعار بالانجليزي',
+     'content_in_arabic'=>'المحتوي بالعربي',
+     'content_in_english'=>'المحتوي بالانجليزي',
+     'create_notification'=>'انشاء اشعار',
+     'notification_image'=>'صوره الاشعار',
+     'notification'=>'الاشعارات',
+     'notification_in_arabic'=>'الاشعار بالعربي',
+     'notification_in_english'=>'الاشعار بالانجليزي',
+     'notification_content_in_arabic'=>'محتوي الاشعار بالعربي',
+     'notification_in_english'=>'محتوي الاشعار بالانجليزي',
+     'add_new_notification'=>'اضافه اشعار جديد',
+     'info_detailes_service'=>'معلومات تفاصيل الخدمه',
+     'address_in_arabic'=>'العنوان بالعربي',
+     'address_in_english'=>'اضافه تفاصيل جديده',
+     'detailes_info'=>'معلومات التفاصيل',
+     'services'=>'الخدمات',
+     'add_new_detailes'=>'اضافه تفاصيل جديده',
+     'service_detailes'=>'تفاصيل الخدمه',
+     'create_service'=>'انشاء خدمه',
+     'service_address_in_arabic'=>'عنوان الخدمه بالعربي',
+     'service_address_in_english'=>'عنوان الخدمه بالانجليزي',
+     'service_image'=>'صوره الخدمه',
+     'service_detailes'=>'تفاصيل الخدمه',
+     'detailes'=>'ألتفاصيل',
+     'edit_setting_of_website'=>'تعديل اعدادات الموقع',
+     'website_info'=>'معلومات الموقع',
+     'website_logo'=>'شعار الموقع',
+     'website_name_in_english'=>'اسم الموقع بالانجليزيه',
+     'Terms_and_Conditions_in_english'=>'الشروط والاحكام بالانجليزيه',
+     'Terms_and_Conditions_in_arabic'=>'الشروط والاحكام بالعربيه',
+     'privacey_in_arabic'=>'الخصوصيه بالعربيه',
+     'privacey_in_english'=>'الخصوصيه بالانجليزيه',
+     'about_application_in_arabic'=>'عن التطبيق بالعربيه',
+     'about_application_in_english'=>'عن التطبيق بالانجليزيه',
+     'website_name_in_arabic'=>'اسم الموقع بالعربيه',
+     'website_setting'=>'اعدادات الموقع',
+     'create_advertisment'=>'انشاء اعلان',
+     'advertisment'=>'اعلان',
+     'iamge'=>'صوره',
+     'password_confirmation'=>'تاكيد كلمه المرور',
+     'login'=>'دخول',
     'change_photo'=>'تغيير الصوره',
     'email'=>'البريد الالكتروني',
     'phone'=>'رقم الهاتف ',
@@ -31,7 +74,7 @@ return [
     'old_password'=>'الرقم السري القديم',
      'confirm_password'=>'تاكييد الرقم السري',
      'change_password'=>'تغيير الرقم السري',
-     'profile'=>'الحساب',
+     'profile'=>'الملف الشخصي',
      'banks' => 'البنوك',
       'home_page'=>'الصفحه الرئيسيه',
       'add_bank'=>'اضافه بنك',
@@ -90,7 +133,25 @@ return [
        'Measures'=>' الاجرائات',
        'user'=>'المستخدم',
         'add_fund'=>'اضافه تمويل جديد',
+        'created_at'=>'انشات في',
+        'log_name'=>'اسم السجل',
 
+      // start user fund details page
+    'funds_need'=>'التمويلات',
+    'fund_review'=>'مراجعه التمويلات',
+    'fund_history'=>'العمليات على التمويل',
+    'date_preview'=>'بيانات التمويل',
+    'pdf_preview'=>'مرفقات التمويل',
+    'img_preview'=>'صور التمويل',
+    'emp_transfer'=>'التحويل لموظف اخر',
+    'user_transfer'=>'مراجعه الطلب',
+    'fund_accept'=>'الموافقه علي الطلب',
+// end user fund details page
+      
+
+        'description'=>'',
+        'description'=>'',
+        'description'=>'',
     // 'should_choose_category' => 'يجب اختيار مخزن اولا',
     // 'wrong_old_password' => 'من فضلك ادخل الباسورد صحيح',
     // 'Updated_Successfully' => 'تم التعديل بنجاح',

@@ -2,12 +2,12 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">تفاصيل الخدمه</h3>
+            <h3 class="text-themecolor">{{trans('admin.service_detailes')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">تفاصيل الخدمه</li>
-                <li class="breadcrumb-item"><a href="{{route('services')}}">الخدمات</a></li>
+                <li class="breadcrumb-item">{{trans('admin.service_detailes')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('services')}}">{{trans('admin.services')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
@@ -15,18 +15,18 @@
     <!-- /.card-header -->
     <div class="title">
         <a href="{{route('services.details.create',$id)}} "
-           class="btn btn-info btn-bg">أضافة تفصيله جديده</a>
+           class="btn btn-info btn-bg">{{trans('admin.add_new_detailes_service')}}</a>
     </div>
     <br>
     <div class="row">
         <table class="table full-color-table full-primary-table">
             <thead>
             <tr>
-                <th class="text-lg-center">عنوان الخدمه بالعربي</th>
-                <th class="text-lg-center">عنوان الخدمه بالانجليزي</th>
-                <th class="text-lg-center">محتوي الخدمه بالعربي</th>
-                <th class="text-lg-center">محتوي الخدمه بالانجليزي</th>
-                <th class="text-lg-center">الاجرائات</th>
+                <th class="text-lg-center">{{trans('admin.address_in_arabic')}}</th>
+                <th class="text-lg-center">{{trans('admin.address_in_english')}}</th>
+                <th class="text-lg-center">{{trans('admin.content_in_arabic')}}</th>
+                <th class="text-lg-center">{{trans('admin.content_in_english')}}</th>
+                <th class="text-lg-center">{{trans('admin.Measures')}}</th>
             </tr>
             </thead>
 

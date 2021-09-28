@@ -5,12 +5,12 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">تعديل الاعلان</h3>
+            <h3 class="text-themecolor">{{trans('admin.edit_advertisment')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">تعديل الاعلان</li>
-                <li class="breadcrumb-item"><a href="{{route('sliders')}}">الاعلانات</a></li>
+                <li class="breadcrumb-item"><a href="{{route('sliders')}}">{{trans('admin.advertisments')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
@@ -28,7 +28,7 @@
                         {{-- <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="emailAddress1">Image :</label>
+                                    <label for="emailAddress1">{{trans('admin.image')}} :</label>
                                     <input type="file" name="image" class="form-control" id="emailAddress1"> </div>
                             </div>
                         </div> --}}
@@ -36,7 +36,7 @@
                             <div class="col-lg-12 col-md-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">الصورة</h4>
+                                        <h4 class="card-title">{{trans('admin.image')}}</h4>
                                         <input type="file" name="image"  data-default-file="{{$Slider->image}}" id="input-file-now" class="dropify"/>
                                     </div>
                                 </div>

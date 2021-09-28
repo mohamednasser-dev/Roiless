@@ -66,8 +66,8 @@ class NotificationsController extends Controller
 
     public function edit($id)
     {
-        $question = $this->objectName::where('id', $id)->first();
-        return view($this->folderView . 'edit', compact('question'));
+        $notification = $this->objectName::where('id', $id)->first();
+        return view($this->folderView . 'edit', compact('notification'));
     }
 
     public function update(Request $request, $id)
@@ -75,26 +75,24 @@ class NotificationsController extends Controller
 
         $data = $this->validate(\request(),
             [
-                'question_ar' => 'required',
-                'answer_ar' => 'required',
-                'question_en' => 'required',
-                'answer_en' => 'required',
+                'title_ar' => 'required',
+                'title_en' => 'required',
+                'body_ar' => 'required',
+                'body_en' => 'required',
                 'image' => '',
 
             ]);
 
         try {
-            DB::beginTransaction();
-
-            $question = $this->objectName::find($id);
-            if (!$question) {
+            $notification = $this->objectName::find($id);
+            if (!$notification) {
                 Alert::warning('خطاء', 'هذه الخدمه ليست موجوه');
                 return redirect()->route(' $this->folderView');
             }
 
 
             if ($request->hasFile('image')) {
-                $file_name = $this->MoveImage($request->file('image'), 'uploads/question');
+                $file_name = $this->MoveImage($request->file('image'), 'uploads/notifications');
                 $data['image'] = $file_name;
             }
 
@@ -104,7 +102,7 @@ class NotificationsController extends Controller
 
             DB::commit();
             Alert::success('تمت العمليه', 'تم التحديث بنجاح');
-            return redirect()->route('question');
+            return redirect()->back();
 
         } catch (\Exception $ex) {
 

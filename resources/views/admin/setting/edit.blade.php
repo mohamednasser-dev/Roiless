@@ -5,11 +5,11 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">تعديل اعدادات الموقع</h3>
+            <h3 class="text-themecolor">{{trans('admin.edit_setting_of_website')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">اعدادات الموقع</li>
+                <li class="breadcrumb-item">{{trans('admin.website_setting')}}</li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
@@ -21,13 +21,13 @@
                 {{ Form::open( ['route'  =>  ['Setting.update',$setting->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">بيانات الموقع</h4>
+                        <h4 class="card-title">{{trans('admin.website_info')}}</h4>
                         <hr>
                         <div class="row">
                             <div class="col-lg-12 col-md-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">لوجو الموقع</h4>
+                                        <h4 class="card-title">{{trans('admin.website_logo')}}</h4>
                                         <input type="file" name="logo" data-default-file="{{$setting->logo}}"
                                                id="input-file-now" class="dropify"/>
                                     </div>
@@ -36,8 +36,7 @@
 
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label"> اسم الموقع
-                                        بالعربيه</label>
+                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.website_name_in_arabic')}}</label>
                                     <div class="col-md-10">
                                         {{ Form::text('title_ar',$setting->title_ar,["class"=>"form-control" ,"required"]) }}
 
@@ -47,8 +46,7 @@
 
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label"> اسم الموقع
-                                        بالانجليزيه</label>
+                                    <label for="example-text-input" class="col-md-2 col-form-label"> {{trans('admin.website_name_in_english')}}</label>
                                     <div class="col-md-10">
                                         {{ Form::text('title_en',$setting->title_en,["class"=>"form-control" ,"required"]) }}
 
@@ -58,8 +56,7 @@
 
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">الشروط و الاحكام
-                                        بالعربيه</label>
+                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_english')}}</label>
                                     <div class="col-md-10">
                                         {{ Form::text('terms_ar',$setting->terms_ar,["class"=>"form-control" ,"required"]) }}
                                     </div>
@@ -68,8 +65,7 @@
 
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">الشروط و الاحكام
-                                        بالانجليزيه</label>
+                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_arabic')}}</label>
                                     <div class="col-md-10">
                                         {{ Form::text('terms_en',$setting->terms_en,["class"=>"form-control" ,"required"]) }}
                                     </div>
@@ -78,8 +74,7 @@
 
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">الخصوصيه
-                                        بالعربيه</label>
+                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.privacey_in_arabic')}}</label>
                                     <div class="col-md-10">
                                         {{ Form::text('privacy_ar',$setting->privacy_ar,["class"=>"form-control" ,"required"]) }}
                                     </div>
@@ -88,8 +83,7 @@
 
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">الخصوصيه
-                                        بالانجليزي</label>
+                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.privacey_in_english')}}</label>
                                     <div class="col-md-10">
                                         {{ Form::text('privacy_en',$setting->privacy_en,["class"=>"form-control" ,"required"]) }}
                                     </div>
@@ -99,7 +93,7 @@
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-group m-t-40 row">
                                     <label for="example-text-input" class="col-md-2 col-form-label">
-                                        عن االتطبيق بالعربيه
+                                    {{trans('admin.about_application_in_arabic')}}
                                         </label>
                                     <div class="col-md-10">
                                         {{ Form::textarea('about_us_ar',$setting->about_us_ar,["class"=>"form-control textarea_editor1" , "rows" => "15" ,"required"]) }}
@@ -109,8 +103,7 @@
 
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">عن التطبيق
-                                        بالانجليزي</label>
+                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.about_application_in_english')}}</label>
                                     <div class="col-md-10">
                                         {{ Form::textarea('about_us_en',$setting->about_us_en,["class"=>"form-control textarea_editor2" , "rows" => "15" ,"required"]) }}
                                     </div>

@@ -62,7 +62,7 @@
                                     </div>
                                     <center class="m-t-30"> <form action="{{route('employers.update.image')}}" class="form-horizontal form-material" method="POST"enctype="multipart/form-data" >
                                      @csrf
-                                    <input type="hidden" name="id" value="{{Auth::user()->id}}">
+                                    
                                      <div class="form-group">
                                                 <div class="col-sm-12">
                                                 <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(this)" style="display: none;"></p>
@@ -104,7 +104,6 @@
                                     <div class="card-body">
                                         <form action="{{route('employers.update')}}" class="form-horizontal form-material" method="POST">
                                         @csrf
-                                            <input type="hidden" name="id" value="{{Auth::user()->id}}">
                                             <div class="form-group">
                                                 <label class="col-md-12">{{trans('admin.full_name')}}</label>
                                                 <div class="col-md-12">
@@ -126,7 +125,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-sm-12">
-                                                    <button class="btn btn-success" type="submit">{{trans('admin.update_profile')}}</button>
+                                                    <button class="btn btn-success" type="submit">{{trans('admin.edit')}}</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -141,7 +140,7 @@
                                     <div class="card-body">
                                     <form action="{{route('employers.update.password')}}" class="form-horizontal form-material" method="POST">
                                         @csrf
-                                        <input type="hidden" name="id" value="{{Auth::user()->id}}">
+                                      
                                            <div class="form-group">
                                                 <label class="col-md-12">{{trans('admin.old_password')}}</label>
                                                 <div class="col-md-12">

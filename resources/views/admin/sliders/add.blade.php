@@ -5,12 +5,12 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">انشاء اعلان</h3>
+            <h3 class="text-themecolor">{{trans('admin.create_advertisment')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">انشاء اعلان</li>
-                <li class="breadcrumb-item"><a href="{{route('sliders')}}">اعلانات</a></li>
+                <li class="breadcrumb-item"><a href="{{route('sliders')}}">{{trans('admin.advertisment')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
@@ -29,7 +29,7 @@
                             <div class="col-lg-12 col-md-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title"> الصورة</h4>
+                                        <h4 class="card-title">{{trans('admin.iamge')}} </h4>
                                         <input type="file" name="image" id="input-file-now" class="dropify"/>
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                         <div style="text-align: center" class="row">
                             <div class="col-md-12" style="text-align:center;">
                                 <button type="submit" style=" margin:10px"
-                                        class="btn btn-info">انشاء
+                                        class="btn btn-info">{{trans('admin.add')}}
                                 </button>
                             </div>
                         </div>

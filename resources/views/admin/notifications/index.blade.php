@@ -2,11 +2,13 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">الأشعارات</h3>
+
+            <h3 class="text-themecolor">{{trans('admin.notification')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"> الأشعارات</li>
+                <li class="breadcrumb-item">{{trans('admin.notification')}}</li>
+
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
@@ -14,19 +16,19 @@
     <!-- /.card-header -->
     <div class="title">
         <a href="{{route('notifications.create')}} "
-           class="btn btn-info btn-bg">أضافه اشعار جديد</a>
+           class="btn btn-info btn-bg">{{trans('admin.add_new_notification')}}</a>
     </div>
     <br>
     <div class="row">
         <table class="table full-color-table full-primary-table">
             <thead>
             <tr>
-                <th class="text-lg-center">السؤال بالعربيه</th>
-                <th class="text-lg-center">السؤال بالانجليزيه</th>
-                <th class="text-lg-center">الجواب بالعربيه</th>
-                <th class="text-lg-center">الجواب بالانجليزيه</th>
-                <th class="text-lg-center">الصوره</th>
-                <th class="text-lg-center">الاجرائات</th>
+                <th class="text-lg-center">{{trans('admin.notification_in_arabic')}}</th>
+                <th class="text-lg-center">{{trans('admin.notification_in_english')}}</th>
+                <th class="text-lg-center">{{trans('admin.notification_content_in_arabic')}}</th>
+                <th class="text-lg-center">{{trans('admin.notification_in_english')}}</th>
+                <th class="text-lg-center">{{trans('admin.notification_image')}}</th>
+                <th class="text-lg-center">{{trans('admin.Measures')}}</th>
             </tr>
             </thead>
 
@@ -44,7 +46,7 @@
                     <td class="text-lg-center ">
 
                         <a class='btn btn-info btn-circle' title="تعديل"
-                           href="{{route('question.edit',$notification->id)}}"><i class="fa fa-edit"></i></a>
+                           href="{{route('notifications.edit',$notification->id)}}"><i class="fa fa-edit"></i></a>
 
                         <a class='btn btn-danger btn-circle' title="حذف" onclick="return confirm('هل انت متكد من حذف الخدمه')"
                            href="{{route('question.delete',$notification->id)}}"><i class="fa fa-trash"></i></a>

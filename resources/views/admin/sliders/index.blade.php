@@ -21,8 +21,8 @@
         <table class="table full-color-table full-primary-table">
             <thead>
             <tr>
-                <th class="text-lg-center">الصوره</th>
-                <th class="text-lg-center">الاعدادات</th>
+                <th class="text-lg-center">{{trans('admin.image')}}</th>
+                <th class="text-lg-center">{{trans('admin.setting')}}</th>
             </tr>
             </thead>
 
