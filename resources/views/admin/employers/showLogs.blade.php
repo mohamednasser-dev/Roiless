@@ -43,8 +43,8 @@
         </table>
         -->
             <div class="table-responsive m-t-40">
-                <table id="example23" class="display  nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
-                    <thead>
+                <table id="example23" class="display full-color-table full-primary-table  nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead class="bg-primary">
                     <tr>
                         <th scope="col">{{trans('admin.log_name')}}</th>
                         <th scope="col">{{trans('admin.description')}}</th>
