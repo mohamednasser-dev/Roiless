@@ -275,11 +275,13 @@
                                                         <div class="col-3">
                                                             <div class="img">
                                                                 @if($history->type == 'bank') <i
-                                                                    class="fa fa-bank (alias) fa-3x " style="color: white ;padding-bottom: 20px;"></i> @endif
-                                                                @if($history->type == 'emp') <i
-                                                                    class="fa fa-mail-reply-all (alias) fa-2x" style="color: white ;padding-bottom: 20px;"></i> @endif
-                                                                @if($history->type == 'user') <i
-                                                                    class="fa fa-user-circle fa-3x" style="color: white ;padding-bottom: 20px;"></i> @endif
+                                                                    class="fa fa-bank (alias) fa-3x " style="color: white ;padding-bottom: 20px;"></i>
+                                                                @elseif($history->type == 'emp' && $history->status != 'accept') <i
+                                                                    class="fa fa-mail-reply-all (alias) fa-2x" style="color: white ;padding-bottom: 20px;"></i>
+                                                                @elseif($history->type == 'user') <i
+                                                                    class="fa fa-user-circle fa-3x" style="color: white ;padding-bottom: 20px;"></i>
+                                                                @elseif($history->status == 'accept' && $history->type == 'emp') <i
+                                                                    class="fa fa-check fa-3x" style="color: white ;padding-bottom: 20px;"></i> @endif
                                                             </div>
                                                         </div>
                                                         <div class="col-9">
