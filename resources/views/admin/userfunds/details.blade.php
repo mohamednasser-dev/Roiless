@@ -198,11 +198,14 @@
 @endsection
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">مراجعه التمويلات</h3>
+        <h3 class="text-themecolor">{{trans('admin.fund_review')}}</h3>
     </div>
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">مراجعه التمويلات</li>
+            <li class="breadcrumb-item">{{trans('admin.fund_review')}}
+            </li>
+            <li class="breadcrumb-item active"><a href="{{route('userfunds')}}">{{trans('admin.funds_need')}}
+                </a></li>
             <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
         </ol>
     </div>
@@ -210,12 +213,12 @@
 
 
 <div class="row row-cols-2">
-
+    {{--Start dataform --}}
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
-                    <h3>بيانات التمويل</h3>
+                    <h3>{{trans('admin.date_preview')}}</h3>
 
                     @foreach(json_decode($requestreview->dataform, true) as $data)
 
@@ -225,15 +228,17 @@
                 </div>
             </div>
         </div>
-
-
     </div>
+    {{--end dataform --}}
+
+
+    {{--Start fund history --}}
     <div class="col-md-6">
         <div class="card">
 
             <div class="card-body">
                 <div class="card-title">
-                    <h3>العمليات على التمويل</h3>
+                    <h3>{{trans('admin.fund_history')}}</h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 col-md-9" id="slimtest1" style="height: 450px;">
@@ -282,22 +287,23 @@
             </div>
         </div>
     </div>
+    {{--end fund history --}}
 </div>
 
-
+{{--Start fund photos --}}
 <div class="row">
     <div class="col-12">
-
         <div class="card">
-
             <div class="card-body">
                 <div class="card-title">
-                    <h5>صور التمويل</h5>
+                    <h5>{{trans('admin.img_preview')}}</h5>
                 </div>
+
                 <div id="image-popups" class="row">
-                    @foreach($requestreview->Files as $file)
+                    @foreach($requestreview->Files_img as $file)
+
                         <div class="col-lg-2 col-md-4">
-                            <a href="{{asset('/uploads/fund_file').'/'.$file->file_name}}" 
+                            <a href="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
                                data-effect="mfp-zoom-in"><img
                                     src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
                                     class="img-responsive"/></a>
@@ -306,23 +312,49 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
+{{--end fund photos --}}
+
+{{--Start fund pdf --}}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">
+                    <h5>{{trans('admin.pdf_preview')}}</h5>
+                </div>
+
+                <div id="image-popups" class="row">
+
+                    @foreach($requestreview->Files_pdf as $file)
+                        <div class="col-6">
+                            <iframe src="{{asset('/uploads/fund_file').'/'.$file->file_name}}" style="width:600px; height:500px;"></iframe>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- end fund pdf --}}
+
+
 <div class="row">
     <div class="card col-12 ">
-        <div class="card-body  center" >
-                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
-                    التحويل لموظف اخر
-                </button>
+        <div class="card-body  center">
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
+                {{trans('admin.emp_transfer')}}
+            </button>
 
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
-                    الموافقه علي الطلب
-                </button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
+                {{trans('admin.fund_accept')}}
+            </button>
 
-                <button
-                    type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">مراجعه الطلب
-                </button>
+            <button
+                type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">
+                {{trans('admin.user_transfer')}}
+            </button>
 
         </div>
     </div>

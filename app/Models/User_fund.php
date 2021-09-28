@@ -13,9 +13,14 @@ class User_fund extends Model
         return $this->belongsTo(Fund::class, 'fund_id');
     }
 
-    public function Files()
+    public function Files_img()
     {
-        return $this->hasMany(Fund_file::class, 'user_fund_id');
+        return $this->hasMany(Fund_file::class, 'user_fund_id')->where('file_ext','!=','pdf');
+    }
+
+    public function Files_pdf()
+    {
+        return $this->hasMany(Fund_file::class, 'user_fund_id')->where('file_ext','pdf');
     }
 
     public function ُEmployer()
