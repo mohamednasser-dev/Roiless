@@ -108,7 +108,7 @@ return [
        'fund_address_in_english'=>'عنوان التموييل بالانجليزي',
        'fund_desc_in_arabic'=>'وصف التمويل بالعربي',
        'fund_desc_in_english'=>'وصف التمويل بالغه الانجليزيه',
-       'Application_fee'=>'رسم الاستماره',
+       'Application_fee'=>'رسوم الاستماره',
        'fund_ratio'=>'نسبه التموييل',
        'choose_categories'=>'اختر الاقسام',
        'fund_image'=>'صوره التمويل  ',
