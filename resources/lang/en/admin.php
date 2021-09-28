@@ -137,6 +137,11 @@ return [
         'add_fund'=>'add fund',
         'created_at'=>'created_at',
         'log_name'=>'log name',
+        'description'=>'description',
+        'name_employee'=>'=name employee',
+         'next' => 'next',
+         'befor' => 'befor',
+         'search' => 'search',
            // start user fund details page
             'funds_need'=>'funds',
             'fund_review'=>'fund review',
