@@ -46,7 +46,7 @@ class NotificationsController extends Controller
                 'image' => '',
                 'users_id'=>'required',
             ]);
-        try {
+       
             //store images
             if ($request->image != null) {
                 $data['image'] = $this->MoveImage($request->image, 'uploads/notification');
@@ -54,14 +54,8 @@ class NotificationsController extends Controller
             unset($data['users_id']);
             $notifications = Notification::create($data)->user()->attach($request->users_id);
             activity('admin')->log('تم اضافه الاشعار بنجاح');
-
             Alert::success('تمت العمليه', 'تم اضافه الاشعار بنجاح');
-            return redirect()->route('notifications.create');
-        } catch (\Exception $ex) {
-            DB::rollback();
-            Alert::warning('هنالك خطاء', 'لم يتم التحديث');
-            return redirect()->route('notifications.create');
-        }
+            return redirect()->route('notifications.index');
     }
 
     public function edit($id)
@@ -83,46 +77,42 @@ class NotificationsController extends Controller
 
             ]);
 
-        try {
+       
             $notification = $this->objectName::find($id);
             if (!$notification) {
                 Alert::warning('خطاء', 'هذه الخدمه ليست موجوه');
                 return redirect()->route(' $this->folderView');
             }
-
-
             if ($request->hasFile('image')) {
-                $file_name = $this->MoveImage($request->file('image'), 'uploads/notifications');
+                $file_name = $this->MoveImage($request->file('image'), 'uploads/notification');
                 $data['image'] = $file_name;
+                $notification=notification::find($id);
+                $image= explode("/",$notification->image);
+                $length=count($image)-1;//the name of photo in the last index in array
+                $this->objectName::where('id', $id)->update($data);
+                if( $notification->image !== null){
+                    unlink("uploads/notification/".$image[$length]);
+                 }
             }
-
-            $this->objectName::where('id', $id)->update($data);
-
+             $this->objectName::where('id', $id)->update($data);
+          
             activity('admin')->log('تم تحديث الاشعار بنجاح');
 
             DB::commit();
             Alert::success('تمت العمليه', 'تم التحديث بنجاح');
-            return redirect()->back();
+            return redirect()->route('notifications.index');;
 
-        } catch (\Exception $ex) {
-
-            DB::rollback();
-            Alert::warning('هنالك خطاء', 'لم يتم التحديث');
-
-            return redirect()->route('question');
-
-        }
     }
 
 
     public function destroy($id)
     {
-        $question = $this->objectName::findOrFail($id);
-        $question->delete();
+        $notification = $this->objectName::findOrFail($id);
+        $notification->delete();
         activity('admin')->log('تم حذف الاشعار بنجاح');
 
         Alert::success('تمت العمليه', 'تم الحذف بنجاح');
 
-        return redirect()->route('question');
+        return redirect()->route('notifications.index');
     }
 }

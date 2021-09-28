@@ -108,7 +108,7 @@ return [
        'fund_address_in_english'=>'عنوان التموييل بالانجليزي',
        'fund_desc_in_arabic'=>'وصف التمويل بالعربي',
        'fund_desc_in_english'=>'وصف التمويل بالغه الانجليزيه',
-       'Application_fee'=>'رسم الاستماره',
+       'Application_fee'=>'رسوم الاستماره',
        'fund_ratio'=>'نسبه التموييل',
        'choose_categories'=>'اختر الاقسام',
        'fund_image'=>'صوره التمويل  ',
@@ -133,9 +133,13 @@ return [
        'Measures'=>' الاجرائات',
        'user'=>'المستخدم',
         'add_fund'=>'اضافه تمويل جديد',
-        'created_at'=>'انشات في',
+        'created_at'=>'أنشئت  في',
         'log_name'=>'اسم السجل',
-
+        'description'=>'الوصف',
+        'name_employee'=>'اسم الموظف',
+        'next' => 'بعد',
+        'befor' => 'قبل',
+        'search' => 'بحث',
       // start user fund details page
     'funds_need'=>'التمويلات',
     'fund_review'=>'مراجعه التمويلات',
@@ -154,9 +158,6 @@ return [
 // end user fund details page
 
 
-        'description'=>'',
-        'description'=>'',
-        'description'=>'',
     // 'should_choose_category' => 'يجب اختيار مخزن اولا',
     // 'wrong_old_password' => 'من فضلك ادخل الباسورد صحيح',
     // 'Updated_Successfully' => 'تم التعديل بنجاح',
