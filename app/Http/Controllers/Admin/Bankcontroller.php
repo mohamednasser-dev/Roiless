@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Bank;
+use Str;
 
 class Bankcontroller extends Controller
 {
@@ -73,7 +74,7 @@ class Bankcontroller extends Controller
             $banks->notifications()->attach($notification);
             if ($bank->save()) {
 //                $user->assignRole($request['role_id']);
-                Alert::success('تمت العمليه', 'تم انشاء موظف جديد');
+                Alert::success('تمت العمليه', 'تم انشاء بنك جديد');
                 return redirect(url('banks'));
             }
         }
@@ -87,6 +88,7 @@ class Bankcontroller extends Controller
 
     public function update(Request $request, $id)
     {
+        $bank = Bank::find($id);
         if ($request['password'] != null) {
             $data = $this->validate(\request(),
                 [
@@ -106,12 +108,22 @@ class Bankcontroller extends Controller
 
         if ($request['password'] != null && $request['password_confirmation'] != null) {
             $data['password'] = bcrypt(request('password'));
+            unset($data['password_confirmation']);
+            $data['image']  = Str::after($bank->image, 'banks_image/');
+            if($request->image != null){
+                $data['image'] = $this->MoveImage($request->image,'uploads/banks_image');
+            }
+
             Bank::where('id', $id)->update($data);
 
             return redirect()->route('banks.index');
         } else {
             unset($data['password']);
             unset($data['password_confirmation']);
+            $data['image']  = Str::after($bank->image, 'banks_image/');
+            if($request->image != null){
+                $data['image'] = $this->MoveImage($request->image,'uploads/banks_image');
+            }
             Bank::where('id', $id)->update($data);
             activity('admin')->log('تم تحديث البنك بنجاح');
 

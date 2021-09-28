@@ -18,7 +18,7 @@ class CreateBanksTable extends Migration
             $table->string('name_ar');
             $table->string('name_en');
             $table->string('phone')->index()->unique();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('email')->unique();
             $table->enum('status', ['active', 'unactive']);
             $table->string('password');

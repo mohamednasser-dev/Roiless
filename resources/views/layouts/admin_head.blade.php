@@ -19,7 +19,7 @@
                 <!-- ============================================================== -->
                 <!-- Logo -->
                 <!-- ============================================================== -->
-                <div class="navbar-header">
+                <div class="navbar-header" style="display: none">
                     <a class="navbar-brand" href="{{route('home')}}">
                         <span>
                             <img src="{{getlogoimage()->logo}}" href="{{route('home')}}" alt="homepage" class="dark-logo" style="width: 165px; height: 70px;"/>
@@ -45,22 +45,22 @@
                        <!-- Language -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @if(app()->getLocale() == 'en')
                             <i class="flag-icon flag-icon-us"></i>
                             @else
                             <i class="flag-icon flag-icon-kw"></i>
                             @endif
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right animated bounceInDown"> 
+                            <div class="dropdown-menu dropdown-menu-right animated bounceInDown">
                                 @if(app()->getLocale() == 'en')
                                 <a class="dropdown-item" href="{{url('change_lang/ar')}}">
-                                    <i class="flag-icon flag-icon-kw"></i> 
+                                    <i class="flag-icon flag-icon-kw"></i>
                                     العربيه
                                 </a>
                                 @else
                                 <a class="dropdown-item" href="{{url('change_lang/en')}}">
-                                    <i class="flag-icon flag-icon-us"></i> 
+                                    <i class="flag-icon flag-icon-us"></i>
                                     English
                                 </a>
                                 @endif
@@ -82,7 +82,7 @@
                                                 <h4>{{Auth::user()->name}}</h4>
                                                 <p class="text-muted">{{Auth::user()->email}}</p></div>
                                         </div>
-                                    </li>       
+                                    </li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="{{ route('viewprofile',Auth::user()->id)}}"><i class="ti-user"></i> My Profile</a></li>
                                     <li role="separator" class="divider"></li>
@@ -93,11 +93,11 @@
                                             @csrf
                                         </form></li>
                                 </ul>
-                               
+
                             </div>
                         </li>
                     </ul>
                 </div>
-                
+
             </nav>
         </header>

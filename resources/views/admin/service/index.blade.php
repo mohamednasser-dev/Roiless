@@ -35,7 +35,7 @@
                     <td class="text-lg-center">{{$Service->title_ar}}</td>
                     <td class="text-lg-center">{{$Service->title_en}}</td>
                     <td class="text-lg-center ">
-                        <div class="pro-img m-t-20"><img style="height: 80px;" src="{{$Service->image}}"></div>
+                        <div class="pro-img"><img style="height: 80px; width: 80px; border-radius: 50%" src="{{$Service->image}}"></div>
                     </td>
                     <td class="text-lg-center ">
 

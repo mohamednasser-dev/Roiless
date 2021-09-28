@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Traits\offerTrait;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Str;
 
 class sliderController extends Controller
 {
@@ -46,9 +46,13 @@ class sliderController extends Controller
      */
     public function store(Request $request)
     {
+
+        if($request->file('image') == Null) {
+            Alert::warning('خطأ', 'اعد المحاوله مره اخري');
+            return redirect()->route('sliders')->with(['error' => 'Error']);
+        }
+
         $file_name = $this->saveImage($request->file('image'),'uploads/slider' );
-
-
         $Slider = Slider::create([
             'image' => $file_name,
         ]);
@@ -91,20 +95,17 @@ class sliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $Slider=Slider::findOrFail($id);
-
-
-            $file_name = $this->saveImage($request->file('image'),'uploads/slider' );
-            $Slider->update([
-                'image' => $file_name,
-            ]);
-
+        $Slider = Slider::findOrFail($id);
+        $file_name = Str::after($Slider->image, 'slider/');
+        $image = $request->file('image');
+        if ($image != null) {
+            $file_name = $this->MoveImage($image, 'uploads/slider');
+        }
+        $Slider->update([
+            'image' => $file_name,
+        ]);
         activity('admin')->log('تم تحديث الاعلان بنجاح');
-
         Alert::success('تمت العمليه', 'تم تعديل الاعلان بنجاح');
-
-
         return redirect()->route('sliders');
     }
 

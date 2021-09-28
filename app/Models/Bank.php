@@ -38,7 +38,8 @@ class Bank extends Authenticatable
     {
         if ($img)
             return asset('/uploads/banks_image') . '/' . $img;
-
+        else
+            return asset('/uploads/banks_image/default.png') ;
     }
 
     public function notifications()

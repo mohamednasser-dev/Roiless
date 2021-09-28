@@ -114,6 +114,9 @@ class fundController extends Controller
                 $file_name = $this->MoveImage($request->file('image'), 'uploads/funds');
                 $data['image'] = $file_name;
             }
+
+            $data['desc_ar'] = $request->desc_ar;
+            $data['desc_en'] = $request->desc_en;
             $this->objectName::where('id', $id)->update($data);
 
             activity('admin')->log('تم تحديث التمويل بنجاح');
