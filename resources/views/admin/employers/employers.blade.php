@@ -25,6 +25,7 @@
                         <div class="pro-img m-t-20"><img  src="{{$employer->image}}" alt="user"></div>
                         <h3 class="m-b-0">{{$employer->name}}</h3>
                         <ul class="list-inline soc-pro m-t-30">
+                            <li><a title="تحركات الموظف" href="{{route('employer.view.log',$employer->id)}}"><i class="fa fa-universal-access"></i></a></li>
                             <li><a title="تعديل" href="{{url('employer/'.$employer->id.'/edit')}}"><i class="fa fa-edit"></i></a></li>
                             <li><a title="التفاصيل" href="{{route('employer.details',$employer->id)}}"><i class="fa fa-eye"></i></a></li>
                             <li><a title="حذف" onclick="return confirm('هل انت متاكد من حذف البنك')"

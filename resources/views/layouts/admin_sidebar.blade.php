@@ -12,9 +12,12 @@
                     <a class="waves-effect waves-dark" href="{{route('users.index')}}" aria-expanded="false"><i
                             class="mdi mdi-account-location"></i><span class="hide-menu"></span>المستخدمين</a>
                 </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="{{route('employer.index')}}" aria-expanded="false"><i
-                            class="mdi mdi-headphones"></i><span class="hide-menu"></span>الموظفين</a>
+                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-email"></i><span class="hide-menu">الموظفين</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{route('employer.create')}}">{{trans('admin.add_new_employer')}}</a></li>
+                        <li><a href="{{route('employer.index')}}">عرض الموظفين</a></li>
+                        <li><a href="{{route('employer.view.logs')}}">تحركات الموظفين</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{route('banks.index')}}" aria-expanded="false"><i
@@ -48,6 +51,7 @@
                     <a class="waves-effect waves-dark" href="{{route('notifications.index')}}" aria-expanded="false"><i
                             class=" ti-world"></i><span class="hide-menu"></span>الاشعارت</a>
                 </li>
+
                 <li>
                     <a class="waves-effect waves-dark" href="{{route('inbox')}}" aria-expanded="false"><i
                             class="mdi mdi-inbox-arrow-down"></i><span class="hide-menu"></span>التواصل</a>
