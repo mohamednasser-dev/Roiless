@@ -133,9 +133,13 @@ return [
        'Measures'=>' الاجرائات',
        'user'=>'المستخدم',
         'add_fund'=>'اضافه تمويل جديد',
-        'created_at'=>'انشات في',
+        'created_at'=>'أنشئت  في',
         'log_name'=>'اسم السجل',
-
+        'description'=>'الوصف',
+        'name_employee'=>'=اسم الموظف',
+        'next' => 'بعد',
+        'befor' => 'قبل',
+        'search' => 'بحث',
       // start user fund details page
     'funds_need'=>'التمويلات',
     'fund_review'=>'مراجعه التمويلات',
