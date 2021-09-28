@@ -115,7 +115,7 @@ return [
        'choose_requires'=>'اختر المتطلبات',
        'create_fund'=>'انشاء تموييل',
        'funds'=>'التمويلات',
-       'fund'=>'التمويل', 
+       'fund'=>'التمويل',
        'name_arabic'=>'الاسم بالعربي',
        'english_name'=>'الاسم بالانجليزي',
        'category_name'=>'اسم القسم',
@@ -151,11 +151,9 @@ return [
     'user_transfer'=>'مراجعه الطلب',
     'fund_accept'=>'الموافقه علي الطلب',
 // end user fund details page
-      
 
-        'description'=>'',
-        'description'=>'',
-        'description'=>'',
+
+
     // 'should_choose_category' => 'يجب اختيار مخزن اولا',
     // 'wrong_old_password' => 'من فضلك ادخل الباسورد صحيح',
     // 'Updated_Successfully' => 'تم التعديل بنجاح',
