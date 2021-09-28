@@ -71,7 +71,7 @@
                   </div>
 
                   <div class="center">
-                    {{ Form::submit( trans('admin.public_Edit') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
+                    {{ Form::submit( trans('admin.edit') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
                   </div>
                    {{ Form::close() }}
               </div>

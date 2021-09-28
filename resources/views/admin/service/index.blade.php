@@ -2,11 +2,11 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">الخدمات</h3>
+            <h3 class="text-themecolor">{{trans('admin.services')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">الخدمات</li>
+                <li class="breadcrumb-item">{{trans('admin.services')}}</li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
@@ -14,18 +14,18 @@
     <!-- /.card-header -->
     <div class="title">
         <a href="{{url('services/create')}} "
-           class="btn btn-info btn-bg">أضافة خدمه جديده</a>
+           class="btn btn-info btn-bg">{{trans('admin.create_service')}}</a>
     </div>
     <br>
     <div class="row">
         <table class="table full-color-table full-primary-table">
             <thead>
             <tr>
-                <th class="text-lg-center">عنوان الخدمه بالعربي</th>
-                <th class="text-lg-center">عنوان الخدمه بالانجليزي</th>
-                <th class="text-lg-center">الصوره</th>
-                <th class="text-lg-center">التفاصيل</th>
-                <th class="text-lg-center">الاجرائات</th>
+                <th class="text-lg-center">{{trans('admin.service_address_in_arabic')}}</th>
+                <th class="text-lg-center">{{trans('admin.service_address_in_english')}}</th>
+                <th class="text-lg-center">{{trans('admin.service_image')}}</th>
+                <th class="text-lg-center">{{trans('admin.detailes')}}</th>
+                <th class="text-lg-center">{{trans('admin.Measures')}}</th>
             </tr>
             </thead>
 

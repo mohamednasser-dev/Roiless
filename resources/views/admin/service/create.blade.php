@@ -5,12 +5,12 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">انشاء خدمه</h3>
+            <h3 class="text-themecolor">{{trans('admin.create_service')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">انشاء خدمه</li>
-                <li class="breadcrumb-item"> <a href="{{route('services')}}">الخدمات </a></li>
+                <li class="breadcrumb-item"> <a href="{{route('services')}}">{{trans('admin.services')}} </a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
@@ -21,17 +21,17 @@
                 <div class="card-body">
 
                     {{ Form::open( ['route'  => ['services.store'],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
-                    <h4 class="card-title">بيانات الخدمه</h4>
+                    <h4 class="card-title">{{trans('admin.service_info')}}</h4>
                     <hr>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الخدمه بالعربي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.service_address_in_arabic')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('title_ar',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الخدمه بالانجليزي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.service_address_in_english')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('title_en',null,["class"=>"form-control" ,"required"]) }}
                         </div>
@@ -40,14 +40,14 @@
                         <div class="col-lg-12 col-md-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">صورة الخدمه</h4>
+                                    <h4 class="card-title">{{trans('admin.service_image')}}</h4>
                                     <input type="file" name="image" id="input-file-now" class="dropify"/>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card m-b-20">
-                        <div class="card-header" style='text-align:right'><strong> تفاصيل للخدمه </strong>
+                        <div class="card-header" style='text-align:right'><strong> {{trans('admin.service_detailes')}} </strong>
                             <div class="card-body parent" style='text-align:right' id="parent">
                                 <button type='button' value='Add Button' id='addButton'>
                                     <i class="fa fa-plus"></i></button>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class="center">
-                        {{ Form::submit( 'اضافه' ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
+                        {{ Form::submit( trans('admin.add') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
                     </div>
                     {{ Form::close() }}
                 </div>

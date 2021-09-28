@@ -5,11 +5,11 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">تعديل سؤال</h3>
+            <h3 class="text-themecolor">{{trans('admin.edit_question')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">تعديل سؤال</li>
+                <li class="breadcrumb-item">{{trans('admin.edit_question')}}</li>
                 <li class="breadcrumb-item"><a href="ٌ{{route('question')}}">الخدمات</a></li>
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
@@ -21,30 +21,30 @@
             {{ Form::open( ['route'  =>  ['question.update',$question->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">بيانات السؤال</h4>
+                    <h4 class="card-title">{{trans('admin.question_data')}}</h4>
                     <hr>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان السؤال بالعربي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.question_in_arabic')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('question_ar',$question->question_ar,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان السؤال بالانجليزي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.question_in_englishe')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('question_en',$question->question_en,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الجواب بالانجليزي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.answer_in_arabic')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('answer_ar',$question->answer_ar,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">عنوان الجواب بالانجليزي</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.answer_in_english')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('answer_en',$question->answer_en,["class"=>"form-control" ,"required"]) }}
                         </div>
