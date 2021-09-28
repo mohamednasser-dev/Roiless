@@ -83,6 +83,37 @@ class employerController extends Controller
         $employer = Admin::where('id', $id)->first();
         return view($this->folderView . 'edit', \compact('employer'));
     }
+    public function update(Request $request,$id)
+    {
+        $employee = Admin::find($id);
+        if($request['password'] != null && $request['password_confirmation'] != null){
+            $data = $this->validate(\request(),
+                [
+                    'name' => 'required|unique:admins,name,'.$id,
+                    'email' => 'required|unique:admins,email,'.$id,
+                    'phone' => 'required|unique:admins,phone,'.$id,
+                    'password' => 'required|min:6|confirmed',
+                    'password_confirmation' => 'required|min:6',
+                ]);
+            $data['password'] = bcrypt(request('password'));
+            unset($data['password_confirmation']);
+        }else{
+            $data = $this->validate(\request(),
+                [
+                    'name' => 'required|unique:admins,name,'.$id,
+                    'email' => 'required|unique:admins,email,'.$id,
+                    'phone' => 'required|unique:admins,phone,'.$id,
+                ]);
+        }
+        $data['type'] = 'employer';
+        $data['image']  = Str::after($employee->image, 'admins_image/');
+        if($request->image != null){
+            $data['image'] = $this->MoveImage($request->image,'uploads/admins_image');
+        }
+        Admin::where('id', $id)->update($data);
+        Alert::success( 'تمت العمليه','تم تحديث معلومات الحساب');
+        return redirect()->back();
+    }
     public function destroy($id)
     {
         $employer = Admin::findOrFail($id);

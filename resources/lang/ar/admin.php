@@ -2,7 +2,14 @@
 return [
 
     //new
+    'updatSuccess'=>'تم التعديل بنجاح',
+    ''=>'',
+    ''=>'',
+    ''=>'',
 
+    ''=>'',
+    ''=>'',
+    
 
 
 
@@ -39,9 +46,7 @@ return [
      'detailes_info'=>'معلومات التفاصيل',
      'services'=>'الخدمات',
      'add_new_detailes'=>'اضافه تفاصيل جديده',
-
      'service_detailes'=>'تفاصيل الخدمه',
-
      'create_service'=>'انشاء خدمه',
      'service_address_in_arabic'=>'عنوان الخدمه بالعربي',
      'service_address_in_english'=>'عنوان الخدمه بالانجليزي',
@@ -65,23 +70,6 @@ return [
      'iamge'=>'صوره',
      'password_confirmation'=>'تاكيد كلمه المرور',
      'login'=>'دخول',
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     'change_photo'=>'تغيير الصوره',
     'email'=>'البريد الالكتروني',
     'phone'=>'رقم الهاتف ',

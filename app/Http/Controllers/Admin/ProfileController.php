@@ -41,7 +41,7 @@ class ProfileController extends Controller
             $data['image'] = $this->MoveImage($request->image,'uploads/admins_image');
         }
         Admin::where('id', $id)->update($data);
-        Alert::success('تمت العمليه','تم تحديث معلومات الحساب');
+        Alert::success( 'تمت العمليه','تم تحديث معلومات الحساب');
         return redirect()->back();
     }
      public function updatepassword(Request $request)
