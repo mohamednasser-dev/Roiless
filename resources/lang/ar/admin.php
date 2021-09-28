@@ -136,7 +136,7 @@ return [
         'created_at'=>'أنشئت  في',
         'log_name'=>'اسم السجل',
         'description'=>'الوصف',
-        'name_employee'=>'=اسم الموظف',
+        'name_employee'=>'اسم الموظف',
         'next' => 'بعد',
         'befor' => 'قبل',
         'search' => 'بحث',
