@@ -26,11 +26,18 @@ class UserfundsController extends Controller
 
     public function index()
     {
-        $usefunds = User_Fund::with(['Fund' => function ($query) {
-            $query->where('cat_id', auth()->user()->cat_id);
-        }])->get();
+       
+        $usefunds = User_Fund::with('Fund')->whereHas('Fund',function($q){
+                $q->where('cat_id', auth()->user()->cat_id);
+        })->get();
+        
+        
+        
+        // with(['Fund' => function ($query) {
+        //     $query->where('cat_id', auth()->user()->cat_id);
+        // }])
 
-
+      
         return view($this->folderView . 'index', compact('usefunds'));
 
     }
