@@ -32,7 +32,7 @@
         <link href= "{{asset('/assets/plugins/html5-editor/bootstrap-wysihtml5.css')}}" rel="stylesheet" />
         <link href="{{ asset('/assets/plugins/sweetalert/sweetalert.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('/assets/plugins/toastr/toastr.min.css') }}" rel="stylesheet" type="text/css">
-        @if(app()->getLocale() == 'ar')
+     
         <!-- Dashboard 1 Page CSS -->
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/myStyles.css') }}" rel="stylesheet">
@@ -42,7 +42,7 @@
         <link href="{{ asset('/css/pages/card-page.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/owl.carousel.min.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/owl.theme.default.min.css') }}" rel="stylesheet">
-        @else
+
         <!-- Dashboard 1 Page CSS -->
         <link href="{{ asset('/ltr/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('ltr/css/myStyles.css') }}" rel="stylesheet">
@@ -50,7 +50,24 @@
         <!-- You can change the theme colors from here -->
         <link href="{{ asset('/ltr/css/colors/default-dark.css') }}" id="theme" rel="stylesheet">
         <link href="{{ asset('/ltr/css/pages/card-page.css') }}" rel="stylesheet">
+     
+        <!-- ar -->
+        
+
+        <link href="{{ asset('/assets/plugins/sweetalert/sweetalert.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('/assets/plugins/toastr/toastr.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('/css/pages/card-page.css') }}" rel="stylesheet">
+
+        <!-- you can change style in en from here-->
+        <!-- en -->
+        @if(app()->getLocale() == 'en')
+        <link href="{{ asset('/css/colors/default-dark_en.css') }}" id="theme" rel="stylesheet">
+        <link href="{{ asset('/css/style_en.css') }}" rel="stylesheet">
+        @else
+          <link href="{{ asset('/css/style.css') }}" rel="stylesheet"> 
+        <link href="{{ asset('/css/colors/default-dark.css') }}" id="theme" rel="stylesheet"> 
         @endif
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
