@@ -319,13 +319,13 @@
                     <div class="owl-carousel owl-theme">
                     @foreach($requestreview->Files_img as $file)
                         <div class="item">
-                            
+
                                 <a href="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
                                     data-effect="mfp-zoom-in"><img
                                     src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
                                     class="img-responsive"/>
                                 </a>
-                            
+
                         </div>
                     @endforeach
     </div>
@@ -447,12 +447,21 @@
                             <input type="text" class="form-control" name="note_en" required>
                             <br>
                             <label class="control-label"> البنوك </label>
+                            <select class="select2 m-b-10 select2-multiple" name="banks[]" style="width: 100%" multiple="multiple" data-placeholder="Choose">
+                                @foreach($banks as $bank)
+                                <optgroup>
+                                    <option value="{{$bank->id}}">{{$bank->name_ar}}</option>
+                                </optgroup>
+                                @endforeach
+                            </select>
+
+                            {{--
                             <select class="form-control custom-select" name="bank_id">
                                 @foreach($banks as $bank)
                                     <option value="{{$bank->id}}">{{$bank->name_ar}}</option>
                                 @endforeach
                             </select>
-
+    --}}
                         </div>
 
                     </div>
@@ -535,8 +544,8 @@
                 }
             });
         });
-        
+
     </script>
 
-    
+
 @endsection

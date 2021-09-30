@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Bank;
+use App\Models\Bank_User_Fund;
 use App\Models\Fhistory;
 use App\Models\Fund;
 use App\Models\User_Fund;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class UserfundsController extends Controller
@@ -116,21 +118,29 @@ class UserfundsController extends Controller
 
     public function redirect_bank(Request $request, $id)
     {
-
-
         $data = $this->validate(request(),
             [
                 'note_ar' => 'required|string',
                 'note_en' => 'required|string',
-                'bank_id' => 'required',
-
-
+            ]);
+        $bank_req = $this->validate(request(),
+            [
+                'banks' => 'required',
             ]);
 
-
-        $requestreview = User_Fund::find($id);
-        $requestreview->bank_id = $request->bank_id;
-        $requestreview->save();
+        $bank_id =  $request->banks;
+        DB::beginTransaction();
+        if($bank_id) {
+            foreach($bank_id as $bank) {
+                Bank_User_Fund::create([
+                    'user_fund_id' => $id,
+                    'bank_id' => $bank
+                ]);
+            }
+        }
+      //  $requestreview = User_Fund::find($id);
+      //  $requestreview->bank_id = $request->bank_id;
+     //   $requestreview->save();
         Alert::success('عملية ناجحة', 'تم التحويل الي البنك');
 
         $data['emp_id'] = auth()->user()->id;
@@ -139,6 +149,7 @@ class UserfundsController extends Controller
         $data['status'] = 'accept';
         $data['status'] = 'accept';
         Fhistory::create($data);
+        DB::commit();
         return redirect()->route('userfunds');
     }
 
