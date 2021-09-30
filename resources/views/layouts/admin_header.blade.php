@@ -53,8 +53,6 @@
      
         <!-- ar -->
         
-
-        <link href="{{ asset('/assets/plugins/sweetalert/sweetalert.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('/assets/plugins/toastr/toastr.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('/css/pages/card-page.css') }}" rel="stylesheet">
 

@@ -53,7 +53,7 @@ class FundController extends Controller
             $length = count($request->file);
             foreach ($request->file as $key => $row) {
                 $image = $request->file[$key]['value'];  // your base64 encode
-                $image = str_replace('data:image/png;baؤse64,', '', $image);
+                $image = str_replace('data:image/png;base64,', '', $image);
                 $ext = $request->file[$key]['ext'];
                 $imageName[$key] = Str::random(12) . '.' . $ext;
                 \File::put('uploads/fund_file/' . $imageName[$key], base64_decode($image));
