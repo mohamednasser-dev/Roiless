@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function getall()
     {
         $slider = Slider::select(['id', 'image'])->get();
-        $funds = Fund::select(['name_ar', 'name_en', 'cat_id', 'image'])->wherein('featured', ['1'])->get();
+        $funds = Fund::select([ 'id' ,'name_ar', 'name_en', 'cat_id', 'image'])->wherein('featured', ['1'])->get();
         $data['slider'] = $slider;
         $data['funds'] = $funds;
         return response()->json(['data' => $data]);

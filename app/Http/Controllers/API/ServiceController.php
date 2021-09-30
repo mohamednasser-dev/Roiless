@@ -18,10 +18,10 @@ class ServiceController extends Controller
         {
             $lang="ar";
         }
-        $Services = Services::select(['title_'.$lang.' as title', 'image'])->get();
+        $Services = Services::select(['id','title_'.$lang.' as title', 'image'])->get();
         $data = $Services;
         return msgdata($request, success(), 'get services sucess',$Services);
-        
+
     }
 
     public function getservicedetailes(Request $request, $id)
@@ -34,7 +34,7 @@ class ServiceController extends Controller
         $service_detailes = Service_details::select(['title_'.$lang.' as title','desc_'.$lang.' as desc'])->find($id);
         unset($service_detailes['created_at'], $service_detailes['updated_at']);
         return msgdata($request, success(), 'get services detailes success',$service_detailes);
-        
+
     }
 
 }

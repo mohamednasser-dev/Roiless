@@ -19,7 +19,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/assets/images/favicon.png') }}">
         <title>{{getlogoimage()->title_ar}}</title>
         <!-- Bootstrap Core CSS -->
-        
+
         <link href="{{ asset('/assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
         <!-- This page CSS -->
@@ -32,10 +32,16 @@
         <link href= "{{asset('/assets/plugins/html5-editor/bootstrap-wysihtml5.css')}}" rel="stylesheet" />
         <link href="{{ asset('/assets/plugins/sweetalert/sweetalert.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('/assets/plugins/toastr/toastr.min.css') }}" rel="stylesheet" type="text/css">
-     
+
         <!-- Dashboard 1 Page CSS -->
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/myStyles.css') }}" rel="stylesheet">
+
+        <link rel="stylesheet" href= "{{asset('/assets/plugins/html5-editor/bootstrap-wysihtml5.css')}}" />
+        <!-- Dashboard 1 Page CSS -->
+        <link rel="stylesheet" href="{{asset('/assets/plugins/select2/dist/css/select2.min.css')}}" type="text/css" />
+
+
         <link href="{{ asset('/css/pages/dashboard1.css') }}" rel="stylesheet">
         <!-- You can change the theme colors from here -->
         <link href="{{ asset('/css/colors/default-dark.css') }}" id="theme" rel="stylesheet">
@@ -50,9 +56,9 @@
         <!-- You can change the theme colors from here -->
         <link href="{{ asset('/ltr/css/colors/default-dark.css') }}" id="theme" rel="stylesheet">
         <link href="{{ asset('/ltr/css/pages/card-page.css') }}" rel="stylesheet">
-     
+
         <!-- ar -->
-        
+
         <link href="{{ asset('/assets/plugins/toastr/toastr.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('/css/pages/card-page.css') }}" rel="stylesheet">
 
@@ -62,8 +68,8 @@
         <link href="{{ asset('/css/colors/default-dark_en.css') }}" id="theme" rel="stylesheet">
         <link href="{{ asset('/css/style_en.css') }}" rel="stylesheet">
         @else
-          <link href="{{ asset('/css/style.css') }}" rel="stylesheet"> 
-        <link href="{{ asset('/css/colors/default-dark.css') }}" id="theme" rel="stylesheet"> 
+          <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/colors/default-dark.css') }}" id="theme" rel="stylesheet">
         @endif
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

@@ -1,5 +1,4 @@
 @extends('admin_temp')
-@section('content')
 @section('styles')
     <link href="{{asset('/assets/plugins/Magnific-Popup-master/dist/magnific-popup.css')}}" rel="stylesheet">
     <link href="{{asset('/css/pages/user-card.css')}}" rel="stylesheet">
@@ -112,6 +111,26 @@
             margin: auto;
         }
 
+
+        /* Position the image container (needed to position the left and right arrows) */
+        .container {
+            position: relative;
+        }
+
+        /* Hide the images by default */
+        .mySlides {
+            display: none;
+        }
+
+        /* Add a pointer when hovering over the thumbnail images */
+        .cursor {
+            cursor: pointer;
+        }
+
+        /* Next & previous buttons */
+        .prev,
+        .next {
+
             /* Position the image container (needed to position the left and right arrows) */
             .container {
             position: relative;
@@ -142,6 +161,24 @@
             border-radius: 0 3px 3px 0;
             user-select: none;
             -webkit-user-select: none;
+
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+
             }
 
             /* Position the "next button" to the right */
@@ -163,6 +200,12 @@
             padding: 8px 12px;
             position: absolute;
             top: 0;
+
+        }
+
+        /* Container for image text */
+        .caption-container {
+
             }
 
             /* Container for image text */
@@ -171,6 +214,30 @@
             background-color: #222;
             padding: 2px 16px;
             color: white;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Six columns side by side */
+        .column {
+            float: left;
+            width: 16.66%;
+        }
+
+        /* Add a transparency effect for thumnbail images */
+        .demo {
+            opacity: 0.6;
+        }
+
+        .active,
+        .demo:hover {
+            opacity: 1;
+        }
+
             }
 
             .row:after {
@@ -284,6 +351,8 @@
     </style>
 
 @endsection
+@section('content')
+
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
         <h3 class="text-themecolor">{{trans('admin.fund_review')}}</h3>
@@ -421,7 +490,7 @@
     <div class="numbertext">3 / 6</div>
     <img src="{{asset('/uploads/category/1632042608.jpg')}}" style="width:100%">
   </div>
-    
+
   <div class="mySlides">
     <div class="numbertext">4 / 6</div>
     <img src="img_lights_wide.jpg" style="width:100%">
@@ -431,16 +500,16 @@
     <div class="numbertext">5 / 6</div>
     <img src="img_nature_wide.jpg" style="width:100%">
   </div>
-    
+
   <div class="mySlides">
     <div class="numbertext">6 / 6</div>
     <img src="img_snow_wide.jpg" style="width:100%">
   </div>
-    
+
   <a class="prev" onclick="plusSlides(-1)">❮</a>
   <a class="next" onclick="plusSlides(1)">❯</a>
 
-  
+
 
   <div class="row">
     <div class="column">
@@ -457,7 +526,7 @@
     </div>
     <div class="column">
       <img class="demo cursor" src="img_nature.jpg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
-    </div>    
+    </div>
     <div class="column">
       <img class="demo cursor" src="img_snow.jpg" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
     </div>
@@ -476,13 +545,13 @@
                     <div class="owl-carousel owl-theme">
                     @foreach($requestreview->Files_img as $file)
                         <div class="item">
-                            
+
                                 <a href="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
                                     data-effect="mfp-zoom-in"><img
                                     src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
                                     class="img-responsive"/>
                                 </a>
-                            
+
                         </div>
                     @endforeach
     </div>
@@ -604,12 +673,21 @@
                             <input type="text" class="form-control" name="note_en" required>
                             <br>
                             <label class="control-label"> البنوك </label>
+                            <select class="select2 m-b-10 select2-multiple" name="banks[]" style="width: 100%" multiple="multiple" data-placeholder="Choose">
+                                @foreach($banks as $bank)
+                                <optgroup>
+                                    <option value="{{$bank->id}}">{{$bank->name_ar}}</option>
+                                </optgroup>
+                                @endforeach
+                            </select>
+
+                            {{--
                             <select class="form-control custom-select" name="bank_id">
                                 @foreach($banks as $bank)
                                     <option value="{{$bank->id}}">{{$bank->name_ar}}</option>
                                 @endforeach
                             </select>
-
+    --}}
                         </div>
 
                     </div>
@@ -666,7 +744,25 @@
     <script type="text/javascript">
         $('#slimtest1, #slimtest2, #slimtest3, #slimtest4').perfectScrollbar();
 
-        
+        $(document).ready(function(){
+            $('.owl-carousel').owlCarousel({
+                loop:true,
+                margin:10,
+                nav:true,
+                responsive:{
+                0:{
+                    items:1
+                    },
+                600:{
+                    items:3
+                    },
+                1000:{
+                    items:5
+                    }
+                }
+            });
+        });
+
         var slideIndex = 1;
 showSlides(slideIndex);
 
@@ -696,25 +792,7 @@ function showSlides(n) {
   captionText.innerHTML = dots[slideIndex-1].alt;
 }
 
-        // $(document).ready(function(){
-        //     $('.owl-carousel').owlCarousel({
-        //         loop:true,
-        //         margin:10,
-        //         nav:true,
-        //         responsive:{
-        //         0:{
-        //             items:1
-        //             },
-        //         600:{
-        //             items:3
-        //             },
-        //         1000:{
-        //             items:5
-        //             }
-        //         }
-        //     });
-        // });
     </script>
 
-    
+
 @endsection
