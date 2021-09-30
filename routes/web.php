@@ -79,7 +79,6 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::put('/sliders/update/{id}', 'Admin\sliderController@update')->name('sliders.update');
     Route::get('/sliders/delete/{id}', 'Admin\sliderController@destroy')->name('sliders.delete');
 
-
     //categories
     Route::get('/categories', 'Admin\categoriesController@index')->name('categories');
     Route::get('categories/create', 'Admin\categoriesController@create')->name('categories.add');

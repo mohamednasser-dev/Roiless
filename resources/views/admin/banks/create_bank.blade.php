@@ -36,20 +36,20 @@
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.bank_phone')}}</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.phone')}}</label>
                         <div class="col-md-10">
                             {{ Form::number('phone',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.email_of_bank')}}</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.email')}}</label>
                         <div class="col-md-10">
                             {{ Form::email('email',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-password-input"
-                               class="col-md-2 col-form-label">{{trans('admin.bank_password')}}</label>
+                               class="col-md-2 col-form-label">{{trans('admin.password')}}</label>
                         <div class="col-md-10">
                             <input class="form-control" type="password" name="password" id="example-password-input"
                                    required>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="form-group row">
                         <label for="example-password-input2"
-                               class="col-md-2 col-form-label">{{trans('admin.confirm_bank_password')}}</label>
+                               class="col-md-2 col-form-label">{{trans('admin.confirm_password')}}</label>
                         <div class="col-md-10">
                             <input class="form-control" type="password" name="password_confirmation"
                                    id="example-password-input2" required>

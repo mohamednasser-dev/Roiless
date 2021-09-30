@@ -28,11 +28,14 @@
         <!--Toaster Popup message CSS -->
         <link href="{{ asset('/assets/plugins/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
         <!-- Custom CSS -->
-        <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
-        <link href="{{ asset('/css/myStyles.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href= {{asset('/assets/plugins/html5-editor/bootstrap-wysihtml5.css')}} />
+       
+         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+         <link href="{{ asset('/css/myStyles.css') }}" rel="stylesheet">
+
+        <link rel="stylesheet" href= "{{asset('/assets/plugins/html5-editor/bootstrap-wysihtml5.css')}} ">
 
         <!-- Dashboard 1 Page CSS -->
+        
         <link href="{{ asset('/css/pages/dashboard1.css') }}" rel="stylesheet">
         <!-- You can change the theme colors from here -->
         <link href="{{ asset('/css/colors/default-dark.css') }}" id="theme" rel="stylesheet">

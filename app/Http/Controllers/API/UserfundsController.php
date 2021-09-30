@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User_fund;
+use App\Models\fund;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserfundsController extends Controller
@@ -13,10 +15,12 @@ class UserfundsController extends Controller
         $user = auth()->user()->id;
         $lang = $request->header('lang');
         Session()->put('api_lang', $lang);
-        $userfunds = User_fund::where('user_id', $user)->with('Fund')->get();
-
+        $userfunds = User_fund::select(['id','user_id','fund_id','dataform','user_status','fund_amount','created_at'])
+        ->where('user_id', $user)->with('Fund_details')->with('Users')->get(); 
         $userfunds->makeHidden(['emp_id', 'bank_id']);
         return msgdata($request, success(), 'get all user funds ', $userfunds);
 
     }
 }
+
+//select(['id','fund_amount','user_status'])->

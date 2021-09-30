@@ -62,14 +62,12 @@
                                   ]) }}
                         </div>
                     </div>
-                  
 
-                    <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                  <h5 class="m-t-20">Multiple select boxes</h5>
-                                <select class="select2 m-b-10 select2-multiple" style="width: 100%" multiple="multiple" data-placeholder="Choose" name='users_id[]'>
+
+                    <div class="form-group m-t-40 row">
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.multi_select')}}</label>
+                        <div class="col-md-10">
+                        <select class="select2 m-b-10 select2-multiple " style="width: 100%" multiple="multiple" data-placeholder="{{trans('admin.choose')}}" name='users_id[]'>
                                     <optgroup label="Mountain Time Zone">
                                     @foreach($users as $user)
                                     <option value="{{$user->id}}">{{$user->name}}</option>
@@ -78,23 +76,12 @@
                                 </select>
                         </div>
                     </div>
-                </div>
-            </div> 
-
-                         
-
-
-                    <div class="row">
-                        <div class="col-lg-12 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">{{trans('admin.notification_image')}}</h4>
-                                    <input type="file" name="image" id="input-file-now" class="dropify"/>
-                                </div>
-                            </div>
+                    <div class="form-group m-t-40 row">
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.notification_image')}}</label>
+                        <div class="col-md-10">
+                        <input type="file" name="image" id="input-file-now" class="dropify"/>
                         </div>
                     </div>
-
                     <div class="center">
                         {{ Form::submit( trans('admin.add') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
                     </div>
