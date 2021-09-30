@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\API;
+
 use App\Mail\UserRestPasswordApi;
 use Carbon\Carbon;
 use Str;
@@ -24,33 +26,41 @@ use DB;
 class UsersController extends Controller
 {
     use GeneralTrait;
+
     public $objectName;
 
     public function __construct(User $model)
     {
         $this->objectName = $model;
     }
-    public function updateProfile(Request $request, $id)
-    {
-        $user = User::find($id);
-        if(!$user)
-            return response()->json(['status' => 401, 'msg' => 'User Not Found']);
 
+    public function updateProfile(Request $request)
+    {
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        if (!$user)
+            return response()->json(['status' => 401, 'msg' => 'User Not Found']);
         $rules = [
             'name' => 'required|regex:/^[\pL\s\-]+$/u',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'required',
-            'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users,phone,'.$id,
+            'email' => 'required|email|unique:users,email,' . $id,
+            'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users,phone,' . $id,
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
+            $image = $request->image;  // your base64 encode
+            if ($image) {
+                $image = str_replace('data:image/png;base64,', '', $image);
+                $ext = $request->ext;
+                $imageName = Str::random(12) . '.' . $ext;
+                $image = \File::put('uploads/users_images/' . $imageName, base64_decode($image));
+            }
             $user->update([
                 'name' => $request->name,
-                'password' => bcrypt($request->password),
                 'email' => $request->email,
-                'phone' => $request->phone
+                'phone' => $request->phone,
+                'image' => $imageName
             ]);
             if ($user) {
                 return msgdata($request, success(), 'update_profile_success', array('user' => $user));
@@ -111,9 +121,10 @@ class UsersController extends Controller
         }
     }
 
-    public function getDataProfile() {
-        $user = User::where('id', Auth::user()->id)->select('name', 'email' , 'phone')->get();
-        return msgdata( "",success(), ' successfully_get_data_Profile', array('user' => $user));
+    public function getDataProfile()
+    {
+        $user = User::where('id', Auth::user()->id)->select('name', 'email', 'phone')->get();
+        return msgdata("", success(), ' successfully_get_data_Profile', array('user' => $user));
     }
 
 }

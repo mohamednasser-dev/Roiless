@@ -19,7 +19,7 @@ class UserfundsController extends Controller
     public $objectName;
     public $folderView;
 
-    public function __construct(User_Fund $model)
+    public function __construct(User_fund $model)
     {
         $this->objectName = $model;
         $this->folderView = 'admin.userfunds.';
@@ -29,7 +29,7 @@ class UserfundsController extends Controller
     public function index()
     {
 
-        $usefunds = User_Fund::with('Fund')->whereHas('Fund',function($q){
+        $usefunds = User_fund::with('Fund')->whereHas('Fund',function($q){
                 $q->where('cat_id', auth()->user()->cat_id);
         })->get();
 
@@ -48,8 +48,8 @@ class UserfundsController extends Controller
     {
 
 
-        if (User_Fund::where('id', $id)->whereNull('emp_id')->exists()) {
-            User_Fund::where('id', $id)->update(['emp_id' => auth()->user()->id]);
+        if (User_fund::where('id', $id)->whereNull('emp_id')->exists()) {
+            User_fund::where('id', $id)->update(['emp_id' => auth()->user()->id]);
             activity('admin')->log('تم اضافه هذا التمويل لوظائفك بنجاح');
             Alert::success('تمت العمليه', 'تم اضافه هذا التمويل لوظائفك بنجاح');
             return redirect()->route('review', $id);
@@ -62,14 +62,14 @@ class UserfundsController extends Controller
     public function review($id)
     {
 
-        $userfund = User_Fund::find($id);
+        $userfund = User_fund::find($id);
 
         if (!$userfund){
             Alert::warning('تنبية', 'لا يوجد طلب تمويل');
             return redirect()->back();
         }
 
-        $requestreview = User_Fund::find($id);
+        $requestreview = User_fund::find($id);
         $empolyers = Admin::where('type', 'employer')->where('cat_id', auth()->user()->cat_id)->where('id', '<>', auth()->user()->id)->get();
         $banks = Bank::all();
         $histories = Fhistory::where('user_fund_id', $id)->orderBy('created_at', 'DESC')->get();
@@ -83,7 +83,7 @@ class UserfundsController extends Controller
 
     public function employerunchosen($id)
     {
-        User_Fund::where('id', $id)->update(['emp_id' => null]);
+        User_fund::where('id', $id)->update(['emp_id' => null]);
         activity('admin')->log('تم الغاء طلب المراجع');
         Alert::success('تمت العمليه', 'تم الغاء طلب المراجعه');
         return redirect()->route('userfunds');
@@ -101,7 +101,7 @@ class UserfundsController extends Controller
                 'note_en' => 'required|string',
 
             ]);
-        $Emp_request_redirect = User_Fund::find($id);
+        $Emp_request_redirect = User_fund::find($id);
         $Emp_request_redirect->emp_id = $request->emp_id;
         $Emp_request_redirect->save();
 
@@ -165,7 +165,7 @@ class UserfundsController extends Controller
         $data['status'] = 'reject';
         $data['type'] = 'user';
         $data['user_fund_id'] = $id;
-        $data['user_id'] = User_Fund::where('id', $id)->value('user_id');
+        $data['user_id'] = User_fund::where('id', $id)->value('user_id');
         Fhistory::create($data);
         //تعديل الحاله user_status في ال user_funds
 
