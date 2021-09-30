@@ -106,94 +106,94 @@
             border-radius: 6px;
         }
         img {
-  vertical-align: middle;
-  width: 50% !important;
-    display: block;
-    margin: auto;
-}
+            vertical-align: middle;
+            width: 50% !important;
+            display: block;
+            margin: auto;
+        }
 
-/* Position the image container (needed to position the left and right arrows) */
-.container {
-  position: relative;
-}
+            /* Position the image container (needed to position the left and right arrows) */
+            .container {
+            position: relative;
+            }
 
-/* Hide the images by default */
-.mySlides {
-  display: none;
-}
+            /* Hide the images by default */
+            .mySlides {
+            display: none;
+            }
 
-/* Add a pointer when hovering over the thumbnail images */
-.cursor {
-  cursor: pointer;
-}
+            /* Add a pointer when hovering over the thumbnail images */
+            .cursor {
+            cursor: pointer;
+            }
 
-/* Next & previous buttons */
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 40%;
-  width: auto;
-  padding: 16px;
-  margin-top: -50px;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
-}
+            /* Next & previous buttons */
+            .prev,
+            .next {
+            cursor: pointer;
+            position: absolute;
+            top: 40%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+            }
 
-/* Position the "next button" to the right */
-.next {
-  left: 0;
-  border-radius: 3px 0 0 3px;
-}
+            /* Position the "next button" to the right */
+            .next {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+            }
 
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
+            /* On hover, add a black background color with a little bit see-through */
+            .prev:hover,
+            .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            }
 
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
+            /* Number text (1/3 etc) */
+            .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+            }
 
-/* Container for image text */
-.caption-container {
-  text-align: center;
-  background-color: #222;
-  padding: 2px 16px;
-  color: white;
-}
+            /* Container for image text */
+            .caption-container {
+            text-align: center;
+            background-color: #222;
+            padding: 2px 16px;
+            color: white;
+            }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+            .row:after {
+            content: "";
+            display: table;
+            clear: both;
+            }
 
-/* Six columns side by side */
-.column {
-  float: left;
-  width: 16.66%;
-}
+            /* Six columns side by side */
+            .column {
+            float: left;
+            width: 16.66%;
+            }
 
-/* Add a transparency effect for thumnbail images */
-.demo {
-  opacity: 0.6;
-}
+            /* Add a transparency effect for thumnbail images */
+            .demo {
+            opacity: 0.6;
+            }
 
-.active,
-.demo:hover {
-  opacity: 1;
-}
+            .active,
+            .demo:hover {
+            opacity: 1;
+            }
         /* Media queries - Responsive timeline on screens less than 600px wide */
         @media screen and (max-width: 600px) {
             /* Place the timelime to the left */
