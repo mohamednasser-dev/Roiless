@@ -2,6 +2,50 @@
 return [
 
     //new
+     'users'=>'المستخدمون',
+     'add_new_user'=>'اضافه مستخدم جديد',
+     'edit_user'=>'تعديل المستخدم',
+     'fund_category'=>'اقسام التمويلات',
+      'multi_select'=>'اضافه متعدده',
+      'choose'=>'اختيار',
+      'Required_funds'=>'التمويلات المطلوبه',
+      'show_employers'=>'عرض الموظفين',
+      'employers_moves'=>'تحركات الموظفين',
+      ''=>'',
+
+       ''=>'',
+       ''=>'', 
+       ''=>'',
+
+       ''=>'',
+       ''=>'',
+       ''=>'',
+       ''=>'',
+       ''=>'',
+
+       ''=>'',
+
+       ''=>'',
+       ''=>'',
+       ''=>'',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
     'updatSuccess'=>'تم التعديل بنجاح',
     'logout'=>'تسجيل الخروج',
     'notification_data'=>'معلومات الاشعار',
@@ -140,17 +184,17 @@ return [
         'next' => 'بعد',
         'befor' => 'قبل',
         'search' => 'بحث',
-      // start user fund details page
-    'funds_need'=>'التمويلات',
-    'fund_review'=>'مراجعه التمويلات',
-    'fund_history'=>'العمليات على التمويل',
-    'date_preview'=>'بيانات التمويل',
-    'pdf_preview'=>'مرفقات التمويل',
-    'img_preview'=>'صور التمويل',
-    'emp_transfer'=>'التحويل لموظف اخر',
-    'user_transfer'=>'مراجعه الطلب',
-    'fund_accept'=>'الموافقه علي الطلب',
-// end user fund details page
+        // start user fund details page
+        'funds_need'=>'التمويلات',
+        'fund_review'=>'مراجعه التمويلات',
+        'fund_history'=>'العمليات على التمويل',
+        'date_preview'=>'بيانات التمويل',
+        'pdf_preview'=>'مرفقات التمويل',
+        'img_preview'=>'صور التمويل',
+        'emp_transfer'=>'التحويل لموظف اخر',
+        'user_transfer'=>'مراجعه الطلب',
+        'fund_accept'=>'الموافقه علي الطلب',
+        // end user fund details page
 
 
 

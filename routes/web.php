@@ -63,13 +63,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('banks/{id}/details', 'Admin\Bankcontroller@show')->name('banks.details');
     Route::post('banks/actived', 'Admin\Bankcontroller@update_Actived')->name('banks.actived');
 
-    //sliders
-    Route::get('/sliders', 'Admin\sliderController@index')->name('sliders');
-    Route::get('sliders/create', 'Admin\sliderController@create')->name('sliders.add');
-    Route::post('/sliders/store', 'Admin\sliderController@store')->name('sliders.store');
-    Route::get('/sliders/edit/{id}', 'Admin\sliderController@edit')->name('sliders.edit');
-    Route::put('/sliders/update/{id}', 'Admin\sliderController@update')->name('sliders.update');
-    Route::get('/sliders/delete/{id}', 'Admin\sliderController@destroy')->name('sliders.delete');
+    
 
 
     //categories
