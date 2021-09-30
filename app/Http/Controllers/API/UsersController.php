@@ -123,7 +123,7 @@ class UsersController extends Controller
 
     public function getDataProfile()
     {
-        $user = User::where('id', Auth::user()->id)->select('name', 'email', 'phone')->get();
+        $user = User::where('id', Auth::user()->id)->select( 'id' , 'image' , 'name', 'email', 'phone')->get();
         return msgdata("", success(), ' successfully_get_data_Profile', array('user' => $user));
     }
 
