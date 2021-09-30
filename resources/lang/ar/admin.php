@@ -1,6 +1,8 @@
 <?php
 return [
 
+    'branches_banks' => 'فروع البنك' ,
+    'add_branche_bank' => 'اضافه فرع',
     //new
      'users'=>'المستخدمون',
      'add_new_user'=>'اضافه مستخدم جديد',

@@ -22,7 +22,7 @@ class Bankcontroller extends Controller
 
     public function index()
     {
-        $banks = Bank::orderBy('name_en', 'desc')->get();
+        $banks = Bank::whereNull('parent_id')->orderBy('name_en', 'desc')->get();
         return view($this->folderView . 'banks', compact('banks'));
     }
 
@@ -38,7 +38,7 @@ class Bankcontroller extends Controller
         return view($this->folderView . 'create_bank', compact('banks'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request , $id)
     {
         $data = $this->validate(\request(),
             [
@@ -67,6 +67,11 @@ class Bankcontroller extends Controller
             $user = User::create($data);
             */
             unset($data['password_confirmation']);
+            if($id == 0) {
+                $data['parent_id'] = null;
+             } else {
+                $data['parent_id'] = $id;
+            }
             $bank = Bank::create($data);
             $notification = $request['notification'];
             $banks = new Bank();
@@ -126,8 +131,11 @@ class Bankcontroller extends Controller
             }
             Bank::where('id', $id)->update($data);
             activity('admin')->log('تم تحديث البنك بنجاح');
-
-            return redirect()->route('banks.index');
+            if($bank->parent_id == null) {
+                return redirect()->route('banks.index');
+            } else {
+                return redirect()->route('banks.branches',$bank->parent_id);
+            }
         }
     }
 
@@ -137,7 +145,16 @@ class Bankcontroller extends Controller
         $bank->delete();
         activity('admin')->log('تم حذف البنك بنجاح');
         Alert::success('تمت العمليه', 'تم حذف بنجاح');
-        return redirect()->route('banks.index');
+        if($bank->parent_id == null) {
+            return redirect()->route('banks.index');
+        } else {
+            return redirect()->route('banks.branches',$bank->parent_id);
+        }
+    }
+
+    public function bankBranch($id) {
+        $branches = Bank::where('parent_id',$id)->get();
+        return view($this->folderView . 'branches', \compact('branches' , 'id'));
     }
 
 }

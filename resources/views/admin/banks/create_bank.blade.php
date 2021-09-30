@@ -18,8 +18,7 @@
 
     <div class="row">
         <div class="col-sm-12">
-
-            {{ Form::open( ['route'  => ['banks.store'],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
+            {{ Form::open( ['route'  => ['banks.store',0],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">{{trans('admin.bank_information')}}</h4>

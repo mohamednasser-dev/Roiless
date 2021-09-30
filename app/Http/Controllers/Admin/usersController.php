@@ -48,7 +48,6 @@ class usersController extends Controller{
         ]);
         if($request['password'] != null  && $request['password_confirmation'] != null ){
             $data['password'] = bcrypt(request('password'));
-            $data['cat_id'] = $request->category_id;
 //            if($request->status == 'on'){
 //                $data['status'] = 'active';
 //            }else{
@@ -66,8 +65,8 @@ class usersController extends Controller{
             $users->notifications()->attach($notification);
             if($user->save()){
 //                $user->assignRole($request['role_id']);
-                Alert::success('تمت العمليه', 'تم انشاء موظف جديد');
-                return redirect(url('users/create'));
+                Alert::success('تمت العمليه', 'تم انشاء مستخد جديد');
+                return redirect(url('users'));
             }
         }
     }
@@ -85,6 +84,7 @@ class usersController extends Controller{
                 [
                     'name' => 'required',
                     'email' => 'required|unique:users,email,'.$id,
+                    'phone' => 'required',
                     'password' => 'required|min:6|confirmed',
                 ]);
         }else{
@@ -92,6 +92,7 @@ class usersController extends Controller{
                 [
                     'name' => 'required',
                     'email' => 'required|unique:users,email,'.$id,
+                    'phone' => 'required',
                 ]);
         }
             $user = User::find($id);

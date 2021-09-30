@@ -315,22 +315,32 @@
                     <h5>{{trans('admin.img_preview')}}</h5>
                 </div>
 
-                <div id="image-popups" class="row">
+                <div id="image-popups" class="row ">
+                    <div class="owl-carousel owl-theme">
                     @foreach($requestreview->Files_img as $file)
-
-                        <div class="col-lg-2 col-md-4">
-                            <a href="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
-                               data-effect="mfp-zoom-in"><img
+                        <div class="item">
+                            
+                                <a href="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
+                                    data-effect="mfp-zoom-in"><img
                                     src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
-                                    class="img-responsive"/></a>
+                                    class="img-responsive"/>
+                                </a>
+                            
                         </div>
                     @endforeach
+    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 {{--end fund photos --}}
+
+
+
+
+
+
 
 {{--Start fund pdf --}}
 <div class="row">
@@ -489,6 +499,16 @@
 </div>
 
 
+
+<div class="owl-carousel owl-theme">
+    <div class="item"><h4>1</h4></div>
+    <div class="item"><h4>2</h4></div>
+    <div class="item"><h4>3</h4></div>
+    <div class="item"><h4>4</h4></div>
+    <div class="item"><h4>5</h4></div>
+    <div class="item"><h4>6</h4></div>
+</div>
+
 @endsection
 @section('scripts')
     <script src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
@@ -496,5 +516,27 @@
         src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js')}}"></script>
     <script type="text/javascript">
         $('#slimtest1, #slimtest2, #slimtest3, #slimtest4').perfectScrollbar();
+
+        $(document).ready(function(){
+            $('.owl-carousel').owlCarousel({
+                loop:true,
+                margin:10,
+                nav:true,
+                responsive:{
+                0:{
+                    items:1
+                    },
+                600:{
+                    items:3
+                    },
+                1000:{
+                    items:5
+                    }
+                }
+            });
+        });
+        
     </script>
+
+    
 @endsection

@@ -12,7 +12,7 @@
                     <a class="waves-effect waves-dark" href="{{route('users.index')}}" aria-expanded="false"><i
                             class="mdi mdi-account-location"></i><span class="hide-menu"></span>{{trans('admin.users')}}</a>
                 </li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-email"></i><span class="hide-menu">{{trans('admin.employers')}}</span></a>
+                <li> <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-email"></i><span class="hide-menu">الموظفين</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{route('employer.create')}}">{{trans('admin.add_new_employer')}}</a></li>
                         <li><a href="{{route('employer.index')}}">{{trans('admin.show_employers')}}</a></li>
@@ -35,7 +35,7 @@
                     <a class="waves-effect waves-dark" href="{{route('categories')}}" aria-expanded="false"><i
                             class="mdi mdi-briefcase"></i><span class="hide-menu"></span>{{trans('admin.fund_category')}}</a>
                 </li>
-               
+
                 <li>
                     <a class="waves-effect waves-dark" href="{{route('question')}}" aria-expanded="false"><i
                             class="mdi mdi-comment-question-outline"></i><span class="hide-menu"></span>{{trans('admin.common_question')}}</a>
