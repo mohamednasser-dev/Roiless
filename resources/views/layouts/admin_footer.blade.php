@@ -24,7 +24,7 @@
         <!--Wave Effects -->
         <script src="{{ asset('/js/waves.js') }}"></script>
         
-        <script src="{{ asset('/js/owl.carousel.min.js') }}"></script>
+        
         <!--Menu sidebar -->
         <script src="{{ asset('/js/sidebarmenu.js') }}"></script>
         <!--Custom JavaScript -->
