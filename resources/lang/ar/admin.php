@@ -152,7 +152,7 @@ return [
        'fund_address_in_english'=>'عنوان التموييل بالانجليزي',
        'fund_desc_in_arabic'=>'وصف التمويل بالعربي',
        'fund_desc_in_english'=>'وصف التمويل بالغه الانجليزيه',
-       'Application_fee'=>'رسم الاستماره',
+       'Application_fee'=>'رسوم الاستماره',
        'fund_ratio'=>'نسبه التموييل',
        'choose_categories'=>'اختر الاقسام',
        'fund_image'=>'صوره التمويل  ',
@@ -184,18 +184,22 @@ return [
         'next' => 'بعد',
         'befor' => 'قبل',
         'search' => 'بحث',
-        // start user fund details page
-        'funds_need'=>'التمويلات',
-        'fund_review'=>'مراجعه التمويلات',
-        'fund_history'=>'العمليات على التمويل',
-        'date_preview'=>'بيانات التمويل',
-        'pdf_preview'=>'مرفقات التمويل',
-        'img_preview'=>'صور التمويل',
-        'emp_transfer'=>'التحويل لموظف اخر',
-        'user_transfer'=>'مراجعه الطلب',
-        'fund_accept'=>'الموافقه علي الطلب',
-        // end user fund details page
-
+      // start user fund details page
+    'funds_need'=>'التمويلات',
+    'fund_review'=>'مراجعه التمويلات',
+    'fund_history'=>'العمليات على التمويل',
+    'date_preview'=>'بيانات التمويل',
+    'pdf_preview'=>'مرفقات التمويل',
+    'img_preview'=>'صور التمويل',
+    'emp_transfer'=>'التحويل لموظف اخر',
+    'user_transfer'=>'مراجعه الطلب',
+    'fund_accept'=>'الموافقه علي الطلب',
+    'start_fund'=>'بدايه التمويل',
+    'bank_reject'=>'مرفوض من البنك',
+    'emp_accept'=>'الموافقه من الموظف',
+    'emp_return'=>'نقل الطلب من الموظف',
+    'to'=>'الي',
+// end user fund details page
 
 
     // 'should_choose_category' => 'يجب اختيار مخزن اولا',

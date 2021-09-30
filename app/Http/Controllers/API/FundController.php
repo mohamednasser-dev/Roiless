@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Fhistory;
 use App\Models\Fund;
 use App\Models\Bank;
 use App\Models\User;
@@ -52,7 +53,7 @@ class FundController extends Controller
             $length = count($request->file);
             foreach ($request->file as $key => $row) {
                 $image = $request->file[$key]['value'];  // your base64 encode
-                $image = str_replace('data:image/png;base64,', '', $image);
+                $image = str_replace('data:image/png;baؤse64,', '', $image);
                 $ext = $request->file[$key]['ext'];
                 $imageName[$key] = Str::random(12) . '.' . $ext;
                 \File::put('uploads/fund_file/' . $imageName[$key], base64_decode($image));
@@ -67,6 +68,14 @@ class FundController extends Controller
             $user_fund_data['fund_id'] = $request->fund_id;
             $user_fund_data['user_id'] = $user->id;
             $user_funds = User_fund::create($user_fund_data);
+
+            $history_data['user_fund_id'] = $user_funds->id;
+            $history_data['type'] = 'user';
+            $history_data['status'] = 'pending';
+            $history_data['user_id'] =  auth()->user()->id;
+            $history_data['note_ar'] = ' بدايه طلب التمويل';
+            $history_data['note_en'] = 'Starting Fund Request';
+            Fhistory::create($history_data);
             if ($request->file != null) {
                 foreach ($request->file as $key => $row) {
                     $file_data['user_fund_id'] = $user_funds->id;

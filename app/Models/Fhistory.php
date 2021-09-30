@@ -16,4 +16,8 @@ class Fhistory extends Model
     {
         return $this->belongsTo(Admin::class,'return_emp_id');
     }
+    public function bank()
+    {
+        return $this->belongsTo(Bank::class,'bank_id');
+    }
 }

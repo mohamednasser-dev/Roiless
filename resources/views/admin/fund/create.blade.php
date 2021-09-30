@@ -55,7 +55,7 @@
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Application_fee')}}</label>
                         <div class="col-md-10">
-                            {{ Form::text('cost',null,["class"=>"form-control" ,"required"]) }}
+                            {{ Form::number('cost',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>    <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_ratio')}}</label>
@@ -92,7 +92,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">{{trans('admin.fund_image')}}</h4>
-                                    <input type="file" name="image" id="input-file-now" class="dropify" required/>
+                                    <input required type="file" name="image" id="input-file-now" class="dropify" required/>
                                 </div>
                             </div>
                         </div>
