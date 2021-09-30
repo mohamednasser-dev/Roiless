@@ -32,10 +32,10 @@ class Bankcontroller extends Controller
         return view($this->folderView . 'details', compact('banks'));
     }
 
-    public function create()
+    public function create($id)
     {
         $banks = Bank::orderBy('name_en', 'desc');
-        return view($this->folderView . 'create_bank', compact('banks'));
+        return view($this->folderView . 'create_bank', compact('banks','id'));
     }
 
     public function store(Request $request , $id)
@@ -80,7 +80,11 @@ class Bankcontroller extends Controller
             if ($bank->save()) {
 //                $user->assignRole($request['role_id']);
                 Alert::success('تمت العمليه', 'تم انشاء بنك جديد');
-                return redirect(url('banks'));
+                if($bank->parent_id == null) {
+                    return redirect()->route('banks.index');
+                } else {
+                    return redirect()->route('banks.branches',$bank->parent_id);
+                }
             }
         }
     }
