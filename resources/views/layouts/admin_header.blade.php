@@ -30,7 +30,7 @@
         <!-- Custom CSS -->
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/myStyles.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href= {{asset('/assets/plugins/html5-editor/bootstrap-wysihtml5.css')}} />
+        <link rel="stylesheet" href= "{{asset('/assets/plugins/html5-editor/bootstrap-wysihtml5.css')}}" />
 
         <!-- Dashboard 1 Page CSS -->
         <link href="{{ asset('/css/pages/dashboard1.css') }}" rel="stylesheet">
@@ -39,6 +39,9 @@
         <link href="{{ asset('/assets/plugins/sweetalert/sweetalert.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('/assets/plugins/toastr/toastr.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('/css/pages/card-page.css') }}" rel="stylesheet">
+
+        <link href="{{ asset('/css/owl.carousel.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/owl.theme.default.min.css') }}" rel="stylesheet">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
