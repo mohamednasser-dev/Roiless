@@ -12,7 +12,7 @@
                     <a class="waves-effect waves-dark" href="{{route('users.index')}}" aria-expanded="false"><i
                             class="mdi mdi-account-location"></i><span class="hide-menu"></span>المستخدمين</a>
                 </li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-email"></i><span class="hide-menu">الموظفين</span></a>
+                <li> <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-email"></i><span class="hide-menu">الموظفين</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{route('employer.create')}}">{{trans('admin.add_new_employer')}}</a></li>
                         <li><a href="{{route('employer.index')}}">عرض الموظفين</a></li>

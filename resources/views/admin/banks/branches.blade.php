@@ -2,24 +2,25 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">{{trans('admin.employers')}}</h3>
+            <h3 class="text-themecolor">{{trans('admin.branches_banks')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.employers')}}</li>
+                <li class="breadcrumb-item">{{trans('admin.banks')}}</li>
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>
     <!-- /.card-header -->
     <div class="title">
-        <a href="{{route('employer.create')}} "
-           class="btn btn-info btn-bg">{{trans('admin.add_new_employer')}}</a>
+        <a href="{{url('banks/create/'.$id)}}"
+           class="btn btn-info btn-bg">{{trans('admin.add_branche_bank')}}</a>
     </div>
     <br>
     <div class="row">
         <div class="table-responsive ">
-            <table id="example23" class="display full-color-table full-primary-table  nowrap table table-hover table-striped table-bordered"
+            <table id="example23"
+                   class="display full-color-table full-primary-table  nowrap table table-hover table-striped table-bordered"
                    cellspacing="0" width="100%">
                 <thead class="bg-primary">
                 <tr>
@@ -31,32 +32,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($employers as $employer)
+                @foreach($branches as $branch)
                     <tr>
-                        <th scope="row">{{$employer->name}}</th>
+                        <th scope="row">{{$branch->name_ar}}</th>
                         <td>
-                            <img src="{{$employer->image}}" class="img-fluid"
+                            <img src="{{$branch->image}}" class="img-fluid"
                                  style="width: 100px; height: 100px; border-radius: 15px" alt="">
                         </td>
                         <td>
                             <ul class="list-inline soc-pro m-t-30">
-                                <li><a class="btn-circle btn btn-secondary" title="تحركات الموظف" href="{{route('employer.view.log',$employer->id)}}"><i
-                                            class="fa fa-universal-access"></i></a></li>
-                                <li><a class="btn-circle btn btn-success" title="تعديل" href="{{url('employer/'.$employer->id.'/edit')}}"><i
-                                            class="fa fa-edit"></i></a></li>
-                                <li><a class="btn-circle btn btn-info" title="التفاصيل" href="{{route('employer.details',$employer->id)}}"><i
-                                            class="fa fa-eye"></i></a></li>
+                                <li><a class="btn-circle btn btn-success" title="تعديل" href="{{url('banks/'.$branch->id.'/edit')}}"><i class="fa fa-edit"></i></a></li>
+                                <li><a class="btn-circle btn btn-info" title="التفاصيل" href="{{route('banks.details',$branch->id)}}"><i class="fa fa-eye"></i></a></li>
                                 <li><a class="btn-circle btn btn-danger" title="حذف" onclick="return confirm('هل انت متاكد من حذف البنك')"
-                                       href="{{route('employer.delete',$employer->id)}}"><i class="fa fa-trash"></i></a>
-                                </li>
+                                       href="{{route('banks.delete',$branch->id)}}"><i class="fa fa-trash"></i></a></li>
                             </ul>
-                            <div class="switch">
-                                <label>
-                                    <input type="checkbox" onchange="update_active(this)" value="{{$employer->id}}"
-                                           name="active" @if($employer->status == 'active') checked @endif ><span
-                                        class="lever switch-col-green"></span></label>
-                            </div>
-
                         </td>
                     </tr>
                 @endforeach
@@ -65,16 +54,15 @@
         </div>
     </div>
 @endsection
-
 @section('scripts')
     <script type="text/javascript">
         function update_active(el) {
-            if (el.checked)
+            if (el.checked) {
                 var status = 'active';
-            else
+            } else {
                 var status = 'unactive';
-
-            $.post('{{ route('employer.change.status') }}', {
+            }
+            $.post('{{ route('banks.actived') }}', {
                 _token: '{{ csrf_token() }}',
                 id: el.value,
                 status: status
@@ -88,5 +76,3 @@
         }
     </script>
 @endsection
-
-

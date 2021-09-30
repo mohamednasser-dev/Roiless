@@ -59,10 +59,18 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
     //banks  routes
     Route::resource('banks', 'Admin\Bankcontroller');
+    Route::get('banks/create/{id}', 'Admin\Bankcontroller@create')->name('banks.create');
+    Route::post('banks/store/{id}', 'Admin\Bankcontroller@store')->name('banks.store');
+
     Route::get('banks/{id}/delete', 'Admin\Bankcontroller@destroy')->name('banks.delete');
     Route::get('banks/{id}/details', 'Admin\Bankcontroller@show')->name('banks.details');
     Route::post('banks/actived', 'Admin\Bankcontroller@update_Actived')->name('banks.actived');
+    Route::get('banks/{id}/branches', 'Admin\Bankcontroller@bankBranch')->name('banks.branches');
 
+    Route::get('banks/branches/{id}/edit', 'Admin\Bankcontroller@editBranche')->name('banks.edit.branches');
+    Route::post('banks/branches/update', 'Admin\Bankcontroller@updateBranche')->name('banks.update.branches');
+    Route::get('banks/branches/{id}/delete', 'Admin\Bankcontroller@destroyBranche')->name('banks.delete.branches');
+    Route::get('banks/branches/{id}/details', 'Admin\Bankcontroller@showBranche')->name('banks.details.branches');
     //sliders
     Route::get('/sliders', 'Admin\sliderController@index')->name('sliders');
     Route::get('sliders/create', 'Admin\sliderController@create')->name('sliders.add');
@@ -111,7 +119,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::group(['namespace' => 'Admin'], function () {
         Route::get('/Setting/edit', 'SettingController@edit')->name('Setting.edit');
         Route::post('/Setting/update/{id}', 'SettingController@update')->name('Setting.update');
-        
+
     });
 
     // questios

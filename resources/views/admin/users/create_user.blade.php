@@ -58,14 +58,7 @@
                                    id="example-password-input2" required>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label  class="form-label">الاقسام </label>
-                        <select name="category_id" class="form-control"  >
-                            @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->title_ar}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+
                 </div>
             </div>
             <div class="row">

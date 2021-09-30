@@ -1,6 +1,8 @@
 <?php
 return [
 
+    'branches_banks' => 'فروع البنك' ,
+    'add_branche_bank' => 'اضافه فرع',
     //new
     'updatSuccess'=>'تم التعديل بنجاح',
     'logout'=>'تسجيل الخروج',

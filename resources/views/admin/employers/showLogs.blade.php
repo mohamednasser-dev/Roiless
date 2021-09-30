@@ -16,32 +16,6 @@
     <!-- /.card-header -->
     <br>
     <div class="row">
-        <!--
-        <table class="table full-color-table full-primary-table">
-            <thead>
-            <tr>
-                <th scope="col">{{trans('admin.log_name')}}</th>
-                <th scope="col">{{trans('admin.description')}}</th>
-                <th scope="col">{{trans('admin.name_employee')}}</th>
-                <th scope="col">{{trans('admin.created_at')}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($activities as $activity)
-                <tr>
-                    <th scope="row">{{$activity->log_name}}</th>
-                    <td>{{$activity->description}}</td>
-                    <td>
-                        @if ($activity->employees !== null)
-                            {{$activity->employees->name}}
-                        @endif
-                       </td>
-                    <td>{{$activity->created_at}}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-        -->
             <div class="table-responsive m-t-40">
                 <table id="example23" class="display full-color-table full-primary-table  nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                     <thead class="bg-primary">
