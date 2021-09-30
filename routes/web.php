@@ -25,13 +25,13 @@ Route::group(['middleware' => 'guest:admin', 'namespace' => 'Admin\Auth'], funct
 
 Route::group(['middleware' => 'auth:admin', 'namespace' => 'Admin'], function () {
     Route::get('/', 'DashboardController@index')->name('home');
-
+    Route::get('/test', 'usersController@ltr');
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 });
 
 Route::group(['middleware' => ['auth:admin']], function () {
-
+    
     //users  routes
     Route::resource('users', 'Admin\usersController');
     Route::get('users/{id}/delete', 'Admin\usersController@destroy')->name('users.delete');

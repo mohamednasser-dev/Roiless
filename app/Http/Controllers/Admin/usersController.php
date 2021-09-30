@@ -141,4 +141,8 @@ class usersController extends Controller{
         }
         return back();
     }
+     public function ltr()
+    {
+        return view('home_ltr');
+    }
 }
