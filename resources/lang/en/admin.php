@@ -2,6 +2,24 @@
 return [
 
     //new
+    'users'=>'users',
+    'add_new_user'=>'add new user',
+    'edit_user'=>'edit user',
+    'fund_category'=>'fund category',
+    'multi_select'=>'multi select',
+    'choose'=>'choose',
+    'Required_funds'=>'Required funds',
+    'show_employers'=>'show employers',
+    'employers_moves'=>'employers moves',
+
+
+
+
+
+
+
+
+
     
     'updatSuccess'=>'updated successfully',
     'logout'=>'logout',

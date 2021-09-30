@@ -18,29 +18,51 @@
     </div>
     <br>
     <div class="row">
-        @foreach($employers as $employer)
-            <div class="col-lg-3 col-xlg-3">
-                <div class="card">
-                    <div class="card-body little-profile text-center">
-                        <div class="pro-img m-t-20"><img  src="{{$employer->image}}" alt="user"></div>
-                        <h3 class="m-b-0">{{$employer->name}}</h3>
-                        <ul class="list-inline soc-pro m-t-30">
-                            <li><a title="تحركات الموظف" href="{{route('employer.view.log',$employer->id)}}"><i class="fa fa-universal-access"></i></a></li>
-                            <li><a title="تعديل" href="{{url('employer/'.$employer->id.'/edit')}}"><i class="fa fa-edit"></i></a></li>
-                            <li><a title="التفاصيل" href="{{route('employer.details',$employer->id)}}"><i class="fa fa-eye"></i></a></li>
-                            <li><a title="حذف" onclick="return confirm('هل انت متاكد من حذف البنك')"
-                                   href="{{route('employer.delete',$employer->id)}}"><i class="fa fa-trash"></i></a></li>
-                        </ul>
+        <div class="table-responsive ">
+            <table id="example23" class="display full-color-table full-primary-table  nowrap table table-hover table-striped table-bordered"
+                   cellspacing="0" width="100%">
+                <thead class="bg-primary">
+                <tr>
+                    <th scope="col">{{trans('admin.name')}}</th>
+                    <th scope="col">{{trans('admin.image')}}</th>
+                    <th scope="col">
+                        {{trans('admin.actions')}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($employers as $employer)
+                    <tr>
+                        <th scope="row">{{$employer->name}}</th>
+                        <td>
+                            <img src="{{$employer->image}}" class="img-fluid"
+                                 style="width: 100px; height: 100px; border-radius: 15px" alt="">
+                        </td>
+                        <td>
+                            <ul class="list-inline soc-pro m-t-30">
+                                <li><a class="btn-circle btn btn-secondary" title="تحركات الموظف" href="{{route('employer.view.log',$employer->id)}}"><i
+                                            class="fa fa-universal-access"></i></a></li>
+                                <li><a class="btn-circle btn btn-success" title="تعديل" href="{{url('employer/'.$employer->id.'/edit')}}"><i
+                                            class="fa fa-edit"></i></a></li>
+                                <li><a class="btn-circle btn btn-info" title="التفاصيل" href="{{route('employer.details',$employer->id)}}"><i
+                                            class="fa fa-eye"></i></a></li>
+                                <li><a class="btn-circle btn btn-danger" title="حذف" onclick="return confirm('هل انت متاكد من حذف البنك')"
+                                       href="{{route('employer.delete',$employer->id)}}"><i class="fa fa-trash"></i></a>
+                                </li>
+                            </ul>
+                            <div class="switch">
+                                <label>
+                                    <input type="checkbox" onchange="update_active(this)" value="{{$employer->id}}"
+                                           name="active" @if($employer->status == 'active') checked @endif ><span
+                                        class="lever switch-col-green"></span></label>
+                            </div>
 
-                        <div class="switch">
-                            <label>
-                                <input type="checkbox" onchange="update_active(this)" value="{{$employer->id}}" name="active" @if($employer->status == 'active') checked @endif ><span class="lever switch-col-green"></span></label>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        @endforeach
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection
 

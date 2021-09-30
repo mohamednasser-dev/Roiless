@@ -10,7 +10,7 @@
       <div class="col-md-7 align-self-center">
           <ol class="breadcrumb">
                <li class="breadcrumb-item">{{trans('admin.edit_user')}}</li>
-              <li class="breadcrumb-item"><a href="{{url('users')}}">{{trans('admin.nav_users')}}</a></li>
+              <li class="breadcrumb-item"><a href="{{url('users')}}">{{trans('admin.users')}}</a></li>
               <li class="breadcrumb-item active"><a href="{{url('home')}}" >{{trans('admin.home_page')}}</a> </li>
           </ol>
       </div>
@@ -28,6 +28,12 @@
                         <div class="col-md-10">
                           {{ Form::text('name',$user_data->name,["class"=>"form-control" ,"required"]) }}
                         </div>
+                  </div>
+                  <div class="form-group m-t-40 row">
+                      <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.phone')}}</label>
+                      <div class="col-md-10">
+                          {{ Form::text('phone',$user_data->phone,["class"=>"form-control" ,"required"]) }}
+                      </div>
                   </div>
                   <div class="form-group m-t-40 row">
                       <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.email')}}</label>
