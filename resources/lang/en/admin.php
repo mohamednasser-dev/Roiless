@@ -11,18 +11,10 @@ return [
     'Required_funds'=>'Required funds',
     'show_employers'=>'show employers',
     'employers_moves'=>'employers moves',
-   
     'employee_count'=>'employee count',
     'users_count'=>'users count', 
     'bank_count'=>'bank count',
     'fund_count'=>'fund count',
-
-
-
-
-
-
-
 
     
     'updatSuccess'=>'updated successfully',
