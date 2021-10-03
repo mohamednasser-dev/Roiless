@@ -19,7 +19,8 @@ return [
     'accepted_fund'=>'accepted fund',
     'pending_fund'=>'pending fund',
     'user_chart'=>'user chart',
-
+    'fund_chart'=>'fund chart',
+    'statuschanged'=>'Visible',
 
     
     'updatSuccess'=>'updated successfully',

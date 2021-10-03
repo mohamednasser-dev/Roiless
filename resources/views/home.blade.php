@@ -1,4 +1,3 @@
-
 @extends('admin_temp')
 @section('content')
     <div class="row page-titles">
@@ -11,7 +10,7 @@
             <div class="card bg-info">
                 <div class="card-body">
                     <div class="d-flex no-block">
-                        <div class="m-r-20 align-self-center"><img src="../assets/images/icon/income-w.png" alt="Income" /></div>
+                    <div class="m-r-20 align-self-center"><img src="../assets/images/icon/staff-w.png" alt="Income" /></div>
                         <div class="align-self-center">
                             <h6 class="text-white m-t-10 m-b-0">{{trans('admin.employee_count')}}</h6>
                             <h2 class="m-t-0 text-white">{{$employercount}}</h2></div>
@@ -23,7 +22,7 @@
             <div class="card bg-success">
                 <div class="card-body">
                     <div class="d-flex no-block">
-                        <div class="m-r-20 align-self-center"><img src="../assets/images/icon/expense-w.png" alt="Income" /></div>
+                    <div class="m-r-20 align-self-center"><img src="../assets/images/icon/staff-w.png" alt="Income" /></div>
                         <div class="align-self-center">
                             <h6 class="text-white m-t-10 m-b-0">{{trans('admin.users_count')}}</h6>
                             <h2 class="m-t-0 text-white">{{$usercount}}</h2></div>
@@ -47,7 +46,7 @@
             <div class="card bg-danger">
                 <div class="card-body">
                     <div class="d-flex no-block">
-                        <div class="m-r-20 align-self-center"><img src="../assets/images/icon/staff-w.png" alt="Income" /></div>
+                    <div class="m-r-20 align-self-center"><img src="../assets/images/icon/expense-w.png" alt="Income" /></div>
                         <div class="align-self-center">
                             <h6 class="text-white m-t-10 m-b-0">{{trans('admin.fund_count')}}</h6>
                             <h2 class="m-t-0 text-white">{{$fundcount}}</h2></div>
@@ -60,25 +59,13 @@
     <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Pie Chart</h4>
+                    <h4 class="card-title">{{trans('admin.fund_chart')}}</h4>
                     <div>
                         <canvas id="chart3" height="150"></canvas>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">chatsssss</h4>
-                    <div>
-                        <canvas id="chart2" height="150"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-       
-
                    <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
@@ -89,44 +76,14 @@
                             </div>
                         </div>
                     </div>
-
-    </div>
-   
+  </div>
 @endsection
 @section('scripts')
 <script src="{{ asset('/assets/plugins/Chart.js/Chart.min.js') }}"></script>
 <script type="text/javascript">
     $( document ).ready(function() {
         // Chart for Super admin
-        var ctx2 = document.getElementById("chart2").getContext("2d");
-        var data2 = {
-            labels: ['A','B','C','D'],
-            datasets: [
-                {
-                    label: "My First dataset",
-                    fillColor: "#009efb",
-                    strokeColor: "#009efb",
-                    highlightFill: "#009efb",
-                    highlightStroke: "#009efb",
-                    data: [5,7,8,10]
-                }
-            ]
-        };
-
-        var chart2 = new Chart(ctx2).Bar(data2, {
-            scaleBeginAtZero : true,
-            scaleShowGridLines : true,
-            scaleGridLineColor : "rgba(0,0,0,.005)",
-            scaleGridLineWidth : 0,
-            scaleShowHorizontalLines: true,
-            scaleShowVerticalLines: true,
-            barShowStroke : true,
-            barStrokeWidth : 0,
-            tooltipCornerRadius: 2,
-            barDatasetSpacing : 3,
-            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
-            responsive: true
-        });
+      
         var ctx3 = document.getElementById("chart3").getContext("2d");
             var data3 = [
                 {
@@ -160,9 +117,6 @@
             legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
             responsive: true
         });
-
-
-
  var ctx1 = document.getElementById("chart1").getContext("2d");
     var data1 = {
         labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"],
@@ -183,7 +137,6 @@
       name: "LineAlt",
       initialize: function () {
         Chart.types.Line.prototype.initialize.apply(this, arguments);
-
         var ctx = this.chart.ctx;
         var originalStroke = ctx.stroke;
         ctx1.stroke = function () {
@@ -217,20 +170,6 @@
         legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
         responsive: true
     });
-
-    
     });
-
-    
-
-
-
-
-
-
-
-
-
-
 </script>
 @endsection
