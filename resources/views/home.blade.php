@@ -77,7 +77,18 @@
                 </div>
             </div>
         </div>
+       
 
+                   <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">{{trans('admin.user_chart')}}</h4>
+                                <div>
+                                    <canvas id="chart1" height="150"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
     </div>
    
@@ -101,6 +112,7 @@
                 }
             ]
         };
+
         var chart2 = new Chart(ctx2).Bar(data2, {
             scaleBeginAtZero : true,
             scaleShowGridLines : true,
@@ -116,39 +128,109 @@
             responsive: true
         });
         var ctx3 = document.getElementById("chart3").getContext("2d");
-    var data3 = [
-        {
-            value: {!! $rejected_fund !!},
-            color:"#ef5350",
-            highlight: "#ef5350",
-            label: '@lang('admin.rejected_fund')'
-        },
-        {
-            value: {!! $accepted_fund !!},
-            color: "#06d79c",
-            highlight: "#06d79c",
-            label: '@lang('admin.accepted_fund')'
-        },
-		 {
-            value: {!! $pending_fund !!},
-            color: "#398bf7",
-            highlight: "#398bf7",
-            label: '@lang('admin.pending_fund')'
-        },	
-    ];  
-    var myPieChart = new Chart(ctx3).Pie(data3,{
-        segmentShowStroke : true,
-        segmentStrokeColor : "#fff",
-        segmentStrokeWidth : 0,
-        animationSteps : 100,
-		tooltipCornerRadius: 0,
-        animationEasing : "easeOutBounce",
-        animateRotate : true,
-        animateScale : false,
-        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
+            var data3 = [
+                {
+                    value: {!! $rejected_fund !!},
+                    color:"#ef5350",
+                    highlight: "#ef5350",
+                    label: '@lang('admin.rejected_fund')'
+                },
+                {
+                    value: {!! $accepted_fund !!},
+                    color: "#06d79c",
+                    highlight: "#06d79c",
+                    label: '@lang('admin.accepted_fund')'
+                },
+                {
+                    value: {!! $pending_fund !!},
+                    color: "#398bf7",
+                    highlight: "#398bf7",
+                    label: '@lang('admin.pending_fund')'
+                },	
+            ];  
+        var myPieChart = new Chart(ctx3).Pie(data3,{
+            segmentShowStroke : true,
+            segmentStrokeColor : "#fff",
+            segmentStrokeWidth : 0,
+            animationSteps : 100,
+            tooltipCornerRadius: 0,
+            animationEasing : "easeOutBounce",
+            animateRotate : true,
+            animateScale : false,
+            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
+            responsive: true
+        });
+
+
+
+ var ctx1 = document.getElementById("chart1").getContext("2d");
+    var data1 = {
+        labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"],
+        datasets: [
+            {
+                label: "My First dataset",
+                fillColor: "#009efb",
+                strokeColor: "#009efb",
+                pointColor: "#009efb",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "#009efb",
+                data: {!! $user_count !!}
+            }
+        ],    
+    };
+    Chart.types.Line.extend({
+      name: "LineAlt",
+      initialize: function () {
+        Chart.types.Line.prototype.initialize.apply(this, arguments);
+
+        var ctx = this.chart.ctx;
+        var originalStroke = ctx.stroke;
+        ctx1.stroke = function () {
+          ctx1.save();
+          ctx1.shadowColor = 'rgba(0, 0, 0, 0.4)';
+          ctx1.shadowBlur = 10;
+          ctx1.shadowOffsetX = 8;
+          ctx1.shadowOffsetY = 8;
+          originalStroke.apply(this, arguments)
+          ctx1.restore();
+
+        }
+      }
+    });
+    var chart1 = new Chart(ctx1).LineAlt(data1, {
+        scaleShowGridLines : true,
+        scaleGridLineColor : "rgba(0,0,0,.005)",
+        scaleGridLineWidth : 0,
+        scaleShowHorizontalLines: true,
+        scaleShowVerticalLines: true,
+        bezierCurve : true,
+        bezierCurveTension : 0.4,
+        pointDot : true,
+        pointDotRadius : 4,
+        pointDotStrokeWidth : 2,
+        pointHitDetectionRadius : 2,
+        datasetStroke : true,
+		tooltipCornerRadius: 2,
+        datasetStrokeWidth : 0,
+        datasetFill : false,
+        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
         responsive: true
     });
+
+    
     });
+
+    
+
+
+
+
+
+
+
+
+
 
 </script>
 @endsection

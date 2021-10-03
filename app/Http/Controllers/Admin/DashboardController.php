@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Fund;
 use App\Models\User_fund;
 use App\Models\Admin;
+use Carbon\Carbon;
 
 
 
@@ -32,6 +33,15 @@ class DashboardController extends Controller
         $pending_fund = json_encode($pending_fund);
         $accepted_fund = json_encode($accepted_fund);
         $rejected_fund = json_encode($rejected_fund);
-        return view('home', compact('usercount','bankcount','fundcount','employercount','rejected_fund','accepted_fund','pending_fund'));
+         for( $i=1;$i<=12;$i++ )
+         {
+            $user_count[$i]=User::whereYear('created_at', '=',  Carbon::yesterday())->whereMonth('created_at', '=', $i)->get()->count();
+         };
+         $user_count = json_encode($user_count);
+         //dd($user_count);
+       
+       
+
+        return view('home', compact('usercount','bankcount','fundcount','employercount','rejected_fund','accepted_fund','pending_fund','user_count'));
     }
 }

@@ -15,6 +15,11 @@ return [
     'users_count'=>'users count', 
     'bank_count'=>'bank count',
     'fund_count'=>'fund count',
+    'rejected_fund'=>'rejected fund',
+    'accepted_fund'=>'accepted fund',
+    'pending_fund'=>'pending fund',
+    'user_chart'=>'user chart',
+
 
     
     'updatSuccess'=>'updated successfully',
