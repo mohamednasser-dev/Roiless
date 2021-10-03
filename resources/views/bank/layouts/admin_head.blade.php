@@ -42,7 +42,29 @@
                     <!-- User profile and search -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav my-lg-0">
-
+                         
+                    <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @if(app()->getLocale() == 'en')
+                            <i class="flag-icon flag-icon-us"></i>
+                            @else
+                            <i class="flag-icon flag-icon-kw"></i>
+                            @endif
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right animated bounceInDown">
+                                @if(app()->getLocale() == 'en')
+                                <a class="dropdown-item" href="{{url('change_lang/ar')}}">
+                                    <i class="flag-icon flag-icon-kw"></i>
+                                    العربيه
+                                </a>
+                                @else
+                                <a class="dropdown-item" href="{{url('change_lang/en')}}">
+                                    <i class="flag-icon flag-icon-us"></i>
+                                    English
+                                </a>
+                                @endif
+                             </div>
+                        </li>
                         <!-- ============================================================== -->
                         <!-- Profile -->
                         <!-- ============================================================== -->
@@ -59,6 +81,7 @@
                                             </div>
                                         </div>
                                     </li>
+                                    
                                     <li>
                                         <a class="fa fa-power-off" href="{{ route('bank.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             {{trans('bank.logout')}}
@@ -70,6 +93,7 @@
                                 </ul>
                             </div>
                         </li>
+                        
                     </ul>
                 </div>
             </nav>

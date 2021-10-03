@@ -8,6 +8,11 @@ use Auth;
 class LoginController extends Controller
 {
     public function login() {
+         if (Auth::guard('bank')->check()) {
+            return redirect(route('bank.home'));
+        }elseif (Auth::guard('web')->check()) {
+            return redirect(route('home'));
+        }
         return view('admin.auth.login');
     }
 

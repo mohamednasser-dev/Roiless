@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::group( [ 'middleware'=> 'guest:bank' , 'namespace'=> 'Bank\Auth' ] , function () {
+Route::group( [ 'middleware'=> 'guest' , 'namespace'=> 'Bank\Auth' ] , function () {
     Route::get('/login', 'LoginController@login')->name('bank.login');
     Route::post('/login-store', 'LoginController@loginBank')->name('bank.login.store');
 });

@@ -16,11 +16,13 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
-        }
+        // if (Auth::guard('bank')->check()) {
+        //     return redirect(route('bank.home'));
+        // }elseif (Auth::guard('admin')->check()) {
+        //     return redirect(route('home'));
+        // }
         return $next($request);
     }
 }

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::post('/login_user', 'Admin\LoginController@login')->name('login_user');
 
-Route::group(['middleware' => 'guest:admin', 'namespace' => 'Admin\Auth'], function () {
+Route::group(['middleware' => 'guest', 'namespace' => 'Admin\Auth'], function () {
     Route::get('/login', 'LoginController@login')->name('login');
     Route::post('/login-store', 'LoginController@loginAdmin')->name('admin.login.store');
 });

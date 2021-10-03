@@ -22,7 +22,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/';
-    public const BANK = '/bank';
+    public const BANK = '/bank/home';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -70,7 +70,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapBankRoutes()
     {
         Route::prefix('bank')
-            ->middleware('web')
+            ->middleware(['web','lang'])
             ->namespace($this->namespace)
             ->group(base_path('routes/bank.php'));
     }
