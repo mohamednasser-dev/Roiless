@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Bank;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank_User_Fund;
 use App\Models\Fhistory;
 use App\Models\User_Fund;
 use Illuminate\Http\Request;
@@ -23,9 +24,9 @@ class UserfundsController extends Controller
 
     public function index()
     {
-
+        $userFundBank = Bank_User_Fund::where('bank_id', \Auth::guard('bank')->user()->id)->pluck('user_fund_id');
         $bank_id = auth()->guard('bank')->user()->id;
-        $userfunds = User_Fund::where('bank_id', $bank_id)->get();
+        $userfunds = User_Fund::whereIn('id', $userFundBank)->get();
 
         return view($this->folderView . 'index', compact('userfunds'));
 
