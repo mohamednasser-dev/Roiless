@@ -138,12 +138,12 @@ class employerController extends Controller
     }
 
     public function showLog ($id) {
-        $activities = \App\Models\Activity::where('causer_id',$id)->get();
+        $activities = Activity::where('causer_id',$id)->get();
         return view($this->folderView . 'viewLog', \compact( 'activities'));
     }
 
     public function showLogs () {
-        $activities = Activity::with('employees')->get();
+        $activities = \App\Models\Activity::with('employees')->get();
         return view($this->folderView . 'showLogs', \compact( 'activities'));
     }
 
