@@ -59,7 +59,7 @@
         <script src="{{ asset('/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
         <script src="{{asset('/assets/plugins/html5-editor/wysihtml5-0.3.0.js')}}"></script>
         <script src="{{asset('/assets/plugins/html5-editor/bootstrap-wysihtml5.js')}}"></script>
-        <script src="{{asset('assets/plugins/select2/dist/js/select2.full.min.js')}}" type="text/javascript"></script>
+        <!-- <script src="{{asset('assets/plugins/select2/dist/js/select2.full.min.js')}}" type="text/javascript"></script> -->
 
 <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
@@ -68,7 +68,7 @@
         <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-        @yield('scripts')
+     
 
         <script>
             $(document).ready(function() {
@@ -236,6 +236,7 @@
         });
     });
 </script>
+@yield('scripts')
 @include('sweetalert::alert')
 
     </body>

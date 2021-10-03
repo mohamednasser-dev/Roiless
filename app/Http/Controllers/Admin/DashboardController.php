@@ -23,10 +23,15 @@ class DashboardController extends Controller
         $bankcount=Bank::count();
         $fundcount=Fund::count();
         $employercount=Admin::count();
-        $resent_fund=User_fund::where(['user_status' => 'pending'])->get()->count();
+
+        // for chart 3
+        $pending_fund=User_fund::where(['user_status' => 'pending'])->get()->count();
         $accepted_fund=User_fund::where(['user_status' => 'finail_accept'])->get()->count();
         $rejected_fund=User_fund::where(['user_status' => 'finail_rejected'])->get()->count();
-       
-        return view('home', compact('usercount','bankcount','fundcount','employercount'));
+        
+        $pending_fund = json_encode($pending_fund);
+        $accepted_fund = json_encode($accepted_fund);
+        $rejected_fund = json_encode($rejected_fund);
+        return view('home', compact('usercount','bankcount','fundcount','employercount','rejected_fund','accepted_fund','pending_fund'));
     }
 }
