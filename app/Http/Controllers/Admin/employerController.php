@@ -143,7 +143,7 @@ class employerController extends Controller
     }
 
     public function showLogs () {
-        $activities = Activity::with('employees')->get();
+        $activities = \App\Models\Activity::with('employees')->get();
         return view($this->folderView . 'showLogs', \compact( 'activities'));
     }
 

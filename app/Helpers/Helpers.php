@@ -4,6 +4,7 @@ use App\User;
 use Illuminate\Support\Facades\Validator;
 
 
+
 function getlogoimage()
 {
     $setting = \App\Models\Setting::get()->first();
