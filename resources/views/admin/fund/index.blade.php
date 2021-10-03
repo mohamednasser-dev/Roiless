@@ -88,7 +88,7 @@
                 id: el.value,
                 status: featured
             }, function (data) {
-                if (data == 1) {
+                if (featured == 1) {
                     toastr.success("{{trans('admin.statuschanged')}}");
                 } else {
                     toastr.error("{{trans('admin.statuschanged')}}");
