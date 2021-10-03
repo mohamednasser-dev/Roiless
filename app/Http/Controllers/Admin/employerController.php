@@ -138,7 +138,7 @@ class employerController extends Controller
     }
 
     public function showLog ($id) {
-        $activities = Activity::where('causer_id',$id)->get();
+        $activities = \App\Models\Activity::where('causer_id',$id)->get();
         return view($this->folderView . 'viewLog', \compact( 'activities'));
     }
 
