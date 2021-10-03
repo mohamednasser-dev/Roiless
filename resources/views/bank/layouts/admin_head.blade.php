@@ -72,15 +72,20 @@
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('/assets/images/users/1.jpg') }}" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
-                                    <li>
+                                <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="{{ asset('/assets/images/users/1.jpg') }}" alt="user"></div>
+                                            <div class="u-img"><img
+                                              src="{{Auth::user()->image}}" alt="user"></div>
                                             <div class="u-text">
-{{--                                                <h4>{{Auth::user()->name}}</h4>--}}
-{{--                                                <p class="text-muted">{{Auth::user()->email}}</p>--}}
-                                            </div>
+                                                <h4>{{Auth::user()->name}}</h4>
+                                                <p class="text-muted">{{Auth::user()->email}}</p></div>
                                         </div>
                                     </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="{{ route('profile_bank',Auth::user()->id)}}"><i class="ti-user"></i> My Profile</a></li>
+                                    <li role="separator" class="divider"></li>
+
+                              
                                     
                                     <li>
                                         <a class="fa fa-power-off" href="{{ route('bank.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

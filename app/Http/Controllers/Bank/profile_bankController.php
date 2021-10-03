@@ -1,31 +1,35 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Bank;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Admin;
+use App\Models\Bank;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Str;
-class ProfileController extends Controller
+use Illuminate\Http\Request;
+
+class profile_bankController extends Controller
 {
-    public function  profile_bank(Request $request)
+    //
+    public function profile_bank(Request $request)
     {
         return view('bank.profile_bank');
     }
     public function update(Request $request)
     {
         $id=Auth::user()->id;
-        $employee = Admin::find($id);
+        $bank = Bank::find($id);
         if($request['password'] != null && $request['password_confirmation'] != null){
             $data = $this->validate(\request(),
                 [
-                    'name' => 'required|unique:admins,name,'.$id,
-                    'email' => 'required|unique:admins,email,'.$id,
-                    'phone' => 'required|unique:admins,phone,'.$id,
+                    'name_ar' => 'required|unique:banks,name_ar,'.$id,
+                    'name_en' => 'required|unique:banks,name_en,'.$id,
+                    'email' => 'required|unique:banks,email,'.$id,
+                    'phone' => 'required|unique:banks,phone,'.$id,
                     'password' => 'required|min:6|confirmed',
                     'password_confirmation' => 'required|min:6',
                 ]);
@@ -34,17 +38,17 @@ class ProfileController extends Controller
         }else{
             $data = $this->validate(\request(),
                 [
-                    'name' => 'required|unique:admins,name,'.$id,
-                    'email' => 'required|unique:admins,email,'.$id,
-                    'phone' => 'required|unique:admins,phone,'.$id,
+                    'name_ar' => 'required|unique:banks,name_ar,'.$id,
+                    'name_en' => 'required|unique:banks,name_en,'.$id,
+                    'email' => 'required|unique:banks,email,'.$id,
+                    'phone' => 'required|unique:banks,phone,'.$id,
                 ]);
         }
-        $data['type'] = 'employer';
-        $data['image']  = Str::after($employee->image, 'admins_image/');
+        $data['image']  = Str::after($bank->image, 'banks_image/');
         if($request->image != null){
-            $data['image'] = $this->MoveImage($request->image,'uploads/admins_image');
+            $data['image'] = $this->MoveImage($request->image,'uploads/banks_image');
         }
-        Admin::where('id', $id)->update($data);
+        Bank::where('id', $id)->update($data);
         Alert::success( 'تمت العمليه','تم تحديث معلومات الحساب');
         return redirect()->back();
     }
@@ -56,11 +60,11 @@ class ProfileController extends Controller
              'old_password'=>['required'],
              'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
-                  $employer=Admin::find($id);
-                if(Hash::check($request->old_password, $employer->password)){
+                $bank = Bank::find($id);
+                if(Hash::check($request->old_password, $bank->password)){
                         $data['password'] = bcrypt(request('password'));
                         unset($data['old_password']);
-                        Admin::where('id', $id)->update($data);
+                        Bank::where('id', $id)->update($data);
                         Alert::success('تمت العمليه','تم تحديث كلمه مرور الحساب');
                         return redirect()->route('viewprofile',Auth::user()->id);
                     }
@@ -76,20 +80,20 @@ class ProfileController extends Controller
             'image' => 'required',
         ]);
         if ($request->image != null) {
-            $employee=Admin::find($id);
-            $image= explode("/",$employee->image);
+            $bank=Bank::find($id);
+     
+            $image= explode("/",$bank->image);
             $length=count($image)-1;//the name of photo in the last index in array
-            $data['image'] = $this->MoveImage($request->image,'uploads/admins_image');
-            Admin::where('id', $id)->update($data);
-               if( $employee->image !== null){
-                  unlink("uploads/admins_image/".$image[$length]);
+            $data['image'] = $this->MoveImage($request->image,'uploads/banks_image');
+            Bank::where('id', $id)->update($data);
+               if( $bank->image !== null){
+                  unlink("uploads/banks_image/".$image[$length]);
               }
             // activity('admin')->log('تم تحديث الموظف بنجاح');
             Alert::success('تمت العمليه','تم تحديث صوره الحساب');
-            return redirect()->route('viewprofile',Auth::user()->id);
+            return redirect()->route('profile_bank',Auth::user()->id);
         }else{
             return redirect()->back();
         }
      }
 }
-
