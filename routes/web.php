@@ -31,13 +31,13 @@ Route::group(['middleware' => 'auth:admin', 'namespace' => 'Admin'], function ()
 });
 
 Route::group(['middleware' => ['auth:admin']], function () {
-    
+
     //users  routes
     Route::resource('users', 'Admin\usersController');
     Route::get('users/{id}/delete', 'Admin\usersController@destroy')->name('users.delete');
     Route::get('users/{id}/details', 'Admin\usersController@show')->name('users.details');
     Route::get('viewprofile/{id}', 'HomeController@viewprofile')->name('viewprofile');
-    
+
     Route::post('users/actived', 'Admin\usersController@update_Actived')->name('users.actived');
 
     //viewprofile routes
@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::resource('banks', 'Admin\Bankcontroller');
     Route::get('banks/create/{id}', 'Admin\Bankcontroller@create')->name('banks.create');
     Route::post('banks/store/{id}', 'Admin\Bankcontroller@store')->name('banks.store');
+    Route::post('banks/update_new/{id}', 'Admin\Bankcontroller@update')->name('banks.update_new');
 
     Route::get('banks/{id}/delete', 'Admin\Bankcontroller@destroy')->name('banks.delete');
     Route::get('banks/{id}/details', 'Admin\Bankcontroller@show')->name('banks.details');
@@ -165,7 +166,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::group(['namespace' => 'Admin'], function () {
         Route::get('/consolutions', 'ConsolutionController@index')->name('consolutions');
         Route::get('/consolutions/show/{id}', 'ConsolutionController@show')->name('consolutions.show');
-     
+
     });
 
 

@@ -135,6 +135,7 @@ class Bankcontroller extends Controller
             }
             Bank::where('id', $id)->update($data);
             activity('admin')->log('تم تحديث البنك بنجاح');
+            Alert::success('تمت العمليه', 'تم التعديل بنجاح');
             if($bank->parent_id == null) {
                 return redirect()->route('banks.index');
             } else {
