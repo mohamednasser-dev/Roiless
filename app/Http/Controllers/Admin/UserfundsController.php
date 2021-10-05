@@ -8,7 +8,7 @@ use App\Models\Bank;
 use App\Models\Bank_User_Fund;
 use App\Models\Fhistory;
 use App\Models\Fund;
-use App\Models\User_Fund;
+use App\Models\User_fund;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
