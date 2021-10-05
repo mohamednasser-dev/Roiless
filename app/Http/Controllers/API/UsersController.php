@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Mail\UserRestPasswordApi;
+use App\Models\Consolution;
+use App\Models\consolution_kind;
 use Carbon\Carbon;
 use Str;
 use App\Cases;
@@ -123,11 +125,39 @@ class UsersController extends Controller
 
     public function getDataProfile()
     {
-        $user = User::where('id', Auth::user()->id)->select( 'id' , 'image' , 'name', 'email', 'phone')->first();
+        $user = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone')->first();
         $user['token_api'] = null;
         $user['otp_code'] = null;
         return msgdata("", success(), ' successfully_get_data_Profile', $user);
     }
+    public function consolutions_data(Request $request)
+    {
+        $user = consolution_kind::select('id','name_'.$request->header('lang').' as name')->orderBy('created_at','desc')->get();
+        return msgdata("", success(), ' successfully get data', $user);
+    }
 
+    public function consolutions_store(Request $request)
+    {
+        $user = Auth::user();
+        $user = User::find($user->id);
+        if (!$user)
+            return response()->json(['status' => 401, 'msg' => 'User Not Found']);
+        $rules = [
+            'full_name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'country' => 'required',
+            'consolution_kind_id' => 'required|exists:consolution_kinds,id',
+            ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        } else {
+            $data = $request->all();
+            $data['user_id'] = $user->id ;
+            $result = Consolution::create($data);
+            return msgdata($request, success(), 'added successfully', $result);
+        }
+    }
 
 }

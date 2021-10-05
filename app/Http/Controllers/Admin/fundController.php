@@ -83,7 +83,8 @@ class fundController extends Controller
         $categories = Category::get();
         $fundsinputs = Fundinput::get();
         $fund = $this->objectName::where('id', $id)->first();
-        return view($this->folderView . 'edit', compact('fund','fundsinputs','categories'));
+        $columns = json_decode($fund->columns);
+        return view($this->folderView . 'edit', compact('fund','fundsinputs','categories','columns'));
     }
 
     public function update(Request $request, $id)

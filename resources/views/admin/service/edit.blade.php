@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">انشاء خدمه</li>
+                <li class="breadcrumb-item">{{trans('admin.edit_service')}}</li>
                 <li class="breadcrumb-item"><a href="ٌ{{route('services')}}">{{trans('admin.services')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
@@ -49,7 +49,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="center">
-                            {{ Form::submit(trans('admin.add') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
+                            {{ Form::submit(trans('admin.edit') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
                         </div>
                     </div>
 
