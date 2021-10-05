@@ -22,6 +22,32 @@ return [
     'fund_chart'=>'fund chart',
     'statuschanged'=>'Visible',
     'my_profile'=>'my profile',
+    'image'=>'image',
+    'actions'=>'actions',
+    'add_category'=>'add category',
+    'add_category_success'=>'add category success',
+    'edit_category_success'=>'edit category success',
+    'categories_edit'=>'categories edit',
+    'employee_add_sucessfully'=>'employee add sucessfully',
+    'employee_add'=>'employee add',
+    'employee_add_success'=>'employee add success',
+    'fund_deleted_success'=>'fund deleted success',
+    'updated_successfully'=>'updated successfully',
+    'wron'=>'wron',
+    'not_updated'=>'not updated',
+    'service_not_found'=>'service not found',
+    'fund_added_successfully'=>'fund added successfully',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+     
 
 
 
@@ -178,6 +204,16 @@ return [
             'fund_accept'=>'fund accept',
            // end user fund details page
 
+           'invaldemailorpassword' => 'password is un correct or email .. !',
+           'not_auth' => 'You are not authorized to enter',
+           'bank_delete'=>'admin deleted successfully',
+           'deleted'=>'deleted done',
+           'opretion_success'=>'opretion done successfully',
+       
+
+
+
+
     // 'should_choose_category' => 'يجب اختيار مخزن اولا',
     // 'wrong_old_password' => 'من فضلك ادخل الباسورد صحيح',
     // 'Updated_Successfully' => 'تم التعديل بنجاح',
@@ -209,7 +245,7 @@ return [
     // 'added_bill_product' => 'تم بيع المنتج بنجاح',
     // 'website_title' => 'عنوان الموقع',
     // 'preventAlert' => 'لا تملك الصلاحية لدخول هذه الصفحة !!!',
-    // 'not_auth' => 'غير مصرح لك الدخول .... غير مفعل',
+    // 
 
     // 'close' => 'اغلاق',
     // 'print' => 'طباعه',
