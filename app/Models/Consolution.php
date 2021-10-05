@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Consolution extends Model
 {
-    //
+    protected $guarded = [];
     public function consolution_kind()
     {
         return $this->belongsTo('App\Models\consolution_kind','consolution_kind_id');

@@ -138,25 +138,25 @@ class UsersController extends Controller
 
     public function consolutions_store(Request $request)
     {
-        $id = Auth::user()->id;
-        $user = User::find($id);
+        $user = Auth::user();
+        $user = User::find($user->id);
         if (!$user)
             return response()->json(['status' => 401, 'msg' => 'User Not Found']);
         $rules = [
-            'name' => 'required|regex:/^[\pL\s\-]+$/u',
-            'email' => 'required|email|unique:users,email,' . $id,
-            'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users,phone,' . $id,
+            'full_name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'country' => 'required',
+            'consolution_kind_id' => 'required|exists:consolution_kinds,id',
             ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
             $data = $request->all();
-
+            $data['user_id'] = $user->id ;
             $result = Consolution::create($data);
-
             return msgdata($request, success(), 'added successfully', $result);
-
         }
     }
 
