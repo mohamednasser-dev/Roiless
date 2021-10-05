@@ -7,7 +7,7 @@ use App\Models\User;
 class User_fund extends Model
 {
     protected $guarded = [];
-   
+
     public function Fund()
     {
         return $this->belongsTo(Fund::class, 'fund_id');
@@ -27,21 +27,25 @@ class User_fund extends Model
     {
         return $this->belongsTo(Admin::class, 'emp_id');
     }
+    public function Banks()
+    {
+        return $this->belongsTo(Bank::class, 'bank_id');
+    }
 
     public function fund_file()
     {
         return $this->hasOne('App\Models\Fund_file', 'user_fund_id');
     }
-   
+
     public function Fund_details()
     {
         return $this->belongsTo(Fund::class, 'fund_id')->select('id','name_ar','name_en','image');
     }
-    
+
     public function Users()
     {
         return $this->belongsTo(User::class, 'user_id')->select('id','name');
     }
-    
-    
+
+
 }
