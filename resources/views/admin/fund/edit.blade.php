@@ -82,7 +82,7 @@
                             <select name="columns[]" class="select2 m-b-10 select2-multiple" style="width: 100%"
                                     multiple="multiple" data-placeholder="Choose">
                                 @foreach($fundsinputs as $fundsinput)
-                                    <option value="{{$fundsinput->name}}"   @if($fundsinput->name == $fundsinput->name) selected @endif> {{$fundsinput->name}}</option>
+                                    <option value="{{$fundsinput->slug}}"   @if(in_array($fundsinput->slug, $columns)) selected @endif> {{$fundsinput->name}}</option>
                                 @endforeach
                             </select>
                         </div>

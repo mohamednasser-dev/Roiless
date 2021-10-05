@@ -27,7 +27,7 @@
                     <th scope="col">{{trans('admin.name')}}</th>
                     <th scope="col">{{trans('admin.phone')}}</th>
                     <th scope="col">{{trans('admin.email')}}</th>
-                    <th scope="col">{{trans('admin.image')}}</th>
+                    <th scope="col">{{trans('admin.user_image')}}</th>
                     <th scope="col">
                         {{trans('admin.actions')}}
                     </th>
@@ -41,14 +41,14 @@
                         <td>{{$user->email}}</td>
                         <td>
                             <img src="{{$user->image}}" class="img-fluid"
-                                 style="width: 100px; height: 100px; border-radius: 15px" alt="">
+                                 style="width: 90px;height: 80px; border-radius: 15px" alt="">
                         </td>
                         <td>
                             <ul class="list-inline soc-pro m-t-30">
                                 <li><a class="btn-circle btn btn-success" title="تعديل" href="{{url('users/'.$user->id.'/edit')}}"><i
                                             class="fa fa-edit"></i></a></li>
-                                <li><a class="btn-circle btn btn-info" title="التفاصيل" href="{{route('users.details',$user->id)}}"><i
-                                            class="fa fa-eye"></i></a></li>
+{{--                                <li><a class="btn-circle btn btn-info" title="التفاصيل" href="{{route('users.details',$user->id)}}"><i--}}
+{{--                                            class="fa fa-eye"></i></a></li>--}}
                                 <li><a  class="btn-circle btn btn-danger" title="حذف" onclick="return confirm('{{trans('admin.are_y_sure_delete')}}')"
                                        href="{{route('users.delete',$user->id)}}"><i class="fa fa-trash"></i></a></li>
                             </ul>

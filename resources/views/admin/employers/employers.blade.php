@@ -44,8 +44,8 @@
                                             class="fa fa-universal-access"></i></a></li>
                                 <li><a class="btn-circle btn btn-success" title="تعديل" href="{{url('employer/'.$employer->id.'/edit')}}"><i
                                             class="fa fa-edit"></i></a></li>
-                                <li><a class="btn-circle btn btn-info" title="التفاصيل" href="{{route('employer.details',$employer->id)}}"><i
-                                            class="fa fa-eye"></i></a></li>
+{{--                                <li><a class="btn-circle btn btn-info" title="التفاصيل" href="{{route('employer.details',$employer->id)}}"><i--}}
+{{--                                            class="fa fa-eye"></i></a></li>--}}
                                 <li><a class="btn-circle btn btn-danger" title="حذف" onclick="return confirm('هل انت متاكد من حذف البنك')"
                                        href="{{route('employer.delete',$employer->id)}}"><i class="fa fa-trash"></i></a>
                                 </li>
