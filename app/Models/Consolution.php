@@ -19,5 +19,9 @@ class Consolution extends Model
     {
         return $this->hasMany('reply','Consolution_id','id');
     }
+    public function Admin()
+    {
+        return $this->belongsTo('Admin','admin_id','id');
+    }
 
 }

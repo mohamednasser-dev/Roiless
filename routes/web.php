@@ -165,6 +165,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::group(['namespace' => 'Admin'], function () {
         Route::get('/consolutions', 'ConsolutionController@index')->name('consolutions');
         Route::get('/consolutions/show/{id}', 'ConsolutionController@show')->name('consolutions.show');
+        Route::post('/consolutions/admin/reply', 'ConsolutionController@admin_reply')->name('admin.reply');
      
     });
 

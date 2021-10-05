@@ -15,24 +15,30 @@
                                            
                                             @foreach($replies as $reply)
                                             <li>
-                                                <div class="chat-img"><img src="../assets/images/users/1.jpg" alt="user" /></div>
+                                                <div class="chat-img"><img src="@if($reply->admin_id != null) {{$reply->Admin->image}} @else {{$reply->user->image}}  @endif" alt="user" />
+                                            
+                                                 </div>  
                                                 <div class="chat-content">
-                                                    <h5>James Anderson</h5>
-                                                    <div class="box bg-light-info">{{$reply->content}}</div>
+                                                    <h5>@if($reply->admin_id != null) {{$reply->Admin->name}} @else {{$reply->user->name}}  @endif</h5>
+                                                    <div class="box bg-light-info">@if($reply->admin_id != null) {{$reply->admin_reply}} @else {{$reply->user_reply}}  @endif</div>
                                                 </div>
-                                                <div class="chat-time">10:56 am</div>
+                                                <div class="chat-time">{{$reply->created_at}}</div>
                                             </li>
                                             @endforeach 
                                         </ul>
                                     </div>
                                     <div class="card-body b-t">
                                         <div class="row">
+                                        <form action="{{route('admin.reply')}}" class="form-horizontal form-material" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="consulation_id" value="{{$consolution->id}}">
                                             <div class="col-8">
-                                                <textarea placeholder="Type your message here" class="form-control b-0"></textarea>
+                                                <textarea placeholder="Type your message here" name="admin_reply" class="form-control b-0"></textarea>
                                             </div>
                                             <div class="col-4 text-right">
-                                                <button type="button" class="btn btn-info btn-circle btn-lg"><i class="fa fa-paper-plane-o"></i> </button>
+                                                <button type="submit" class="btn btn-info">ارسال</button>
                                             </div>
+                                                 </form>
                                         </div>
                                     </div>
                                 </div>

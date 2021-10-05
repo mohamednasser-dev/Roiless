@@ -63,4 +63,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany('Consolution','user_id','id');
     }
+    public function reply()
+    {
+        return $this->hasMany('\App\models\reply','user_id','id');
+    }
 }
