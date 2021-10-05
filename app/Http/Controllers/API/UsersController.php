@@ -123,8 +123,10 @@ class UsersController extends Controller
 
     public function getDataProfile()
     {
-        $user = User::where('id', Auth::user()->id)->select( 'id' , 'image' , 'name', 'email', 'phone')->get();
-        return msgdata("", success(), ' successfully_get_data_Profile', array('user' => $user));
+        $user = User::where('id', Auth::user()->id)->select( 'id' , 'image' , 'name', 'email', 'phone')->first();
+        $user['token_api'] = null;
+        $user['otp_code'] = null;
+        return msgdata("", success(), ' successfully_get_data_Profile', $user);
     }
 
 }
