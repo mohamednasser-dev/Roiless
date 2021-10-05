@@ -41,6 +41,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::get('check_token/', 'UsersController@reset_password');
         Route::post('reset/password/', 'UsersController@reset_password_post');
         Route::post("/update_password", "HomeController@updatePassword");
+
         // inbox
         Route::post('make/inbox', 'InboxController@store');
         // about_us
@@ -73,6 +74,9 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 
         // userFundsHistory
         Route::get('/userFundsHistory/{id}', 'UserFundsHistoryController@index');
+
+        //consolutions
+        Route::post("/users/consolutions/store", "UsersController@consolutions_store");
 
     });
 

@@ -128,6 +128,41 @@ class UsersController extends Controller
         $user['otp_code'] = null;
         return msgdata("", success(), ' successfully_get_data_Profile', $user);
     }
+    public function consolutions_store(Request $request)
+    {
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        if (!$user)
+            return response()->json(['status' => 401, 'msg' => 'User Not Found']);
+        $rules = [
+            'name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users,phone,' . $id,
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        } else {
+            $image = $request->image;  // your base64 encode
+            if ($image) {
+                $image = str_replace('data:image/png;base64,', '', $image);
+                $ext = $request->ext;
+                $imageName = Str::random(12) . '.' . $ext;
+                $image = \File::put('uploads/users_images/' . $imageName, base64_decode($image));
+            }
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'image' => $imageName
+            ]);
+            if ($user) {
+                return msgdata($request, success(), 'update_profile_success', array('user' => $user));
+            } else {
+                return response()->json(msg($request, failed(), 'update_profile_warning'));
+            }
+        }
+    }
 
 
 }
