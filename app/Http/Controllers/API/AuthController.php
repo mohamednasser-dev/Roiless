@@ -133,8 +133,9 @@ class AuthController extends Controller
             $user = User::create($data);
             if ($user) {
                 $token = Auth::guard('user-api')->attempt(['phone' => $request->phone, 'password' => $password]);
-                $user->token_api = $token;
-                return msgdata($request, success(), 'login_success', array('user' => $user));
+                $user_data = User::where('id', $user->id)->select( 'id' , 'image' , 'name', 'email', 'phone')->first();
+                $user_data->token_api = $token;
+                return msgdata($request, success(), 'login_success',  $user_data);
             }
         }
     }
