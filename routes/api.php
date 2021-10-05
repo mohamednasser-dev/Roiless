@@ -55,7 +55,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::get("/categories", "CategoryController@getall");
 //fund detailes
         Route::get("/fund/detailes/{id}", "FundController@getfunddetailes");
-        Route::post("/addfund", "FundController@addfund");
+        Route::post("/funds/addfund", "FundController@addfund");
 
 //user update
         Route::post("/update_profile", "UsersController@updateProfile");
