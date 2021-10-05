@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Company_field;
+use App\Models\Company_type;
 use App\Models\Fhistory;
 use App\Models\Fund;
 use App\Models\Bank;
@@ -25,11 +27,16 @@ class FundController extends Controller
                 $lang = "en";
             }
             $Funddetailes = Fund::select('id', 'name_' . $lang . ' as name', 'image', 'columns')->where('id', $id)->first();
-            $bank = Bank::select('name_' . $lang . ' as name', 'image')->get();
             $Funddetailes->columns = json_decode($Funddetailes->columns);
             if ($Funddetailes) {
                 $data['Funddetailes'] = $Funddetailes;
+                $bank = Bank::select('name_' . $lang . ' as name', 'image')->get();
                 $data['banks'] = $bank;
+
+                $fields = Company_field::select('id','name_' . $lang . ' as name')->get();
+                $data['Company_fields'] = $fields;
+                $types = Company_type::select('id','name_' . $lang . ' as name')->get();
+                $data['Company_types'] = $types;
                 return msgdata($request, success(), 'funddetailes_success', $data);
             }
 
