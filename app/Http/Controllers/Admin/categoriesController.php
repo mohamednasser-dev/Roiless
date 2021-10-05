@@ -56,9 +56,9 @@ class categoriesController extends Controller
 
 
         ]);
-        activity('admin')->log('تم اضافه القسم بنجاح');
+        activity('admin')->log(trans('admin.add_category'));
 
-        Alert::success('تمت العمليه', 'تم اضافه القسم بنجاح');
+        Alert::success ( trans('admin.add_category_success'), trans('admin.opretion_success'));
         return redirect()->route('categories');
     }
 
@@ -83,7 +83,7 @@ class categoriesController extends Controller
     {
        $category=Category::findOrFail($id);
 
-       return view ('admin.categories.edit',compact('category') );
+       return view ('admin.categories_edit',compact('category') );
     }
 
     /**
@@ -113,9 +113,9 @@ class categoriesController extends Controller
 
             ]);
         }
-        activity('admin')->log('تم تحديث القسم بنجاح');
+        activity('admin')->log(trans('admin.edit_category_success'));
 
-        Alert::success('تمت العمليه', 'تم تعديل القسم');
+        Alert::success(trans('admin.edit_category_success'),trans('admin.opretion_success'));
 
         return redirect()->route('categories');
     }

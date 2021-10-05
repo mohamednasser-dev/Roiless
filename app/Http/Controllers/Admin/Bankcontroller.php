@@ -147,8 +147,8 @@ class Bankcontroller extends Controller
     {
         $bank = Bank::findOrFail($id);
         $bank->delete();
-        activity('admin')->log('تم حذف البنك بنجاح');
-        Alert::success('تمت العمليه', 'تم حذف بنجاح');
+        activity('admin')->log(trans('admin.bank_delete'));
+        Alert::success( trans('admin.deleted'),trans('admin.opretion_success'));
         if($bank->parent_id == null) {
             return redirect()->route('banks.index');
         } else {

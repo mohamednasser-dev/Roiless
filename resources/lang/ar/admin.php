@@ -27,7 +27,26 @@ return [
 
        'statuschanged'=>'تم تفعيل الظهور',
        'my_profile'=>'الحساب',
-       ''=>'',
+       'image'=>'الصوره',
+       'actions'=>'الاجرائات',
+       'add_category'=>'اضافه قسم',
+       'add_category_success'=>'تم اضافه قسم بنجاح',
+       'edit_category_success'=>'تم تعديل القسم بنجاح',
+       'categories_edit'=>'تعديل القسم',
+
+      'employee_add_sucessfully'=>'تم اضافه موظف بنجاح',
+      'employee_add'=>'اضافه موظف',
+      'employee_add_success'=>'تم اضافه موظف بنجاح',
+      'fund_deleted_success'=>'تمحذف التمويل بنجاح',
+      'updated_successfully'=>'تم التحديث بنجاح',
+      'wron'=>'هناك خطأ',
+      'not_updated'=>'لم يتم التحديث',
+      'service_not_found'=>'الخدمه ليست موجوده',
+      'fund_added_successfully'=>'تمت اضافه التمويل بنجاح',
+      'wron'=>'',
+      'wron'=>'',
+      'wron'=>'',
+      'wron'=>'',
 
 
 
@@ -200,6 +219,11 @@ return [
     'emp_return'=>'نقل الطلب من الموظف',
     'to'=>'الي',
 // end user fund details page
+   'invaldemailorpassword' => 'الرقم السرى او البريد الالكترونى خطأ .. !',
+   'not_auth' => 'غير مصرح لك الدخول .... غير مفعل',
+   'bank_delete'=>'تم حذف البنك بنجاح',
+    'deleted'=>'تم الحذف',
+    'opretion_success'=>'تمت العمليه بنجاح',
 
 
     // 'should_choose_category' => 'يجب اختيار مخزن اولا',
@@ -233,7 +257,7 @@ return [
     // 'added_bill_product' => 'تم بيع المنتج بنجاح',
     // 'website_title' => 'عنوان الموقع',
     // 'preventAlert' => 'لا تملك الصلاحية لدخول هذه الصفحة !!!',
-    // 'not_auth' => 'غير مصرح لك الدخول .... غير مفعل',
+    // 
 
     // 'close' => 'اغلاق',
     // 'print' => 'طباعه',
@@ -453,8 +477,7 @@ return [
     // 'image' => 'صورة المنتج',
     // 'search_form_date' => ' من تاريخ',
     // 'search_to_date' => 'الى تاريخ',
-    // 'invaldemailorpassword' => 'الرقم السرى او البريد الالكترونى خطأ .. !',
-
+    
     // 'car_type' => 'نوع السيارة',
     // 'car_model' => 'موديل السيارة',
     // 'in_color' => 'لون الطقم الداخلى',

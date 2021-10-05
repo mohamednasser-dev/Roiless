@@ -64,7 +64,7 @@ class fundController extends Controller
         activity('admin')->log('تم اضافه التمويل بنجاح');
 
         DB::commit();
-        Alert::success('تمت العمليه', 'تم اضافه التمويل بنجاح');
+        Alert::success( trans('admin.fund_added_successfully'),trans('admin.opretion_success'));
         return redirect()->route('fund');
 
 
@@ -106,7 +106,7 @@ class fundController extends Controller
 
             $fund = $this->objectName::find($id);
             if (!$fund) {
-                Alert::warning('خطاء', 'هذه الخدمه ليست موجوه');
+                Alert::warning( trans('admin.service_not_found'),trans('admin.wron'));
                 return redirect()->route(' $this->folderView');
             }
 
@@ -122,13 +122,13 @@ class fundController extends Controller
             activity('admin')->log('تم تحديث التمويل بنجاح');
 
             DB::commit();
-            Alert::success('تمت العمليه', 'تم التحديث بنجاح');
+            Alert::success( trans('admin.updated_successfully'),trans('admin.opretion_success'));
             return redirect()->route('fund');
 
         } catch (\Exception $ex) {
 
             DB::rollback();
-            Alert::warning('هنالك خطاء', 'لم يتم التحديث');
+            Alert::warning( trans('admin.not_updated'),trans('admin.wron'));
 
             return redirect()->route('fund');
 
@@ -139,10 +139,9 @@ class fundController extends Controller
     {
         $fund = $this->objectName::findOrFail($id);
         $fund->delete();
-        activity('admin')->log('تم حذف التمويل بنجاح');
+        activity('admin')->log(trns('admin.fund_deleted_success'));
 
-        Alert::success('تمت العمليه', 'تم الحذف بنجاح');
-
+        Alert::success( trans('admin.deleted'),trans('admin.opretion_success'));
         return redirect()->route('fund');
     }
 

@@ -67,13 +67,13 @@ class employerController extends Controller
             unset($data['password_confirmation']);
             $data['type'] = 'employer';
             $employee = Admin::create($data);
-            activity('admin')->log('تم اضافه الموظف بنجاح');
+            activity('admin')->log(trans('admin.employee_add'));
             $notification = $request['notification'];
             $employees = new Admin();
             $employees->notifications()->attach($notification);
             if ($employee->save()) {
 //                $user->assignRole($request['role_id']);
-                Alert::success('تمت العمليه', 'تم انشاء موظف جديد');
+                Alert::success(trans('admin.employee_add_success'),trans('admin.opretion_success'));
                 return redirect()->route('employer.index');
             }
         }
