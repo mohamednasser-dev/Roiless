@@ -1,5 +1,5 @@
 
-@include('bank.layouts.admin_header')
+@include('layouts.admin_header')
 @include('bank.layouts.admin_head')
 @include('sweetalert::alert')
 @include('bank.layouts.admin_sidebar')

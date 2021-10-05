@@ -1,4 +1,4 @@
-@extends('admin_temp')
+@extends('bank.bank_temp')
 @section('styles')
        <style>
             .cont-image{
