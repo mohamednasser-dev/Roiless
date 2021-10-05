@@ -142,7 +142,7 @@ class AuthController extends Controller
     }
     public function check_otp($code)
     {
-        $user = User::where('id',auth()->user()->id)->where('otp_code', $code)->first();
+        $user = User::where('id',Auth::user()->id)->where('otp_code', $code)->first();
         if($user){
             $user->verified = 1 ;
             $user->save() ;
