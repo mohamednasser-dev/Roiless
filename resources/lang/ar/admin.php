@@ -3,6 +3,7 @@ return [
 
     'user_image'=>'صورة المستخدم',
     'setting'=>'الاعدادات',
+    'edit_service'=>'تعديل الخدمة',
 
     'branches_banks' => 'فروع البنك' ,
     'add_branche_bank' => 'اضافه فرع',

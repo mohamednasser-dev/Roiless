@@ -78,7 +78,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">{{trans('admin.bank_image')}}</h4>
-                            <input type="file" name="image" id="input-file-now" class="dropify"/>
+                            <input type="file" name="image" required id="input-file-now" class="dropify"/>
                         </div>
                     </div>
                 </div>

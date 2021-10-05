@@ -105,7 +105,7 @@ class usersController extends Controller{
             }
             User::where('id',$id)->update($data);
             activity('admin')->log('تم تحديث مستخدم  بنجاح');
-            session()->flash('success',  trans('admin.updatSuccess'));
+            Alert::success('تمت العمليه', trans('admin.updatSuccess'));
             return redirect(url('users'));
         }else{
             unset($data['password']);
@@ -134,10 +134,10 @@ class usersController extends Controller{
             $user->delete();
             $user->save();
             activity('admin')->log('تم حذف مستخدم  بنجاح');
-            Alert::warning('الحذف', trans('admin.deleteSuccess'));
+            Alert::success('الحذف', trans('admin.deleteSuccess'));
         }catch(Exception $ex){
             return $ex;
-            session()->flash('danger', trans('admin.emp_no_delete'));
+            Alert::warning('الحذف', trans('admin.emp_no_delete'));
         }
         return back();
     }
