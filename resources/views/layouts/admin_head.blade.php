@@ -84,7 +84,7 @@
                                         </div>
                                     </li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="{{ route('viewprofile',Auth::user()->id)}}"><i class="ti-user"></i> My Profile</a></li>
+                                    <li><a href="{{ route('viewprofile',Auth::user()->id)}}"><i class="ti-user"></i>{{trans('admin.my_profile')}}</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li> <a class="fa fa-power-off" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             {{trans('admin.logout')}}

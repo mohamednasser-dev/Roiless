@@ -82,7 +82,7 @@
                                         </div>
                                     </li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="{{ route('profile_bank',Auth::user()->id)}}"><i class="ti-user"></i>{{trans('bank.'))}}</a></li>
+                                    <li><a href="{{ route('profile_bank',Auth::user()->id)}}"><i class="ti-user"></i>{{trans('bank.my_profile')}}</a></li>
                                     <li role="separator" class="divider"></li>
 
                               

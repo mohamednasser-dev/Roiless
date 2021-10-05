@@ -21,6 +21,10 @@ return [
     'user_chart'=>'user chart',
     'fund_chart'=>'fund chart',
     'statuschanged'=>'Visible',
+    'my_profile'=>'my profile',
+
+
+
 
     
     'updatSuccess'=>'updated successfully',

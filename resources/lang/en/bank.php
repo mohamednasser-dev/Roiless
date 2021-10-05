@@ -24,6 +24,9 @@ return [
 'statuschanged'=>'Visible',
 
 
+'my_profile'=>'my profile',
+
+
 'updatSuccess'=>'updated successfully',
 'logout'=>'logout',
 'profile'=>'profile',
