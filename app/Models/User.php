@@ -13,48 +13,30 @@ class User extends Authenticatable implements JWTSubject
     use Notifiable;
     use softdeletes;
     protected $table='users';
+    protected $date = ['delete_at'];
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 
+    protected $fillable = [
+        'name', 'image', 'email', 'password', 'type', 'role_id', 'cat_id', 'phone','verified','otp_code'
+    ];
 
-
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
     public function getJWTIdentifier()
     {
         return $this->getKey();
     }
 
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
+
     public function getJWTCustomClaims()
     {
         return [];
     }
 
 
-    protected $fillable = [
-        'name', 'image', 'email', 'password', 'type', 'role_id', 'cat_id', 'phone'
-    ];
-
-    protected $date = ['delete_at'];
-
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 
     public function getImageAttribute($img)
     {

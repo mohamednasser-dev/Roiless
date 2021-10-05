@@ -125,6 +125,7 @@ class UsersController extends Controller
     {
         $user = User::where('id', Auth::user()->id)->select( 'id' , 'image' , 'name', 'email', 'phone')->first();
         $user['token_api'] = null;
+        $user['otp_code'] = null;
         return msgdata("", success(), ' successfully_get_data_Profile', $user);
     }
 
