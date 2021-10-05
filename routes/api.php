@@ -23,7 +23,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 
     Route::post("/Register", "AuthController@Register");
     Route::post("/loginasguest", "AuthController@loginasguest");
-    Route::get("/auth/check_otp/{code}/{id}", "AuthController@check_otp");
+    Route::get("/auth/check_otp/{code}", "AuthController@check_otp");
 
     Route::group(['middleware' => ['jwt.verify']], function () {
         Route::post("/logout", "AuthController@logout");
