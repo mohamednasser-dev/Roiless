@@ -46,13 +46,15 @@ class UserfundsController extends Controller
 
     public function employerchosen($id)
     {
+
+
         if (User_fund::where('id', $id)->whereNull('emp_id')->exists()) {
             User_fund::where('id', $id)->update(['emp_id' => auth()->user()->id]);
             activity('admin')->log('تم اضافه هذا التمويل لوظائفك بنجاح');
             Alert::success('تمت العمليه', 'تم اضافه هذا التمويل لوظائفك بنجاح');
             return redirect()->route('review', $id);
         } else {
-            Alert::danger('لم تتم العمليه', 'تم تحويل هذا الطلب بالفعل الي موظف');
+            Alert::success('تمت العمليه', 'تم تحويل هذا الطلب بالفعل الي موظف');
             return redirect()->route('userfunds');
         }
     }
