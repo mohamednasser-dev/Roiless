@@ -43,10 +43,11 @@ return [
       'not_updated'=>'لم يتم التحديث',
       'service_not_found'=>'الخدمه ليست موجوده',
       'fund_added_successfully'=>'تمت اضافه التمويل بنجاح',
-      'wron'=>'',
-      'wron'=>'',
-      'wron'=>'',
-      'wron'=>'',
+      'consolutions'=>'الاستشارات',
+      'consolution_name_user'=>'اسم المستخدم',
+      'consolution_email'=>'البريد الالكتروني',
+      'consolution_phone'=>'الهاتف',
+      'consolution_kind'=>'نوع الاستشاره',
 
 
 

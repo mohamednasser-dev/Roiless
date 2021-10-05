@@ -160,6 +160,15 @@ Route::group(['middleware' => ['auth:admin']], function () {
        Route::post('/fund/redirect/bank/{id}', 'UserfundsController@redirect_bank')->name('fund.redirect.bank');
        Route::post('/fund/redirect/user/{id}', 'UserfundsController@redirect_user')->name('fund.redirect.user');
     });
+
+    //consolution
+    Route::group(['namespace' => 'Admin'], function () {
+        Route::get('/consolutions', 'ConsolutionController@index')->name('consolutions');
+        Route::get('/consolutions/show/{id}', 'ConsolutionController@show')->name('consolutions.show');
+     
+    });
+
+
 });
 
 Route::get('change_lang/{lang}', 'HomeController@change_lang')->name('change_lang');
