@@ -67,7 +67,7 @@
                             <select class="custom-select col-12 multiple" id="inlineFormCustomSelect" name="cat_id">
                                 @foreach($categories as $category)
 
-                                    <option value="{{$category->id }}"   @if($category->id == $category->id) selected @endif>{{$category->title_ar}} </option>
+                                    <option value="{{$category->id }}"   @if($category->id == cat_id) selected @endif>{{$category->title_ar}} </option>
 
                                 @endforeach
 
