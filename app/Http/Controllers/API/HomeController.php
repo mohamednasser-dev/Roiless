@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Hash;
 class HomeController extends Controller
 {
     //
-    public function getall()
-    {
+    public function getall(Request $request)
+    {   $lang = $request->header('lang');
+        if(empty($lang))
+        {
+            $lang="ar";
+        }
         $slider = Slider::select(['id', 'image'])->get();
-        $funds = Fund::select([ 'id' ,'name_ar', 'name_en', 'cat_id', 'image'])->wherein('featured', ['1'])->get();
+        $funds = Fund::select([ 'id' ,'name_ar', 'name_en','desc_'.$lang.' as description','cat_id', 'image'])->wherein('featured', ['1'])->get();
         $data['slider'] = $slider;
         $data['funds'] = $funds;
         return response()->json(['data' => $data]);
