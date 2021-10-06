@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
     //banks  routes
     Route::resource('banks', 'Admin\Bankcontroller');
+    Route::get('banks/{id}/funds', 'Admin\Bankcontroller@funds')->name('banks.funds');
     Route::get('banks/create/{id}', 'Admin\Bankcontroller@create')->name('banks.create');
     Route::post('banks/store/{id}', 'Admin\Bankcontroller@store')->name('banks.store');
     Route::post('banks/update_new/{id}', 'Admin\Bankcontroller@update')->name('banks.update_new');
@@ -167,7 +168,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
         Route::get('/consolutions', 'ConsolutionController@index')->name('consolutions');
         Route::get('/consolutions/show/{id}', 'ConsolutionController@show')->name('consolutions.show');
         Route::post('/consolutions/admin/reply', 'ConsolutionController@admin_reply')->name('admin.reply');
-     
+
     });
 
 

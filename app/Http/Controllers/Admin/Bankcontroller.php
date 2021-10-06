@@ -32,6 +32,12 @@ class Bankcontroller extends Controller
         return view($this->folderView . 'details', compact('banks'));
     }
 
+    public function funds($id)
+    {
+        $banks = Bank::where('id', $id)->first();
+        return view($this->folderView . 'details', compact('banks'));
+    }
+
     public function create($id)
     {
         $banks = Bank::orderBy('name_en', 'desc');
