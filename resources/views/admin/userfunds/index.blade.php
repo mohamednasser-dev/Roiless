@@ -16,7 +16,7 @@
         <table class="table full-color-table full-primary-table">
             <thead>
             <tr>
-                <th class="text-lg-center">اسم التمويل</th>
+                <th class="text-lg-center"> اسم التمويل</th>
                 <th class="text-lg-center">المراجعه</th>
             </tr>
             </thead>

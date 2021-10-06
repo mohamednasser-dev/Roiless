@@ -105,7 +105,7 @@
             border-radius: 6px;
         }
 
-        img {
+        .content img {
             vertical-align: middle;
             width: 50% !important;
             display: block;
