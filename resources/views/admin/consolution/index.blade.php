@@ -44,7 +44,7 @@
 
                         <a class='btn btn-danger btn-circle' title="حذف"
                            onclick="return confirm('هل انت متكد من حذف الخدمه')"
-                           href="#"><i class="fa fa-trash"></i></a>
+                           href="{{route('delete',$consolution->id)}}"><i class="fa fa-trash"></i></a>
 
                     </td>
 

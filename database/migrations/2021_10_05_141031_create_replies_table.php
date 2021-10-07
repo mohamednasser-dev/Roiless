@@ -15,8 +15,7 @@ class CreateRepliesTable extends Migration
     {
         Schema::create('replies', function (Blueprint $table) {
             $table->Increments('id');
-            $table->string('admin_reply')->nullable();
-            $table->string('user_reply')->nullable();
+            $table->string('reply');
             $table->integer('user_id')->nullable()->unsigned();
             $table->integer('admin_id')->nullable()->unsigned();
             $table->integer('consolution_id')->unsigned();

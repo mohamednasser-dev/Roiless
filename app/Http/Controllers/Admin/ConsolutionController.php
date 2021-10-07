@@ -27,13 +27,17 @@ class ConsolutionController extends Controller
     }
     public function admin_reply(Request $request)
     {
-       
        reply::create([
-         
            'consolution_id'=>$request->consulation_id,
-           'admin_reply'=>$request->admin_reply,
-           'admin_id'=>Auth::user()->id
+           'reply'=>$request->reply,
+           'admin_id'=>Auth::user()->id,
        ]);
        return back();
+    }
+    public function Delete($id)
+    {
+        $Consolution=Consolution::find($id);
+        $Consolution->Delete();
+        return back();
     }
 }

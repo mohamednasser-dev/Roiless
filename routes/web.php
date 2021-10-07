@@ -168,7 +168,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
         Route::get('/consolutions', 'ConsolutionController@index')->name('consolutions');
         Route::get('/consolutions/show/{id}', 'ConsolutionController@show')->name('consolutions.show');
         Route::post('/consolutions/admin/reply', 'ConsolutionController@admin_reply')->name('admin.reply');
-
+        Route::get("/users/consolutions/delete/{id}", "ConsolutionController@Delete")->name('delete');
     });
 
 
