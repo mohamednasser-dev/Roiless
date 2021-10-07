@@ -56,8 +56,11 @@ class UsersController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone
             ]);
+            $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone')->first();
+                $user_data['token_api'] = null;
+                $user_data['otp_code'] = null;
             if ($user) {
-                return msgdata($request, success(), 'update_profile_success', array('user' => $user));
+                return msgdata($request, success(), 'update_profile_success',  $user_data);
             } else {
                 return response()->json(msg($request, failed(), 'update_profile_warning'));
             }
