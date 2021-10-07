@@ -13,20 +13,19 @@ use Illuminate\Support\Facades\Auth;
 class ConsolutionController extends Controller
 {
     //  
-    public function getall_consolution()
+    public function getall_consolution(Request $request)
     {
       $consolutions=Consolution::select(['id','content','created_at'])->where('user_id',Auth::user()->id)->get()->makeHidden(['UnSeenReply']);
-      return  response()->json([$consolutions]);
+      return msgdata($request, success(), 'get services sucess',$consolutions);
     }
-    public function getall_consolution_detailes($id)
+    public function getall_consolution_detailes(Request $request,$id)
     {
-      $reply=reply::select('reply')->where('consolution_id',$id)->get();
-        if($reply)
-        {
+      $reply=reply::select('id','reply','created_at','admin_id','user_id')->with('user')->with('admin')->where('consolution_id',$id)->get();
+        if($reply){
             reply::where('consolution_id', '=',$id)
              ->update(['seen' => '1']);
         }
-      return  response()->json([$reply]);
+        return msgdata($request, success(), 'get services sucess',$reply);
     }
     public function Reply(Request $request)
     {
@@ -43,13 +42,13 @@ class ConsolutionController extends Controller
                 'consolution_id'=>$request->consolution_id,
                 'seen'=>'1'
             ]);
-            return response()->json(['status' => '200', 'msg' => 'add reply successfully']);
+            return msgdata($request, success(), 'add reply successfully',null);
         }
     }
     public function Delete($id)
     {
         $Consolution=Consolution::where('id',$id)->first();
         $Consolution->Delete();
-        return response()->json(['status' => '200', 'msg' => 'consolution deleted successfully']);
+        return msgdata($request, success(), 'consolution deleted successfully',null);
     }
 }
