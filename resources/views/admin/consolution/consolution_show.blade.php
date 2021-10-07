@@ -15,19 +15,19 @@
                                     <div class="chat-rbox">
                                         <ul class="chat-list p-20">
                                             <!--chat Row -->
-                                           
+
                                             @foreach($replies as $reply)
                                             <li>
                                                 <div class="chat-img"><img src="@if($reply->admin_id != null) {{$reply->Admin->image}} @else {{$reply->user->image}}  @endif" alt="user" />
-                                            
-                                                 </div>  
+
+                                                 </div>
                                                 <div class="chat-content">
                                                     <h5>@if($reply->admin_id != null) {{$reply->Admin->name}} @else {{$reply->user->name}}  @endif</h5>
                                                     <div class="box bg-light-info"> {{$reply->reply}}</div>
                                                 </div>
-                                                <div class="chat-time">{{$reply->created_at}}</div>
+                                                <div class="chat-time">{{$reply->created_at->format('Y-m-d g:i a')}}</div>
                                             </li>
-                                            @endforeach 
+                                            @endforeach
                                         </ul>
                                     </div>
                                     <div class="card-body b-t">

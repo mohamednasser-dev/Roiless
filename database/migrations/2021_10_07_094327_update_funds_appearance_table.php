@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateConsolutionsReply extends Migration
+class UpdateFundsAppearanceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class UpdateConsolutionsReply extends Migration
      */
     public function up()
     {
-        Schema::table('consolutions', function (Blueprint $table) {
-            $table->string('content');
+        Schema::table('funds', function (Blueprint $table) {
+            $table->enum('appearance', ['0', '1'])->default('1')->after('featured');
         });
     }
 

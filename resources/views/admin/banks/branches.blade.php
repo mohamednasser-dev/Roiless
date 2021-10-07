@@ -19,9 +19,9 @@
     <br>
     <div class="row">
         <div class="table-responsive ">
-            <table id="example23"
-                   class="display full-color-table full-primary-table  nowrap table table-hover table-striped table-bordered"
-                   cellspacing="0" width="100%">
+            <table
+                   class="table full-color-table full-primary-table"
+
                 <thead class="bg-primary">
                 <tr>
                     <th scope="col">{{trans('admin.name')}}</th>
@@ -41,10 +41,17 @@
                         </td>
                         <td>
                             <ul class="list-inline soc-pro m-t-30">
-                                <li><a class="btn-circle btn btn-success" title="تعديل" href="{{url('banks/'.$branch->id.'/edit')}}"><i class="fa fa-edit"></i></a></li>
-                                <li><a class="btn-circle btn btn-info" title="التفاصيل" href="{{route('banks.details',$branch->id)}}"><i class="fa fa-eye"></i></a></li>
-                                <li><a class="btn-circle btn btn-danger" title="حذف" onclick="return confirm('هل انت متاكد من حذف البنك')"
+                                <li><a class="btn-circle btn btn-info" title="التمويلات"
+                                       href="{{route('funds.of.bank',$branch->id)}}"><i class="fa fa-money"></i></a>
+                                </li>
+                                <li><a class="btn-circle btn btn-success" title="تعديل"
+                                       href="{{url('banks/'.$branch->id.'/edit')}}"><i class="fa fa-edit"></i></a></li>
+                                <li><a class="btn-circle btn btn-info" title="التفاصيل"
+                                       href="{{route('banks.details',$branch->id)}}"><i class="fa fa-eye"></i></a></li>
+                                <li><a class="btn-circle btn btn-danger" title="حذف"
+                                       onclick="return confirm('هل انت متاكد من حذف البنك')"
                                        href="{{route('banks.delete',$branch->id)}}"><i class="fa fa-trash"></i></a></li>
+
                             </ul>
                         </td>
                     </tr>
