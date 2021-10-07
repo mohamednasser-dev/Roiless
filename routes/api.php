@@ -74,6 +74,10 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         // userFundsHistory
         Route::get('/userFundsHistory/{id}', 'UserFundsHistoryController@index');
 
+        //consolutions
+        Route::get("/users/consolutions/data", "UsersController@consolutions_data");
+        Route::post("/users/consolutions/store", "UsersController@consolutions_store");
+
     });
 
 
