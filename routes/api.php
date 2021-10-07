@@ -20,12 +20,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 //user
     Route::post("/login", "AuthController@login");
+
     Route::post("/Register", "AuthController@Register");
     Route::post("/loginasguest", "AuthController@loginasguest");
+
     Route::group(['middleware' => ['jwt.verify']], function () {
         Route::post("/logout", "AuthController@logout");
         // home page and services
         Route::get("/home", "HomeController@getall");
+        Route::get("/auth/check_otp/{code}", "AuthController@check_otp");
+
         Route::get("/get_data_profile", "UsersController@getDataProfile");
         Route::get("/services", "ServiceController@getallservices");
         Route::get("/services_detailes/{id}", "ServiceController@getservicedetailes");
@@ -51,7 +55,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::get("/categories", "CategoryController@getall");
 //fund detailes
         Route::get("/fund/detailes/{id}", "FundController@getfunddetailes");
-        Route::post("/addfund", "FundController@addfund");
+        Route::post("/funds/addfund", "FundController@addfund");
 
 //user update
         Route::post("/update_profile", "UsersController@updateProfile");

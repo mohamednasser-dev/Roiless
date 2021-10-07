@@ -52,8 +52,8 @@
                         </div>
                     </td>
                     <td class="text-lg-center ">
-                        <a class='btn btn-info btn-circle' title="تفاصيل"
-                           href="{{route('fund.details',$fund->id)}}"><i class="fa fa-eye"></i></a>
+{{--                        <a class='btn btn-info btn-circle' title="تفاصيل"--}}
+{{--                           href="{{route('fund.details',$fund->id)}}"><i class="fa fa-eye"></i></a>--}}
 
                         <a class='btn btn-info btn-circle' title="تعديل"
                            href="{{route('fund.edit',$fund->id)}}"><i class="fa fa-edit"></i></a>

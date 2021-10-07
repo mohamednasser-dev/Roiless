@@ -1,6 +1,10 @@
 <?php
 return [
 
+    'user_image'=>'صورة المستخدم',
+    'setting'=>'الاعدادات',
+    'edit_service'=>'تعديل الخدمة',
+
     'branches_banks' => 'فروع البنك' ,
     'add_branche_bank' => 'اضافه فرع',
     //new
@@ -16,7 +20,7 @@ return [
       ''=>'',
 
        'employee_count'=>'عدد الموظفين',
-       'users_count'=>'عدد المستخدمين', 
+       'users_count'=>'عدد المستخدمين',
        'bank_count'=>'عدد البنوك',
        'fund_count'=>'عدد التمويلات',
        'rejected_fund'=>'التمويلات المرفوضه',
@@ -43,10 +47,11 @@ return [
       'not_updated'=>'لم يتم التحديث',
       'service_not_found'=>'الخدمه ليست موجوده',
       'fund_added_successfully'=>'تمت اضافه التمويل بنجاح',
-      'wron'=>'',
-      'wron'=>'',
-      'wron'=>'',
-      'wron'=>'',
+      'consolutions'=>'الاستشارات',
+      'consolution_name_user'=>'اسم المستخدم',
+      'consolution_email'=>'البريد الالكتروني',
+      'consolution_phone'=>'الهاتف',
+      'consolution_kind'=>'نوع الاستشاره',
 
 
 
@@ -64,7 +69,7 @@ return [
 
 
 
-      
+
     'updatSuccess'=>'تم التعديل بنجاح',
     'logout'=>'تسجيل الخروج',
     'notification_data'=>'معلومات الاشعار',
@@ -257,7 +262,7 @@ return [
     // 'added_bill_product' => 'تم بيع المنتج بنجاح',
     // 'website_title' => 'عنوان الموقع',
     // 'preventAlert' => 'لا تملك الصلاحية لدخول هذه الصفحة !!!',
-    // 
+    //
 
     // 'close' => 'اغلاق',
     // 'print' => 'طباعه',
@@ -477,7 +482,7 @@ return [
     // 'image' => 'صورة المنتج',
     // 'search_form_date' => ' من تاريخ',
     // 'search_to_date' => 'الى تاريخ',
-    
+
     // 'car_type' => 'نوع السيارة',
     // 'car_model' => 'موديل السيارة',
     // 'in_color' => 'لون الطقم الداخلى',

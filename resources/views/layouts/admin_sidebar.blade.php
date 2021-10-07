@@ -44,6 +44,11 @@
                     <a class="waves-effect waves-dark" href="{{route('services')}}" aria-expanded="false"><i
                             class="mdi mdi-format-align-justify"></i><span class="hide-menu"></span>{{trans('admin.services')}}</a>
                 </li>
+
+                <li>
+                    <a class="waves-effect waves-dark" href="{{route('consolutions')}}" aria-expanded="false"><i
+                            class="mdi mdi-format-align-justify"></i><span class="hide-menu"></span>{{trans('admin.consolutions')}}</a>
+                </li>
                 <!-- <li>
                     <a class="waves-effect waves-dark" href="{{route('services')}}" aria-expanded="false"><i
                             class="mdi mdi-format-align-justify"></i><span class="hide-menu"></span>{{trans('admin.slider')}}</a>

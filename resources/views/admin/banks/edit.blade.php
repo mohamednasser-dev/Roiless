@@ -21,8 +21,7 @@
                 <div class="card-body">
                     <h4 class="card-title">{{trans('admin.bank_information')}}</h4>
                     <hr>
-                    {!! Form::model($bank, ['route' => ['banks.update',$bank->id] , 'method'=>'put','files'=> true]) !!}
-                    {{ csrf_field() }}
+                    {!! Form::model($bank, ['route' => ['banks.update_new',$bank->id] , 'method'=>'post','files'=> true]) !!}
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label"> {{trans('admin.arabic_bank_name')}}</label>
                         <div class="col-md-10">

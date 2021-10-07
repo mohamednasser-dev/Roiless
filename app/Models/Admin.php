@@ -53,4 +53,13 @@ class Admin extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Notification', 'user_notifications', 'admin_id', 'notification_id', 'id', 'id');
     }
+    public function Consolution()
+    {
+        return $this->hasMany('\App\models\Consolution','admin_id','id');
+    }
+    public function reply()
+    {
+        return $this->hasMany('\App\models\reply','admin_id','id');
+    }
+  
 }

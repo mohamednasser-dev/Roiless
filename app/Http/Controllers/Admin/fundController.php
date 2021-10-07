@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\category;
+use App\Models\Category;
 use App\Models\Fund;
 use App\Models\Fundinput;
 use Illuminate\Http\Request;
@@ -31,7 +31,7 @@ class fundController extends Controller
 
     public function create()
     {
-        $categories = category::get();
+        $categories = Category::get();
         $fundsinputs = Fundinput::get();
         return view($this->folderView . 'create', compact('categories', 'fundsinputs'));
     }
@@ -80,10 +80,11 @@ class fundController extends Controller
 
     public function edit($id)
     {
-        $categories = category::get();
+        $categories = Category::get();
         $fundsinputs = Fundinput::get();
         $fund = $this->objectName::where('id', $id)->first();
-        return view($this->folderView . 'edit', compact('fund','fundsinputs','categories'));
+        $columns = json_decode($fund->columns);
+        return view($this->folderView . 'edit', compact('fund','fundsinputs','categories','columns'));
     }
 
     public function update(Request $request, $id)
