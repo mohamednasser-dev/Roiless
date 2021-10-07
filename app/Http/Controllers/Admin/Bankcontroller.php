@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\User_fund;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Bank;
@@ -23,6 +24,7 @@ class Bankcontroller extends Controller
     public function index()
     {
         $banks = Bank::whereNull('parent_id')->orderBy('name_en', 'desc')->get();
+
         return view($this->folderView . 'banks', compact('banks'));
     }
 
@@ -41,10 +43,10 @@ class Bankcontroller extends Controller
     public function create($id)
     {
         $banks = Bank::orderBy('name_en', 'desc');
-        return view($this->folderView . 'create_bank', compact('banks','id'));
+        return view($this->folderView . 'create_bank', compact('banks', 'id'));
     }
 
-    public function store(Request $request , $id)
+    public function store(Request $request, $id)
     {
         $data = $this->validate(\request(),
             [
@@ -73,9 +75,9 @@ class Bankcontroller extends Controller
             $user = User::create($data);
             */
             unset($data['password_confirmation']);
-            if($id == 0) {
+            if ($id == 0) {
                 $data['parent_id'] = null;
-             } else {
+            } else {
                 $data['parent_id'] = $id;
             }
             $bank = Bank::create($data);
@@ -86,10 +88,10 @@ class Bankcontroller extends Controller
             if ($bank->save()) {
 //                $user->assignRole($request['role_id']);
                 Alert::success('تمت العمليه', 'تم انشاء بنك جديد');
-                if($bank->parent_id == null) {
+                if ($bank->parent_id == null) {
                     return redirect()->route('banks.index');
                 } else {
-                    return redirect()->route('banks.branches',$bank->parent_id);
+                    return redirect()->route('banks.branches', $bank->parent_id);
                 }
             }
         }
@@ -116,7 +118,7 @@ class Bankcontroller extends Controller
             $data = $this->validate(\request(),
                 [
                     'name_ar' => 'required|unique:banks,name_ar,' . $id,
-                    'name_en' => 'required|unique:banks,name_en,'  . $id,
+                    'name_en' => 'required|unique:banks,name_en,' . $id,
                     'email' => 'required|unique:users,email,' . $id,
                 ]);
         }
@@ -124,9 +126,9 @@ class Bankcontroller extends Controller
         if ($request['password'] != null && $request['password_confirmation'] != null) {
             $data['password'] = bcrypt(request('password'));
             unset($data['password_confirmation']);
-            $data['image']  = Str::after($bank->image, 'banks_image/');
-            if($request->image != null){
-                $data['image'] = $this->MoveImage($request->image,'uploads/banks_image');
+            $data['image'] = Str::after($bank->image, 'banks_image/');
+            if ($request->image != null) {
+                $data['image'] = $this->MoveImage($request->image, 'uploads/banks_image');
             }
 
             Bank::where('id', $id)->update($data);
@@ -135,17 +137,17 @@ class Bankcontroller extends Controller
         } else {
             unset($data['password']);
             unset($data['password_confirmation']);
-            $data['image']  = Str::after($bank->image, 'banks_image/');
-            if($request->image != null){
-                $data['image'] = $this->MoveImage($request->image,'uploads/banks_image');
+            $data['image'] = Str::after($bank->image, 'banks_image/');
+            if ($request->image != null) {
+                $data['image'] = $this->MoveImage($request->image, 'uploads/banks_image');
             }
             Bank::where('id', $id)->update($data);
             activity('admin')->log('تم تحديث البنك بنجاح');
             Alert::success('تمت العمليه', 'تم التعديل بنجاح');
-            if($bank->parent_id == null) {
+            if ($bank->parent_id == null) {
                 return redirect()->route('banks.index');
             } else {
-                return redirect()->route('banks.branches',$bank->parent_id);
+                return redirect()->route('banks.branches', $bank->parent_id);
             }
         }
     }
@@ -155,17 +157,24 @@ class Bankcontroller extends Controller
         $bank = Bank::findOrFail($id);
         $bank->delete();
         activity('admin')->log(trans('admin.bank_delete'));
-        Alert::success( trans('admin.deleted'),trans('admin.opretion_success'));
-        if($bank->parent_id == null) {
+        Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
+        if ($bank->parent_id == null) {
             return redirect()->route('banks.index');
         } else {
-            return redirect()->route('banks.branches',$bank->parent_id);
+            return redirect()->route('banks.branches', $bank->parent_id);
         }
     }
 
-    public function bankBranch($id) {
-        $branches = Bank::where('parent_id',$id)->get();
-        return view($this->folderView . 'branches', \compact('branches' , 'id'));
+    public function bankBranch($id)
+    {
+        $branches = Bank::where('parent_id', $id)->get();
+        return view($this->folderView . 'branches', \compact('branches', 'id'));
+    }
+
+    public function BankFunds($id)
+    {
+        $BankFunds = User_fund::where('bank_id', $id)->orderBy('created_at', 'DESC')->get();
+        return view($this->folderView . 'BankFunds', compact('BankFunds'));
     }
 
 }

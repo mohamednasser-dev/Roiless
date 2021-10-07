@@ -21,7 +21,7 @@ class HomeController extends Controller
             $lang="ar";
         }
         $slider = Slider::select(['id', 'image'])->get();
-        $funds = Fund::select([ 'id' ,'name_ar', 'name_en','desc_'.$lang.' as description','cat_id', 'image'])->wherein('featured', ['1'])->get();
+        $funds = Fund::select([ 'id' ,'name_ar', 'name_en','desc_'.$lang.' as description','cat_id', 'image'])->wherein('featured', ['1'])->wherein('appearance', ['1'])->get();
         $data['slider'] = $slider;
         $data['funds'] = $funds;
         return msgdata($request, success(), 'update_profile_success', $data);

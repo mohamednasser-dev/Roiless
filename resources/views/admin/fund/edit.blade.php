@@ -101,6 +101,7 @@
 
                     <div class="center">
                         {{ Form::submit( trans('admin.edit') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
+                        <a href="{{route('fund')}}" class="btn btn-danger" style="margin:10px" >الغاء</a>
                     </div>
                     {{ Form::close() }}
                 </div>

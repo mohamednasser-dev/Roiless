@@ -41,10 +41,17 @@
                         </td>
                         <td>
                             <ul class="list-inline soc-pro m-t-30">
-                                <li><a class="btn-circle btn btn-success" title="تعديل" href="{{url('banks/'.$branch->id.'/edit')}}"><i class="fa fa-edit"></i></a></li>
-                                <li><a class="btn-circle btn btn-info" title="التفاصيل" href="{{route('banks.details',$branch->id)}}"><i class="fa fa-eye"></i></a></li>
-                                <li><a class="btn-circle btn btn-danger" title="حذف" onclick="return confirm('هل انت متاكد من حذف البنك')"
+                                <li><a class="btn-circle btn btn-info" title="التمويلات"
+                                       href="{{route('funds.of.bank',$branch->id)}}"><i class="fa fa-money"></i></a>
+                                </li>
+                                <li><a class="btn-circle btn btn-success" title="تعديل"
+                                       href="{{url('banks/'.$branch->id.'/edit')}}"><i class="fa fa-edit"></i></a></li>
+                                <li><a class="btn-circle btn btn-info" title="التفاصيل"
+                                       href="{{route('banks.details',$branch->id)}}"><i class="fa fa-eye"></i></a></li>
+                                <li><a class="btn-circle btn btn-danger" title="حذف"
+                                       onclick="return confirm('هل انت متاكد من حذف البنك')"
                                        href="{{route('banks.delete',$branch->id)}}"><i class="fa fa-trash"></i></a></li>
+
                             </ul>
                         </td>
                     </tr>

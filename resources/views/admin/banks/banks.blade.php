@@ -34,17 +34,17 @@
                     <tbody>
                     @foreach($banks as $bank)
                         <tr>
-                            <th scope="row">{{$bank->name_ar}}</th>
+                            <td scope="row">{{$bank->name_ar}}</td>
                             <td>
                                 <img src="{{$bank->image}}" class="img-fluid"
                                      style="width: 100px; height: 100px; border-radius: 15px" alt="">
                             </td>
                             <td>
                                 <ul class="list-inline soc-pro m-t-30">
-{{--                                    <li><a class="btn-circle btn btn-info" title="التمويلات" href="{{url('banks/'.$bank->id.'/funds')}}"><i class="fa fa-archive"></i></a></li>--}}
+
                                     <li><a class="btn-circle btn btn-secondary" title="الفروع" href="{{url('banks/'.$bank->id.'/branches')}}"><i class="fa fa-info"></i></a></li>
+                                    <li><a class="btn-circle btn btn-info" title="التمويلات" href="{{route('funds.of.bank',$bank->id)}}"><i class="fa fa-money"></i></a></li>
                                     <li><a class="btn-circle btn btn-success" title="تعديل" href="{{url('banks/'.$bank->id.'/edit')}}"><i class="fa fa-edit"></i></a></li>
-{{--                                    <li><a class="btn-circle btn btn-info" title="التفاصيل" href="{{route('banks.details',$bank->id)}}"><i class="fa fa-eye"></i></a></li>--}}
                                     <li><a class="btn-circle btn btn-danger" title="حذف" onclick="return confirm('هل انت متاكد من حذف البنك')"
                                            href="{{route('banks.delete',$bank->id)}}"><i class="fa fa-trash"></i></a></li>
                                 </ul>

@@ -43,10 +43,10 @@ class fundController extends Controller
         $data = $this->validate(request(),
             [
                 'columns' => 'required|array|min:1',
-                'name_ar' => 'required',
-                'name_en' => 'required',
-                'desc_ar' => 'required',
-                'desc_en' => 'required',
+                'name_ar' => 'required|string|max:255',
+                'name_en' => 'required|string|max:255',
+                'desc_ar' => 'required|string|max:255',
+                'desc_en' => 'required|string|max:255',
                 'financing_ratio' => 'required|numeric',
                 'cost' => 'required',
                 'cat_id' => 'required|numeric',
@@ -148,12 +148,17 @@ class fundController extends Controller
 
     public function changeStatus(Request $request)
     {
-
         $this->objectName::where('id', $request->id)->update([
             'featured' => $request->status
         ]);
+    }
 
 
+    public function appearance(Request $request)
+    {
+        $this->objectName::where('id', $request->id)->update([
+            'appearance' => $request->status
+        ]);
     }
 
 }

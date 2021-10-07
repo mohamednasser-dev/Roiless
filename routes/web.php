@@ -73,13 +73,15 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::post('banks/branches/update', 'Admin\Bankcontroller@updateBranche')->name('banks.update.branches');
     Route::get('banks/branches/{id}/delete', 'Admin\Bankcontroller@destroyBranche')->name('banks.delete.branches');
     Route::get('banks/branches/{id}/details', 'Admin\Bankcontroller@showBranche')->name('banks.details.branches');
+
+    Route::get('banks/bankfunds/{id}', 'Admin\Bankcontroller@BankFunds')->name('funds.of.bank');
     //sliders
     Route::get('/sliders', 'Admin\sliderController@index')->name('sliders');
     Route::get('sliders/create', 'Admin\sliderController@create')->name('sliders.add');
     Route::post('/sliders/store', 'Admin\sliderController@store')->name('sliders.store');
     Route::get('/sliders/edit/{id}', 'Admin\sliderController@edit')->name('sliders.edit');
     Route::put('/sliders/update/{id}', 'Admin\sliderController@update')->name('sliders.update');
-    Route::get('/sliders/delete/{id}', 'Admin\sliderController@destroy')->name('sliders.delete');
+    Route::get('/sliders/delete/{id}', 'Admin\sliderController@destroy')->name('slidersbanks.funds.delete');
 
     //categories
     Route::get('/categories', 'Admin\categoriesController@index')->name('categories');
@@ -146,6 +148,8 @@ Route::group(['middleware' => ['auth:admin']], function () {
         Route::post('/fund/update/{id}', 'fundController@update')->name('fund.update');
         Route::get('/fund/delete/{id}', 'fundController@destroy')->name('fund.delete');
         Route::post('/fund/change/featured', 'fundController@changeStatus')->name('fund.change.featured');
+        Route::post('/fund/change/appearance', 'fundController@appearance')->name('fund.change.appearance');
+
     });
     // inbox
     Route::group(['namespace' => 'Admin'], function () {

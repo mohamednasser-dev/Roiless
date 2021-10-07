@@ -28,7 +28,8 @@
                 <th class="text-lg-center"> {{trans('admin.categories')}}</th>
                 <th class="text-lg-center">{{trans('admin.Application_fee')}}</th>
                 <th class="text-lg-center">{{trans('admin.fund_image')}}</th>
-                <th class="text-lg-center">{{trans('admin.main_appairance')}}</th>
+                <th class="text-lg-center">{{trans('admin.main_home_appairance')}}</th>
+                <th class="text-lg-center">{{trans('admin.main_website_appairance')}}</th>
                 <th class="text-lg-center">{{trans('admin.main_Measures')}}</th>
             </tr>
             </thead>
@@ -38,11 +39,12 @@
                 <tr>
                     <td class="text-lg-center">{{$fund->name_ar}}</td>
                     <td class="text-lg-center">{{$fund->name_en}}</td>
-                    <td class="text-lg-center">{{$fund->desc_ar}}</td>
-                    <td class="text-lg-center">{{$fund->desc_en}}</td>
+                    <td class="text-lg-center">{{Str::limit($fund->desc_ar, $limit = 25, $end = '...')}}</td>
+                    <td class="text-lg-center">{{Str::limit($fund->desc_en, $limit = 25, $end = '...')}}</td>
                     <td class="text-lg-center">{{$fund->category->title_ar}}</td>
                     <td class="text-lg-center">{{$fund->cost}}</td>
                     <td class="text-lg-center"><img src="{{$fund->image}}" style="width: 120px"></td>
+
                     <td class="text-lg-center">
                         <div class="switch">
                             <label>
@@ -51,10 +53,18 @@
                                     class="lever switch-col-green"></span></label>
                         </div>
                     </td>
-                    <td class="text-lg-center ">
-{{--                        <a class='btn btn-info btn-circle' title="تفاصيل"--}}
-{{--                           href="{{route('fund.details',$fund->id)}}"><i class="fa fa-eye"></i></a>--}}
 
+
+                    <td class="text-lg-center">
+                        <div class="switch">
+                            <label>
+                                <input type="checkbox" onchange="update_apperance(this)" value="{{$fund->id}}"
+                                       name="appearance" @if($fund->appearance == '1') checked @endif ><span
+                                    class="lever switch-col-green"></span></label>
+                        </div>
+                    </td>
+
+                    <td class="text-lg-center ">
                         <a class='btn btn-info btn-circle' title="تعديل"
                            href="{{route('fund.edit',$fund->id)}}"><i class="fa fa-edit"></i></a>
 
@@ -89,6 +99,25 @@
                 status: featured
             }, function (data) {
                 if (featured == 1) {
+                    toastr.success("{{trans('admin.statuschanged')}}");
+                } else {
+                    toastr.error("{{trans('admin.statuschanged')}}");
+                }
+            });
+        }
+
+        function update_apperance(el) {
+            if (el.checked)
+                var appearance = '1';
+            else
+                var appearance = '0';
+
+            $.post('{{ route('fund.change.appearance') }}', {
+                _token: '{{ csrf_token() }}',
+                id: el.value,
+                status: appearance
+            }, function (data) {
+                if (appearance == 1) {
                     toastr.success("{{trans('admin.statuschanged')}}");
                 } else {
                     toastr.error("{{trans('admin.statuschanged')}}");
