@@ -474,9 +474,9 @@
     {{--Start fund photos --}}
 
     <div class="container">
-        @foreach($requestreview->Files_img as $file)
+        @foreach($requestreview->Files_img as $key => $file)
             <div class="mySlides">
-                <div class="numbertext">1 / 6</div>
+                <div class="numbertext">{{$key +1}} / {{count($requestreview->Files_img)}}</div>
                 <img src="{{asset('/uploads/fund_file').'/'.$file->file_name}}" style="width:100%">
             </div>
         @endforeach
@@ -487,11 +487,11 @@
 
 
         <div class="row">
-            @foreach($requestreview->Files_img as $file)
+            @foreach($requestreview->Files_img as $key => $file)
                 <div class="column">
                     <img class="demo cursor" src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
                          style="width:100%"
-                         onclick="currentSlide(1)" alt="The Woods">
+                         onclick="currentSlide({{$key+1}})" alt="The Woods">
                 </div>
             @endforeach
 
