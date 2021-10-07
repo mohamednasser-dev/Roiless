@@ -120,8 +120,8 @@ class AuthController extends Controller
     {
         $data = $request->only(['phone', 'name']);
         $validator = Validator::make($data, [
-            'name' => 'required|string|unique:users',
-            'phone' => 'required|unique:users',
+            'name' => 'required|string',
+            'phone' => 'required|unique:users,phone',
         ]);
         $password = Str::random(8);
         $data['password'] = bcrypt($password);
