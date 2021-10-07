@@ -13,7 +13,6 @@ class UpdateConsolutionsReply extends Migration
      */
     public function up()
     {
-        //
         Schema::table('consolutions', function (Blueprint $table) {
             $table->string('content');
         });

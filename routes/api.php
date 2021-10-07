@@ -36,7 +36,6 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         // categories
         Route::get("/categories", "CategoryController@getall");
         // user update
-        Route::post("/update_profile/{id}", "UsersController@updateProfile");
         Route::post('forgot/password', 'UsersController@forgot_password_post')->name('admin.forgot.to.reset.password');;
         Route::get('check_token/', 'UsersController@reset_password');
         Route::post('reset/password/', 'UsersController@reset_password_post');
@@ -59,6 +58,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 
 //user update
         Route::post("/update_profile", "UsersController@updateProfile");
+        Route::post("/user/update_image", "UsersController@update_image");
         Route::post('forgot/password', 'UsersController@forgot_password_post')
             ->name('admin.forgot.to.reset.password');;
         Route::get('check_token/', 'UsersController@reset_password');

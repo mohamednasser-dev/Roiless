@@ -51,24 +51,52 @@ class UsersController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
-            $image = $request->image;  // your base64 encode
-            if ($image) {
-                $image = str_replace('data:image/png;base64,', '', $image);
-                $ext = $request->ext;
-                $imageName = Str::random(12) . '.' . $ext;
-                $image = \File::put('uploads/users_images/' . $imageName, base64_decode($image));
-            }
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
-                'phone' => $request->phone,
-                'image' => $imageName
+                'phone' => $request->phone
             ]);
             if ($user) {
                 return msgdata($request, success(), 'update_profile_success', array('user' => $user));
             } else {
                 return response()->json(msg($request, failed(), 'update_profile_warning'));
             }
+        }
+    }
+
+    public function update_image(Request $request)
+    {
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        if (!$user)
+            return response()->json(['status' => 401, 'msg' => 'User Not Found']);
+        $rules = [
+            'image' => 'required'
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        } else {
+            $image = $request->image;  // your base64 encode
+            if ($image) {
+                if($request->image != null){
+                    $imageName = $this->MoveImage($request->image,'uploads/users_images');
+                }
+                $user->update([ 'image' => $imageName ]);
+                $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone')->first();
+                $user_data['token_api'] = null;
+                $user_data['otp_code'] = null;
+                if ($user) {
+                    return msgdata($request, success(), 'update_profile_success', $user_data);
+                } else {
+                    return response()->json(msg($request, failed(), 'update_profile_warning'));
+                }
+            }else{
+                return response()->json(msg($request, failed(), 'you should upload image'));
+            }
+
+
+
         }
     }
 
