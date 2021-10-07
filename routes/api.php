@@ -30,9 +30,6 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::get("/home", "HomeController@getall");
         Route::get("/auth/check_otp/{code}", "AuthController@check_otp");
 
-        Route::get("/users/consolutions/data", "UsersController@consolutions_data");
-        Route::post("/users/consolutions/store", "UsersController@consolutions_store");
-        
         Route::get("/get_data_profile", "UsersController@getDataProfile");
         Route::get("/services", "ServiceController@getallservices");
         Route::get("/services_detailes/{id}", "ServiceController@getservicedetailes");
