@@ -19,7 +19,6 @@ class CreateConsolutionsTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('country');
-            $table->string('content');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('admin_id')->nullable()->unsigned();

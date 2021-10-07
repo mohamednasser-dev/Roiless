@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 class FundController extends Controller
 {
 
-    public function getfunddetailes(Request $request, $id)
+    public function details(Request $request, $id)
     {
         try {
             $lang = $request->header('lang');
@@ -35,12 +35,11 @@ class FundController extends Controller
                 $data['banks'] = $bank;
 
                 $fields = Company_field::select('id','name_' . $lang . ' as name')->get();
-                $data['Company_fields'] = $fields;
+                $data['company_field'] = $fields;
                 $types = Company_type::select('id','name_' . $lang . ' as name')->get();
-                $data['Company_types'] = $types;
-                return msgdata($request, success(), 'funddetailes_success', $data);
+                $data['company_type'] = $types;
+                return msgdata($request, success(), 'fund details success', $data);
             }
-
         } catch (Exception $e) {
             return $this->returnError($e->getCode(), $e->getMessage());
         }

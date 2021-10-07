@@ -18,7 +18,6 @@ class CreateUserFundsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('fund_id')->unsigned();
-            $table->integer('cat_id')->unsigned()->nullable();
             $table->json('dataform');
             $table->double('annual_sales_size')->nullable();
             $table->double('fund_amount');
@@ -26,7 +25,6 @@ class CreateUserFundsTable extends Migration
             $table->integer('emp_id')->unsigned()->nullable();
             $table->timestamps();
             $table->foreign('emp_id')->references('id')->on('admins')->onDelete('cascade');
-            $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('fund_id')->references('id')->on('funds')->onDelete('cascade');
         });
