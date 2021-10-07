@@ -19,9 +19,9 @@
     <br>
     <div class="row">
         <div class="table-responsive ">
-            <table id="example23"
-                   class="display full-color-table full-primary-table  nowrap table table-hover table-striped table-bordered"
-                   cellspacing="0" width="100%">
+            <table
+                   class="table full-color-table full-primary-table"
+
                 <thead class="bg-primary">
                 <tr>
                     <th scope="col">{{trans('admin.name')}}</th>
