@@ -53,7 +53,7 @@
                                 $consolutions = \App\Models\Consolution::where('seen','0')->get()->count();
                                 $allconsolution=$unseenreply+$consolutions
                                 @endphp
-                            <span class="label label-rouded label-danger pull-right">{{$allconsolution}}</span>
+                                @if( $allconsolution) <span class="label label-rouded label-danger pull-right">{{$allconsolution}}</span>@endif
                             </span>{{trans('admin.consolutions')}}</a>
                 </li>
                 <!-- <li>

@@ -26,7 +26,7 @@
                 <th class="text-lg-center">{{trans('admin.consolution_phone')}}</th>
                 <th class="text-lg-center">{{trans('admin.consolution_kind')}}</th>
                 <th class="text-lg-center">{{trans('admin.consolution_replies')}}</th>
-                <th class="text-lg-center">{{trans('admin.main_Measures')}}</th>
+                <th class="text-lg-center">{{trans('admin.delete')}}</th>
             </tr>
             </thead>
 
@@ -43,43 +43,21 @@
                            href="{{route('consolutions.show',$consolution->id)}}"><i class="fa fa-eye">{{count($consolution->unseenreplies)}}</i></a> -->
                            
                            <a class='btn btn-info btn-circle' title="التفاصيل"
-                           href="{{route('consolutions.show',$consolution->id)}}"><i class="fa fa-eye"></i>
-                           <span class="unreadcount"
+                                  href="{{route('consolutions.show',$consolution->id)}}"><i class="fa fa-eye"></i>
+                                   @if(count($consolution->unseenreplies)!=0) 
+                                      <span class="unreadcount"
                                               style="position: absolute;margin-top: 3px;background-color: red;
                                                 border-radius: 50%;
                                                 width: 22px;
                                                 height: 22px;
                                                 color:white"
-                                            
-                                              title="dd">
-                                            <span class="insidecount" >
+                                                title="dd">
+                                           <span class="insidecount" >
                                             {{count($consolution->unseenreplies)}}
-                                            </span>
+                                           </span> 
                                         </span>
-                          
-                                        </a>
-                           <!-- <a href="{{route('consolutions.show',$consolution->id)}}"
-                                           class="btn btn-info  mb-2 mr-2 rounded-circle"
-                                           style="position: absolute;margin-right: 5px;margin-top: 5px; margin-right: 0px border-radius: 50%; width: 48px; hight:48;
-                                                ;
-                                                "
-                                           data-original-title="Tooltip using BUTTON tag">
-                                           <i class="fa fa-eye" style="margin-top: 5px;"></i>
-                                        </a>
-                                        <span class="unreadcount"
-                                              style="position: absolute;margin-top: 3px;background-color: red;
-                                                border-radius: 50%;
-                                                width: 22px;
-                                                height: 22px;
-                                                color:white"
-                                            
-                                              title="dd">
-                                            <span class="insidecount" >
-                                            {{count($consolution->unseenreplies)}}
-                                            </span>
-                                        </span>
-                               </a> -->
-
+                                     @endif
+                             </a>
                     </td>
                    
                     <td class="text-lg-center ">
