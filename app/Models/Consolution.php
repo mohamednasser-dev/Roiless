@@ -21,15 +21,17 @@ class Consolution extends Model
     {
         return $this->hasMany('App\Models\reply','Consolution_id','id');
     }
-
     public function UnSeenReply()
     {
         return $this->hasMany('App\Models\reply','Consolution_id','id')->where('admin_id','!=',null)->where('seen','0');
     }
-
+    public function unseenreplies()     
+    {
+        return $this->hasMany('App\Models\reply','Consolution_id','id')->where('user_id','!=',null)->where('seen','0');
+    }
     public function getseenAttribute()
     {
-          return count( $this->UnSeenReply);
+            return count( $this->UnSeenReply); 
     }
     public function Admin()
     {

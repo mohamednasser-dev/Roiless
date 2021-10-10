@@ -10,7 +10,7 @@ class reply extends Model
     protected $guarded = [];
     public function Consolution()
     {
-        return $this->belongsTo('App\Models\Consolution','consolution_id');
+        return $this->belongsTo('App\Models\Consolution','consolution_id','id');
     }
     public function Admin()
     {

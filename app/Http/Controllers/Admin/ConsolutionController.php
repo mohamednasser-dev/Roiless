@@ -15,14 +15,22 @@ class ConsolutionController extends Controller
     public function index()
     {
         $consolutions = Consolution::get();
+        
+      //   dd($consolutions);
         return view('admin.consolution.index', compact('consolutions'));
     }
     public function show($id)
     {
         $consolution = Consolution::find($id);
-    
-        $replies = reply::where('consolution_id','=',$id)->get();
-       
+      if( $consolution)
+          {
+            $consolution->update(['seen'=>'1']);
+          }
+             $replies=reply::where('consolution_id',$id)->get();
+        if($replies){
+            reply::where('consolution_id', '=',$id)
+             ->update(['seen' => '1']);
+        }
         return view('admin.consolution.consolution_show', compact('consolution','replies'));
     }
     public function admin_reply(Request $request)

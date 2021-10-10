@@ -2,6 +2,7 @@
 return [
 
     //new
+    'consolution_replies'=>'consolution replies',
     'users'=>'users',
     'add_new_user'=>'add new user',
     'edit_user'=>'edit user',

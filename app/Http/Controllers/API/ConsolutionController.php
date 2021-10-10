@@ -40,12 +40,12 @@ class ConsolutionController extends Controller
                 'user_id'=>Auth::user()->id,
                 'reply'=>$request->reply,
                 'consolution_id'=>$request->consolution_id,
-                'seen'=>'1'
+                'seen'=>'0'
             ]);
             return msgdata($request, success(), 'add reply successfully',null);
         }
     }
-    public function Delete($id)
+    public function Delete(Request $request,$id)
     {
         $Consolution=Consolution::where('id',$id)->first();
         $Consolution->Delete();

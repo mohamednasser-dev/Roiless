@@ -1,6 +1,6 @@
 <?php
 return [
-
+     'consolution_replies'=>'الردود',
     'user_image'=>'صورة المستخدم',
     'setting'=>'الاعدادات',
     'edit_service'=>'تعديل الخدمة',
