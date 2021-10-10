@@ -1,10 +1,10 @@
 <?php
 return [
-
+     'consolution_replies'=>'الردود',
     'user_image'=>'صورة المستخدم',
     'setting'=>'الاعدادات',
     'edit_service'=>'تعديل الخدمة',
-
+     'delete'=>'حذف',
     'branches_banks' => 'فروع البنك' ,
     'add_branche_bank' => 'اضافه فرع',
     //new
@@ -192,8 +192,8 @@ return [
        'fund_info'=>'معلومات التمويل',
        'fund_name_in_english'=>'اسم التمويل بالانجليزي',
        'fund_name_in_arabic'=>'اسم التمويل بالعربي',
-       'main_home_appairance'=>'الظهور الرئيسي',
-       'main_website_appairance'=>'الظهور في الموقع',
+       'main_home_appairance'=>'الظهور في الرئيسيه',
+       'main_website_appairance'=>'الظهور / احفاء في الموقع',
        'fund_name_in_arabic'=>'الاسم كامل بالعربي',
        'common_questions'=>'الاسئله الشائعه',
        'communication'=>'التواصل',

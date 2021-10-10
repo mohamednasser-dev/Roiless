@@ -47,7 +47,14 @@
 
                 <li>
                     <a class="waves-effect waves-dark" href="{{route('consolutions')}}" aria-expanded="false"><i
-                            class="mdi mdi-format-align-justify"></i><span class="hide-menu"></span>{{trans('admin.consolutions')}}</a>
+                            class="mdi mdi-format-align-justify"></i><span class="hide-menu">
+                                @php 
+                                $unseenreply = \App\Models\Reply::where('seen','0')->where('user_id','!=',null)->get()->count();
+                                $consolutions = \App\Models\Consolution::where('seen','0')->get()->count();
+                                $allconsolution=$unseenreply+$consolutions
+                                @endphp
+                                @if( $allconsolution) <span class="label label-rouded label-danger pull-right">{{$allconsolution}}</span>@endif
+                            </span>{{trans('admin.consolutions')}}</a>
                 </li>
                 <!-- <li>
                     <a class="waves-effect waves-dark" href="{{route('services')}}" aria-expanded="false"><i

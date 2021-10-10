@@ -24,7 +24,8 @@ class DashboardController extends Controller
         $bankcount=Bank::count();
         $fundcount=Fund::count();
         $employercount=Admin::count();
-
+        $consolution_replyes=5;
+      
         // for chart 3
         $pending_fund=User_fund::where(['user_status' => 'pending'])->get()->count();
         $accepted_fund=User_fund::where(['user_status' => 'finail_accept'])->get()->count();

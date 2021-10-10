@@ -77,8 +77,12 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         //consolutions
         Route::get("/users/consolutions/data", "UsersController@consolutions_data");
         Route::post("/users/consolutions/store", "UsersController@consolutions_store");
+        Route::get("/users/consolutions/index", "ConsolutionController@getall_consolution")->name('get.consolutions');
+        Route::get("/users/consolutions/details/{id}", "ConsolutionController@getall_consolution_detailes");
+        Route::post("/users/consolutions/reply", "ConsolutionController@Reply");
+        Route::get("/users/consolutions/delete/{id}", "ConsolutionController@Delete");
 
+        //notification  NotificationController
+        Route::get("/get_notification", "NotificationController@getall");
     });
-
-
 });

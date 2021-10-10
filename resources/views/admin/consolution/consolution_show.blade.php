@@ -1,12 +1,15 @@
 @extends('admin_temp')
 @section('content')
- <p>hallo world</p>
-
   <!-- .chat-right-panel -->
   <div class="chat-right-aside">
+                                  <div class="col-md-12">
+                                  <p style="background-color:white">{{$consolution->content}}</p>
+                                   
+                                </div>
+                        
                                     <div class="chat-main-header">
                                         <div class="p-20 b-b">
-                                            <h3 class="box-title">Chat Message</h3>
+                                            <h3 class="box-title">reply</h3>
                                         </div>
                                     </div>
                                     <div class="chat-rbox">
@@ -20,7 +23,7 @@
                                                  </div>
                                                 <div class="chat-content">
                                                     <h5>@if($reply->admin_id != null) {{$reply->Admin->name}} @else {{$reply->user->name}}  @endif</h5>
-                                                    <div class="box bg-light-info">@if($reply->admin_id != null) {{$reply->admin_reply}} @else {{$reply->user_reply}}  @endif</div>
+                                                    <div class="box bg-light-info"> {{$reply->reply}}</div>
                                                 </div>
                                                 <div class="chat-time">{{$reply->created_at->format('Y-m-d g:i a')}}</div>
                                             </li>
@@ -33,7 +36,7 @@
                                         @csrf
                                         <input type="hidden" name="consulation_id" value="{{$consolution->id}}">
                                             <div class="col-8">
-                                                <textarea placeholder="Type your message here" name="admin_reply" class="form-control b-0"></textarea>
+                                                <textarea placeholder="Type your message here" name="reply" class="form-control b-0"></textarea>
                                             </div>
                                             <div class="col-4 text-right">
                                                 <button type="submit" class="btn btn-info">ارسال</button>
