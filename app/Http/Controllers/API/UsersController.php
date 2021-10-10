@@ -147,7 +147,7 @@ class UsersController extends Controller
                 $data['status'] = true ;
                 return msgdata($request, success(), 'otp true',  $data);
             }else{
-                $data['status'] = true ;
+                $data['status'] = false ;
                 return msgdata($request, failed(), 'otp false',  $data);
             }
             $token = app('auth.password.broker')->createToken($user);
