@@ -23,7 +23,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 
     Route::post("/Register", "AuthController@Register");
     Route::post("/loginasguest", "AuthController@loginasguest");
-
+    Route::post('forgot/password', 'UsersController@forgot_password_post')->name('forgot.password');
     Route::group(['middleware' => ['jwt.verify']], function () {
         Route::post("/logout", "AuthController@logout");
         // home page and services
@@ -36,7 +36,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         // categories
         Route::get("/categories", "CategoryController@getall");
         // user update
-        Route::post('forgot/password', 'UsersController@forgot_password_post')->name('admin.forgot.to.reset.password');;
+        
         Route::get('check_token/', 'UsersController@reset_password');
         Route::post('reset/password/', 'UsersController@reset_password_post');
         Route::post("/update_password", "HomeController@updatePassword");
@@ -59,8 +59,6 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 //user update
         Route::post("/update_profile", "UsersController@updateProfile");
         Route::post("/user/update_image", "UsersController@update_image");
-        Route::post('forgot/password', 'UsersController@forgot_password_post')
-            ->name('admin.forgot.to.reset.password');;
         Route::get('check_token/', 'UsersController@reset_password');
         Route::post('reset/password/', 'UsersController@reset_password_post');
 

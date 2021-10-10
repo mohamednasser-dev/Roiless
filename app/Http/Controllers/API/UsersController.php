@@ -45,17 +45,47 @@ class UsersController extends Controller
         $rules = [
             'name' => 'required|regex:/^[\pL\s\-]+$/u',
             'email' => 'required|email|unique:users,email,' . $id,
-            'phone' => 'required|regex:/(01)[0-9]{9}/|unique:users,phone,' . $id,
+            'phone' => 'required|unique:users,phone,' . $id,
+            'otp_code' => '',
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
-            $user->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone
-            ]);
+            //check phone change 
+            if($request->phone==Auth::user()->phone)
+            {
+                $user->update([
+                    'name' => $request->name,
+                    'email' => $request->email
+                ]);
+            }else{
+                $user->update([
+                    'otp_code' => 123456,
+                ]);
+                //send here by sms api ...
+                if(empty($request->otp_code))
+                {
+                    $data['status'] = true ;
+                
+                    return msgdata($request, success(), 'please send otp_code',  $data);
+                }else{
+                    if($request->otp_code == Auth::user()->otp_code)
+                    {
+                       
+                        $user->update([
+                            'name' => $request->name,
+                            'email' => $request->email,
+                            'phone' => $request->phone,
+                            'otp_code'=>null,
+                        ]);
+                    }
+                    else{
+                        return response()->json(msg($request, failed(), 'update_profile_warning'));
+                    }
+                }
+               
+            } 
             $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone')->first();
                 $user_data['token_api'] = null;
                 $user_data['otp_code'] = null;
@@ -106,8 +136,20 @@ class UsersController extends Controller
 
     public function forgot_password_post(Request $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('phone', $request->phone)->first();
         if (!empty($user)) {
+            $user->update([
+                'otp_code' => 123456,
+            ]);
+            $user_otp=User::select('otp_code')->where('phone', $request->phone)->first();
+            if($request->otp_code==$user_otp->otp_code)
+            {
+                $data['status'] = true ;
+                return msgdata($request, success(), 'otp true',  $data);
+            }else{
+                $data['status'] = true ;
+                return msgdata($request, failed(), 'otp false',  $data);
+            }
             $token = app('auth.password.broker')->createToken($user);
             $data = DB::table('password_resets')->insert([
                 'email' => $user->email,
