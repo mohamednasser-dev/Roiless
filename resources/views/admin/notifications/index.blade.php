@@ -26,7 +26,7 @@
                 <th class="text-lg-center">{{trans('admin.notification_in_arabic')}}</th>
                 <th class="text-lg-center">{{trans('admin.notification_in_english')}}</th>
                 <th class="text-lg-center">{{trans('admin.notification_content_in_arabic')}}</th>
-                <th class="text-lg-center">{{trans('admin.notification_in_english')}}</th>
+                <th class="text-lg-center">{{trans('admin.notification_content_in_english')}}</th>
                 <th class="text-lg-center">{{trans('admin.notification_image')}}</th>
                 <th class="text-lg-center">{{trans('admin.Measures')}}</th>
             </tr>

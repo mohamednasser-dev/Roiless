@@ -34,7 +34,7 @@
                     <div class="col-md-7 align-self-center">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">الحساب</li>
-                            <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.nav_home')}}</a></li>
+                            <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
                         </ol>
                     </div>
                     <div>

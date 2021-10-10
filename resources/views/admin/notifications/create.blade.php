@@ -14,8 +14,8 @@
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.create_notification')}}</li>
-                <li class="breadcrumb-item"><a href="{{route('question')}}">{{trans('admin.create_notification')}}</a></li>
+              
+                <li class="breadcrumb-item"><a href="{{route('notifications.index')}}">{{trans('admin.notification')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
