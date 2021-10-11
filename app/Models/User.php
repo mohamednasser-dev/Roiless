@@ -67,4 +67,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany('\App\models\reply','user_id','id');
     }
+
+    public function UserFunds()
+    {
+        return $this->hasMany(User_fund::class);
+    }
 }

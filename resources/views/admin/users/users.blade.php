@@ -40,7 +40,7 @@
                         <th scope="row">{{$user->name}}</th>
                         <td>{{$user->phone}}</td>
                         <td>{{$user->email}}</td>
-                        <td>{{\App\Models\User_fund::where('user_id',$user->id)->count()}}</td>
+                        <td>{{$user->UserFunds->count()}}</td>
                         <td> <h3> {{$user->created_at}}</h3> </td>
                         <td>
                             <ul class="list-inline soc-pro m-t-30">

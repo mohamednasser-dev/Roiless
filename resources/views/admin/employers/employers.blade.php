@@ -24,7 +24,7 @@
                 <thead class="bg-primary">
                 <tr>
                     <th scope="col">{{trans('admin.name')}}</th>
-                    <th scope="col">{{trans('admin.image')}}</th>
+                    <th scope="col">{{trans('admin.sign_up_data')}}</th>
                     <th scope="col">
                         {{trans('admin.actions')}}
                     </th>
@@ -35,8 +35,7 @@
                     <tr>
                         <th scope="row">{{$employer->name}}</th>
                         <td>
-                            <img src="{{$employer->image}}" class="img-fluid"
-                                 style="width: 100px; height: 100px; border-radius: 15px" alt="">
+                            <h3> {{$employer->created_at}}</h3>
                         </td>
                         <td>
                             <ul class="list-inline soc-pro m-t-30">
