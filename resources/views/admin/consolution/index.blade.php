@@ -2,20 +2,16 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">{{trans('admin.funds')}}</h3>
+            <h3 class="text-themecolor">{{trans('admin.consolutions')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.funds')}}</li>
+                <li class="breadcrumb-item">{{trans('admin.consolutions')}}</li>
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>
     <!-- /.card-header -->
-    <div class="title">
-        <a href="{{route('fund.create')}} "
-           class="btn btn-info btn-bg">{{trans('admin.add_fund')}}</a>
-    </div>
     <br>
     <div class="row">
         <table class="table full-color-table full-primary-table">
@@ -38,13 +34,13 @@
                     <td class="text-lg-center">{{$consolution->phone}}</td>
                     <td class="text-lg-center">{{$consolution->consolution_kind->name_ar}}</td>
                     <td class="text-lg-center ">
-<!--                    
+<!--
                     <a class='btn btn-info btn-circle' title="عرض" style="position: absolute;margin-right: -22px;margin-top: -20px;"
                            href="{{route('consolutions.show',$consolution->id)}}"><i class="fa fa-eye">{{count($consolution->unseenreplies)}}</i></a> -->
-                           
+
                            <a class='btn btn-info btn-circle' title="التفاصيل"
                                   href="{{route('consolutions.show',$consolution->id)}}"><i class="fa fa-eye"></i>
-                                   @if(count($consolution->unseenreplies)!=0) 
+                                   @if(count($consolution->unseenreplies)!=0)
                                       <span class="unreadcount"
                                               style="position: absolute;margin-top: 3px;background-color: red;
                                                 border-radius: 50%;
@@ -54,19 +50,19 @@
                                                 title="dd">
                                            <span class="insidecount" >
                                             {{count($consolution->unseenreplies)}}
-                                           </span> 
+                                           </span>
                                         </span>
                                      @endif
                              </a>
                     </td>
-                   
+
                     <td class="text-lg-center ">
-                       
+
 
                         <a class='btn btn-danger btn-circle' title="حذف"
                            onclick="return confirm('هل انت متكد من حذف الخدمه')"
                            href="{{route('delete',$consolution->id)}}"><i class="fa fa-trash"></i></a>
-                         
+
                     </td>
 
                 </tr>
