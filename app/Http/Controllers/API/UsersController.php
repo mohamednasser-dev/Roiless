@@ -180,11 +180,18 @@ class UsersController extends Controller
             return response()->json(msg($request, failed(), $validator->messages()->first()));
         } else {
             $user=User::select('otp_code')->where('phone', $request->phone)->first();
-            $user->update([
-                'password' => Hash::make($request->password),
-            ]);
-            $data['status'] = true ;
-            return msgdata($request, success(), 'change password true',  $data);
+            if($request->otp_code==$user->otp_code)
+            {
+                $user->update([
+                    'password' => Hash::make($request->password),
+                ]);
+                $data['status'] = true ;
+                return msgdata($request, success(), 'change password true',  $data);
+            }else{
+                $data['status'] = false ;
+                return msgdata($request, failed(), 'otp false',  $data);
+            }
+           
         }
 
     }
