@@ -27,7 +27,8 @@
                     <th scope="col">{{trans('admin.name')}}</th>
                     <th scope="col">{{trans('admin.phone')}}</th>
                     <th scope="col">{{trans('admin.email')}}</th>
-                    <th scope="col">{{trans('admin.user_image')}}</th>
+                    <th scope="col">{{trans('admin.orders')}}</th>
+                    <th scope="col">{{trans('admin.sign_up_data')}}</th>
                     <th scope="col">
                         {{trans('admin.actions')}}
                     </th>
@@ -39,10 +40,8 @@
                         <th scope="row">{{$user->name}}</th>
                         <td>{{$user->phone}}</td>
                         <td>{{$user->email}}</td>
-                        <td>
-                            <img src="{{$user->image}}" class="img-fluid"
-                                 style="width: 90px;height: 80px; border-radius: 15px" alt="">
-                        </td>
+                        <td>{{\App\Models\User_fund::where('user_id',$user->id)->count()}}</td>
+                        <td> <h3> {{$user->created_at}}</h3> </td>
                         <td>
                             <ul class="list-inline soc-pro m-t-30">
                                 <li><a class="btn-circle btn btn-success" title="تعديل" href="{{url('users/'.$user->id.'/edit')}}"><i

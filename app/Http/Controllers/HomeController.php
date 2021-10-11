@@ -20,7 +20,7 @@ class HomeController extends Controller
     {
         return view('viewprofile');
     }
-   
+
     public function change_lang(Request $request,$lang)
     {
         if (session()->has('lang')) {
