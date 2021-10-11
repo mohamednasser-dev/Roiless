@@ -23,7 +23,8 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 
     Route::post("/Register", "AuthController@Register");
     Route::post("/loginasguest", "AuthController@loginasguest");
-    Route::post('forgot/password', 'UsersController@forgot_password_post')->name('forgot.password');
+    Route::post('forgot/password', 'UsersController@forgot_password_post')->name('forgot.password'); 
+    Route::post('update/forgot_password', 'UsersController@reset_password_forget');
     Route::group(['middleware' => ['jwt.verify']], function () {
         Route::post("/logout", "AuthController@logout");
         // home page and services

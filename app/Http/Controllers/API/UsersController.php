@@ -136,11 +136,27 @@ class UsersController extends Controller
 
     public function forgot_password_post(Request $request)
     {
-        $user = User::where('phone', $request->phone)->first();
-        if (!empty($user)) {
-            $user->update([
-                'otp_code' => 123456,
-            ]);
+        
+        if(empty($request->otp_code))
+        {
+           
+            $user = User::where('phone', $request->phone)->first();
+            if (!empty($user)) 
+            {
+                $user->update([
+                    'otp_code' => 123456,
+                ]);
+                $data['status'] = true ;
+                return msgdata($request, success(), 'please send otp_code',  $data);
+            }
+            else
+            {
+                $data['status'] = false ;
+                return msgdata($request, failed(), 'some thing wrong',  $data);
+            }
+        }
+        else
+        {
             $user_otp=User::select('otp_code')->where('phone', $request->phone)->first();
             if($request->otp_code==$user_otp->otp_code)
             {
@@ -149,17 +165,28 @@ class UsersController extends Controller
             }else{
                 $data['status'] = false ;
                 return msgdata($request, failed(), 'otp false',  $data);
-            }
-            $token = app('auth.password.broker')->createToken($user);
-            $data = DB::table('password_resets')->insert([
-                'email' => $user->email,
-                'token' => $token,
-                'created_at' => Carbon::now(),
+        }
+     }      
+    }
+    public function reset_password_forget(Request $request)
+    {
+        $rules = [
+            'phone' => 'required',
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(msg($request, failed(), $validator->messages()->first()));
+        } else {
+            $user=User::select('otp_code')->where('phone', $request->phone)->first();
+            $user->update([
+                'password' => Hash::make($request->password),
             ]);
-            Mail::to($user->email)->send(new UserRestPasswordApi(['data' => $user, 'token' => $token]));
-            return msgdata($request, success(), 'send_reset_link', array('token' => $token));
-        } else
-            return response()->json(msg($request, failed(), 'not_found'));
+            $data['status'] = true ;
+            return msgdata($request, success(), 'change password true',  $data);
+        }
+
     }
 
 
