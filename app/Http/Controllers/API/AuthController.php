@@ -66,6 +66,10 @@ class AuthController extends Controller
                 Auth::guard('user-api')->logout();
                 return msgdata($request, not_active(), 'Your_Account_NotActive', null);
             }
+            $user=User::where('phone',$request->phone);
+            $user->update([
+                'fcm_token'=>$request->fcm_token
+            ]);
             return msgdata($request, success(), 'login_success', array('user' => $user));
         } catch (Exception $e) {
             return $this->returnError($e->getCode(), $e->getMessage());
