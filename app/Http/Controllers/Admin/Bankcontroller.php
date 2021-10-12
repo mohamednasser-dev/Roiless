@@ -151,6 +151,19 @@ class Bankcontroller extends Controller
             }
         }
     }
+    public function update_Actived(Request $request)
+    {
+      $bank=Bank::find($request->id);
+      $bank->update([
+          'status'=>$request->status,
+      ]);
+        if($bank->status=='active')
+        {
+            return response()->json([1]);
+        }else{
+            return response()->json([0]);
+        }
+    }
 
     public function destroy($id)
     {
@@ -173,7 +186,12 @@ class Bankcontroller extends Controller
 
     public function BankFunds($id)
     {
-        $BankFunds = User_fund::where('bank_id', $id)->orderBy('created_at', 'DESC')->get();
+        
+        $branches_ids =Bank::where('parent_id',$id)->get()->pluck('id')->toArray();
+        array_push($branches_ids,$id);
+        
+        $BankFunds = User_fund::wherein('bank_id', $branches_ids)->orderBy('created_at', 'DESC')->get();
+       
         return view($this->folderView . 'BankFunds', compact('BankFunds'));
     }
 

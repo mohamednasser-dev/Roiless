@@ -26,7 +26,7 @@ class NotificationsController extends Controller
         $notifications = Notification::get();
         return view($this->folderView . 'index', compact('notifications'));
     }
-
+    
 
     public function create()
     {
@@ -34,9 +34,9 @@ class NotificationsController extends Controller
         return view($this->folderView . 'create',compact('users'));
     }
 
-
     public function store(Request $request)
     {
+      
         $data = $this->validate(request(),
             [
                 'title_ar' => 'required',
@@ -53,10 +53,55 @@ class NotificationsController extends Controller
             }
             unset($data['users_id']);
             $notifications = Notification::create($data)->user()->attach($request->users_id);
+            $users= User::wherein('id',$request->users_id)->get();
+            foreach($users as $user)
+            {
+                $notificationss = APIHelpers::send_notification($notification->title_en , $notification->body_en , $notification->image , null , $user->fcm_token);
+            }   
             activity('admin')->log('تم اضافه الاشعار بنجاح');
-            Alert::success('تمت العمليه', 'تم اضافه الاشعار بنجاح');
+            Alert::success('تمت العمليه', 'تم اضافه الاشعار بنجاح'); 
             return redirect()->route('notifications.index');
     }
+
+
+
+
+    // send notification and insert it in database
+    public function send(Request $request){
+        $notification = new Notification();
+        if($request->file('image')){
+            $image_name = $request->file('image')->getRealPath();
+            Cloudder::upload($image_name, null);
+            $imagereturned = Cloudder::getResult();
+            $image_id = $imagereturned['public_id'];
+            $image_format = $imagereturned['format'];
+            $image_new_name = $image_id.'.'.$image_format;
+            $notification->image = $image_new_name;
+        }else{
+            $notification->image = null;
+        }
+        $notification->title = $request->title;
+        $notification->body = $request->body;
+        $notification->save();
+        $users = Visitor::select('id','fcm_token','user_id')->where('fcm_token' ,'!=' , null)->get();
+        for($i =0; $i < count($users); $i++){
+            $fcm_tokens[$i] = $users[$i]['fcm_token'];
+            $user_notification = new UserNotification();
+            $user_notification->user_id = $users[$i]['user_id'];
+            $user_notification->notification_id = $notification->id;
+            $user_notification->visitor_id = $users[$i]['id'];
+            $user_notification->save();
+        }
+		$the_image = "https://res.cloudinary.com/duwmvqjpo/image/upload/w_100,q_100/v1581928924/".$notification->image;
+        $notificationss = APIHelpers::send_notification($notification->title , $notification->body , $the_image , null , $fcm_tokens);
+        return redirect('admin-panel/notifications/show');
+    }
+
+
+
+
+
+
 
     public function edit($id)
     {

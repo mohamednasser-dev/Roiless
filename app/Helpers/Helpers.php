@@ -3,7 +3,37 @@
 use App\User;
 use Illuminate\Support\Facades\Validator;
 
+// send fcm notification
+ function send_notification($title, $body, $image, $data, $token)
+{
 
+    $message = $body;
+    $title = $title;
+    $image = $image;
+    $path_to_fcm = 'https://fcm.googleapis.com/fcm/send';
+    $server_key = "AAAAucvSpPc:APA91bGgpd0rDg9pxrKIv3WEpokXldpM0MgK3K4LnZx9ks4T6EIXThIB8HCLuKpZI2ICaamTdm3x8biANjnU8xpjDl9Okuu_4ObHfeBVsFMhyvSxRVnxNTu5Hf8zPFp3vDOi-fPvPoZ9";
+
+    $headers = array(
+        'Authorization:key=' . $server_key,
+        'Content-Type:application/json'
+    );
+
+    $fields = array('registration_ids' => $token,
+        'notification' => array('title' => $title, 'body' => $message, 'image' => $image));
+
+    $payload = json_encode($fields);
+    $curl_session = curl_init();
+    curl_setopt($curl_session, CURLOPT_URL, $path_to_fcm);
+    curl_setopt($curl_session, CURLOPT_POST, true);
+    curl_setopt($curl_session, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($curl_session, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl_session, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl_session, CURLOPT_IPRESOLVE, CURLOPT_IPRESOLVE);
+    curl_setopt($curl_session, CURLOPT_POSTFIELDS, $payload);
+    $result = curl_exec($curl_session);
+    curl_close($curl_session);
+    return $result;
+}
 
 function getlogoimage()
 {
@@ -63,6 +93,7 @@ if (!function_exists('makeValidate')) {
         }
     }
 }
+
 
 
 function checkLang()

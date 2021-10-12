@@ -49,7 +49,13 @@ class Bank extends Authenticatable
 
     public function funds()
     {
-        return $this->belongsTo('App\Models\Bank_Fund', 'bank_id', 'id');
+        return $this->hasMany(User_fund::class, 'bank_id', 'id');
+    }
+    public function Branches(){
+        return $this -> hasMany(Bank::class,'parent_id');
+    }
+    public function All_fund(){
+        return $this -> hasMany(Bank::class,'parent_id');
     }
 }
 

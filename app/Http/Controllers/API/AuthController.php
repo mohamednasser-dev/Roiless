@@ -135,6 +135,7 @@ class AuthController extends Controller
         } else {
             //Request is valid, create new user
             $data['otp_code'] = '123456';
+            $data['fcm_token']=$request->fcm_token;
             $user = User::create($data);
             if ($user) {
                 $token = Auth::guard('user-api')->attempt(['phone' => $request->phone, 'password' => $password]);

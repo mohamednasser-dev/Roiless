@@ -15,10 +15,10 @@ return [
      'fund_category'=>'اقسام التمويلات',
       'multi_select'=>'اضافه العميلاء',
       'choose'=>'اختيار',
-      'Required_funds'=>'التمويلات المطلوبه',
+      'Required_funds'=>'الطلبات',
       'show_employers'=>'عرض الموظفين',
       'employers_moves'=>'تحركات الموظفين',
-      ''=>'',
+      'emploies'=>'المووظفين',
 
        'employee_count'=>'الموظفين',
        'users_count'=>'العملاء',
@@ -53,12 +53,20 @@ return [
       'consolution_email'=>'البريد الالكتروني',
       'consolution_phone'=>'الهاتف',
       'consolution_kind'=>'نوع الاستشاره',
+       'moves'=>'التحركات',
+       'permission'=>'الصلاحيات',
+       'count_pranches'=>'عدد الفروع',
+       'Orders_received'=>'الطلبات المستلمه',
+        'not_order'=>'لا يوجد طلبات حتي الان',
+        'activation'=>'تم التفعيل',
+        'Deactivate'=>'تم الغاء التفعيل',
+        'bank_name'=>'البنك',
+        'logo'=>'الشعار',
+        ''=>'',
+        ''=>'',
+        ''=>'',
 
-
-
-
-
-
+  
 
 
 
@@ -145,7 +153,7 @@ return [
      'confirm_password'=>'تاكييد الرقم السري',
      'change_password'=>'تغيير الرقم السري',
      'profile'=>'الملف الشخصي',
-     'banks' => 'البنوك',
+     'banks' => ' البنوك والممولين',
       'home_page'=>'الصفحه الرئيسيه',
       'add_bank'=>'اضافه بنك',
       'home'=>'الصفحه الرئيسيه',
@@ -184,7 +192,7 @@ return [
        'fund_image'=>'صوره التمويل  ',
        'choose_requires'=>'اختر المتطلبات',
        'create_fund'=>'انشاء تموييل',
-       'funds'=>'التمويلات',
+       'funds'=>'خدمات التمويل',
        'fund'=>'التمويل',
        'name_arabic'=>'الاسم بالعربي',
        'english_name'=>'الاسم بالانجليزي',
