@@ -15,6 +15,7 @@ class usersController extends Controller{
     public $objectName;
     public $folderView;
     public function __construct(User $model){
+        $this->middleware('permission:Users');
         $this->objectName = $model;
         $this->folderView = 'admin.users.';
     }

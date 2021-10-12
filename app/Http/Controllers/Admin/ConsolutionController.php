@@ -10,12 +10,16 @@ use App\Models\reply;
 
 class ConsolutionController extends Controller
 {
-    //
+    public function __construct()
+    {
+        $this->middleware('permission:consolutions');
+
+    }
 
     public function index()
     {
         $consolutions = Consolution::get();
-        
+
       //   dd($consolutions);
         return view('admin.consolution.index', compact('consolutions'));
     }

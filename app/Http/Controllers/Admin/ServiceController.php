@@ -19,6 +19,7 @@ class ServiceController extends Controller
 
     public function __construct(Services $model)
     {
+        $this->middleware('permission:Services');
         $this->objectName = $model;
         $this->folderView = 'admin.service.';
     }

@@ -64,6 +64,20 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="example-month-input" class="col-md-2 col-form-label"> {{trans('admin.permisstion')}}</label>
+                        <div class="col-md-10">
+                            <select class="custom-select col-12 multiple" id="inlineFormCustomSelect" name="role_id">
+                                @foreach($roles as $role)
+                                    @if($employer->role_id== $role->id)
+                                    <option value="{{$role->id}}" selected>{{$role->name}}</option>
+                                    @else
+                                    <option value="{{$role->id}}">{{$role->name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-6">
                             <div class="card">

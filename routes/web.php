@@ -18,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 // Route::post('/login_user', 'Admin\LoginController@login')->name('login_user');
 
+Route::group(['middleware' => ['auth:admin']], function() {
+  Route::resource('roles','Admin\RoleController');
+    Route::post('/roles/update{id}', 'Admin\RoleController@update')->name('roles.custom.update');
+});
+
+
 Route::group(['middleware' => 'guest', 'namespace' => 'Admin\Auth'], function () {
     Route::get('/login', 'LoginController@login')->name('login');
     Route::post('/login-store', 'LoginController@loginAdmin')->name('admin.login.store');
@@ -58,8 +64,8 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
 
     //banks  routes
-    Route::resource('banks', 'Admin\Bankcontroller');
-    Route::get('banks/{id}/funds', 'Admin\Bankcontroller@funds')->name('banks.funds');
+    Route::resource('banks', 'Admin\Bankcontroller')->middleware('permission:Banks');
+    Route::get('banks/{id}/funds', 'Admin\Bankcontroller@funds')->middleware('permission:Banks')->name('banks.funds');
     Route::get('banks/create/{id}', 'Admin\Bankcontroller@create')->name('banks.create');
     Route::post('banks/store/{id}', 'Admin\Bankcontroller@store')->name('banks.store');
     Route::post('banks/update_new/{id}', 'Admin\Bankcontroller@update')->name('banks.update_new');

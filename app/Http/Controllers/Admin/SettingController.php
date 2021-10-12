@@ -15,6 +15,7 @@ class SettingController extends Controller
 
     public function __construct(Setting $model)
     {
+        $this->middleware('permission:Setting');
         $this->objectName = $model;
         $this->folderView = 'admin.setting';
     }

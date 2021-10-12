@@ -59,6 +59,7 @@
                                    id="example-password-input2" required>
                         </div>
                     </div>
+
                     <div class="form-group row">
                         <label for="example-month-input" class="col-md-2 col-form-label"> {{trans('admin.category')}}</label>
                         <div class="col-md-10">
@@ -69,6 +70,19 @@
                             </select>
                         </div>
                     </div>
+
+
+                    <div class="form-group row">
+                        <label for="example-month-input" class="col-md-2 col-form-label"> {{trans('admin.permisstion')}}</label>
+                        <div class="col-md-10">
+                            <select class="custom-select col-12 multiple" id="inlineFormCustomSelect" name="role_id">
+                                @foreach($roles as $role)
+                                    <option value="{{$role->id}}">{{$role->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="row">

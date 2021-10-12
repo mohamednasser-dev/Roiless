@@ -16,6 +16,7 @@ class NotificationsController extends Controller
     public $folderView;
     public function __construct(Notification $model)
     {
+        $this->middleware('permission:notifications');
         $this->objectName = $model;
         $this->folderView = 'admin.notifications.';
     }
@@ -46,7 +47,7 @@ class NotificationsController extends Controller
                 'image' => '',
                 'users_id'=>'required',
             ]);
-       
+
             //store images
             if ($request->image != null) {
                 $data['image'] = $this->MoveImage($request->image, 'uploads/notification');
@@ -77,7 +78,7 @@ class NotificationsController extends Controller
 
             ]);
 
-       
+
             $notification = $this->objectName::find($id);
             if (!$notification) {
                 Alert::warning('خطاء', 'هذه الخدمه ليست موجوه');
@@ -95,7 +96,7 @@ class NotificationsController extends Controller
                  }
             }
              $this->objectName::where('id', $id)->update($data);
-          
+
             activity('admin')->log('تم تحديث الاشعار بنجاح');
 
             DB::commit();
