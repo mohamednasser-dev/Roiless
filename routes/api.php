@@ -59,6 +59,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 
 //user update
         Route::post("/update_profile", "UsersController@updateProfile");
+        Route::post("/update_lang", "UsersController@updatelang");
         Route::post("/user/update_image", "UsersController@update_image");
         Route::get('check_token/', 'UsersController@reset_password');
         Route::post('reset/password/', 'UsersController@reset_password_post');

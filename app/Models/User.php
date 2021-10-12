@@ -22,7 +22,7 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     protected $fillable = [
-        'name', 'image', 'email', 'password', 'type', 'role_id', 'cat_id', 'phone','verified','otp_code','fcm_token'
+        'name', 'image', 'email', 'password', 'type', 'role_id', 'cat_id', 'phone','verified','otp_code','fcm_token','lang'
     ];
 
     public function getJWTIdentifier()

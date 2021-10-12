@@ -36,8 +36,28 @@ class UsersController extends Controller
         $this->objectName = $model;
     }
 
+    public function updatelang(Request $request)
+    {
+        
+        $rules = [
+            'lang' => 'required|string',
+        ];
+        $user=User::find(Auth::user()->id);
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        } else {
+            $user->update([
+                'lang'=>$request->lang,
+             ]);
+             $data['status'] = true ;
+             return msgdata($request, success(), 'update user lang success',  $data);
+        }
+       
+    }
     public function updateProfile(Request $request)
     {
+
         $id = Auth::user()->id;
         $user = User::find($id);
         if (!$user)
