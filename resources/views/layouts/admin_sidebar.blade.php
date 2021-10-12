@@ -4,6 +4,7 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
+
                 @can('home')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('home')}}" aria-expanded="false"><i
@@ -11,8 +12,7 @@
                     </li>
                 @endcan
 
-
-                  @can('roles')
+                @can('roles')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('roles.index')}}" aria-expanded="false"><i
                                 class="mdi mdi-home"></i><span class="hide-menu"></span>الصلاحيات</a>

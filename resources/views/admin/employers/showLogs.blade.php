@@ -21,7 +21,7 @@
                     <thead class="bg-primary">
                     <tr>
                         <th scope="col">{{trans('admin.log_name')}}</th>
-                        <th scope="col">{{trans('admin.description')}}</th>
+                        <th scope="col">{{trans('admin.moves')}}</th>
                         <th scope="col">{{trans('admin.name_employee')}}</th>
                         <th scope="col">{{trans('admin.created_at')}}</th>
                     </tr>

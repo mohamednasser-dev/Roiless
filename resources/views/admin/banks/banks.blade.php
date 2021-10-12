@@ -24,26 +24,49 @@
 
                     <thead class="bg-primary">
                     <tr>
-                        <th style="width: 25%">{{trans('admin.name')}}</th>
-                        <th style="width: 50%">{{trans('admin.image')}}</th>
-                        <th style="width: 25%">
-                            {{trans('admin.actions')}}
-                        </th>
+                        <th style="width: 20%">{{trans('admin.bank_name')}}</th>
+                        <th style="width: 20%">{{trans('admin.logo')}}</th>
+                        <th style="width: 20%">{{trans('admin.Orders_received')}}</th>
+                        <th style="width: 20%">{{trans('admin.count_pranches')}}</th>
+                        <th style="width: 20%">{{trans('admin.actions')}}</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($banks as $bank)
                         <tr>
                             <td scope="row">{{$bank->name_ar}}</td>
-                            <td>
+                            <td  style="width: 100px; height: 100px;">
+                              
                                 <img src="{{$bank->image}}" class="img-fluid"
                                      style="width: 100px; height: 100px; border-radius: 15px" alt="">
+                              
                             </td>
+                            <td>                
+                                @php     
+                                     $branches_ids = \App\Models\Bank::where('parent_id',$bank->id)->get()->pluck('id')->toArray();
+                                     array_push($branches_ids,$bank->id);
+                                     $userfund=\App\Models\User_fund::wherein('bank_id',$branches_ids)->get()->count();
+                                @endphp
+                                @if($userfund)
+                                  <a href="{{route('funds.of.bank', $bank->id)}}"> {{$userfund}} </a> 
+                                 @else
+                                    {{trans('admin.not_order')}}
+                                 @endif 
+                           </td> 
+                           <td>
+                              <a href="{{route('banks.branches',$bank->id)}}"> {{count($bank->Branches)}}  </a>
+                           </td>
+
                             <td>
                                 <ul class="list-inline soc-pro m-t-30">
-
-                                    <li><a class="btn-circle btn btn-secondary" title="الفروع" href="{{url('banks/'.$bank->id.'/branches')}}"><i class="fa fa-info"></i></a></li>
-                                    <li><a class="btn-circle btn btn-info" title="التمويلات" href="{{route('funds.of.bank',$bank->id)}}"><i class="fa fa-money"></i></a></li>
+                                    <li>
+                                    <div class="switch">
+                                            <label>
+                                            <input type="checkbox" onchange="update_active(this)" value="{{$bank->id}}" name="featured" @if($bank->status=='active') checked @endif><span class="lever switch-col-green"></span>
+                                            </label>
+                                            </div>
+                                    <li>
+                    
                                     <li><a class="btn-circle btn btn-success" title="تعديل" href="{{url('banks/'.$bank->id.'/edit')}}"><i class="fa fa-edit"></i></a></li>
                                     <li><a class="btn-circle btn btn-danger" title="حذف" onclick="return confirm('هل انت متاكد من حذف البنك')"
                                            href="{{route('banks.delete',$bank->id)}}"><i class="fa fa-trash"></i></a></li>
@@ -70,9 +93,9 @@
                 status: status
             }, function (data) {
                 if (data == 1) {
-                    toastr.success("{{trans('admin.statuschanged')}}");
+                    toastr.success("{{trans('admin.activation')}}");
                 } else {
-                    toastr.error("{{trans('admin.statuschanged')}}");
+                    toastr.error("{{trans('admin.Deactivate')}}");
                 }
             });
         }
