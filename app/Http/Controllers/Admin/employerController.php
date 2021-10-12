@@ -10,6 +10,7 @@ use App\Models\Admin;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 use Str;
 use Spatie\Activitylog\Models\Activity;
 
@@ -21,6 +22,7 @@ class employerController extends Controller
 
     public function __construct(User $model)
     {
+        $this->middleware('permission:Employers');
         $this->objectName = $model;
         $this->folderView = 'admin.employers.';
     }
@@ -42,8 +44,9 @@ class employerController extends Controller
     public function create()
     {
         $employers = Admin::where('type', 'employer')->orderBy('name', 'desc');
-        $categories=  Category::get();
-        return view($this->folderView . 'create_employer', compact('employers','categories'));
+        $roles = Role::get();
+        $categories = Category::get();
+        return view($this->folderView . 'create_employer', compact('employers', 'categories', 'roles'));
     }
 
     public function store(Request $request)
@@ -56,7 +59,8 @@ class employerController extends Controller
                 'image' => 'required',
                 'password' => 'required|min:6|confirmed',
                 'password_confirmation' => 'required|min:6',
-                 'cat_id'=>'required'
+                'cat_id' => 'required',
+                'role_id' => 'required'
             ]);
         if ($request['password'] != null && $request['password_confirmation'] != null) {
             $data['password'] = bcrypt(request('password'));
@@ -67,13 +71,16 @@ class employerController extends Controller
             unset($data['password_confirmation']);
             $data['type'] = 'employer';
             $employee = Admin::create($data);
+
+            $employee->assignRole($request->input('role_id'));
+
             activity('admin')->log(trans('admin.employee_add'));
             $notification = $request['notification'];
             $employees = new Admin();
             $employees->notifications()->attach($notification);
             if ($employee->save()) {
 //                $user->assignRole($request['role_id']);
-                Alert::success(trans('admin.employee_add_success'),trans('admin.opretion_success'));
+                Alert::success(trans('admin.employee_add_success'), trans('admin.opretion_success'));
                 return redirect()->route('employer.index');
             }
         }
@@ -81,43 +88,50 @@ class employerController extends Controller
 
     public function edit($id)
     {
-        $categories=  Category::get();
+        $categories = Category::get();
         $employer = Admin::where('id', $id)->first();
-        return view($this->folderView . 'edit', \compact('employer' , 'categories'));
+        $roles = Role::get();
+        return view($this->folderView . 'edit', \compact('employer', 'categories','roles'));
     }
-    public function update(Request $request,$id)
+
+    public function update(Request $request, $id)
     {
         $employee = Admin::find($id);
-        if($request['password'] != null && $request['password_confirmation'] != null){
+        if ($request['password'] != null && $request['password_confirmation'] != null) {
             $data = $this->validate(\request(),
                 [
-                    'name' => 'required|unique:admins,name,'.$id,
-                    'email' => 'required|unique:admins,email,'.$id,
-                    'phone' => 'required|unique:admins,phone,'.$id,
+                    'name' => 'required|unique:admins,name,' . $id,
+                    'email' => 'required|unique:admins,email,' . $id,
+                    'phone' => 'required|unique:admins,phone,' . $id,
                     'password' => 'required|min:6|confirmed',
                     'password_confirmation' => 'required|min:6',
-                    'cat_id'=>'required'
+                    'cat_id' => 'required',
+                    'role_id' => 'required'
                 ]);
             $data['password'] = bcrypt(request('password'));
             unset($data['password_confirmation']);
-        }else{
+        } else {
             $data = $this->validate(\request(),
                 [
-                    'name' => 'required|unique:admins,name,'.$id,
-                    'email' => 'required|unique:admins,email,'.$id,
-                    'phone' => 'required|unique:admins,phone,'.$id,
-                    'cat_id'=>'required'
+                    'name' => 'required|unique:admins,name,' . $id,
+                    'email' => 'required|unique:admins,email,' . $id,
+                    'phone' => 'required|unique:admins,phone,' . $id,
+                    'cat_id' => 'required',
+                    'role_id' => 'required'
+
                 ]);
         }
         $data['type'] = 'employer';
-        $data['image']  = Str::after($employee->image, 'admins_image/');
-        if($request->image != null){
-            $data['image'] = $this->MoveImage($request->image,'uploads/admins_image');
+        $data['image'] = Str::after($employee->image, 'admins_image/');
+        if ($request->image != null) {
+            $data['image'] = $this->MoveImage($request->image, 'uploads/admins_image');
         }
         Admin::where('id', $id)->update($data);
-        Alert::success('تمت العمليه','تم تحديث الموظف بنجاح');
+        $employee->assignRole($request->input('role_id'));
+        Alert::success('تمت العمليه', 'تم تحديث الموظف بنجاح');
         return redirect()->route('employer.index');
     }
+
     public function destroy($id)
     {
         $employer = Admin::findOrFail($id);
@@ -137,14 +151,16 @@ class employerController extends Controller
         return 1;
     }
 
-    public function showLog ($id) {
-        $activities = Activity::where('causer_id',$id)->get();
-        return view($this->folderView . 'viewLog', \compact( 'activities'));
+    public function showLog($id)
+    {
+        $activities = Activity::where('causer_id', $id)->get();
+        return view($this->folderView . 'viewLog', \compact('activities'));
     }
 
-    public function showLogs () {
+    public function showLogs()
+    {
         $activities = \App\Models\Activity::with('employees')->get();
-        return view($this->folderView . 'showLogs', \compact( 'activities'));
+        return view($this->folderView . 'showLogs', \compact('activities'));
     }
 
 

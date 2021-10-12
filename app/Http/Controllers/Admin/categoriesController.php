@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Traits\offerTrait;
@@ -11,7 +12,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class categoriesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:categories');
 
+    }
 
     use offerTrait;
 

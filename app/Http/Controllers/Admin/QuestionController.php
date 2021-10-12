@@ -15,6 +15,7 @@ class QuestionController extends Controller
 
     public function __construct(common_question $model)
     {
+        $this->middleware('permission:Common questions');
         $this->objectName = $model;
         $this->folderView = 'admin.question.';
     }

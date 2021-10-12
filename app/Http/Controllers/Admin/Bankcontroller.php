@@ -17,6 +17,7 @@ class Bankcontroller extends Controller
 
     public function __construct(User $model)
     {
+        $this->middleware('permission:Banks');
         $this->objectName = $model;
         $this->folderView = 'admin.banks.';
     }

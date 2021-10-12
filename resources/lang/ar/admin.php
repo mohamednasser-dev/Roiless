@@ -1,5 +1,13 @@
 <?php
 return [
+
+
+    //start permisstions
+    'permisstion'=>'الصلاحيه',
+
+    //end permisstions
+
+
      'consolution_replies'=>'الردود',
     'sign_up_data'=>'تاريخ التسجيل',
     'user_image'=>'صورة العميل',

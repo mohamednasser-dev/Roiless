@@ -21,6 +21,7 @@ class UserfundsController extends Controller
 
     public function __construct(User_fund $model)
     {
+        $this->middleware('permission:Client Funds');
         $this->objectName = $model;
         $this->folderView = 'admin.userfunds.';
     }

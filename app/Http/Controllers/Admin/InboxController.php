@@ -14,6 +14,7 @@ class InboxController extends Controller
 
     public function __construct(Inbox $model)
     {
+        $this->middleware('permission:communication');
         $this->objectName = $model;
         $this->folderView = 'admin.inbox.';
     }

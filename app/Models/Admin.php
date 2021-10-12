@@ -5,6 +5,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,12 +13,11 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Admin extends Authenticatable
 {
-    use Notifiable;
-    use softdeletes;
+    use Notifiable , softdeletes, HasRoles,LogsActivity ;
+
+
     protected $table = 'admins';
     protected $guarded = [];
-
-    use LogsActivity;
 
     // Customize log name
     protected static $logName = 'admin';
@@ -61,5 +61,5 @@ class Admin extends Authenticatable
     {
         return $this->hasMany('\App\models\reply','admin_id','id');
     }
-  
+
 }

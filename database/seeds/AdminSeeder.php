@@ -2,6 +2,8 @@
 
 use App\Models\Admin;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class AdminSeeder extends Seeder
 {
@@ -12,27 +14,26 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        Admin::create([
-            'name'  => 'admin',
-            'phone'  => '012',
-            'image'  => '',
-            'email'  => 'admin@admin.com',
-            'type'  => 'admin',
-            'status'  => 'active',
-            'password'  => bcrypt('123456'),
+        $role = Role::create(['name' => 'owner','guard_name'=> 'admin']);
+
+        $permissions = Permission::pluck('id', 'id')->all();
+
+        $role->syncPermissions($permissions);
 
 
+        $admin = Admin::create([
+            'name' => 'admin',
+            'phone' => '012',
+            'image' => '',
+            'email' => 'admin@admin.com',
+            'type' => 'admin',
+            'status' => 'active',
+            'role_id' => $role->id,
+            'password' => bcrypt('123456'),
         ]);
-        Admin::create([
-            'name'  => 'employer',
-            'phone'  => '010',
-            'image'  => '',
-            'email'  => 'employer@employer.com',
-            'type'  => 'employer',
-            'status'  => 'active',
-            'password'  => bcrypt('123456'),
+        $admin->assignRole($role);
 
 
-        ]);
     }
+
 }
