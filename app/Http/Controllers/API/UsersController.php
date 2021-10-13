@@ -253,10 +253,10 @@ class UsersController extends Controller
     public function getDataProfile(Request $request)
     {
         $user = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone')->first();
-        $user['token_api'] = null;
-        $user['otp_code'] = null;
         $user->fcm_token = $request->fcm_token;
         $user->save();
+        $user['token_api'] = null;
+        $user['otp_code'] = null;
         return msgdata("", success(), ' successfully_get_data_Profile', $user);
     }
     public function consolutions_data(Request $request)
