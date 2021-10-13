@@ -38,7 +38,7 @@ class UsersController extends Controller
 
     public function updatelang(Request $request)
     {
-        
+
         $rules = [
             'lang' => 'required|string',
         ];
@@ -53,7 +53,7 @@ class UsersController extends Controller
              $data['status'] = true ;
              return msgdata($request, success(), 'update user lang success',  $data);
         }
-       
+
     }
     public function updateProfile(Request $request)
     {
@@ -72,7 +72,7 @@ class UsersController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
-            //check phone change 
+            //check phone change
             if($request->phone==Auth::user()->phone)
             {
                 $user->update([
@@ -87,12 +87,12 @@ class UsersController extends Controller
                 if(empty($request->otp_code))
                 {
                     $data['status'] = true ;
-                
+
                     return msgdata($request, success(), 'please send otp_code',  $data);
                 }else{
                     if($request->otp_code == Auth::user()->otp_code)
                     {
-                       
+
                         $user->update([
                             'name' => $request->name,
                             'email' => $request->email,
@@ -104,8 +104,8 @@ class UsersController extends Controller
                         return response()->json(msg($request, failed(), 'update_profile_warning'));
                     }
                 }
-               
-            } 
+
+            }
             $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone')->first();
                 $user_data['token_api'] = null;
                 $user_data['otp_code'] = null;
@@ -156,12 +156,12 @@ class UsersController extends Controller
 
     public function forgot_password_post(Request $request)
     {
-        
+
         if(empty($request->otp_code))
         {
-           
+
             $user = User::where('phone', $request->phone)->first();
-            if (!empty($user)) 
+            if (!empty($user))
             {
                 $user->update([
                     'otp_code' => 123456,
@@ -186,7 +186,7 @@ class UsersController extends Controller
                 $data['status'] = false ;
                 return msgdata($request, failed(), 'otp false',  $data);
         }
-     }      
+     }
     }
     public function reset_password_forget(Request $request)
     {
@@ -211,7 +211,7 @@ class UsersController extends Controller
                 $data['status'] = false ;
                 return msgdata($request, failed(), 'otp false',  $data);
             }
-           
+
         }
 
     }
@@ -250,9 +250,11 @@ class UsersController extends Controller
         }
     }
 
-    public function getDataProfile()
+    public function getDataProfile(Request $request)
     {
         $user = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone')->first();
+        $user->fcm_token = $request->fcm_token;
+        $user->save();
         $user['token_api'] = null;
         $user['otp_code'] = null;
         return msgdata("", success(), ' successfully_get_data_Profile', $user);
