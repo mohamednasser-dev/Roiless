@@ -163,10 +163,10 @@ class Bankcontroller extends Controller
     }
     public function unupdate_Actived(Request $request)
     {
-        
+      
        if($request->bank_id)
        {
-                if($request->bank_id="no_bank")
+                if($request->bank_id=="no_bank")
                 {
                     $id=$request->id;
                     $bank=Bank::find($id);
@@ -176,19 +176,24 @@ class Bankcontroller extends Controller
                     return redirect()->back();
                 }else{
                     $bank_id=$request->bank_id;
-                    $user_fund=User_fund::where('bank_id',$id)->get();
-                    $user_fund->update([
+                    $id=$request->id;
+                    $user_fund=User_fund::where('bank_id',$id)->update([
                         'bank_id'=>$bank_id
                     ]);
+                    $bank=Bank::find($id);
+                    $bank->update([
+                        'status'=>"unactive",
+                    ]);
+                    return redirect()->back();
                 }
-       }else{
+              }else{
                 $id=$request->id;
                 $bank=Bank::find($id);
                 $bank->update([
                     'status'=>"unactive",
                 ]);
                 return redirect()->back();
-       }
+          }
       
     }
 
