@@ -212,6 +212,7 @@ class Bankcontroller extends Controller
 
     public function bankBranch($id)
     {
+        
         $branches = Bank::where('parent_id', $id)->get();
         return view($this->folderView . 'branches', \compact('branches', 'id'));
     }

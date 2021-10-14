@@ -8,7 +8,7 @@ class Consolution extends Model
 {
     use SoftDeletes;
     protected $guarded = [];
-    protected $appends = [ 'seen'];
+   
     public function consolution_kind()
     {
         return $this->belongsTo('App\Models\consolution_kind','consolution_kind_id');

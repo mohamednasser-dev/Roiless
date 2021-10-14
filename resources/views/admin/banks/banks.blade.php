@@ -89,11 +89,10 @@
                                                             <h3></h3>
                                                             <select class="custom-select form-control pull-right"  name="bank_id">
                                                                 <option  selected value="no_bank">{{trans('admin.trans_bank')}}</option>
-                                                                @foreach($active_banks as $active_bank)
-                                                              
-                                                                 
-                                                                @endphp
-                                                                    <option value="{{$active_bank->id}}">{{$active_bank->name_ar}}</option>
+                                                                @foreach($active_banks as $active_bank)                          
+                                                                 @if($active_bank->id != $bank->id)
+                                                                 <option value="{{$active_bank->id}}">{{$active_bank->name_ar}}</option>
+                                                                 @endif
                                                                 @endforeach
                                                             </select>
                                                         </div>

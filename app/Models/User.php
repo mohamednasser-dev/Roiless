@@ -12,6 +12,7 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
     use softdeletes;
+    protected $appends = ['seen'];
     protected $table='users';
     protected $date = ['delete_at'];
     protected $hidden = [
@@ -36,7 +37,7 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-
+    
 
     public function getImageAttribute($img)
     {
