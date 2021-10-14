@@ -53,11 +53,14 @@ class NotificationsController extends Controller
                 $data['image'] = $this->MoveImage($request->image, 'uploads/notification');
             }
             unset($data['users_id']);
-            $notifications = Notification::create($data)->user()->attach($request->users_id);
+            $notification = Notification::create($data);
             $users= User::wherein('id',$request->users_id)->get();
             foreach($users as $user)
             {
-                $notificationss = APIHelpers::send_notification($notification->title_en , $notification->body_en , $notification->image , null , $user->fcm_token);
+                $user_notification=User_Notification::create(['notification_id'=>$notification->id,'user_id'=>$user->id]);
+                $title='title_'.$user->lang;
+                $body='body_'.$user->lang;
+                $notification = send_notification($notification->$title , $notification->body_en , $notification->image , null , $user->fcm_token);
             }   
             activity('admin')->log('تم اضافه الاشعار بنجاح');
             Alert::success('تمت العمليه', 'تم اضافه الاشعار بنجاح'); 
