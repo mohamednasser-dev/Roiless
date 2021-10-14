@@ -14,14 +14,10 @@ use Illuminate\Support\Facades\Auth;
 
 class InboxController extends Controller
 {
-
-
     public function store(Request $request)
     {
         $user = auth()->user()->id;
-
         try {
-
             $data = $request->all();
             $validator = Validator::make($data, [
                 'name' => 'required|max:255',
@@ -41,7 +37,5 @@ class InboxController extends Controller
         } catch (Exception $e) {
             return msgdata($request, failed(), 'faild to inbox', array());
         }
-
     }
-
 }

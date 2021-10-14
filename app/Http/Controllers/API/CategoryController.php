@@ -11,17 +11,9 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
-
-    //
-   public function getall(Request $request)
-       {
-         try{
-          $lang = $request->header('lang');
-          Session()->put('api_lang',$lang);
-          $category=Category::select('id','title_'.$lang.' as title','image')->with('Funds')->get();
-        }catch(Exception $e){
-          return  $this->returnError($e->getCode(), $e->getMessage());
-        }
-        return msgdata($request, success(), 'get categories success',$category);
-       }
+    public function getall(Request $request)
+    {
+        $category = Category::select('id', 'title_ar', 'title_en', 'image')->with('Funds')->get();
+        return msgdata($request, success(), 'get categories success', $category);
+    }
 }

@@ -23,8 +23,11 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 
     Route::post("/Register", "AuthController@Register");
     Route::post("/loginasguest", "AuthController@loginasguest");
-    Route::post('forgot/password', 'UsersController@forgot_password_post')->name('forgot.password'); 
+    Route::post('forgot/password', 'UsersController@forgot_password_post')->name('forgot.password');
     Route::post('update/forgot_password', 'UsersController@reset_password_forget');
+    // setting
+    Route::get('/setting', 'SettingController@index');
+
     Route::group(['middleware' => ['jwt.verify']], function () {
         Route::post("/logout", "AuthController@logout");
         // home page and services
@@ -37,7 +40,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         // categories
         Route::get("/categories", "CategoryController@getall");
         // user update
-        
+
         Route::get('check_token/', 'UsersController@reset_password');
         Route::post('reset/password/', 'UsersController@reset_password_post');
         Route::post("/update_password", "HomeController@updatePassword");
@@ -66,8 +69,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 
         // inbox
         Route::post('make/inbox', 'InboxController@store');
-        // setting
-        Route::get('/setting', 'SettingController@index');
+
         // userFunds
         Route::get('/userfunds', 'UserfundsController@index');
 
