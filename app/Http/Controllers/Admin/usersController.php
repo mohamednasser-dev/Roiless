@@ -22,7 +22,7 @@ class usersController extends Controller{
 
 
     public function index(){
-        $users = $this->objectName::where('type','user')->orderBy('name','desc')->paginate(10);
+        $users = $this->objectName::where('type','user')->orderBy('name','desc')->paginate(30);
         return view($this->folderView.'users',compact('users'));
     }
 

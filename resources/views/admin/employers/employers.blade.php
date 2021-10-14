@@ -19,33 +19,29 @@
     <br>
     <div class="row">
         <div class="table-responsive ">
-            <table id="example23" class="display full-color-table full-primary-table  nowrap table table-hover table-striped table-bordered"
-                   cellspacing="0" width="100%">
+            <table class="table full-color-table full-primary-table">
                 <thead class="bg-primary">
                 <tr>
                     <th scope="col">{{trans('admin.name')}}</th>
                     <th scope="col">{{trans('admin.sign_up_data')}}</th>
-                    <th scope="col">
-                        {{trans('admin.actions')}}
-                    </th>
+                    <th scope="col">{{trans('admin.actions')}}</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($employers as $employer)
                     <tr>
                         <th scope="row">{{$employer->name}}</th>
-                        <td>
-                            <h3> {{$employer->created_at}}</h3>
-                        </td>
+                        <td>{{$employer->created_at->format('Y-m-d')}}  </td>
                         <td>
                             <ul class="list-inline soc-pro m-t-30">
-                                <li><a class="btn-circle btn btn-secondary" title="تحركات الموظف" href="{{route('employer.view.log',$employer->id)}}"><i
+                                <li><a class="btn-circle btn btn-secondary" title="تحركات الموظف"
+                                       href="{{route('employer.view.log',$employer->id)}}"><i
                                             class="fa fa-universal-access"></i></a></li>
-                                <li><a class="btn-circle btn btn-success" title="تعديل" href="{{url('employer/'.$employer->id.'/edit')}}"><i
+                                <li><a class="btn-circle btn btn-success" title="تعديل"
+                                       href="{{url('employer/'.$employer->id.'/edit')}}"><i
                                             class="fa fa-edit"></i></a></li>
-{{--                                <li><a class="btn-circle btn btn-info" title="التفاصيل" href="{{route('employer.details',$employer->id)}}"><i--}}
-{{--                                            class="fa fa-eye"></i></a></li>--}}
-                                <li><a class="btn-circle btn btn-danger" title="حذف" onclick="return confirm('هل انت متاكد من حذف البنك')"
+                                <li><a class="btn-circle btn btn-danger" title="حذف"
+                                       onclick="return confirm('هل انت متاكد من حذف البنك')"
                                        href="{{route('employer.delete',$employer->id)}}"><i class="fa fa-trash"></i></a>
                                 </li>
                             </ul>
@@ -55,16 +51,15 @@
                                            name="active" @if($employer->status == 'active') checked @endif ><span
                                         class="lever switch-col-green"></span></label>
                             </div>
-
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
+            {{ $employer->links() }}
         </div>
     </div>
 @endsection
-
 @section('scripts')
     <script type="text/javascript">
         function update_active(el) {
@@ -87,5 +82,3 @@
         }
     </script>
 @endsection
-
-

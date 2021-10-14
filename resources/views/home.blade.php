@@ -40,7 +40,7 @@
                             <div class="m-r-20 align-self-center"><img src="../assets/images/icon/assets-w.png"
                                                                        alt="Income"/></div>
                             <div class="align-self-center">
-                                <h6 class="text-white m-t-10 m-b-0">{{trans('admin.bank_count')}}</h6>
+                                <h6 class="text-white m-t-10 m-b-0">{{trans('admin.banks')}}</h6>
                                 <h2 class="m-t-0 text-white">{{$bankcount}}</h2></div>
                         </div>
                     </div>

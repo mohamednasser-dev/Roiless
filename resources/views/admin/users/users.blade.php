@@ -19,9 +19,7 @@
     <br>
     <div class="row">
         <div class="table-responsive ">
-            <table id="example23"
-                   class="display full-color-table full-primary-table  nowrap table table-hover table-striped table-bordered"
-                   cellspacing="0" width="100%">
+            <table class="table full-color-table full-primary-table">
                 <thead class="bg-primary">
                 <tr>
                     <th scope="col">{{trans('admin.name')}}</th>
@@ -29,9 +27,7 @@
                     <th scope="col">{{trans('admin.email')}}</th>
                     <th scope="col">{{trans('admin.orders')}}</th>
                     <th scope="col">{{trans('admin.sign_up_data')}}</th>
-                    <th scope="col">
-                        {{trans('admin.actions')}}
-                    </th>
+                    <th scope="col">{{trans('admin.actions')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,7 +37,7 @@
                         <td>{{$user->phone}}</td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->UserFunds->count()}}</td>
-                        <td> <h3> {{$user->created_at}}</h3> </td>
+                        <td>{{$user->created_at->format('Y-m-d')}}</td>
                         <td>
                             <ul class="list-inline soc-pro m-t-30">
                                 <li><a class="btn-circle btn btn-success" title="تعديل" href="{{url('users/'.$user->id.'/edit')}}"><i
@@ -56,6 +52,7 @@
                 @endforeach
                 </tbody>
             </table>
+            {{ $users->links() }}
         </div>
     </div>
 @endsection

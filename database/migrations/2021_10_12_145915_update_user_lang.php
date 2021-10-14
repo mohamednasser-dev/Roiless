@@ -13,9 +13,8 @@ class UpdateUserLang extends Migration
      */
     public function up()
     {
-        //
         Schema::table('users', function (Blueprint $table) {
-            $table->string('lang')->nullable()->default('ar');  
+            $table->string('lang')->nullable()->default('ar');
         });
     }
 

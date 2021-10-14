@@ -11,7 +11,6 @@
             </ol>
         </div>
     </div>
-    <!-- /.card-header -->
     <div class="title">
         <a href="{{url('services/create')}} "
            class="btn btn-info btn-bg">{{trans('admin.create_service')}}</a>
@@ -21,39 +20,32 @@
         <table class="table full-color-table full-primary-table">
             <thead>
             <tr>
+                <th class="text-lg-center">{{trans('admin.service_image')}}</th>
                 <th class="text-lg-center">{{trans('admin.service_address_in_arabic')}}</th>
                 <th class="text-lg-center">{{trans('admin.service_address_in_english')}}</th>
-                <th class="text-lg-center">{{trans('admin.service_image')}}</th>
                 <th class="text-lg-center">{{trans('admin.detailes')}}</th>
                 <th class="text-lg-center">{{trans('admin.Measures')}}</th>
             </tr>
             </thead>
-
             <tbody>
             @foreach($Services as $Service)
                 <tr>
+                    <td class="text-lg-center ">
+                        <div class="pro-img"><img style=" width: 60px;" src="{{$Service->image}}"></div>
+                    </td>
                     <td class="text-lg-center">{{$Service->title_ar}}</td>
                     <td class="text-lg-center">{{$Service->title_en}}</td>
                     <td class="text-lg-center ">
-                        <div class="pro-img"><img style="height: 80px; width: 80px; border-radius: 50%" src="{{$Service->image}}"></div>
-                    </td>
-                    <td class="text-lg-center ">
-
                         <a class='btn btn-info btn-circle' title="التفاصيل"
                            href="{{route('services.details',$Service->id)}}"><i class="fa fa-eye"></i></a>
-
-
                     </td>
                     <td class="text-lg-center ">
-
                         <a class='btn btn-info btn-circle' title="تعديل"
                            href="{{route('services.edit',$Service->id)}}"><i class="fa fa-edit"></i></a>
-
-                        <a class='btn btn-danger btn-circle' title="حذف" onclick="return confirm('هل انت متكد من حذف الخدمه')"
+                        <a class='btn btn-danger btn-circle' title="حذف"
+                           onclick="return confirm('هل انت متكد من حذف الخدمه')"
                            href="{{route('services.delete',$Service->id)}}"><i class="fa fa-trash"></i></a>
-
                     </td>
-
                 </tr>
             @endforeach
             </tbody>

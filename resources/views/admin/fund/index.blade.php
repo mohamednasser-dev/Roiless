@@ -11,7 +11,6 @@
             </ol>
         </div>
     </div>
-    <!-- /.card-header -->
     <div class="title">
         <a href="{{route('fund.create')}} "
            class="btn btn-info btn-bg">{{trans('admin.add_fund')}}</a>
@@ -21,30 +20,24 @@
         <table class="table full-color-table full-primary-table">
             <thead>
             <tr>
+                <th class="text-lg-center">{{trans('admin.fund_image')}}</th>
                 <th class="text-lg-center">{{trans('admin.fund_name_in_arabic')}}</th>
                 <th class="text-lg-center"> {{trans('admin.fund_name_in_english')}}</th>
-                <th class="text-lg-center">{{trans('admin.fund_desc_in_arabic')}}</th>
-                <th class="text-lg-center">{{trans('admin.fund_desc_in_english')}}</th>
-                <th class="text-lg-center"> {{trans('admin.categories')}}</th>
+                <th class="text-lg-center"> {{trans('admin.category')}}</th>
                 <th class="text-lg-center">{{trans('admin.Application_fee')}}</th>
-                <th class="text-lg-center">{{trans('admin.fund_image')}}</th>
                 <th class="text-lg-center">{{trans('admin.main_home_appairance')}}</th>
                 <th class="text-lg-center">{{trans('admin.main_website_appairance')}}</th>
                 <th class="text-lg-center">{{trans('admin.main_Measures')}}</th>
             </tr>
             </thead>
-
             <tbody>
             @foreach($funds as $fund)
                 <tr>
+                    <td class="text-lg-center"><img src="{{$fund->image}}" style="width: 60px"></td>
                     <td class="text-lg-center">{{$fund->name_ar}}</td>
                     <td class="text-lg-center">{{$fund->name_en}}</td>
-                    <td class="text-lg-center">{{Str::limit($fund->desc_ar, $limit = 25, $end = '...')}}</td>
-                    <td class="text-lg-center">{{Str::limit($fund->desc_en, $limit = 25, $end = '...')}}</td>
                     <td class="text-lg-center">{{$fund->category->title_ar}}</td>
                     <td class="text-lg-center">{{$fund->cost}}</td>
-                    <td class="text-lg-center"><img src="{{$fund->image}}" style="width: 120px"></td>
-
                     <td class="text-lg-center">
                         <div class="switch">
                             <label>
@@ -53,8 +46,6 @@
                                     class="lever switch-col-green"></span></label>
                         </div>
                     </td>
-
-
                     <td class="text-lg-center">
                         <div class="switch">
                             <label>
@@ -63,7 +54,6 @@
                                     class="lever switch-col-green"></span></label>
                         </div>
                     </td>
-
                     <td class="text-lg-center ">
                         <a class='btn btn-info btn-circle' title="تعديل"
                            href="{{route('fund.edit',$fund->id)}}"><i class="fa fa-edit"></i></a>
@@ -71,21 +61,15 @@
                         <a class='btn btn-danger btn-circle' title="حذف"
                            onclick="return confirm('هل انت متكد من حذف الخدمه')"
                            href="{{route('fund.delete',$fund->id)}}"><i class="fa fa-trash"></i></a>
-
                     </td>
-
                 </tr>
             @endforeach
             </tbody>
         </table>
+        {{ $funds->links() }}
     </div>
-
-
-
-
 @endsection
 @section('scripts')
-
     <script type="text/javascript">
         function update_active(el) {
             if (el.checked)
@@ -105,7 +89,6 @@
                 }
             });
         }
-
         function update_apperance(el) {
             if (el.checked)
                 var appearance = '1';

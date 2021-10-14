@@ -24,8 +24,7 @@ class fundController extends Controller
 
     public function index()
     {
-
-        $funds = $this->objectName::get();
+        $funds = Fund::paginate(30);
         return view($this->folderView . 'index', compact('funds'));
     }
 
@@ -65,7 +64,7 @@ class fundController extends Controller
         activity('admin')->log('تم اضافه التمويل بنجاح');
 
         DB::commit();
-        Alert::success( trans('admin.fund_added_successfully'),trans('admin.opretion_success'));
+        Alert::success( trans('admin.opretion_success'),trans('admin.fund_added_successfully'));
         return redirect()->route('fund');
 
 
@@ -85,7 +84,7 @@ class fundController extends Controller
         $fundsinputs = Fundinput::get();
         $fund = $this->objectName::where('id', $id)->first();
         $columns = json_decode($fund->columns);
-        return view($this->folderView . 'edit', compact('fund','fundsinputs','categories','columns'));
+        return view($this->folderView . 'edit', compact('fund', 'fundsinputs', 'categories', 'columns'));
     }
 
     public function update(Request $request, $id)
@@ -108,7 +107,7 @@ class fundController extends Controller
 
             $fund = $this->objectName::find($id);
             if (!$fund) {
-                Alert::warning( trans('admin.service_not_found'),trans('admin.wron'));
+                Alert::warning(trans('admin.service_not_found'), trans('admin.wron'));
                 return redirect()->route(' $this->folderView');
             }
 
@@ -124,13 +123,13 @@ class fundController extends Controller
             activity('admin')->log('تم تحديث التمويل بنجاح');
 
             DB::commit();
-            Alert::success( trans('admin.updated_successfully'),trans('admin.opretion_success'));
+            Alert::success(trans('admin.updated_successfully'), trans('admin.opretion_success'));
             return redirect()->route('fund');
 
         } catch (\Exception $ex) {
 
             DB::rollback();
-            Alert::warning( trans('admin.not_updated'),trans('admin.wron'));
+            Alert::warning(trans('admin.not_updated'), trans('admin.wron'));
 
             return redirect()->route('fund');
 
@@ -143,7 +142,7 @@ class fundController extends Controller
         $fund->delete();
         activity('admin')->log(trns('admin.fund_deleted_success'));
 
-        Alert::success( trans('admin.deleted'),trans('admin.opretion_success'));
+        Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
         return redirect()->route('fund');
     }
 
