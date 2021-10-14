@@ -12,13 +12,6 @@
                     </li>
                 @endcan
 
-                @can('roles')
-                    <li>
-                        <a class="waves-effect waves-dark" href="{{route('roles.index')}}" aria-expanded="false"><i
-                                class="mdi mdi-home"></i><span class="hide-menu"></span>الصلاحيات</a>
-                    </li>
-                @endcan
-
                 @can('Users')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('users.index')}}" aria-expanded="false"><i
@@ -34,6 +27,9 @@
                             <li><a href="{{route('employer.create')}}">{{trans('admin.add_new_employer')}}</a></li>
                             <li><a href="{{route('employer.index')}}">{{trans('admin.show_employers')}}</a></li>
                             <li><a href="{{route('employer.view.logs')}}">{{trans('admin.employers_moves')}}</a></li>
+                            @can('roles')
+                                <li><a href="{{route('roles.index')}}">{{trans('admin.permissions')}}</a></li>
+                            @endcan
                         </ul>
                     </li>
                 @endcan

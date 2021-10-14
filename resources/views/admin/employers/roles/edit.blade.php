@@ -7,9 +7,9 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">{{trans('admin.edit_role')}}</li>
-                <li class="breadcrumb-item active"><a href="{{url('roles')}}">{{trans('admin.nav_permissions')}}</a>
+                <li class="breadcrumb-item active"><a href="{{url('roles')}}">{{trans('admin.permissions')}}</a>
                 </li>
-                <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.nav_home')}}</a></li>
+                <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>
@@ -33,7 +33,7 @@
             <div class="col-lg-12">
                 <div class="card card-outline-primary">
                     <div class="card-header">
-                        <h5 class="m-b-0 text-white">{{trans('admin.nav_permissions')}}</h5>
+                        <h5 class="m-b-0 text-white">{{trans('admin.permissions')}}</h5>
                     </div>
                     <br>
                     <div class="card-body">
@@ -64,7 +64,7 @@
                         </div>
                         <div class="center">
                             <button type="submit"
-                                    class="m-t-10 m-b-20 waves-effect waves-dark btn btn-success btn-md btn-rounded">{{trans('admin.public_Edit')}}</button>
+                                    class="m-t-10 m-b-20 waves-effect waves-dark btn btn-success btn-md btn-rounded">{{trans('admin.edit')}}</button>
                         </div>
                     </div>
                 </div>
