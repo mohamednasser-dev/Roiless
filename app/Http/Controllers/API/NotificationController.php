@@ -15,7 +15,7 @@ class NotificationController extends Controller
         {
             $lang="ar";
         }
-        $notificaations = Notification::select(['id','title_'.$lang.' as title', 'body_'.$lang.' as body','image'])->get();
+        $notificaations = Notification::select(['id','title_ar','title_en', 'body_ar', 'body_en','image'])->get();
         return msgdata($request, success(), 'get services sucess',$notificaations);
     }
 }
