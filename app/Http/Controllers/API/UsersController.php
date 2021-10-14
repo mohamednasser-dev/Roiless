@@ -172,7 +172,7 @@ class UsersController extends Controller
             else
             {
                 $data['status'] = false ;
-                return msgdata($request, failed(), 'some thing wrong',  $data);
+                return msgdata($request, failed(), 'this user not found',  $data);
             }
         }
         else

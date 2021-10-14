@@ -2,8 +2,8 @@
 return [
 
     //new
-
-
+   'sure'=>'Are you sure to deactivate the bank?',
+   'trans_bank'=>'Transferring funds to other banks',
 
 
 

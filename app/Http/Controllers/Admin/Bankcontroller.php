@@ -163,8 +163,25 @@ class Bankcontroller extends Controller
     }
     public function unupdate_Actived(Request $request)
     {
-        dd('sadoun');
-       $id=$request->id;
+      
+       if($request->bank_id)
+       {
+        $id=$request->id;
+        $bank=Bank::find($id);
+         $bank->update([
+             'status'=>"unactive",
+         ]);
+         return redirect()->back();
+       
+       }else{
+         $id=$request->id;
+        $bank=Bank::find($id);
+         $bank->update([
+             'status'=>"unactive",
+         ]);
+         return redirect()->back();
+       }
+      
     }
 
     public function destroy($id)
