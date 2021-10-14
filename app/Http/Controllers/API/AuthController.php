@@ -36,17 +36,16 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        //validation
         try {
             $rules = [
                 'phone' => 'required|exists:users,phone',
                 'password' => 'required',
+                'fcm_token' => '',
             ];
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
                 return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
             }
-            //login
             $credentials = $request->only(['phone', 'password']);
             //to check the type of user not admine
             $credentials['type'] = "user";
@@ -56,8 +55,6 @@ class AuthController extends Controller
                 return $this->returnError('e001', ' بيانات الدخول غير صحيحه');
             }
             $user = Auth::guard('user-api')->user();
-            // $admin=Admin::find($token);
-            $user->api_token = $token;
             if ($user->verified == '0') {
                 Auth::guard('user-api')->logout();
                 return msgdata($request, not_active(), 'verify_phone_first', null);
@@ -66,15 +63,16 @@ class AuthController extends Controller
                 Auth::guard('user-api')->logout();
                 return msgdata($request, not_active(), 'Your_Account_NotActive', null);
             }
-            $user=User::where('phone',$request->phone);
-            $user->update([
-                'fcm_token'=>$request->fcm_token
-            ]);
-            return msgdata($request, success(), 'login_success', array('user' => $user));
+            if($request->fcm_token){
+                User::where('id',$user->id)->update([ 'fcm_token'=>$request->fcm_token]);
+            }
+            $user_data = User::where('id', $user->id)->select( 'id' , 'image' , 'name', 'email', 'phone','otp_code')->first();
+            $user_data->token_api = $token;
+
+            return msgdata($request, success(), 'login_success',  $user_data);
         } catch (Exception $e) {
             return $this->returnError($e->getCode(), $e->getMessage());
         }
-
     }
 
     public function Register(Request $request)
