@@ -63,7 +63,7 @@
                                              @if($bank->status=="active")
                                           
                                                 <div class="ml-auto">
-                                                    <button  class="pull-right btn btn-circle btn-success" id="btn_bank_unactive" data-bankid="{{$bank->id}}" data-toggle="modal" data-target="#myModal"><i class="ti-plus"></i></button>
+                                                    <button   class="pull-right btn btn-circle btn-success" id="btn_bank_unactive" data-bankid="{{$bank->id}}" data-toggle="modal" data-target="#myModal" ><i class="ti-plus"></i></button>
                                                 </div>
                                             
                                              @else  
@@ -88,7 +88,7 @@
                                                         <div class="form-group">
                                                             <h3></h3>
                                                             <select class="custom-select form-control pull-right"  name="bank_id">
-                                                                <option  selected >{{trans('admin.trans_bank')}}</option>
+                                                                <option  selected value="no_bank">{{trans('admin.trans_bank')}}</option>
                                                                 @foreach($active_banks as $active_bank)
                                                             
                                                                     <option value="{{$active_bank->id}}">{{$active_bank->name_ar}}</option>
@@ -127,10 +127,10 @@
     </div>
 @endsection
 @section('scripts')
-<script type="text/javascript">
-  $('#btn_bank_unactive').click(function (event) {
-    var inputF = document.getElementById("txt_bank_id");
-    inputF.value = "{!! $bank->id !!}";
+<script >
+    $(document).on('click','#btn_bank_unactive', function(){
+        $('#txt_bank_id').val( $(this).data('bankid') );
+        $('#txt_bank_id2').val( $(this).data('bankid') );
     });
 </script>
 @endsection
