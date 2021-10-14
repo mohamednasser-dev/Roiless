@@ -53,14 +53,16 @@ class NotificationsController extends Controller
             unset($data['users_id']);
             $notification = Notification::create($data);
             $users= User::wherein('id',$request->users_id)->get();
-//            $title='title_ar'.$user->lang;
-//            $body='body_ar'.$user->lang;
+
             foreach($users as $key => $user)
             {
                 User_Notification::create(['notification_id'=>$notification->id,'user_id'=>$user->id]);
-                $fcm_tokens[$key] = $user->fcm_token;
+                $fcm_tokens[0] = $user->fcm_token;
+                $title='title_ar'.$user->lang;
+                $body='body_ar'.$user->lang;
+                send_notification($notification->$title , $notification->$body , $notification->image , null , $fcm_tokens);
             }
-            $notification = send_notification($notification->title_ar , $notification->body_ar , $notification->image , null , $fcm_tokens);
+
             activity('admin')->log('تم اضافه الاشعار بنجاح -'.$notification->title_ar);
             Alert::success('تمت العمليه', 'تم اضافه الاشعار بنجاح');
             return redirect()->route('notifications.index');

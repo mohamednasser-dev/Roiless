@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Consolution;
 use App\Models\Inbox;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -21,9 +22,8 @@ class InboxController extends Controller
 
     public function index()
     {
-
-        $inboxs = $this->objectName::get();
-        return view($this->folderView . 'index', compact('inboxs'));
+        $consolutions = Consolution::where('type','contact_us')->paginate(30);
+        return view('admin.inbox.index', compact('consolutions'));
     }
 
     public function destroy($id)

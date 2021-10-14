@@ -23,7 +23,7 @@ class CreateConsolutionsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('admin_id')->nullable()->unsigned();
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('set null');
-            $table->integer('consolution_kind_id')->unsigned();
+            $table->integer('consolution_kind_id')->unsigned()->nullable();
             $table->foreign('consolution_kind_id')->references('id')->on('consolution_kinds')->onDelete('cascade');
             $table->timestamps();
         });
