@@ -25,8 +25,9 @@ class Bankcontroller extends Controller
     public function index()
     {
         $banks = Bank::whereNull('parent_id')->orderBy('name_en', 'desc')->get();
-
-        return view($this->folderView . 'banks', compact('banks'));
+        $active_banks=Bank::where('status','active')->get();
+       
+        return view($this->folderView . 'banks', compact('banks','active_banks'));
     }
 
     public function show($id)
@@ -152,18 +153,18 @@ class Bankcontroller extends Controller
             }
         }
     }
-    public function update_Actived(Request $request)
-    {
-      $bank=Bank::find($request->id);
+    public function update_Actived($id)
+    {   
+      $bank=Bank::find($id);
       $bank->update([
-          'status'=>$request->status,
+          'status'=>"active",
       ]);
-        if($bank->status=='active')
-        {
-            return response()->json([1]);
-        }else{
-            return response()->json([0]);
-        }
+      return redirect()->back();
+    }
+    public function unupdate_Actived(Request $request)
+    {
+        dd('sadoun');
+       $id=$request->id;
     }
 
     public function destroy($id)
