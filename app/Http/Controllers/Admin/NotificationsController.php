@@ -66,10 +66,6 @@ class NotificationsController extends Controller
             Alert::success('تمت العمليه', 'تم اضافه الاشعار بنجاح'); 
             return redirect()->route('notifications.index');
     }
-
-
-
-
     // send notification and insert it in database
     public function send(Request $request){
         $notification = new Notification();

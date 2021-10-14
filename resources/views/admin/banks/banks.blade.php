@@ -60,13 +60,55 @@
                             <td>
                                 <ul class="list-inline soc-pro m-t-30">
                                     <li>
-                                    <div class="switch">
-                                            <label>
-                                            <input type="checkbox" onchange="update_active(this)" value="{{$bank->id}}" name="featured" @if($bank->status=='active') checked @endif><span class="lever switch-col-green"></span>
-                                            </label>
-                                            </div>
+                                             @if($bank->status=="active")
+                                          
+                                                <div class="ml-auto">
+                                                    <button  class="pull-right btn btn-circle btn-success" data-toggle="modal" data-target="#myModal"><i class="ti-plus"></i></button>
+                                                </div>
+                                            
+                                             @else  
+                                             <form  action="" method="post">
+                                               @csrf  
+                                                <div class="ml-auto">
+                                                    <a href="{{route('banks.actived',$bank->id)}}" class="pull-right btn btn-circle btn-danger"  data-target="#myModal"><i class="ti-plus"></i></a>
+                                                </div>
+                                             </form>
+                                            @endif
                                     <li>
-                    
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">{{trans('admin.sure')}}</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <label>Task name</label>
+                                                            <input type="text" class="form-control" placeholder="Enter Task Name"> </div>
+                                                        <div class="form-group">
+                                                            <label>Assign to</label>
+                                                            <select class="custom-select form-control pull-right">
+                                                                <option selected="">no bank</option>
+                                                                @foreach($active_banks as $active_bank)
+                                                                {
+                                                                    <option value="{{$active_bank->id}}">{{$active_bank->name_ar}}</option>
+                                                                }
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
                                     <li><a class="btn-circle btn btn-success" title="تعديل" href="{{url('banks/'.$bank->id.'/edit')}}"><i class="fa fa-edit"></i></a></li>
                                     <li><a class="btn-circle btn btn-danger" title="حذف" onclick="return confirm('هل انت متاكد من حذف البنك')"
                                            href="{{route('banks.delete',$bank->id)}}"><i class="fa fa-trash"></i></a></li>
@@ -87,7 +129,7 @@
             } else {
                 var status = 'unactive';
             }
-            $.post('{{ route('banks.actived') }}', {
+            $.post('', {
                 _token: '{{ csrf_token() }}',
                 id: el.value,
                 status: status
