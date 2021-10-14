@@ -10,7 +10,7 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">{{trans('admin.add_new_user')}}</li>
-                <li class="breadcrumb-item"><a href="{{url('users')}}">{{trans('admin.nav_users')}}</a></li>
+                <li class="breadcrumb-item"><a href="{{url('users')}}">{{trans('admin.users')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
@@ -65,7 +65,7 @@
                 <div class="col-lg-12 col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">صورة الموظف</h4>
+                            <h4 class="card-title">{{trans('admin.user_image')}}</h4>
                             <input type="file" name="image" id="input-file-now" class="dropify"/>
                         </div>
                     </div>

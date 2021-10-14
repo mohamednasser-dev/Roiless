@@ -25,14 +25,14 @@
                     <h4 class="card-title">{{trans('admin.fund_info')}}</h4>
                     <hr>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_address_in_arabic')}}</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_name_in_arabic')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('name_ar',$fund->name_ar,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_address_in_english')}}</label>
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_name_in_english')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('name_en',$fund->name_en,["class"=>"form-control" ,"required"]) }}
                         </div>
