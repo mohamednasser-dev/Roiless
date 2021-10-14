@@ -16,13 +16,10 @@ class HomeController extends Controller
     //
     public function getall(Request $request)
     {   $lang = $request->header('lang');
-        if(empty($lang))
-        {
+        if(empty($lang)){
             $lang="ar";
         }
-        $slider = Slider::select(['id', 'image'])->get();
-        $funds = Fund::select([ 'id' ,'name_ar', 'name_en','desc_'.$lang.' as description','cat_id', 'image'])->wherein('featured', ['1'])->wherein('appearance', ['1'])->get();
-        $data['slider'] = $slider;
+        $funds = Fund::select([ 'id' ,'name_ar', 'name_en','desc_ar','desc_en','cat_id', 'image'])->wherein('featured', ['1'])->wherein('appearance', ['1'])->get();
         $data['funds'] = $funds;
         return msgdata($request, success(), 'update_profile_success', $data);
     }
