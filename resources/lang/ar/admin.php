@@ -206,7 +206,7 @@ return [
     'main_home_appairance' => 'الظهور في الرئيسيه',
     'main_website_appairance' => 'تفعيل الخدمة',
     'common_questions' => 'الاسئله الشائعه',
-    'communication' => 'التواصل',
+    'communication' => 'الرسائل',
     'message' => 'الرسائل',
     'main_Measures' => 'قائمه الاجرائات',
     'Measures' => ' الاجرائات',
