@@ -27,7 +27,7 @@ class NotificationsController extends Controller
         $notifications = Notification::get();
         return view($this->folderView . 'index', compact('notifications'));
     }
-    
+
 
     public function create()
     {
@@ -37,7 +37,6 @@ class NotificationsController extends Controller
 
     public function store(Request $request)
     {
-      
         $data = $this->validate(request(),
             [
                 'title_ar' => 'required',
@@ -47,7 +46,6 @@ class NotificationsController extends Controller
                 'image' => '',
                 'users_id'=>'required',
             ]);
-
             //store images
             if ($request->image != null) {
                 $data['image'] = $this->MoveImage($request->image, 'uploads/notification');
@@ -55,15 +53,16 @@ class NotificationsController extends Controller
             unset($data['users_id']);
             $notification = Notification::create($data);
             $users= User::wherein('id',$request->users_id)->get();
-            foreach($users as $user)
+//            $title='title_ar'.$user->lang;
+//            $body='body_ar'.$user->lang;
+            foreach($users as $key => $user)
             {
-                $user_notification=User_Notification::create(['notification_id'=>$notification->id,'user_id'=>$user->id]);
-                $title='title_'.$user->lang;
-                $body='body_'.$user->lang;
-                $notification = send_notification($notification->$title , $notification->body_en , $notification->image , null , $user->fcm_token);
-            }   
-            activity('admin')->log('تم اضافه الاشعار بنجاح');
-            Alert::success('تمت العمليه', 'تم اضافه الاشعار بنجاح'); 
+                User_Notification::create(['notification_id'=>$notification->id,'user_id'=>$user->id]);
+                $fcm_tokens[$key] = $user->fcm_token;
+            }
+            $notification = send_notification($notification->title_ar , $notification->body_ar , $notification->image , null , $fcm_tokens);
+            activity('admin')->log('تم اضافه الاشعار بنجاح اسمة'.$notification->title_ar);
+            Alert::success('تمت العمليه', 'تم اضافه الاشعار بنجاح');
             return redirect()->route('notifications.index');
     }
     // send notification and insert it in database

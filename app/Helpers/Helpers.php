@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Validator;
 {
 
     $message = $body;
-    $title = $title;
-    $image = $image;
     $path_to_fcm = 'https://fcm.googleapis.com/fcm/send';
     $server_key = "AAAAucvSpPc:APA91bGgpd0rDg9pxrKIv3WEpokXldpM0MgK3K4LnZx9ks4T6EIXThIB8HCLuKpZI2ICaamTdm3x8biANjnU8xpjDl9Okuu_4ObHfeBVsFMhyvSxRVnxNTu5Hf8zPFp3vDOi-fPvPoZ9";
 

@@ -2,11 +2,11 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">{{trans('admin.service_detailes')}}</h3>
+            <h3 class="text-themecolor">{{trans('admin.edit')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.service_detailes')}}</li>
+                <li class="breadcrumb-item">{{trans('admin.edit')}}</li>
                 <li class="breadcrumb-item"><a href="{{route('services')}}">{{trans('admin.services')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
@@ -29,7 +29,6 @@
                 <th class="text-lg-center">{{trans('admin.Measures')}}</th>
             </tr>
             </thead>
-
             <tbody>
             @foreach($services_details as $services_detail)
                 <tr>
@@ -37,17 +36,12 @@
                     <td class="text-lg-center">{{$services_detail->title_en}}</td>
                     <td class="text-lg-center">{{$services_detail->desc_ar}}</td>
                     <td class="text-lg-center">{{$services_detail->desc_en}}</td>
-
                     <td class="text-lg-center ">
-
-                        <a class='btn btn-info btn-circle' title="تعديل"
+                        <a class='btn btn-info btn-circle' title="{{trans('admin.edit')}}"
                            href="{{route('services.details.edit',$services_detail->id)}}"><i class="fa fa-edit"></i></a>
-
-                        <a class='btn btn-danger btn-circle' title="حذف" onclick="return confirm('هل انت متكد من حذف تقاصيل الخدمه')"
+                        <a class='btn btn-danger btn-circle' title="{{trans('admin.delete')}}" onclick="return confirm('هل انت متكد من حذف تقاصيل الخدمه')"
                            href="{{route('services.details.delete',$services_detail->id)}}"><i class="fa fa-trash"></i></a>
-
                     </td>
-
                 </tr>
             @endforeach
             </tbody>
