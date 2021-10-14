@@ -11,7 +11,6 @@
             </ol>
         </div>
     </div>
-    <!-- /.card-header -->
     <br>
     <div class="row">
         <table class="table full-color-table full-primary-table">
@@ -25,7 +24,6 @@
                 <th class="text-lg-center">{{trans('admin.delete')}}</th>
             </tr>
             </thead>
-
             <tbody>
             @foreach($consolutions as $consolution)
                 <tr>
@@ -34,51 +32,40 @@
                     <td class="text-lg-center">{{$consolution->phone}}</td>
                     <td class="text-lg-center">{{$consolution->consolution_kind->name_ar}}</td>
                     <td class="text-lg-center ">
-<!--
+                    <!--
                     <a class='btn btn-info btn-circle' title="عرض" style="position: absolute;margin-right: -22px;margin-top: -20px;"
                            href="{{route('consolutions.show',$consolution->id)}}"><i class="fa fa-eye">{{count($consolution->unseenreplies)}}</i></a> -->
-
-                           <a class='btn btn-info btn-circle' title="التفاصيل"
-                                  href="{{route('consolutions.show',$consolution->id)}}"><i class="fa fa-eye"></i>
-                                   @if(count($consolution->unseenreplies)!=0)
-                                      <span class="unreadcount"
-                                              style="position: absolute;margin-top: 3px;background-color: red;
+                        <a class='btn btn-info btn-circle' title="التفاصيل"
+                           href="{{route('consolutions.show',$consolution->id)}}"><i class="fa fa-eye"></i>
+                            @if(count($consolution->unseenreplies)!=0)
+                                <span class="unreadcount"
+                                      style="position: absolute;margin-top: 3px;background-color: red;
                                                 border-radius: 50%;
                                                 width: 22px;
                                                 height: 22px;
                                                 color:white"
-                                                title="dd">
-                                           <span class="insidecount" >
+                                      title="dd">
+                                           <span class="insidecount">
                                             {{count($consolution->unseenreplies)}}
                                            </span>
                                         </span>
-                                     @endif
-                             </a>
+                            @endif
+                        </a>
                     </td>
-
                     <td class="text-lg-center ">
-
-
                         <a class='btn btn-danger btn-circle' title="حذف"
-                           onclick="return confirm('هل انت متكد من حذف الخدمه')"
+                           onclick="return confirm('هل انت متكد من الحذف ؟')"
                            href="{{route('delete',$consolution->id)}}"><i class="fa fa-trash"></i></a>
-
                     </td>
-
                 </tr>
             @endforeach
             </tbody>
         </table>
+        {{ $funds->links() }}
     </div>
-
-
-
-
 @endsection
 @section('scripts')
- <script>
- var button=  document.getElementById('test1').innerHTML="<span style=' margin-left: 50%'></span>";
-   console.log(button);
-
- </script>
+    <script>
+        var button = document.getElementById('test1').innerHTML = "<span style=' margin-left: 50%'></span>";
+    </script>
 @endsection

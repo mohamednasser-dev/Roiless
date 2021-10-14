@@ -81,12 +81,16 @@
                         <a class="waves-effect waves-dark" href="{{route('consolutions')}}" aria-expanded="false"><i
                                 class="mdi mdi-format-align-justify"></i><span class="hide-menu">
                                 @php
-                                    $unseenreply = \App\Models\reply::where('seen','0')->where('user_id','!=',null)->get()->count();
-                                    $consolutions = \App\Models\Consolution::where('seen','0')->get()->count();
+                                    $unseenreply = \App\Models\reply::whereHas('Consolution',function ($q){
+                                        $q->where('type','consultation');
+                                    })->where('seen','0')->where('user_id','!=',null)->get()->count();
+                                    $consolutions = \App\Models\Consolution::where('type','consultation')
+                                    ->where('seen','0')->get()->count();
                                     $allconsolution=$unseenreply+$consolutions
                                 @endphp
-                                @if( $allconsolution) <span
-                                    class="label label-rouded label-danger pull-right">{{$allconsolution}}</span>@endif
+                                @if( $allconsolution)
+                                    <span class="label label-rouded label-danger pull-right">{{$allconsolution}}</span>
+                                @endif
                             </span>{{trans('admin.consolutions')}}</a>
                     </li>
                 @endcan
@@ -107,7 +111,20 @@
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('inbox')}}" aria-expanded="false"><i
                                 class="mdi mdi-inbox-arrow-down"></i><span
-                                class="hide-menu"></span>{{trans('admin.communication')}}</a>
+                                class="hide-menu">
+
+                                @php
+                                    $unseenreply = \App\Models\reply::whereHas('Consolution',function ($q){
+                                        $q->where('type','contact_us');
+                                    })->where('seen','0')->where('user_id','!=',null)->get()->count();
+                                    $consolutions = \App\Models\Consolution::where('type','contact_us')
+                                    ->where('seen','0')->get()->count();
+                                    $allconsolution=$unseenreply+$consolutions
+                                @endphp
+                                @if( $allconsolution)
+                                    <span class="label label-rouded label-danger pull-right">{{$allconsolution}}</span>
+                                @endif
+                            </span>{{trans('admin.communication')}}</a>
                     </li>
                 @endcan
                 @can('Setting')
