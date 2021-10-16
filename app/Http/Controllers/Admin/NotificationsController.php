@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Notification;
 use App\Models\User;
 use App\Models\User_Notification;
+use App\Models\Fund;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -31,8 +32,9 @@ class NotificationsController extends Controller
 
     public function create()
     {
-        $users=User::select('id','name')->get();
-        return view($this->folderView . 'create',compact('users'));
+        $lang=app()->getLocale();
+        $funds=Fund::select('id','name_'.$lang.' as name')->get();
+        return view($this->folderView . 'create',compact('funds'));
     }
 
     public function store(Request $request)
@@ -44,7 +46,6 @@ class NotificationsController extends Controller
                 'body_ar' => 'required',
                 'body_en' => 'required',
                 'image' => '',
-                'users_id'=>'required',
             ]);
             //store images
             if ($request->image != null) {
@@ -52,8 +53,15 @@ class NotificationsController extends Controller
             }
             unset($data['users_id']);
             $notification = Notification::create($data);
-            $users= User::wherein('id',$request->users_id)->get();
-
+            if($request->Receive ==0)   
+            {
+                $users= User::get();
+            }else{
+                $fund_id=$request->Receive;
+                $users = User::Wherehas('UserFunds' , function ($query)use ($fund_id) {
+                    $query->where('fund_id', $fund_id);
+                })->get();
+            }   
             foreach($users as $key => $user)
             {
                 User_Notification::create(['notification_id'=>$notification->id,'user_id'=>$user->id]);
