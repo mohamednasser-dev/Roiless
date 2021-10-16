@@ -62,24 +62,5 @@
     </div>
 @endsection
 @section('scripts')
-    <script type="text/javascript">
-        function update_active(el) {
-            if (el.checked) {
-                var status = 'active';
-            } else {
-                var status = 'unactive';
-            }
-            $.post('{{ route('banks.actived') }}', {
-                _token: '{{ csrf_token() }}',
-                id: el.value,
-                status: status
-            }, function (data) {
-                if (data == 1) {
-                    toastr.success("{{trans('admin.statuschanged')}}");
-                } else {
-                    toastr.error("{{trans('admin.statuschanged')}}");
-                }
-            });
-        }
-    </script>
+  
 @endsection

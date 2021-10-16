@@ -67,13 +67,12 @@
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.multi_select')}}</label>
                         <div class="col-md-10">
-                        <select class="select2 m-b-10 select2-multiple " style="width: 100%" multiple="multiple" data-placeholder="{{trans('admin.choose')}}" name='users_id[]'>
-                                    <optgroup label="Mountain Time Zone">
-                                    @foreach($users as $user)
-                                    <option value="{{$user->id}}">{{$user->name}}</option>
-                                    @endforeach
-                                    </optgroup>
-                                </select>
+                             <select class="custom-select form-control pull-right"  name="Receive">
+                            <option  selected value="0">{{trans('admin.all')}}</option>
+                            @foreach($funds as $fund)                          
+                                <option value="{{$fund->id}}">{{$fund->name}}</option>
+                            @endforeach
+                             </select>
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
