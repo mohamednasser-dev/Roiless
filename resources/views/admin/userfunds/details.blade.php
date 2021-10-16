@@ -130,7 +130,7 @@
 
         /* Next & previous buttons */
         .prev,
-        .next {
+        .next {}
 
         /* Position the image container (needed to position the left and right arrows) */
         .container {
@@ -237,8 +237,6 @@
         .active,
         .demo:hover {
             opacity: 1;
-        }
-
         }
 
         .row:after {
@@ -354,7 +352,6 @@
 
 @endsection
 @section('content')
-
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
             <h3 class="text-themecolor">{{trans('admin.fund_review')}}</h3>
@@ -369,8 +366,6 @@
             </ol>
         </div>
     </div>
-
-
     <div class="row row-cols-2">
         {{--Start dataform --}}
         <div class="col-md-6">
@@ -378,9 +373,7 @@
                 <div class="card-body">
                     <div class="card-title">
                         <h3>{{trans('admin.date_preview')}}</h3>
-
                         @foreach(json_decode($requestreview->dataform, true) as $data)
-
                             <h3 class="control-label">{{ $data['name'] }}</h3>
                             <input type="text" id="firstName" class="form-control" value="{{ $data['value'] }} "
                                    readonly>
@@ -389,13 +382,8 @@
                 </div>
             </div>
         </div>
-        {{--end dataform --}}
-
-
-        {{--Start fund history --}}
         <div class="col-md-6">
             <div class="card">
-
                 <div class="card-body">
                     <div class="card-title">
                         <h3>{{trans('admin.fund_history')}}</h3>
@@ -403,8 +391,6 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-9" id="slimtest1" style="height: 450px;">
                             <div>
-
-
                                 @foreach($histories as $history)
                                     <div class="time-line">
                                         <div class="container">
@@ -417,8 +403,6 @@
                                                     @if($history->status == 'reject') bg-danger @endif
                                                     @if($history->status == 'pending') bg-info   @endif
                                                     @if($history->status == 'return') bg-warning  @endif">
-
-
                                                         <h4 class="text-center text-white  ">
                                                             @if($history->status == 'pending') {{trans('admin.start_fund')}} @endif
 
@@ -428,8 +412,6 @@
 
                                                             @if($history->status == 'return') {{trans('admin.emp_return')}} {{$history->ُEmployer->name}} {{trans('admin.to')}} {{$history->ُEmployerReturned->name}}     @endif
                                                         </h4>
-
-
                                                         <div class="row">
                                                             <div class="col-3">
                                                                 <div class="img">
@@ -460,7 +442,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 @endforeach
                             </div>
                         </div>
@@ -468,11 +449,7 @@
                 </div>
             </div>
         </div>
-        {{--end fund history --}}
     </div>
-
-    {{--Start fund photos --}}
-
     <div class="container">
         @foreach($requestreview->Files_img as $key => $file)
             <div class="mySlides">
@@ -480,12 +457,8 @@
                 <img src="{{asset('/uploads/fund_file').'/'.$file->file_name}}" style="width:100%">
             </div>
         @endforeach
-
-
         <a class="prev" onclick="plusSlides(-1)">❮</a>
         <a class="next" onclick="plusSlides(1)">❯</a>
-
-
         <div class="row">
             @foreach($requestreview->Files_img as $key => $file)
                 <div class="column">
@@ -494,7 +467,6 @@
                          onclick="currentSlide({{$key+1}})" alt="The Woods">
                 </div>
             @endforeach
-
         </div>
     </div>
 
@@ -525,15 +497,7 @@
             </div>
         </div>
     </div> -->
-    {{--end fund photos --}}
 
-
-
-
-
-
-
-    {{--Start fund pdf --}}
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -541,9 +505,7 @@
                     <div class="card-title">
                         <h5>{{trans('admin.pdf_preview')}}</h5>
                     </div>
-
                     <div id="image-popups" class="row">
-
                         @foreach($requestreview->Files_pdf as $file)
                             <div class="col-6">
                                 <iframe src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
@@ -555,30 +517,22 @@
             </div>
         </div>
     </div>
-    {{-- end fund pdf --}}
-
-
     <div class="row">
         <div class="card col-12 ">
             <div class="card-body  center">
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
                     {{trans('admin.emp_transfer')}}
                 </button>
-
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
                     {{trans('admin.fund_accept')}}
                 </button>
-
                 <button
                     type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">
                     {{trans('admin.user_transfer')}}
                 </button>
-
             </div>
         </div>
     </div>
-
-
     <div class="row">
         <div class="modal fade" id="Empoloyers" tabindex="-1" role="dialog" aria-labelledby="EmpoloyersLabel1">
             <div class="modal-dialog" role="document">
@@ -594,13 +548,11 @@
                         @csrf
                         <div class="col-md-12">
                             <div class="form-group has-success">
-
                                 <label class="control-label"> ملحوظه بالعربيه </label>
                                 <input type="text" class="form-control" name="note_ar" required>
                                 <label class="control-label"> ملحوظه بالانجليزيه </label>
                                 <input type="text" class="form-control" name="note_en" required>
                                 <label class="control-label"> الموظفين </label>
-
                                 <select class="form-control custom-select" name="emp_id" required>
                                     @foreach($empolyers as $empolyer )
                                         <option value=""></option>
@@ -647,16 +599,7 @@
                                         </optgroup>
                                     @endforeach
                                 </select>
-
-                                {{--
-                                <select class="form-control custom-select" name="bank_id">
-                                    @foreach($banks as $bank)
-                                        <option value="{{$bank->id}}">{{$bank->name_ar}}</option>
-                                    @endforeach
-                                </select>
-        --}}
                             </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -682,13 +625,11 @@
                         @csrf
                         <div class="col-md-12">
                             <div class="form-group has-success">
-
                                 <label class="control-label"> ملحوظه بالعربيه </label>
                                 <input type="text" class="form-control" name="note_ar" required>
                                 <label class="control-label"> ملحوظه بالانجليزيه </label>
                                 <input type="text" class="form-control" name="note_en" required>
                             </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -699,10 +640,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 @endsection
 @section('scripts')
     <script src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
@@ -710,7 +647,6 @@
         src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js')}}"></script>
     <script type="text/javascript">
         $('#slimtest1, #slimtest2, #slimtest3, #slimtest4').perfectScrollbar();
-
         $(document).ready(function () {
             $('.owl-carousel').owlCarousel({
                 loop: true,
@@ -729,18 +665,14 @@
                 }
             });
         });
-
         var slideIndex = 1;
         showSlides(slideIndex);
-
         function plusSlides(n) {
             showSlides(slideIndex += n);
         }
-
         function currentSlide(n) {
             showSlides(slideIndex = n);
         }
-
         function showSlides(n) {
             var i;
             var slides = document.getElementsByClassName("mySlides");
@@ -762,8 +694,5 @@
             dots[slideIndex - 1].className += " active";
             captionText.innerHTML = dots[slideIndex - 1].alt;
         }
-
     </script>
-
-
 @endsection
