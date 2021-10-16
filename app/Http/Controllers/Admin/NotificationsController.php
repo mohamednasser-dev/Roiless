@@ -56,15 +56,18 @@ class NotificationsController extends Controller
             if($request->Receive ==0)   
             {
                 $users= User::get();
+               
             }else{
                 $fund_id=$request->Receive;
                 $users = User::Wherehas('UserFunds' , function ($query)use ($fund_id) {
                     $query->where('fund_id', $fund_id);
                 })->get();
+                
             }   
             foreach($users as $key => $user)
             {
                 User_Notification::create(['notification_id'=>$notification->id,'user_id'=>$user->id]);
+                $user->update(['seen_notification'=>DB::raw('seen_notification+1')]);
                 $fcm_tokens[0] = $user->fcm_token;
                 $title='title_ar'.$user->lang;
                 $body='body_ar'.$user->lang;

@@ -15,4 +15,8 @@ class User_Notification extends Model
     {
         return $this->belongsTo(Notification::class,'notification_id');
     }
+    public function Users()
+    {
+        return $this->belongsTo(User::class,'user_id')->select('id','seen_notification');
+    }
 }
