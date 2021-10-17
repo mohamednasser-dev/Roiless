@@ -148,6 +148,8 @@ return [
 
     'attributes' => [
         'club_id'=>'club name',
+        'users_id'=>'Users required',
+        'funds'=>'funds kind required',
     ],
 
 ];

@@ -5,8 +5,8 @@ return [
    'sure'=>'Are you sure to deactivate the bank?',
    'trans_bank'=>'Transferring funds to other banks',
    'all'=>'send for all',
-
-
+   'kind_recive'=>'kind send notification',
+   'trans'=>' disable',
 
 
     'permisstion' => 'permission',

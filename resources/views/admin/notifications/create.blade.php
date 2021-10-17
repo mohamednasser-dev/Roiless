@@ -65,16 +65,38 @@
 
 
                     <div class="form-group m-t-40 row">
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.kind_recive')}}</label>
+                        <div class="col-md-10">
+                             <select class="custom-select form-control pull-right" id="cmb_type"  name="Receive">
+                                <option  selected value="all">{{trans('admin.all')}}</option>
+                                <option  value="users">{{trans('admin.users')}}</option>
+                                <option  value="funds">{{trans('admin.funds')}}</option>
+                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group m-t-40 row" style="display:none;" id="div_users_container">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.multi_select')}}</label>
                         <div class="col-md-10">
-                             <select class="custom-select form-control pull-right"  name="Receive">
-                            <option  selected value="0">{{trans('admin.all')}}</option>
+                        <select class="select2 m-b-10 select2-multiple " style="width: 100%" multiple="multiple" data-placeholder="{{trans('admin.choose')}}" name='users_id[]'>
+                                    <optgroup label="Mountain Time Zone">
+                                    @foreach($users as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                    @endforeach
+                                    </optgroup>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="form-group m-t-40 row" style="display:none;" id="div_funds_container">
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.funds')}}</label>
+                        <div class="col-md-10">
+                        <select class="custom-select form-control pull-right"  name="funds">
                             @foreach($funds as $fund)                          
                                 <option value="{{$fund->id}}">{{$fund->name}}</option>
                             @endforeach
                              </select>
                         </div>
                     </div>
+                    
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.notification_image')}}</label>
                         <div class="col-md-10">
@@ -90,6 +112,7 @@
         </div>
         @endsection
         @section('scripts')
+        
             <script src="{{ asset('/assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
             <script src="{{ asset('/assets/plugins/select2/dist/js/select2.full.min.js')}}"></script>
             <script src="{{ asset('/assets/plugins/bootstrap-select/bootstrap-select.min.js')}}"></script>
@@ -98,6 +121,24 @@
            
             <script>
                 $(document).ready(function () {
+
+                $('#cmb_type').change(function(){
+                    var level = $(this).val();
+                    if(level == 'users'){
+                        $('#div_users_container').show();
+                        $('#div_funds_container').hide();
+                    }
+                    else if(level == 'all')
+                    {
+                        $('#div_users_container').hide();
+                        $('#div_funds_container').hide();
+                    }
+                    else
+                    {
+                        $('#div_funds_container').show();
+                        $('#div_users_container').hide();
+                    }
+                });
                     // Basic
                     $('.dropify').dropify();
 

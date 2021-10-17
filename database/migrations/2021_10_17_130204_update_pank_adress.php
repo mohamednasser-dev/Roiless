@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateNotificationTable extends Migration
+class UpdatePankAdress extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class UpdateNotificationTable extends Migration
     public function up()
     {
         //
-        Schema::table('user_notifications', function (Blueprint $table) {
-            $table->integer('seen')->default(0);
+        Schema::table('banks', function (Blueprint $table) {
+            $table->string('address')->nullable();
         });
     }
 

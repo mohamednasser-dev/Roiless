@@ -4,9 +4,11 @@
         <div class="col-md-5 align-self-center">
             <h3 class="text-themecolor">{{trans('admin.branches_banks')}}</h3>
         </div>
+        
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.banks')}}</li>
+                <li class="breadcrumb-item">{{trans('admin.branches_banks')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('banks.index')}}">{{trans('admin.banks')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
