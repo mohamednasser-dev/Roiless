@@ -58,7 +58,8 @@
                                 <div class="form-group m-t-40 row">
                                     <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_english')}}</label>
                                     <div class="col-md-10">
-                                        {{ Form::text('terms_ar',$setting->terms_ar,["class"=>"form-control" ,"required"]) }}
+                                       
+                                        {{ Form::textarea('terms_ar',$setting->about_us_en,["class"=>"form-control textarea_editor6" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +68,8 @@
                                 <div class="form-group m-t-40 row">
                                     <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_arabic')}}</label>
                                     <div class="col-md-10">
-                                        {{ Form::text('terms_en',$setting->terms_en,["class"=>"form-control" ,"required"]) }}
+                                        
+                                        {{ Form::textarea('terms_en',$setting->about_us_en,["class"=>"form-control textarea_editor5" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +78,8 @@
                                 <div class="form-group m-t-40 row">
                                     <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.privacey_in_arabic')}}</label>
                                     <div class="col-md-10">
-                                        {{ Form::text('privacy_ar',$setting->privacy_ar,["class"=>"form-control" ,"required"]) }}
+                                        
+                                        {{ Form::textarea('privacy_ar',$setting->about_us_en,["class"=>"form-control textarea_editor4" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
@@ -85,11 +88,12 @@
                                 <div class="form-group m-t-40 row">
                                     <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.privacey_in_english')}}</label>
                                     <div class="col-md-10">
-                                        {{ Form::text('privacy_en',$setting->privacy_en,["class"=>"form-control" ,"required"]) }}
+                                        
+                                        {{ Form::textarea('privacy_en',$setting->about_us_en,["class"=>"form-control textarea_editor3" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
-
+                           
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-group m-t-40 row">
                                     <label for="example-text-input" class="col-md-2 col-form-label">
@@ -110,6 +114,7 @@
                                 </div>
                             </div>
 
+                          
 
                             <div class="col-lg-6 col-md-6">
                                 <div class="input-group">

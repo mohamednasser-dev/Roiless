@@ -59,6 +59,7 @@ class Bankcontroller extends Controller
                 'image' => 'required',
                 'password' => 'required|min:6|confirmed',
                 'password_confirmation' => 'required|min:6',
+                'address' => 'required',
             ]);
         if ($request['password'] != null && $request['password_confirmation'] != null) {
             $data['password'] = bcrypt(request('password'));
@@ -200,7 +201,9 @@ class Bankcontroller extends Controller
     public function destroy($id)
     {
         $bank = Bank::findOrFail($id);
-        $bank->delete();
+        if($bank->delete()){
+           Bank::where('parent_id',$id)->delete();
+        }
         activity('admin')->log(trans('admin.bank_delete'));
         Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
         if ($bank->parent_id == null) {
@@ -214,7 +217,8 @@ class Bankcontroller extends Controller
     {
         
         $branches = Bank::where('parent_id', $id)->get();
-        return view($this->folderView . 'branches', \compact('branches', 'id'));
+        $active_banks=Bank::where('status','active')->get();
+        return view($this->folderView . 'branches', \compact('branches', 'id','active_banks'));
     }
 
     public function BankFunds($id)

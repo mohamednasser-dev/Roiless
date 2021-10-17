@@ -74,7 +74,10 @@
             $(document).ready(function() {
                 $('.textarea_editor1').wysihtml5();
                 $('.textarea_editor2').wysihtml5();
-
+                $('.textarea_editor3').wysihtml5();
+                $('.textarea_editor4').wysihtml5();
+                $('.textarea_editor5').wysihtml5();
+                $('.textarea_editor6').wysihtml5();
             });
         </script>
         <script>

@@ -61,16 +61,11 @@
                                 <ul class="list-inline soc-pro m-t-30">
                                    
                                              @if($bank->status=="active")
-                                          
-                                                
                                                 <li><a id="btn_bank_unactive" class=" btn btn-success" title="تعديل" data-bankid="{{$bank->id}}" data-toggle="modal" data-target="#myModal" href="" id="btn_bank_unactive" >تعطيل</a></li>
                                              @else  
                                            <li>
-                                              
-                                                    <a href="{{route('banks.actived',$bank->id)}}" class="btn btn-danger"  data-target="#myModal">تفعيل</a>
-                                                       
-                                           </li>
-                                              
+                                                    <a href="{{route('banks.actived',$bank->id)}}" class="btn btn-danger"  data-target="#myModal">تفعيل</a>          
+                                           </li> 
                                             @endif
                                     
                                    

@@ -42,6 +42,12 @@
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
+                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.address')}}</label>
+                        <div class="col-md-10">
+                            {{ Form::text('address',null,["class"=>"form-control" ,"required"]) }}
+                        </div>
+                    </div>
+                    <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.email')}}</label>
                         <div class="col-md-10">
                             {{ Form::email('email',null,["class"=>"form-control" ,"required"]) }}
