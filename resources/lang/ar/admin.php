@@ -6,6 +6,10 @@ return [
    'trans_bank'=>'اختر البنك',
     'trans'=>' تعطيل',
     'all'=>'الارسال الي الجميع',
+
+    'add_new_cat'=>'انشاء قسم جديد',
+
+
     'kind_recive'=>'طريقه ارسال الاشعار',
     'trans_disaple'=>'تعطيل وتحويل',
      'address'=>'عنوان البنك',
@@ -14,6 +18,7 @@ return [
 
 
 
+    //start permisstions
     'permisstion' => 'الصلاحيه',
     'permissions' => 'الصلاحيات',
     'add_new_role' => 'اضافة صلاحية جديدة',
@@ -21,6 +26,18 @@ return [
     'edit_role' => 'تعديل الصلاحية',
     'save' => 'حفظ',
     //end permisstions
+
+    //start consolution_Kinds
+    'consolution.kind' => 'انواع الاستشارات',
+    'add.new.consolution.kind' => 'انشاء نوع استشاره',
+    'consolution.kind.service_info' => 'معلومات الاستشاره ',
+    'sweet_kind_add' => 'تم اضافه نوع استشاره بنجح',
+
+
+    //end consolution_Kinds
+
+
+
     'consolution_replies' => 'الردود',
     'sign_up_data' => 'تاريخ التسجيل',
     'user_image' => 'صورة العميل',
@@ -171,8 +188,8 @@ return [
     'confirm_bank_password' => 'تاكييد الرقم السري للبنك',
     'bank_image' => 'صوره البنك',
     'public_Add' => 'اضافه',
-    'name_in_arabic' => 'الاسم العربيه',
-    'name_in_english' => 'الاسم الانجليزيه',
+    'name_in_arabic' => 'الاسم بالعربيه',
+    'name_in_english' => 'الاسم بالانجليزيه',
     'add_categories' => 'اضافه قسم جديد',
     'categories' => 'الاقسام',
     'category' => 'القسم',

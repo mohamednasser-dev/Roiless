@@ -11,6 +11,10 @@
             </ol>
         </div>
     </div>
+    <div class="title">
+        <a href="{{route('consolutionKind')}} "
+           class="btn btn-info btn-bg">{{trans('admin.consolution.kind')}}</a>
+    </div>
     <br>
     <div class="row">
         <table class="table full-color-table full-primary-table">
@@ -61,7 +65,7 @@
             @endforeach
             </tbody>
         </table>
-        {{ $funds->links() }}
+        {{ $consolutions->links() }}
     </div>
 @endsection
 @section('scripts')

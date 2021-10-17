@@ -36,43 +36,56 @@
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.phone_num')}} </label>
+                        <label for="example-text-input"
+                               class="col-md-2 col-form-label">{{trans('admin.phone_num')}} </label>
                         <div class="col-md-10">
                             {{ Form::number('phone',$employer->phone,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="example-password-input" class="col-md-2 col-form-label">{{trans('admin.password')}}</label>
+                        <label for="example-password-input"
+                               class="col-md-2 col-form-label">{{trans('admin.password')}}</label>
                         <div class="col-md-10">
                             <input class="form-control" type="password" name="password" id="example-password-input">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="example-password-input2" class="col-md-2 col-form-label">{{trans('admin.confirm_password')}}</label>
+                        <label for="example-password-input2"
+                               class="col-md-2 col-form-label">{{trans('admin.confirm_password')}}</label>
                         <div class="col-md-10">
                             <input class="form-control" type="password" name="password_confirmation"
                                    id="example-password-input2">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="example-month-input" class="col-md-2 col-form-label"> {{trans('admin.category')}}</label>
+                        <label for="example-month-input"
+                               class="col-md-2 col-form-label"> {{trans('admin.category')}}</label>
                         <div class="col-md-10">
-                            <select class="custom-select col-12 multiple" id="inlineFormCustomSelect" name="cat_id">
-                                @foreach($categories as $category)
-                                    <option value="{{$category->id}}" @if($category->id == $employer->cat_id) selected @endif >{{$category->title_ar}}</option>
+                            <select class="select2 m-b-10 select2-multiple" style="width: 100%"
+                                    multiple="multiple" data-placeholder="Choose" name="cat_id[]">
+                                @foreach($allcategories as $allcategorie)
+                                    @php
+
+                                        $exist_cat = \App\Models\EmployerCategory::where('cat_id',$allcategorie->id)
+                                                                                ->where('emp_id',$employer->id)->first();
+                                    @endphp
+                                    <option value="{{$allcategorie->id}}" @if($exist_cat) selected @endif >{{$allcategorie->title_ar}}</option>
                                 @endforeach
+
+
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="example-month-input" class="col-md-2 col-form-label"> {{trans('admin.permisstion')}}</label>
+                        <label for="example-month-input"
+                               class="col-md-2 col-form-label"> {{trans('admin.permisstion')}}</label>
                         <div class="col-md-10">
                             <select class="custom-select col-12 multiple" id="inlineFormCustomSelect" name="role_id">
                                 @foreach($roles as $role)
                                     @if($employer->role_id== $role->id)
-                                    <option value="{{$role->id}}" selected>{{$role->name}}</option>
+                                        <option value="{{$role->id}}" selected>{{$role->name}}</option>
                                     @else
-                                    <option value="{{$role->id}}">{{$role->name}}</option>
+                                        <option value="{{$role->id}}">{{$role->name}}</option>
                                     @endif
                                 @endforeach
                             </select>
@@ -83,7 +96,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Image</h4>
-                                    <input type="file" name="image" data-default-file="{{$employer->image}}"  id="input-file-now" class="dropify"/>
+                                    <input type="file" name="image" data-default-file="{{$employer->image}}"
+                                           id="input-file-now" class="dropify"/>
                                 </div>
                             </div>
                         </div>
