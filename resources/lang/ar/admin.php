@@ -16,7 +16,7 @@ return [
 
 
 
-
+    //start permisstions
     'permisstion' => 'الصلاحيه',
     'permissions' => 'الصلاحيات',
     'add_new_role' => 'اضافة صلاحية جديدة',
@@ -24,6 +24,18 @@ return [
     'edit_role' => 'تعديل الصلاحية',
     'save' => 'حفظ',
     //end permisstions
+
+    //start consolution_Kinds
+    'consolution.kind' => 'انواع الاستشارات',
+    'add.new.consolution.kind' => 'انشاء نوع استشاره',
+    'consolution.kind.service_info' => 'معلومات الاستشاره ',
+    'sweet_kind_add' => 'تم اضافه نوع استشاره بنجح',
+
+
+    //end consolution_Kinds
+
+
+
     'consolution_replies' => 'الردود',
     'sign_up_data' => 'تاريخ التسجيل',
     'user_image' => 'صورة العميل',

@@ -181,7 +181,15 @@ Route::group(['middleware' => ['auth:admin']], function () {
         Route::post('/consolutions/admin/reply', 'ConsolutionController@admin_reply')->name('admin.reply');
         Route::get("/users/consolutions/delete/{id}", "ConsolutionController@Delete")->name('delete');
     });
-
+    //consolutionKind
+    Route::group(['namespace' => 'Admin'], function () {
+        Route::get('/consolutionKind', 'ConsolutionKindControler@index')->name('consolutionKind');
+        Route::get('consolutionKind/create', 'ConsolutionKindControler@create')->name('consolutionKind.create');
+        Route::post('/consolutionKind/store', 'ConsolutionKindControler@store')->name('consolutionKind.store');
+        Route::get('/consolutionKind/edit/{id}', 'ConsolutionKindControler@edit')->name('consolutionKind.edit');
+        Route::post('/consolutionKind/update/{id}', 'ConsolutionKindControler@update')->name('consolutionKind.update');
+        Route::get('/consolutionKind/delete/{id}', 'ConsolutionKindControler@destroy')->name('consolutionKind.delete');
+    });
 
 });
 
