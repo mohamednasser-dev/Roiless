@@ -2,20 +2,18 @@
 return [
     //new
 
-   'sure'=>'هل انت تريد التحويل الي بنك اخر؟',
-   'trans_bank'=>'اختر البنك',
-    'trans'=>' تعطيل',
-    'all'=>'الارسال الي الجميع',
+    'sure' => 'هل تريد تحويل كافة طلبات هذا البنك الي بنك اخر؟',
+    'trans_bank' => 'اختر البنك',
+    'trans' => ' تعطيل',
+    'disable_only' => ' تعطيل فقط',
+    'all' => 'الارسال الي الجميع',
 
-    'add_new_cat'=>'انشاء قسم جديد',
-
-
-    'kind_recive'=>'طريقه ارسال الاشعار',
-    'trans_disaple'=>'تعطيل وتحويل',
-     'address'=>'عنوان البنك',
+    'add_new_cat' => 'انشاء قسم جديد',
 
 
-
+    'kind_recive' => 'طريقه ارسال الاشعار',
+    'trans_disaple' => 'تعطيل وتحويل',
+    'address' => 'عنوان البنك',
 
 
     //start permisstions
@@ -35,7 +33,6 @@ return [
 
 
     //end consolution_Kinds
-
 
 
     'consolution_replies' => 'الردود',

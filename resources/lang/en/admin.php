@@ -7,6 +7,7 @@ return [
    'all'=>'send for all',
    'kind_recive'=>'kind send notification',
    'trans'=>' disable',
+    'disable_only' => 'disable only',
    'address'=>'bank address',
 
     'permisstion' => 'permission',
