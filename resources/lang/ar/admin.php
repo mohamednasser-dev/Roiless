@@ -6,7 +6,8 @@ return [
    'trans_bank'=>'اختر البنك',
     'trans'=>'تحويل',
     'all'=>'الارسال الي الجميع',
- 
+    'add_new_cat'=>'انشاء قسم جديد',
+
 
 
 
@@ -169,8 +170,8 @@ return [
     'confirm_bank_password' => 'تاكييد الرقم السري للبنك',
     'bank_image' => 'صوره البنك',
     'public_Add' => 'اضافه',
-    'name_in_arabic' => 'الاسم العربيه',
-    'name_in_english' => 'الاسم الانجليزيه',
+    'name_in_arabic' => 'الاسم بالعربيه',
+    'name_in_english' => 'الاسم بالانجليزيه',
     'add_categories' => 'اضافه قسم جديد',
     'categories' => 'الاقسام',
     'category' => 'القسم',

@@ -37,16 +37,7 @@
                             {{ Form::number('phone',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="example-month-input" class="col-md-2 col-form-label"> {{trans('admin.permission')}}</label>
-                        <div class="col-md-10">
-                            <select class="custom-select col-12 multiple" id="inlineFormCustomSelect" name="cat_id">
-                                @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->title_ar}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.email')}}</label>
                         <div class="col-md-10">
@@ -73,9 +64,10 @@
                     <div class="form-group row">
                         <label for="example-month-input" class="col-md-2 col-form-label"> {{trans('admin.category')}}</label>
                         <div class="col-md-10">
-                            <select class="custom-select col-12 multiple" id="inlineFormCustomSelect" name="cat_id">
+                            <select  class="select2 m-b-10 select2-multiple" style="width: 100%"
+                                    multiple="multiple" data-placeholder="Choose" name="cat_id[]" >
                                 @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->title_ar}}</option>
+                                    <option value="{{$category->id}}">{{$category->c}}</option>
                                 @endforeach
                             </select>
                         </div>

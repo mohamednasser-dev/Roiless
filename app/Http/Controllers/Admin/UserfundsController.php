@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\EmployerCategory;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Models\Bank_User_Fund;
@@ -26,10 +27,21 @@ class UserfundsController extends Controller
 
     public function index()
     {
-        $usefunds = User_fund::with('Fund')->whereHas('Fund', function ($q) {
-            $q->where('cat_id', auth()->user()->cat_id);
-        })->paginate(30);
-        return view($this->folderView . 'index', compact('usefunds'));
+
+        if (auth()->user()->type == 'admin') {
+            return 'admin';
+            $usefunds = User_fund::paginate(30);
+            return view($this->folderView . 'index', compact('usefunds'));;
+        }else{
+
+            $catids =EmployerCategory::where('emp_id',auth()->user()->id)->pluck('cat_id');
+
+            $usefunds = User_fund::with('Fund')->whereHas('Fund', function ($q) use($catids) {
+              $q->whereIN('cat_id',$catids);
+            })->paginate(30);
+            return view($this->folderView . 'index', compact('usefunds'));;
+        }
+
     }
 
     public function employerchosen($id)
@@ -54,7 +66,7 @@ class UserfundsController extends Controller
         }
         $requestreview = User_fund::find($id);
         $empolyers = Admin::where('type', 'employer')->where('cat_id', auth()->user()->cat_id)->where('id', '<>', auth()->user()->id)->get();
-        $banks = Bank::all();
+        $banks = Bank::where('status','active')->get();
         $histories = Fhistory::where('user_fund_id', $id)->orderBy('created_at', 'DESC')->get();
         if ($requestreview->emp_id == auth()->user()->id) {
             return view($this->folderView . 'details', compact('requestreview', 'empolyers', 'banks', 'histories'));
@@ -96,6 +108,7 @@ class UserfundsController extends Controller
         Alert::success('عملية ناجحة', 'تم التحويل بنجاح');
         return redirect()->route('userfunds');
     }
+
     public function redirect_bank(Request $request, $id)
     {
         $data = $this->validate(request(),
@@ -127,6 +140,7 @@ class UserfundsController extends Controller
         DB::commit();
         return redirect()->route('userfunds');
     }
+
     public function redirect_user(Request $request, $id)
     {
         $data = $this->validate(request(),

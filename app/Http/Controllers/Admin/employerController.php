@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\EmployerCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -51,6 +52,7 @@ class employerController extends Controller
 
     public function store(Request $request)
     {
+//        return $request;
         $data = $this->validate(\request(),
             [
                 'name' => 'required|unique:admins',
@@ -59,9 +61,10 @@ class employerController extends Controller
                 'image' => 'required',
                 'password' => 'required|min:6|confirmed',
                 'password_confirmation' => 'required|min:6',
-                'cat_id' => 'required',
-                'role_id' => 'required'
+                'role_id' => 'required',
+                'cat_id' => 'required|array|min:1',
             ]);
+
         if ($request['password'] != null && $request['password_confirmation'] != null) {
             $data['password'] = bcrypt(request('password'));
             //store images
@@ -70,7 +73,17 @@ class employerController extends Controller
             }
             unset($data['password_confirmation']);
             $data['type'] = 'employer';
+            unset($data['cat_id']);
             $employee = Admin::create($data);
+
+            foreach($request->cat_id as  $c){
+               EmployerCategory::create([
+                    'emp_id'=>$employee->id,
+                    'cat_id'=>$c,
+                ]);
+            }
+
+
 
             $employee->assignRole($request->input('role_id'));
 
@@ -88,14 +101,17 @@ class employerController extends Controller
 
     public function edit($id)
     {
-        $categories = Category::get();
+
+//        $categories = EmployerCategory::where('emp_id',$id)->get();
+        $allcategories = Category::get();
         $employer = Admin::where('id', $id)->first();
         $roles = Role::get();
-        return view($this->folderView . 'edit', \compact('employer', 'categories','roles'));
+        return view($this->folderView . 'edit', \compact('employer', 'roles','allcategories'));
     }
 
     public function update(Request $request, $id)
     {
+
         $employee = Admin::find($id);
         if ($request['password'] != null && $request['password_confirmation'] != null) {
             $data = $this->validate(\request(),
@@ -126,7 +142,15 @@ class employerController extends Controller
         if ($request->image != null) {
             $data['image'] = $this->MoveImage($request->image, 'uploads/admins_image');
         }
+        unset($data['cat_id']);
         Admin::where('id', $id)->update($data);
+        EmployerCategory::where('emp_id',$id)->delete();
+        foreach($request->cat_id as  $c){
+            EmployerCategory::create([
+                'emp_id'=>$employee->id,
+                'cat_id'=>$c,
+            ]);
+        }
         $employee->assignRole($request->input('role_id'));
         Alert::success('تمت العمليه', 'تم تحديث الموظف بنجاح');
         return redirect()->route('employer.index');
