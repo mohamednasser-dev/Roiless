@@ -2,11 +2,11 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">{{trans('admin.edit')}}</h3>
+            <h3 class="text-themecolor">{{trans('admin.detailes')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.edit')}}</li>
+                <li class="breadcrumb-item">{{trans('admin.detailes')}}</li>
                 <li class="breadcrumb-item"><a href="{{route('services')}}">{{trans('admin.services')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
