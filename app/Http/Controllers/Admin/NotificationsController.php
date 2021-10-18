@@ -90,54 +90,6 @@ class NotificationsController extends Controller
             Alert::success('تمت العمليه', 'تم اضافه الاشعار بنجاح');
             return redirect()->route('notifications.index');
     }
-    
-    public function edit($id)
-    {
-        $notification = $this->objectName::where('id', $id)->first();
-        return view($this->folderView . 'edit', compact('notification'));
-    }
-
-    public function update(Request $request, $id)
-    {
-
-        $data = $this->validate(\request(),
-            [
-                'title_ar' => 'required',
-                'title_en' => 'required',
-                'body_ar' => 'required',
-                'body_en' => 'required',
-                'image' => '',
-
-            ]);
-
-
-            $notification = $this->objectName::find($id);
-            if (!$notification) {
-                Alert::warning('خطاء', 'هذه الخدمه ليست موجوه');
-                return redirect()->route(' $this->folderView');
-            }
-            if ($request->hasFile('image')) {
-                $file_name = $this->MoveImage($request->file('image'), 'uploads/notification');
-                $data['image'] = $file_name;
-                $notification=notification::find($id);
-                $image= explode("/",$notification->image);
-                $length=count($image)-1;//the name of photo in the last index in array
-                $this->objectName::where('id', $id)->update($data);
-                if( $notification->image !== null){
-                    unlink("uploads/notification/".$image[$length]);
-                 }
-            }
-             $this->objectName::where('id', $id)->update($data);
-
-            activity('admin')->log('تم تحديث الاشعار بنجاح');
-
-            DB::commit();
-            Alert::success('تمت العمليه', 'تم التحديث بنجاح');
-            return redirect()->route('notifications.index');;
-
-    }
-
-
     public function destroy($id)
     {
         $notification = $this->objectName::findOrFail($id);

@@ -28,7 +28,7 @@
                 <th class="text-lg-center">{{trans('admin.notification_content_in_arabic')}}</th>
                 <th class="text-lg-center">{{trans('admin.notification_content_in_english')}}</th>
                 <th class="text-lg-center">{{trans('admin.notification_image')}}</th>
-                <th class="text-lg-center">{{trans('admin.Measures')}}</th>
+               
             </tr>
             </thead>
 
@@ -43,15 +43,7 @@
                         <div class="pro-img"><img style="height: 50px; width: 50px; border-radius: 50%" src="{{$notification->image}}"></div>
                     </td>
 
-                    <td class="text-lg-center ">
-
-                        <a class='btn btn-info btn-circle' title="تعديل"
-                           href="{{route('notifications.edit',$notification->id)}}"><i class="fa fa-edit"></i></a>
-
-                        <a class='btn btn-danger btn-circle' title="حذف" onclick="return confirm('هل انت متكد من حذف الخدمه')"
-                           href="{{route('notification.delete',$notification->id)}}"><i class="fa fa-trash"></i></a>
-
-                    </td>
+                  
 
                 </tr>
             @endforeach

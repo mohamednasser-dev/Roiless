@@ -70,7 +70,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::post('banks/store/{id}', 'Admin\Bankcontroller@store')->name('banks.store');
     Route::post('banks/update_new/{id}', 'Admin\Bankcontroller@update')->name('banks.update_new');
 
-    Route::get('banks/{id}/delete', 'Admin\Bankcontroller@destroy')->name('banks.delete');
+    Route::get('banks/{id}/delete/', 'Admin\Bankcontroller@destroy')->name('banks.delete');
     Route::get('banks/{id}/details', 'Admin\Bankcontroller@show')->name('banks.details');
     Route::get('banks/actived/{id}', 'Admin\Bankcontroller@update_Actived')->name('banks.actived');
     Route::post('banks/actived', 'Admin\Bankcontroller@unupdate_Actived')->name('banks.unactived');

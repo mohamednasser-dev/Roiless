@@ -200,15 +200,20 @@ class Bankcontroller extends Controller
 
     public function destroy($id)
     {
+        
         $bank = Bank::findOrFail($id);
-        if($bank->delete()){
-           Bank::where('parent_id',$id)->delete();
-        }
-        activity('admin')->log(trans('admin.bank_delete'));
-        Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
         if ($bank->parent_id == null) {
-            return redirect()->route('banks.index');
-        } else {
+            if($bank->delete()){
+                activity('admin')->log(trans('admin.bank_delete'));
+                Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
+                Bank::where('parent_id',$id)->delete();
+                return redirect()->route('banks.index');
+             }
+        }
+        else{
+            activity('admin')->log(trans('admin.bank_delete'));
+            Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
+            $bank->delete();
             return redirect()->route('banks.branches', $bank->parent_id);
         }
     }
@@ -223,7 +228,7 @@ class Bankcontroller extends Controller
 
     public function BankFunds($id)
     {
-        
+       
         $branches_ids =Bank::where('parent_id',$id)->get()->pluck('id')->toArray();
         array_push($branches_ids,$id);
         
