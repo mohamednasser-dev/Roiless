@@ -14,9 +14,9 @@ class ConsolutionController extends Controller
     public function getall_consolution(Request $request)
     {
         if($request->type == 'false'){
-            $consolutions = Consolution::where('type','contact_us')->select(['id', 'content', 'created_at'])->where('user_id', Auth::user()->id)->get()->makeHidden(['UnSeenReply']);
+            $consolutions = Consolution::where('type','contact_us')->select('id', 'content', 'created_at','seen')->where('user_id', Auth::user()->id)->get()->makeHidden(['UnSeenReply']);
         }else{
-            $consolutions = Consolution::where('type','consultation')->select(['id', 'content', 'created_at'])->where('user_id', Auth::user()->id)->get()->makeHidden(['UnSeenReply']);
+            $consolutions = Consolution::where('type','consultation')->select('id', 'content', 'created_at','seen')->where('user_id', Auth::user()->id)->get()->makeHidden(['UnSeenReply']);
         }
         return msgdata($request, success(), 'get services sucess', $consolutions);
     }
