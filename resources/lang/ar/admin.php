@@ -31,8 +31,6 @@ return [
     'add.new.consolution.kind' => 'انشاء نوع استشاره',
     'consolution.kind.service_info' => 'معلومات الاستشاره ',
     'sweet_kind_add' => 'تم اضافه نوع استشاره بنجح',
-
-
     //end consolution_Kinds
 
 
@@ -44,6 +42,10 @@ return [
     'delete' => 'حذف',
     'branches_banks' => 'فروع البنك',
     'add_branche_bank' => 'اضافه فرع',
+    'answerd' => 'تم الرد',
+    'not.answerd' => 'لم يتم الرد',
+    'replay.status' => 'حاله الرد',
+
     //new
     'users' => 'العملاء',
     'add_new_user' => 'اضافه عميل جديد',
