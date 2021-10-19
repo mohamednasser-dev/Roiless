@@ -23,5 +23,7 @@ class Controller extends BaseController
         $file->move(public_path($public_path), $fileNewName);
         return $fileNewName;
     }
+
+
 }
 
