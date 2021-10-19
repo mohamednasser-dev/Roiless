@@ -2,7 +2,7 @@
 @section('styles')
     <link rel="stylesheet" href="{{ asset('/assets/plugins/dropify/dist/css/dropify.min.css') }}">
     <link href="{{ asset('/assets/plugins/summernote/dist/summernote.css') }}" rel="stylesheet" >
-    <link href="{{ asset('/css/style.css')}}" rel="stylesheet">
+
 @endsection
 @section('content')
     <div class="row page-titles">
@@ -58,20 +58,20 @@
 
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_english')}}</label>
+                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_arabic')}}</label>
                                     <div class="col-md-10">
 
-                                        {{ Form::textarea('terms_ar',$setting->about_us_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                        {{ Form::textarea('terms_ar',$setting->terms_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_arabic')}}</label>
+                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_english')}}</label>
                                     <div class="col-md-10">
 
-                                        {{ Form::textarea('terms_en',$setting->about_us_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                        {{ Form::textarea('terms_en',$setting->terms_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                                     <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.privacey_in_arabic')}}</label>
                                     <div class="col-md-10">
 
-                                        {{ Form::textarea('privacy_ar',$setting->about_us_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                        {{ Form::textarea('privacy_ar',$setting->privacy_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                     <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.privacey_in_english')}}</label>
                                     <div class="col-md-10">
 
-                                        {{ Form::textarea('privacy_en',$setting->about_us_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                        {{ Form::textarea('privacy_en',$setting->privacy_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
@@ -136,15 +136,6 @@
                                 </div>
                             </div>
 
-
-                            <div class="col-lg-6 col-md-6">
-                                <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">
-                                    <i class=" icon-social-gplus"></i>
-                                </span>
-                                    {{ Form::url('gmail',$setting->gmail,["class"=>"form-control" ]) }}
-                                </div>
-                            </div>
 
 
                             <div class="col-lg-6 col-md-6">
