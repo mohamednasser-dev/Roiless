@@ -6,7 +6,9 @@
             <div class="card-body p-t-0">
                 <div class="card b-all shadow-none">
                     <div class="card-body">
+                        @if($consolution->consolution_kind)
                         <h3 class="card-title m-b-0">{{$consolution->consolution_kind->name_ar}}</h3>
+                            @endif
                     </div>
                     <div>
                         <hr class="m-t-0">
