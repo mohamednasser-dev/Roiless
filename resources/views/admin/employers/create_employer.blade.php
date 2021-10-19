@@ -67,7 +67,7 @@
                             <select  class="select2 m-b-10 select2-multiple" style="width: 100%"
                                     multiple="multiple" data-placeholder="Choose" name="cat_id[]" >
                                 @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->c}}</option>
+                                    <option value="{{$category->id}}">{{$category->title_ar}}</option>
                                 @endforeach
                             </select>
                         </div>

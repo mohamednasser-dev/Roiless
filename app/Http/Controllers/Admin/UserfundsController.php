@@ -27,9 +27,7 @@ class UserfundsController extends Controller
 
     public function index()
     {
-
         if (auth()->user()->type == 'admin') {
-
             $usefunds = User_fund::paginate(30);
             return view($this->folderView . 'index', compact('usefunds'));;
         }else{

@@ -90,7 +90,7 @@ return [
     'consolution_email' => 'البريد الالكتروني',
     'consolution_phone' => 'الهاتف',
     'consolution_kind' => 'نوع الاستشاره',
-    'moves' => 'التحركات',
+    'moves' => 'الحركه',
     'permission' => 'الصلاحيات',
     'count_pranches' => 'عدد الفروع',
     'Orders_received' => 'الطلبات المستلمه',
@@ -260,7 +260,7 @@ return [
 // end user fund details page
     'invaldemailorpassword' => 'الرقم السرى او البريد الالكترونى خطأ .. !',
     'not_auth' => 'غير مصرح لك الدخول .... غير مفعل',
-    'bank_delete' => 'تم حذف البنك بنجاح',
+    'bank_delete' => 'تم حذف بنك ',
     'deleted' => 'تم الحذف',
     'opretion_success' => 'تمت العمليه بنجاح',
 ];

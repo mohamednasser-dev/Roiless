@@ -8,6 +8,7 @@ use App\Models\Fund;
 use App\Models\Fundinput;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class fundController extends Controller
@@ -57,27 +58,20 @@ class fundController extends Controller
 
         $data['image'] = $this->MoveImage($request->image, 'uploads/funds');
         $data['columns'] = json_encode($request->columns);
-
-
         $funds = $this->objectName::create($data);
-
-        activity('admin')->log('تم اضافه التمويل بنجاح');
-
+        $fund_admin='تم اضافه تمويل'.$funds->name_ar;
+        store_history(Auth::user()->id , $fund_admin);
         DB::commit();
         Alert::success( trans('admin.opretion_success'),trans('admin.fund_added_successfully'));
         return redirect()->route('fund');
 
 
     }
-
     public function details($id)
     {
-
         $fund = $this->objectName::where('id', $id)->first();
         return view($this->folderView . 'details', compact('fund'));
     }
-
-
     public function edit($id)
     {
         $categories = Category::get();
@@ -100,9 +94,6 @@ class fundController extends Controller
                 'image' => '',
 
             ]);
-
-
-        try {
             DB::beginTransaction();
 
             $fund = $this->objectName::find($id);
@@ -119,29 +110,19 @@ class fundController extends Controller
             $data['desc_ar'] = $request->desc_ar;
             $data['desc_en'] = $request->desc_en;
             $this->objectName::where('id', $id)->update($data);
-
-            activity('admin')->log('تم تحديث التمويل بنجاح');
-
+            $fund_admin='تم تحديث تمويل'.$fund->name_ar;
+            store_history(Auth::user()->id , $fund_admin);
             DB::commit();
             Alert::success(trans('admin.updated_successfully'), trans('admin.opretion_success'));
             return redirect()->route('fund');
-
-        } catch (\Exception $ex) {
-
-            DB::rollback();
-            Alert::warning(trans('admin.not_updated'), trans('admin.wron'));
-
-            return redirect()->route('fund');
-
-        }
     }
 
     public function destroy($id)
     {
         $fund = $this->objectName::findOrFail($id);
         $fund->delete();
-        activity('admin')->log(trns('admin.fund_deleted_success'));
-
+        $fund_admin='تم حذف تمويل'.$fund->name_ar;
+        store_history(Auth::user()->id , $fund_admin);
         Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
         return redirect()->route('fund');
     }

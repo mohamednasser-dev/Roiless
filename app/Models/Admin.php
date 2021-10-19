@@ -61,5 +61,9 @@ class Admin extends Authenticatable
     {
         return $this->hasMany('\App\models\reply','admin_id','id');
     }
+    public function Activities()
+    {
+        return $this->hasMany(Adminhistory::class);
+    }
 
 }

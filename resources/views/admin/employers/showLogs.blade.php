@@ -3,7 +3,7 @@
 
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">تحركات الموظفين</h3>
+            <h3 class="text-themecolor"> تحركات الموظفين </h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
@@ -17,10 +17,10 @@
     <br>
     <div class="row">
             <div class="table-responsive m-t-40">
-                <table id="example23" class="display full-color-table full-primary-table  nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+            <table class="table full-color-table full-primary-table">
                     <thead class="bg-primary">
                     <tr>
-                        <th scope="col">{{trans('admin.log_name')}}</th>
+                        <th scope="col"></th>
                         <th scope="col">{{trans('admin.moves')}}</th>
                         <th scope="col">{{trans('admin.name_employee')}}</th>
                         <th scope="col">{{trans('admin.created_at')}}</th>
@@ -32,15 +32,17 @@
                             <th scope="row">{{$activity->log_name}}</th>
                             <td>{{$activity->description}}</td>
                             <td>
-                                @if ($activity->employees !== null)
-                                    {{$activity->employees->name}}
-                                @endif
+                                
+                               {{$activity->Admin->name}}
                             </td>
                             <td>{{$activity->created_at}}</td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
+                    <div class="d-flex justify-content-center">
+                    {{ $activities->links() }}
+                    </div>
             </div>
     </div>
 @endsection

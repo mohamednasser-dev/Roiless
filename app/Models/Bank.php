@@ -29,10 +29,10 @@ class Bank extends Authenticatable
     protected static $logOnlyDirty = true;
 
     // Customize log description
-    public function getDescriptionForEvent(string $eventName): string
-    {
-        return "This model has been {$eventName}";
-    }
+    // public function getDescriptionForEvent(string $eventName): string
+    // {
+    //     return "This model has been {$eventName}";
+    // }
 
     public function getImageAttribute($img)
     {

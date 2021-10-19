@@ -75,24 +75,20 @@ class employerController extends Controller
             $data['type'] = 'employer';
             unset($data['cat_id']);
             $employee = Admin::create($data);
-
             foreach($request->cat_id as  $c){
                EmployerCategory::create([
                     'emp_id'=>$employee->id,
                     'cat_id'=>$c,
                 ]);
+                $employee_log='تم اضافه موظف'.$employee->name;
+                store_history(Auth::user()->id , $employee_log);
             }
-
-
-
             $employee->assignRole($request->input('role_id'));
-
             activity('admin')->log(trans('admin.employee_add'));
             $notification = $request['notification'];
             $employees = new Admin();
             $employees->notifications()->attach($notification);
             if ($employee->save()) {
-//                $user->assignRole($request['role_id']);
                 Alert::success(trans('admin.employee_add_success'), trans('admin.opretion_success'));
                 return redirect()->route('employer.index');
             }
@@ -160,8 +156,8 @@ class employerController extends Controller
     {
         $employer = Admin::findOrFail($id);
         $employer->delete();
-        activity('admin')->log('تم حذف الموظف بنجاح');
-
+        $employee_log='تم حدذف موظف'.$employer->name;
+        store_history(Auth::user()->id , $employee_log);
         Alert::success('تمت العمليه', 'تم حذف بنجاح');
 
         return redirect()->route('employer.index');
@@ -169,9 +165,11 @@ class employerController extends Controller
 
     public function changeStatus(Request $request)
     {
-        Admin::where('id', $request->id)->update([
+        $employee=  Admin::where('id', $request->id)->update([
             'status' => $request->status
         ]);
+        $employee_log='تم تغير حاله موظف'.$employee->name;
+        store_history(Auth::user()->id , $employee_log);
         return 1;
     }
 
@@ -183,7 +181,7 @@ class employerController extends Controller
 
     public function showLogs()
     {
-        $activities = \App\Models\Activity::with('employees')->get();
+        $activities = \App\Models\Adminhistory::orderBy('created_at','Desc')->paginate(30);
         return view($this->folderView . 'showLogs', \compact('activities'));
     }
 
