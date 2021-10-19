@@ -73,10 +73,10 @@
                 id: el.value,
                 status: status
             }, function (data) {
-                if (data == 1) {
-                    toastr.success("{{trans('admin.statuschanged')}}");
+                if (status == 'active') {
+                    toastr.success("{{trans('admin.Appearance_is_enabled')}}");
                 } else {
-                    toastr.error("{{trans('admin.statuschanged')}}");
+                    toastr.error("{{trans('admin.Appearance_is_disabled')}}");
                 }
             });
         }

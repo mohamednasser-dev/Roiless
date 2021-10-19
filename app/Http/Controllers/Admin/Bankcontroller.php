@@ -26,7 +26,7 @@ class Bankcontroller extends Controller
     {
         $banks = Bank::whereNull('parent_id')->orderBy('name_en', 'desc')->get();
         $active_banks=Bank::where('status','active')->get();
-       
+
         return view($this->folderView . 'banks', compact('banks','active_banks'));
     }
 
@@ -155,7 +155,7 @@ class Bankcontroller extends Controller
         }
     }
     public function update_Actived($id)
-    {   
+    {
       $bank=Bank::find($id);
       $bank->update([
           'status'=>"active",
@@ -164,7 +164,7 @@ class Bankcontroller extends Controller
     }
     public function unupdate_Actived(Request $request)
     {
-      
+
        if($request->bank_id)
        {
                 if($request->bank_id=="no_bank")
@@ -195,12 +195,12 @@ class Bankcontroller extends Controller
                 ]);
                 return redirect()->back();
           }
-      
+
     }
 
     public function destroy($id)
     {
-        
+
         $bank = Bank::findOrFail($id);
         if ($bank->parent_id == null) {
             if($bank->delete()){
@@ -220,7 +220,7 @@ class Bankcontroller extends Controller
 
     public function bankBranch($id)
     {
-        
+
         $branches = Bank::where('parent_id', $id)->get();
         $active_banks=Bank::where('status','active')->get();
         return view($this->folderView . 'branches', \compact('branches', 'id','active_banks'));
@@ -228,12 +228,12 @@ class Bankcontroller extends Controller
 
     public function BankFunds($id)
     {
-       
+
         $branches_ids =Bank::where('parent_id',$id)->get()->pluck('id')->toArray();
         array_push($branches_ids,$id);
-        
+
         $BankFunds = User_fund::wherein('bank_id', $branches_ids)->orderBy('created_at', 'DESC')->get();
-       
+
         return view($this->folderView . 'BankFunds', compact('BankFunds'));
     }
 
