@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use App\Models\Adminhistory;
 use Illuminate\Support\Facades\Validator;
 
 // send fcm notification
@@ -124,6 +125,13 @@ function msg($request, $status, $key)
     $msg['msg'] = $key;
     return $msg;
 }
+      function store_history($id,$bank_log){
+        Adminhistory::create([
+            'emp_id'=>$id,
+            'description'=> $bank_log
+        ]);
+     }
+
 
 function send($tokens, $title = "رسالة جديدة", $msg = "رسالة جديدة فى البريد", $type = 'mail', $chat = null)
 {
