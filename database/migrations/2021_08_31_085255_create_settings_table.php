@@ -18,13 +18,12 @@ class CreateSettingsTable extends Migration
             $table->string('logo');
             $table->string('title_ar');
             $table->string('title_en');
-            $table->string('terms_ar');
-            $table->string('terms_en');
-            $table->string('privacy_ar');
-            $table->string('privacy_en');
+            $table->longText('terms_ar');
+            $table->longText('terms_en');
+            $table->longText('privacy_ar');
+            $table->longText('privacy_en');
             $table->string('facebook')->nullable();
             $table->string('youtube')->nullable();
-            $table->string('gmail')->nullable();
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
             $table->string('linkedin')->nullable();

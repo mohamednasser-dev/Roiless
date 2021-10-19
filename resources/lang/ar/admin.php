@@ -143,6 +143,8 @@ return [
     'service_address_in_english' => 'عنوان الخدمه بالانجليزية',
     'service_image' => 'صوره الخدمه',
     'detailes' => 'التفاصيل',
+
+    //start setting
     'edit_setting_of_website' => 'تعديل اعدادات الموقع',
     'website_info' => 'معلومات الموقع',
     'website_logo' => 'شعار الموقع',
@@ -155,6 +157,9 @@ return [
     'about_application_in_english' => 'عن التطبيق بالانجليزيه',
     'website_name_in_arabic' => 'اسم الموقع بالعربيه',
     'website_setting' => 'اعدادات الموقع',
+
+    //end setting
+
     'create_advertisment' => 'انشاء اعلان',
     'advertisment' => 'اعلان',
     'iamge' => 'صوره',

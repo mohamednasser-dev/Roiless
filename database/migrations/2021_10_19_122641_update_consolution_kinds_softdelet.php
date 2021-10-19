@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateUserTableFcmToken extends Migration
+class UpdateConsolutionKindsSoftdelet extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class UpdateUserTableFcmToken extends Migration
      */
     public function up()
     {
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->text('fcm_token')->nullable();
+            Schema::table('consolution_kinds', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 

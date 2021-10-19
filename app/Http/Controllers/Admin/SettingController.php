@@ -19,12 +19,13 @@ class SettingController extends Controller
         $this->objectName = $model;
         $this->folderView = 'admin.setting';
     }
+
     public function edit()
     {
 
         $setting = $this->objectName::get()->first();
 
-        if (!$setting ){
+        if (!$setting) {
             Setting::create([
                 'title_ar' => '',
                 'title_en' => '',
@@ -34,7 +35,7 @@ class SettingController extends Controller
                 'privacy_en' => '',
                 'facebook' => '',
                 'youtube' => '',
-                'gmail' => '',
+
                 'instagram' => '',
                 'twitter' => '',
                 'linkedin' => '',
@@ -43,7 +44,7 @@ class SettingController extends Controller
                 'about_us_en' => "",
             ]);
         }
-        return view($this->folderView .'.'. 'edit' , compact('setting'));
+        return view($this->folderView . '.' . 'edit', compact('setting'));
     }
 
     public function update(Request $request, $id)
@@ -59,7 +60,7 @@ class SettingController extends Controller
                 'privacy_en' => 'required',
                 'facebook' => 'required',
                 'youtube' => 'required',
-                'gmail' => 'required',
+
                 'instagram' => 'required',
                 'twitter' => 'required',
                 'linkedin' => 'required',
@@ -76,28 +77,28 @@ class SettingController extends Controller
             ]);
 
 
-            DB::beginTransaction();
+        DB::beginTransaction();
 
-            $setting = $this->objectName::find($id);
-            if (!$setting){
-                Alert::warning('خطاء', 'هذا الاعداد ليس موجو');
-                return redirect()->route(' $this->folderView');
-            }
+        $setting = $this->objectName::find($id);
+        if (!$setting) {
+            Alert::warning('خطاء', 'هذا الاعداد ليس موجو');
+            return redirect()->route(' $this->folderView');
+        }
 
 
-            if($request->hasFile('logo')) {
-                $file_name = $this->MoveImage($request->file('logo'),'uploads/setting' );
-                $data['logo'] = $file_name;
-            }else{
-                unset($data['logo']);
-            }
+        if ($request->hasFile('logo')) {
+            $file_name = $this->MoveImage($request->file('logo'), 'uploads/setting');
+            $data['logo'] = $file_name;
+        } else {
+            unset($data['logo']);
+        }
 
-            $this->objectName::where('id',$id)->update($data);
+        $this->objectName::where('id', $id)->update($data);
 
-            activity('admin')->log('تم تحديث الاعدادات بنجاح');
+        activity('admin')->log('تم تحديث الاعدادات بنجاح');
 
-            DB::commit();
-            Alert::success('تمت العمليه', 'تم التحديث بنجاح');
-            return redirect()->route('Setting.edit');
+        DB::commit();
+        Alert::success('تمت العمليه', 'تم التحديث بنجاح');
+        return redirect()->route('Setting.edit');
     }
 }

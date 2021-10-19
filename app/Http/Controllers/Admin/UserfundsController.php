@@ -29,7 +29,7 @@ class UserfundsController extends Controller
     {
 
         if (auth()->user()->type == 'admin') {
-            return 'admin';
+
             $usefunds = User_fund::paginate(30);
             return view($this->folderView . 'index', compact('usefunds'));;
         }else{
@@ -66,7 +66,7 @@ class UserfundsController extends Controller
         }
         $requestreview = User_fund::find($id);
         $empolyers = Admin::where('type', 'employer')->where('cat_id', auth()->user()->cat_id)->where('id', '<>', auth()->user()->id)->get();
-        $banks = Bank::where('status','active')->get();
+        $banks = Bank::where('status','active')->wherenotnull('parent_id')->orderBy('parent_id','DESC')->get();
         $histories = Fhistory::where('user_fund_id', $id)->orderBy('created_at', 'DESC')->get();
         if ($requestreview->emp_id == auth()->user()->id) {
             return view($this->folderView . 'details', compact('requestreview', 'empolyers', 'banks', 'histories'));
