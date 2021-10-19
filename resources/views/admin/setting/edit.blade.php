@@ -1,6 +1,8 @@
 @extends('admin_temp')
 @section('styles')
     <link rel="stylesheet" href="{{ asset('/assets/plugins/dropify/dist/css/dropify.min.css') }}">
+    <link href="{{ asset('/assets/plugins/summernote/dist/summernote.css') }}" rel="stylesheet" >
+    <link href="{{ asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('content')
     <div class="row page-titles">
@@ -58,8 +60,8 @@
                                 <div class="form-group m-t-40 row">
                                     <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_english')}}</label>
                                     <div class="col-md-10">
-                                       
-                                        {{ Form::textarea('terms_ar',$setting->about_us_en,["class"=>"form-control textarea_editor6" , "rows" => "15" ,"required"]) }}
+
+                                        {{ Form::textarea('terms_ar',$setting->about_us_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
@@ -68,8 +70,8 @@
                                 <div class="form-group m-t-40 row">
                                     <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_arabic')}}</label>
                                     <div class="col-md-10">
-                                        
-                                        {{ Form::textarea('terms_en',$setting->about_us_en,["class"=>"form-control textarea_editor5" , "rows" => "15" ,"required"]) }}
+
+                                        {{ Form::textarea('terms_en',$setting->about_us_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
@@ -78,8 +80,8 @@
                                 <div class="form-group m-t-40 row">
                                     <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.privacey_in_arabic')}}</label>
                                     <div class="col-md-10">
-                                        
-                                        {{ Form::textarea('privacy_ar',$setting->about_us_en,["class"=>"form-control textarea_editor4" , "rows" => "15" ,"required"]) }}
+
+                                        {{ Form::textarea('privacy_ar',$setting->about_us_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
@@ -88,19 +90,19 @@
                                 <div class="form-group m-t-40 row">
                                     <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.privacey_in_english')}}</label>
                                     <div class="col-md-10">
-                                        
-                                        {{ Form::textarea('privacy_en',$setting->about_us_en,["class"=>"form-control textarea_editor3" , "rows" => "15" ,"required"]) }}
+
+                                        {{ Form::textarea('privacy_en',$setting->about_us_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
-                           
+
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-group m-t-40 row">
                                     <label for="example-text-input" class="col-md-2 col-form-label">
                                     {{trans('admin.about_application_in_arabic')}}
                                         </label>
                                     <div class="col-md-10">
-                                        {{ Form::textarea('about_us_ar',$setting->about_us_ar,["class"=>"form-control textarea_editor1" , "rows" => "15" ,"required"]) }}
+                                        {{ Form::textarea('about_us_ar',$setting->about_us_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
@@ -109,12 +111,12 @@
                                 <div class="form-group m-t-40 row">
                                     <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.about_application_in_english')}}</label>
                                     <div class="col-md-10">
-                                        {{ Form::textarea('about_us_en',$setting->about_us_en,["class"=>"form-control textarea_editor2" , "rows" => "15" ,"required"]) }}
+                                        {{ Form::textarea('about_us_en',$setting->about_us_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
 
-                          
+
 
                             <div class="col-lg-6 col-md-6">
                                 <div class="input-group">
@@ -196,6 +198,32 @@
     <!-- jQuery file upload -->
 
     <script src="{{ asset('/assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
+    <script src="{{ asset('/js/custom.min.js')}}"></script>
+    <script src="{{ asset('/assets/plugins/summernote/dist/summernote.min.js')}}"></script>
+    <script>
+        jQuery(document).ready(function() {
+
+            $('.summernote').summernote({
+                height: 350, // set editor height
+                minHeight: null, // set minimum height of editor
+                maxHeight: null, // set maximum height of editor
+                focus: false // set focus to editable area after initializing summernote
+            });
+
+            $('.inline-editor').summernote({
+                airMode: true
+            });
+
+        });
+
+        window.edit = function() {
+            $(".click2edit").summernote()
+        },
+            window.save = function() {
+                $(".click2edit").summernote('destroy');
+            }
+    </script>
+
     <script>
         $(document).ready(function () {
             // Basic
