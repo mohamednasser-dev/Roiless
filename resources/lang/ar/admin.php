@@ -13,7 +13,7 @@ return [
     'request'=>'الطلب',
     'status'=>'الحاله',
     'revision'=>'المراجعه',
-    
+    'Required_funds_exports'=>'تصدير الي اكسل',
 
     'kind_recive' => 'طريقه ارسال الاشعار',
     'trans_disaple' => 'تعطيل وتحويل',
