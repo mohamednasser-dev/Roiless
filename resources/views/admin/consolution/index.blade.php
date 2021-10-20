@@ -24,6 +24,7 @@
                 <th class="text-lg-center"> {{trans('admin.consolution_email')}}</th>
                 <th class="text-lg-center">{{trans('admin.consolution_phone')}}</th>
                 <th class="text-lg-center">{{trans('admin.consolution_kind')}}</th>
+                <th class="text-lg-center">{{trans('admin.replay.status')}}</th>
                 <th class="text-lg-center">{{trans('admin.consolution_replies')}}</th>
                 <th class="text-lg-center">{{trans('admin.delete')}}</th>
             </tr>
@@ -35,6 +36,21 @@
                     <td class="text-lg-center">{{$consolution->email}}</td>
                     <td class="text-lg-center">{{$consolution->phone}}</td>
                     <td class="text-lg-center">{{$consolution->consolution_kind->name_ar}}</td>
+                    <td class="text-lg-center">
+
+                        @php
+                            $test= \App\Models\reply::where('consolution_id',$consolution->id)->orderby('created_at','DESC')->first();
+                        @endphp
+                        @if($test == null)
+                            <span class="label label-danger">{{trans('admin.not.answerd')}}</span>
+                        @elseif($test->admin_id == null)
+                            <span class="label label-danger">{{trans('admin.not.answerd')}}</span>
+                        @else
+                            <span class="label label-info">{{trans('admin.answerd')}}</span>
+                        @endif
+
+
+                    </td>
                     <td class="text-lg-center ">
                     <!--
                     <a class='btn btn-info btn-circle' title="عرض" style="position: absolute;margin-right: -22px;margin-top: -20px;"

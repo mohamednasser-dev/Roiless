@@ -199,15 +199,15 @@ class UsersController extends Controller
         if ($validator->fails()) {
             return response()->json(msg($request, failed(), $validator->messages()->first()));
         } else {
-            
+
             $user_otb  =User::where('phone', $request->phone)->first();
-           
+
             if($request->otp_code == $user_otb->otp_code)
             {
                 $user_otb->password = Hash::make($request->password) ;
                 $user_otb->otp_code = null ;
                 $user_otb->save();
-                
+
                 $data['status'] = true ;
                 return msgdata($request, success(), 'change password true',  $data);
             }else{
@@ -264,7 +264,12 @@ class UsersController extends Controller
     }
     public function consolutions_data(Request $request)
     {
-        $user = consolution_kind::select('id','name_'.$request->header('lang').' as name')->orderBy('created_at','desc')->get();
+        if($request->header('lang') == null){
+            $lang = 'ar' ;
+        }else{
+            $lang = $request->header('lang') ;
+        }
+        $user = consolution_kind::select('id','name_'.$lang.' as name')->orderBy('created_at','desc')->get();
         return msgdata("", success(), ' successfully get data', $user);
     }
 

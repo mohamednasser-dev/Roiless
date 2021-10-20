@@ -56,16 +56,7 @@ class FundController extends Controller
             'file' => '',
         ];
         $validator = Validator::make($request->all(), $rules);
-        if ($request->file) {
-            $length = count($request->file);
-            foreach ($request->file as $key => $row) {
-                $image = $request->file[$key]['value'];  // your base64 encode
-                $image = str_replace('data:image/png;base64,', '', $image);
-                $ext = $request->file[$key]['ext'];
-                $imageName[$key] = Str::random(12) . '.' . $ext;
-                \File::put('uploads/fund_file/' . $imageName[$key], base64_decode($image));
-            }
-        }
+
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
@@ -83,15 +74,23 @@ class FundController extends Controller
             $history_data['note_ar'] = ' بدايه طلب التمويل';
             $history_data['note_en'] = 'Starting Fund Request';
             Fhistory::create($history_data);
+
             if ($request->file != null) {
                 foreach ($request->file as $key => $row) {
+                    // This is Image Information ...
+                    $file = $row;
+                    $ext = $file->getClientOriginalExtension();
+                    $size = $file->getSize();
+                    // Move Image To Folder ..
+                    $fileNewName = 'file' . $size . '_' . time() . '.' . $ext;
+                    $file->move(public_path('uploads/fund_file'), $fileNewName);
                     $file_data['user_fund_id'] = $user_funds->id;
-                    $file_data['file_ext'] = $request->file[$key]['ext'] ;
-                    $file_data['file_name'] = $imageName[$key];
+                    $file_data['file_ext'] = $ext ;
+                    $file_data['file_name'] = $fileNewName;
                     Fund_file::create($file_data);
                 }
             }
-            return response()->json(['status' => '200', 'msg' => 'add user fund successfully']);
+            return msgdata($request, success(), 'add user fund successfully', null);
         }
     }
 }
