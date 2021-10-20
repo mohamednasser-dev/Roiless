@@ -22,12 +22,13 @@ class ConsolutionController extends Controller
     }
     public function getall_consolution_detailes(Request $request, $id)
     {
-        $reply = reply::select('id', 'reply', 'created_at', 'admin_id', 'user_id')->with('user')->with('admin')->where('consolution_id', $id)->get();
-        if ($reply) {
+        $data['consolution_data'] = Consolution::with('consolution_kind')->find($id);
+        $data['reply'] = reply::select('id', 'reply', 'created_at', 'admin_id', 'user_id')->with('user')->with('admin')->where('consolution_id', $id)->get();
+        if ( $data['reply']) {
             reply::where('consolution_id', '=', $id)
                 ->update(['seen' => '1']);
         }
-        return msgdata($request, success(), 'get services sucess', $reply);
+        return msgdata($request, success(), 'get services sucess', $data);
     }
     public function Reply(Request $request)
     {

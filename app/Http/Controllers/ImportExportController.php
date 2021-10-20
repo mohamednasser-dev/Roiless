@@ -15,7 +15,7 @@ class ImportExportController extends Controller
     }
     public function export_userfund()
     {
-        return Excel::download(new BulkExport, 'bulkData.xlsx');
+        return Excel::download(new user_fundExport, 'bulkData.xlsx');
     }
     
 }

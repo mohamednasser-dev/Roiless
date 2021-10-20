@@ -11,6 +11,9 @@
             </ol>
         </div>
     </div>
+    <div class="d-flex">
+    <a class="btn btn-info ml-auto" href="{{route('export_userfund')}}">تصدير الي اكسيل</a>
+   </div>
     <br>
     <div class="row">
         <table class="table full-color-table full-primary-table">
