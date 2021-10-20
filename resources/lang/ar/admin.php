@@ -103,7 +103,7 @@ return [
     'logo' => 'الشعار',
 
 
-    'updatSuccess' => 'تم التعديل بنجاح',
+
     'logout' => 'تسجيل الخروج',
     'notification_data' => 'معلومات الاشعار',
     'edit_notification' => 'تعديل الاشعار',
@@ -260,9 +260,31 @@ return [
     'emp_return' => 'نقل الطلب من الموظف',
     'to' => 'الي',
 // end user fund details page
+
     'invaldemailorpassword' => 'الرقم السرى او البريد الالكترونى خطأ .. !',
     'not_auth' => 'غير مصرح لك الدخول .... غير مفعل',
     'bank_delete' => 'تم حذف بنك ',
     'deleted' => 'تم الحذف',
+
+    // start sweet alert
+
+
+    'user_created' => 'تم انشاء مستخدم جديد',
+    'user_update' => 'تم تعديل مستخدم جديد',
+
+
+    'employer_created' => 'تم انشاء موظف جديد',
+    'employer_update' => 'تم تعديل موظف جديد',
+
+
+
+    'updated_Success' => 'تم التعديل بنجاح',
+    'Deleted_Success' => 'تم الحذف بنجاح',
     'opretion_success' => 'تمت العمليه بنجاح',
+    'Deleted' => 'الحذف',
+
+    // end sweet alert
+
+
+
 ];

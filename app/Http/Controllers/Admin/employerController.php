@@ -55,14 +55,14 @@ class employerController extends Controller
 //        return $request;
         $data = $this->validate(\request(),
             [
-                'name' => 'required|unique:admins',
-                'email' => 'required|unique:admins',
-                'phone' => 'required|unique:admins',
-                'image' => 'required',
-                'password' => 'required|min:6|confirmed',
-                'password_confirmation' => 'required|min:6',
-                'role_id' => 'required',
-                'cat_id' => 'required|array|min:1',
+                'name'                   => 'required|unique:admins|max:255',
+                'email'                  => 'required|unique:admins|email',
+                'phone'                  => 'required|unique:admins|numeric',
+                'image'                  => 'required',
+                'password'               => 'required|min:6|confirmed',
+                'password_confirmation'  => 'required|min:6',
+                'role_id'                => 'required|numeric',
+                'cat_id'                 => 'required|array|min:1|numeric',
             ]);
 
         if ($request['password'] != null && $request['password_confirmation'] != null) {
@@ -89,7 +89,7 @@ class employerController extends Controller
             $employees = new Admin();
             $employees->notifications()->attach($notification);
             if ($employee->save()) {
-                Alert::success(trans('admin.employee_add_success'), trans('admin.opretion_success'));
+                Alert::success(trans('admin.opretion_success'),trans('admin.employer_created') );
                 return redirect()->route('employer.index');
             }
         }
@@ -112,25 +112,24 @@ class employerController extends Controller
         if ($request['password'] != null && $request['password_confirmation'] != null) {
             $data = $this->validate(\request(),
                 [
-                    'name' => 'required|unique:admins,name,' . $id,
-                    'email' => 'required|unique:admins,email,' . $id,
-                    'phone' => 'required|unique:admins,phone,' . $id,
-                    'password' => 'required|min:6|confirmed',
-                    'password_confirmation' => 'required|min:6',
-                    'cat_id' => 'required',
-                    'role_id' => 'required'
+                    'name'                   => 'required|max:255,' . $id,
+                    'email'                  => 'required|unique:admins,email|email,' . $id,
+                    'phone'                  => 'required|unique:admins,phone|numeric,' . $id,
+                    'password'               => 'required|min:6|confirmed',
+                    'password_confirmation'  => 'required|min:6',
+                    'cat_id'                 => 'required|numeric',
+                    'role_id'                => 'required|numeric'
                 ]);
             $data['password'] = bcrypt(request('password'));
             unset($data['password_confirmation']);
         } else {
             $data = $this->validate(\request(),
                 [
-                    'name' => 'required|unique:admins,name,' . $id,
-                    'email' => 'required|unique:admins,email,' . $id,
-                    'phone' => 'required|unique:admins,phone,' . $id,
-                    'cat_id' => 'required',
-                    'role_id' => 'required'
-
+                    'name'                   => 'required|max:255,' . $id,
+                    'email'                  => 'required|unique:admins,email|email,' . $id,
+                    'phone'                  => 'required|unique:admins,phone|numeric,' . $id,
+                    'cat_id'                 => 'required|numeric',
+                    'role_id'                => 'required|numeric'
                 ]);
         }
         $data['type'] = 'employer';
@@ -148,7 +147,7 @@ class employerController extends Controller
             ]);
         }
         $employee->assignRole($request->input('role_id'));
-        Alert::success('تمت العمليه', 'تم تحديث الموظف بنجاح');
+        Alert::success(trans('admin.opretion_success'),trans('admin.employer_update') );
         return redirect()->route('employer.index');
     }
 
@@ -158,7 +157,7 @@ class employerController extends Controller
         $employer->delete();
         $employee_log='تم حدذف موظف'.$employer->name;
         store_history(Auth::user()->id , $employee_log);
-        Alert::success('تمت العمليه', 'تم حذف بنجاح');
+        Alert::success(trans('admin.Deleted'), trans('admin.Deleted_Success'));
 
         return redirect()->route('employer.index');
     }

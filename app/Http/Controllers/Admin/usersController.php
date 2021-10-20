@@ -23,6 +23,7 @@ class usersController extends Controller{
 
     public function index(){
         $users = $this->objectName::where('type','user')->orderBy('name','desc')->paginate(30);
+
         return view($this->folderView.'users',compact('users'));
     }
 
@@ -33,18 +34,20 @@ class usersController extends Controller{
 
     public function create(){
          $categories = Category::all();
+
         return view($this->folderView.'create_user',compact('categories'));
+
     }
 
     public function store(Request $request){
 
         $data = $this->validate(\request(),
         [
-            'name' => 'required|unique:users',
-            'email' => 'required|unique:users',
-            'phone' => 'required',
-            'image' => '',
-            'password' => 'required|min:6|confirmed',
+            'name'                  => 'required|max:255',
+            'email'                 => 'required|unique:users|email',
+            'phone'                 => 'required|numeric',
+            'image'                 => '',
+            'password'              => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6',
         ]);
         if($request['password'] != null  && $request['password_confirmation'] != null ){
@@ -66,7 +69,7 @@ class usersController extends Controller{
             $users->notifications()->attach($notification);
             if($user->save()){
 //                $user->assignRole($request['role_id']);
-                Alert::success('تمت العمليه', 'تم انشاء مستخد جديد');
+                Alert::success(trans('admin.opretion_success'),trans('admin.user_created') );
                 return redirect(url('users'));
             }
         }
@@ -106,7 +109,7 @@ class usersController extends Controller{
             }
             User::where('id',$id)->update($data);
             activity('admin')->log('تم تحديث مستخدم  بنجاح');
-            Alert::success('تمت العمليه', trans('admin.updatSuccess'));
+            Alert::success(trans('admin.opretion_success'),trans('admin.user_update') );
             return redirect(url('users'));
         }else{
             unset($data['password']);
@@ -116,7 +119,7 @@ class usersController extends Controller{
                 $data['image'] = $this->MoveImage($request->image,'uploads/users_images');
             }
             User::where('id',$id)->update($data);
-            session()->flash('success',  trans('admin.updatSuccess'));
+            Alert::success(trans('admin.opretion_success'),trans('admin.updated_Success') );
             return redirect(url('users'));
         }
     }
@@ -135,10 +138,10 @@ class usersController extends Controller{
             $user->delete();
             $user->save();
             activity('admin')->log('تم حذف مستخدم  بنجاح');
-            Alert::success('الحذف', trans('admin.deleteSuccess'));
+            Alert::success(trans('admin.Deleted'),trans('admin.Deleted_Success') );
         }catch(Exception $ex){
-            return $ex;
             Alert::warning('الحذف', trans('admin.emp_no_delete'));
+            return $ex;
         }
         return back();
     }

@@ -93,6 +93,7 @@ return [
     'not_regex'            => 'صيغة :attribute غير صحيحة.',
     'numeric'              => 'يجب على :attribute أن يكون رقمًا.',
     'password'             => 'كلمة المرور غير صحيحة.',
+    'password_confirmation'  => 'تاكيد كلمة المرور مطلوبه',
     'present'              => 'يجب تقديم :attribute.',
     'regex'                => 'صيغة :attribute .غير صحيحة.',
     'required'             => ':attribute مطلوب.',
@@ -152,16 +153,21 @@ return [
         'date'=>'تاريخ المباراه',
         'date_created'=>'تاريخ الانشاء',
         'status'=>'الحالة',
-       
+
         //for login page and register ..
         'password'=>'كلمة المرور',
         'email'=>'البريد الالكترونى',
         'name'=>'الاسم',
         'users_id'=>'اسم العميل مطلوب',
         'funds'=>'تحديد قسم التمويل مطلوب',
-        
-        
-        
+        'password_confirmation'=>'تاكيد الباسورد مطلوب',
+        'phone'=>'رقم الهاتف',
+        'role_id'=>'الصلاحيه',
+        'cat_id'=>'القسم',
+
+
+
+
     ],
 
 ];
