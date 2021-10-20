@@ -18,7 +18,7 @@ class UpdateUserNotificationSeen extends Migration
             $table->integer('seen')->default(0);
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
