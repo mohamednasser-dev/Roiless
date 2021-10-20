@@ -190,6 +190,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
         Route::post('/consolutionKind/update/{id}', 'ConsolutionKindControler@update')->name('consolutionKind.update');
         Route::get('/consolutionKind/delete/{id}', 'ConsolutionKindControler@destroy')->name('consolutionKind.delete');
     });
+    // export data
+
+    Route::get('export', 'DemoController@export')->name('export');
 
 });
 

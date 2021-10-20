@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\User_fund;
 use App\Models\Fhistory;
 use App\Models\Admin;
+use Auth;
 use App\Models\Bank;
 
 class UserfundsController extends Controller
@@ -28,13 +29,13 @@ class UserfundsController extends Controller
     public function index()
     {
         if (auth()->user()->type == 'admin') {
-            $usefunds = User_fund::paginate(30);
+            $usefunds = User_fund::with('Fund')->paginate(30);
             return view($this->folderView . 'index', compact('usefunds'));;
         }else{
 
             $catids =EmployerCategory::where('emp_id',auth()->user()->id)->pluck('cat_id');
 
-            $usefunds = User_fund::with('Fund')->whereHas('Fund', function ($q) use($catids) {
+            $usefunds = User_fund::whereHas('Fund', function ($q) use($catids) {
               $q->whereIN('cat_id',$catids);
             })->paginate(30);
             return view($this->folderView . 'index', compact('usefunds'));;
@@ -67,6 +68,9 @@ class UserfundsController extends Controller
         $banks = Bank::where('status','active')->wherenotnull('parent_id')->orderBy('parent_id','DESC')->get();
         $histories = Fhistory::where('user_fund_id', $id)->orderBy('created_at', 'DESC')->get();
         if ($requestreview->emp_id == auth()->user()->id) {
+         
+            $employee_log= 'تم مراجعه تمويل'.$userfund->Users->name;
+            store_history(Auth::user()->id , $employee_log);
             return view($this->folderView . 'details', compact('requestreview', 'empolyers', 'banks', 'histories'));
         } else {
             Alert::warning('تنبية', 'مرفوض الدخول');
