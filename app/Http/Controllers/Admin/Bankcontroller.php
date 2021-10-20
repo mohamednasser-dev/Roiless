@@ -61,7 +61,7 @@ class Bankcontroller extends Controller
                 'image'                 => 'required',
                 'password'              => 'required|min:6|confirmed',
                 'password_confirmation' => 'required|min:6',
-                'address'               => 'required||max:255',
+                'address'               => 'required|max:255',
             ]);
         if ($request['password'] != null && $request['password_confirmation'] != null) {
             $data['password'] = bcrypt(request('password'));
@@ -78,10 +78,11 @@ class Bankcontroller extends Controller
             $bank = Bank::create($data);
             $notification = $request['notification'];
             $banks = new Bank();
-            activity('admin')->log();
             $banks->notifications()->attach($notification);
             if ($bank->save()) {
                 Alert::success(trans('admin.opretion_success'), trans('admin.bank_created'));
+                $bank_log = 'تم اضافه بنك ' . $bank->name_ar;
+                store_history(Auth::user()->id, $bank_log);
                 if ($bank->parent_id == null) {
                     return redirect()->route('banks.index');
                 } else {

@@ -45,12 +45,24 @@
                                 class="mdi mdi-cash-multiple"></i><span
                                 class="hide-menu"></span>{{trans('admin.funds')}}</a>
                     </li>
+                   
                 @endcan
                 @can('Client Funds')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('userfunds')}}" aria-expanded="false"><i
                                 class="mdi mdi-cash-multiple"></i><span
                                 class="hide-menu"></span>{{trans('admin.Required_funds')}}</a>
+                    </li>
+                    <li><a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-cash-multiple"></i><span
+                                class="hide-menu">{{trans('admin.Required_funds')}}</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li><a href="{{route('employer.create')}}">{{trans('admin.Required_funds')}}</a></li>
+                            <li><a href="{{route('employer.index')}}">{{trans('admin.Required_funds_exports')}}</a></li>
+                            
+                            @can('roles')
+                                <li><a href="{{route('roles.index')}}">{{trans('admin.permissions')}}</a></li>
+                            @endcan
+                        </ul>
                     </li>
                 @endcan
                 @can('categories')
@@ -59,6 +71,7 @@
                                 class="mdi mdi-briefcase"></i><span
                                 class="hide-menu"></span>{{trans('admin.fund_category')}}</a>
                     </li>
+                    
                 @endcan
 
                 @can('Common questions')
