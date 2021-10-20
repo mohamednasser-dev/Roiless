@@ -166,7 +166,7 @@ return [
     'advertisment' => 'اعلان',
     'iamge' => 'صوره',
     'password_confirmation' => 'تاكيد كلمه المرور',
-    'login' => 'دخول',
+    'login' => 'تسجيل الدخول',
     'change_photo' => 'تغيير الصوره',
     'email' => 'البريد الالكتروني',
     'orders' => 'الطلبات',
