@@ -148,10 +148,6 @@ class Bankcontroller extends Controller
     }
     public function unupdate_Actived(Request $request)
     {
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
        if($request->bank_id)
        {
                 if($request->bank_id=="no_bank")
@@ -185,19 +181,11 @@ class Bankcontroller extends Controller
                     'status'=>"unactive",
                 ]);
                 return redirect()->back();
-<<<<<<< Updated upstream
           }
 
-=======
-          } 
->>>>>>> Stashed changes
     }
     public function destroy($id)
     {
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
         $bank = Bank::findOrFail($id);
         if ($bank->parent_id == null) {
             if($bank->delete()){
@@ -218,28 +206,15 @@ class Bankcontroller extends Controller
     }
     public function bankBranch($id)
     {
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
         $branches = Bank::where('parent_id', $id)->get();
         $active_banks=Bank::where('status','active')->get();
         return view($this->folderView . 'branches', \compact('branches', 'id','active_banks'));
     }
     public function BankFunds($id)
     {
-<<<<<<< Updated upstream
-
-        $branches_ids =Bank::where('parent_id',$id)->get()->pluck('id')->toArray();
-        array_push($branches_ids,$id);
-
-        $BankFunds = User_fund::wherein('bank_id', $branches_ids)->orderBy('created_at', 'DESC')->get();
-
-=======
         $branches_ids =Bank::where('parent_id',$id)->get()->pluck('id')->toArray();
         array_push($branches_ids,$id);
         $BankFunds = User_fund::wherein('bank_id', $branches_ids)->orderBy('created_at', 'DESC')->get();
->>>>>>> Stashed changes
         return view($this->folderView . 'BankFunds', compact('BankFunds'));
     }
 }
