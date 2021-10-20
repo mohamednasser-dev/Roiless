@@ -231,6 +231,7 @@ return [
     'main_website_appairance' => 'تفعيل الخدمة',
     'common_questions' => 'الاسئله الشائعه',
     'communication' => 'الرسائل',
+    'replaies' => 'الردود',
     'message' => 'الرسائل',
     'main_Measures' => 'قائمه الاجرائات',
     'Measures' => ' الاجرائات',
@@ -269,11 +270,16 @@ return [
 
 
     'user_created' => 'تم انشاء مستخدم جديد',
-    'user_update' => 'تم تعديل مستخدم جديد',
-
-
+    'permission_created' => 'تم انشاء صلاحيه جديده',
     'employer_created' => 'تم انشاء موظف جديد',
-    'employer_update' => 'تم تعديل موظف جديد',
+    'bank_created' => 'تم انشاء بنك جديد',
+
+
+
+
+    'user_update' => 'تم تعديل مستخدم جديد',
+    'employer_update' => 'تم تعديل بيانات الموظف',
+    'permisstion_update' => 'تم تعديل الصلاحيه',
 
 
 

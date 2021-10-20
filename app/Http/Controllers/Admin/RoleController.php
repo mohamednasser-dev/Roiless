@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -38,6 +39,7 @@ class RoleController extends Controller
         ]);
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($request->input('permissions'));
+        Alert::success(trans('admin.opretion_success'),trans('admin.permission_created') );
         return redirect()->route('roles.index');
     }
 
@@ -72,6 +74,7 @@ class RoleController extends Controller
         $role->name = $request->input('name');
         $role->save();
         $role->syncPermissions($request->input('permissions'));
+        Alert::success(trans('admin.opretion_success'),trans('admin.permisstion_update') );
         return redirect()->route('roles.index');
     }
 

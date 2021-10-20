@@ -54,14 +54,14 @@ class Bankcontroller extends Controller
     {
         $data = $this->validate(\request(),
             [
-                'name_ar' => 'required|unique:banks,name_ar',
-                'name_en' => 'required|unique:banks,name_en',
-                'email' => 'required|unique:banks,email',
-                'phone' => 'required|unique:banks,phone',
-                'image' => 'required',
-                'password' => 'required|min:6|confirmed',
+                'name_ar'               => 'required|max:255',
+                'name_en'               => 'required|max:255',
+                'email'                 => 'required|unique:banks,email|email',
+                'phone'                 => 'required|unique:banks,phone',
+                'image'                 => 'required',
+                'password'              => 'required|min:6|confirmed',
                 'password_confirmation' => 'required|min:6',
-                'address' => 'required',
+                'address'               => 'required||max:255',
             ]);
         if ($request['password'] != null && $request['password_confirmation'] != null) {
             $data['password'] = bcrypt(request('password'));
@@ -78,10 +78,10 @@ class Bankcontroller extends Controller
             $bank = Bank::create($data);
             $notification = $request['notification'];
             $banks = new Bank();
-            activity('admin')->log('تم اضافه البنك بنجاح');
+            activity('admin')->log();
             $banks->notifications()->attach($notification);
             if ($bank->save()) {
-                Alert::success('تمت العمليه', 'تم انشاء بنك جديد');
+                Alert::success(trans('admin.opretion_success'), trans('admin.bank_created'));
                 if ($bank->parent_id == null) {
                     return redirect()->route('banks.index');
                 } else {
@@ -103,17 +103,17 @@ class Bankcontroller extends Controller
         if ($request['password'] != null) {
             $data = $this->validate(\request(),
                 [
-                    'name_ar' => 'required|unique:banks,name_ar,' . $id,
-                    'name_en' => 'required|unique:banks,name_en,' . $id,
-                    'email' => 'required|unique:users,email,' . $id,
+                    'name_ar' => 'required|max:255,' . $id,
+                    'name_en' => 'required|max:255,' . $id,
+                    'email' => 'required|unique:users,email|email,' . $id,
                     'password' => 'required|min:6|confirmed',
                 ]);
         } else {
             $data = $this->validate(\request(),
                 [
-                    'name_ar' => 'required|unique:banks,name_ar,' . $id,
-                    'name_en' => 'required|unique:banks,name_en,' . $id,
-                    'email' => 'required|unique:users,email,' . $id,
+                    'name_ar' => 'required|max:255,' . $id,
+                    'name_en' => 'required|max:255,' . $id,
+                    'email' => 'required|unique:users,email|email,' . $id,
                 ]);
         }
         if ($request['password'] != null && $request['password_confirmation'] != null) {

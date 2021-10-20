@@ -2,7 +2,7 @@
 @section('styles')
     <link href="{{asset('/assets/plugins/Magnific-Popup-master/dist/magnific-popup.css')}}" rel="stylesheet">
     <link href="{{asset('/css/pages/user-card.css')}}" rel="stylesheet">
-    <link href="{{asset('/css/style.css')}}" rel="stylesheet">
+    {{--    <link href="{{asset('/css/style.css')}}" rel="stylesheet">--}}
     <style>
         * {
             box-sizing: border-box;
@@ -130,7 +130,8 @@
 
         /* Next & previous buttons */
         .prev,
-        .next {}
+        .next {
+        }
 
         /* Position the image container (needed to position the left and right arrows) */
         .container {
@@ -373,11 +374,15 @@
                 <div class="card-body">
                     <div class="card-title">
                         <h3>{{trans('admin.date_preview')}}</h3>
+                        <div class="row">
                         @foreach(json_decode($requestreview->dataform, true) as $data)
-                            <h3 class="control-label">{{ $data['name'] }}</h3>
-                            <input type="text" id="firstName" class="form-control" value="{{ $data['value'] }} "
-                                   readonly>
-                        @endforeach
+                                <div class="col-6">
+                                    <h3 class="control-label">{{ $data['name'] }}</h3>
+                                    <input type="text" id="firstName" class="form-control" value="{{ $data['value'] }} "
+                                           readonly>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
@@ -667,12 +672,15 @@
         });
         var slideIndex = 1;
         showSlides(slideIndex);
+
         function plusSlides(n) {
             showSlides(slideIndex += n);
         }
+
         function currentSlide(n) {
             showSlides(slideIndex = n);
         }
+
         function showSlides(n) {
             var i;
             var slides = document.getElementsByClassName("mySlides");
