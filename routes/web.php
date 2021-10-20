@@ -193,6 +193,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     // export data
 
     Route::get('export', 'ImportExportController@export')->name('export');
+    Route::get('export/user_fund', 'ImportExportController@export_userfund')->name('export_userfund');
 
 });
 

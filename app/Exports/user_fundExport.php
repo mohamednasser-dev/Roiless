@@ -1,5 +1,5 @@
 <?php
-namespace App\Exports;
+namespace App\user_fundExport;
 use App\Models\Fund_user;
 use Maatwebsite\Excel\Concerns\FromCollection;
 class BulkExport implements FromCollection
@@ -29,6 +29,8 @@ class BulkExport implements FromCollection
     }
     public function collection()
     {
-        return Fund_user::select('name','phone','email','created_at')->get();
+        return Fund_user::select('id','user_status','created_at')->with('Users',function($q){
+            $q->select('name');
+        })->with('Fund_details')->get();
     }
 }

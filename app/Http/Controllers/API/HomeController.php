@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use App\Models\Slider;
-use App\Models\User_notification;
+use App\Models\User_Notification;
 use App\Models\Fund;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class HomeController extends Controller
         $id=AUth::user()->id;
         $funds = Fund::select([ 'id' ,'name_ar', 'name_en','desc_ar','desc_en','cat_id', 'image'])->wherein('featured', ['1'])->wherein('appearance', ['1'])->get();
         $data['funds'] = $funds;
-        $seen=User_notification::select('seen')->where('user_id',$id)->where('seen',0)->count();
+        $seen=User_Notification::select('seen')->where('user_id',$id)->where('seen',0)->count();
         $data['unseen'] = $seen;
         return msgdata($request, success(), 'update_profile_success', $data);
     }

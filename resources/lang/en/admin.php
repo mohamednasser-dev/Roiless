@@ -9,6 +9,10 @@ return [
    'trans'=>' disable',
     'disable_only' => 'disable only',
    'address'=>'bank address',
+   'date'=>'date',
+   'request'=>'request',
+   'status'=>'status',
+   'revision'=>'revision',
 
     'permisstion' => 'permission',
     'permissions' => 'permissions',

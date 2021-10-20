@@ -17,7 +17,7 @@ class NotificationController extends Controller
         //    $notificaations=Notification::with('user',function($q){   
         //    })->get();
         $id=Auth::user()->id;
-        $notificaations=User_Notification::where('user_id',$id)->with('notifications')->get();
+        $notificaations=User_Notification::where('user_id',$id)->with('notifications')->orderBy('created_at','Desc')->get();
         $user=User::findorfail($id);
         User_Notification::where('user_id',$id)->update([
             'seen'=>1
