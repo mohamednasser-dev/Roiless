@@ -12,9 +12,15 @@
         </div>
     </div>
     <!-- /.card-header -->
-    <div class="title">
-        <a href="{{url('users/create')}} "
-           class="btn btn-info btn-bg">{{trans('admin.add_new_user')}}</a>
+    <div class="d-flex">
+         <div class="title">
+            <a href="{{url('users/create')}} "
+            class="btn btn-info btn-bg">{{trans('admin.add_new_user')}}</a> 
+        </div>
+        <div class="ml-auto">
+            <a href="{{route('export')}}"
+                class="btn btn-info btn-bg ml-auto">تصدير الي اكسيل</a>
+          </div>
     </div>
     <br>
     <div class="row">

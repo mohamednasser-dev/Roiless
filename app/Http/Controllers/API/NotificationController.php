@@ -16,15 +16,12 @@ class NotificationController extends Controller
         //  $notificaations = Notification::select(['id','title_ar','title_en', 'body_ar', 'body_en','image'])::with()->get();
         //    $notificaations=Notification::with('user',function($q){   
         //    })->get();
-           
-        
         $id=Auth::user()->id;
-        $notificaations=User_Notification::where('user_id',$id)->with('Users')->with('notifications')->get();
+        $notificaations=User_Notification::where('user_id',$id)->with('notifications')->get();
         $user=User::findorfail($id);
-      
-        $user->update([
-            'seen_notification'=>0,
-         ]);  
+        User_Notification::where('user_id',$id)->update([
+            'seen'=>1
+        ]);
          return msgdata($request, success(), 'get services sucess',$notificaations);
     }
 }

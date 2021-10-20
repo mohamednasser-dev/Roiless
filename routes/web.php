@@ -192,7 +192,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     });
     // export data
 
-    Route::get('export', 'DemoController@export')->name('export');
+    Route::get('export', 'ImportExportController@export')->name('export');
 
 });
 
