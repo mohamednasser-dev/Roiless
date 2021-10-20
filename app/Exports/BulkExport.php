@@ -2,21 +2,13 @@
 namespace App\Exports;
 use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
-class BulkExport implements FromCollection
+use Maatwebsite\Excel\Concerns\WithHeadings;
+class BulkExport implements FromCollection,WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function headings(): array
-    {
-        return [
-            'Id',
-            'name',
-            'email',
-            'createdAt',
-            'updatedAt',
-        ];
-    }
+   
     public function map($bulk): array
     {
         return [
@@ -29,6 +21,17 @@ class BulkExport implements FromCollection
     }
     public function collection()
     {
-        return User::select('name','phone','email','created_at')->get();
+        return User::select('id','name','phone','email','created_at')->get();
     }
+    public function headings(): array
+    {
+        return [
+            'Id',
+            'name',
+            'phone',
+            'email',
+            'date',
+        ];
+    }
+    
 }
