@@ -15,6 +15,8 @@ use App\Models\Fund_file;
 use Validator;
 use Str;
 use Illuminate\Http\Request;
+use BaklySystems\PayMob\Facades\PayMob;
+use App\Http\Controllers\Api\PayMobController;
 
 class FundController extends Controller
 {
@@ -93,8 +95,22 @@ class FundController extends Controller
             return msgdata($request, success(), 'add user fund successfully', ['fund_id'=>$user_funds->id]);
         }
     }
-    public function DoPayment($id)
+    public function DoPayment($id,$user_id)
     {
-        return dd($id);
+        $order = User_fund::find($id);
+        $user  = User::find($user_id);
+        return view('payment.paymentMethods',compact('order','user'));
+    }
+    public function payway($payway='visa',$id,$user_id)
+    {
+        $order = User_fund::find($id);
+        if ($order->payment == 'not paid') {
+            if ($payway == 'visa') {
+                $paymob = new PayMobController;
+                return $paymob->checkingOut(env('PAYMOB_VISA_ID'),env('PAYMOB_VISA_IFRAME_ID'),$order->id,$user_id);
+            }
+        }else{
+            return redirect('payment-fail');
+        }
     }
 }

@@ -20,15 +20,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 //user
     Route::post("/login", "AuthController@login");
-
     Route::post("/Register", "AuthController@Register");
     Route::post("/loginasguest", "AuthController@loginasguest");
     Route::post('forgot/password', 'UsersController@forgot_password_post')->name('forgot.password');
     Route::post('update/forgot_password', 'UsersController@reset_password_forget');
     // setting
     Route::get('/setting', 'SettingController@index');
+    //Payment
+    Route::get("/payment/{id}/{user_id}", "FundController@DoPayment");
+    Route::post("/payment/{payway}/{id}/{user_id}", "FundController@payway")->name('payWay');
 
-        Route::get("/payment/{id}", "FundController@DoPayment");
     Route::group(['middleware' => ['jwt.verify']], function () {
         Route::post("/logout", "AuthController@logout");
         // home page and services
