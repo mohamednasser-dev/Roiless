@@ -48,7 +48,7 @@ class PayMobController extends Controller
             $paymobOrder->id,
             // For billing data
             // For billing data
-            $user->email, // optional
+            ($user->email == null)?'test@test.com':$user->email, // optional
             'Roiless', // optional
             $user->name, // optional
             $user->phone, // optional
