@@ -150,7 +150,6 @@ class PayMobController extends Controller
     {
         $orderId = $request['merchant_order_id'];
         $order   = config('paymob.order.model', 'App\Order')::find($orderId);
-        dd($order);
         // Statuses.
         $isSuccess  = filter_var($request['success'], FILTER_VALIDATE_BOOLEAN);
         $isVoided  = filter_var($request['is_voided'], FILTER_VALIDATE_BOOLEAN);
