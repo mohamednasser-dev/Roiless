@@ -158,14 +158,15 @@ class PayMobController extends Controller
         if ($isSuccess && !$isVoided && !$isRefunded) { // transcation succeeded.
             $this->succeeded($order);
         } elseif ($isSuccess && $isVoided) { // transaction voided.
-            $this->voided($order);
+            return redirect('/payment/fail');
         } elseif ($isSuccess && $isRefunded) { // transaction refunded.
-            $this->refunded($order);
+            return redirect('/payment/fail');
         } elseif (!$isSuccess) { // transaction failed.
-            $this->failed($order);
+            return redirect('/payment/fail');
         }else{
-            return redirect()->route('fail');
+            return redirect('/payment/fail');
         }
+        //return redirect('/payment/fail');
         //return response()->json(['success' => true], 200);
     }
 
