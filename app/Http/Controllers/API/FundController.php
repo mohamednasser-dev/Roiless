@@ -16,7 +16,7 @@ use Validator;
 use Str;
 use Illuminate\Http\Request;
 use BaklySystems\PayMob\Facades\PayMob;
-use App\Http\Controllers\Api\PayMobController;
+use App\Http\Controllers\API\PayMobController;
 
 class FundController extends Controller
 {
