@@ -68,12 +68,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/OnClick-global/laravel-paymob.git",
-                "reference": "d06cd9efc70ff21658a1ba647082eb9c73257684"
+                "reference": "9e98cf70bf610fe1555dc36e48ccbe6fd9a1bb18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OnClick-global/laravel-paymob/zipball/d06cd9efc70ff21658a1ba647082eb9c73257684",
-                "reference": "d06cd9efc70ff21658a1ba647082eb9c73257684",
+                "url": "https://api.github.com/repos/OnClick-global/laravel-paymob/zipball/9e98cf70bf610fe1555dc36e48ccbe6fd9a1bb18",
+                "reference": "9e98cf70bf610fe1555dc36e48ccbe6fd9a1bb18",
                 "shasum": ""
             },
             "require": {
@@ -123,7 +123,7 @@
             "support": {
                 "source": "https://github.com/OnClick-global/laravel-paymob/tree/master"
             },
-            "time": "2021-10-21T22:43:52+00:00"
+            "time": "2021-10-21T23:08:01+00:00"
         },
         {
             "name": "brick/math",

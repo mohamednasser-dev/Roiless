@@ -47,8 +47,13 @@ class PayMobController extends Controller
             $order->fund_amount * 100,
             $paymobOrder->id,
             // For billing data
+            // For billing data
+            $user->email, // optional
+            'Roiless', // optional
             $user->name, // optional
             $user->phone, // optional
+            'cairo', // optional
+            'egypt' // optional
         );
         return redirect('https://accept.paymob.com/api/acceptance/iframes/'.$iframe_id.'?payment_token='.$payment_key->token);
     }
