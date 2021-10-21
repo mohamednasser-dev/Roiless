@@ -29,6 +29,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
     //Payment
     Route::get("/payment/{id}/{user_id}", "FundController@DoPayment");
     Route::post("/payment/{payway}/{id}/{user_id}", "FundController@payway")->name('payWay');
+    Route::post("/payment/response", "PayMobController@processedCallback")->name('response');
 
     Route::group(['middleware' => ['jwt.verify']], function () {
         Route::post("/logout", "AuthController@logout");
