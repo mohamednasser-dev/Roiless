@@ -48,34 +48,28 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::post('make/inbox', 'InboxController@store');
         // about_us
         Route::get('about_us', 'HomeController@aboutUs');
-//home page and services
+        //home page and services
         Route::get("/home", "HomeController@getall");
         Route::get("/services", "ServiceController@getallservices");
         Route::get("/services_detailes/{id}", "ServiceController@getservicedetailes");
-
-//categories
-
+        //categories
         Route::get("/categories", "CategoryController@getall");
-//fund detailes
+        //fund detailes
         Route::get("/fund/detailes/{id}", "FundController@details");
         Route::post("/funds/addfund", "FundController@addfund");
-
-//user update
+        Route::post("/payment/{id}", "FundController@DoPayment");
+        //user update
         Route::post("/update_profile", "UsersController@updateProfile");
         Route::post("/update_lang", "UsersController@updatelang");
         Route::post("/user/update_image", "UsersController@update_image");
         Route::get('check_token/', 'UsersController@reset_password');
         Route::post('reset/password/', 'UsersController@reset_password_post');
-
         // inbox
         Route::post('make/inbox', 'InboxController@store');
-
         // userFunds
         Route::get('/userfunds', 'UserfundsController@index');
-
         // userFundsHistory
         Route::get('/userFundsHistory/{id}', 'UserFundsHistoryController@index');
-
         //consolutions
         Route::get("/users/consolutions/data", "UsersController@consolutions_data");
         Route::post("/users/consolutions/store", "UsersController@consolutions_store");
@@ -83,7 +77,6 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::get("/users/consolutions/details/{id}", "ConsolutionController@getall_consolution_detailes");
         Route::post("/users/consolutions/reply", "ConsolutionController@Reply");
         Route::get("/users/consolutions/delete/{id}", "ConsolutionController@Delete");
-
         //notification  NotificationController
         Route::get("/get_notification", "NotificationController@getall");
     });

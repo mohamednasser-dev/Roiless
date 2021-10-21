@@ -93,4 +93,8 @@ class FundController extends Controller
             return msgdata($request, success(), 'add user fund successfully', ['fund_id'=>$user_funds->id]);
         }
     }
+    public function DoPayment(Request $request)
+    {
+        return dd($request->all());
+    }
 }
