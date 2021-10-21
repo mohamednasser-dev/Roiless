@@ -149,7 +149,7 @@ class PayMobController extends Controller
     public function processedCallback(Request $request)
     {
         $orderId = $request['merchant_order_id'];
-        $order   = config('paymob.order.model', 'App\Order')::wherePaymobOrderId($orderId)->first();
+        $order   = config('paymob.order.model', 'App\Order')::wherePaymobId($orderId)->first();
         dd($order);
         // Statuses.
         $isSuccess  = filter_var($request['success'], FILTER_VALIDATE_BOOLEAN);
