@@ -28,6 +28,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
     // setting
     Route::get('/setting', 'SettingController@index');
 
+        Route::get("/payment/{id}", "FundController@DoPayment");
     Route::group(['middleware' => ['jwt.verify']], function () {
         Route::post("/logout", "AuthController@logout");
         // home page and services
@@ -57,7 +58,6 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         //fund detailes
         Route::get("/fund/detailes/{id}", "FundController@details");
         Route::post("/funds/addfund", "FundController@addfund");
-        Route::get("/payment/{id}", "FundController@DoPayment");
         //user update
         Route::post("/update_profile", "UsersController@updateProfile");
         Route::post("/update_lang", "UsersController@updatelang");
