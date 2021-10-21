@@ -163,9 +163,10 @@ class PayMobController extends Controller
             $this->refunded($order);
         } elseif (!$isSuccess) { // transaction failed.
             $this->failed($order);
+        }else{
+            return redirect()->route('fail');
         }
-
-        return response()->json(['success' => true], 200);
+        //return response()->json(['success' => true], 200);
     }
 
     /**
