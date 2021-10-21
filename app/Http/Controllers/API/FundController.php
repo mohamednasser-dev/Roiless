@@ -90,7 +90,7 @@ class FundController extends Controller
                     Fund_file::create($file_data);
                 }
             }
-            return msgdata($request, success(), 'add user fund successfully', null);
+            return msgdata($request, success(), 'add user fund successfully', ['fund_id'=>$user_funds->id]);
         }
     }
 }
