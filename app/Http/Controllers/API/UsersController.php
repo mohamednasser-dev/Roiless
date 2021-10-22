@@ -191,6 +191,7 @@ class UsersController extends Controller
             $user_otb = User::where('phone', $request->phone)->first();
 
             if ($request->otp_code == $user_otb->otp_code) {
+                dd('here');
                 $user_otb->password = Hash::make($request->password);
                 $user_otb->otp_code = null;
                 $user_otb->verified = 1 ;
