@@ -167,8 +167,6 @@ class UsersController extends Controller
         } else {
             $user_otp = User::select('otp_code')->where('phone', $request->phone)->first();
             if ($request->otp_code == $user_otp->otp_code) {
-                $user_otp->verified = 1 ;
-                $user_otp->save();
                 $data['status'] = true;
                 return msgdata($request, success(), 'otp true', $data);
             } else {
@@ -195,6 +193,7 @@ class UsersController extends Controller
             if ($request->otp_code == $user_otb->otp_code) {
                 $user_otb->password = Hash::make($request->password);
                 $user_otb->otp_code = null;
+                $user_otb->verified = 1 ;
                 $user_otb->save();
 
                 $data['status'] = true;
