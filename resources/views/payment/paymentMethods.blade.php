@@ -48,7 +48,20 @@
                                 <form class="needs-validation" method="POST" id="payment-form" action="{{route('payWay',['visa',$order->id,$user->id])}}">
                                     {{ csrf_field() }}
                                     <button class="btn btn-block" type="submit">
-                                        <img width="100" src="{{url('/payment')}}/meza-visa.png"/>
+                                        <img src="{{url('/payment')}}/meza-visa.png"/>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mb-4" style="cursor: pointer">
+                        <div class="card">
+                            <div class="card-body">
+                                <form class="needs-validation" method="POST" id="payment-form" action="{{route('payWay',['wallet',$order->id,$user->id])}}">
+                                    {{ csrf_field() }}
+                                    <button class="btn btn-block" type="submit">
+                                        <img width="100%" src="{{url('/payment')}}/mobile.png"/>
                                     </button>
                                 </form>
                             </div>

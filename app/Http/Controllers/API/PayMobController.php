@@ -30,7 +30,7 @@ class PayMobController extends Controller
             $auth->token,
             $auth->profile->id,
             $order->fund_amount * 100,
-            $order->id
+            $order->id*time()
         );
         // dd($paymobOrder);
         // Duplicate order id
@@ -56,7 +56,22 @@ class PayMobController extends Controller
             'cairo', // optional
             'egypt' // optional
         );
-        return redirect('https://accept.paymob.com/api/acceptance/iframes/'.$iframe_id.'?payment_token='.$payment_key->token);
+        if ($iframe_id == 'wallet') {
+            $data = [
+                "source"        => ["identifier"=> '01010101010', "subtype"=>"WALLET"],
+                "payment_token" => $payment_key->token,
+            ];
+            $request = HttpPost("acceptance/payments/pay", $data);
+            if ($request) {
+                if( isset($request->redirect_url) )
+                {
+                    return redirect($request->redirect_url);
+                }
+            }
+
+        }else{
+            return redirect('https://accept.paymob.com/api/acceptance/iframes/'.$iframe_id.'?payment_token='.$payment_key->token);
+        }
     }
 
     /**

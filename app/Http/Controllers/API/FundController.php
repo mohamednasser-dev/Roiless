@@ -108,6 +108,9 @@ class FundController extends Controller
             if ($payway == 'visa') {
                 $paymob = new PayMobController;
                 return $paymob->checkingOut(env('PAYMOB_VISA_ID'),env('PAYMOB_VISA_IFRAME_ID'),$order->id,$user_id);
+            }elseif($payway == 'wallet'){
+                $paymob = new PayMobController;
+                return $paymob->checkingOut(env('PAYMOB_WALLET_ID'),'wallet',$order->id,$user_id);
             }
         }else{
             return redirect('payment-fail');
