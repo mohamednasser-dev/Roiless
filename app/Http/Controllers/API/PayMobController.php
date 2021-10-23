@@ -159,10 +159,10 @@ class PayMobController extends Controller
         if ($isSuccess && !$isVoided && !$isRefunded) { // transcation succeeded.
             $order->payment = 'paid';
             $order->save();
-            $history_data['user_fund_id'] = $user_funds->id;
+            $history_data['user_fund_id'] = $order->id;
             $history_data['type'] = 'user';
             $history_data['status'] = 'pending';
-            $history_data['user_id'] =  auth()->user()->id;
+            $history_data['user_id'] =  $order->user_id;
             $history_data['note_ar'] = 'تم دفع الرسوم';
             $history_data['note_en'] = 'Fund Cost Has Been Paid';
             Fhistory::create($history_data);
