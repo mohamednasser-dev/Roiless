@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use BaklySystems\PayMob\Facades\PayMob;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Fhistory;
 
 class PayMobController extends Controller
 {
@@ -148,26 +149,35 @@ class PayMobController extends Controller
      */
     public function processedCallback(Request $request)
     {
-        dd($request->all());
-        $orderId = $request['obj']['order']['id'];
-        $order   = config('paymob.order.model', 'App\Order')::wherePaymobOrderId($orderId)->first();
-        dd($order);
+        $orderId = $request['merchant_order_id'];
+        $order   = config('paymob.order.model', 'App\Order')::find($orderId);
         // Statuses.
         $isSuccess  = filter_var($request['success'], FILTER_VALIDATE_BOOLEAN);
         $isVoided  = filter_var($request['is_voided'], FILTER_VALIDATE_BOOLEAN);
         $isRefunded  = filter_var($request['is_refunded'], FILTER_VALIDATE_BOOLEAN);
 
         if ($isSuccess && !$isVoided && !$isRefunded) { // transcation succeeded.
-            $this->succeeded($order);
+            $order->payment = 'paid';
+            $order->save();
+            $history_data['user_fund_id'] = $user_funds->id;
+            $history_data['type'] = 'user';
+            $history_data['status'] = 'pending';
+            $history_data['user_id'] =  auth()->user()->id;
+            $history_data['note_ar'] = 'تم دفع الرسوم';
+            $history_data['note_en'] = 'Fund Cost Has Been Paid';
+            Fhistory::create($history_data);
+            return redirect('/payment/success');
         } elseif ($isSuccess && $isVoided) { // transaction voided.
-            $this->voided($order);
+            return redirect('/payment/fail');
         } elseif ($isSuccess && $isRefunded) { // transaction refunded.
-            $this->refunded($order);
+            return redirect('/payment/fail');
         } elseif (!$isSuccess) { // transaction failed.
-            $this->failed($order);
+            return redirect('/payment/fail');
+        }else{
+            return redirect('/payment/fail');
         }
-
-        return response()->json(['success' => true], 200);
+        //return redirect('/payment/fail');
+        //return response()->json(['success' => true], 200);
     }
 
     /**
