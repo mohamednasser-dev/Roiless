@@ -148,8 +148,10 @@ class PayMobController extends Controller
      */
     public function processedCallback(Request $request)
     {
-        $orderId = $request['merchant_order_id'];
-        $order   = config('paymob.order.model', 'App\Order')::find($orderId);
+        dd($request->all());
+        $orderId = $request['obj']['order']['id'];
+        $order   = config('paymob.order.model', 'App\Order')::wherePaymobOrderId($orderId)->first();
+        dd($order);
         // Statuses.
         $isSuccess  = filter_var($request['success'], FILTER_VALIDATE_BOOLEAN);
         $isVoided  = filter_var($request['is_voided'], FILTER_VALIDATE_BOOLEAN);
@@ -158,16 +160,14 @@ class PayMobController extends Controller
         if ($isSuccess && !$isVoided && !$isRefunded) { // transcation succeeded.
             $this->succeeded($order);
         } elseif ($isSuccess && $isVoided) { // transaction voided.
-            return redirect('/payment/fail');
+            $this->voided($order);
         } elseif ($isSuccess && $isRefunded) { // transaction refunded.
-            return redirect('/payment/fail');
+            $this->refunded($order);
         } elseif (!$isSuccess) { // transaction failed.
-            return redirect('/payment/fail');
-        }else{
-            return redirect('/payment/fail');
+            $this->failed($order);
         }
-        //return redirect('/payment/fail');
-        //return response()->json(['success' => true], 200);
+
+        return response()->json(['success' => true], 200);
     }
 
     /**
