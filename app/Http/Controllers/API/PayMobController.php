@@ -30,7 +30,7 @@ class PayMobController extends Controller
             $auth->token,
             $auth->profile->id,
             $order->fund_amount * 100,
-            $order->id*time()
+            $order->id
         );
         // dd($paymobOrder);
         // Duplicate order id
@@ -170,6 +170,7 @@ class PayMobController extends Controller
         $isSuccess  = filter_var($request['success'], FILTER_VALIDATE_BOOLEAN);
         $isVoided  = filter_var($request['is_voided'], FILTER_VALIDATE_BOOLEAN);
         $isRefunded  = filter_var($request['is_refunded'], FILTER_VALIDATE_BOOLEAN);
+        //return dd($request->all());
 
         if ($isSuccess && !$isVoided && !$isRefunded) { // transcation succeeded.
             $order->payment = 'paid';
