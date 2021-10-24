@@ -23,6 +23,7 @@
         .stripe-button-el {
             display: none !important;
         }
+
         .razorpay-payment-button {
             display: none !important;
         }
@@ -44,27 +45,19 @@
                 <div class="row">
                     <div class="col-md-12 mb-4" style="cursor: pointer">
                         <div class="card">
-                            <div class="card-body">
-                                <form class="needs-validation" method="POST" id="payment-form" action="{{route('payWay',['visa',$order->id,$user->id])}}">
+                            <form class="needs-validation" method="POST" id="payment-form"
+                                  action="{{route('payWay',['wallet',$id,$user_id])}}">
+                                <div class="card-body">
                                     {{ csrf_field() }}
-                                    <button class="btn btn-block" type="submit">
-                                        <img src="{{url('/payment')}}/meza-visa.png"/>
+                                    <label>phone number</label>
+                                    <input type="text" name="phone" class="form-control" required>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-block btn-success" type="submit">
+                                        sumbit
                                     </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12 mb-4" style="cursor: pointer">
-                        <div class="card">
-                            <div class="card-body">
-                                <form class="needs-validation" method="POST" id="payment-form" action="{{route('show_phone_page',['wallet',$order->id,$user->id])}}">
-                                    {{ csrf_field() }}
-                                    <button class="btn btn-block" type="submit">
-                                        <img width="100%" src="{{url('/payment')}}/mobile.png"/>
-                                    </button>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
