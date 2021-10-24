@@ -20,13 +20,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 //user
     Route::post("/login", "AuthController@login");
-
     Route::post("/Register", "AuthController@Register");
     Route::post("/loginasguest", "AuthController@loginasguest");
     Route::post('forgot/password', 'UsersController@forgot_password_post')->name('forgot.password');
     Route::post('update/forgot_password', 'UsersController@reset_password_forget');
     // setting
     Route::get('/setting', 'SettingController@index');
+    //Payment
+    Route::get("/payment/{id}/{user_id}", "FundController@DoPayment");
+    Route::post("/payment/{payway}/{id}/{user_id}", "FundController@payway")->name('payWay');
+    Route::get("/payment/response", "PayMobController@processedCallback")->name('response');
+    Route::get("/payment/success", "PayMobController@succeeded")->name('succeeded');
+    Route::get("/payment/fail", "PayMobController@failed")->name('failed');
 
     Route::group(['middleware' => ['jwt.verify']], function () {
         Route::post("/logout", "AuthController@logout");
@@ -48,34 +53,27 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::post('make/inbox', 'InboxController@store');
         // about_us
         Route::get('about_us', 'HomeController@aboutUs');
-//home page and services
+        //home page and services
         Route::get("/home", "HomeController@getall");
         Route::get("/services", "ServiceController@getallservices");
         Route::get("/services_detailes/{id}", "ServiceController@getservicedetailes");
-
-//categories
-
+        //categories
         Route::get("/categories", "CategoryController@getall");
-//fund detailes
+        //fund detailes
         Route::get("/fund/detailes/{id}", "FundController@details");
         Route::post("/funds/addfund", "FundController@addfund");
-
-//user update
+        //user update
         Route::post("/update_profile", "UsersController@updateProfile");
         Route::post("/update_lang", "UsersController@updatelang");
         Route::post("/user/update_image", "UsersController@update_image");
         Route::get('check_token/', 'UsersController@reset_password');
         Route::post('reset/password/', 'UsersController@reset_password_post');
-
         // inbox
         Route::post('make/inbox', 'InboxController@store');
-
         // userFunds
         Route::get('/userfunds', 'UserfundsController@index');
-
         // userFundsHistory
         Route::get('/userFundsHistory/{id}', 'UserFundsHistoryController@index');
-
         //consolutions
         Route::get("/users/consolutions/data", "UsersController@consolutions_data");
         Route::post("/users/consolutions/store", "UsersController@consolutions_store");
@@ -83,7 +81,6 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::get("/users/consolutions/details/{id}", "ConsolutionController@getall_consolution_detailes");
         Route::post("/users/consolutions/reply", "ConsolutionController@Reply");
         Route::get("/users/consolutions/delete/{id}", "ConsolutionController@Delete");
-
         //notification  NotificationController
         Route::get("/get_notification", "NotificationController@getall");
     });

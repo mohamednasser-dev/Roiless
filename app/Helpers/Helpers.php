@@ -224,3 +224,29 @@ function upload($file, $dir)
     $file->move('uploads' . '/' . $dir, $image);
     return $image;
 }
+if (!function_exists('HttpPost')) {
+    function HttpPost($url_path, $data = [])
+    {
+        $apiURL = 'https://accept.paymob.com/api/'.$url_path;
+                
+        // Create curl resource
+        $ch = curl_init($apiURL);
+
+        // Request headers
+        $headers = array();
+        $headers[] = 'Content-Type: application/json';
+
+        // Return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        // $output contains the output string
+        $output = curl_exec($ch);
+
+        // Close curl resource to free up system resources
+        curl_close($ch);
+        return json_decode($output);
+    }    
+}

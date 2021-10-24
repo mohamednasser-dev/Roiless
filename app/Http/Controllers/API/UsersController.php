@@ -42,19 +42,20 @@ class UsersController extends Controller
         $rules = [
             'lang' => 'required|string',
         ];
-        $user=User::find(Auth::user()->id);
+        $user = User::find(Auth::user()->id);
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
             $user->update([
-                'lang'=>$request->lang,
-             ]);
-             $data['status'] = true ;
-             return msgdata($request, success(), 'update user lang success',  $data);
+                'lang' => $request->lang,
+            ]);
+            $data['status'] = true;
+            return msgdata($request, success(), 'update user lang success', $data);
         }
 
     }
+
     public function updateProfile(Request $request)
     {
 
@@ -73,44 +74,40 @@ class UsersController extends Controller
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
             //check phone change
-            if($request->phone==Auth::user()->phone)
-            {
+            if ($request->phone == Auth::user()->phone) {
                 $user->update([
                     'name' => $request->name,
                     'email' => $request->email
                 ]);
-            }else{
+            } else {
                 $user->update([
                     'otp_code' => 123456,
                 ]);
                 //send here by sms api ...
-                if(empty($request->otp_code))
-                {
-                    $data['status'] = true ;
+                if (empty($request->otp_code)) {
+                    $data['status'] = true;
 
-                    return msgdata($request, success(), 'please send otp_code',  $data);
-                }else{
-                    if($request->otp_code == Auth::user()->otp_code)
-                    {
+                    return msgdata($request, success(), 'please send otp_code', $data);
+                } else {
+                    if ($request->otp_code == Auth::user()->otp_code) {
 
                         $user->update([
                             'name' => $request->name,
                             'email' => $request->email,
                             'phone' => $request->phone,
-                            'otp_code'=>null,
+                            'otp_code' => null,
                         ]);
-                    }
-                    else{
+                    } else {
                         return response()->json(msg($request, failed(), 'update_profile_warning'));
                     }
                 }
 
             }
             $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone')->first();
-                $user_data['token_api'] = null;
-                $user_data['otp_code'] = null;
+            $user_data['token_api'] = null;
+            $user_data['otp_code'] = null;
             if ($user) {
-                return msgdata($request, success(), 'update_profile_success',  $user_data);
+                return msgdata($request, success(), 'update_profile_success', $user_data);
             } else {
                 return response()->json(msg($request, failed(), 'update_profile_warning'));
             }
@@ -132,10 +129,10 @@ class UsersController extends Controller
         } else {
             $image = $request->image;  // your base64 encode
             if ($image) {
-                if($request->image != null){
-                    $imageName = $this->MoveImage($request->image,'uploads/users_images');
+                if ($request->image != null) {
+                    $imageName = $this->MoveImage($request->image, 'uploads/users_images');
                 }
-                $user->update([ 'image' => $imageName ]);
+                $user->update(['image' => $imageName]);
                 $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone')->first();
                 $user_data['token_api'] = null;
                 $user_data['otp_code'] = null;
@@ -144,10 +141,9 @@ class UsersController extends Controller
                 } else {
                     return response()->json(msg($request, failed(), 'update_profile_warning'));
                 }
-            }else{
+            } else {
                 return response()->json(msg($request, failed(), 'you should upload image'));
             }
-
 
 
         }
@@ -156,38 +152,30 @@ class UsersController extends Controller
 
     public function forgot_password_post(Request $request)
     {
-
-        if(empty($request->otp_code))
-        {
-
+        if (empty($request->otp_code)) {
             $user = User::where('phone', $request->phone)->first();
-            if (!empty($user))
-            {
+            if (!empty($user)) {
                 $user->update([
                     'otp_code' => 123456,
                 ]);
-                $data['status'] = true ;
-                return msgdata($request, success(), 'please send otp_code',  $data);
+                $data['status'] = true;
+                return msgdata($request, success(), 'please send otp_code', $data);
+            } else {
+                $data['status'] = false;
+                return msgdata($request, failed(), 'this user not found', $data);
             }
-            else
-            {
-                $data['status'] = false ;
-                return msgdata($request, failed(), 'this user not found',  $data);
+        } else {
+            $user_otp = User::select('otp_code')->where('phone', $request->phone)->first();
+            if ($request->otp_code == $user_otp->otp_code) {
+                $data['status'] = true;
+                return msgdata($request, success(), 'otp true', $data);
+            } else {
+                $data['status'] = false;
+                return msgdata($request, failed(), 'otp false', $data);
             }
         }
-        else
-        {
-            $user_otp=User::select('otp_code')->where('phone', $request->phone)->first();
-            if($request->otp_code==$user_otp->otp_code)
-            {
-                $data['status'] = true ;
-                return msgdata($request, success(), 'otp true',  $data);
-            }else{
-                $data['status'] = false ;
-                return msgdata($request, failed(), 'otp false',  $data);
-        }
-     }
     }
+
     public function reset_password_forget(Request $request)
     {
         $rules = [
@@ -200,19 +188,20 @@ class UsersController extends Controller
             return response()->json(msg($request, failed(), $validator->messages()->first()));
         } else {
 
-            $user_otb  =User::where('phone', $request->phone)->first();
+            $user_otb = User::where('phone', $request->phone)->first();
 
-            if($request->otp_code == $user_otb->otp_code)
-            {
-                $user_otb->password = Hash::make($request->password) ;
-                $user_otb->otp_code = null ;
+            if ($request->otp_code == $user_otb->otp_code) {
+        
+                $user_otb->password = Hash::make($request->password);
+                $user_otb->otp_code = null;
+                $user_otb->verified = 1 ;
                 $user_otb->save();
 
-                $data['status'] = true ;
-                return msgdata($request, success(), 'change password true',  $data);
-            }else{
-                $data['status'] = false ;
-                return msgdata($request, failed(), 'otp false',  $data);
+                $data['status'] = true;
+                return msgdata($request, success(), 'change password true', $data);
+            } else {
+                $data['status'] = false;
+                return msgdata($request, failed(), 'otp false', $data);
             }
 
         }
@@ -262,14 +251,15 @@ class UsersController extends Controller
         $user['otp_code'] = null;
         return msgdata("", success(), ' successfully_get_data_Profile', $user);
     }
+
     public function consolutions_data(Request $request)
     {
-        if($request->header('lang') == null){
-            $lang = 'ar' ;
-        }else{
-            $lang = $request->header('lang') ;
+        if ($request->header('lang') == null) {
+            $lang = 'ar';
+        } else {
+            $lang = $request->header('lang');
         }
-        $user = consolution_kind::select('id','name_'.$lang.' as name')->orderBy('created_at','desc')->get();
+        $user = consolution_kind::select('id', 'name_' . $lang . ' as name')->orderBy('created_at', 'desc')->get();
         return msgdata("", success(), ' successfully get data', $user);
     }
 
@@ -286,13 +276,13 @@ class UsersController extends Controller
             'country' => 'required',
             'content' => 'required',
             'consolution_kind_id' => 'required|exists:consolution_kinds,id',
-            ];
+        ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
             $data = $request->all();
-            $data['user_id'] = $user->id ;
+            $data['user_id'] = $user->id;
             $result = Consolution::create($data);
             return msgdata($request, success(), 'added successfully', $result);
         }

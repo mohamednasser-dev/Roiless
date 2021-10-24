@@ -20,8 +20,13 @@
         "realrashid/sweet-alert": "^4.0",
         "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-permission": "^5.1",
-        "tymon/jwt-auth": "^1.0"
+        "tymon/jwt-auth": "^1.0",
+        "baklysystems/laravel-paymob": "dev-master"
     },
+    "repositories": [{
+        "type": "vcs",
+        "url": "https://github.com/OnClick-global/laravel-paymob"
+    }],
     "require-dev": {
         "facade/ignition": "^2.0",
         "fakerphp/faker": "^1.9.1",
