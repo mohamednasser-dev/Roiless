@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Notification;
+use Maatwebsite\Excel\Facades\Excel;
 use Exception;
+use App\Exports\BulkExport;
 use Str;
 
 class usersController extends Controller{
@@ -148,5 +150,32 @@ class usersController extends Controller{
      public function ltr()
     {
         return view('home_ltr');
+    }
+    public function export_view()
+    {
+        return view('admin.users.expet_excel');
+    }
+    public function export(Request $request)
+    {
+         //   dd($request->all());
+       if($request->group1 == 1)
+       {
+        return Excel::download(new BulkExport($request->month ,$request->annual ,$request->group1), 'bulkData.xlsx');
+       }
+       elseif($request->group1 == 2)
+       {
+        $validated = $request->validate([  
+            'month' => 'required',
+            'annual' => 'required',
+        ]);
+        return Excel::download(new BulkExport($request->month ,$request->annual ,$request->group1), 'bulkData.xlsx');
+       }
+       elseif($request->group1 == 3)
+       {
+        return Excel::download(new BulkExport($request->month ,$request->annualy ,$request->group1 ) , 'bulkData.xlsx');
+       }
+       else{
+        return Excel::download(new BulkExport($request->month ,$request->annualy ,$request->group1 ), 'bulkData.xlsx');
+       }
     }
 }

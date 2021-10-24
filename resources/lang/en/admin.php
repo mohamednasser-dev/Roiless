@@ -13,6 +13,8 @@ return [
    'request'=>'request',
    'status'=>'status',
    'revision'=>'revision',
+   'export_user_excel'=>'export user data to excel',
+   'excel_fund'=>'export fund data to excel',
 
     'permisstion' => 'permission',
     'permissions' => 'permissions',

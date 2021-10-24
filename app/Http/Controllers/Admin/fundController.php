@@ -64,8 +64,6 @@ class fundController extends Controller
         DB::commit();
         Alert::success( trans('admin.opretion_success'),trans('admin.fund_added_successfully'));
         return redirect()->route('fund');
-
-
     }
     public function details($id)
     {

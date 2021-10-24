@@ -14,11 +14,11 @@ return [
     'status'=>'الحاله',
     'revision'=>'المراجعه',
     'Required_funds_exports'=>'تصدير الي اكسل',
-
     'kind_recive' => 'طريقه ارسال الاشعار',
     'trans_disaple' => 'تعطيل وتحويل',
     'address' => 'عنوان البنك',
-
+    'export_user_excel'=>'تصدير بيانات المستخدمين الي اكسيل',
+    'excel_fund'=>'تصدير التمويلات الي اكسيل',
 
     //start permisstions
     'permisstion' => 'الصلاحيه',

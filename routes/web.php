@@ -44,6 +44,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('users/{id}/details', 'Admin\usersController@show')->name('users.details');
     Route::get('viewprofile/{id}', 'HomeController@viewprofile')->name('viewprofile');
 
+    Route::get('/user/export/view', 'Admin\usersController@export_view')->name('export_view_user');
+    Route::post('/user/export/view', 'Admin\usersController@export')->name('user.export.search');
+
     Route::post('users/actived', 'Admin\usersController@update_Actived')->name('users.actived');
 
     //viewprofile routes

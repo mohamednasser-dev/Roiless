@@ -2,11 +2,11 @@
 @section('content')
 <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-        <h3 class="text-themecolor">{{trans('admin.Required_funds')}}</h3>
+        <h3 class="text-themecolor">{{trans('admin.users')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-            <li class="breadcrumb-item">{{trans('admin.Required_funds')}}</li>
+            <li class="breadcrumb-item">{{trans('admin.users')}}</li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
@@ -15,11 +15,11 @@
         <div class="row">
             <div class="col-sm-12">  
 
-              <form  action="{{route('userfunds.export.search')}}" method="post"> 
+              <form  action="{{route('user.export.search')}}" method="post"> 
                   @csrf
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">{{trans('admin.excel_fund')}}</h4>
+                        <h4 class="card-title">{{trans('admin.export_user_excel')}}</h4>
                         <hr>
                         <div class="row">
                             <div class="col-lg-2">
@@ -119,27 +119,7 @@
                            
                             </div>
                         </div>  
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <input name="group1" type="radio" class="with-gap" id="radio_4" name="radio_4" value="4">
-                                <label for="radio_4"></label>
-                                </div>
-                                <div class="col-lg-2">
-                                <label>بالقسم</label>
-                            </div>
-
-                            <div class="col-lg-4" style="display:none;" id="category">
-                            <select  class="select2 m-b-10 select2-multiple" style="width: 100%" data-placeholder="Choose" name="category">
-                            @foreach($categories as $category)
-                            <option value="{{$category->id}}">{{$category->title_ar}}</option>
-                            @endforeach
-                            </select>
-                            </div>
-
-                            <div class="col-lg-4">
-                              
-                            </div>
-                        </div>  
+                     
 
                             <div class="card">
                                 <div class="card-body">
