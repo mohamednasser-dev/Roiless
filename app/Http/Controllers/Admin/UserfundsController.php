@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Bank_User_Fund;
 use Illuminate\Http\Request;
 use App\Models\User_fund;
+use App\Models\Category;
 use App\Models\Fhistory;
 use App\Models\Admin;
 use Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\user_fund_Export;
+use App\Exports\user_fundExport;
 use App\Models\Bank;
 
 class UserfundsController extends Controller
@@ -158,5 +162,33 @@ class UserfundsController extends Controller
         //تعديل الحاله user_status في ال user_funds
         Alert::success('عملية ناجحة', 'تم تحويل الملحوظات الي المستحدم بنجاح');
         return redirect()->route('userfunds');
+    }
+    public function export_view()
+    {
+        $categories=Category::all();
+         return view('admin.userfunds.expet_excel',compact('categories'));
+    }
+    public function export(Request $request)
+    {
+        //   dd($request->all());
+       if($request->group1 == 1)
+       {
+        return Excel::download(new user_fund_Export($request->month ,$request->annual ,$request->group1), 'bulkData.xlsx');
+       }
+       elseif($request->group1 == 2)
+       {
+        $validated = $request->validate([  
+            'month' => 'required',
+            'annual' => 'required',
+        ]);
+        return Excel::download(new user_fund_Export($request->month ,$request->annual ,$request->group1), 'bulkData.xlsx');
+       }
+       elseif($request->group1 == 3)
+       {
+        return Excel::download(new user_fund_Export($request->month ,$request->annualy ,$request->group1 ) , 'bulkData.xlsx');
+       }
+       else{
+        return Excel::download(new user_fund_Export($request->month ,$request->annualy ,$request->group1 ,$request->category), 'bulkData.xlsx');
+       }
     }
 }
