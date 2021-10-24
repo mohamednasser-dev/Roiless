@@ -28,7 +28,7 @@ class FundController extends Controller
             if (empty($lang)) {
                 $lang = "en";
             }
-            $Funddetailes = Fund::select('id', 'name_ar','name_en', 'image', 'columns','cost')->where('id', $id)->first();
+            $Funddetailes = Fund::select('id', 'name_ar', 'name_en', 'image', 'columns', 'cost')->where('id', $id)->first();
             $Funddetailes->cost = number_format((float)($Funddetailes->cost), 2);
             $Funddetailes->columns = json_decode($Funddetailes->columns);
             if ($Funddetailes) {
@@ -36,9 +36,9 @@ class FundController extends Controller
                 $bank = Bank::select('name_' . $lang . ' as name', 'image')->get();
                 $data['banks'] = $bank;
 
-                $fields = Company_field::select('id','name_' . $lang . ' as name')->get();
+                $fields = Company_field::select('id', 'name_' . $lang . ' as name')->get();
                 $data['company_field'] = $fields;
-                $types = Company_type::select('id','name_' . $lang . ' as name')->get();
+                $types = Company_type::select('id', 'name_' . $lang . ' as name')->get();
                 $data['company_type'] = $types;
                 return msgdata($request, success(), 'fund details success', $data);
             }
@@ -79,7 +79,7 @@ class FundController extends Controller
             $history_data['user_fund_id'] = $user_funds->id;
             $history_data['type'] = 'user';
             $history_data['status'] = 'pending';
-            $history_data['user_id'] =  auth()->user()->id;
+            $history_data['user_id'] = auth()->user()->id;
             $history_data['note_ar'] = ' بدايه طلب التمويل';
             $history_data['note_en'] = 'Starting Fund Request';
             Fhistory::create($history_data);
@@ -94,33 +94,40 @@ class FundController extends Controller
                     $fileNewName = 'file' . $size . '_' . time() . '.' . $ext;
                     $file->move(public_path('uploads/fund_file'), $fileNewName);
                     $file_data['user_fund_id'] = $user_funds->id;
-                    $file_data['file_ext'] = $ext ;
+                    $file_data['file_ext'] = $ext;
                     $file_data['file_name'] = $fileNewName;
                     Fund_file::create($file_data);
                 }
             }
-            return msgdata($request, success(), 'add user fund successfully', ['fund_id'=>$user_funds->id]);
+            return msgdata($request, success(), 'add user fund successfully', ['fund_id' => $user_funds->id]);
         }
     }
-    public function DoPayment($id,$user_id)
+
+    public function DoPayment($id, $user_id)
     {
         $order = User_fund::find($id);
-        $user  = User::find($user_id);
-        return view('payment.paymentMethods',compact('order','user'));
+        $user = User::find($user_id);
+        return view('payment.paymentMethods', compact('order', 'user'));
     }
-    public function payway($payway='visa',$id,$user_id)
+
+    public function payway(Request $request, $payway = 'visa', $id, $user_id)
     {
         $order = User_fund::find($id);
         if ($order->payment == 'not paid') {
             if ($payway == 'visa') {
                 $paymob = new PayMobController;
-                return $paymob->checkingOut(env('PAYMOB_VISA_ID'),env('PAYMOB_VISA_IFRAME_ID'),$order->id,$user_id);
-            }elseif($payway == 'wallet'){
+                return $paymob->checkingOut(env('PAYMOB_VISA_ID'), env('PAYMOB_VISA_IFRAME_ID'), $order->id, $user_id, $request->phone);
+            } elseif ($payway == 'wallet') {
                 $paymob = new PayMobController;
-                return $paymob->checkingOut(env('PAYMOB_WALLET_ID'),'wallet',$order->id,$user_id);
+                return $paymob->checkingOut(env('PAYMOB_WALLET_ID'), 'wallet', $order->id, $user_id, $request->phone);
             }
-        }else{
+        } else {
             return redirect('payment-fail');
         }
+    }
+
+    public function show_phone_page($payway = 'visa', $id, $user_id)
+    {
+        return view('payment.phone_page', compact('payway', 'id', 'user_id'));
     }
 }

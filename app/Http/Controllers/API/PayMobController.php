@@ -17,7 +17,7 @@ class PayMobController extends Controller
      * @param  int  $orderId
      * @return Response
      */
-    public function checkingOut($integration_id,$iframe_id, $orderId,$user_id)
+    public function checkingOut($integration_id,$iframe_id, $orderId,$user_id , $phone)
     {
         $order       = config('paymob.order.model', 'App\Order')::find($orderId);
         # code... get order user.
@@ -35,9 +35,10 @@ class PayMobController extends Controller
         // dd($paymobOrder);
         // Duplicate order id
         // PayMob saves your order id as a unique id as well as their id as a primary key, thus your order id must not
-        // duplicate in their database. 
+        // duplicate in their database.
         if (isset($paymobOrder->message)) {
             if ($paymobOrder->message == 'duplicate') {
+                return redirect('/payment/fail');
                 # code... your order id is duplicate on PayMob database.
             }
         }
@@ -58,7 +59,7 @@ class PayMobController extends Controller
         );
         if ($iframe_id == 'wallet') {
             $data = [
-                "source"        => ["identifier"=> '01010101010', "subtype"=>"WALLET"],
+                "source"        => ["identifier"=> $phone, "subtype"=>"WALLET"],
                 "payment_token" => $payment_key->token,
             ];
             $request = HttpPost("acceptance/payments/pay", $data);

@@ -28,6 +28,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
     Route::get('/setting', 'SettingController@index');
     //Payment
     Route::get("/payment/{id}/{user_id}", "FundController@DoPayment");
+    Route::post("/payment/show/phone_page/{payway}/{id}/{user_id}", "FundController@show_phone_page")->name('show_phone_page');
     Route::post("/payment/{payway}/{id}/{user_id}", "FundController@payway")->name('payWay');
     Route::get("/payment/response", "PayMobController@processedCallback")->name('response');
     Route::get("/payment/success", "PayMobController@succeeded")->name('succeeded');
