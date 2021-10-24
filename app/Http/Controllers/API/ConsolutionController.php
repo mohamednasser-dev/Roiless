@@ -30,6 +30,20 @@ class ConsolutionController extends Controller
         }
         return msgdata($request, success(), 'get services sucess', $data);
     }
+    public function getall_consolution_detailes_old(Request $request, $id)
+    {
+        $reply=reply::select('id','reply','created_at','admin_id','user_id')->with('user')->with('admin')->where('consolution_id',$id)->get();
+        if($reply){
+            reply::where('consolution_id', '=',$id)
+                ->update(['seen' => '1']);
+            $reply = reply::select('id', 'reply', 'created_at', 'admin_id', 'user_id')->with('user')->with('admin')->where('consolution_id', $id)->get();
+            if ($reply) {
+                reply::where('consolution_id', '=', $id)
+                    ->update(['seen' => '1']);
+            }
+            return msgdata($request, success(), 'get services sucess',$reply);
+        }
+    }
     public function Reply(Request $request)
     {
         $rules = [
