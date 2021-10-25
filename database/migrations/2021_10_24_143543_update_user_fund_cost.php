@@ -15,7 +15,7 @@ class UpdateUserFundCost extends Migration
     {
         //
         Schema::table('user_funds', function (Blueprint $table) {
-            $table->integer('cost')->nullable();
+            $table->double('cost')->default(0);
         });
     }
 
