@@ -113,6 +113,30 @@ class UsersController extends Controller
             }
         }
     }
+    public function update_password(Request $request)
+    {
+        $rules = [
+            'password_old' => 'required',
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        } else {
+            $id=Auth::user()->id;
+            $user=User::find($id);
+            if(Hash::check($request->password_old, $user->password)){
+                $user->update([
+                    'password'=> Hash::make($request->password)
+                ]);
+                $data['status'] = true;
+                 return msgdata($request, success(), 'update password successfuly', $data);
+            }else{
+                return response()->json(['status' => 401, 'msg' => 'old password false']);
+            }
+        }
+    }
 
     public function update_image(Request $request)
     {
