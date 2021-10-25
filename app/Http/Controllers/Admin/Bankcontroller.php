@@ -106,7 +106,7 @@ class Bankcontroller extends Controller
                 [
                     'name_ar' => 'required|max:255,' . $id,
                     'name_en' => 'required|max:255,' . $id,
-                    'email' => 'required|unique:users,email|email,' . $id,
+                    'email' => 'required|email|unique:users,email,' . $id,
                     'password' => 'required|min:6|confirmed',
                 ]);
         } else {
@@ -114,7 +114,7 @@ class Bankcontroller extends Controller
                 [
                     'name_ar' => 'required|max:255,' . $id,
                     'name_en' => 'required|max:255,' . $id,
-                    'email' => 'required|unique:users,email|email,' . $id,
+                    'email' => 'required|email|unique:users,email,' . $id,
                 ]);
         }
         if ($request['password'] != null && $request['password_confirmation'] != null) {

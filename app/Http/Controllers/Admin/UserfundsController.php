@@ -72,7 +72,7 @@ class UserfundsController extends Controller
         $banks = Bank::where('status','active')->wherenotnull('parent_id')->orderBy('parent_id','DESC')->get();
         $histories = Fhistory::where('user_fund_id', $id)->orderBy('created_at', 'DESC')->get();
         if ($requestreview->emp_id == auth()->user()->id) {
-         
+
             $employee_log= 'تم مراجعه تمويل'.$userfund->Users->name;
             store_history(Auth::user()->id , $employee_log);
             return view($this->folderView . 'details', compact('requestreview', 'empolyers', 'banks', 'histories'));
@@ -144,6 +144,7 @@ class UserfundsController extends Controller
         $data['status'] = 'accept';
         Fhistory::create($data);
         DB::commit();
+        User_fund::where('id',$id)->update(['user_status' => 'under_revision']);
         return redirect()->route('userfunds');
     }
 
@@ -160,6 +161,7 @@ class UserfundsController extends Controller
         $data['user_id'] = User_fund::where('id', $id)->value('user_id');
         Fhistory::create($data);
         //تعديل الحاله user_status في ال user_funds
+        User_fund::where('id',$id)->update(['user_status' => 'finail_rejected']);
         Alert::success('عملية ناجحة', 'تم تحويل الملحوظات الي المستحدم بنجاح');
         return redirect()->route('userfunds');
     }
@@ -177,7 +179,7 @@ class UserfundsController extends Controller
        }
        elseif($request->group1 == 2)
        {
-        $validated = $request->validate([  
+        $validated = $request->validate([
             'month' => 'required',
             'annual' => 'required',
         ]);

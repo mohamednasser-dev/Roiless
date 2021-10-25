@@ -62,7 +62,7 @@ class employerController extends Controller
                 'password'               => 'required|min:6|confirmed',
                 'password_confirmation'  => 'required|min:6',
                 'role_id'                => 'required|numeric',
-                'cat_id'                 => 'required|array|min:1|numeric',
+                'cat_id'                 => 'required',
             ]);
 
         if ($request['password'] != null && $request['password_confirmation'] != null) {
