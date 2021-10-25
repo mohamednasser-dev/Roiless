@@ -67,14 +67,15 @@ class FundController extends Controller
             $user_fund_data['dataform'] = json_encode($request->dataform);
             $user_fund_data['fund_id'] = $request->fund_id;
             $user_fund_data['user_id'] = $user->id;
-        
+
             foreach($request->dataform as $row){
-                if($row['name'] == 'annual_sales_size'){
+                if($row['name'] == 'annual_sales'){
                     $annual_sales_size =$row['value'];
                     $financing_ratio=$fund->financing_ratio;
                     $user_fund_data['cost']=$annual_sales_size*$financing_ratio;
                 }
             }
+
             $user_funds = User_fund::create($user_fund_data);
             $history_data['user_fund_id'] = $user_funds->id;
             $history_data['type'] = 'user';
