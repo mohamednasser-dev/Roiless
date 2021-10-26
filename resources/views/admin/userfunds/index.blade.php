@@ -39,9 +39,16 @@
                             @if(is_null($usefund->emp_id))
                                 <a class='btn btn-danger btn-circle' title="المراجعه"
                                 href="{{route('employerchosen',$usefund->id)}}"><i class="fa fa-eye"></i></a>
+                        
                             @elseif(($usefund->emp_id == auth()->user()->id) && $usefund->bank_id == null)
-                            <a class='btn btn-info btn-circle' title="{{trans('admin.follow')}}"
-                                href="{{route('review',$usefund->id)}}"><i class="fa fa-pencil-square-o"></i></a>
+                            
+                                @if($usefund->Banks_sent->count() > 0 )
+                                    {{trans('admin.sent_to_banks')}}
+                                @else
+                                    <a class='btn btn-info btn-circle' title="{{trans('admin.follow')}}"
+                                    href="{{route('review',$usefund->id)}}"><i class="fa fa-pencil-square-o"></i></a>
+                                @endif
+                                    
                                 @else
                                 {{$usefund->ُEmployer->name}}
                             @endif

@@ -57,6 +57,10 @@ class Admin extends Authenticatable
     {
         return $this->hasMany('\App\models\Consolution','admin_id','id');
     }
+    public function Fund_recive()
+    {
+        return $this->hasMany('\App\models\User_fund','emp_id','id');
+    }
     public function reply()
     {
         return $this->hasMany('\App\models\reply','admin_id','id');

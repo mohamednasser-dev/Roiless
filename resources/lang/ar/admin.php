@@ -19,6 +19,12 @@ return [
     'address' => 'عنوان البنك',
     'export_user_excel'=>'تصدير بيانات المستخدمين الي اكسيل',
     'excel_fund'=>'تصدير التمويلات الي اكسيل',
+    'date_user'=>'بيانات العميل',
+    'date_user_name'=>'اسم العميل',
+    'date_user_phone'=>'رقم العميل',
+    'date_user_email'=>'ايميل العميل',
+    'sent_to_banks'=>'تم الارسال لبنك',
+    'funds_sent'=>'التمويلات المستلمه',
 
     //start permisstions
     'permisstion' => 'الصلاحيه',

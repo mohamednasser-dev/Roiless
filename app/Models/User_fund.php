@@ -22,6 +22,11 @@ class User_fund extends Model
     {
         return $this->hasMany(Fund_file::class, 'user_fund_id')->where('file_ext','pdf');
     }
+    
+    public function Banks_sent()
+    {
+        return $this->hasMany(Bank_User_Fund::class, 'user_fund_id');
+    }
 
     public function ُEmployer()
     {

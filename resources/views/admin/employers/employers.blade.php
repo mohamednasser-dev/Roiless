@@ -24,6 +24,7 @@
                 <tr>
                     <th scope="col">{{trans('admin.name')}}</th>
                     <th scope="col">{{trans('admin.sign_up_data')}}</th>
+                    <th scope="col">{{trans('admin.funds_sent')}}</th>
                     <th scope="col">{{trans('admin.actions')}}</th>
                 </tr>
                 </thead>
@@ -32,6 +33,7 @@
                     <tr>
                         <th scope="row">{{$employer->name}}</th>
                         <td>{{$employer->created_at->format('Y-m-d')}}  </td>
+                        <td>{{count($employer->Fund_recive)}}  </td>
                         <td>
                             <ul class="list-inline soc-pro m-t-30">
                                 <li><a class="btn-circle btn btn-secondary" title="تحركات الموظف"
@@ -44,13 +46,15 @@
                                        onclick="return confirm('هل انت متاكد من حذف البنك')"
                                        href="{{route('employer.delete',$employer->id)}}"><i class="fa fa-trash"></i></a>
                                 </li>
-                            </ul>
-                            <div class="switch">
+                                <li>
+                                <div class="switch">
                                 <label>
                                     <input type="checkbox" onchange="update_active(this)" value="{{$employer->id}}"
                                            name="active" @if($employer->status == 'active') checked @endif ><span
                                         class="lever switch-col-green"></span></label>
-                            </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </td>
                     </tr>
                 @endforeach

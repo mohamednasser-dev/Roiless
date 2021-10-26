@@ -370,6 +370,37 @@
     <div class="row row-cols-2">
         {{--Start dataform --}}
         <div class="col-md-6">
+        <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h3>{{trans('admin.date_user')}}</h3>
+                        <div class="row">
+                      
+                                <div class="col-6">
+                                    <h3 class="control-label">{{trans('admin.date_user_name')}}</h3>
+                                    <input type="text" id="firstName" class="form-control" value="{{$user->name}}"
+                                           readonly>
+                               </div>
+                               <div class="col-6">
+                                    <h3 class="control-label">{{trans('admin.date_user_phone')}}</h3>
+                                    <input type="text" id="firstName" class="form-control" value="{{$user->phone}}"
+                                           readonly>
+                               </div>    
+                               <div class="col-6">
+                                    <h3 class="control-label">{{trans('admin.date_user_email')}}</h3>
+                                 @if(!empty($user->emai))
+                                    <input type="text" id="firstName" class="form-control" value="{{$user->emai}}"
+                                           readonly>
+                                   @else
+                                   <input type="text" id="firstName" class="form-control text-danger" value="no email yet"
+                                           readonly>
+                                  @endif         
+                               </div>    
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">

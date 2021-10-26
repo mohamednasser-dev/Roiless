@@ -89,9 +89,9 @@
         <div class="card col-12 ">
             <div class="card-body  center">
 
-                <button
-                    type="button" class="btn btn-info" data-target="#">الموافقه علي الطلب
-                </button>
+               <a href="{{route('request.accept',$userfund->id)}}" class="btn btn-info">
+                   الموافقه علي الطلب
+              </a>
                 <button
                     type="button" class="btn btn-dark" data-toggle="modal" data-target="#user">مراجعه الطلب
                 </button>

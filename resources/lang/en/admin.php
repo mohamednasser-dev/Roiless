@@ -15,6 +15,12 @@ return [
    'revision'=>'revision',
    'export_user_excel'=>'export user data to excel',
    'excel_fund'=>'export fund data to excel',
+    'date_user'=>'Customer data',
+    'date_user_name'=>'customer name',
+    'date_user_phone'=>'customer phone',
+    'date_user_email'=>'customer email',
+    'sent_to_banks'=>'sent to bank',
+    'funds_sent'=>'Funds received',
 
     'permisstion' => 'permission',
     'permissions' => 'permissions',

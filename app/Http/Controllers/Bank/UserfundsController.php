@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Bank;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
+use App\Models\User_Notification;
 use App\Models\Bank_User_Fund;
 use App\Models\Fhistory;
 use App\Models\User_Fund;
+use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -26,7 +29,7 @@ class UserfundsController extends Controller
     {
         $userFundBank = Bank_User_Fund::where('bank_id', \Auth::guard('bank')->user()->id)->pluck('user_fund_id');
         $bank_id = auth()->guard('bank')->user()->id;
-        $userfunds = User_Fund::whereIn('id', $userFundBank)->get();
+        $userfunds = User_Fund::whereIn('id', $userFundBank)->orderby('created_at','desc')->get();
 
         return view($this->folderView . 'index', compact('userfunds'));
 
@@ -47,6 +50,28 @@ class UserfundsController extends Controller
             Alert::warning('تنبية', 'لا يمكنك الدخول الي هذا الطلب');
             return redirect()->route('bank.home');
         }
+    }
+    public function accept($id)
+    {
+         $user_fund=User_Fund::find($id);
+         $user_fund->update([
+             'user_status'=>'finail_accept',
+         ]);
+         $notification = Notification::create([
+             'title_ar'=>'تم قبول التمويل',
+             'title_en'=>'fund accepted',
+             'body_ar'=>'تم قبول تمويل'.$user_fund->Fund->name_ar.'يرجي التواصل مع الاداره ',
+             'body_en'=>'fund accepted'.$user_fund->Fund->name_ar.'Please contact the administration',
+         ]);
+         $user_id=$user_fund->user_id;
+         $user=User::find($user_id);
+         User_Notification::create(['notification_id'=>$notification->id,'user_id'=>$user->id]);
+         $fcm_tokens[0] = $user->fcm_token;
+         $title='title_ar'.$user->lang;
+         $body='body_ar'.$user->lang;
+         send_notification($notification->$title , $notification->$body , null , null , $fcm_tokens);
+         Alert::success('تمت العمليه', 'تم  هذا التمويل  بنجاح');
+         return redirect()->route('funds.request');
     }
 
     public function bankChonsen($id)

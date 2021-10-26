@@ -21,6 +21,7 @@ Route::group(['middleware'=> 'auth:bank', 'namespace'=> 'Bank' ], function () {
     Route::get('/Requests', 'UserfundsController@index')->name('funds.request');
     Route::get('/Selected_bank/{id}', 'UserfundsController@bankChonsen')->name('bankChonsen');
     Route::get('/view_details/{id}', 'UserfundsController@details')->name('request.review');
+    Route::get('/accept_fund/{id}', 'UserfundsController@accept')->name('request.accept');
     Route::post('/request_rejected/{id}', 'UserfundsController@redirectEmployer')->name('request.rejected');
 
 

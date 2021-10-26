@@ -48,13 +48,13 @@
                                 $userfund=\App\Models\User_fund::wherein('bank_id',$branches_ids)->get()->count();
                             @endphp
                             @if($userfund)
-                                <a href="{{route('funds.of.bank', $bank->id)}}"> {{$userfund}} </a>
+                                <a href="{{route('funds.of.bank', $bank->id)}}" style="color: #000; font-size: 22px;"> {{$userfund}} </a>
                             @else
                                 {{trans('admin.not_order')}}
                             @endif
                         </td>
                         <td>
-                            <a href="{{route('banks.branches',$bank->id)}}"> {{count($bank->Branches)}}  </a>
+                            <a href="{{route('banks.branches',$bank->id)}}" style="color: #000; font-size: 22px;"> {{count($bank->Branches)}}  </a>
                         </td>
 
                         <td>

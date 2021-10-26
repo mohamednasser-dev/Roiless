@@ -12,6 +12,9 @@ use App\Models\User_fund;
 use App\Models\Category;
 use App\Models\Fhistory;
 use App\Models\Admin;
+use App\Models\User;
+use App\Models\Notification;
+use App\Models\User_Notification;
 use Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\user_fund_Export;
@@ -68,6 +71,8 @@ class UserfundsController extends Controller
             return redirect()->back();
         }
         $requestreview = User_fund::find($id);
+        $user_id=$requestreview->user_id;
+        $user=User::find($user_id);
         $empolyers = Admin::where('type', 'employer')->where('cat_id', auth()->user()->cat_id)->where('id', '<>', auth()->user()->id)->get();
         $banks = Bank::where('status','active')->wherenotnull('parent_id')->orderBy('parent_id','DESC')->get();
         $histories = Fhistory::where('user_fund_id', $id)->orderBy('created_at', 'DESC')->get();
@@ -75,7 +80,7 @@ class UserfundsController extends Controller
 
             $employee_log= 'تم مراجعه تمويل'.$userfund->Users->name;
             store_history(Auth::user()->id , $employee_log);
-            return view($this->folderView . 'details', compact('requestreview', 'empolyers', 'banks', 'histories'));
+            return view($this->folderView . 'details', compact('requestreview', 'empolyers', 'banks', 'histories','user'));
         } else {
             Alert::warning('تنبية', 'مرفوض الدخول');
             return redirect()->back();
@@ -162,6 +167,20 @@ class UserfundsController extends Controller
         Fhistory::create($data);
         //تعديل الحاله user_status في ال user_funds
         User_fund::where('id',$id)->update(['user_status' => 'finail_rejected']);
+        $user_fund=User_fund::find($id);
+        $notification = Notification::create([
+            'title_ar'=>'تم رفض التمويل',
+            'title_en'=>'fund rejected',
+            'body_ar'=>'تم رفض تمويل'.$user_fund->Fund->name_ar.'سيتم التحويل الي بنك اخر ',
+            'body_en'=>'fund rejected'.$user_fund->Fund->name_en.'It will be transferred to another bank',
+        ]);
+        $user_id=$user_fund->user_id;
+        $user=User::find($user_id);
+        User_Notification::create(['notification_id'=>$notification->id,'user_id'=>$user->id]);
+        $fcm_tokens[0] = $user->fcm_token;
+        $title='title_ar'.$user->lang;
+        $body='body_ar'.$user->lang;
+        send_notification($notification->$title , $notification->$body , null , null , $fcm_tokens);
         Alert::success('عملية ناجحة', 'تم تحويل الملحوظات الي المستحدم بنجاح');
         return redirect()->route('userfunds');
     }
