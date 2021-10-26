@@ -11,7 +11,7 @@ return [
     | as the size rules. Feel free to tweak each of these messages here.
     |
     */
-
+     'invaldemailorpassword'=>'',
     'accepted'        => 'يجب قبول :attribute.',
     'active_url'      => ':attribute لا يُمثّل رابطًا صحيحًا.',
     'after'           => 'يجب على :attribute أن يكون وقتا لاحقًا لوقت :date.',
