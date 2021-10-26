@@ -1,7 +1,7 @@
 <?php
 return [
 
-
+'invaldemailorpassword'=>'email or password is wrong',
 'logout'=>'logout',
 'users'=>'users',
 'add_new_user'=>'add new user',

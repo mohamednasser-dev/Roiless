@@ -1,7 +1,7 @@
 <?php
 return [
 
-
+  'invaldemailorpassword'=>'الايميل او كلمه المرور خاطئه',
 'logout'=>'تسجيل الخروج',
 
 'branches_banks' => 'فروع البنك' ,
