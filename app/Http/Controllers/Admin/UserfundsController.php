@@ -164,7 +164,7 @@ class UserfundsController extends Controller
         $data['type'] = 'user';
         $data['user_fund_id'] = $id;
         $data['user_id'] = User_fund::where('id', $id)->value('user_id');
-        Fhistory::create($data);
+         Fhistory::create($data);
         //تعديل الحاله user_status في ال user_funds
         User_fund::where('id',$id)->update(['user_status' => 'finail_rejected']);
         $user_fund=User_fund::find($id);

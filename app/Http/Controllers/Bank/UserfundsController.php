@@ -63,6 +63,13 @@ class UserfundsController extends Controller
              'body_ar'=>'تم قبول تمويل'.$user_fund->Fund->name_ar.'يرجي التواصل مع الاداره ',
              'body_en'=>'fund accepted'.$user_fund->Fund->name_ar.'Please contact the administration',
          ]);
+         $data['status'] = 'accept';
+         $data['type'] = 'user';
+         $data['user_fund_id'] = $id;
+         $data['note_ar']='تم قبول الطلب';
+         $data['note_en']='order has been accepted';
+         $data['user_id'] = User_fund::where('id', $id)->value('user_id');
+         Fhistory::create($data);
          $user_id=$user_fund->user_id;
          $user=User::find($user_id);
          User_Notification::create(['notification_id'=>$notification->id,'user_id'=>$user->id]);
