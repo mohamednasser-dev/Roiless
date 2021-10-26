@@ -174,6 +174,7 @@ class PayMobController extends Controller
         //return dd($request->all());
 
         if ($isSuccess && !$isVoided && !$isRefunded) { // transcation succeeded.
+            $order->user_status = 'payed_success';
             $order->payment = 'paid';
             $order->save();
             $history_data['user_fund_id'] = $order->id;
