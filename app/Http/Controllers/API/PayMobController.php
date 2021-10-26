@@ -26,28 +26,23 @@ class PayMobController extends Controller
         if (property_exists($auth, 'detail')) { // login to PayMob attempt failed.
             # code... redirect to previous page with a message.
         }
-        $paymobOrder = PayMob::makeOrderPaymob( // make order on PayMob
-            $auth->token,
-            $auth->profile->id,
-            $order->fund_amount * 100,
-            $order->id
-        );
-        // dd($paymobOrder);
-        // Duplicate order id
-        // PayMob saves your order id as a unique id as well as their id as a primary key, thus your order id must not
-        // duplicate in their database.
-        if (isset($paymobOrder->message)) {
-            if ($paymobOrder->message == 'duplicate') {
-                return redirect('/payment/fail');
-                # code... your order id is duplicate on PayMob database.
-            }
+        if(!is_null($order->paymob_id)){
+            $paymobOrder = $order->paymob_id;
+        }else{
+            $paymobOrders = PayMob::makeOrderPaymob( // make order on PayMob
+                $auth->token,
+                $auth->profile->id,
+                $order->fund_amount * 100,
+                $order->id
+            );
+            $paymobOrder = $paymobOrders->id;
         }
-        $order->update(['paymob_id' => $paymobOrder->id]); // save paymob order id for later usage.
+        $order->update(['paymob_id' => $paymobOrder]); // save paymob order id for later usage.
         $payment_key = PayMob::getPaymentKeyPaymob( // get payment key
             $integration_id,
             $auth->token,
             $order->fund_amount * 100,
-            $paymobOrder->id,
+            $paymobOrder,
             // For billing data
             // For billing data
             ($user->email == null)?'test@test.com':$user->email, // optional
