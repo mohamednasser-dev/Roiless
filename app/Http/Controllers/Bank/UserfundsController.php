@@ -7,7 +7,7 @@ use App\Models\Notification;
 use App\Models\User_Notification;
 use App\Models\Bank_User_Fund;
 use App\Models\Fhistory;
-use App\Models\User_Fund;
+use App\Models\User_fund;
 use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -29,7 +29,7 @@ class UserfundsController extends Controller
     {
         $userFundBank = Bank_User_Fund::where('bank_id', \Auth::guard('bank')->user()->id)->pluck('user_fund_id');
         $bank_id = auth()->guard('bank')->user()->id;
-        $userfunds = User_Fund::whereIn('id', $userFundBank)->orderby('created_at','DESC')->get();
+        $userfunds = User_fund::whereIn('id', $userFundBank)->orderby('created_at','DESC')->get();
 
         return view($this->folderView . 'index', compact('userfunds'));
 
@@ -38,7 +38,7 @@ class UserfundsController extends Controller
     public function details($id)
     {
 
-        $userfund = User_Fund::find($id);
+        $userfund = User_fund::find($id);
 
         if (!$userfund) {
             Alert::warning('تنبية', 'لا يوجد طلب تمويل');
@@ -53,7 +53,7 @@ class UserfundsController extends Controller
     }
     public function accept($id)
     {
-         $user_fund=User_Fund::find($id);
+         $user_fund=User_fund::find($id);
          $user_fund->update([
              'user_status'=>'finail_accept',
          ]);
@@ -96,7 +96,7 @@ class UserfundsController extends Controller
                 'note_ar' => 'required|string',
                 'note_en' => 'required|string',
             ]);
-        $user_fund_id = User_Fund::findOrfail($id);
+        $user_fund_id = User_fund::findOrfail($id);
         $data['status'] = 'reject';
         $data['type'] = 'bank';
         $data['user_fund_id'] = $id;
@@ -105,7 +105,7 @@ class UserfundsController extends Controller
         $data['bank_id'] = $bank_id;
 //        return $data;
         Fhistory::create($data);
-        User_Fund::where('id', $id)->update(['bank_id' => null]);
+        User_fund::where('id', $id)->update(['bank_id' => null]);
         Alert::success('عملية ناجحة', 'تم تحويل طلب المراجعه مره اخري الي الموظف ');
         return redirect()->route('funds.request');
 
