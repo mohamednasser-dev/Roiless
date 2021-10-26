@@ -29,7 +29,7 @@ class UserfundsController extends Controller
     {
         $userFundBank = Bank_User_Fund::where('bank_id', \Auth::guard('bank')->user()->id)->pluck('user_fund_id');
         $bank_id = auth()->guard('bank')->user()->id;
-        $userfunds = User_Fund::whereIn('id', $userFundBank)->orderby('created_at','desc')->get();
+        $userfunds = User_Fund::whereIn('id', $userFundBank)->orderby('created_at','DESC')->get();
 
         return view($this->folderView . 'index', compact('userfunds'));
 
