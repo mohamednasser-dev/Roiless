@@ -13,15 +13,16 @@ class SettingSeeder extends Seeder
     public function run()
     {
         Setting::create([
-            'title_ar' => '',
-            'title_en' => '',
-            'terms_ar' => '',
-            'terms_en' => '',
-            'privacy_ar' => '',
-            'privacy_en' => '',
+            'title_ar' => 'app',
+            'title_en' => 'app',
+            'terms_ar' => 'app',
+            'terms_en' => 'app',
+            'privacy_ar' => 'app',
+            'privacy_en' => 'app',
+            'about_us_ar' => 'app',
+            'about_us_en' => 'app',
             'facebook' => '',
             'youtube' => '',
-            'gmail' => '',
             'instagram' => '',
             'twitter' => '',
             'linkedin' => '',

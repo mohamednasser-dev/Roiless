@@ -18,8 +18,6 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-        $this->middleware('permission:home');
-
     }
     public function index()
     {

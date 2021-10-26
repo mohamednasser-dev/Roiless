@@ -68,7 +68,6 @@ class SettingController extends Controller
                 'about_us_en' => 'required',
                 'facebook' => '',
                 'youtube' => '',
-                'gmail' => '',
                 'instagram' => '',
                 'twitter' => '',
                 'linkedin' => '',
