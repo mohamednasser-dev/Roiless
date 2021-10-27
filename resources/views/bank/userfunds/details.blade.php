@@ -89,7 +89,7 @@
         <div class="card col-12 ">
             <div class="card-body  center">
 
-               <a href="{{route('request.accept',$userfund->id)}}" class="btn btn-info">
+               <a href="{{route('request.accept',$userfund->id)}}" class="btn btn-success">
                    الموافقه علي الطلب
               </a>
                 <button
