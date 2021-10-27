@@ -93,7 +93,7 @@
                    الموافقه علي الطلب
               </a>
                 <button
-                    type="button" class="btn btn-dark" data-toggle="modal" data-target="#user">مراجعه الطلب
+                    type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">مراجعه الطلب
                 </button>
             </div>
         </div>

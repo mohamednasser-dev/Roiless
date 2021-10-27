@@ -14,7 +14,8 @@ class UpdateNotificationTableData extends Migration
     public function up()
     {
         Schema::table('notifications', function (Blueprint $table) {
-            $table->longText('details')->nullable();
+            $table->longText('details_ar')->nullable();
+            $table->longText('details_en')->nullable();
         });
     }
 
