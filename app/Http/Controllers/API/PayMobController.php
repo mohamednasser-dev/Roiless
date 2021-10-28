@@ -174,11 +174,20 @@ class PayMobController extends Controller
             $order->save();
             $history_data['user_fund_id'] = $order->id;
             $history_data['type'] = 'user';
+            $history_data['show_in'] = 'web';
             $history_data['status'] = 'pending';
             $history_data['user_id'] =  $order->user_id;
             $history_data['note_ar'] = 'تم دفع الرسوم';
             $history_data['note_en'] = 'Fund Cost Has Been Paid';
             Fhistory::create($history_data);
+            $history_app_data['user_fund_id'] = $order->id;
+            $history_app_data['type'] = 'user';
+            $history_app_data['show_in'] = 'app';
+            $history_app_data['status'] = 'pending';
+            $history_app_data['user_id'] =  $order->user_id;
+            $history_app_data['note_ar'] = 'تم دفع الرسوم';
+            $history_app_data['note_en'] = 'Fund Cost Has Been Paid';
+            Fhistory::create($history_app_data);
             return redirect('/payment/success');
         } elseif ($isSuccess && $isVoided) { // transaction voided.
             return redirect('/payment/fail');
