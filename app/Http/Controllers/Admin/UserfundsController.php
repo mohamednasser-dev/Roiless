@@ -44,7 +44,7 @@ class UserfundsController extends Controller
 
             $usefunds = User_fund::whereHas('Fund', function ($q) use($catids) {
               $q->whereIN('cat_id',$catids);
-            })->paginate(30);
+            })->orderBy('create_at','desc')->paginate(30);
             return view($this->folderView . 'index', compact('usefunds'));;
         }
 
