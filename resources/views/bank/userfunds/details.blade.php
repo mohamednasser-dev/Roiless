@@ -50,9 +50,8 @@
                         <h5>{{trans('admin.img_preview')}}</h5>
                     </div>
 
-                    <div id="image-popups" class="row">
+                    <!-- <div id="image-popups" class="row">
                         @foreach($userfund->Files_img as $file)
-
                             <div class="col-lg-2 col-md-4">
                                 <a href="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
                                    data-effect="mfp-zoom-in"><img
@@ -60,7 +59,47 @@
                                         class="img-responsive"/></a>
                             </div>
                         @endforeach
-                    </div>
+                    </div> -->
+                    @if(count($userfund->Files_img)>0)
+                   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                          
+                            <div>
+                            <a class="btn btn-success" href="#">view</a>
+                            <a class="btn btn-success" href="#">download</a>
+                            </div>
+                        </ol>
+                       
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                            @foreach($userfund->Files_img as $key => $file)
+                            @if ($key == 0)
+                            @continue
+                            @endif
+                            <img class="d-block w-100" src="{{asset('/uploads/fund_file').'/'.$file->file_name}}" alt="First slide">
+                            @if ($key == 0)
+                            @break
+                            @endif
+                            @endforeach
+                            </div>
+                            @foreach($userfund->Files_img as $key => $file)
+                            @if($loop->iteration  <= 1)
+                                <div class="carousel-item">
+                                <img class="d-block w-100" src="{{asset('/uploads/fund_file').'/'.$file->file_name}}" alt="Second slide">
+                                </div>
+                            @endif
+                            @endforeach
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                        </div>
+                 @endif
                 </div>
             </div>
         </div>

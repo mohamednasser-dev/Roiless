@@ -30,9 +30,7 @@ class UserfundsController extends Controller
         $userFundBank = Bank_User_Fund::where('bank_id', \Auth::guard('bank')->user()->id)->pluck('user_fund_id');
         $bank_id = auth()->guard('bank')->user()->id;
         $userfunds = User_fund::whereIn('id', $userFundBank)->orderby('created_at','DESC')->get();
-
         return view($this->folderView . 'index', compact('userfunds'));
-
     }
 
     public function details($id)
@@ -87,7 +85,6 @@ class UserfundsController extends Controller
          Alert::success('تمت العمليه', 'تم  هذا التمويل  بنجاح');
          return redirect()->route('funds.request');
     }
-
     public function bankChonsen($id)
     {
         if (User_fund::where('id', $id)->whereNull('bank_id')->exists()) {
@@ -100,8 +97,6 @@ class UserfundsController extends Controller
             return redirect()->back();
         }
     }
-
-
     public function redirectEmployer(Request $request, $id)
     {
         $bank_id = auth()->guard('bank')->user()->id;
