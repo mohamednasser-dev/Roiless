@@ -53,8 +53,25 @@ class UserfundsController extends Controller
     public function employerchosen($id)
     {
         if (User_fund::where('id', $id)->whereNull('emp_id')->exists()) {
-            User_fund::where('id', $id)->update(['emp_id' => auth()->user()->id]);
-            activity('admin')->log('تم اضافه هذا التمويل لوظائفك بنجاح');
+            User_fund::where('id', $id)->update(['emp_id' => auth()->user()->id]);;
+            $employee_log= 'تم اضافه هذا التمويل لوظائف '.Auth::user()->name .' بنجاح';
+            store_history(Auth::user()->id , $employee_log);
+            $data['note_ar'] = 'تم استلام التمويل من قبل الموظف '.auth()->user()->name;
+            $data['note_en'] = 'Funding received by the employee '.auth()->user()->name;
+            $data['emp_id'] = auth()->user()->id;
+            $data['type'] = 'emp';
+            $data['show_in'] = 'web';
+            $data['status'] = 'pending';
+            $data['user_fund_id'] = $id;
+            Fhistory::create($data);
+            $data_app['note_ar'] = 'جاري المراجعة';
+            $data_app['note_en'] = 'Reviewing';
+            $data_app['emp_id'] = auth()->user()->id;
+            $data_app['type'] = 'emp';
+            $data_app['show_in'] = 'app';
+            $data_app['status'] = 'pending';
+            $data_app['user_fund_id'] = $id;
+            Fhistory::create($data_app);
             Alert::success('تمت العمليه', 'تم اضافه هذا التمويل لوظائفك بنجاح');
             return redirect()->route('review', $id);
         } else {
@@ -75,7 +92,7 @@ class UserfundsController extends Controller
         $user=User::find($user_id);
         $empolyers = Admin::where('type', 'employer')->where('cat_id', auth()->user()->cat_id)->where('id', '<>', auth()->user()->id)->get();
         $banks = Bank::where('status','active')->wherenotnull('parent_id')->orderBy('parent_id','DESC')->get();
-        $histories = Fhistory::where('user_fund_id', $id)->orderBy('created_at', 'DESC')->get();
+        $histories = Fhistory::where('user_fund_id', $id)->where('show_in','web')->orderBy('created_at', 'DESC')->get();
         if ($requestreview->emp_id == auth()->user()->id) {
 
             $employee_log= 'تم مراجعه تمويل'.$userfund->Users->name;
@@ -145,9 +162,18 @@ class UserfundsController extends Controller
         $data['emp_id'] = auth()->user()->id;
         $data['user_fund_id'] = $id;
         $data['type'] = 'emp';
+        $data['show_in'] = 'web';
         $data['status'] = 'accept';
         $data['status'] = 'accept';
         Fhistory::create($data);
+        $data_app['note_ar'] = 'تم التحويل الى البنك';
+        $data_app['note_en'] = 'Transferred to the bank';
+        $data_app['emp_id'] = auth()->user()->id;
+        $data_app['type'] = 'emp';
+        $data_app['show_in'] = 'app';
+        $data_app['status'] = 'pending';
+        $data_app['user_fund_id'] = $id;
+        Fhistory::create($data_app);
         DB::commit();
         User_fund::where('id',$id)->update(['user_status' => 'under_revision']);
         return redirect()->route('userfunds');

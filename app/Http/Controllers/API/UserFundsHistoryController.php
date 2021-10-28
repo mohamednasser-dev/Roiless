@@ -15,7 +15,7 @@ class UserFundsHistoryController extends Controller
         $lang = $request->header('lang');
         $data['user_fund']=User_fund::where('id',$id)->with('Fund')->first();
         Session()->put('api_lang', $lang);
-        $data['history'] = Fhistory::select('id', 'note_ar', 'note_en', 'status', 'created_at')->where('user_fund_id', $id)->get();
+        $data['history'] = Fhistory::select('id', 'note_ar', 'note_en', 'status', 'created_at')->where('show_in','app')->where('user_fund_id', $id)->orderBy('created_at','asc')->get();
         return msgdata($request, success(), 'there is no history for this id ', $data);
     }
 }

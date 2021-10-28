@@ -79,12 +79,20 @@ class FundController extends Controller
             $user_funds = User_fund::create($user_fund_data);
             $history_data['user_fund_id'] = $user_funds->id;
             $history_data['type'] = 'user';
+            $history_data['show_in'] = 'web';
             $history_data['status'] = 'pending';
             $history_data['user_id'] = auth()->user()->id;
-            $history_data['note_ar'] = ' بدايه طلب التمويل';
+            $history_data['note_ar'] = ' بدايه التمويل';
             $history_data['note_en'] = 'Starting Fund Request';
             Fhistory::create($history_data);
-
+            $history_app_data['user_fund_id'] = $user_funds->id;
+            $history_app_data['type'] = 'user';
+            $history_app_data['show_in'] = 'app';
+            $history_app_data['status'] = 'pending';
+            $history_app_data['user_id'] = auth()->user()->id;
+            $history_app_data['note_ar'] = ' بدايه التمويل';
+            $history_app_data['note_en'] = 'Starting Fund Request';
+            Fhistory::create($history_app_data);
             if ($request->file != null) {
                 foreach ($request->file as $key => $row) {
                     // This is Image Information ...
