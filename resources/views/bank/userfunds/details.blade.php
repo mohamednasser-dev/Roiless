@@ -1,4 +1,9 @@
 @extends('bank.bank_temp')
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('/assets/plugins/dropify/dist/css/dropify.min.css') }}">
+    <link href="{{ asset('/assets/plugins/summernote/dist/summernote.css') }}" rel="stylesheet" >
+
+@endsection
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
@@ -88,10 +93,9 @@
     <div class="row">
         <div class="card col-12 ">
             <div class="card-body  center">
-
-               <a href="{{route('request.accept',$userfund->id)}}" class="btn btn-success">
-                   الموافقه علي الطلب
-              </a>
+              <button
+                    type="button" class="btn btn-success" data-toggle="modal" data-target="#approve">الموافقه علي الطلب
+                </button>
                 <button
                     type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">مراجعه الطلب
                 </button>
@@ -109,10 +113,11 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
                     </div>
-                    <form class="form"
+                    <!-- <form class="form"
                           action="{{route('request.rejected',$userfund->id)}}"
                           method="POST">
-                        @csrf
+                        @csrf -->
+                        {{ Form::open( ['route'  =>  ['request.rejected',$userfund->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
                         <div class="col-md-12">
                             <div class="form-group has-success">
 
@@ -120,6 +125,23 @@
                                 <input type="text" class="form-control" name="note_ar" required>
                                 <label class="control-label"> ملحوظه بالانجليزيه </label>
                                 <input type="text" class="form-control" name="note_en" required>
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input" class="col-md-2 col-form-label"> {{trans('bank.detailes_ar')}}</label>
+                                    <div class="col-md-12">
+                                    {{ Form::textarea('details_ar','',["class"=>"form-control summernote" , "rows" => "5" ,"required"]) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group has-success">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input" class="col-md-2 col-form-label"> {{trans('bank.detailes_en')}}</label>
+                                    <div class="col-md-12">
+                                    {{ Form::textarea('details_en','',["class"=>"form-control summernote" , "rows" => "5" ,"required"]) }}
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -127,7 +149,7 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">اختيار</button>
                         </div>
-                    </form>
+                        {{ Form::close() }}
                 </div>
             </div>
         </div>
@@ -135,4 +157,125 @@
 
     </div>
 
+
+    <div class="row">
+        <div class="modal fade" id="approve" tabindex="-1" role="dialog" aria-labelledby="userLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="banksLabel1">الموافقه علي الطلب</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                        {{ Form::open( ['route'  =>  ['request.accept',$userfund->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
+                      
+                        <div class="col-md-12">
+                            <div class="form-group has-success">
+                                <div class="form-group m-t-40 row"  >
+                                    <label for="example-text-input" class="col-md-2 col-form-label"> {{trans('bank.detailes_ar')}}</label>
+                                    <div class="col-md-12" >
+                                        <div class="form-group">
+                                            {{ Form::textarea('details_ar','',["class"=>"form-control summernote " ,'cols' => 10, "rows" => "5","required"])  }}
+                                         
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" >
+                            <div class="form-group has-success">
+                                <div class="form-group m-t-40 row"  >
+                                    <label for="example-text-input" class="col-md-2 col-form-label"> {{trans('bank.detailes_ar')}}</label>
+                                    <div class="col-md-12" >
+                                        <div class="form-group" style="">
+                                            {{ Form::textarea('details_en','',["class"=>"form-control summernote " ,'cols' => 10, "rows" => "5","required"])  }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">اختيار</button>
+                        </div>
+                        {{ Form::close() }}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+@endsection
+@section('scripts')
+<script src="{{ asset('/assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
+    <script src="{{ asset('/js/custom.min.js')}}"></script>
+    <script src="{{ asset('/assets/plugins/summernote/dist/summernote.min.js')}}"></script>
+    <script>
+        jQuery(document).ready(function() {
+
+            $('.summernote').summernote({
+                height: 350, // set editor height
+                minHeight: null, // set minimum height of editor
+                maxHeight: null, // set maximum height of editor
+                focus: false // set focus to editable area after initializing summernote
+            });
+
+            $('.inline-editor').summernote({
+                airMode: true
+            });
+
+        });
+
+        window.edit = function() {
+            $(".click2edit").summernote()
+        },
+            window.save = function() {
+                $(".click2edit").summernote('destroy');
+            }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Basic
+            $('.dropify').dropify();
+
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
+
+            drEvent.on('dropify.beforeClear', function (event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+
+            drEvent.on('dropify.afterClear', function (event, element) {
+                alert('File deleted');
+            });
+
+            drEvent.on('dropify.errors', function (event, element) {
+                console.log('Has Errors');
+            });
+
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function (e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+        });
+    </script>
 @endsection

@@ -16,7 +16,8 @@ return [
   'Required_funds'=>'التمويلات المطلوبه',
   'show_employers'=>'عرض الموظفين',
   'employers_moves'=>'تحركات الموظفين',
-  ''=>'',
+  'detailes_ar'=>'التفاصيل باعربي',
+  'detailes_en'=>'التفاصيل بالانجليزي',
 
    'employee_count'=>'عدد الموظفين',
    'users_count'=>'عدد المستخدمين', 

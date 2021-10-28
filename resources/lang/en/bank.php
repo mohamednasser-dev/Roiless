@@ -23,6 +23,8 @@ return [
 'fund_chart'=>'fund chart',
 'statuschanged'=>'Visible',
 'my_profile'=>'my profile',
+'detailes_ar'=>'detailes in arabic',
+'detailes_en'=>'detailes in english',
 
 
 'branches_banks' => 'branches banks' ,
