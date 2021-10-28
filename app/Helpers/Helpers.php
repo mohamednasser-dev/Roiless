@@ -5,7 +5,7 @@ use App\Models\Adminhistory;
 use Illuminate\Support\Facades\Validator;
 
 // send fcm notification
- function send_notification($title, $body, $image, $data, $token)
+ function send_notification($title, $body, $details,$image, $data, $token)
 {
 
     $message = $body;
@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Validator;
     );
 
     $fields = array('registration_ids' => $token,
-        'notification' => array('title' => $title, 'body' => $message, 'image' => $image));
+        'notification' => array('title' => $title, 'body' => $message, 'details'=>$details,'image' => $image));
 
     $payload = json_encode($fields);
     $curl_session = curl_init();

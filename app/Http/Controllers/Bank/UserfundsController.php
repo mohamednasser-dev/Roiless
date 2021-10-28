@@ -52,8 +52,12 @@ class UserfundsController extends Controller
         }
     }
 
-    public function accept($id)
+    public function accept(Request $request, $id)
     {
+        $validated = $request->validate([
+            'details_ar' => 'required|min:6|max:255',
+            'details_en' => 'required|min:6|max:255',
+        ]);
         $user_fund = User_fund::find($id);
         $user_fund->update([
             'user_status' => 'finail_accept',
@@ -63,12 +67,13 @@ class UserfundsController extends Controller
             'title_en' => 'fund accepted',
             'body_ar' => 'تم قبول تمويل' . $user_fund->Fund->name_ar . 'يرجي التواصل مع الاداره ',
             'body_en' => 'fund accepted' . $user_fund->Fund->name_ar . 'Please contact the administration',
+            'details_ar' => $request->details_ar,
+            'details_en' => $request->details_en,
         ]);
         $data['status'] = 'accept';
         $data['type'] = 'user';
         $data['user_fund_id'] = $id;
         $data['note_ar'] = 'تم قبول الطلب';
-        $data['show_in'] = 'web';
         $data['note_en'] = 'order has been accepted';
         $data['user_id'] = User_fund::where('id', $id)->value('user_id');
         Fhistory::create($data);
@@ -86,7 +91,8 @@ class UserfundsController extends Controller
         $fcm_tokens[0] = $user->fcm_token;
         $title = 'title_ar' . $user->lang;
         $body = 'body_ar' . $user->lang;
-        send_notification($notification->$title, $notification->$body, null, null, $fcm_tokens);
+        $details = 'details_' . $user->lang;
+        send_notification($notification->$title, $notification->$body, $notification->$details, null, null, $fcm_tokens);
         Alert::success('تمت العمليه', 'تم  هذا التمويل  بنجاح');
         return redirect()->route('funds.request');
     }
@@ -113,6 +119,10 @@ class UserfundsController extends Controller
                 'note_ar' => 'required|string',
                 'note_en' => 'required|string',
             ]);
+        $validated = $request->validate([
+            'details_ar' => 'required|min:6|max:255',
+            'details_en' => 'required|min:6|max:255',
+        ]);
         $user_fund_id = User_fund::findOrfail($id);
         $data['status'] = 'reject';
         $data['type'] = 'bank';
@@ -122,7 +132,6 @@ class UserfundsController extends Controller
         $data['emp_id'] = $user_fund_id->value('emp_id');
         $data['bank_id'] = $bank_id;
         Fhistory::create($data);
-
         $data_app['note_ar'] = 'تم الرفض من البنك';
         $data_app['note_en'] = 'Rejected by the bank';
         $data_app['bank_id'] = auth()->user()->id;
@@ -131,10 +140,26 @@ class UserfundsController extends Controller
         $data_app['status'] = 'reject';
         $data_app['user_fund_id'] = $id;
         Fhistory::create($data_app);
+        $notification = Notification::create([
+            'title_ar' => 'تم رفض الطلب ',
+            'title_en' => 'fund rejected',
+            'body_ar' => 'تم رفض تمويل' . $user_fund_id->Fund->name_ar . 'يرجي التواصل مع الاداره ',
+            'body_en' => 'fund rejected' . $user_fund_id->Fund->name_ar . 'Please contact the administration',
+            'details_ar' => $request->details_ar,
+            'details_en' => $request->details_en,
+        ]);
+        $user_id = $user_fund_id->user_id;
+        $user = User::find($user_id);
+        User_Notification::create(['notification_id' => $notification->id, 'user_id' => $user->id]);
+        $fcm_tokens[0] = $user->fcm_token;
+        $title = 'title_ar' . $user->lang;
+        $body = 'body_ar' . $user->lang;
+        $details = 'details_' . $user->lang;
+        send_notification($notification->$title, $notification->$body, $notification->$details, null, null, $fcm_tokens);
+
         User_fund::where('id', $id)->update(['bank_id' => null]);
         Alert::success('عملية ناجحة', 'تم تحويل طلب المراجعه مره اخري الي الموظف ');
         return redirect()->route('funds.request');
-
     }
 
 
