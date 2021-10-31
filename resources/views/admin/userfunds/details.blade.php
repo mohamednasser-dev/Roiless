@@ -8,6 +8,10 @@
             box-sizing: border-box;
         }
 
+        .carousel-inner  img {
+         width:640px ;
+          max-height:650px ;
+          }
         body {
             background-color: #0A0A0A;
             font-family: Helvetica, sans-serif;
@@ -727,7 +731,9 @@ $( document ).ready(function() {
     <script
         src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js')}}"></script>
     <script type="text/javascript">
+    
         $('#slimtest1, #slimtest2, #slimtest3, #slimtest4').perfectScrollbar();
+        
         $(document).ready(function () {
             $('.owl-carousel').owlCarousel({
                 loop: true,

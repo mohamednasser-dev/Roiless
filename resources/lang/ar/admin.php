@@ -77,8 +77,8 @@ return [
     'user_chart' => 'احصائيات العملاء',
     'fund_chart' => 'احصائيات التمويلات',
 
-    'Appearance_is_enabled' => 'تم تفعيل الظهور',
-    'Appearance_is_disabled' => 'تم تعطيل الظهور',
+    'Appearance_is_enabled' => 'تم تفعيل الموظف',
+    'Appearance_is_disabled' => 'تم تعطيل الموظف',
     'my_profile' => 'الحساب',
     'image' => 'الصوره',
     'actions' => 'الاجرائات',
