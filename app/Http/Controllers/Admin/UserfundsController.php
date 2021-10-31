@@ -15,6 +15,7 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Models\Notification;
 use App\Models\User_Notification;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\user_fund_Export;
@@ -248,6 +249,11 @@ class UserfundsController extends Controller
     }
     public function download($id)
     {
-        dd($id);
+        $file_name=User_fund::find($id);
+        foreach($file_name->Files_img as $file)
+        {
+            $contents=storage::disk('public_uploads_fund_file')->getDriver()->getAdapter()->applypathprefix($file_name);
+            return response()->download($contents);
+        }
     }
 }
