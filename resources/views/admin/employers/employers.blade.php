@@ -49,7 +49,7 @@
                                 <li>
                                 <div class="switch">
                                 <label>
-                                    <input type="checkbox" onchange="update_active(this)" value="{{$employer->id}}"
+                                    <input type="checkbox" onchange="update_active(this)" value="{{$employer->id}}" 
                                            name="active" @if($employer->status == 'active') checked @endif ><span
                                         class="lever switch-col-green"></span></label>
                                     </div>
@@ -71,7 +71,6 @@
                 var status = 'active';
             else
                 var status = 'unactive';
-
             $.post('{{ route('employer.change.status') }}', {
                 _token: '{{ csrf_token() }}',
                 id: el.value,

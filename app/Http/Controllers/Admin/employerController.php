@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\EmployerCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Admin;
 use App\Models\Category;
@@ -148,7 +147,6 @@ class employerController extends Controller
             ]);
         }
         $employee->assignRole($request->input('role_id'));
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
         Alert::success(trans('admin.opretion_success'),trans('admin.employer_update') );
         return redirect()->route('employer.index');
     }
@@ -166,11 +164,13 @@ class employerController extends Controller
 
     public function changeStatus(Request $request)
     {
-        $employee=  Admin::where('id', $request->id)->update([
+        $employee=Admin::find($request->id);
+        $employee->update([
             'status' => $request->status
         ]);
         $employee_log='تم تغير حاله موظف'.$employee->name;
         store_history(Auth::user()->id , $employee_log);
+        dd(Auth::user()->id);
         return 1;
     }
 

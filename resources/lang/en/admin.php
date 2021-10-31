@@ -2,6 +2,8 @@
 return [
 
     //new
+    'Appearance_is_enabled' => 'The employee has been activated',
+    'Appearance_is_disabled' => 'The employee has been unactive',
    'sure'=>'Are you sure to deactivate the bank?',
    'trans_bank'=>'Transferring funds to other banks',
    'all'=>'send for all',
