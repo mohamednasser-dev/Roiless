@@ -514,7 +514,7 @@
                             @continue
                             @endif
                             <img class="d-block w-100" src="{{asset('/uploads/fund_file').'/'.$file->file_name}}" alt="First slide">
-                            @if ($key == 0)
+                            @if ($key == 1)
                             @break
                             @endif
                             @endforeach
