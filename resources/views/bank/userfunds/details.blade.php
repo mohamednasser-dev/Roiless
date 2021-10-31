@@ -2,6 +2,12 @@
 @section('styles')
     <link rel="stylesheet" href="{{ asset('/assets/plugins/dropify/dist/css/dropify.min.css') }}">
     <link href="{{ asset('/assets/plugins/summernote/dist/summernote.css') }}" rel="stylesheet" >
+       <style>
+                 .carousel-inner  img {
+                  width:640px ;
+                  max-height:670px ;
+          }
+       </style>
 
 @endsection
 @section('content')
@@ -64,10 +70,6 @@
                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
 
-                            <div>
-                            <a class="btn btn-success" href="#">view</a>
-                            <a class="btn btn-success" href="#">download</a>
-                            </div>
                         </ol>
 
                         <div class="carousel-inner">
@@ -77,7 +79,7 @@
                             @continue
                             @endif
                             <img class="d-block w-100" src="{{asset('/uploads/fund_file').'/'.$file->file_name}}" alt="First slide">
-                            @if ($key == 0)
+                            @if ($key == 1)
                             @break
                             @endif
                             @endforeach
