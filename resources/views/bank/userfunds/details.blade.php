@@ -63,13 +63,13 @@
                     @if(count($userfund->Files_img)>0)
                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-                          
+
                             <div>
                             <a class="btn btn-success" href="#">view</a>
                             <a class="btn btn-success" href="#">download</a>
                             </div>
                         </ol>
-                       
+
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                             @foreach($userfund->Files_img as $key => $file)
@@ -165,7 +165,7 @@
                                 <label class="control-label"> ملحوظه بالانجليزيه </label>
                                 <input type="text" class="form-control" name="note_en" required>
                                 <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label"> {{trans('bank.detailes_ar')}}</label>
+                                    <label for="example-text-input" class="col-form-label"> {{trans('bank.detailes_ar')}}</label>
                                     <div class="col-md-12">
                                     {{ Form::textarea('details_ar','',["class"=>"form-control summernote" , "rows" => "5" ,"required"]) }}
                                     </div>
@@ -176,7 +176,7 @@
                         <div class="col-md-12">
                             <div class="form-group has-success">
                                 <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label"> {{trans('bank.detailes_en')}}</label>
+                                    <label for="example-text-input" class="col col-form-label"> {{trans('bank.detailes_en')}}</label>
                                     <div class="col-md-12">
                                     {{ Form::textarea('details_en','',["class"=>"form-control summernote" , "rows" => "5" ,"required"]) }}
                                     </div>
@@ -207,15 +207,15 @@
                                 aria-hidden="true">&times;</span></button>
                     </div>
                         {{ Form::open( ['route'  =>  ['request.accept',$userfund->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
-                      
+
                         <div class="col-md-12">
                             <div class="form-group has-success">
                                 <div class="form-group m-t-40 row"  >
-                                    <label for="example-text-input" class="col-md-2 col-form-label"> {{trans('bank.detailes_ar')}}</label>
+                                    <label for="example-text-input" class="col col-form-label"> {{trans('bank.detailes_ar')}}</label>
                                     <div class="col-md-12" >
                                         <div class="form-group">
                                             {{ Form::textarea('details_ar','',["class"=>"form-control summernote " ,'cols' => 10, "rows" => "5","required"])  }}
-                                         
+
                                         </div>
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@
                         <div class="col-md-12" >
                             <div class="form-group has-success">
                                 <div class="form-group m-t-40 row"  >
-                                    <label for="example-text-input" class="col-md-2 col-form-label"> {{trans('bank.detailes_ar')}}</label>
+                                    <label for="example-text-input" class="col col-form-label"> {{trans('bank.detailes_en')}}</label>
                                     <div class="col-md-12" >
                                         <div class="form-group" style="">
                                             {{ Form::textarea('details_en','',["class"=>"form-control summernote " ,'cols' => 10, "rows" => "5","required"])  }}

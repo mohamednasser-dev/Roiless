@@ -22,7 +22,7 @@ class User_fund extends Model
     {
         return $this->hasMany(Fund_file::class, 'user_fund_id')->where('file_ext','pdf');
     }
-    
+
     public function Banks_sent()
     {
         return $this->hasMany(Bank_User_Fund::class, 'user_fund_id');
@@ -32,6 +32,7 @@ class User_fund extends Model
     {
         return $this->belongsTo(Admin::class, 'emp_id');
     }
+
     public function Banks()
     {
         return $this->belongsTo(Bank::class, 'bank_id');

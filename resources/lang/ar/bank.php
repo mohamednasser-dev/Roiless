@@ -16,11 +16,11 @@ return [
   'Required_funds'=>'التمويلات المطلوبه',
   'show_employers'=>'عرض الموظفين',
   'employers_moves'=>'تحركات الموظفين',
-  'detailes_ar'=>'التفاصيل باعربي',
-  'detailes_en'=>'التفاصيل بالانجليزي',
+  'detailes_ar'=>'الاشعار للمستخدم بالعربيه',
+  'detailes_en'=>'الاشعار للمستخدم بالانجليزيه',
 
    'employee_count'=>'عدد الموظفين',
-   'users_count'=>'عدد المستخدمين', 
+   'users_count'=>'عدد المستخدمين',
    'bank_count'=>'عدد البنوك',
    'fund_count'=>'عدد التمويلات',
    'rejected_fund'=>'التمويلات المرفوضه',
@@ -56,7 +56,7 @@ return [
 
 
 
-  
+
 'updatSuccess'=>'تم التعديل بنجاح',
 'logout'=>'تسجيل الخروج',
 'notification_data'=>'معلومات الاشعار',
