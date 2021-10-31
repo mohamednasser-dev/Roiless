@@ -238,4 +238,16 @@ class UserfundsController extends Controller
         return Excel::download(new user_fund_Export($request->month ,$request->annualy ,$request->group1 ,$request->category), 'bulkData.xlsx');
        }
     }
+    public function view($id)
+    {
+        dd($id);
+        $file_name=User_fund::with('Files_img',function($q){$q->select('file_name');})->find($id);
+        dd($file_name);
+        $files=storage::disk('public_uploads_fund_file')->getDriver()->getAdapter()->applypathprefix($invoice_id.'/'.$file_name);
+        return response()->file($files);
+    }
+    public function download($id)
+    {
+        dd($id);
+    }
 }

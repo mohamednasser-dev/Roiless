@@ -54,6 +54,10 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'public_uploads_fund_file'=>[
+            'driver'=>'local',
+            'root'=>public_path().'/uploads/fund_file',
+           ],
 
         's3' => [
             'driver' => 's3',
