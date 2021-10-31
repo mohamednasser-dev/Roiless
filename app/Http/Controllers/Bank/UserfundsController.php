@@ -54,8 +54,8 @@ class UserfundsController extends Controller
     public function accept(Request $request, $id)
     {
         $validated = $request->validate([
-            'details_ar' => 'required|min:6|max:255',
-            'details_en' => 'required|min:6|max:255',
+            'details_ar' => 'min:6|max:255',
+            'details_en' => 'min:6|max:255',
         ]);
         $user_fund = User_fund::find($id);
         $user_fund->update([
@@ -116,8 +116,8 @@ class UserfundsController extends Controller
                 'note_en' => 'required|string',
             ]);
         $validated = $request->validate([
-            'details_ar' => 'required|min:6|max:255',
-            'details_en' => 'required|min:6|max:255',
+            'details_ar' => 'min:6|max:255',
+            'details_en' => 'min:6|max:255',
         ]);
         $user_fund_id = User_fund::findOrfail($id);
         $data['status'] = 'reject';
