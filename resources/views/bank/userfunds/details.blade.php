@@ -62,14 +62,6 @@
                     </div> -->
                     @if(count($userfund->Files_img)>0)
                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                          
-                            <div>
-                            <a class="btn btn-success" href="#">view</a>
-                            <a class="btn btn-success" href="#">download</a>
-                            </div>
-                        </ol>
-                       
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                             @foreach($userfund->Files_img as $key => $file)

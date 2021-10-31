@@ -537,12 +537,7 @@
                         </a>
                         </div>
                  @endif
-                 <div class="row" >
-                     <div class="col text-center">
-                            <a class="btn btn-success text-center " id="view" href="#">view</a>
-                            <a class="btn btn-success text-center " id="download" href="{{route('download',$requestreview->id)}}">download</a>
-                     </div>
-                 </div>
+               
 </div>
 
 
