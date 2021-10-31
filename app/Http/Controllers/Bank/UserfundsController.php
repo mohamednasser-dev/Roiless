@@ -156,7 +156,8 @@ class UserfundsController extends Controller
         $body = 'body_ar' . $user->lang;
         $details = 'details_' . $user->lang;
         send_notification($notification->$title, $notification->$body, $notification->$details, null, null, $fcm_tokens);
-
+        $user_fund_id->bank_id = null ;
+        $user_fund_id->save();
         User_fund::where('id', $id)->update(['bank_id' => null]);
         Alert::success('عملية ناجحة', 'تم تحويل طلب المراجعه مره اخري الي الموظف ');
         return redirect()->route('funds.request');
