@@ -506,15 +506,7 @@
         </div>
     </div> -->                 
               @if(count($requestreview->Files_img)>0)
-                   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                          
-                            <div>
-                            <a class="btn btn-success" href="#">view</a>
-                            <a class="btn btn-success" href="#">download</a>
-                            </div>
-                        </ol>
-                       
+                   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">       
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                             @foreach($requestreview->Files_img as $key => $file)
@@ -545,6 +537,7 @@
                         </a>
                         </div>
                  @endif
+               
 </div>
 
 
@@ -722,6 +715,14 @@
     </div>
 @endsection
 @section('scripts')
+<script>
+$( document ).ready(function() {
+    console.log('sadoon');
+    $('#slid').change(function(){      
+        console.log('sagfdoon');
+     });
+});
+</script>
     <script src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup.min.js')}}"></script>
     <script
         src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js')}}"></script>

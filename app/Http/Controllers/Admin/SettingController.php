@@ -12,21 +12,18 @@ class SettingController extends Controller
 {
     public $objectName;
     public $folderView;
-
     public function __construct(Setting $model)
     {
         $this->middleware('permission:Setting');
         $this->objectName = $model;
         $this->folderView = 'admin.setting';
     }
-
     public function edit()
     {
-
-        $setting = $this->objectName::get()->first();
-
+        $setting = Setting::first();
         if (!$setting) {
             Setting::create([
+                'id' => 1,
                 'title_ar' => '',
                 'title_en' => '',
                 'terms_ar' => '',
@@ -35,7 +32,6 @@ class SettingController extends Controller
                 'privacy_en' => '',
                 'facebook' => '',
                 'youtube' => '',
-
                 'instagram' => '',
                 'twitter' => '',
                 'linkedin' => '',
@@ -46,10 +42,8 @@ class SettingController extends Controller
         }
         return view($this->folderView . '.' . 'edit', compact('setting'));
     }
-
     public function update(Request $request, $id)
     {
-//    return $request;
         $data = $this->validate(\request(),
             [
                 'title_ar' => 'required',
@@ -58,12 +52,6 @@ class SettingController extends Controller
                 'terms_en' => 'required',
                 'privacy_ar' => 'required',
                 'privacy_en' => 'required',
-                'facebook' => 'required',
-                'youtube' => 'required',
-
-                'instagram' => 'required',
-                'twitter' => 'required',
-                'linkedin' => 'required',
                 'about_us_ar' => 'required',
                 'about_us_en' => 'required',
                 'facebook' => '',
@@ -72,30 +60,20 @@ class SettingController extends Controller
                 'twitter' => '',
                 'linkedin' => '',
                 'logo' => '',
-
             ]);
-
-
-        DB::beginTransaction();
-
-        $setting = $this->objectName::find($id);
+        $setting = Setting::find($id);
         if (!$setting) {
             Alert::warning('خطاء', 'هذا الاعداد ليس موجو');
             return redirect()->route(' $this->folderView');
         }
-
-
         if ($request->hasFile('logo')) {
             $file_name = $this->MoveImage($request->file('logo'), 'uploads/setting');
             $data['logo'] = $file_name;
         } else {
             unset($data['logo']);
         }
-
-        $this->objectName::where('id', $id)->update($data);
-
+        Setting::where('id', $id)->update($data);
         activity('admin')->log('تم تحديث الاعدادات بنجاح');
-
         DB::commit();
         Alert::success('تمت العمليه', 'تم التحديث بنجاح');
         return redirect()->route('Setting.edit');

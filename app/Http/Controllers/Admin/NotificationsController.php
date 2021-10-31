@@ -81,8 +81,8 @@ class NotificationsController extends Controller
                 User_Notification::create(['notification_id'=>$notification->id,'user_id'=>$user->id]);
                 // $user->update(['seen_notification'=>DB::raw('seen_notification+1')]);
                 $fcm_tokens[0] = $user->fcm_token;
-                $title='title_ar'.$user->lang;
-                $body='body_ar'.$user->lang;
+                $title='title_'.$user->lang;
+                $body='body_'.$user->lang;
                 send_notification($notification->$title , $notification->$body , $notification->image , null , $fcm_tokens);
             }
 

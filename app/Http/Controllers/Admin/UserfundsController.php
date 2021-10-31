@@ -15,6 +15,7 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Models\Notification;
 use App\Models\User_Notification;
+use Illuminate\Support\Facades\Storage;
 use Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\user_fund_Export;
@@ -36,15 +37,13 @@ class UserfundsController extends Controller
     public function index()
     {
         if (auth()->user()->type == 'admin') {
-            $usefunds = User_fund::with('Fund')->paginate(30);
+            $usefunds = User_fund::with('Fund')->orderBy('created_at','DESC')->paginate(30);
             return view($this->folderView . 'index', compact('usefunds'));;
         }else{
-
             $catids =EmployerCategory::where('emp_id',auth()->user()->id)->pluck('cat_id');
-
             $usefunds = User_fund::whereHas('Fund', function ($q) use($catids) {
               $q->whereIN('cat_id',$catids);
-            })->orderBy('create_at','desc')->paginate(30);
+            })->orderBy('created_at','DESC')->paginate(30);
             return view($this->folderView . 'index', compact('usefunds'));;
         }
 
@@ -248,6 +247,11 @@ class UserfundsController extends Controller
     }
     public function download($id)
     {
-        dd($id);
+        $file_name=User_fund::find($id);
+        foreach($file_name->Files_img as $file)
+        {
+            $contents=storage::disk('public_uploads_fund_file')->getDriver()->getAdapter()->applypathprefix($file_name);
+            return response()->download($contents);
+        }
     }
 }
