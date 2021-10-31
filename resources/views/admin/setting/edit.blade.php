@@ -117,7 +117,7 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">
-                                    <i class="icon-social-twitter"></i>
+                                    <i class="icon-social-instagram"></i>
                                 </span>
                                     {{ Form::url('instagram',$setting->instagram,["class"=>"form-control" ]) }}
                                 </div>
@@ -133,7 +133,7 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">
-                                    <i class="icon-social-instagram"></i>
+                                    <i class="icon-social-twitter"></i>
                                 </span>
                                     {{ Form::url('twitter',$setting->twitter,["class"=>"form-control" ]) }}
                                 </div>
