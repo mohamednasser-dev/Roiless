@@ -147,8 +147,8 @@ class employerController extends Controller
                 'cat_id'=>$c,
             ]);
         }
-        $employee->assignRole($request->input('role_id'));
         DB::table('model_has_roles')->where('model_id',$id)->delete();
+        $employee->assignRole($request->input('role_id'));
         Alert::success(trans('admin.opretion_success'),trans('admin.employer_update') );
         return redirect()->route('employer.index');
     }
