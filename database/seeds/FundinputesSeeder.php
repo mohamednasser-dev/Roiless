@@ -69,15 +69,14 @@ class FundinputesSeeder extends Seeder
         Fundinput::create([
             'name' => 'مجال الشركة',
             'slug' => 'company_field',
-        ]);Fundinput::create([
+        ]);
+        Fundinput::create([
             'name' => 'نوع الشركة',
             'slug' => 'company_type',
-        ]);Fundinput::create([
+        ]);
+        Fundinput::create([
             'name' => 'الدخل السنوي',
             'slug' => 'annual_sales',
-        ]);Fundinput::create([
-            'name' => 'مقدار التمويل',
-            'slug' => 'amount_finance',
         ]);
     }
 }
