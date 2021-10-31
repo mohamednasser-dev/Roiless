@@ -84,19 +84,15 @@
                             </select>
                         </div>
                     </div>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">{{trans('admin.employee_image')}}</h4>
+                    <div class="form-group row">
+                        <label for="example-month-input" class="col-md-2 col-form-label"> {{trans('admin.employee_image')}}</label>
+                        <div class="col-md-10">
                             <input type="file" name="image" id="input-file-now" class="dropify"/>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="card">
                 <div class="card-body">
                     <div class="center">
