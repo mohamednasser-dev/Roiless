@@ -12,8 +12,8 @@
         </div>
     </div>
     <div class="d-flex">
-    <a class="btn btn-info ml-auto" href="{{route('export_userfund')}}">تصدير الي اكسيل</a>
-   </div>
+        <a class="btn btn-info ml-auto" href="{{route('export_userfund')}}">تصدير الي اكسيل</a>
+    </div>
     <br>
     <div class="row">
         <table class="table full-color-table full-primary-table">
@@ -28,33 +28,35 @@
             </tr>
             </thead>
             <tbody>
-                @foreach($usefunds as $usefund)
-                    <tr>
-                        <td class="text-lg-center">{{$usefund->id}}</td>
-                        <td class="text-lg-center">{{$usefund->created_at->format('Y-m-d g:i a')}}</td>
-                        <td class="text-lg-center">{{$usefund->Users->name}}</td>
-                        <td class="text-lg-center">{{$usefund->Fund->name_ar}}</td>
-                        <td class="text-lg-center">{{$usefund->payment}}</td>
-                        <td class="text-lg-center ">
-                            @if(is_null($usefund->emp_id))
-                                <a class='btn btn-danger btn-circle' title="المراجعه"
-                                href="{{route('employerchosen',$usefund->id)}}"><i class="fa fa-eye"></i></a>
-                        
-                            @elseif(($usefund->emp_id == auth()->user()->id) && $usefund->bank_id == null)
-                            
-                                @if($usefund->Banks_sent->count() > 0 )
-                                    {{trans('admin.sent_to_banks')}}
-                                @else
-                                    <a class='btn btn-info btn-circle' title="{{trans('admin.follow')}}"
-                                    href="{{route('review',$usefund->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                                @endif
-                                    
-                                @else
-                                {{$usefund->ُEmployer->name}}
+            @foreach($usefunds as $usefund)
+                <tr>
+                    <td class="text-lg-center">{{$usefund->id}}</td>
+                    <td class="text-lg-center">{{$usefund->created_at->format('Y-m-d g:i a')}}</td>
+                    <td class="text-lg-center">{{$usefund->Users->name}}</td>
+                    <td class="text-lg-center">{{$usefund->Fund->name_ar}}</td>
+                    <td class="text-lg-center">{{$usefund->payment}}</td>
+                    <td class="text-lg-center ">
+                        @if(is_null($usefund->emp_id))
+                            <a class='btn btn-danger btn-circle' title="المراجعه"
+                               href="{{route('employerchosen',$usefund->id)}}"><i class="fa fa-eye"></i></a>
+
+                        @elseif(($usefund->emp_id == auth()->user()->id) && $usefund->bank_id == null)
+
+                            @if($usefund->Banks_sent->count() > 0 )
+                                {{trans('admin.sent_to_banks')}}
+                            @else
+                                <a class='btn btn-info btn-circle' title="{{trans('admin.follow')}}"
+                                   href="{{route('review',$usefund->id)}}"><i class="fa fa-pencil-square-o"></i></a>
                             @endif
-                        </td>
-                    </tr>
-                @endforeach
+                        @else
+
+                            @if($usefund->Banks)
+                                {{$usefund->Banks->name_ar}}
+                            @endif
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
         {{ $usefunds->links() }}

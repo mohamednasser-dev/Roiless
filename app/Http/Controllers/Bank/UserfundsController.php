@@ -155,9 +155,13 @@ class UserfundsController extends Controller
         $user_fund_id->bank_id = null ;
         $user_fund_id->save();
         User_fund::where('id', $id)->update(['bank_id' => null]);
+        $deleteFromOtherBanks=Bank_User_Fund::where('user_fund_id',$id)->delete();
         Alert::success('عملية ناجحة', 'تم تحويل طلب المراجعه مره اخري الي الموظف ');
         return redirect()->route('funds.request');
+
+
     }
+
 
 
 }
