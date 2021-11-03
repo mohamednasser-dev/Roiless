@@ -26,6 +26,9 @@ return [
     'sent_to_banks'=>'تم الارسال لبنك',
     'funds_sent'=>'التمويلات المستلمه',
 
+    'select all'=>'تحديد الكل',
+    'deselect all'=>'الغاء التحديد',
+
     //start permisstions
     'permisstion' => 'الصلاحيه',
     'permissions' => 'الصلاحيات',

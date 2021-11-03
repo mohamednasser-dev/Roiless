@@ -40,7 +40,8 @@ class NotificationsController extends Controller
 
     public function store(Request $request)
     {
-       
+        return $request;
+
         $data = $this->validate(request(),
             [
                 'title_ar' => 'required',
@@ -55,27 +56,27 @@ class NotificationsController extends Controller
             }
             unset($data['users_id']);
             $notification = Notification::create($data);
-            if($request->Receive =='all')   
+            if($request->Receive =='all')
             {
                 $users= User::get();
-               
+
             }elseif($request->Receive =='users')
             {
-                $validated = $request->validate([  
+                $validated = $request->validate([
                     'users_id' => 'required',
                 ]);
                 $users= User::wherein('id',$request->users_id)->get();
             }
             else{
-                $validated = $request->validate([  
+                $validated = $request->validate([
                     'funds' => 'required',
                 ]);
                 $fund_id=$request->funds;
                 $users = User::Wherehas('UserFunds' , function ($query)use ($fund_id) {
                     $query->where('fund_id', $fund_id);
                 })->get();
-                
-            }   
+
+            }
             foreach($users as $key => $user)
             {
                 User_Notification::create(['notification_id'=>$notification->id,'user_id'=>$user->id]);
