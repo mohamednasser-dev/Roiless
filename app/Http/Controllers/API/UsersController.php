@@ -227,12 +227,8 @@ class UsersController extends Controller
                 $data['status'] = false;
                 return msgdata($request, failed(), 'otp false', $data);
             }
-
         }
-
     }
-
-
     public function reset_password(Request $request)
     {
         $check_token = DB::table('password_resets')->where('token', $request->token)->where('created_at', '>', Carbon::now()->subHours(1))->first();
@@ -242,7 +238,6 @@ class UsersController extends Controller
             return response()->json(msg($request, failed(), 'not_reseted'));
         }
     }
-
     public function reset_password_post(Request $request)
     {
         $rules = [
@@ -311,5 +306,4 @@ class UsersController extends Controller
             return msgdata($request, success(), 'added successfully', $result);
         }
     }
-
 }

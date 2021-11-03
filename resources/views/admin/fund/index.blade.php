@@ -85,7 +85,7 @@
                 if (featured == 1) {
                     toastr.success("{{trans('admin.statuschanged')}}");
                 } else {
-                    toastr.error("{{trans('admin.statuschanged')}}");
+                    toastr.error("{{trans('admin.statunschanged')}}");
                 }
             });
         }

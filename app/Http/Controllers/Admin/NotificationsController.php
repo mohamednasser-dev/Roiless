@@ -83,7 +83,7 @@ class NotificationsController extends Controller
                 $fcm_tokens[0] = $user->fcm_token;
                 $title='title_'.$user->lang;
                 $body='body_'.$user->lang;
-                send_notification($notification->$title , $notification->$body , $notification->image , null , $fcm_tokens);
+                send_notification($notification->$title , $notification->$body ,null, $notification->image , null , $fcm_tokens);
             }
 
             activity('admin')->log('تم اضافه الاشعار بنجاح -'.$notification->title_ar);

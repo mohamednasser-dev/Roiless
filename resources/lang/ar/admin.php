@@ -76,7 +76,8 @@ return [
     'pending_fund' => 'التمويلات الحاليه',
     'user_chart' => 'احصائيات العملاء',
     'fund_chart' => 'احصائيات التمويلات',
-
+      'statuschanged'=>'تم التفعيل  ',
+      'statunschanged'=>'تم الغاء التفعيل',
     'Appearance_is_enabled' => 'تم تفعيل الموظف',
     'Appearance_is_disabled' => 'تم تعطيل الموظف',
     'my_profile' => 'الحساب',
