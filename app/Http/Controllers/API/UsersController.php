@@ -113,23 +113,26 @@ class UsersController extends Controller
             }
         }
     }
+
     public function update_password(Request $request)
     {
         $rules = [
-            'password_old' => 'required',
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6',
         ];
+
         $validator = Validator::make($request->all(), $rules);
+
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
             $id=Auth::user()->id;
             $user=User::find($id);
-            if(Hash::check($request->password_old, $user->password)){
+            if($request->password == $request->password_confirmation){
                 $user->update([
                     'password'=> Hash::make($request->password)
                 ]);
+
                 $data['status'] = true;
                  return msgdata($request, success(), 'update password successfuly', $data);
             }else{
@@ -215,7 +218,7 @@ class UsersController extends Controller
             $user_otb = User::where('phone', $request->phone)->first();
 
             if ($request->otp_code == $user_otb->otp_code) {
-        
+
                 $user_otb->password = Hash::make($request->password);
                 $user_otb->otp_code = null;
                 $user_otb->verified = 1 ;

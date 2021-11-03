@@ -40,7 +40,6 @@ class NotificationsController extends Controller
 
     public function store(Request $request)
     {
-        return $request;
 
         $data = $this->validate(request(),
             [
