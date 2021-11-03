@@ -32,7 +32,7 @@ class employerController extends Controller
 
     public function index()
     {
-        $employers = Admin::where('type', 'employer')->orderBy('name', 'desc')->paginate(30);
+        $employers = Admin::where('type', 'employer')->orderBy('name', 'desc');
         return view($this->folderView . 'employers', compact('employers'));
     }
 

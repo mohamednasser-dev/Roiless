@@ -1,7 +1,7 @@
 <?php
 return [
     //new
-
+     'show_question'=>'عرض السؤال',
     'sure' => 'هل تريد تحويل كافة طلبات هذا البنك الي بنك اخر؟',
     'trans_bank' => 'اختر البنك',
     'add_new_detailes_service' => 'اضافة تفاصيل جديدة',
@@ -25,9 +25,6 @@ return [
     'date_user_email'=>'ايميل العميل',
     'sent_to_banks'=>'تم الارسال لبنك',
     'funds_sent'=>'التمويلات المستلمه',
-
-    'select all'=>'تحديد الكل',
-    'deselect all'=>'الغاء التحديد',
 
     //start permisstions
     'permisstion' => 'الصلاحيه',

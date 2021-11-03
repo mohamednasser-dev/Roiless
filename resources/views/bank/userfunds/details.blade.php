@@ -217,7 +217,6 @@
                                     <div class="col-md-12" >
                                         <div class="form-group">
                                             {{ Form::textarea('details_ar','',["class"=>"form-control summernote " ,'cols' => 10, "rows" => "5","required"])  }}
-
                                         </div>
                                     </div>
                                 </div>

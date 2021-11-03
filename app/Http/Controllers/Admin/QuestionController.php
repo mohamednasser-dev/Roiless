@@ -22,57 +22,35 @@ class QuestionController extends Controller
 
     public function index()
     {
-
         $questions = $this->objectName::get();
         return view($this->folderView . 'index', compact('questions'));
     }
-
-
     public function create()
     {
-
         return view($this->folderView . 'create');
     }
-
-
+    public function show($id){
+        $question=common_question::find($id);
+        return view($this->folderView . 'show_question',compact('question'));
+    }
     public function store(Request $request)
     {
-
         $data = $this->validate(request(),
             [
                 'question_ar' => 'required',
                 'answer_ar' => 'required',
                 'question_en' => 'required',
                 'answer_en' => 'required',
-                'image' => '',
-
-            ]);
-        try {
+            ]); 
             DB::beginTransaction();
             //store images
-            if ($request->image != null) {
-                $data['image'] = $this->MoveImage($request->image, 'uploads/question');
-            }
-
-
             $questios = $this->objectName::create($data);
-
             activity('admin')->log('تم اضافه السؤال  بنجاح');
-
             DB::commit();
             Alert::success('تمت العمليه', 'تم اضافه الخدمه بنجاح');
             return redirect()->route('question');
 
-        } catch (\Exception $ex) {
-
-            DB::rollback();
-            Alert::warning('هنالك خطاء', 'لم يتم التحديث');
-
-            return redirect()->route('question');
-
-        }
     }
-
     public function edit($id)
     {
         $question = $this->objectName::where('id', $id)->first();
@@ -88,52 +66,31 @@ class QuestionController extends Controller
                 'answer_ar' => 'required',
                 'question_en' => 'required',
                 'answer_en' => 'required',
-                'image' => '',
-
             ]);
-
         try {
             DB::beginTransaction();
-
             $question = $this->objectName::find($id);
             if (!$question) {
                 Alert::warning('خطاء', 'هذه الخدمه ليست موجوه');
                 return redirect()->route(' $this->folderView');
             }
-
-
-            if ($request->hasFile('image')) {
-                $file_name = $this->MoveImage($request->file('image'), 'uploads/question');
-                $data['image'] = $file_name;
-            }
-
             $this->objectName::where('id', $id)->update($data);
-
             activity('admin')->log('تم تحديث السؤال بنجاح');
-
             DB::commit();
             Alert::success('تمت العمليه', 'تم التحديث بنجاح');
             return redirect()->route('question');
-
         } catch (\Exception $ex) {
-
             DB::rollback();
             Alert::warning('هنالك خطاء', 'لم يتم التحديث');
-
             return redirect()->route('question');
-
         }
     }
-
-
     public function destroy($id)
     {
         $question = $this->objectName::findOrFail($id);
         $question->delete();
         activity('admin')->log('تم حذف السؤال بنجاح');
-
         Alert::success('تمت العمليه', 'تم الحذف بنجاح');
-
         return redirect()->route('question');
     }
 

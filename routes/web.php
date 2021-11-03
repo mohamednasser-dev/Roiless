@@ -142,6 +142,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
         Route::get('question/create', 'QuestionController@create')->name('question.add');
         Route::post('/question/store', 'QuestionController@store')->name('question.store');
         Route::get('/question/edit/{id}', 'QuestionController@edit')->name('question.edit');
+        Route::get('/question/show/{id}', 'QuestionController@show')->name('question.show');
         Route::post('/question/update/{id}', 'QuestionController@update')->name('question.update');
         Route::get('/question/delete/{id}', 'QuestionController@destroy')->name('question.delete');
     });

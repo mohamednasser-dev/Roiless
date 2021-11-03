@@ -21,14 +21,10 @@ class usersController extends Controller{
         $this->objectName = $model;
         $this->folderView = 'admin.users.';
     }
-
-
     public function index(){
-        $users = $this->objectName::where('type','user')->orderBy('created_at','DESC')->paginate(30);
-
+        $users = $this->objectName::where('type','user')->orderBy('created_at','DESC');
         return view($this->folderView.'users',compact('users'));
     }
-
    public function show($id){
         $data = $this->objectName::where('id',$id)->first();
         return view($this->folderView.'details',compact('data'));

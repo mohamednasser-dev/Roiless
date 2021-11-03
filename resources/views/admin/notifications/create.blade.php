@@ -4,8 +4,8 @@
     <link rel="stylesheet" href="{{ asset('/assets/plugins/select2/dist/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{ asset('/assets/plugins/bootstrap-select/bootstrap-select.min.css')}}">
     <link rel="stylesheet" href="{{ asset('/assets/plugins/multiselect/css/multi-select.css')}}">
-
-
+    
+   
 @endsection
 @section('content')
     <div class="row page-titles">
@@ -14,13 +14,13 @@
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-
+              
                 <li class="breadcrumb-item"><a href="{{route('notifications.index')}}">{{trans('admin.notification')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>
-    <div class="row">
+    <div class="row">   
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
@@ -47,7 +47,7 @@
                         <div class="col-md-10">
                             {{  Form::textarea('body_ar', null, [
                                 'class'      => 'form-control',
-                                'rows'       => 5,
+                                'rows'       => 5, 
                                  'required',
                                   ]) }}
                         </div>
@@ -57,7 +57,7 @@
                         <div class="col-md-10">
                         {{  Form::textarea('body_en', null, [
                                 'class'      => 'form-control',
-                                'rows'       => 5,
+                                'rows'       => 5, 
                                  'required',
                                   ]) }}
                         </div>
@@ -76,29 +76,27 @@
                     </div>
                     <div class="form-group m-t-40 row" style="display:none;" id="div_users_container">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.multi_select')}}</label>
-                        <div class="col-lg-12 col-xlg-4">
-                            <select class="form-control" multiple id="public-methods" name='users_id[]'>
-                                @foreach($users as $user)
+                        <div class="col-md-10">
+                        <select class="select2 m-b-10 select2-multiple " style="width: 100%" multiple="multiple" data-placeholder="{{trans('admin.choose')}}" name='users_id[]'>
+                                    <optgroup label="Mountain Time Zone">
+                                    @foreach($users as $user)
                                     <option value="{{$user->id}}">{{$user->name}}</option>
-                                @endforeach
-                            </select>
-                            <div class="button-box m-t-20">
-                                <a id="select-all" class="btn btn-danger" href="#">{{trans('admin.select all')}}</a>
-                                <a id="deselect-all" class="btn btn-info" href="#">{{trans('admin.deselect all')}}</a>
-                            </div>
+                                    @endforeach
+                                    </optgroup>
+                                </select>
                         </div>
                     </div>
                     <div class="form-group m-t-40 row" style="display:none;" id="div_funds_container">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.funds')}}</label>
                         <div class="col-md-10">
                         <select class="custom-select form-control pull-right"  name="funds">
-                            @foreach($funds as $fund)
+                            @foreach($funds as $fund)                          
                                 <option value="{{$fund->id}}">{{$fund->name}}</option>
                             @endforeach
                              </select>
                         </div>
                     </div>
-
+                    
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.notification_image')}}</label>
                         <div class="col-md-10">
@@ -114,23 +112,13 @@
         </div>
         @endsection
         @section('scripts')
-
+        
             <script src="{{ asset('/assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
             <script src="{{ asset('/assets/plugins/select2/dist/js/select2.full.min.js')}}"></script>
             <script src="{{ asset('/assets/plugins/bootstrap-select/bootstrap-select.min.js')}}"></script>
             <script src="{{ asset('/assets/plugins/multiselect/js/jquery.multi-select.js')}}"></script>
-<script>
-    $('#public-methods').multiSelect();
-    $('#select-all').click(function() {
-        $('#public-methods').multiSelect('select_all');
-        return false;
-    });
-    $('#deselect-all').click(function() {
-        $('#public-methods').multiSelect('deselect_all');
-        return false;
-    });
-</script>
-
+           
+           
             <script>
                 $(document).ready(function () {
 

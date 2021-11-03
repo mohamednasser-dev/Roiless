@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2.5|^8.0",
         "baklysystems/laravel-paymob": "dev-master",
+        "doctrine/dbal": "2.*",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
@@ -21,7 +22,6 @@
         "realrashid/sweet-alert": "^4.0",
         "spatie/laravel-activitylog": "^3.17",
         "spatie/laravel-permission": "^5.1",
-        "teckwei1993/laravel-otp": "^1.0",
         "tymon/jwt-auth": "^1.0"
     },
     "repositories": [{
