@@ -22,7 +22,7 @@ class usersController extends Controller{
         $this->folderView = 'admin.users.';
     }
     public function index(){
-        $users = $this->objectName::where('type','user')->orderBy('created_at','DESC');
+        $users = $this->objectName::where('type','user')->orderBy('created_at','DESC')->get();
         return view($this->folderView.'users',compact('users'));
     }
    public function show($id){
