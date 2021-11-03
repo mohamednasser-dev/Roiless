@@ -25,7 +25,7 @@ class fundController extends Controller
 
     public function index()
     {
-        $funds = Fund::paginate(30);
+        $funds = Fund::all();
         return view($this->folderView . 'index', compact('funds'));
     }
 

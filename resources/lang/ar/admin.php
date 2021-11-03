@@ -1,7 +1,7 @@
 <?php
 return [
     //new
-
+     'show_question'=>'عرض السؤال',
     'sure' => 'هل تريد تحويل كافة طلبات هذا البنك الي بنك اخر؟',
     'trans_bank' => 'اختر البنك',
     'add_new_detailes_service' => 'اضافة تفاصيل جديدة',

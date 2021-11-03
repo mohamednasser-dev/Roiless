@@ -40,28 +40,15 @@
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.answer_in_arabic')}}</label>
                         <div class="col-md-10">
-                            {{ Form::text('answer_ar',$question->answer_ar,["class"=>"form-control" ,"required"]) }}
+                            {{ Form::textarea('answer_ar',$question->answer_ar,["class"=>"form-control summernote" , "rows" => "5" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.answer_in_english')}}</label>
                         <div class="col-md-10">
-                            {{ Form::text('answer_en',$question->answer_en,["class"=>"form-control" ,"required"]) }}
+                        {{ Form::textarea('answer_en',$question->answer_en,["class"=>"form-control summernote" , "rows" => "5" ,"required"]) }}
                         </div>
                     </div>
-
-                        <div class="row">
-                            <div class="col-lg-12 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">صورة السؤال</h4>
-                                        <input type="file" data-default-file="{{$question->image}}" name="image"
-                                               id="input-file-now" class="dropify"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     <div class="card">
                         <div class="card-body">
                             <div class="center">
