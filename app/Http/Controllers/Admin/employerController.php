@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\EmployerCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Admin;
 use App\Models\Category;
@@ -113,12 +114,12 @@ class employerController extends Controller
             $data = $this->validate(\request(),
                 [
                     'name'                   => 'required|max:255,' . $id,
-                    'email'                  => 'required|unique:admins,email|email,' . $id,
-                    'phone'                  => 'required|unique:admins,phone|numeric,' . $id,
+                    'email'                  => 'required|unique:admins,email,' . $id,
+                    'phone'                  => 'required|unique:admins,phone,' . $id,
                     'password'               => 'required|min:6|confirmed',
                     'password_confirmation'  => 'required|min:6',
-                    'cat_id'                 => 'required|numeric',
-                    'role_id'                => 'required|numeric'
+                    'cat_id'                 => 'required',
+                    'role_id'                => 'required'
                 ]);
             $data['password'] = bcrypt(request('password'));
             unset($data['password_confirmation']);
@@ -126,10 +127,10 @@ class employerController extends Controller
             $data = $this->validate(\request(),
                 [
                     'name'                   => 'required|max:255,' . $id,
-                    'email'                  => 'required|unique:admins,email|email,' . $id,
-                    'phone'                  => 'required|unique:admins,phone|numeric,' . $id,
-                    'cat_id'                 => 'required|numeric',
-                    'role_id'                => 'required|numeric'
+                    'email'                  => 'required|unique:admins,email,' . $id,
+                    'phone'                  => 'required|unique:admins,phone,' . $id,
+                    'cat_id'                 => 'required',
+                    'role_id'                => 'required'
                 ]);
         }
         $data['type'] = 'employer';
@@ -146,7 +147,7 @@ class employerController extends Controller
                 'cat_id'=>$c,
             ]);
         }
-        $employee->assignRole($request->input('role_id'));
+        DB::table('model_has_roles')->where('model_id',$id)->update(['role_id' => $request['role_id']]);
         Alert::success(trans('admin.opretion_success'),trans('admin.employer_update') );
         return redirect()->route('employer.index');
     }
