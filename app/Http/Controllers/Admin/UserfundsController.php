@@ -37,7 +37,7 @@ class UserfundsController extends Controller
     public function index()
     {
         if (auth()->user()->type == 'admin') {
-            $usefunds = User_fund::with('Fund')->orderBy('created_at','DESC');
+            $usefunds = User_fund::with('Fund')->orderBy('created_at','DESC')->paginate(30);
             return view($this->folderView . 'index', compact('usefunds'));;
         }else{
             $catids =EmployerCategory::where('emp_id',auth()->user()->id)->pluck('cat_id');

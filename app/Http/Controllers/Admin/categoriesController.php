@@ -14,7 +14,7 @@ class categoriesController extends Controller
     use offerTrait;
     public function index()
     {
-        $categories = Category::where('type', 'cat');
+        $categories = Category::where('type', 'cat')->paginate(30);
         return view('admin.categories.index', compact('categories'));
     }
     public function create()
