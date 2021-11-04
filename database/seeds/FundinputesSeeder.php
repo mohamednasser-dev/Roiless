@@ -85,5 +85,6 @@ class FundinputesSeeder extends Seeder
             'name' => 'قيمة السيارة المطلوب تمويلها',
             'slug' => 'car_financed',
         ]);
+        //test  
     }
 }
