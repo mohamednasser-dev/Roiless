@@ -22,6 +22,10 @@ class DashboardController extends Controller
 
     public function index()
     {
+//        $result = \Otp::generate('reg:khaled');
+//
+//        $result2 = \Otp::validate( 'reg:khaled',$result);
+//        dd($result2);
 
         $usercount = User::count();
         $bankcount = Bank::count();

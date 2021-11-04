@@ -11,7 +11,7 @@
                                 class="mdi mdi-home"></i><span class="hide-menu"></span>{{trans('admin.home_page')}}</a>
                     </li>
                 @endcan
-    
+
                 @can('Users')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('users.index')}}" aria-expanded="false"><i
@@ -45,7 +45,7 @@
                                 class="mdi mdi-cash-multiple"></i><span
                                 class="hide-menu"></span>{{trans('admin.funds')}}</a>
                     </li>
-                   
+
                 @endcan
                 @can('Client Funds')
                     <li><a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-cash-multiple"></i><span
@@ -62,7 +62,7 @@
                                 class="mdi mdi-briefcase"></i><span
                                 class="hide-menu"></span>{{trans('admin.fund_category')}}</a>
                     </li>
-                    
+
                 @endcan
 
                 @can('Common questions')
@@ -145,8 +145,8 @@
     <!-- End Sidebar scroll-->
 </aside>
 <div class="page-wrapper">
-@include('layouts.errors')
-@include('layouts.messages')
+
+
 <!-- ============================================================== -->
     <!-- Container fluid  -->
     <!-- ============================================================== -->
