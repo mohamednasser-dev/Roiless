@@ -6,6 +6,7 @@ use App\Mail\UserRestPasswordApi;
 use App\Models\Consolution;
 use App\Models\consolution_kind;
 use Carbon\Carbon;
+use phpDocumentor\Reflection\Types\True_;
 use Str;
 use App\Cases;
 use App\Http\Controllers\Controller;
@@ -116,6 +117,7 @@ class UsersController extends Controller
             }
         }
     }
+
     public function update_password(Request $request)
     {
 
@@ -127,20 +129,19 @@ class UsersController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
-            $id=Auth::user()->id;
-            $user=User::find($id);
-            if($request->password == $user->password_confirmation){
+            $id = Auth::user()->id;
+            $user = User::find($id);
+            if ($request->password == $user->password_confirmation) {
                 $user->update([
-                    'password'=> Hash::make($request->password)
+                    'password' => Hash::make($request->password)
                 ]);
                 $data['status'] = true;
-                 return msgdata($request, success(), 'update password successfuly', $data);
-            }else{
+                return msgdata($request, success(), 'update password successfuly', $data);
+            } else {
                 return response()->json(['status' => 401, 'msg' => 'old password false']);
             }
         }
     }
-
 
 
     public function update_image(Request $request)
@@ -223,7 +224,7 @@ class UsersController extends Controller
 
                 $user_otb->password = Hash::make($request->password);
                 $user_otb->otp_code = null;
-                $user_otb->verified = 1 ;
+                $user_otb->verified = 1;
                 $user_otb->save();
 
                 $data['status'] = true;
@@ -234,6 +235,7 @@ class UsersController extends Controller
             }
         }
     }
+
     public function reset_password(Request $request)
     {
         $check_token = DB::table('password_resets')->where('token', $request->token)->where('created_at', '>', Carbon::now()->subHours(1))->first();
@@ -243,6 +245,7 @@ class UsersController extends Controller
             return response()->json(msg($request, failed(), 'not_reseted'));
         }
     }
+
     public function reset_password_post(Request $request)
     {
         $rules = [
@@ -309,6 +312,25 @@ class UsersController extends Controller
             $data['user_id'] = $user->id;
             $result = Consolution::create($data);
             return msgdata($request, success(), 'added successfully', $result);
+        }
+    }
+
+    public function generate_otp(Request $request)
+    {
+        $userPhone = Auth::user()->phone;
+        $otb = \Otp::generate($userPhone);
+        return msgdata($request, success(), 'otp', $otb);
+    }
+
+    public function otp_validate(Request $request)
+    {
+        $userPhone = Auth::user()->phone;
+        $otp = $request->otp;
+        $result = \Otp::validate($userPhone, $otp);
+        if ($result->status == true){
+            return msgdata($request, success(),'','');
+        }else{
+            return msgdata($request, failed(),$result->error,'');
         }
     }
 }

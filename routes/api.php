@@ -70,6 +70,8 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::get('check_token/', 'UsersController@reset_password');
         Route::post('reset/password/', 'UsersController@reset_password_post');
         Route::post('update/password', 'UsersController@update_password');
+        Route::post('generateOtp', 'UsersController@generate_otp');
+        Route::post('otp_validate', 'UsersController@otp_validate');
         // inbox
         Route::post('make/inbox', 'InboxController@store');
         // userFunds
