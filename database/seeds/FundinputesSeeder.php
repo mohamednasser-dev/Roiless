@@ -14,25 +14,16 @@ class FundinputesSeeder extends Seeder
     public function run()
     {
         Fundinput::create([
-            'name' => 'الاسم الاول',
-            'slug' => 'first_name',
-        ]);
-        Fundinput::create([
-            'name' => 'الاسم الاخير',
-            'slug' => 'lastname',
-        ]);
-        Fundinput::create([
-            'name' => 'البريد الإلكتروني',
-            'slug' => 'email',
+            'name' => 'الاسم الثلاتي',
+            'slug' => 'full_name',
         ]);
         Fundinput::create([
             'name' => 'رقم الهاتف',
             'slug' => 'phone',
         ]);
-
         Fundinput::create([
-            'name' => 'العنوان',
-            'slug' => 'address',
+            'name' => 'البريد الإلكتروني',
+            'slug' => 'email',
         ]);
         Fundinput::create([
             'name' => 'العنوان',
@@ -51,7 +42,7 @@ class FundinputesSeeder extends Seeder
             'slug' => 'company_name',
         ]);
         Fundinput::create([
-            'name' => 'رقم هاتف الشركة',
+            'name' => 'تليفون الشركة',
             'slug' => 'company_phone',
         ]);
         Fundinput::create([
@@ -59,24 +50,40 @@ class FundinputesSeeder extends Seeder
             'slug' => 'company_address',
         ]);
         Fundinput::create([
-            'name' => 'مدينة الشركة',
-            'slug' => 'company_city',
-        ]);
-        Fundinput::create([
-            'name' => 'دولة الشركة',
-            'slug' => 'company_country',
-        ]);
-        Fundinput::create([
             'name' => 'مجال الشركة',
             'slug' => 'company_field',
         ]);
         Fundinput::create([
-            'name' => 'نوع الشركة',
-            'slug' => 'company_type',
-        ]);
-        Fundinput::create([
             'name' => 'الدخل السنوي',
             'slug' => 'annual_sales',
+        ]);
+        Fundinput::create([
+            'name' => 'مبلغ التمويل',
+            'slug' => 'fund_amount',
+        ]);
+        Fundinput::create([
+            'name' => 'نشاط الشركة',
+            'slug' => 'Company_activity',
+        ]);
+        Fundinput::create([
+            'name' => 'المبيعات السنوية',
+            'slug' => 'Annual_sales',
+        ]);
+        Fundinput::create([
+            'name' => 'المبيعات السنوية',
+            'slug' => 'Annual_sales',
+        ]);
+        Fundinput::create([
+            'name' => 'قيمة القرض المطلوب',
+            'slug' => 'Required_fund_amount',
+        ]);
+        Fundinput::create([
+            'name' => 'قيمة العقار المطلوب تمويله',
+            'slug' => 'property_financed',
+        ]);
+        Fundinput::create([
+            'name' => 'قيمة السيارة المطلوب تمويلها',
+            'slug' => 'car_financed',
         ]);
     }
 }

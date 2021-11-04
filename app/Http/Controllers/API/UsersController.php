@@ -24,6 +24,9 @@ use Validator;
 use App\Models\User;
 use PDF;
 use DB;
+use Teckwei1993\Otp\Otp;
+use Teckwei1993\Otp\Rules\OtpValidate;
+
 
 class UsersController extends Controller
 {
@@ -115,6 +118,7 @@ class UsersController extends Controller
     }
     public function update_password(Request $request)
     {
+
         $rules = [
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6',
@@ -136,6 +140,8 @@ class UsersController extends Controller
             }
         }
     }
+
+
 
     public function update_image(Request $request)
     {
