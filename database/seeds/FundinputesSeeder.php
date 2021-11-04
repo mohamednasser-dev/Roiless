@@ -55,7 +55,7 @@ class FundinputesSeeder extends Seeder
         ]);
         Fundinput::create([
             'name' => 'الدخل السنوي',
-            'slug' => 'annual_sales',
+            'slug' => 'annual_income',
         ]);
         Fundinput::create([
             'name' => 'مبلغ التمويل',
@@ -67,7 +67,7 @@ class FundinputesSeeder extends Seeder
         ]);
         Fundinput::create([
             'name' => 'المبيعات السنوية',
-            'slug' => 'annual__sales',
+            'slug' => 'annual_sales',
         ]);
         Fundinput::create([
             'name' => 'قيمة القرض المطلوب',
