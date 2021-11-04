@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "127d9752d2234f181d19eb08f0e79bea",
+    "content-hash": "9be5f090efdd4332b74059b8be26789d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6272,6 +6272,66 @@
                 }
             ],
             "time": "2021-09-24T15:59:58+00:00"
+        },
+        {
+            "name": "teckwei1993/laravel-otp",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/teckwei1993/laravel-otp.git",
+                "reference": "534d721764ba0436832ed3bbc8fc53172e6f72db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/teckwei1993/laravel-otp/zipball/534d721764ba0436832ed3bbc8fc53172e6f72db",
+                "reference": "534d721764ba0436832ed3bbc8fc53172e6f72db",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.2|^6.0|^7.0|^8.0",
+                "php": "^5.5.9|^7.0|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Teckwei1993\\Otp\\OtpServiceProvider"
+                    ],
+                    "aliases": {
+                        "Otp": "Teckwei1993\\Otp\\OtpFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Teckwei1993\\Otp\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lim Teck Wei",
+                    "email": "teckwei1993@gmail.com"
+                }
+            ],
+            "description": "Laravel OTP generator and validation",
+            "homepage": "https://github.com/teckwei1993/laravel-otp",
+            "keywords": [
+                "email validation",
+                "laravel",
+                "mobile validation",
+                "one time passwords",
+                "one time pin",
+                "otp"
+            ],
+            "support": {
+                "issues": "https://github.com/teckwei1993/laravel-otp/issues",
+                "source": "https://github.com/teckwei1993/laravel-otp/tree/v1.0.5"
+            },
+            "time": "2021-09-30T03:36:47+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
