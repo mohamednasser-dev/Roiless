@@ -324,6 +324,7 @@ class UsersController extends Controller
 
     public function otp_validate(Request $request)
     {
+        //phone
         $userPhone = Auth::user()->phone;
         $otp = $request->otp;
         $result = \Otp::validate($userPhone, $otp);
