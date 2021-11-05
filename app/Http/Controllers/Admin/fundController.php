@@ -29,7 +29,6 @@ class fundController extends Controller
         return view($this->folderView . 'index', compact('funds'));
     }
 
-
     public function create()
     {
         $categories = Category::get();
@@ -37,10 +36,8 @@ class fundController extends Controller
         return view($this->folderView . 'create', compact('categories', 'fundsinputs'));
     }
 
-
     public function store(Request $request)
     {
-
         $data = $this->validate(request(),
             [
                 'columns' => 'required|array|min:1',
@@ -52,29 +49,58 @@ class fundController extends Controller
                 'cost' => 'required',
                 'cat_id' => 'required|numeric',
                 'image' => '',
-
             ]);
-
-
         $data['image'] = $this->MoveImage($request->image, 'uploads/funds');
-        $data['columns'] = json_encode($request->columns);
-        $funds = $this->objectName::create($data);
-        $fund_admin='تم اضافه تمويل'.$funds->name_ar;
-        store_history(Auth::user()->id , $fund_admin);
+        $newarray = [];
+        foreach ($request->columns as $key => $row) {
+            if ($row == 'annual_income') {
+                $newarray[$key] = 'annual_income';
+                $data['annual_income_ar'] = 'الدخل السنوي';
+                $data['annual_income_en'] = 'annual income';
+            }elseif($row == 'annual_sales'){
+                $newarray[$key] = 'annual_income';
+                $data['fund_amount_ar'] = 'المبيعات السنوية';
+                $data['fund_amount_en'] = 'annual sales';
+            }elseif ($row == 'Required_fund_amount') {
+                $newarray[$key] = 'fund_amount';
+                $data['fund_amount_ar'] = 'قيمة القرض المطلوب';
+                $data['fund_amount_en'] = 'Required fund amount';
+            }elseif($row == 'property_financed'){
+                $newarray[$key] = 'fund_amount';
+                $data['fund_amount_ar'] = 'قيمة القرض المطلوب';
+                $data['fund_amount_en'] = 'The value of the property to be financed';
+            }elseif($row == 'car_financed'){
+                $newarray[$key] = 'fund_amount';
+                $data['fund_amount_ar'] = 'قيمة السيارة المطلوب تمويلها';
+                $data['fund_amount_en'] = 'car financed';
+            }elseif($row == 'fund_amount'){
+                $newarray[$key] = 'fund_amount';
+                $data['fund_amount_ar'] = 'مبلغ التمويل';
+                $data['fund_amount_en'] = 'fund amount';
+            }else{
+                $newarray[$key] = $row;
+            }
+        }
+        $data['columns'] = json_encode($newarray);
+        $funds = Fund::create($data);
+        $fund_admin = 'تم اضافه تمويل' . $funds->name_ar;
+        store_history(Auth::user()->id, $fund_admin);
         DB::commit();
-        Alert::success( trans('admin.opretion_success'),);
-        return redirect()->route('fund')->with('success',);
+        Alert::success(trans('admin.opretion_success'), trans('admin.fund_added_successfully'));
+        return redirect()->route('fund');
     }
+
     public function details($id)
     {
-        $fund = $this->objectName::where('id', $id)->first();
+        $fund = Fund::where('id', $id)->first();
         return view($this->folderView . 'details', compact('fund'));
     }
+
     public function edit($id)
     {
         $categories = Category::get();
         $fundsinputs = Fundinput::get();
-        $fund = $this->objectName::where('id', $id)->first();
+        $fund = Fund::where('id', $id)->first();
         $columns = json_decode($fund->columns);
         return view($this->folderView . 'edit', compact('fund', 'fundsinputs', 'categories', 'columns'));
     }
@@ -92,51 +118,48 @@ class fundController extends Controller
                 'image' => '',
 
             ]);
-            DB::beginTransaction();
+        DB::beginTransaction();
+        $fund = Fund::find($id);
+        if (!$fund) {
+            Alert::warning(trans('admin.service_not_found'), trans('admin.wron'));
+            return redirect()->route(' $this->folderView');
+        }
 
-            $fund = $this->objectName::find($id);
-            if (!$fund) {
-                Alert::warning(trans('admin.service_not_found'), trans('admin.wron'));
-                return redirect()->route(' $this->folderView');
-            }
+        if ($request->hasFile('image')) {
+            $file_name = $this->MoveImage($request->file('image'), 'uploads/funds');
+            $data['image'] = $file_name;
+        }
 
-            if ($request->hasFile('image')) {
-                $file_name = $this->MoveImage($request->file('image'), 'uploads/funds');
-                $data['image'] = $file_name;
-            }
-
-            $data['desc_ar'] = $request->desc_ar;
-            $data['desc_en'] = $request->desc_en;
-            $this->objectName::where('id', $id)->update($data);
-            $fund_admin='تم تحديث تمويل'.$fund->name_ar;
-            store_history(Auth::user()->id , $fund_admin);
-            DB::commit();
-            return redirect()->route('fund')->with('success',trans('admin.opretion_success'));
+        $data['desc_ar'] = $request->desc_ar;
+        $data['desc_en'] = $request->desc_en;
+        Fund::where('id', $id)->update($data);
+        $fund_admin = 'تم تحديث تمويل' . $fund->name_ar;
+        store_history(Auth::user()->id, $fund_admin);
+        DB::commit();
+        return redirect()->route('fund')->with('success', trans('admin.opretion_success'));
     }
 
     public function destroy($id)
     {
-        $fund = $this->objectName::findOrFail($id);
+        $fund = Fund::findOrFail($id);
         $fund->delete();
-        $fund_admin='تم حذف تمويل'.$fund->name_ar;
-        store_history(Auth::user()->id , $fund_admin);
+        $fund_admin = 'تم حذف تمويل' . $fund->name_ar;
+        store_history(Auth::user()->id, $fund_admin);
         Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
         return redirect()->route('fund');
     }
 
     public function changeStatus(Request $request)
     {
-        $this->objectName::where('id', $request->id)->update([
+        Fund::where('id', $request->id)->update([
             'featured' => $request->status
         ]);
     }
 
-
     public function appearance(Request $request)
     {
-        $this->objectName::where('id', $request->id)->update([
+        Fund::where('id', $request->id)->update([
             'appearance' => $request->status
         ]);
     }
-
 }

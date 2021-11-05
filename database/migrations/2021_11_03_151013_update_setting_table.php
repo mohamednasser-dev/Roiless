@@ -14,9 +14,8 @@ class UpdateSettingTable extends Migration
     public function up()
     {
         Schema::table('settings', function (Blueprint $table) {
-        //
-        $table->string('phone')->default('+201094641332');
-    });
+            $table->string('phone')->default('+201094641332');
+        });
     }
 
     /**
