@@ -120,7 +120,6 @@ class UsersController extends Controller
 
     public function update_password(Request $request)
     {
-
         $rules = [
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6',
@@ -129,21 +128,15 @@ class UsersController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
-            $id = Auth::user()->id;
+              $id = Auth::user()->id;
             $user = User::find($id);
-            if ($request->password == $user->password_confirmation) {
-                $user->update([
-                    'password' => Hash::make($request->password)
-                ]);
+            if ($request->password == $request->password_confirmation) {
+                $user->update([ 'password' => Hash::make($request->password) ]);
                 $data['status'] = true;
                 return msgdata($request, success(), 'update password successfuly', $data);
-            } else {
-                return response()->json(['status' => 401, 'msg' => 'old password false']);
-            }
+            } else { return response()->json(['status' => 401, 'msg' => 'o']); }
         }
     }
-
-
     public function update_image(Request $request)
     {
         $id = Auth::user()->id;
@@ -324,6 +317,7 @@ class UsersController extends Controller
 
     public function otp_validate(Request $request)
     {
+        //phone
         $userPhone = Auth::user()->phone;
         $otp = $request->otp;
         $result = \Otp::validate($userPhone, $otp);
