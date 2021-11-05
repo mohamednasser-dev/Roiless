@@ -28,7 +28,7 @@ class FundController extends Controller
             if (empty($lang)) {
                 $lang = "en";
             }
-            $Funddetailes = Fund::select('id', 'name_ar', 'name_en','financing_ratio', 'image', 'columns', 'cost')->where('id', $id)->first();
+            $Funddetailes = Fund::select('id', 'name_ar', 'name_en','financing_ratio', 'image', 'columns', 'cost','fund_amount_ar','fund_amount_en','annual_income_ar','annual_income_en')->where('id', $id)->first();
             $Funddetailes->cost = number_format((float)($Funddetailes->cost), 2);
             $Funddetailes->columns = json_decode($Funddetailes->columns);
             if ($Funddetailes) {
