@@ -37,13 +37,13 @@ class UserfundsController extends Controller
     public function index()
     {
         if (auth()->user()->type == 'admin') {
-            $usefunds = User_fund::with('Fund')->orderBy('created_at','DESC')->get();
+            $usefunds = User_fund::with('Fund')->orderBy('created_at','desc')->get();
             return view($this->folderView . 'index', compact('usefunds'));;
         }else{
             $catids =EmployerCategory::where('emp_id',auth()->user()->id)->pluck('cat_id');
             $usefunds = User_fund::whereHas('Fund', function ($q) use($catids) {
               $q->whereIN('cat_id',$catids);
-            })->orderBy('created_at','DESC')->get();
+            })->orderBy('created_at','desc')->get();
             return view($this->folderView . 'index', compact('usefunds'));;
         }
 

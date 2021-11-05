@@ -25,7 +25,7 @@ class fundController extends Controller
 
     public function index()
     {
-        $funds = Fund::all();
+        $funds = Fund::orderBy('created_at','desc')->get();
         return view($this->folderView . 'index', compact('funds'));
     }
 
@@ -101,7 +101,29 @@ class fundController extends Controller
         $categories = Category::get();
         $fundsinputs = Fundinput::get();
         $fund = Fund::where('id', $id)->first();
-        $columns = json_decode($fund->columns);
+        $old_columns = json_decode($fund->columns);
+        $columns = [] ;
+        foreach ($old_columns as $key=> $row){
+            if($row  == 'fund_amount'){
+                if($fund->fund_amount_en == 'Required fund amount'){
+                    $columns[$key] = 'Required_fund_amount';
+                }elseif($fund->fund_amount_en == 'The value of the property to be financed'){
+                    $columns[$key] = 'property_financed';
+                }elseif($fund->fund_amount_en == 'car financed'){
+                    $columns[$key] = 'car_financed';
+                }else{
+                    $columns[$key] = 'fund_amount';
+                }
+            }elseif($row  == 'fund_amount'){
+                if($fund->annual_income_ar == 'annual sales'){
+                    $columns[$key] = 'annual_sales';
+                }else{
+                    $columns[$key] = 'annual_income';
+                }
+            }else{
+                $columns[$key] = $row;
+            }
+        }
         return view($this->folderView . 'edit', compact('fund', 'fundsinputs', 'categories', 'columns'));
     }
 
@@ -132,6 +154,38 @@ class fundController extends Controller
 
         $data['desc_ar'] = $request->desc_ar;
         $data['desc_en'] = $request->desc_en;
+
+        $newarray = [];
+        foreach ($request->columns as $key => $row) {
+            if ($row == 'annual_income') {
+                $newarray[$key] = 'annual_income';
+                $data['annual_income_ar'] = 'الدخل السنوي';
+                $data['annual_income_en'] = 'annual income';
+            }elseif($row == 'annual_sales'){
+                $newarray[$key] = 'annual_income';
+                $data['fund_amount_ar'] = 'المبيعات السنوية';
+                $data['fund_amount_en'] = 'annual sales';
+            }elseif ($row == 'Required_fund_amount') {
+                $newarray[$key] = 'fund_amount';
+                $data['fund_amount_ar'] = 'قيمة القرض المطلوب';
+                $data['fund_amount_en'] = 'Required fund amount';
+            }elseif($row == 'property_financed'){
+                $newarray[$key] = 'fund_amount';
+                $data['fund_amount_ar'] = 'قيمة القرض المطلوب';
+                $data['fund_amount_en'] = 'The value of the property to be financed';
+            }elseif($row == 'car_financed'){
+                $newarray[$key] = 'fund_amount';
+                $data['fund_amount_ar'] = 'قيمة السيارة المطلوب تمويلها';
+                $data['fund_amount_en'] = 'car financed';
+            }elseif($row == 'fund_amount'){
+                $newarray[$key] = 'fund_amount';
+                $data['fund_amount_ar'] = 'مبلغ التمويل';
+                $data['fund_amount_en'] = 'fund amount';
+            }else{
+                $newarray[$key] = $row;
+            }
+        }
+        $data['columns'] = json_encode($newarray);
         Fund::where('id', $id)->update($data);
         $fund_admin = 'تم تحديث تمويل' . $fund->name_ar;
         store_history(Auth::user()->id, $fund_admin);
