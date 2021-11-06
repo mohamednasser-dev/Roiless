@@ -24,8 +24,7 @@ class ConsolutionController extends Controller
         }
         $replies = reply::where('consolution_id', $id)->get();
         if ($replies) {
-            reply::where('consolution_id', '=', $id)
-                ->update(['seen' => '1']);
+            reply::where('consolution_id', '=', $id)->where('user_id','!=',null)->update(['seen' => '1']);
         }
         return view('admin.consolution.consolution_show', compact('consolution', 'replies'));
     }
