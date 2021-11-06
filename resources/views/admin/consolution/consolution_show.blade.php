@@ -43,7 +43,7 @@
                         <div class="d-flex m-b-40">
                             <div>
                                 <a href="javascript:void(0)"><img src="{{$consolution->user->image}}" alt="user"
-                                                                  style="height:100px;" class="img-circle"/></a>
+                                                                  style="height:100px ; width: 100px;" class="img-circle"/></a>
                             </div>
                             <div class="p-l-10">
                                 <h4 class="m-b-0">{{$consolution->user->name}}</h4>
@@ -64,7 +64,7 @@
                             @foreach($replies as $reply)
                                 <li>
                                     <div class="chat-img"><img
-                                            style="height:50px;"
+                                            style="height:50px; width: 50px;"
                                             src="@if($reply->admin_id != null) {{$reply->Admin->image}} @else {{$reply->user->image}}  @endif"
                                             alt="user"/>
                                     </div>
