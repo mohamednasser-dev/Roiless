@@ -25,8 +25,8 @@ return [
     'excel_fund'=>'تصدير التمويلات الي اكسيل',
     'date_user'=>'بيانات العميل',
     'date_user_name'=>'اسم العميل',
-    'date_user_phone'=>'رقم العميل',
-    'date_user_email'=>'ايميل العميل',
+    'date_user_phone'=>'رقم الهاتف',
+    'date_user_email'=>'البريد الإلكتروني',
     'sent_to_banks'=>'تم الارسال لبنك',
     'funds_sent'=>'التمويلات المستلمه',
 
