@@ -267,7 +267,7 @@ return [
     'pdf_preview' => 'مرفقات التمويل',
     'img_preview' => 'صور التمويل',
     'emp_transfer' => 'التحويل لموظف اخر',
-    'user_transfer' => 'مراجعه الطلب',
+    'user_transfer' => 'رفض الطلب',
     'fund_accept' => 'الموافقه علي الطلب',
     'start_fund' => 'بدايه التمويل',
     'bank_reject' => 'مرفوض من البنك',
