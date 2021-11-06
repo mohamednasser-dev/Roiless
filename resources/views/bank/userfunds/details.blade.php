@@ -1,13 +1,13 @@
 @extends('bank.bank_temp')
 @section('styles')
     <link rel="stylesheet" href="{{ asset('/assets/plugins/dropify/dist/css/dropify.min.css') }}">
-    <link href="{{ asset('/assets/plugins/summernote/dist/summernote.css') }}" rel="stylesheet" >
-       <style>
-                 .carousel-inner  img {
-                  width:640px ;
-                  max-height:670px ;
-          }
-       </style>
+    <link href="{{ asset('/assets/plugins/summernote/dist/summernote.css') }}" rel="stylesheet">
+    <style>
+        .carousel-inner img {
+            width: 640px;
+            max-height: 670px;
+        }
+    </style>
 
 @endsection
 @section('content')
@@ -33,16 +33,16 @@
                         <h3>{{trans('admin.date_preview')}}</h3>
 
                         @foreach(json_decode($userfund->dataform, true) as $data)
-
-                            <h3 class="control-label">{{ $data['name'] }}</h3>
-                            <input type="text" id="firstName" class="form-control" value="{{ $data['value'] }} " readonly>
+                            @php $inputnow = \App\Models\Fundinput::where('slug',$data['name'])->first(); @endphp
+                            <h3 class="control-label">{{ $inputnow->name }}</h3>
+                            <input type="text" id="firstName" class="form-control" value="{{ $data['value'] }} "
+                                   readonly>
                         @endforeach
                     </div>
                 </div>
             </div>
         </div>
         {{--end dataform --}}
-
 
 
     </div>
@@ -56,10 +56,10 @@
                         <h5>{{trans('admin.img_preview')}}</h5>
                     </div>
 
-                    <!-- <div id="image-popups" class="row">
+                <!-- <div id="image-popups" class="row">
                         @foreach($userfund->Files_img as $file)
-                            <div class="col-lg-2 col-md-4">
-                                <a href="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
+                    <div class="col-lg-2 col-md-4">
+                        <a href="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
                                    data-effect="mfp-zoom-in"><img
                                         src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
                                         class="img-responsive"/></a>
@@ -67,41 +67,47 @@
                         @endforeach
                     </div> -->
                     @if(count($userfund->Files_img)>0)
-                   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
 
-                        </ol>
+                            </ol>
 
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                            @foreach($userfund->Files_img as $key => $file)
-                            @if ($key == 0)
-                            @continue
-                            @endif
-                            <img class="d-block w-100" src="{{asset('/uploads/fund_file').'/'.$file->file_name}}" alt="First slide">
-                            @if ($key == 1)
-                            @break
-                            @endif
-                            @endforeach
-                            </div>
-                            @foreach($userfund->Files_img as $key => $file)
-                            @if($loop->iteration  <= 1)
-                                <div class="carousel-item">
-                                <img class="d-block w-100" src="{{asset('/uploads/fund_file').'/'.$file->file_name}}" alt="Second slide">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    @foreach($userfund->Files_img as $key => $file)
+                                        @if ($key == 0)
+                                            @continue
+                                        @endif
+                                        <img class="d-block w-100"
+                                             src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
+                                             alt="First slide">
+                                        @if ($key == 1)
+                                            @break
+                                        @endif
+                                    @endforeach
                                 </div>
-                            @endif
-                            @endforeach
+                                @foreach($userfund->Files_img as $key => $file)
+                                    @if($loop->iteration  <= 1)
+                                        <div class="carousel-item">
+                                            <img class="d-block w-100"
+                                                 src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
+                                                 alt="Second slide">
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                               data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                               data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                        </div>
-                 @endif
+                    @endif
                 </div>
             </div>
         </div>
@@ -121,7 +127,8 @@
 
                         @foreach($userfund->Files_pdf as $file)
                             <div class="col-6">
-                                <iframe src="{{asset('/uploads/fund_file').'/'.$file->file_name}}" style="width:600px; height:500px;"></iframe>
+                                <iframe src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
+                                        style="width:600px; height:500px;"></iframe>
                             </div>
                         @endforeach
                     </div>
@@ -134,7 +141,7 @@
     <div class="row">
         <div class="card col-12 ">
             <div class="card-body  center">
-              <button
+                <button
                     type="button" class="btn btn-success" data-toggle="modal" data-target="#approve">الموافقه علي الطلب
                 </button>
                 <button
@@ -154,43 +161,45 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
                     </div>
-                    <!-- <form class="form"
+                <!-- <form class="form"
                           action="{{route('request.rejected',$userfund->id)}}"
                           method="POST">
                         @csrf -->
-                        {{ Form::open( ['route'  =>  ['request.rejected',$userfund->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
-                        <div class="col-md-12">
-                            <div class="form-group has-success">
+                    {{ Form::open( ['route'  =>  ['request.rejected',$userfund->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
+                    <div class="col-md-12">
+                        <div class="form-group has-success">
 
-                                <label class="control-label"> ملحوظه بالعربيه </label>
-                                <input type="text" class="form-control" name="note_ar" required>
-                                <label class="control-label"> ملحوظه بالانجليزيه </label>
-                                <input type="text" class="form-control" name="note_en" required>
-                                <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-form-label"> {{trans('bank.detailes_ar')}}</label>
-                                    <div class="col-md-12">
+                            <label class="control-label"> ملحوظه بالعربيه </label>
+                            <input type="text" class="form-control" name="note_ar" required>
+                            <label class="control-label"> ملحوظه بالانجليزيه </label>
+                            <input type="text" class="form-control" name="note_en" required>
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input"
+                                       class="col-form-label"> {{trans('bank.detailes_ar')}}</label>
+                                <div class="col-md-12">
                                     {{ Form::textarea('details_ar','',["class"=>"form-control summernote" , "rows" => "5" ,"required"]) }}
-                                    </div>
                                 </div>
                             </div>
-
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-group has-success">
-                                <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col col-form-label"> {{trans('bank.detailes_en')}}</label>
-                                    <div class="col-md-12">
+
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group has-success">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input"
+                                       class="col col-form-label"> {{trans('bank.detailes_en')}}</label>
+                                <div class="col-md-12">
                                     {{ Form::textarea('details_en','',["class"=>"form-control summernote" , "rows" => "5" ,"required"]) }}
-                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">اختيار</button>
-                        </div>
-                        {{ Form::close() }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">اختيار</button>
+                    </div>
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>
@@ -208,37 +217,39 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
                     </div>
-                        {{ Form::open( ['route'  =>  ['request.accept',$userfund->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
+                    {{ Form::open( ['route'  =>  ['request.accept',$userfund->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
 
-                        <div class="col-md-12">
-                            <div class="form-group has-success">
-                                <div class="form-group m-t-40 row"  >
-                                    <label for="example-text-input" class="col col-form-label"> {{trans('bank.detailes_ar')}}</label>
-                                    <div class="col-md-12" >
-                                        <div class="form-group">
-                                            {{ Form::textarea('details_ar','',["class"=>"form-control summernote " ,'cols' => 10, "rows" => "5","required"])  }}
-                                        </div>
+                    <div class="col-md-12">
+                        <div class="form-group has-success">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input"
+                                       class="col col-form-label"> {{trans('bank.detailes_ar')}}</label>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{ Form::textarea('details_ar','',["class"=>"form-control summernote " ,'cols' => 10, "rows" => "5","required"])  }}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12" >
-                            <div class="form-group has-success">
-                                <div class="form-group m-t-40 row"  >
-                                    <label for="example-text-input" class="col col-form-label"> {{trans('bank.detailes_en')}}</label>
-                                    <div class="col-md-12" >
-                                        <div class="form-group" style="">
-                                            {{ Form::textarea('details_en','',["class"=>"form-control summernote " ,'cols' => 10, "rows" => "5","required"])  }}
-                                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group has-success">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input"
+                                       class="col col-form-label"> {{trans('bank.detailes_en')}}</label>
+                                <div class="col-md-12">
+                                    <div class="form-group" style="">
+                                        {{ Form::textarea('details_en','',["class"=>"form-control summernote " ,'cols' => 10, "rows" => "5","required"])  }}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">اختيار</button>
-                        </div>
-                        {{ Form::close() }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">اختيار</button>
+                    </div>
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>
@@ -249,11 +260,11 @@
 
 @endsection
 @section('scripts')
-<script src="{{ asset('/assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
+    <script src="{{ asset('/assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
     <script src="{{ asset('/js/custom.min.js')}}"></script>
     <script src="{{ asset('/assets/plugins/summernote/dist/summernote.min.js')}}"></script>
     <script>
-        jQuery(document).ready(function() {
+        jQuery(document).ready(function () {
 
             $('.summernote').summernote({
                 height: 350, // set editor height
@@ -268,10 +279,10 @@
 
         });
 
-        window.edit = function() {
+        window.edit = function () {
             $(".click2edit").summernote()
         },
-            window.save = function() {
+            window.save = function () {
                 $(".click2edit").summernote('destroy');
             }
     </script>

@@ -82,7 +82,7 @@
                             @csrf
                             <input type="hidden" name="consulation_id" value="{{$consolution->id}}">
                             <div class="form-group">
-                                <textarea placeholder="Type your message here" name="reply" class="form-control"
+                                <textarea placeholder="Type your message here" required name="reply" class="form-control"
                                           id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
                             <div class="col-4 text-right">
