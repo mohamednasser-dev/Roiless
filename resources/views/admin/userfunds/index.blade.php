@@ -23,7 +23,7 @@
     </div>
     <br>
     <div class="card">
-        <div class="card-body"> 
+        <div class="card-body">
             <div class="table-responsive m-t-5">
                 <table id="myTable" class="table table-bordered table-striped">
                     <thead>
@@ -42,7 +42,7 @@
                     <td class="text-lg-center">{{$usefund->id}}</td>
                     <td class="text-lg-center">{{$usefund->created_at->format('Y-m-d g:i a')}}</td>
                     <td class="text-lg-center">{{$usefund->Users->name}}</td>
-                    <td class="text-lg-center">{{$usefund->Fund->name_ar}}</td>
+                    <td class="text-lg-center">@if($usefund->Fund) {{$usefund->Fund->name_ar}} @endif </td>
                     <td class="text-lg-center">{{$usefund->payment}}</td>
                     <td class="text-lg-center ">
                         @if(is_null($usefund->emp_id))

@@ -13,9 +13,10 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         $Permissions = [
-            'roles',
+
             'Users',
             'Employers',
+            'roles',
             'Banks',
             'funds',
             'Client Funds',

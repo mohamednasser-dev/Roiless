@@ -5,13 +5,10 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
 
-                @can('home')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('home')}}" aria-expanded="false"><i
                                 class="mdi mdi-home"></i><span class="hide-menu"></span>{{trans('admin.home_page')}}</a>
                     </li>
-                @endcan
-
                 @can('Users')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('users.index')}}" aria-expanded="false"><i
