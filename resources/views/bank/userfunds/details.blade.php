@@ -162,32 +162,11 @@
                     {{ Form::open( ['route'  =>  ['request.rejected',$userfund->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
                     <div class="col-md-12">
                         <div class="form-group has-success">
-
                             <label class="control-label"> ملحوظه بالعربيه </label>
                             <input type="text" class="form-control" name="note_ar" required>
                             <label class="control-label"> ملحوظه بالانجليزيه </label>
                             <input type="text" class="form-control" name="note_en" required>
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input"
-                                       class="col-form-label"> {{trans('bank.detailes_ar')}}</label>
-                                <div class="col-md-12">
-                                    {{ Form::textarea('details_ar','',["class"=>"form-control summernote" , "rows" => "5" ,"required"]) }}
-                                </div>
-                            </div>
                         </div>
-
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group has-success">
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input"
-                                       class="col col-form-label"> {{trans('bank.detailes_en')}}</label>
-                                <div class="col-md-12">
-                                    {{ Form::textarea('details_en','',["class"=>"form-control summernote" , "rows" => "5" ,"required"]) }}
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
