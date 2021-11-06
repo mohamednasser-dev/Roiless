@@ -33,7 +33,7 @@ class PayMobController extends Controller
                 $auth->token,
                 $auth->profile->id,
                 $order->fund_amount * 100,
-                $order->id
+                $order->id.'_'.time()
             );
             $paymobOrder = $paymobOrders->id;
         }
@@ -160,7 +160,8 @@ class PayMobController extends Controller
      */
     public function processedCallback(Request $request)
     {
-        $orderId = $request['merchant_order_id'];
+        $orderId = explode('_', $request['merchant_order_id']);
+        $orderId = $orderId[0];
         $order   = config('paymob.order.model', 'App\Order')::find($orderId);
         // Statuses.
         $isSuccess  = filter_var($request['success'], FILTER_VALIDATE_BOOLEAN);
