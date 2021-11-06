@@ -379,7 +379,7 @@
                     <div class="card-title">
                         <h3>{{trans('admin.date_user')}}</h3>
                         <div class="row">
-                      
+
                                 <div class="col-6">
                                     <h3 class="control-label">{{trans('admin.date_user_name')}}</h3>
                                     <input type="text" id="firstName" class="form-control" value="{{$user->name}}"
@@ -389,7 +389,7 @@
                                     <h3 class="control-label">{{trans('admin.date_user_phone')}}</h3>
                                     <input type="text" id="firstName" class="form-control" value="{{$user->phone}}"
                                            readonly>
-                               </div>    
+                               </div>
                                <div class="col-6">
                                     <h3 class="control-label">{{trans('admin.date_user_email')}}</h3>
                                  @if(!empty($user->emai))
@@ -398,9 +398,9 @@
                                    @else
                                    <input type="text" id="firstName" class="form-control text-danger" value="no email yet"
                                            readonly>
-                                  @endif         
-                               </div>    
-                           
+                                  @endif
+                               </div>
+
                         </div>
                     </div>
                 </div>
@@ -411,11 +411,14 @@
                         <h3>{{trans('admin.date_preview')}}</h3>
                         <div class="row">
                         @foreach(json_decode($requestreview->dataform, true) as $data)
+                            @if($data['value'] != "null")
+                                @php $inputnow = \App\Models\Fundinput::where('slug',$data['name'])->first(); @endphp
                                 <div class="col-6">
-                                    <h3 class="control-label">{{ $data['name'] }}</h3>
+                                    <h3 class="control-label">{{ $inputnow->name }}</h3>
                                     <input type="text" id="firstName" class="form-control" value="{{ $data['value'] }} "
                                            readonly>
                             </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>
@@ -508,9 +511,9 @@
                 </div>
             @endforeach
         </div>
-    </div> -->                 
+    </div> -->
               @if(count($requestreview->Files_img)>0)
-                   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">       
+                   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                             @foreach($requestreview->Files_img as $key => $file)
@@ -541,7 +544,7 @@
                         </a>
                         </div>
                  @endif
-               
+
 </div>
 
 
@@ -722,7 +725,7 @@
 <script>
 $( document ).ready(function() {
     console.log('sadoon');
-    $('#slid').change(function(){      
+    $('#slid').change(function(){
         console.log('sagfdoon');
      });
 });
@@ -731,9 +734,9 @@ $( document ).ready(function() {
     <script
         src="{{asset('/assets/plugins/Magnific-Popup-master/dist/jquery.magnific-popup-init.js')}}"></script>
     <script type="text/javascript">
-    
+
         $('#slimtest1, #slimtest2, #slimtest3, #slimtest4').perfectScrollbar();
-        
+
         $(document).ready(function () {
             $('.owl-carousel').owlCarousel({
                 loop: true,
