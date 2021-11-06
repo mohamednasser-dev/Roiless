@@ -59,15 +59,15 @@ class fundController extends Controller
                 $data['annual_income_en'] = 'annual income';
             }elseif($row == 'annual_sales'){
                 $newarray[$key] = 'annual_income';
-                $data['fund_amount_ar'] = 'المبيعات السنوية';
-                $data['fund_amount_en'] = 'annual sales';
+                $data['annual_income_ar'] = 'المبيعات السنوية';
+                $data['annual_income_en'] = 'annual sales';
             }elseif ($row == 'Required_fund_amount') {
                 $newarray[$key] = 'fund_amount';
                 $data['fund_amount_ar'] = 'قيمة القرض المطلوب';
                 $data['fund_amount_en'] = 'Required fund amount';
             }elseif($row == 'property_financed'){
                 $newarray[$key] = 'fund_amount';
-                $data['fund_amount_ar'] = 'قيمة القرض المطلوب';
+                $data['fund_amount_ar'] = 'قيمة العقار المطلوب تمويله';
                 $data['fund_amount_en'] = 'The value of the property to be financed';
             }elseif($row == 'car_financed'){
                 $newarray[$key] = 'fund_amount';
@@ -114,8 +114,8 @@ class fundController extends Controller
                 }else{
                     $columns[$key] = 'fund_amount';
                 }
-            }elseif($row  == 'fund_amount'){
-                if($fund->annual_income_ar == 'annual sales'){
+            }elseif($row  == 'annual_income'){
+                if($fund->annual_income_en == 'annual sales'){
                     $columns[$key] = 'annual_sales';
                 }else{
                     $columns[$key] = 'annual_income';
@@ -163,15 +163,15 @@ class fundController extends Controller
                 $data['annual_income_en'] = 'annual income';
             }elseif($row == 'annual_sales'){
                 $newarray[$key] = 'annual_income';
-                $data['fund_amount_ar'] = 'المبيعات السنوية';
-                $data['fund_amount_en'] = 'annual sales';
+                $data['annual_income_ar'] = 'المبيعات السنوية';
+                $data['annual_income_en'] = 'annual sales';
             }elseif ($row == 'Required_fund_amount') {
                 $newarray[$key] = 'fund_amount';
                 $data['fund_amount_ar'] = 'قيمة القرض المطلوب';
                 $data['fund_amount_en'] = 'Required fund amount';
             }elseif($row == 'property_financed'){
                 $newarray[$key] = 'fund_amount';
-                $data['fund_amount_ar'] = 'قيمة القرض المطلوب';
+                $data['fund_amount_ar'] = 'قيمة العقار المطلوب تمويله';
                 $data['fund_amount_en'] = 'The value of the property to be financed';
             }elseif($row == 'car_financed'){
                 $newarray[$key] = 'fund_amount';

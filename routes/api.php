@@ -34,6 +34,8 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
     Route::get("/payment/success", "PayMobController@succeeded")->name('succeeded');
     Route::get("/payment/fail", "PayMobController@failed")->name('failed');
 
+
+
     Route::group(['middleware' => ['jwt.verify']], function () {
         Route::post("/logout", "AuthController@logout");
         // home page and services
@@ -41,6 +43,10 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::get("/auth/check_otp/{code}", "AuthController@check_otp");
 
         Route::get("/get_data_profile", "UsersController@getDataProfile");
+
+        Route::get("/questions/index", "QuestionsController@index");
+        Route::get("/questions/detailes/{id}", "QuestionsController@detailes");
+
         Route::get("/services", "ServiceController@getallservices");
         Route::get("/services_detailes/{id}", "ServiceController@getservicedetailes");
         // categories
