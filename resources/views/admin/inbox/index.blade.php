@@ -13,7 +13,7 @@
     </div>
     <br>
     <div class="row">
-        <table class="table full-color-table full-primary-table">
+        <table id="myTable" class="table table-bordered table-striped">
             <thead>
             <tr>
                 <th class="text-lg-center">{{trans('admin.consolution_name_user')}}</th>
@@ -75,7 +75,6 @@
             @endforeach
             </tbody>
         </table>
-        {{ $consolutions->links() }}
     </div>
 @endsection
 @section('scripts')

@@ -22,7 +22,7 @@ class InboxController extends Controller
 
     public function index()
     {
-        $consolutions = Consolution::where('type','contact_us')->paginate(30);
+        $consolutions = Consolution::where('type','contact_us')->orderBy('created_at','desc')->get();
         return view('admin.inbox.index', compact('consolutions'));
     }
 

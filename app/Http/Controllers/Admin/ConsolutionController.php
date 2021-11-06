@@ -13,7 +13,7 @@ class ConsolutionController extends Controller
     }
     public function index()
     {
-        $consolutions = Consolution::where('type','consultation')->paginate(30);
+        $consolutions = Consolution::where('type','consultation')->orderBy('created_at','desc')->get();
         return view('admin.consolution.index', compact('consolutions'));
     }
     public function show($id)
