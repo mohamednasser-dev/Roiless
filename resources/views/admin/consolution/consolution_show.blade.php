@@ -43,7 +43,7 @@
                         <div class="d-flex m-b-40">
                             <div>
                                 <a href="javascript:void(0)"><img src="{{$consolution->user->image}}" alt="user"
-                                                                  style="height:30px;" class="img-circle"/></a>
+                                                                  style="height:100px;" class="img-circle"/></a>
                             </div>
                             <div class="p-l-10">
                                 <h4 class="m-b-0">{{$consolution->user->name}}</h4>
@@ -64,7 +64,7 @@
                             @foreach($replies as $reply)
                                 <li>
                                     <div class="chat-img"><img
-                                            style="height:30px;"
+                                            style="height:50px;"
                                             src="@if($reply->admin_id != null) {{$reply->Admin->image}} @else {{$reply->user->image}}  @endif"
                                             alt="user"/>
                                     </div>
@@ -82,7 +82,7 @@
                             @csrf
                             <input type="hidden" name="consulation_id" value="{{$consolution->id}}">
                             <div class="form-group">
-                                <textarea placeholder="Type your message here" required name="reply" class="form-control"
+                                <textarea placeholder="{{trans('admin.type_message_here')}}" required name="reply" class="form-control"
                                           id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
                             <div class="col-4 text-right">

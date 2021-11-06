@@ -4,6 +4,7 @@ return [
 
 
     'select all'=>'تحديد الكل',
+    'type_message_here'=>'اكتب الرد هنا',
     'deselect all'=>'الغاء التحديد',
      'show_question'=>'عرض السؤال',
     'sure' => 'هل تريد تحويل كافة طلبات هذا البنك الي بنك اخر؟',
