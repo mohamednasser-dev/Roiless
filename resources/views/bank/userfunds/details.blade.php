@@ -22,8 +22,6 @@
             </ol>
         </div>
     </div>
-
-
     <div class="row row-cols-2">
         {{--Start dataform --}}
         <div class="col-12">
@@ -31,22 +29,18 @@
                 <div class="card-body">
                     <div class="card-title">
                         <h3>{{trans('admin.date_preview')}}</h3>
-
                         @foreach(json_decode($userfund->dataform, true) as $data)
-                            @php $inputnow = \App\Models\Fundinput::where('slug',$data['name'])->first(); @endphp
-                            <h3 class="control-label">{{ $inputnow->name }}</h3>
-                            <input type="text" id="firstName" class="form-control" value="{{ $data['value'] }} "
-                                   readonly>
+                            @if($data['value'] != "null")
+                                @php $inputnow = \App\Models\Fundinput::where('slug',$data['name'])->first(); @endphp
+                                <h3 class="control-label">{{ $inputnow->name }}</h3>
+                                <input type="text" id="firstName" class="form-control" value="{{ $data['value'] }}" readonly>
+                            @endif
                         @endforeach
                     </div>
                 </div>
             </div>
         </div>
-        {{--end dataform --}}
-
-
     </div>
-
     {{--Start fund photos --}}
     <div class="row">
         <div class="col-12">
