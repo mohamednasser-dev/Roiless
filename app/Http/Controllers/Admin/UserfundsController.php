@@ -205,7 +205,7 @@ class UserfundsController extends Controller
         $fcm_tokens[0] = $user->fcm_token;
         $title='title_ar'.$user->lang;
         $body='body_ar'.$user->lang;
-        send_notification($notification->$title , $notification->$body , null , null , $fcm_tokens);
+        send_notification($notification->$title , $notification->$body , null , null , null , $fcm_tokens);
         Alert::success('عملية ناجحة', 'تم تحويل الملحوظات الي المستحدم بنجاح');
         return redirect()->route('userfunds');
     }
