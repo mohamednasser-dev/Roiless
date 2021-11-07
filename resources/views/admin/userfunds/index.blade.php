@@ -108,7 +108,7 @@
                     "targets": 2
                 }],
                 "order": [
-                    [2, 'asc']
+                    [2, 'desc']
                 ],
                 "displayLength": 25,
                 "drawCallback": function(settings) {
