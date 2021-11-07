@@ -93,9 +93,9 @@
                 status: featured
             }, function (data) {
                 if (featured == 1) {
-                    toastr.success("{{trans('admin.statuschanged')}}");
+                    toastr.success("{{trans('admin.Appearance')}}");
                 } else {
-                    toastr.error("{{trans('admin.statunschanged')}}");
+                    toastr.error("{{trans('admin.deAppearance')}}");
                 }
             });
         }
@@ -111,9 +111,9 @@
                 status: appearance
             }, function (data) {
                 if (appearance == 1) {
-                    toastr.success("{{trans('admin.statuschanged')}}");
+                    toastr.success("{{trans('admin.active')}}");
                 } else {
-                    toastr.error("{{trans('admin.statuschanged')}}");
+                    toastr.error("{{trans('admin.deactive')}}");
                 }
             });
         }

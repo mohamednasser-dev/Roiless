@@ -3,10 +3,10 @@ return [
     //new
 
 
-    'select all'=>'تحديد الكل',
-    'type_message_here'=>'اكتب الرد هنا',
-    'deselect all'=>'الغاء التحديد',
-     'show_question'=>'عرض السؤال',
+    'select all' => 'تحديد الكل',
+    'type_message_here' => 'اكتب الرد هنا',
+    'deselect all' => 'الغاء التحديد',
+    'show_question' => 'عرض السؤال',
     'sure' => 'هل تريد تحويل كافة طلبات هذا البنك الي بنك اخر؟',
     'trans_bank' => 'اختر البنك',
     'add_new_detailes_service' => 'اضافة تفاصيل جديدة',
@@ -14,22 +14,22 @@ return [
     'disable_only' => ' تعطيل فقط',
     'all' => 'الارسال الي الجميع',
     'add_new_cat' => 'انشاء قسم جديد',
-    'date'=>'التاريخ',
-    'request'=>'الطلب',
-    'status'=>'الحاله',
-    'revision'=>'المراجعه',
-    'Required_funds_exports'=>'تصدير الي اكسل',
+    'date' => 'التاريخ',
+    'request' => 'الطلب',
+    'status' => 'الحاله',
+    'revision' => 'المراجعه',
+    'Required_funds_exports' => 'تصدير الي اكسل',
     'kind_recive' => 'طريقه ارسال الاشعار',
     'trans_disaple' => 'تعطيل وتحويل',
     'address' => 'عنوان البنك',
-    'export_user_excel'=>'تصدير بيانات المستخدمين الي اكسيل',
-    'excel_fund'=>'تصدير التمويلات الي اكسيل',
-    'date_user'=>'بيانات العميل',
-    'date_user_name'=>'اسم العميل',
-    'date_user_phone'=>'رقم الهاتف',
-    'date_user_email'=>'البريد الإلكتروني',
-    'sent_to_banks'=>'تم الارسال لبنك',
-    'funds_sent'=>'التمويلات المستلمه',
+    'export_user_excel' => 'تصدير بيانات المستخدمين الي اكسيل',
+    'excel_fund' => 'تصدير التمويلات الي اكسيل',
+    'date_user' => 'بيانات العميل',
+    'date_user_name' => 'اسم العميل',
+    'date_user_phone' => 'رقم الهاتف',
+    'date_user_email' => 'البريد الإلكتروني',
+    'sent_to_banks' => 'تم الارسال لبنك',
+    'funds_sent' => 'التمويلات المستلمه',
 
     //start permisstions
     'permisstion' => 'الصلاحيه',
@@ -81,10 +81,12 @@ return [
     'pending_fund' => 'التمويلات الحاليه',
     'user_chart' => 'احصائيات العملاء',
     'fund_chart' => 'احصائيات التمويلات',
-      'statuschanged'=>'تم التفعيل  ',
-      'statunschanged'=>'تم الغاء التفعيل',
+    'active' => 'تم التفعيل  ',
+    'deactive' => 'تم الغاء التفعيل',
     'Appearance_is_enabled' => 'تم تفعيل الموظف',
     'Appearance_is_disabled' => 'تم تعطيل الموظف',
+    'Appearance' => 'تم تفعيل الظهور',
+    'deAppearance' => 'تم الغاء الظهور',
     'my_profile' => 'الحساب',
     'image' => 'الصوره',
     'actions' => 'الاجرائات',
@@ -116,7 +118,6 @@ return [
     'Deactivate' => 'تم الغاء التفعيل',
     'bank_name' => 'البنك',
     'logo' => 'الشعار',
-
 
 
     'logout' => 'تسجيل الخروج',
@@ -291,12 +292,9 @@ return [
     'bank_created' => 'تم انشاء بنك جديد',
 
 
-
-
     'user_update' => 'تم تعديل مستخدم جديد',
     'employer_update' => 'تم تعديل بيانات الموظف',
     'permisstion_update' => 'تم تعديل الصلاحيه',
-
 
 
     'updated_Success' => 'تم التعديل بنجاح',
@@ -305,7 +303,6 @@ return [
     'Deleted' => 'الحذف',
 
     // end sweet alert
-
 
 
 ];

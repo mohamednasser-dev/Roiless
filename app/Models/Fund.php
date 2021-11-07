@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Fund extends Model
 {
-    use softdeletes;
 
     protected $guarded = [];
     protected $date = ['delete_at'];
@@ -21,7 +20,7 @@ class Fund extends Model
 
     public function Fund()
     {
-        return $this->belongsTo(Fund::class,'fund_id');
+        return $this->belongsTo(Fund::class,'fund_id')->where('deleted','0');
     }
 
 
