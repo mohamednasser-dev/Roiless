@@ -38,6 +38,7 @@ class SettingController extends Controller
                 'logo' => '',
                 'about_us_ar' => "",
                 'about_us_en' => "",
+                'phone' => ""
             ]);
         }
         return view($this->folderView . '.' . 'edit', compact('setting'));
@@ -54,6 +55,7 @@ class SettingController extends Controller
                 'privacy_en' => 'required',
                 'about_us_ar' => 'required',
                 'about_us_en' => 'required',
+                'phone' => 'required',
                 'facebook' => '',
                 'youtube' => '',
                 'instagram' => '',
