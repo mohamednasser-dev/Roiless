@@ -17,6 +17,7 @@ use Str;
 use Illuminate\Http\Request;
 use BaklySystems\PayMob\Facades\PayMob;
 use App\Http\Controllers\API\PayMobController;
+use function PHPUnit\Framework\isNull;
 
 class FundController extends Controller
 {
@@ -28,7 +29,7 @@ class FundController extends Controller
             if (empty($lang)) {
                 $lang = "en";
             }
-            $Funddetailes = Fund::select('id', 'name_ar', 'name_en','financing_ratio', 'image', 'columns', 'cost','fund_amount_ar','fund_amount_en','annual_income_ar','annual_income_en')->where('id', $id)->where('deleted','0')->first();
+            $Funddetailes = Fund::select('id', 'name_ar', 'name_en', 'financing_ratio', 'image', 'columns', 'cost', 'fund_amount_ar', 'fund_amount_en', 'annual_income_ar', 'annual_income_en')->where('id', $id)->where('deleted', '0')->first();
             $Funddetailes->cost = number_format((float)($Funddetailes->cost), 2);
             $Funddetailes->columns = json_decode($Funddetailes->columns);
             if ($Funddetailes) {
@@ -66,15 +67,15 @@ class FundController extends Controller
             $user_fund_data['dataform'] = json_encode($request->dataform);
             $user_fund_data['fund_id'] = $request->fund_id;
             $user_fund_data['user_id'] = $user->id;
-            foreach($request->dataform as $row){
-                if($row['name'] == 'fund_amount'){
-                    $user_fund_data['cost']=$row['value'];
-                }elseif($row['name'] == 'Required_fund_amount'){
-                    $user_fund_data['cost']=$row['value'];
-                }elseif($row['name'] == 'property_financed'){
-                    $user_fund_data['cost']=$row['value'];
-                }elseif($row['name'] == 'car_financed'){
-                    $user_fund_data['cost']=$row['value'];
+            foreach ($request->dataform as $row) {
+                if ($row['name'] == 'fund_amount') {
+                    $user_fund_data['cost'] = $row['value'];
+                } elseif ($row['name'] == 'Required_fund_amount') {
+                    $user_fund_data['cost'] = $row['value'];
+                } elseif ($row['name'] == 'property_financed') {
+                    $user_fund_data['cost'] = $row['value'];
+                } elseif ($row['name'] == 'car_financed') {
+                    $user_fund_data['cost'] = $row['value'];
                 }
             }
             $user_funds = User_fund::create($user_fund_data);
@@ -140,4 +141,85 @@ class FundController extends Controller
     {
         return view('payment.phone_page', compact('payway', 'id', 'user_id'));
     }
+
+    public function Userfund($id)
+    {
+        $data=User_fund::find($id);
+        if ($data){
+        $data['userFundFils']=Fund_file::where('user_fund_id',$id)->get();
+        return msgdata('', success(), 'user fund is found', $data); }
+        else
+        return msgdata('', failed(), 'there is no fund found', $data);
+    }
+
+    public function deletefile($filename)
+    {
+        $data=Fund_file::where('file_name',$filename)->first();
+        if ($data == null){
+            return msgdata('', failed(), 'there is no fundfile', $data);
+        }else
+        Fund_file::where('file_name',$filename)->delete();
+        return msgdata('', success(), 'file deleted successfully ', '');
+    }
+
+
+    public function updateUserFund(Request $request,$id)
+    {
+        $user = auth()->user();
+
+        $myJSON = json_encode($request->dataform);
+        $rules = [
+            'fund_id' => '',
+            'dataform' => 'required',
+            'file' => '',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        } else {
+            $fund = Fund::find($request->fund_id);
+            $user_fund_data['dataform'] = json_encode($request->dataform);
+            $user_fund_data['user_id'] = $user->id;
+            $user_fund_data['user_status'] = 'pending';
+            $user_funds = User_fund::where('id',$id)->update($user_fund_data);
+
+            $history_data['user_fund_id'] = $id;
+            $history_data['type'] = 'user';
+            $history_data['show_in'] = 'web';
+            $history_data['status'] = 'pending';
+            $history_data['user_id'] =  auth()->user()->id;
+            $history_data['note_ar'] = 'التعديل علي التمويل';
+            $history_data['note_en'] = 'Fund Editing';
+            Fhistory::create($history_data);
+
+            $history_app_data['user_fund_id'] = $id;
+            $history_app_data['type'] = 'user';
+            $history_app_data['show_in'] = 'app';
+            $history_app_data['status'] = 'pending';
+            $history_app_data['user_id'] =  auth()->user()->id;
+            $history_app_data['note_ar'] = 'مراجعه التمويل بعد التعديل';
+            $history_app_data['note_en'] = 'Review Fund After update ';
+            Fhistory::create($history_app_data);
+
+            if ($request->file != null) {
+
+                foreach ($request->file as $key => $row) {
+                    // This is Image Information ...
+                    $file = $row;
+                    $ext = $file->getClientOriginalExtension();
+                    $size = $file->getSize();
+                    // Move Image To Folder ..
+                    $fileNewName = 'file' . $size . '_' . time() . '.' . $ext;
+                    $file->move(public_path('uploads/fund_file'), $fileNewName);
+                    $file_data['user_fund_id'] = $user_funds->id;
+                    $file_data['file_ext'] = $ext;
+                    $file_data['file_name'] = $fileNewName;
+                    Fund_file::create($file_data);
+                }
+            }
+            return msgdata($request, success(), 'add user fund successfully', ['fund_id' => $id]);
+        }
+    }
+
+
 }

@@ -414,7 +414,7 @@
                                 @if($data['value'] != "null")
                                     @php $inputnow = \App\Models\Fundinput::where('slug',$data['name'])->first(); @endphp
                                     <div class="col-6">
-                                        <h3 class="control-label">{{ $inputnow->name }}</h3>
+                                        <h3 class="control-label">{{$inputnow->name ?? '-- unset--'}}</h3>
                                         <input type="text" id="firstName" class="form-control"
                                                value="{{ $data['value'] }} "
                                                readonly>
