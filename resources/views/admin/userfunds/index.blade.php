@@ -1,6 +1,6 @@
 @extends('admin_temp')
 @section('styles')
-<link href="{{asset('../assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('../assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
@@ -32,47 +32,68 @@
                         <th class="text-lg-center">{{trans('admin.date')}}</th>
                         <th class="text-lg-center">{{trans('admin.user')}}</th>
                         <th class="text-lg-center">{{trans('admin.request')}}</th>
-                        <th class="text-lg-center">{{trans('admin.status')}}</th>
+                        <th class="text-lg-center">{{trans('admin.payment_status')}}</th>
+                        <th class="text-lg-center">{{trans('admin.order_status')}}</th>
                         <th class="text-lg-center">{{trans('admin.revision')}}</th>
-                   </tr>
+                    </tr>
                     </thead>
                     <tbody>
                     @foreach($usefunds as $usefund)
-                <tr>
-                    <td class="text-lg-center">{{$usefund->id}}</td>
-                    <td class="text-lg-center">{{$usefund->created_at->format('Y-m-d g:i a')}}</td>
-                    <td class="text-lg-center">{{$usefund->Users->name}}</td>
-                    <td class="text-lg-center">@if($usefund->Fund) {{$usefund->Fund->name_ar}} @endif </td>
-                    <td class="text-lg-center">{{$usefund->payment}}</td>
-                    <td class="text-lg-center ">
-                        @if(is_null($usefund->emp_id))
-                            <a class='btn btn-danger btn-circle' title="المراجعه"
-                               href="{{route('employerchosen',$usefund->id)}}"><i class="fa fa-eye"></i></a>
+                        <tr>
+                            <td class="text-lg-center">{{$usefund->id}}</td>
+                            <td class="text-lg-center">{{$usefund->created_at->format('Y-m-d g:i a')}}</td>
+                            <td class="text-lg-center">{{$usefund->Users->name}}</td>
+                            <td class="text-lg-center">@if($usefund->Fund) {{$usefund->Fund->name_ar}} @endif </td>
+                            <td class="text-lg-center">{{$usefund->payment}}</td>
+                            <td class="text-lg-center">
+                                @if($usefund->user_status == 'finail_rejected')
+                                    مرفوض
+                                @elseif($usefund->user_status == 'pending')
+                                    جاري المراجعة
+                                @elseif($usefund->user_status == 'payed_success')
+                                    تم الدفع بنجاح
+                                @elseif($usefund->user_status == 'payed_rejected')
+                                    لم يتم الدفع
+                                @elseif($usefund->user_status == 'under_revision')
+                                    تحت المراجعه
+                                @elseif($usefund->user_status == 'finail_accept')
+                                    مقبول
+                                @endif
+                            </td>
+                            <td class="text-lg-center ">
+                                @if($usefund->user_status !='finail_rejected')
+                                    @if(is_null($usefund->emp_id))
+                                        <a class='btn btn-danger btn-circle' title="المراجعه"
+                                           href="{{route('employerchosen',$usefund->id)}}"><i class="fa fa-eye"></i></a>
 
-                        @elseif(($usefund->emp_id == auth()->user()->id) && $usefund->bank_id == null)
+                                    @elseif(($usefund->emp_id == auth()->user()->id) && $usefund->bank_id == null)
 
-                            @if($usefund->Banks_sent->count() > 0 )
-                                {{trans('admin.sent_to_banks')}}
-                            @else
-                                <a class='btn btn-info btn-circle' title="{{trans('admin.follow')}}"
-                                   href="{{route('review',$usefund->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                            @endif
-                        @else
+                                        @if($usefund->Banks_sent->count() > 0 )
+                                            {{trans('admin.sent_to_banks')}}
+                                        @else
+                                            <a class='btn btn-info btn-circle' title="{{trans('admin.follow')}}"
+                                               href="{{route('review',$usefund->id)}}"><i
+                                                    class="fa fa-pencil-square-o"></i></a>
+                                        @endif
+                                    @else
 
-                            @if($usefund->Banks)
-                                {{$usefund->Banks->name_ar}}
-                            @endif
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
+                                        @if($usefund->Banks)
+                                            {{$usefund->Banks->name_ar}}
+                                        @endif
+                                    @endif
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
     </script>
-        <script src="{{asset('../assets/plugins/jquery/jquery.min.js')}}"></script>
+    <
+    script
+    src = "{{asset('../assets/plugins/jquery/jquery.min.js')}}" ></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{asset('../assets/plugins/bootstrap/js/popper.min.js')}}"></script>
     <script src="{{asset('../assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
@@ -99,37 +120,37 @@
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <!-- end - This is for export functionality only -->
     <script>
-    $(document).ready(function() {
-        $('#myTable').DataTable();
-        $(document).ready(function() {
-            var table = $('#example').DataTable({
-                "columnDefs": [{
-                    "visible": false,
-                    "targets": 2
-                }],
-                "order": [
-                    [2, 'desc']
-                ],
-                "displayLength": 25,
-                "drawCallback": function(settings) {
-                    var api = this.api();
-                    var rows = api.rows({
-                        page: 'current'
-                    }).nodes();
-                    var last = null;
-                    api.column(2, {
-                        page: 'current'
-                    }).data().each(function(group, i) {
-                        if (last !== group) {
-                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                            last = group;
-                        }
-                    });
-                }
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'desc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
             });
-            // Order by the grouping
         });
-    });
     </script>
     <!-- ============================================================== -->
     <!-- Style switcher -->

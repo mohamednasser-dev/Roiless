@@ -3,6 +3,8 @@ return [
     //new
 
 
+    'payment_status'=>'حالة الدفع',
+    'order_status'=>'حالة الطلب',
     'select all'=>'تحديد الكل',
     'type_message_here'=>'اكتب الرد هنا',
     'deselect all'=>'الغاء التحديد',
