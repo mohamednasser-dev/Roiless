@@ -152,9 +152,9 @@ class FundController extends Controller
         return msgdata('', failed(), 'there is no fund found', $data);
     }
 
-    public function deletefile($filename)
+    public function deletefile($id)
     {
-        $data=Fund_file::where('file_name',$filename)->first();
+        $data=Fund_file::where('id',$id)->first();
         if ($data == null){
             return msgdata('', failed(), 'there is no fundfile', $data);
         }else
