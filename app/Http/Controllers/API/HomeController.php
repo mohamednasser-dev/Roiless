@@ -21,7 +21,8 @@ class HomeController extends Controller
             $lang="ar";
         }
         $id=AUth::user()->id;
-        $funds = Fund::select([ 'id' ,'name_ar', 'name_en','desc_ar','desc_en','cat_id', 'image'])->wherein('featured', ['1'])->wherein('appearance', ['1'])->get();
+        $funds = Fund::select([ 'id' ,'name_ar', 'name_en','desc_ar','desc_en','cat_id', 'image'])
+            ->where('featured', '1')->where('appearance', '1')->where('deleted','0')->get();
         $data['funds'] = $funds;
         $seen=User_Notification::select('seen')->where('user_id',$id)->where('seen',0)->count();
         $data['unseen'] = $seen;
