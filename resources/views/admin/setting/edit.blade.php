@@ -50,6 +50,14 @@
                             </div>
                             <div class="col-lg-12 col-md-6">
                                 <div class="form-group m-t-40 row">
+                                    <label for="example-text-input" class="col-md-2 col-form-label"> {{trans('admin.phone')}}</label>
+                                    <div class="col-md-10">
+                                        {{ Form::text('phone',$setting->phone,["class"=>"form-control" ,"required"]) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
                                     <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_arabic')}}</label>
                                     <div class="col-md-10">
                                         {{ Form::textarea('terms_ar',$setting->terms_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}

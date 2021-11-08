@@ -25,7 +25,7 @@ class fundController extends Controller
 
     public function index()
     {
-        $funds = Fund::orderBy('created_at','desc')->get();
+        $funds = Fund::where('deleted','0')->orderBy('created_at','desc')->get();
         return view($this->folderView . 'index', compact('funds'));
     }
 
@@ -92,7 +92,7 @@ class fundController extends Controller
 
     public function details($id)
     {
-        $fund = Fund::where('id', $id)->first();
+        $fund = Fund::where('id', $id)->where('deleted','0')->first();
         return view($this->folderView . 'details', compact('fund'));
     }
 
@@ -193,10 +193,11 @@ class fundController extends Controller
         return redirect()->route('fund')->with('success', trans('admin.opretion_success'));
     }
 
-    public function destroy($id)
+    public function destroy(Request $request ,$id)
     {
+
         $fund = Fund::findOrFail($id);
-        $fund->delete();
+        $item=Fund::where('id',$id)->update(['deleted'=>'1']);
         $fund_admin = 'تم حذف تمويل' . $fund->name_ar;
         store_history(Auth::user()->id, $fund_admin);
         Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
