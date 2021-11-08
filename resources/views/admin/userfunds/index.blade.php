@@ -58,6 +58,8 @@
                                     تحت المراجعه
                                 @elseif($usefund->user_status == 'finail_accept')
                                     مقبول
+                                @elseif($usefund->user_status == 'user_editing')
+                                     التعديل عن طريق المستخدم
                                 @endif
                             </td>
                             <td class="text-lg-center ">

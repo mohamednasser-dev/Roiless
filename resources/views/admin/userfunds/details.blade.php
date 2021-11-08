@@ -443,10 +443,12 @@
                                             <div class="timeline-date">
                                                 <div class="timeline-list">
                                                     <div class="timeline-all
-                                                @if($history->status == 'accept') bg-success @endif
-                                                    @if($history->status == 'reject') bg-danger @endif
-                                                    @if($history->status == 'pending') bg-info   @endif
-                                                    @if($history->status == 'return') bg-warning  @endif">
+                                                    @if($history->status == 'accept') bg-success
+                                                    @elseif($history->status == 'reject') bg-danger
+                                                    @elseif($history->status == 'pending') bg-info
+                                                    @elseif($history->status == 'return') bg-warning
+                                                    @elseif($history->status == 'user_editing') bg-primary  @endif
+                                                        ">
                                                         <h4 class="text-center text-white  ">
                                                             @if($history->status == 'pending') {{trans('admin.start_fund')}} @endif
 

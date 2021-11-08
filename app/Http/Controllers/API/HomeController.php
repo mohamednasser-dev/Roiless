@@ -16,15 +16,16 @@ class HomeController extends Controller
 {
     //
     public function getall(Request $request)
-    {   $lang = $request->header('lang');
-        if(empty($lang)){
-            $lang="ar";
+    {
+        $lang = $request->header('lang');
+        if (empty($lang)) {
+            $lang = "ar";
         }
-        $id=AUth::user()->id;
-        $funds = Fund::select([ 'id' ,'name_ar', 'name_en','desc_ar','desc_en','cat_id', 'image'])
-            ->where('featured', '1')->where('appearance', '1')->where('deleted','0')->get();
+        $id = AUth::user()->id;
+        $funds = Fund::select(['id', 'name_ar', 'name_en', 'desc_ar', 'desc_en', 'cat_id', 'image'])
+            ->where('featured', '1')->where('appearance', '1')->where('deleted', '0')->get();
         $data['funds'] = $funds;
-        $seen=User_Notification::select('seen')->where('user_id',$id)->where('seen',0)->count();
+        $seen = User_Notification::select('seen')->where('user_id', $id)->where('seen', 0)->count();
         $data['unseen'] = $seen;
         return msgdata($request, success(), 'update_profile_success', $data);
     }
@@ -58,7 +59,7 @@ class HomeController extends Controller
         } else {
             if (\Auth::check()) {
                 $setting = Setting::select('about_us_' . $request->header('lang') . ' as about')->find(1);
-                return msgdata($request, success(), 'success_data',  $setting);
+                return msgdata($request, success(), 'success_data', $setting);
             }
         }
     }
