@@ -24,7 +24,7 @@
     </div>
     <br>
     <div class="card">
-        <div class="card-body"> 
+        <div class="card-body">
             <div class="table-responsive m-t-5">
                 <table id="myTable" class="table table-bordered table-striped">
                     <thead>
@@ -87,7 +87,7 @@
         <script src="{{asset('../assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{asset('../assets/plugins/bootstrap/js/popper.min.js')}}"></script>
-    <script src="{{asset('../assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+{{--    <script src="{{asset('../assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>--}}
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="{{asset('js/perfect-scrollbar.jquery.min.js')}}"></script>
     <!--Wave Effects -->

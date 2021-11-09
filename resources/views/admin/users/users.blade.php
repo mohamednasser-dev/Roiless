@@ -22,7 +22,7 @@
     <div class="d-flex">
          <div class="title">
             <a href="{{url('users/create')}} "
-            class="btn btn-info btn-bg">{{trans('admin.add_new_user')}}</a> 
+            class="btn btn-info btn-bg">{{trans('admin.add_new_user')}}</a>
         </div>
         <div class="ml-auto">
             <a href="{{route('export_view_user')}}"
@@ -30,9 +30,9 @@
           </div>
     </div>
     <br>
-    
+
     <div class="card">
-        <div class="card-body"> 
+        <div class="card-body">
             <div class="table-responsive m-t-5">
                 <table id="myTable" class="table table-bordered table-striped">
                     <thead>
@@ -65,13 +65,13 @@
                         </td>
                     </tr>
                    @endforeach
-                      
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-   
+
 @endsection
 @section('scripts')
     <script type="text/javascript">
@@ -97,7 +97,6 @@
      <script src="{{asset('../assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{asset('../assets/plugins/bootstrap/js/popper.min.js')}}"></script>
-    <script src="{{asset('../assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="{{asset('js/perfect-scrollbar.jquery.min.js')}}"></script>
     <!--Wave Effects -->
@@ -150,10 +149,10 @@
                 }
             });
             // Order by the grouping
-        
+
         });
     });
-   
+
     </script>
     <!-- ============================================================== -->
     <!-- Style switcher -->

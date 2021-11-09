@@ -93,17 +93,24 @@
                                                 <div class="timeline-list">
                                                     <div class="timeline-all
                                                     @if($history->status == 'accept') bg-success
-                                                    @elseif($history->status == 'reject') bg-danger
+                                                    @elseif($history->status == 'rejected') bg-danger
+                                                    @elseif($history->status == 'finail_rejected') bg-danger
                                                     @elseif($history->status == 'pending') bg-info
                                                     @elseif($history->status == 'return') bg-warning
                                                     @elseif($history->status == 'user_editing') bg-primary  @endif
                                                         ">
                                                         <h4 class="text-center text-white  ">
-                                                            @if($history->status == 'pending') {{trans('admin.start_fund')}} @endif
+                                                            @if($history->status == 'pending' & $history->bank_id == null & $history->emp_id == null )   {{trans('admin.start_fund')}} @endif
 
-                                                            @if($history->status == 'reject' & $history->type == 'bank') {{trans('admin.bank_reject')}} {{$history->bank->name_ar}} @endif
+                                                            @if($history->status == 'pending' & $history->type == 'bank') {{trans('admin.bank_review')}}  {{$history->bank->name_ar}} @endif
 
-                                                            @if($history->status == 'accept' & $history->type == 'emp' )  {{trans('admin.emp_accept')}} {{$history->ُEmployer->name}} @endif
+                                                            @if($history->status == 'rejected' & $history->type == 'bank') {{trans('admin.bank_reject')}} {{$history->bank->name_ar}} @endif
+
+                                                            @if($history->status == 'rejected' & $history->type == 'user') {{trans('admin.rejected')}} @endif
+
+                                                            @if($history->status == 'finail_rejected' & $history->type == 'user') {{trans('admin.finail_rejected')}} @endif
+
+                                                            @if($history->status == 'accept' & $history->type == 'emp' )  {{trans('admin.emp_accept')}} {{$history->ُEmployer->name}} و التحويل الي البنوك @endif
 
                                                             @if($history->status == 'return') {{trans('admin.emp_return')}} {{$history->ُEmployer->name}} {{trans('admin.to')}} {{$history->ُEmployerReturned->name}}     @endif
                                                         </h4>
@@ -147,8 +154,8 @@
     </div>
     <div class="container">
         @foreach($requestreview->Files_img as $key => $file)
-        <div class="mySlides">
-            <div class="numbertext">{{$key +1}} / {{count($requestreview->Files_img)}}</div>
+            <div class="mySlides">
+                <div class="numbertext">{{$key +1}} / {{count($requestreview->Files_img)}}</div>
                 <img src="{{asset('/uploads/fund_file').'/'.$file->file_name}}" class="img-fluid" style="width:100%">
             </div>
         @endforeach
@@ -156,158 +163,191 @@
         <a class="next" onclick="plusSlides(1)">❯</a>
         <div class="row">
             @foreach($requestreview->Files_img as $key => $file)
-        <div class="column">
-            <img class="demo cursor" src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
+                <div class="column">
+                    <img class="demo cursor" src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
                          style="width:100%"
                          onclick="currentSlide({{$key+1}})" alt="The Woods">
                 </div>
             @endforeach
         </div>
     </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h5>{{trans('admin.pdf_preview')}}</h5>
-                        </div>
-                        <div id="image-popups" class="row">
-                            @foreach($requestreview->Files_pdf as $file)
-                                <div class="col-6">
-                                    <iframe src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
-                                            style="width:600px; height:500px;"></iframe>
-                                </div>
-                            @endforeach
-                        </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h5>{{trans('admin.pdf_preview')}}</h5>
+                    </div>
+                    <div id="image-popups" class="row">
+                        @foreach($requestreview->Files_pdf as $file)
+                            <div class="col-6">
+                                <iframe src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
+                                        style="width:600px; height:500px;"></iframe>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-       @if($type == 'edit')
-        <div class="row">
-            <div class="card col-12 ">
-                <div class="card-body  center">
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
-                        {{trans('admin.emp_transfer')}}
-                    </button>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
-                        {{trans('admin.fund_accept')}}
-                    </button>
-                    <button
-                        type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">
-                        {{trans('admin.user_transfer')}}
-                    </button>
-                </div>
+    </div>
+
+    <div class="row">
+        <div class="card col-12 ">
+            <div class="card-body  center">
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Empoloyers">
+                    {{trans('admin.emp_transfer')}}
+                </button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#banks">
+                    {{trans('admin.fund_accept')}}
+                </button>
+                <button
+                    type="button" class="btn btn-danger" data-toggle="modal" data-target="#user">
+                    {{trans('admin.user_transfer')}}
+                </button>
+                <button
+                    type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#userReject">
+                    {{trans('admin.reject')}}
+                </button>
             </div>
         </div>
-        @endif
-        <div class="row">
-            <div class="modal fade" id="Empoloyers" tabindex="-1" role="dialog" aria-labelledby="EmpoloyersLabel1">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="EmpoloyersLabel1">اختر الموظف</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                        </div>
-                        <form class="form"
-                              action="{{route('fund.redirect.emp',$requestreview->id)}}"
-                              method="POST">
-                            @csrf
-                            <div class="col-md-12">
-                                <div class="form-group has-success">
-                                    <label class="control-label"> ملحوظه بالعربيه </label>
-                                    <input type="text" class="form-control" name="note_ar" required>
-                                    <label class="control-label"> ملحوظه بالانجليزيه </label>
-                                    <input type="text" class="form-control" name="note_en" required>
-                                    <label class="control-label"> الموظفين </label>
-                                    <select class="form-control custom-select" name="emp_id" required>
-                                        @foreach($empolyers as $empolyer )
-                                            <option value=""></option>
-                                            <option value="{{$empolyer->id}}">{{$empolyer->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">اختيار</button>
-                            </div>
-                        </form>
+    </div>
+    <div class="row">
+        <div class="modal fade" id="Empoloyers" tabindex="-1" role="dialog" aria-labelledby="EmpoloyersLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="EmpoloyersLabel1">اختر الموظف</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="modal fade" id="banks" tabindex="-1" role="dialog" aria-labelledby="banksLabel1">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="banksLabel1">الموافقة على الطلب</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
+                    <form class="form"
+                          action="{{route('fund.redirect.emp',$requestreview->id)}}"
+                          method="POST">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="form-group has-success">
+                                <label class="control-label"> ملحوظه بالعربيه </label>
+                                <input type="text" class="form-control" name="note_ar" required>
+                                <label class="control-label"> ملحوظه بالانجليزيه </label>
+                                <input type="text" class="form-control" name="note_en" required>
+                                <label class="control-label"> الموظفين </label>
+                                <select class="form-control custom-select" name="emp_id" required>
+                                    @foreach($empolyers as $empolyer )
+                                        <option value=""></option>
+                                        <option value="{{$empolyer->id}}">{{$empolyer->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                        <form class="form"
-                              action="{{route('fund.redirect.bank',$requestreview->id)}}"
-                              method="POST">
-                            @csrf
-                            <div class="col-md-12">
-                                <div class="form-group has-success">
-                                    <label class="control-label"> ملحوظه بالعربيه </label>
-                                    <input type="text" class="form-control" name="note_ar" required>
-                                    <label class="control-label"> ملحوظه بالانجليزيه </label>
-                                    <input type="text" class="form-control" name="note_en" required>
-                                    <br>
-                                    <label class="control-label"> البنوك </label>
-                                    <select class="select2 m-b-10 select2-multiple" name="banks[]" style="width: 100%"
-                                            multiple="multiple" data-placeholder="Choose">
-                                        @foreach($banks as $bank)
-                                            <optgroup>
-                                                <option value="{{$bank->id}}">{{$bank->name_ar}}</option>
-                                            </optgroup>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">اختيار</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="modal fade" id="user" tabindex="-1" role="dialog" aria-labelledby="userLabel1">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="banksLabel1">مراجعه الورق المطلوب مره اخري</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">اختيار</button>
                         </div>
-                        <form class="form"
-                              action="{{route('fund.redirect.user',$requestreview->id)}}"
-                              method="POST">
-                            @csrf
-                            <div class="col-md-12">
-                                <div class="form-group has-success">
-                                    <label class="control-label"> ملحوظه بالعربيه </label>
-                                    <input type="text" class="form-control" name="note_ar" required>
-                                    <label class="control-label"> ملحوظه بالانجليزيه </label>
-                                    <input type="text" class="form-control" name="note_en" required>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">اختيار</button>
-                            </div>
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="modal fade" id="banks" tabindex="-1" role="dialog" aria-labelledby="banksLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="banksLabel1">الموافقة على الطلب</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <form class="form"
+                          action="{{route('fund.redirect.bank',$requestreview->id)}}"
+                          method="POST">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="form-group has-success">
+                                <label class="control-label"> ملحوظه بالعربيه </label>
+                                <input type="text" class="form-control" name="note_ar" required>
+                                <label class="control-label"> ملحوظه بالانجليزيه </label>
+                                <input type="text" class="form-control" name="note_en" required>
+                                <br>
+                                <label class="control-label"> البنوك </label>
+                                <select class="select2 m-b-10 select2-multiple" name="banks[]" style="width: 100%" required
+                                        multiple="multiple" data-placeholder="Choose">
+                                    @foreach($banks as $bank)
+                                        <optgroup>
+                                            <option value="{{$bank->id}}">{{$bank->name_ar}}</option>
+                                        </optgroup>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">اختيار</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="modal fade" id="user" tabindex="-1" role="dialog" aria-labelledby="userLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="banksLabel1">مراجعه الورق المطلوب مره اخري</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <form class="form"
+                          action="{{route('fund.redirect.user',['id'=>$requestreview->id,'type'=>'rejected']) }}"
+                          method="POST">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="form-group has-success">
+                                <label class="control-label"> ملحوظه بالعربيه </label>
+                                <input type="text" class="form-control" name="note_ar" required>
+                                <label class="control-label"> ملحوظه بالانجليزيه </label>
+                                <input type="text" class="form-control" name="note_en" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">اختيار</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="modal fade" id="userReject" tabindex="-1" role="dialog" aria-labelledby="userLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="banksLabel1">رفض الطلب نهائيا</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <form class="form"
+                          action="{{route('fund.redirect.user',['id'=>$requestreview->id,'type'=>'finail_rejected'])}}"
+                          method="POST">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="form-group has-success">
+                                <label class="control-label"> ملحوظه بالعربيه </label>
+                                <input type="text" class="form-control" name="note_ar" required>
+                                <label class="control-label"> ملحوظه بالانجليزيه </label>
+                                <input type="text" class="form-control" name="note_en" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">اختيار</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('scripts')
     <script>

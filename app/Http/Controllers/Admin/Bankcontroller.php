@@ -138,7 +138,7 @@ class Bankcontroller extends Controller
             store_history(Auth::user()->id, $bank_log);
 //            Alert::success('تمت العمليه', 'تم التعديل بنجاح');
             if ($bank->parent_id == null) {
-                return redirect()->route('banks.index')->with('success','تم التعديل بنجا');
+                return redirect()->route('banks.index')->with('success','تم التعديل بنجاح');
             } else {
                 return redirect()->route('banks.branches', $bank->parent_id)->with('success','تم التعديل بنجا');
             }

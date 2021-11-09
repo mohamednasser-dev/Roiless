@@ -23,7 +23,7 @@ class CreateFhistoriesTable extends Migration
             $table->integer('bank_id')->unsigned()->nullable();
             $table->integer('user_fund_id')->unsigned();
             $table->enum('type',['bank','user','emp'])->nullable();
-            $table->enum('status',['accept','reject','pending','return'])->nullable();
+            $table->enum('status',['accept','rejected','pending','return','finail_rejected'])->nullable();
             $table->timestamps();
             $table->foreign('emp_id')->references('id')->on('admins')->onDelete('cascade');
             $table->foreign('return_emp_id')->references('id')->on('admins')->onDelete('cascade');

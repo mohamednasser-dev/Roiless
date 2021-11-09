@@ -47,7 +47,7 @@
                             <td class="text-lg-center">{{$usefund->payment}}</td>
                             <td class="text-lg-center">
                                 @if($usefund->user_status == 'finail_rejected')
-                                    مرفوض
+                                    مرفوض نهائيا
                                 @elseif($usefund->user_status == 'pending')
                                     جاري المراجعة
                                 @elseif($usefund->user_status == 'payed_success')
@@ -60,6 +60,8 @@
                                     مقبول
                                 @elseif($usefund->user_status == 'user_editing')
                                     التعديل عن طريق المستخدم
+                                @elseif($usefund->user_status == 'rejected')
+                                    مرفوض
                                 @endif
                             </td>
                             <td class="text-lg-center ">
@@ -99,7 +101,7 @@
     <script src = "{{asset('../assets/plugins/jquery/jquery.min.js')}}" ></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{asset('../assets/plugins/bootstrap/js/popper.min.js')}}"></script>
-    <script src="{{asset('../assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+{{--    <script src="{{asset('../assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>--}}
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="{{asset('js/perfect-scrollbar.jquery.min.js')}}"></script>
     <!--Wave Effects -->

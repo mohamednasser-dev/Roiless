@@ -13,9 +13,9 @@
     </div>
 
         <div class="row">
-            <div class="col-sm-12">  
+            <div class="col-sm-12">
 
-              <form  action="{{route('userfunds.export.search')}}" method="post"> 
+              <form  action="{{route('userfunds.export.search')}}" method="post">
                   @csrf
                 <div class="card">
                     <div class="card-body">
@@ -31,13 +31,13 @@
                             </div>
 
                             <div class="col-lg-4">
-                              
+
                             </div>
 
                             <div class="col-lg-4">
-                              
+
                             </div>
-                        </div>  
+                        </div>
                         <div class="row">
                             <div class="col-lg-2">
                                 <input name="group1" type="radio" class="with-gap" id="radio_2" name="radio_2" value="2">
@@ -63,7 +63,7 @@
                                         <option value="11">11</option>
                                         <option value="12">12</option>
                                     </select>
-                                </div>    
+                                </div>
                             </div>
 
                             <div class="col-lg-4" id="monthely_year" style="display:none;">
@@ -83,9 +83,9 @@
                                         <option value="2033">2033</option>
                                         <option value="2034">2034</option>
                                         <option value="2035">2035</option>
-                            </select>   
+                            </select>
                             </div>
-                        </div>  
+                        </div>
                         <div class="row">
                             <div class="col-lg-2">
                                 <input name="group1" type="radio" class="with-gap" id="radio_3" name="radio_3" value="3">
@@ -116,9 +116,9 @@
                             </div>
 
                             <div class="col-lg-4">
-                           
+
                             </div>
-                        </div>  
+                        </div>
                         <div class="row">
                             <div class="col-lg-2">
                                 <input name="group1" type="radio" class="with-gap" id="radio_4" name="radio_4" value="4">
@@ -137,9 +137,9 @@
                             </div>
 
                             <div class="col-lg-4">
-                              
+
                             </div>
-                        </div>  
+                        </div>
 
                             <div class="card">
                                 <div class="card-body">
@@ -160,7 +160,7 @@
 <script src="{{asset('../assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{asset('../assets/plugins/bootstrap/js/popper.min.js')}}"></script>
-    <script src="{{asset('../assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+{{--    <script src="{{asset('../assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>--}}
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="{{asset('js/perfect-scrollbar.jquery.min.js')}}"></script>
     <!--Wave Effects -->
@@ -190,7 +190,7 @@
     <script src="{{asset('../assets/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
     <script src="{{asset('../assets/plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
     <script>
-    // MAterial Date picker    
+    // MAterial Date picker
     $('#mdate').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
     $('#timepicker').bootstrapMaterialDatePicker({ format: 'HH:mm', time: true, date: false });
     $('#date-format').bootstrapMaterialDatePicker({ format: 'dddd DD MMMM YYYY - HH:mm' });
@@ -271,28 +271,28 @@
 
     <script>
 $( document ).ready(function() {
-    $('#radio_1').change(function(){      
-    console.log( "ready!" );  
+    $('#radio_1').change(function(){
+    console.log( "ready!" );
     $('#monthely').hide();
     $('#monthely_year').hide();
     $('#annual').hide();
     $('#category').hide();
      });
-    $('#radio_2').change(function(){      
+    $('#radio_2').change(function(){
     console.log( "ready!" );
     $('#monthely').show();
     $('#monthely_year').show();
     $('#annual').hide();
     $('#category').hide();
      });
-     $('#radio_3').change(function(){      
+     $('#radio_3').change(function(){
     console.log( "ready!" );
     $('#monthely').hide();
     $('#monthely_year').hide();
     $('#annual').show();
     $('#category').hide();
      });
-     $('#radio_4').change(function(){      
+     $('#radio_4').change(function(){
     console.log( "ready!" );
     $('#monthely').hide();
     $('#monthely_year').hide();

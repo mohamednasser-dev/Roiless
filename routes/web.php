@@ -179,7 +179,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
        Route::post('/funds/export/view', 'UserfundsController@export')->name('userfunds.export.search');
        Route::post('/fund/redirect/emp/{id}', 'UserfundsController@redirect_emp')->name('fund.redirect.emp');
        Route::post('/fund/redirect/bank/{id}', 'UserfundsController@redirect_bank')->name('fund.redirect.bank');
-       Route::post('/fund/redirect/user/{id}', 'UserfundsController@redirect_user')->name('fund.redirect.user');
+       Route::post('/fund/redirect/user/{id}/{type}', 'UserfundsController@redirect_user')->name('fund.redirect.user');
     });
 
     //consolution

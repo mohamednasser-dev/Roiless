@@ -101,6 +101,15 @@ class UserfundsController extends Controller
         if (User_fund::where('id', $id)->whereNull('bank_id')->exists()) {
             User_fund::where('id', $id)->update(['bank_id' => auth()->user()->id]);
             activity('admin')->log('تم اضافه هذا التمويل للبنك بنجاح');
+
+          
+            $data_web['type'] = 'bank';
+            $data_web['bank_id'] = auth()->user()->id;
+            $data_web['show_in'] = 'web';
+            $data_web['status'] = 'pending';
+            $data_web['user_fund_id'] = $id;
+            Fhistory::create($data_web);
+
             Alert::success('تمت العمليه', 'تم اضافه هذا التمويل  بنجاح');
             return redirect()->route('request.review', $id);
         } else {

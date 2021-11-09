@@ -178,20 +178,33 @@ class UserfundsController extends Controller
         return redirect()->route('userfunds');
     }
 
-    public function redirect_user(Request $request, $id)
+    public function redirect_user(Request $request, $id ,$type)
     {
         $data = $this->validate(request(),
             [
                 'note_ar' => 'required|string',
                 'note_en' => 'required|string',
             ]);
-        $data['status'] = 'reject';
+
+        $data['emp_id'] = auth()->user()->id;
+        $data['show_in'] = 'web';
+        $data['status'] = $type;
         $data['type'] = 'user';
         $data['user_fund_id'] = $id;
         $data['user_id'] = User_fund::where('id', $id)->value('user_id');
          Fhistory::create($data);
+
+        $app['emp_id'] =auth()->user()->id;
+        $app['note_ar'] = 'تم الرفض نهائيا';
+        $app['note_en'] = 'Final rejected';
+        $app['show_in'] = 'app';
+        $app['status'] = $type;
+        $app['type'] = 'user';
+        $app['user_fund_id'] = $id;
+        $app['user_id'] = User_fund::where('id', $id)->value('user_id');
+         Fhistory::create($app);
         //تعديل الحاله user_status في ال user_funds
-        User_fund::where('id',$id)->update(['user_status' => 'finail_rejected']);
+        User_fund::where('id',$id)->update(['user_status' =>$type]);
         $user_fund=User_fund::find($id);
         $notification = Notification::create([
             'title_ar'=>'تم رفض التمويل',
@@ -209,6 +222,9 @@ class UserfundsController extends Controller
         Alert::success('عملية ناجحة', 'تم تحويل الملحوظات الي المستحدم بنجاح');
         return redirect()->route('userfunds');
     }
+
+
+
     public function export_view()
     {
         $categories=Category::all();
