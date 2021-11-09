@@ -171,6 +171,7 @@ class FundController extends Controller
             'fund_id' => '',
             'dataform' => 'required',
             'file' => '',
+            'old_file_ids'=>'',
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -196,6 +197,16 @@ class FundController extends Controller
             $history_app_data['note_ar'] = 'تم التعديل على الطلب';
             $history_app_data['note_en'] = 'fund order has been modified';
             Fhistory::create($history_app_data);
+            if ($request->old_file_ids){
+
+                foreach ($request->old_file_ids as $key => $row ){
+                   $oldfile= Fund_file::where('id',$row)->first();
+                   if ($oldfile){
+                       Fund_file::where('id',$row)->delete();
+                   }
+                }
+            }
+
             if ($request->file != null) {
                 foreach ($request->file as $key => $row) {
                     // This is Image Information ...
