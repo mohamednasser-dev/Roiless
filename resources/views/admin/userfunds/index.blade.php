@@ -47,21 +47,21 @@
                             <td class="text-lg-center">{{$usefund->payment}}</td>
                             <td class="text-lg-center">
                                 @if($usefund->user_status == 'finail_rejected')
-                                    مرفوض نهائيا
+                                    {{trans('admin.finail_rejected')}}
                                 @elseif($usefund->user_status == 'pending')
-                                    جاري المراجعة
+                                    {{trans('admin.revPending')}}
                                 @elseif($usefund->user_status == 'payed_success')
-                                    تم الدفع بنجاح
+                                    {{trans('admin.paiedSuccess')}}
                                 @elseif($usefund->user_status == 'payed_rejected')
-                                    لم يتم الدفع
+                                    {{trans('admin.paiedFailed')}}
                                 @elseif($usefund->user_status == 'under_revision')
-                                    تحت المراجعه
+                                    {{trans('admin.revPending')}}
                                 @elseif($usefund->user_status == 'finail_accept')
-                                    مقبول
+                                    {{trans('admin.accepted')}}
                                 @elseif($usefund->user_status == 'user_editing')
-                                    التعديل عن طريق المستخدم
+                                    {{trans('updating from user')}}
                                 @elseif($usefund->user_status == 'rejected')
-                                    مرفوض
+                                    {{trans('admin.rejected')}}
                                 @endif
                             </td>
                             <td class="text-lg-center ">
