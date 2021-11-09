@@ -86,8 +86,8 @@ class fundController extends Controller
         $fund_admin = 'تم اضافه تمويل' . $funds->name_ar;
         store_history(Auth::user()->id, $fund_admin);
         DB::commit();
-        Alert::success(trans('admin.opretion_success'), trans('admin.fund_added_successfully'));
-        return redirect()->route('fund');
+        // Alert::success(trans('admin.opretion_success'), trans('admin.fund_added_successfully'));
+        return redirect()->route('fund')->with('success',trans('admin.fund_added_successfully'));
     }
 
     public function details($id)

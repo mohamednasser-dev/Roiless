@@ -141,11 +141,19 @@ class FundController extends Controller
         return view('payment.phone_page', compact('payway', 'id', 'user_id'));
     }
 
-    public function userFund($id)
+    public function userFund(Request $request,$id)
     {
+        $lang = $request->header('lang');
+        if (empty($lang)) {
+            $lang = "en";
+        }
         $data = User_fund::with('Fund')->find($id);
         if ($data) {
             $data->dataform = json_decode($data->dataform);
+            $fields = Company_field::select('id', 'name_' . $lang . ' as name')->get();
+            $data->company_field = $fields;
+                $types = Company_type::select('id', 'name_' . $lang . ' as name')->get();
+                $data['company_type'] = $types;
             $data['userFundFils'] = Fund_file::where('user_fund_id', $id)->get();
             return msgdata('', success(), 'user fund is found', $data);
         } else

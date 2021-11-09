@@ -45,8 +45,8 @@ class ProfileController extends Controller
             $data['image'] = $this->MoveImage($request->image,'uploads/admins_image');
         }
         Admin::where('id', $id)->update($data);
-        Alert::success( 'تمت العمليه','تم تحديث معلومات الحساب');
-        return redirect()->back();
+        // Alert::success( 'تمت العمليه','تم تحديث معلومات الحساب');
+        return redirect()->back()->with('success',trans('تم تحديث معلومات الحساب بنجاح'));
     }
      public function updatepassword(Request $request)
      {
@@ -85,8 +85,8 @@ class ProfileController extends Controller
                   unlink("uploads/admins_image/".$image[$length]);
               }
             // activity('admin')->log('تم تحديث الموظف بنجاح');
-            Alert::success('تمت العمليه','تم تحديث صوره الحساب');
-            return redirect()->route('viewprofile',Auth::user()->id);
+            // Alert::success('تمت العمليه','تم تحديث صوره الحساب');
+            return redirect()->route('viewprofile',Auth::user()->id)->with('success',trans('تم تحديث صوره الحساب بنجاح'));
         }else{
             return redirect()->back();
         }

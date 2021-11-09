@@ -48,8 +48,8 @@ class ConsolutionKindControler extends Controller
 
         activity('admin')->log('تم اضافه التمويل بنجاح');
 
-        Alert::success( trans('admin.opretion_success'),trans('admin.sweet_kind_add'));
-        return redirect()->route('consolutionKind');
+        // Alert::success( trans('admin.opretion_success'),trans('admin.sweet_kind_add'));
+        return redirect()->route('consolutionKind')->with('success',trans('admin.sweet_kind_add'));
 
 
     }
@@ -79,8 +79,8 @@ class ConsolutionKindControler extends Controller
             activity('admin')->log('تم تحديث التمويل بنجاح');
 
             DB::commit();
-            Alert::success(trans('admin.updated_successfully'), trans('admin.opretion_success'));
-            return redirect()->back();
+            // Alert::success(trans('admin.updated_successfully'), trans('admin.opretion_success'));
+            return redirect()->back()->with('success',trans('admin.opretion_success'));
 
         } catch (\Exception $ex) {
 
@@ -97,8 +97,8 @@ class ConsolutionKindControler extends Controller
         $fund = $this->objectName::findOrFail($id);
         $fund->delete();
 
-        Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
-        return redirect()->back();
+        // Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
+        return redirect()->back()->with('success',trans('admin.opretion_success'));
     }
 
 

@@ -32,8 +32,8 @@ class InboxController extends Controller
         $inbox->delete();
         activity('admin')->log('تم حذف رساله التواصل معنا بنجاح');
 
-        Alert::success( trans('admin.deleted'),trans('admin.opretion_success'));
+        // Alert::success( trans('admin.deleted'),trans('admin.opretion_success'));
 
-        return redirect()->route('inbox');
+        return redirect()->route('inbox')->with('success',trans('admin.opretion_success'));
     }
 }
