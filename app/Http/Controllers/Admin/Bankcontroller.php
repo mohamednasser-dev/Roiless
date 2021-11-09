@@ -31,7 +31,7 @@ class Bankcontroller extends Controller
 
         return view($this->folderView . 'banks', compact('banks', 'active_banks'));
     }
-
+    
     public function show($id)
     {
         $banks = Bank::where('id', $id)->first();
@@ -156,9 +156,90 @@ class Bankcontroller extends Controller
         return redirect()->back();
     }
 
+    public function unupdate_parent_pank(Request $request)
+    {
+        if ($request->bank_id) {
+            if ($request->bank_id == "no_bank") {
+                $id = $request->id;
+                $bank = Bank::find($id);
+                $bank->update([
+                    'status' => "unactive",
+                ]);
+                $branches_id=Bank::select('id')->where('parent_id',$id)->get();
+                foreach($branches_id as $branche_id)
+                {
+                   $branch_id[]=$branche_id->id;
+                }
+                Bank::wherein('id', $branch_id)->update([
+                    'status' => "unactive",
+                ]);   
+                $bank_log = 'تم الغاء تفعيل بنك ' . $bank->name_ar;
+                store_history(Auth::user()->id, $bank_log);
+                return redirect()->back();
+            } else {
+                $bank_id = $request->bank_id;
+                $id = $request->id;
+                $branches_id=Bank::select('id')->where('parent_id',$id)->get();
+                foreach($branches_id as $branche_id)
+                {
+                   $branch_id[]=$branche_id->id;
+                }
+                $user_fund = User_fund::wherein('bank_id', $branch_id)->update([
+                    'bank_id' => $bank_id
+                ]);
+                $user_fund = User_fund::where('bank_id', $id)->update([
+                    'bank_id' => $bank_id
+                ]);
+                $bank = Bank::find($id);
+                // un active parent bank
+                $bank->update([
+                    'status' => "unactive",
+                ]);
+                 // un active child bank
+                Bank::wherein('id', $branch_id)->update([
+                    'status' => "unactive",
+                ]);
+                $bank_log = 'تم الغاء تفعيل بنك ' . $bank->name_ar;
+                store_history(Auth::user()->id, $bank_log);
+                return redirect()->back();
+            }
+            } else {
+                $id = $request->id;
+                $bank = Bank::find($id);
+                $bank->update([
+                    'status' => "unactive",
+                ]);
+                $branches_id=Bank::select('id')->where('parent_id',$id)->get();
+                foreach($branches_id as $branche_id)
+                {
+                $branch_id[]=$branche_id->id;
+                }
+                Bank::wherein('id', $branch_id)->update([
+                    'status' => "unactive",
+                ]);
+                return redirect()->back();
+            }
+    }
+    public function updateparent_Actived($id)
+    {
+        $bank = Bank::find($id);
+        $bank->update([
+            'status' => "active",
+        ]);
+        $branches_id=Bank::select('id')->where('parent_id',$id)->get();
+        foreach($branches_id as $branche_id)
+        {
+        $branch_id[]=$branche_id->id;
+        }
+        Bank::wherein('id', $branch_id)->update([
+            'status' => "active",
+        ]);
+        $bank_log = 'تم الغاء تفعيل بنك ' . $bank->name_ar;
+        store_history(Auth::user()->id, $bank_log);
+        return redirect()->back();
+    }
     public function unupdate_Actived(Request $request)
     {
-
         if ($request->bank_id) {
             if ($request->bank_id == "no_bank") {
                 $id = $request->id;
@@ -190,8 +271,6 @@ class Bankcontroller extends Controller
                 'status' => "unactive",
             ]);
             return redirect()->back();
-
-
         }
         }
 
