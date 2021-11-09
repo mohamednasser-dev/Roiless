@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Controllers\Admin;
-use RealRashid\SweetAlert\Facades\Alert;
+//use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Traits\offerTrait;
@@ -30,7 +30,7 @@ class categoriesController extends Controller
             'image' => $file_name,
         ]);
         activity('admin')->log(trans('admin.add_category'));
-        Alert::success(trans('admin.add_category_success'), trans('admin.opretion_success'));
+//        Alert::success(trans('admin.add_category_success'), trans('admin.opretion_success'));
         return redirect()->route('categories');
     }
     public function show($id)
@@ -60,15 +60,15 @@ class categoriesController extends Controller
             ]);
         }
         activity('admin')->log(trans('admin.edit_category_success'));
-        Alert::success(trans('admin.edit_category_success'), trans('admin.opretion_success'));
-        return redirect()->route('categories');
+//        Alert::success(trans('admin.edit_category_success'), trans('admin.opretion_success'));
+        return redirect()->route('categories')->with('success',trans('admin.edit_category_success'));
     }
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
         $category->delete();
         activity('admin')->log('تم حذف القسم بنجاح');
-        Alert::success('تمت العمليه', 'تم الحذف بنجاح');
-        return redirect()->route('categories');
+//        Alert::success('تمت العمليه', 'تم الحذف بنجاح');
+        return redirect()->route('categories')->with('success','تم الحذف بنجاح');
     }
 }

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\User_fund;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
+//use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Bank;
 use App\Models\Adminhistory;
 use Auth;
@@ -54,14 +54,14 @@ class Bankcontroller extends Controller
     {
         $data = $this->validate(\request(),
             [
-                'name_ar'               => 'required|max:255',
-                'name_en'               => 'required|max:255',
-                'email'                 => 'required|unique:banks,email|email',
-                'phone'                 => 'required|unique:banks,phone',
-                'image'                 => 'required',
-                'password'              => 'required|min:6|confirmed',
+                'name_ar' => 'required|max:255',
+                'name_en' => 'required|max:255',
+                'email' => 'required|unique:banks,email|email',
+                'phone' => 'required|unique:banks,phone',
+                'image' => 'required',
+                'password' => 'required|min:6|confirmed',
                 'password_confirmation' => 'required|min:6',
-                'address'               => 'required|max:255',
+                'address' => 'required|max:255',
             ]);
         if ($request['password'] != null && $request['password_confirmation'] != null) {
             $data['password'] = bcrypt(request('password'));
@@ -80,13 +80,13 @@ class Bankcontroller extends Controller
             $banks = new Bank();
             $banks->notifications()->attach($notification);
             if ($bank->save()) {
-                Alert::success(trans('admin.opretion_success'), trans('admin.bank_created'));
+//                Alert::success(trans('admin.opretion_success'), trans('admin.bank_created'));
                 $bank_log = 'تم اضافه بنك ' . $bank->name_ar;
                 store_history(Auth::user()->id, $bank_log);
                 if ($bank->parent_id == null) {
-                    return redirect()->route('banks.index');
+                    return redirect()->route('banks.index')->with('success',trans('admin.bank_created'));
                 } else {
-                    return redirect()->route('banks.branches', $bank->parent_id);
+                    return redirect()->route('banks.branches', $bank->parent_id)->with('success',trans('admin.bank_created'));
                 }
             }
         }
@@ -136,11 +136,11 @@ class Bankcontroller extends Controller
             Bank::where('id', $id)->update($data);
             $bank_log = 'تم تحديث بنك ' . $bank->name_ar;
             store_history(Auth::user()->id, $bank_log);
-            Alert::success('تمت العمليه', 'تم التعديل بنجاح');
+//            Alert::success('تمت العمليه', 'تم التعديل بنجاح');
             if ($bank->parent_id == null) {
-                return redirect()->route('banks.index');
+                return redirect()->route('banks.index')->with('success','تم التعديل بنجا');
             } else {
-                return redirect()->route('banks.branches', $bank->parent_id);
+                return redirect()->route('banks.branches', $bank->parent_id)->with('success','تم التعديل بنجا');
             }
         }
     }
@@ -193,28 +193,29 @@ class Bankcontroller extends Controller
 
 
         }
+        }
 
-        function destroy($id)
+        public function destroy($id)
         {
 
-        $bank = Bank::findOrFail($id);
-        if ($bank->parent_id == null) {
-            if ($bank->delete()) {
+            $bank = Bank::findOrFail($id);
+            if ($bank->parent_id == null) {
+                if ($bank->delete()) {
+                    $bank_log = 'تم حذف بنك ' . $bank->name_ar;
+                    store_history(Auth::user()->id, $bank_log);
+//                    Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
+                    Bank::where('parent_id', $id)->delete();
+                    return redirect()->route('banks.index')->with('success', trans('admin.opretion_success'));;
+                }
+            } else {
                 $bank_log = 'تم حذف بنك ' . $bank->name_ar;
                 store_history(Auth::user()->id, $bank_log);
-                Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
-                Bank::where('parent_id', $id)->delete();
-                return redirect()->route('banks.index');
+//                Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
+                $bank->delete();
+                return redirect()->route('banks.branches', $bank->parent_id)->with('success', trans('admin.opretion_success'));;;
             }
-        } else {
-            $bank_log = 'تم حذف بنك ' . $bank->name_ar;
-            store_history(Auth::user()->id, $bank_log);
-            Alert::success(trans('admin.deleted'), trans('admin.opretion_success'));
-            $bank->delete();
-            return redirect()->route('banks.branches', $bank->parent_id);
         }
-    }
-    }
+
 
     public function bankBranch($id)
     {
