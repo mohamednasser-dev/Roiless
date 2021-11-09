@@ -171,8 +171,8 @@ Route::group(['middleware' => ['auth:admin']], function () {
     // userfunds
     Route::group(['namespace' => 'Admin'], function () {
         Route::get('/funds/requests', 'UserfundsController@index')->name('userfunds');
-       Route::get('/funds/requests/employer/chosen/{id}', 'UserfundsController@employerchosen')->name('employerchosen');
-       Route::get('/funds/requests/fund/request/review/{id}', 'UserfundsController@review')->name('review');
+       Route::get('/funds/requests/employer/chosen/{id}/{type}', 'UserfundsController@employerchosen')->name('employerchosen');
+       Route::get('/funds/requests/fund/request/review/{id}/{type}', 'UserfundsController@review')->name('review');
        Route::get('/funds/export/view', 'UserfundsController@export_view')->name('export_view');
        Route::get('/funds/view/{id}', 'UserfundsController@view')->name('view');
        Route::get('/funds/download/{id}', 'UserfundsController@download')->name('download');

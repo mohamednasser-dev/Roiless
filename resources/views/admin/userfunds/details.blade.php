@@ -183,6 +183,7 @@
                 </div>
             </div>
         </div>
+       @if($type == 'edit')
         <div class="row">
             <div class="card col-12 ">
                 <div class="card-body  center">
@@ -199,6 +200,7 @@
                 </div>
             </div>
         </div>
+        @endif
         <div class="row">
             <div class="modal fade" id="Empoloyers" tabindex="-1" role="dialog" aria-labelledby="EmpoloyersLabel1">
                 <div class="modal-dialog" role="document">
