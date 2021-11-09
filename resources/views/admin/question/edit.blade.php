@@ -1,6 +1,8 @@
 @extends('admin_temp')
 @section('styles')
     <link rel="stylesheet" href="{{ asset('/assets/plugins/dropify/dist/css/dropify.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/plugins/dropify/dist/css/dropify.min.css') }}">
+    <link href="{{ asset('/assets/plugins/summernote/dist/summernote.css') }}" rel="stylesheet" >
 @endsection
 @section('content')
     <div class="row page-titles">
@@ -39,6 +41,7 @@
 
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.answer_in_arabic')}}</label>
+                        
                         <div class="col-md-10">
                             {{ Form::textarea('answer_ar',$question->answer_ar,["class"=>"form-control summernote" , "rows" => "5" ,"required"]) }}
                         </div>
@@ -64,12 +67,33 @@
     </div>
 @endsection
 @section('scripts')
-    <!-- ============================================================== -->
-    <!-- Plugins for this page -->
-    <!-- ============================================================== -->
-    <!-- jQuery file upload -->
+<script src="{{ asset('/assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
+    <script src="{{ asset('/js/custom.min.js')}}"></script>
+    <script src="{{ asset('/assets/plugins/summernote/dist/summernote.min.js')}}"></script>
+    <script>
+        jQuery(document).ready(function() {
 
-    <script src="{{ asset('/assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
+            $('.summernote').summernote({
+                height: 350, // set editor height
+                minHeight: null, // set minimum height of editor
+                maxHeight: null, // set maximum height of editor
+                focus: false // set focus to editable area after initializing summernote
+            });
+
+            $('.inline-editor').summernote({
+                airMode: true
+            });
+
+        });
+
+        window.edit = function() {
+            $(".click2edit").summernote()
+        },
+            window.save = function() {
+                $(".click2edit").summernote('destroy');
+            }
+    </script>
+
     <script>
         $(document).ready(function () {
             // Basic
