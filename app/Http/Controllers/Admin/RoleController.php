@@ -11,26 +11,20 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-
-
     function __construct()
     {
         $this->middleware('permission:roles');
     }
-
-
     public function index(Request $request)
     {
         $roles = Role::orderBy('id', 'DESC')->paginate(5);
         return view('admin.employers.roles.index', compact('roles'));
     }
-
     public function create()
     {
         $permissions = Permission::get();
         return view('admin.employers.roles.create', compact('permissions'));
     }
-
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -39,8 +33,8 @@ class RoleController extends Controller
         ]);
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($request->input('permissions'));
-        Alert::success(trans('admin.opretion_success'),trans('admin.permission_created') );
-        return redirect()->route('roles.index');
+        // Alert::success(trans('admin.opretion_success'),trans('admin.permission_created') );
+        return redirect()->route('roles.index')->with('success',trans('admin.permission_created'));
     }
 
     public function show($id)
@@ -74,8 +68,8 @@ class RoleController extends Controller
         $role->name = $request->input('name');
         $role->save();
         $role->syncPermissions($request->input('permissions'));
-        Alert::success(trans('admin.opretion_success'),trans('admin.permisstion_update') );
-        return redirect()->route('roles.index');
+        // Alert::success(trans('admin.opretion_success'),trans('admin.permisstion_update') );
+        return redirect()->route('roles.index')->with('success',trans('admin.permisstion_update'));
     }
 
     public function destroy($id)

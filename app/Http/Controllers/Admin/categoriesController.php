@@ -31,7 +31,7 @@ class categoriesController extends Controller
         ]);
         activity('admin')->log(trans('admin.add_category'));
 //        Alert::success(trans('admin.add_category_success'), trans('admin.opretion_success'));
-        return redirect()->route('categories');
+        return redirect()->route('categories')->with('success',trans('admin.add_category_success'));
     }
     public function show($id)
     {

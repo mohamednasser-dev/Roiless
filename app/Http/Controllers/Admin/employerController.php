@@ -90,8 +90,8 @@ class employerController extends Controller
             $employees = new Admin();
             $employees->notifications()->attach($notification);
             if ($employee->save()) {
-                Alert::success(trans('admin.opretion_success'),trans('admin.employer_created') );
-                return redirect()->route('employer.index');
+                // Alert::success(trans('admin.opretion_success'),trans('admin.employer_created') );
+                return redirect()->route('employer.index')->with('success',trans('admin.employer_created'));
             }
         }
     }
@@ -148,8 +148,8 @@ class employerController extends Controller
             ]);
         }
         DB::table('model_has_roles')->where('model_id',$id)->update(['role_id' => $request['role_id']]);
-        Alert::success(trans('admin.opretion_success'),trans('admin.employer_update') );
-        return redirect()->route('employer.index');
+        // Alert::success(trans('admin.opretion_success'),trans('admin.employer_update') );
+        return redirect()->route('employer.index')->with('success',trans('admin.employer_update'));
     }
 
     public function destroy($id)

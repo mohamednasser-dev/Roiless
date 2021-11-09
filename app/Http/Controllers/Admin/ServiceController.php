@@ -72,8 +72,8 @@ class ServiceController extends Controller
             activity('admin')->log('تم اضافه الخدمه بنجاح');
 
             DB::commit();
-            Alert::success('تمت العمليه', 'تم اضافه الخدمه بنجاح');
-            return redirect()->route('services');
+            // Alert::success('تمت العمليه', 'تم اضافه الخدمه بنجاح');
+            return redirect()->route('services')->with('success',trans('تم اضافه الخدمه بنجاح'));
 
         } catch (\Exception $ex) {
 
@@ -108,10 +108,10 @@ class ServiceController extends Controller
 
             $Service = $this->objectName::find($id);
             if (!$Service){
-                Alert::warning('خطاء', 'هذه الخدمه ليست موجوه');
-            return redirect()->route(' $this->folderView');
+                // Alert::warning('خطاء', 'هذه الخدمه ليست موجوه');
+            return redirect()->route(' $this->folderView')->with('danger',trans('هذه الخدمه ليست موجوه'));
             }
-
+            
 
             if($request->hasFile('image')) {
                 $file_name = $this->MoveImage($request->file('image'),'uploads/services' );
@@ -122,8 +122,8 @@ class ServiceController extends Controller
 
 
             DB::commit();
-            Alert::success('تمت العمليه', 'تم التحديث بنجاح');
-            return redirect()->route('services');
+            // Alert::success('تمت العمليه', 'تم التحديث بنجاح');
+            return redirect()->route('services')->with('success',trans('تم التحديث بنجاح'));
 
         } catch (\Exception $ex) {
 

@@ -87,8 +87,8 @@ class NotificationsController extends Controller
             }
 
             activity('admin')->log('تم اضافه الاشعار بنجاح -'.$notification->title_ar);
-            Alert::success('تمت العمليه', 'تم اضافه الاشعار بنجاح');
-            return redirect()->route('notifications.index');
+            // Alert::success('تمت العمليه', 'تم اضافه الاشعار بنجاح');
+            return redirect()->route('notifications.index')->with('success',trans('تم اضافه الاشعار بنجاح'));
     }
     public function destroy($id)
     {
