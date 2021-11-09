@@ -49,7 +49,7 @@ class UserfundsController extends Controller
 
     }
 
-    public function employerchosen($id)
+    public function employerchosen($id,$type)
     {
         if (User_fund::where('id', $id)->whereNull('emp_id')->exists()) {
             User_fund::where('id', $id)->update(['emp_id' => auth()->user()->id]);;
@@ -72,14 +72,14 @@ class UserfundsController extends Controller
             $data_app['user_fund_id'] = $id;
             Fhistory::create($data_app);
             Alert::success('تمت العمليه', 'تم اضافه هذا التمويل لوظائفك بنجاح');
-            return redirect()->route('review', $id);
+            return redirect()->route('review',['id'=>$id,'type'=>'edit']);
         } else {
             Alert::success('تمت العمليه', 'تم تحويل هذا الطلب بالفعل الي موظف');
             return redirect()->route('userfunds');
         }
     }
 
-    public function review($id)
+    public function review($id,$type)
     {
         $userfund = User_fund::find($id);
         if (!$userfund) {
@@ -92,11 +92,11 @@ class UserfundsController extends Controller
         $empolyers = Admin::where('type', 'employer')->where('cat_id', auth()->user()->cat_id)->where('id', '<>', auth()->user()->id)->get();
         $banks = Bank::where('status','active')->wherenotnull('parent_id')->orderBy('parent_id','DESC')->get();
         $histories = Fhistory::where('user_fund_id', $id)->where('show_in','web')->orderBy('created_at', 'DESC')->get();
-        if ($requestreview->emp_id == auth()->user()->id) {
+        if ($requestreview->emp_id == auth()->user()->id || auth()->user()->type == 'admin') {
 
             $employee_log= 'تم مراجعه تمويل'.$userfund->Users->name;
             store_history(Auth::user()->id , $employee_log);
-            return view($this->folderView . 'details', compact('requestreview', 'empolyers', 'banks', 'histories','user'));
+            return view($this->folderView . 'details', compact('type','requestreview', 'empolyers', 'banks', 'histories','user'));
         } else {
             Alert::warning('تنبية', 'مرفوض الدخول');
             return redirect()->back();

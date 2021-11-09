@@ -59,14 +59,17 @@
                                 @elseif($usefund->user_status == 'finail_accept')
                                     مقبول
                                 @elseif($usefund->user_status == 'user_editing')
-                                     التعديل عن طريق المستخدم
+                                    التعديل عن طريق المستخدم
                                 @endif
                             </td>
                             <td class="text-lg-center ">
+                                @if(auth()->user()->type == 'admin')
+                                    <a href="{{route('review',['id'=>$usefund->id,'type'=>'show'])}}" class="btn btn-success">{{trans('admin.view')}}</a>
+                                @endif
                                 @if($usefund->user_status !='finail_rejected')
                                     @if(is_null($usefund->emp_id))
                                         <a class='btn btn-danger btn-circle' title="المراجعه"
-                                           href="{{route('employerchosen',$usefund->id)}}"><i class="fa fa-eye"></i></a>
+                                           href="{{route('employerchosen',['id'=>$usefund->id,'type'=>'edit'])}}"><i class="fa fa-eye"></i></a>
 
                                     @elseif(($usefund->emp_id == auth()->user()->id) && $usefund->bank_id == null)
 
@@ -74,7 +77,7 @@
                                             {{trans('admin.sent_to_banks')}}
                                         @else
                                             <a class='btn btn-info btn-circle' title="{{trans('admin.follow')}}"
-                                               href="{{route('review',$usefund->id)}}"><i
+                                               href="{{route('review',['id'=>$usefund->id,'type'=>'edit'])}}"><i
                                                     class="fa fa-pencil-square-o"></i></a>
                                         @endif
                                     @else
@@ -93,9 +96,7 @@
         </div>
     </div>
     </script>
-    <
-    script
-    src = "{{asset('../assets/plugins/jquery/jquery.min.js')}}" ></script>
+    <script src = "{{asset('../assets/plugins/jquery/jquery.min.js')}}" ></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{asset('../assets/plugins/bootstrap/js/popper.min.js')}}"></script>
     <script src="{{asset('../assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
