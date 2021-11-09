@@ -61,14 +61,14 @@
                             <a href="{{route('banks.branches',$bank->id)}}" style="color: #000; font-size: 22px;"> {{count($bank->Branches)}}  </a>
                         </td>
                         <td>
-                            <ul class="list-inline soc-pro m-t-30">
+                            <ul class="list-inline soc-pro m-t-30"> 
                                 @if($bank->status=="active")
                                     <li><a id="btn_bank_unactive" class=" btn btn-success" title="تعديل"
                                            data-bankid="{{$bank->id}}" data-toggle="modal" data-target="#myModal"
                                            href="" id="btn_bank_unactive">تعطيل</a></li>
                                 @else
                                     <li>
-                                        <a href="{{route('banks.actived',$bank->id)}}" class="btn btn-danger"
+                                        <a href="{{route('parentbanks.actived',$bank->id)}}" class="btn btn-danger"
                                            data-target="#myModal">تفعيل</a>
                                     </li>
                                 @endif
@@ -85,6 +85,47 @@
                 </table>
             </div>
         </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{trans('admin.sure')}}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('parentbanks.unactived')}}" method="post">
+                        @csrf  
+                        <input type="hidden" name="id" id="txt_bank_id">
+                        <div class="form-group">
+                           
+                            <select class="custom-select form-control pull-right"  name="bank_id">
+                                <option  selected value="no_bank">{{trans('admin.trans_bank')}}</option>
+                                @foreach($active_banks as $active_bank)                          
+                                    <option value="{{$active_bank->id}}">{{$active_bank->name_ar}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                          <div class="col text-center">
+                            <button type="submit" class="btn btn-success " >{{trans('admin.trans_disaple')}}</button>
+                          </div>
+                        </div>
+                    </form> 
+                    <form  action="{{route('parentbanks.unactived')}}" method="post"> 
+                        @csrf  
+                        <input type="hidden" name="id" id="txt_bank_id2">
+                        <div class="modal-footer">
+                            <div class="col text-center">
+                               <button type="submit" class="btn btn-danger" >{{trans('admin.trans')}}</button>
+                            </div> 
+                        </div>
+                    </form>       
+                </div>             
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
 @endsection
 @section('scripts')
@@ -152,9 +193,16 @@
             // Order by the grouping
         });
     });
+    
     </script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script >
+    $(document).on('click','#btn_bank_unactive', function(){
+        $('#txt_bank_id').val( $(this).data('bankid') );
+        $('#txt_bank_id2').val( $(this).data('bankid') );
+    });
+</script>
 @endsection
