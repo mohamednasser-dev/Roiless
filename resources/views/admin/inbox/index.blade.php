@@ -1,4 +1,11 @@
 @extends('admin_temp')
+@section('styles')
+<link href="{{asset('../assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="{{asset('css/colors/default-dark.css')}}" id="theme" rel="stylesheet">
+@endsection
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
@@ -12,20 +19,22 @@
         </div>
     </div>
     <br>
-    <div class="row">
-        <table id="myTable" class="table table-bordered table-striped">
-            <thead>
-            <tr>
-                <th class="text-lg-center">{{trans('admin.consolution_name_user')}}</th>
-                <th class="text-lg-center"> {{trans('admin.consolution_email')}}</th>
-                <th class="text-lg-center">{{trans('admin.consolution_phone')}}</th>
-                <th class="text-lg-center">{{trans('admin.replay.status')}}</th>
-                <th class="text-lg-center">{{trans('admin.consolution_replies')}}</th>
-                <th class="text-lg-center">{{trans('admin.delete')}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($consolutions as $consolution)
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive m-t-5">
+                <table id="myTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                        <th class="text-lg-center">{{trans('admin.consolution_name_user')}}</th>
+                        <th class="text-lg-center"> {{trans('admin.consolution_email')}}</th>
+                        <th class="text-lg-center">{{trans('admin.consolution_phone')}}</th>
+                        <th class="text-lg-center">{{trans('admin.replay.status')}}</th>
+                        <th class="text-lg-center">{{trans('admin.consolution_replies')}}</th>
+                        <th class="text-lg-center">{{trans('admin.delete')}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($consolutions as $consolution)
                 <tr>
                     <td class="text-lg-center">{{$consolution->full_name}}</td>
                     <td class="text-lg-center">{{$consolution->email}}</td>
@@ -73,12 +82,52 @@
                     </td>
                 </tr>
             @endforeach
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 @endsection
 @section('scripts')
     <script>
         var button = document.getElementById('test1').innerHTML = "<span style=' margin-left: 50%'></span>";
     </script>
+    <!-- end - This is for export functionality only -->
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'desc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+            });
+        });
+    </script>
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <script src="../assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
 @endsection

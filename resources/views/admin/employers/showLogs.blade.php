@@ -15,16 +15,17 @@
     </div>
     <!-- /.card-header -->
     <br>
-    <div class="row">
-            <div class="table-responsive m-t-40">
-            <table class="table full-color-table full-primary-table">
-                    <thead class="bg-primary">
-                    <tr>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive m-t-5">
+                <table id="myTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
                         <th scope="col"></th>
                         <th scope="col">{{trans('admin.moves')}}</th>
                         <th scope="col">{{trans('admin.name_employee')}}</th>
                         <th scope="col">{{trans('admin.created_at')}}</th>
-                    </tr>
+                        </tr>
                     </thead>
                     <tbody>
                     @foreach($activities as $activity)
@@ -40,9 +41,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                    <div class="d-flex justify-content-center">
-                    {{ $activities->links() }}
-                    </div>
             </div>
+        </div>
     </div>
 @endsection

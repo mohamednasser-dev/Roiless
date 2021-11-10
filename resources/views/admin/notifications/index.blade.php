@@ -19,37 +19,37 @@
            class="btn btn-info btn-bg">{{trans('admin.add_new_notification')}}</a>
     </div>
     <br>
-    <div class="row">
-        <table class="table full-color-table full-primary-table">
-            <thead>
-            <tr>
-                <th class="text-lg-center">{{trans('admin.notification_in_arabic')}}</th>
-                <th class="text-lg-center">{{trans('admin.notification_in_english')}}</th>
-                <th class="text-lg-center">{{trans('admin.notification_content_in_arabic')}}</th>
-                <th class="text-lg-center">{{trans('admin.notification_content_in_english')}}</th>
-                <th class="text-lg-center">{{trans('admin.notification_image')}}</th>
-               
-            </tr>
-            </thead>
-
-            <tbody>
-            @foreach($notifications as $notification)
-                <tr>
-                    <td class="text-lg-center">{{$notification->title_ar}}</td>
-                    <td class="text-lg-center">{{$notification->title_en}}</td>
-                    <td class="text-lg-center">{{$notification->body_ar}}</td>
-                    <td class="text-lg-center">{{$notification->body_en}}</td>
-                    <td class="text-lg-center ">
-                        <div class="pro-img"><img style="height: 50px; width: 50px; border-radius: 50%" src="{{$notification->image}}"></div>
-                    </td>
-
-                  
-
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive m-t-5">
+                <table id="myTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                        <th class="text-lg-center">{{trans('admin.notification_in_arabic')}}</th>
+                        <th class="text-lg-center">{{trans('admin.notification_in_english')}}</th>
+                        <th class="text-lg-center">{{trans('admin.notification_content_in_arabic')}}</th>
+                        <th class="text-lg-center">{{trans('admin.notification_content_in_english')}}</th>
+                        <th class="text-lg-center">{{trans('admin.notification_image')}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($notifications as $notification)
+                            <tr>
+                                <td class="text-lg-center">{{$notification->title_ar}}</td>
+                                <td class="text-lg-center">{{$notification->title_en}}</td>
+                                <td class="text-lg-center">{{$notification->body_ar}}</td>
+                                <td class="text-lg-center">{{$notification->body_en}}</td>
+                                <td class="text-lg-center ">
+                                <div class="pro-img"><img style="height: 50px; width: 50px; border-radius: 50%" src="{{$notification->image}}"></div>
+                                </td>
+                            </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+    {{ $notifications->links() }}
 @endsection
 @section('scripts')
     <script type="text/javascript">

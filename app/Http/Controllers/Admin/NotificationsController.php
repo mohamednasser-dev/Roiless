@@ -25,7 +25,7 @@ class NotificationsController extends Controller
     public function index()
     {
 
-        $notifications = Notification::get();
+        $notifications = Notification::orderBy('created_at', 'DESC')->paginate(20);
         return view($this->folderView . 'index', compact('notifications'));
     }
 

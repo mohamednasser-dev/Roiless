@@ -16,28 +16,29 @@
            class="btn btn-info btn-bg">{{trans('admin.consolution.kind')}}</a>
     </div>
     <br>
-    <div class="row">
-        <table id="myTable" class="table table-bordered table-striped">
-            <thead>
-            <tr>
-                <th class="text-lg-center">{{trans('admin.consolution_name_user')}}</th>
-                <th class="text-lg-center"> {{trans('admin.consolution_email')}}</th>
-                <th class="text-lg-center">{{trans('admin.consolution_phone')}}</th>
-                <th class="text-lg-center">{{trans('admin.consolution_kind')}}</th>
-                <th class="text-lg-center">{{trans('admin.replay.status')}}</th>
-                <th class="text-lg-center">{{trans('admin.consolution_replies')}}</th>
-                <th class="text-lg-center">{{trans('admin.delete')}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($consolutions as $consolution)
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive m-t-5">
+                <table id="myTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                        <th class="text-lg-center">{{trans('admin.consolution_name_user')}}</th>
+                        <th class="text-lg-center"> {{trans('admin.consolution_email')}}</th>
+                        <th class="text-lg-center">{{trans('admin.consolution_phone')}}</th>
+                        <th class="text-lg-center">{{trans('admin.consolution_kind')}}</th>
+                        <th class="text-lg-center">{{trans('admin.replay.status')}}</th>
+                        <th class="text-lg-center">{{trans('admin.consolution_replies')}}</th>
+                        <th class="text-lg-center">{{trans('admin.delete')}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($consolutions as $consolution)
                 <tr>
                     <td class="text-lg-center">{{$consolution->full_name}}</td>
                     <td class="text-lg-center">{{$consolution->email}}</td>
                     <td class="text-lg-center">{{$consolution->phone}}</td>
                     <td class="text-lg-center">{{$consolution->consolution_kind->name_ar}}</td>
                     <td class="text-lg-center">
-
                         @php
                             $test= \App\Models\reply::where('consolution_id',$consolution->id)->orderby('created_at','DESC')->first();
                         @endphp
@@ -48,8 +49,6 @@
                         @else
                             <span class="label label-info">{{trans('admin.answerd')}}</span>
                         @endif
-
-
                     </td>
                     <td class="text-lg-center ">
                     <!--
@@ -79,9 +78,12 @@
                     </td>
                 </tr>
             @endforeach
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+    {{ $consolutions->links() }}
 @endsection
 @section('scripts')
     <script>
