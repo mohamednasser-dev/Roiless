@@ -72,13 +72,11 @@ class usersController extends Controller{
             }
         }
     }
-
     public function edit($id)
     {
         $user_data = $this->objectName::where('id', $id)->first();
         return view($this->folderView.'edit', \compact('user_data'));
     }
-
     public function update(Request $request, $id)
     {
         if($request['password'] != null){
@@ -107,8 +105,8 @@ class usersController extends Controller{
             }
             User::where('id',$id)->update($data);
             activity('admin')->log('تم تحديث مستخدم  بنجاح');
-            Alert::success(trans('admin.opretion_success'),trans('admin.user_update') );
-            return redirect(url('users'));
+            // Alert::success(trans('admin.opretion_success'),trans('admin.user_update') );
+            return redirect(url('users'))->with('success',trans('تم التحويل البنك'));;;
         }else{
             unset($data['password']);
             unset($data['password_confirmation']);
@@ -117,8 +115,8 @@ class usersController extends Controller{
                 $data['image'] = $this->MoveImage($request->image,'uploads/users_images');
             }
             User::where('id',$id)->update($data);
-            Alert::success(trans('admin.opretion_success'),trans('admin.updated_Success') );
-            return redirect(url('users'));
+            // Alert::success(trans('admin.opretion_success'),trans('admin.updated_Success') );
+            return redirect(url('users'))->with('success',trans('admin.updated_Success'));
         }
     }
 
@@ -136,12 +134,12 @@ class usersController extends Controller{
             $user->delete();
             $user->save();
             activity('admin')->log('تم حذف مستخدم  بنجاح');
-            Alert::success(trans('admin.Deleted'),trans('admin.Deleted_Success') );
+            // Alert::success(trans('admin.Deleted'),trans('admin.Deleted_Success') );
         }catch(Exception $ex){
             Alert::warning('الحذف', trans('admin.emp_no_delete'));
             return $ex;
         }
-        return back();
+        return back()->with('success',trans('admin.Deleted_Success'));
     }
      public function ltr()
     {

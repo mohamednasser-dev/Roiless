@@ -175,8 +175,8 @@ class ServiceController extends Controller
             $service_details = Service_details::create($data);
 
 
-            Alert::success('تمت العمليه', 'تم الاضافه بنجاح');
-            return redirect()->route('services.details',$request->service_id);
+            // Alert::success('تمت العمليه', 'تم الاضافه بنجاح');
+            return redirect()->route('services.details',$request->service_id)->with('success',trans('تم الاضافه بنجاح'));
 
 
     }
@@ -202,8 +202,8 @@ class ServiceController extends Controller
 
             Service_details::where('id',$id)->update($data);
 
-            Alert::success('تمت العمليه', 'تم التعديل بنجاح');
-        return redirect()->route('services.details',$request->service_id);
+            // Alert::success('تمت العمليه', 'تم التعديل بنجاح');
+        return redirect()->route('services.details',$request->service_id)->with('success',trans('تم التعديل بنجاح'));;
 
     }
 
