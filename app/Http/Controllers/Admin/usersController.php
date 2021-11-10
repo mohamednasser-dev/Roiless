@@ -134,12 +134,12 @@ class usersController extends Controller{
             $user->delete();
             $user->save();
             activity('admin')->log('تم حذف مستخدم  بنجاح');
-            Alert::success(trans('admin.Deleted'),trans('admin.Deleted_Success') );
+            // Alert::success(trans('admin.Deleted'),trans('admin.Deleted_Success') );
         }catch(Exception $ex){
             Alert::warning('الحذف', trans('admin.emp_no_delete'));
             return $ex;
         }
-        return back();
+        return back()->with('success',trans('admin.Deleted_Success'));
     }
      public function ltr()
     {
