@@ -115,7 +115,6 @@
             drEvent.on('dropify.errors', function (event, element) {
                 console.log('Has Errors');
             });
-
             var drDestroy = $('#input-file-to-destroy').dropify();
             drDestroy = drDestroy.data('dropify')
             $('#toggleDropify').on('click', function (e) {

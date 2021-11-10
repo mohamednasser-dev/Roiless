@@ -89,7 +89,7 @@ return [
     'Appearance_is_disabled' => 'تم تعطيل الموظف',
     'Appearance' => 'تم تفعيل الظهور',
     'deAppearance' => 'تم الغاء الظهور',
-    'my_profile' => 'الحساب',
+    'my_profile' => ' الحساب الشخصي',
     'image' => 'الصوره',
     'actions' => 'الاجرائات',
     'add_category' => 'اضافه قسم',

@@ -28,7 +28,6 @@ class Bankcontroller extends Controller
     {
         $banks = Bank::whereNull('parent_id')->orderBy('name_en', 'desc')->get();
         $active_banks = Bank::where('status', 'active')->get();
-
         return view($this->folderView . 'banks', compact('banks', 'active_banks'));
     }
     

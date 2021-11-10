@@ -119,7 +119,6 @@ class usersController extends Controller{
             return redirect(url('users'))->with('success',trans('admin.updated_Success'));
         }
     }
-
     public function update_Actived(Request $request){
         $data['status'] = $request->status ;
         $user = User::where('id', $request->id)->update($data);
@@ -127,7 +126,6 @@ class usersController extends Controller{
 
         return 1;
     }
-
     public function destroy($id){
         $user = $this->objectName::where('id', $id)->first();
         try {

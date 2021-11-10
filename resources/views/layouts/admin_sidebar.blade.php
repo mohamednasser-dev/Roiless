@@ -4,7 +4,6 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('home')}}" aria-expanded="false"><i
                                 class="mdi mdi-home"></i><span class="hide-menu"></span>{{trans('admin.home_page')}}</a>
@@ -16,7 +15,6 @@
                                 class="hide-menu"></span>{{trans('admin.users')}}</a>
                     </li>
                 @endcan
-
                 @can('Employers')
                     <li><a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-email"></i><span
                                 class="hide-menu">الموظفين</span></a>
@@ -42,7 +40,6 @@
                                 class="mdi mdi-cash-multiple"></i><span
                                 class="hide-menu"></span>{{trans('admin.funds')}}</a>
                     </li>
-
                 @endcan
                 @can('Client Funds')
                     <li><a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-cash-multiple"></i><span
@@ -59,9 +56,7 @@
                                 class="mdi mdi-briefcase"></i><span
                                 class="hide-menu"></span>{{trans('admin.fund_category')}}</a>
                     </li>
-
                 @endcan
-
                 @can('Common questions')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('question')}}" aria-expanded="false"><i
@@ -76,7 +71,6 @@
                                 class="hide-menu"></span>{{trans('admin.services')}}</a>
                     </li>
                 @endcan
-
                 @can('consolutions')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('consolutions')}}" aria-expanded="false"><i
@@ -103,11 +97,10 @@
                 @can('notifications')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('notifications.index')}}"
-                           aria-expanded="false"><i
-                                class=" ti-world"></i><span class="hide-menu"></span>{{trans('admin.notification')}}</a>
+                           aria-expanded="false"><i class="far fa-envelope"></i>
+                                <span class="hide-menu"></span>{{trans('admin.notification')}}</a>
                     </li>
                 @endcan
-
                 @can('communication')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('inbox')}}" aria-expanded="false"><i
