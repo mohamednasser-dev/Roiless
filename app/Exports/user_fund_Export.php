@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Exports;
-
 use App\Models\User_fund;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-class user_fund_Export implements FromCollection
+class user_fund_Export implements FromCollection,WithHeadings
 {
     protected $month;
     protected $year;
@@ -76,7 +74,6 @@ class user_fund_Export implements FromCollection
                 return $data;
             })->makeHidden(['user_id','fund_id']);
         }
-       
     }
     public function headings(): array
     {

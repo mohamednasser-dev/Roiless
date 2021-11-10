@@ -13,7 +13,6 @@ class BulkExport implements FromCollection,WithHeadings
     protected $group1;
     function __construct($month = null,$annual = null,$group1 = null)
     {
-      
         $this->month=$month;
         $this->year=$annual;
         $this->group1=$group1;
