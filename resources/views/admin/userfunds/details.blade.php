@@ -233,7 +233,6 @@
                                 <label class="control-label"> الموظفين </label>
                                 <select class="form-control custom-select" name="emp_id" required>
                                     @foreach($empolyers as $empolyer )
-                                        <option value=""></option>
                                         <option value="{{$empolyer->id}}">{{$empolyer->name}}</option>
                                     @endforeach
                                 </select>

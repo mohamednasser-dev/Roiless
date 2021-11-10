@@ -1,7 +1,7 @@
 <?php
 return [
     //new
-
+     'show_user_fund'=>'المشاهده',
     'payment_status'=>'حالة الدفع',
     'view'=>'مشاهده',
     'order_status'=>'حالة الطلب',

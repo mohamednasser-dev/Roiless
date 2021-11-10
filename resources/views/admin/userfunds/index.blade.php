@@ -34,6 +34,7 @@
                         <th class="text-lg-center">{{trans('admin.request')}}</th>
                         <th class="text-lg-center">{{trans('admin.payment_status')}}</th>
                         <th class="text-lg-center">{{trans('admin.order_status')}}</th>
+                        <th class="text-lg-center">{{trans('admin.show_user_fund')}}</th>
                         <th class="text-lg-center">{{trans('admin.revision')}}</th>
                     </tr>
                     </thead>
@@ -64,10 +65,14 @@
                                     {{trans('admin.rejected')}}
                                 @endif
                             </td>
+                            <td>
+                            @can('Employers')
+                            <a href="{{route('review',['id'=>$usefund->id,'type'=>'show'])}}" class="btn btn-success">{{trans('admin.view')}}</a>
+                            @endcan
+                               
+                           </td>
                             <td class="text-lg-center ">
-                                @if(auth()->user()->type == 'admin')
-                                    <a href="{{route('review',['id'=>$usefund->id,'type'=>'show'])}}" class="btn btn-success">{{trans('admin.view')}}</a>
-                                @endif
+                             
                                 @if($usefund->user_status !='finail_rejected')
                                     @if(is_null($usefund->emp_id))
                                         <a class='btn btn-danger btn-circle' title="المراجعه"
