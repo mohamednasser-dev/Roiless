@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -65,8 +63,8 @@ class SettingController extends Controller
             ]);
         $setting = Setting::find($id);
         if (!$setting) {
-            Alert::warning('خطاء', 'هذا الاعداد ليس موجو');
-            return redirect()->route(' $this->folderView');
+            // Alert::warning('خطاء', 'هذا الاعداد ليس موجو');
+            return redirect()->route(' $this->folderView')->with('danger',trans('هذا الاعداد ليس موجود'));
         }
         if ($request->hasFile('logo')) {
             $file_name = $this->MoveImage($request->file('logo'), 'uploads/setting');
@@ -77,7 +75,7 @@ class SettingController extends Controller
         Setting::where('id', $id)->update($data);
         activity('admin')->log('تم تحديث الاعدادات بنجاح');
         DB::commit();
-        Alert::success('تمت العمليه', 'تم التحديث بنجاح');
-        return redirect()->route('Setting.edit');
+        // Alert::success('تمت العمليه', 'تم التحديث بنجاح');
+        return redirect()->route('Setting.edit')->with('success',trans('تم التحديث بنجاح'));
     }
 }
