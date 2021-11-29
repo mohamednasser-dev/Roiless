@@ -23,14 +23,15 @@ Route::group(['middleware' => ['auth:admin']], function() {
     Route::post('/roles/update{id}', 'Admin\RoleController@update')->name('roles.custom.update');
 });
 
+Route::get('/', 'HomeController@landing')->name('landing');
 
 Route::group(['middleware' => 'guest', 'namespace' => 'Admin\Auth'], function () {
-    Route::get('/login', 'LoginController@login')->name('login');
-    Route::post('/login-store', 'LoginController@loginAdmin')->name('admin.login.store');
+    Route::get('c_panel/login', 'LoginController@login')->name('login');
+    Route::post('c_panel/login', 'LoginController@loginAdmin')->name('admin.login.store');
 });
 
 Route::group(['middleware' => 'auth:admin', 'namespace' => 'Admin'], function () {
-    Route::get('/', 'DashboardController@index')->name('home');
+    Route::get('/c_panel/home', 'DashboardController@index')->name('home');
     Route::get('/test', 'usersController@ltr');
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
@@ -76,9 +77,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('banks/{id}/delete/', 'Admin\Bankcontroller@destroy')->name('banks.delete');
     Route::get('banks/{id}/details', 'Admin\Bankcontroller@show')->name('banks.details');
     Route::get('banks/actived/{id}', 'Admin\Bankcontroller@update_Actived')->name('banks.actived');
-    Route::post('banks/actived', 'Admin\Bankcontroller@unupdate_Actived')->name('banks.unactived');  
-    Route::get('parent_banks/actived/{id}', 'Admin\Bankcontroller@updateparent_Actived')->name('parentbanks.actived'); 
-    Route::post('parentbanks/actived', 'Admin\Bankcontroller@unupdate_parent_pank')->name('parentbanks.unactived'); 
+    Route::post('banks/actived', 'Admin\Bankcontroller@unupdate_Actived')->name('banks.unactived');
+    Route::get('parent_banks/actived/{id}', 'Admin\Bankcontroller@updateparent_Actived')->name('parentbanks.actived');
+    Route::post('parentbanks/actived', 'Admin\Bankcontroller@unupdate_parent_pank')->name('parentbanks.unactived');
     Route::get('banks/{id}/branches', 'Admin\Bankcontroller@bankBranch')->name('banks.branches');
 
     Route::get('banks/branches/{id}/edit', 'Admin\Bankcontroller@editBranche')->name('banks.edit.branches');

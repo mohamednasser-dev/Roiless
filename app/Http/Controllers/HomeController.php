@@ -16,6 +16,10 @@ class HomeController extends Controller
 //        }
         return view('home');
     }
+    public function landing()
+    {
+        return view('landing_page');
+    }
     public function viewprofile(Request $request)
     {
         return view('viewprofile');
