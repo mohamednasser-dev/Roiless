@@ -182,6 +182,7 @@ class UsersController extends Controller
                     'otp_code' => 123456,
                 ]);
                 $data['status'] = true;
+                $data['otp_code'] = 123456;
                 return msgdata($request, success(), 'please send otp_code', $data);
             } else {
                 $data['status'] = false;
@@ -191,6 +192,7 @@ class UsersController extends Controller
             $user_otp = User::select('otp_code')->where('phone', $request->phone)->first();
             if ($request->otp_code == $user_otp->otp_code) {
                 $data['status'] = true;
+
                 return msgdata($request, success(), 'otp true', $data);
             } else {
                 $data['status'] = false;
