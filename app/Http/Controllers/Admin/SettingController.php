@@ -72,6 +72,11 @@ class SettingController extends Controller
         } else {
             unset($data['logo']);
         }
+        if($request->show_otp == '1'){
+            $data['show_otp'] = 1 ;
+        }else{
+            $data['show_otp'] = 0 ;
+        }
         Setting::where('id', $id)->update($data);
         activity('admin')->log('تم تحديث الاعدادات بنجاح');
         DB::commit();

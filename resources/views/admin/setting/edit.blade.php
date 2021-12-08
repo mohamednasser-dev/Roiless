@@ -1,7 +1,7 @@
 @extends('admin_temp')
 @section('styles')
     <link rel="stylesheet" href="{{ asset('/assets/plugins/dropify/dist/css/dropify.min.css') }}">
-    <link href="{{ asset('/assets/plugins/summernote/dist/summernote.css') }}" rel="stylesheet" >
+    <link href="{{ asset('/assets/plugins/summernote/dist/summernote.css') }}" rel="stylesheet">
 @endsection
 @section('content')
     <div class="row page-titles">
@@ -15,155 +15,178 @@
             </ol>
         </div>
     </div>
-        <div class="row">
-            <div class="col-sm-12">
-                {{ Form::open( ['route'  =>  ['Setting.update',$setting->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">{{trans('admin.website_info')}}</h4>
-                        <hr>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">{{trans('admin.website_logo')}}</h4>
-                                        <input type="file" name="logo" data-default-file="{{$setting->logo}}"
-                                               id="input-file-now" class="dropify"/>
-                                    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            {{ Form::open( ['route'  =>  ['Setting.update',$setting->id],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">{{trans('admin.website_info')}}</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{trans('admin.website_logo')}}</h4>
+                                    <input type="file" name="logo" data-default-file="{{$setting->logo}}"
+                                           id="input-file-now" class="dropify"/>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-6">
-                                <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.website_name_in_arabic')}}</label>
-                                    <div class="col-md-10">
-                                        {{ Form::text('title_ar',$setting->title_ar,["class"=>"form-control" ,"required"]) }}
-                                    </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input"
+                                       class="col-md-2 col-form-label">{{trans('admin.website_name_in_arabic')}}</label>
+                                <div class="col-md-10">
+                                    {{ Form::text('title_ar',$setting->title_ar,["class"=>"form-control" ,"required"]) }}
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-6">
-                                <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label"> {{trans('admin.website_name_in_english')}}</label>
-                                    <div class="col-md-10">
-                                        {{ Form::text('title_en',$setting->title_en,["class"=>"form-control" ,"required"]) }}
-                                    </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input"
+                                       class="col-md-2 col-form-label"> {{trans('admin.website_name_in_english')}}</label>
+                                <div class="col-md-10">
+                                    {{ Form::text('title_en',$setting->title_en,["class"=>"form-control" ,"required"]) }}
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-6">
-                                <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label"> {{trans('admin.phone')}}</label>
-                                    <div class="col-md-10">
-                                        {{ Form::text('phone',$setting->phone,["class"=>"form-control" ,"required"]) }}
-                                    </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input"
+                                       class="col-md-2 col-form-label"> {{trans('admin.phone')}}</label>
+                                <div class="col-md-10">
+                                    {{ Form::text('phone',$setting->phone,["class"=>"form-control" ,"required"]) }}
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-6">
-                                <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_arabic')}}</label>
-                                    <div class="col-md-10">
-                                        {{ Form::textarea('terms_ar',$setting->terms_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-6">
-                                <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_english')}}</label>
-                                    <div class="col-md-10">
-                                        {{ Form::textarea('terms_en',$setting->terms_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-6">
-                                <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.privacey_in_arabic')}}</label>
-                                    <div class="col-md-10">
-                                        {{ Form::textarea('privacy_ar',$setting->privacy_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-6">
-                                <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.privacey_in_english')}}</label>
-                                    <div class="col-md-10">
-                                        {{ Form::textarea('privacy_en',$setting->privacy_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-md-6">
-                                <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">
-                                    {{trans('admin.about_application_in_arabic')}}
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input"
+                                       class="col-md-2 col-form-label"> {{trans('admin.show_otp')}}</label>
+                                <div class="col-md-10">
+                                    <div class="switch">
+                                        <label>
+                                            <input type="checkbox" name="show_otp" value="1"
+                                                   @if($setting->show_otp == 1) checked @endif>
+                                            <span class="lever switch-col-green"></span>
                                         </label>
-                                    <div class="col-md-10">
-                                        {{ Form::textarea('about_us_ar',$setting->about_us_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-6">
-                                <div class="form-group m-t-40 row">
-                                    <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.about_application_in_english')}}</label>
-                                    <div class="col-md-10">
-                                        {{ Form::textarea('about_us_en',$setting->about_us_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
-                                    </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input"
+                                       class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_arabic')}}</label>
+                                <div class="col-md-10">
+                                    {{ Form::textarea('terms_ar',$setting->terms_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="input-group">
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input"
+                                       class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_english')}}</label>
+                                <div class="col-md-10">
+                                    {{ Form::textarea('terms_en',$setting->terms_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input"
+                                       class="col-md-2 col-form-label">{{trans('admin.privacey_in_arabic')}}</label>
+                                <div class="col-md-10">
+                                    {{ Form::textarea('privacy_ar',$setting->privacy_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input"
+                                       class="col-md-2 col-form-label">{{trans('admin.privacey_in_english')}}</label>
+                                <div class="col-md-10">
+                                    {{ Form::textarea('privacy_en',$setting->privacy_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input" class="col-md-2 col-form-label">
+                                    {{trans('admin.about_application_in_arabic')}}
+                                </label>
+                                <div class="col-md-10">
+                                    {{ Form::textarea('about_us_ar',$setting->about_us_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input"
+                                       class="col-md-2 col-form-label">{{trans('admin.about_application_in_english')}}</label>
+                                <div class="col-md-10">
+                                    {{ Form::textarea('about_us_en',$setting->about_us_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="input-group">
                                <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-facebook"></i>
                                 </span>
-                                    {{ Form::url('facebook',$setting->facebook,["class"=>"form-control"]) }}
-                                </div>
+                                {{ Form::url('facebook',$setting->facebook,["class"=>"form-control"]) }}
                             </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="input-group">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-youtube"></i>
                                 </span>
-                                    {{ Form::url('youtube',$setting->youtube,["class"=>"form-control" ]) }}
-                                </div>
+                                {{ Form::url('youtube',$setting->youtube,["class"=>"form-control" ]) }}
                             </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="input-group">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-instagram"></i>
                                 </span>
-                                    {{ Form::url('instagram',$setting->instagram,["class"=>"form-control" ]) }}
-                                </div>
+                                {{ Form::url('instagram',$setting->instagram,["class"=>"form-control" ]) }}
                             </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="input-group">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-linkedin"></i>
                                 </span>
-                                    {{ Form::url('linkedin',$setting->linkedin,["class"=>"form-control"]) }}
-                                </div>
+                                {{ Form::url('linkedin',$setting->linkedin,["class"=>"form-control"]) }}
                             </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="input-group">
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">
                                     <i class="icon-social-twitter"></i>
                                 </span>
-                                    {{ Form::url('twitter',$setting->twitter,["class"=>"form-control" ]) }}
-                                </div>
+                                {{ Form::url('twitter',$setting->twitter,["class"=>"form-control" ]) }}
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <div class="center">
-                            {{ Form::submit('تحديث' ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
-                        </div>
+                </div>
+                <div class="card-footer">
+                    <div class="center">
+                        {{ Form::submit('تحديث' ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
                     </div>
                 </div>
-                {{ Form::close() }}
             </div>
+            {{ Form::close() }}
         </div>
+    </div>
 @endsection
 @section('scripts')
     <script src="{{ asset('/assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
     <script src="{{ asset('/js/custom.min.js')}}"></script>
     <script src="{{ asset('/assets/plugins/summernote/dist/summernote.min.js')}}"></script>
     <script>
-        jQuery(document).ready(function() {
+        jQuery(document).ready(function () {
             $('.summernote').summernote({
                 height: 350, // set editor height
                 minHeight: null, // set minimum height of editor
@@ -174,10 +197,10 @@
                 airMode: true
             });
         });
-        window.edit = function() {
+        window.edit = function () {
             $(".click2edit").summernote()
         },
-            window.save = function() {
+            window.save = function () {
                 $(".click2edit").summernote('destroy');
             }
     </script>

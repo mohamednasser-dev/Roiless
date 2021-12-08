@@ -1,14 +1,15 @@
 <?php
 return [
     //new
-     'show_user_fund'=>'المشاهده',
-    'payment_status'=>'حالة الدفع',
-    'view'=>'مشاهده',
-    'order_status'=>'حالة الطلب',
-    'select all'=>'تحديد الكل',
-    'type_message_here'=>'اكتب الرد هنا',
-    'deselect all'=>'الغاء التحديد',
-     'show_question'=>'عرض السؤال',
+    'show_otp' => 'اظهار رقم الـ otp',
+    'show_user_fund' => 'المشاهده',
+    'payment_status' => 'حالة الدفع',
+    'view' => 'مشاهده',
+    'order_status' => 'حالة الطلب',
+    'select all' => 'تحديد الكل',
+    'type_message_here' => 'اكتب الرد هنا',
+    'deselect all' => 'الغاء التحديد',
+    'show_question' => 'عرض السؤال',
     'sure' => 'هل تريد تحويل كافة طلبات هذا البنك الي بنك اخر؟',
     'trans_bank' => 'اختر البنك',
     'add_new_detailes_service' => 'اضافة تفاصيل جديدة',
