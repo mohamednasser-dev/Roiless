@@ -13,7 +13,7 @@ class CategoryController extends Controller
 
     public function getall(Request $request)
     {
-        $category = Category::select('id', 'title_ar', 'title_en', 'image')->with('Funds')->get();
+        $category = Category::where('type','cat')->select('id', 'title_ar', 'title_en', 'image')->with('Funds')->get();
         return msgdata($request, success(), 'get categories success', $category);
     }
 }
