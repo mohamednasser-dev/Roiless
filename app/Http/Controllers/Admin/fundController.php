@@ -31,7 +31,7 @@ class fundController extends Controller
 
     public function create()
     {
-        $categories = Category::get();
+        $categories = Category::where('type','cat')->get();
         $fundsinputs = Fundinput::get();
         return view($this->folderView . 'create', compact('categories', 'fundsinputs'));
     }
