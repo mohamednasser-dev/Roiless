@@ -34,7 +34,7 @@ class FundController extends Controller
             $Funddetailes->columns = json_decode($Funddetailes->columns);
             if ($Funddetailes) {
                 $data['Funddetailes'] = $Funddetailes;
-                $bank = Bank::select('name_' . $lang . ' as name', 'image')->get();
+                $bank = Bank::select('id','name_' . $lang . ' as name', 'image')->get();
                 $data['banks'] = $bank;
 
                 $fields = Company_field::select('id', 'name_' . $lang . ' as name')->get();
@@ -53,6 +53,7 @@ class FundController extends Controller
         $user = auth()->user();
         $myJSON = json_encode($request->dataform);
         $rules = [
+            'bank_id' => 'required',
             'fund_id' => 'required',
             'dataform' => 'required',
             'file' => '',
@@ -65,6 +66,7 @@ class FundController extends Controller
             $user_fund_data['fund_amount'] = $fund->cost;
             $user_fund_data['dataform'] = json_encode($request->dataform);
             $user_fund_data['fund_id'] = $request->fund_id;
+            $user_fund_data['user_bank_id'] = $request->bank_id;
             $user_fund_data['user_id'] = $user->id;
             foreach ($request->dataform as $row) {
                 if ($row['name'] == 'fund_amount') {

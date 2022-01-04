@@ -71,6 +71,18 @@
                                 @endif
                             @endforeach
                         </div>
+                        <hr>
+                        @if($requestreview->Selected_Bank)
+                        <h3>{{trans('admin.bank_data')}}</h3>
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="control-label">اسم البنك</h3>
+                                <input type="text" id="firstName" class="form-control"
+                                       value="{{ $requestreview->Selected_Bank->name_ar}} "
+                                       readonly>
+                            </div>
+                        </div>
+                            @endif
                     </div>
                 </div>
             </div>
