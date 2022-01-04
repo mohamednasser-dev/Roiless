@@ -32,6 +32,11 @@ class FundController extends Controller
             $Funddetailes = Fund::select('id', 'name_ar', 'name_en', 'financing_ratio', 'image', 'columns', 'cost', 'fund_amount_ar', 'fund_amount_en', 'annual_income_ar', 'annual_income_en')->where('id', $id)->where('deleted', '0')->first();
             $Funddetailes->cost = number_format((float)($Funddetailes->cost), 2);
             $Funddetailes->columns = json_decode($Funddetailes->columns);
+
+            $colums = $Funddetailes->columns;
+            $colums[count($colums)] = 'bank_id';
+            $Funddetailes->columns= $colums;
+
             if ($Funddetailes) {
                 $data['Funddetailes'] = $Funddetailes;
                 $bank = Bank::select('id','name_' . $lang . ' as name', 'image')->get();
@@ -53,7 +58,6 @@ class FundController extends Controller
         $user = auth()->user();
         $myJSON = json_encode($request->dataform);
         $rules = [
-            'bank_id' => 'required',
             'fund_id' => 'required',
             'dataform' => 'required',
             'file' => '',
@@ -66,7 +70,6 @@ class FundController extends Controller
             $user_fund_data['fund_amount'] = $fund->cost;
             $user_fund_data['dataform'] = json_encode($request->dataform);
             $user_fund_data['fund_id'] = $request->fund_id;
-            $user_fund_data['user_bank_id'] = $request->bank_id;
             $user_fund_data['user_id'] = $user->id;
             foreach ($request->dataform as $row) {
                 if ($row['name'] == 'fund_amount') {
