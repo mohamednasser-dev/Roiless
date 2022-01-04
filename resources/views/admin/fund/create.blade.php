@@ -25,45 +25,53 @@
                     <h4 class="card-title">{{trans('admin.fund_info')}}</h4>
                     <hr>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_name_in_arabic')}}</label>
+                        <label for="example-text-input"
+                               class="col-md-2 col-form-label">{{trans('admin.fund_name_in_arabic')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('name_ar',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_name_in_english')}}</label>
+                        <label for="example-text-input"
+                               class="col-md-2 col-form-label">{{trans('admin.fund_name_in_english')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('name_en',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_desc_in_arabic')}}</label>
+                        <label for="example-text-input"
+                               class="col-md-2 col-form-label">{{trans('admin.fund_desc_in_arabic')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('desc_ar',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_desc_in_english')}}</label>
+                        <label for="example-text-input"
+                               class="col-md-2 col-form-label">{{trans('admin.fund_desc_in_english')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('desc_en',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.Application_fee')}}</label>
+                        <label for="example-text-input"
+                               class="col-md-2 col-form-label">{{trans('admin.Application_fee')}}</label>
                         <div class="col-md-10">
                             {{ Form::number('cost',null,["class"=>"form-control" ,"required"]) }}
                         </div>
-                    </div>    <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.fund_ratio')}}</label>
+                    </div>
+                    <div class="form-group m-t-40 row" hidden>
+                        <label for="example-text-input"
+                               class="col-md-2 col-form-label">{{trans('admin.fund_ratio')}}</label>
                         <div class="col-md-10">
-                            {{ Form::text('financing_ratio',null,["class"=>"form-control" ,"required"]) }}
+                            {{ Form::text('financing_ratio',50,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="example-month-input" class="col-md-2 col-form-label">{{trans('admin.choose_categories')}}</label>
+                        <label for="example-month-input"
+                               class="col-md-2 col-form-label">{{trans('admin.choose_categories')}}</label>
                         <div class="col-md-10">
                             <select class="custom-select col-12 multiple" id="inlineFormCustomSelect" name="cat_id">
                                 @foreach($categories as $category)
@@ -75,7 +83,8 @@
 
 
                     <div class="form-group row">
-                        <label for="example-month-input" class="col-md-2 col-form-label">{{trans('admin.choose_requires')}}</label>
+                        <label for="example-month-input"
+                               class="col-md-2 col-form-label">{{trans('admin.choose_requires')}}</label>
                         <div class="col-md-10">
                             <select name="columns[]" class="select2 m-b-10 select2-multiple" style="width: 100%"
                                     multiple="multiple" data-placeholder="Choose">
@@ -91,7 +100,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">{{trans('admin.fund_image')}}</h4>
-                                    <input required type="file" name="image" id="input-file-now" class="dropify" required/>
+                                    <input required type="file" name="image" id="input-file-now" class="dropify"
+                                           required/>
                                 </div>
                             </div>
                         </div>
