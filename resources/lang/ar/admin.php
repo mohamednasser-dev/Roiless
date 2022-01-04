@@ -1,6 +1,7 @@
 <?php
 return [
     //new
+    'bank_data' => 'بيانات البنك',
     'show_otp' => 'اظهار رقم الـ otp',
     'show_user_fund' => 'المشاهده',
     'payment_status' => 'حالة الدفع',

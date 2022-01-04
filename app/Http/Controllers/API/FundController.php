@@ -32,9 +32,14 @@ class FundController extends Controller
             $Funddetailes = Fund::select('id', 'name_ar', 'name_en', 'financing_ratio', 'image', 'columns', 'cost', 'fund_amount_ar', 'fund_amount_en', 'annual_income_ar', 'annual_income_en')->where('id', $id)->where('deleted', '0')->first();
             $Funddetailes->cost = number_format((float)($Funddetailes->cost), 2);
             $Funddetailes->columns = json_decode($Funddetailes->columns);
+
+            $colums = $Funddetailes->columns;
+            $colums[count($colums)] = 'bank_id';
+            $Funddetailes->columns= $colums;
+
             if ($Funddetailes) {
                 $data['Funddetailes'] = $Funddetailes;
-                $bank = Bank::select('name_' . $lang . ' as name', 'image')->get();
+                $bank = Bank::select('id','name_' . $lang . ' as name', 'image')->get();
                 $data['banks'] = $bank;
 
                 $fields = Company_field::select('id', 'name_' . $lang . ' as name')->get();

@@ -37,6 +37,10 @@ class User_fund extends Model
     {
         return $this->belongsTo(Bank::class, 'bank_id');
     }
+    public function Selected_Bank()
+    {
+        return $this->belongsTo(Bank::class, 'user_bank_id');
+    }
 
     public function fund_file()
     {
