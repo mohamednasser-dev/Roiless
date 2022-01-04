@@ -17,7 +17,7 @@ class Category extends Model
     public function Funds()
     {
         return $this->hasMany('App\Models\Fund','cat_id')
-            ->select('id','name_ar','name_en','image','cat_id')
+            ->select('id','name_ar','name_en','image','cat_id','desc_ar','desc_en')
             ->where('appearance', '1')->where('deleted','0');
     }
     public function getImageAttribute($img)
