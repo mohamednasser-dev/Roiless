@@ -2,6 +2,9 @@
 @section('styles')
     <link rel="stylesheet" href="{{ asset('/assets/plugins/dropify/dist/css/dropify.min.css') }}">
     <link href="{{ asset('/assets/plugins/summernote/dist/summernote.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('/assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css') }}"
+          rel="stylesheet"/>
 @endsection
 @section('content')
     <div class="row page-titles">
@@ -169,6 +172,18 @@
                                 {{ Form::url('twitter',$setting->twitter,["class"=>"form-control" ]) }}
                             </div>
                         </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">
+                                    <i class="icon- icon-phone"></i>
+                                </span>
+                                <select multiple name="phones[]" data-role="tagsinput" style="padding: 0 150px;">
+                                    @foreach($setting->Phones as $phone)
+                                        <option value="{{$phone->phone}}">{{$phone->phone}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -177,11 +192,18 @@
                     </div>
                 </div>
             </div>
-            {{ Form::close() }}
+
+
         </div>
+    </div>
+    {{ Form::close() }}
+    </div>
     </div>
 @endsection
 @section('scripts')
+    <script src="{{ asset('/assets/plugins/select2/dist/js/select2.full.min.js')}}"></script>
+    <script src="{{ asset('/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
+    <script src="{{ asset('/assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
     <script src="{{ asset('/assets/plugins/dropify/dist/js/dropify.min.js')}}"></script>
     <script src="{{ asset('/js/custom.min.js')}}"></script>
     <script src="{{ asset('/assets/plugins/summernote/dist/summernote.min.js')}}"></script>

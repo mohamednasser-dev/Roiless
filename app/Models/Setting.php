@@ -17,4 +17,7 @@ class Setting extends Model
         else
             return asset('/uploads/setting/logo.png') ;
     }
+    public function Phones(){
+       return $this->hasMany(SettingInfo::class,'setting_id','id');
+    }
 }
