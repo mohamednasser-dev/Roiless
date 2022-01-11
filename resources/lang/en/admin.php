@@ -232,4 +232,5 @@ return [
     'bank_delete' => 'admin deleted successfully',
     'deleted' => 'deleted done',
     'opretion_success' => 'opretion done successfully',
+    'adress' => 'adress',
 ];

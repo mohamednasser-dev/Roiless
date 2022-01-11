@@ -57,143 +57,180 @@
                             <div class="form-group m-t-40 row">
                                 <label for="example-text-input"
                                        class="col-md-2 col-form-label"> {{trans('admin.phone')}}</label>
-                                <div class="col-md-10">
-                                    {{ Form::text('phone',$setting->phone,["class"=>"form-control" ,"required"]) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6">
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input"
-                                       class="col-md-2 col-form-label"> {{trans('admin.show_otp')}}</label>
-                                <div class="col-md-10">
-                                    <div class="switch">
-                                        <label>
-                                            <input type="checkbox" name="show_otp" value="1"
-                                                   @if($setting->show_otp == 1) checked @endif>
-                                            <span class="lever switch-col-green"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6">
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input"
-                                       class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_arabic')}}</label>
-                                <div class="col-md-10">
-                                    {{ Form::textarea('terms_ar',$setting->terms_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6">
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input"
-                                       class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_english')}}</label>
-                                <div class="col-md-10">
-                                    {{ Form::textarea('terms_en',$setting->terms_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6">
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input"
-                                       class="col-md-2 col-form-label">{{trans('admin.privacey_in_arabic')}}</label>
-                                <div class="col-md-10">
-                                    {{ Form::textarea('privacy_ar',$setting->privacy_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6">
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input"
-                                       class="col-md-2 col-form-label">{{trans('admin.privacey_in_english')}}</label>
-                                <div class="col-md-10">
-                                    {{ Form::textarea('privacy_en',$setting->privacy_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6">
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input" class="col-md-2 col-form-label">
-                                    {{trans('admin.about_application_in_arabic')}}
-                                </label>
-                                <div class="col-md-10">
-                                    {{ Form::textarea('about_us_ar',$setting->about_us_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-md-6">
-                            <div class="form-group m-t-40 row">
-                                <label for="example-text-input"
-                                       class="col-md-2 col-form-label">{{trans('admin.about_application_in_english')}}</label>
-                                <div class="col-md-10">
-                                    {{ Form::textarea('about_us_en',$setting->about_us_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="input-group">
-                               <span class="input-group-addon" id="basic-addon1">
-                                    <i class="icon-social-facebook"></i>
-                                </span>
-                                {{ Form::url('facebook',$setting->facebook,["class"=>"form-control"]) }}
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">
-                                    <i class="icon-social-youtube"></i>
-                                </span>
-                                {{ Form::url('youtube',$setting->youtube,["class"=>"form-control" ]) }}
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">
-                                    <i class="icon-social-instagram"></i>
-                                </span>
-                                {{ Form::url('instagram',$setting->instagram,["class"=>"form-control" ]) }}
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">
-                                    <i class="icon-social-linkedin"></i>
-                                </span>
-                                {{ Form::url('linkedin',$setting->linkedin,["class"=>"form-control"]) }}
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">
-                                    <i class="icon-social-twitter"></i>
-                                </span>
-                                {{ Form::url('twitter',$setting->twitter,["class"=>"form-control" ]) }}
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="input-group">
-                                <span class="input-group-addon" id="basic-addon1">
-                                    <i class="icon- icon-phone"></i>
-                                </span>
-                                <select multiple name="phones[]" data-role="tagsinput" style="padding: 0 150px;">
+
+                                <select multiple name="phones[]" class="col-md-10 col-form-label" data-role="tagsinput"
+                                        style="padding: 0 150px;">
                                     @foreach($setting->Phones as $phone)
                                         <option value="{{$phone->phone}}">{{$phone->phone}}</option>
                                     @endforeach
                                 </select>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+
+                            <div class="form-group m-t-40 row">
+                                <label for="example-text-input"
+                                       class="col-md-2 col-form-label"> {{trans('admin.adress')}}</label>
+                                <div class="card-body parent " style='text-align:right' id="parent">
+                                    <button type='button' class="btn btn-success" value='Add Button' id='addButton'>
+                                        <i class="fa fa-plus"></i></button>
+                                    <div class="panel" style='text-align:right'>
+                                        @foreach($setting->address as $addres)
+                                            <div class="form-group row">
+                                                <div class='col-lg-4'>
+                                                    <input class="form-control" value="{{$addres->address_ar}}"
+                                                           type="text"
+                                                           step="0.01"
+                                                           placeholder='ادخل العنوان بالانجليزي'>
+                                                </div>
+                                                <div class='col-lg-4'>
+                                                    <input class="form-control" value="{{$addres->address_en}}"
+                                                           type="text"
+                                                           step="0.01"
+                                                           placeholder='ادخل العنوان بالانجليزي'>
+                                                </div>
+                                                <div class='col-lg-3'>
+                                                    <input class="form-control" value="{{$addres->url}}" type="url"
+                                                           step="0.01"
+                                                           placeholder='ادخل العنوان بالانجليزي'>
+                                                </div>
+                                                <div class='col-lg-1'>
+                                                    <a class="btn-circle btn btn-danger" title="حذف"
+                                                       onclick="return confirm('admin.are_y_sure_delete')"
+                                                       href="{{route('Setting.delete.adress',$addres->id)}}"><i
+                                                            class="fa fa-trash"></i></a>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input"
+                                           class="col-md-2 col-form-label"> {{trans('admin.show_otp')}}</label>
+                                    <div class="col-md-10">
+                                        <div class="switch">
+                                            <label>
+                                                <input type="checkbox" name="show_otp" value="1"
+                                                       @if($setting->show_otp == 1) checked @endif>
+                                                <span class="lever switch-col-green"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input"
+                                           class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_arabic')}}</label>
+                                    <div class="col-md-10">
+                                        {{ Form::textarea('terms_ar',$setting->terms_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input"
+                                           class="col-md-2 col-form-label">{{trans('admin.Terms_and_Conditions_in_english')}}</label>
+                                    <div class="col-md-10">
+                                        {{ Form::textarea('terms_en',$setting->terms_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input"
+                                           class="col-md-2 col-form-label">{{trans('admin.privacey_in_arabic')}}</label>
+                                    <div class="col-md-10">
+                                        {{ Form::textarea('privacy_ar',$setting->privacy_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input"
+                                           class="col-md-2 col-form-label">{{trans('admin.privacey_in_english')}}</label>
+                                    <div class="col-md-10">
+                                        {{ Form::textarea('privacy_en',$setting->privacy_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input" class="col-md-2 col-form-label">
+                                        {{trans('admin.about_application_in_arabic')}}
+                                    </label>
+                                    <div class="col-md-10">
+                                        {{ Form::textarea('about_us_ar',$setting->about_us_ar,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-6">
+                                <div class="form-group m-t-40 row">
+                                    <label for="example-text-input"
+                                           class="col-md-2 col-form-label">{{trans('admin.about_application_in_english')}}</label>
+                                    <div class="col-md-10">
+                                        {{ Form::textarea('about_us_en',$setting->about_us_en,["class"=>"form-control summernote" , "rows" => "15" ,"required"]) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="input-group">
+                               <span class="input-group-addon" id="basic-addon1">
+                                    <i class="icon-social-facebook"></i>
+                                </span>
+                                        {{ Form::url('facebook',$setting->facebook,["class"=>"form-control"]) }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">
+                                    <i class="icon-social-youtube"></i>
+                                </span>
+                                        {{ Form::url('youtube',$setting->youtube,["class"=>"form-control" ]) }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">
+                                    <i class="icon-social-instagram"></i>
+                                </span>
+                                        {{ Form::url('instagram',$setting->instagram,["class"=>"form-control" ]) }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">
+                                    <i class="icon-social-linkedin"></i>
+                                </span>
+                                        {{ Form::url('linkedin',$setting->linkedin,["class"=>"form-control"]) }}
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">
+                                    <i class="icon-social-twitter"></i>
+                                </span>
+                                        {{ Form::url('twitter',$setting->twitter,["class"=>"form-control" ]) }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+
+
                 <div class="card-footer">
                     <div class="center">
                         {{ Form::submit('تحديث' ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
     {{ Form::close() }}
@@ -259,6 +296,39 @@
                     drDestroy.init();
                 }
             })
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var i = 0;
+
+            $("#addButton").click(function () {
+                var options = '';
+
+                var html = '';
+                html += ' <div id="" class="form-group row">';
+                html += "<div class='col-lg-4'>" +
+                    "<input  name='adress[" + i + "][adress_ar]' class='form-control' type='text' step ='0.01'  placeholder='ادخل العنوان بالعربيه'>" +
+
+                    "</div>" +
+
+                    "<div class='col-lg-4'>" +
+                    "<input   name='adress[" + i + "][adress_en]' class='form-control' type='text' step ='0.01'  placeholder='ادخل العنوان بالانجليزي'>" +
+                    "</div>" +
+                    "<div class='col-lg-4'>" +
+                    "<input   name='adress[" + i + "][url]' class='form-control' type='url' step ='0.01'  placeholder='ادخل رابط الخريطه'>" +
+
+                    "</div>" +
+                    "</br>" +
+
+                    "</div>" +
+                    "</hr>" +
+
+                    "</div>";
+                $('#parent').append(html);
+
+                i++;
+            });
         });
     </script>
 @endsection

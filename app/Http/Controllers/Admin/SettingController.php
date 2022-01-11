@@ -50,7 +50,6 @@ class SettingController extends Controller
 
     public function update(Request $request, $id)
     {
-
         $data = $this->validate(\request(),
             [
                 'title_ar' => 'required',
@@ -61,7 +60,6 @@ class SettingController extends Controller
                 'privacy_en' => 'required',
                 'about_us_ar' => 'required',
                 'about_us_en' => 'required',
-                'phone' => 'required',
                 'phones' => 'array|min:1',
                 'facebook' => '',
                 'youtube' => '',
@@ -90,7 +88,7 @@ class SettingController extends Controller
         Setting::where('id', $id)->update($data);
 
         if ($request->phones) {
-            SettingInfo::truncate();
+            SettingInfo::where('type', 'phone')->delete();
             foreach ($request->phones as $phone) {
                 SettingInfo::create([
                     'setting_id' => $id,
@@ -98,12 +96,31 @@ class SettingController extends Controller
                     'phone' => $phone,
                 ]);
             }
+        }
+        if ($request->adress) {
 
+            foreach ($request->adress as $adress) {
+                SettingInfo::create([
+                    'setting_id' => $id,
+                    'type' => 'address',
+                    'address_en' => $adress['adress_en'],
+                    'address_ar' => $adress['adress_ar'],
+                    'url' => $adress['url'],
+                ]);
+            }
         }
 
         activity('admin')->log('تم تحديث الاعدادات بنجاح');
         DB::commit();
         // Alert::success('تمت العمليه', 'تم التحديث بنجاح');
         return redirect()->route('Setting.edit')->with('success', trans('تم التحديث بنجاح'));
+
+    }
+
+    public function delete($id)
+    {
+        $address=SettingInfo::findorfail($id);
+        $address->delete();
+        return redirect()->back()->with('success', trans('تم حذف العنوان بنجاح'));
     }
 }

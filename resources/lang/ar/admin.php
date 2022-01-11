@@ -315,6 +315,7 @@ return [
     'Deleted_Success' => 'تم الحذف بنجاح',
     'opretion_success' => 'تمت العمليه بنجاح',
     'Deleted' => 'الحذف',
+    'adress' => 'العناوين',
 
     // end sweet alert
 

@@ -49,7 +49,7 @@
                     <div class="card m-b-20">
                         <div class="card-header" style='text-align:right'><strong> {{trans('admin.service_detailes')}} </strong>
                             <div class="card-body parent" style='text-align:right' id="parent">
-                                <button type='button' value='Add Button' id='addButton'>
+                                <button type='button' class="btn btn-success" value='Add Button' id='addButton'>
                                     <i class="fa fa-plus"></i></button>
                                 <div class="panel" style='text-align:right'>
                                 </div>
@@ -118,23 +118,23 @@
                         var html = '';
                         html += ' <div id="" class="form-group row">';
                         html += "<div class='col-sm-6'>" +
-                            "<input  name='rows[" + i + "][title_ar]' class='form-control' type='text' step ='0.01'  placeholder='ادخل العنوان بالعربي'>" +
+                            "<input  name='rows[" + i + "][title_ar]' class='form-control' type='text' step ='0.01'  placeholder='ادخل العنوان بالعربيه'>" +
 
                             "</div>" +
 
                             "<div class='col-sm-6'>" +
-                            "<input   name='rows[" + i + "][title_en]' class='form-control' type='text' step ='0.01'  placeholder='ادخل التفاصيل بالعربي'>" +
+                            "<input   name='rows[" + i + "][title_en]' class='form-control' type='text' step ='0.01'  placeholder='ادخل التفاصيل بالانجليزي'>" +
 
                             "</div>" +
                             "</br>" +
                             "</br>" +
                         "<div class='col-sm-6'>" +
-                            "<input  name='rows[" + i + "][desc_ar]' class='form-control' type='text' step ='0.01'  placeholder='ادخل العنوان بالانجليزي'>" +
+                            "<input  name='rows[" + i + "][desc_ar]' class='form-control' type='text' step ='0.01'  placeholder='ادخل العنوان بالعربيه'>" +
 
                             "</div>" +
 
                             "<div class='col-sm-6'>" +
-                            "<input  name='rows[" + i + "][desc_en]' class='form-control' type='text' step ='0.01'  placeholder='ادخل التفاصيل بالانجليزي'>" +
+                            "<input  name='rows[" + i + "][desc_en]' class='form-control' type='text' step ='0.01'  placeholder='ادخل التفاصيل بالانجليزيه'>" +
 
                             "</div>" +
                             "</hr>" +

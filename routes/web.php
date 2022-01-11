@@ -135,6 +135,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::group(['namespace' => 'Admin'], function () {
         Route::get('/Setting/edit', 'SettingController@edit')->name('Setting.edit');
         Route::post('/Setting/update/{id}', 'SettingController@update')->name('Setting.update');
+        Route::get('/Setting/delete/adress/{id}', 'SettingController@delete')->name('Setting.delete.adress');
 
     });
 

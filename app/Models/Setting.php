@@ -18,6 +18,11 @@ class Setting extends Model
             return asset('/uploads/setting/logo.png') ;
     }
     public function Phones(){
-       return $this->hasMany(SettingInfo::class,'setting_id','id');
+       return $this->hasMany(SettingInfo::class,'setting_id','id')->where('type','phone')
+           ->select('id','setting_id','type','phone');
+    }
+    public function address(){
+       return $this->hasMany(SettingInfo::class,'setting_id','id')->where('type','address')
+           ->select('id','setting_id','address_ar','address_en','url');;
     }
 }

@@ -12,7 +12,7 @@ class SettingController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Setting::find(1);
+        $data = Setting::with('Phones','address')->find(1);
         return msgdata($request, success(), 'web site setting', $data);
     }
 }
