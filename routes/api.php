@@ -51,6 +51,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::get("/services_detailes/{id}", "ServiceController@getservicedetailes");
         // categories
         Route::get("/categories", "CategoryController@getall");
+        Route::get("/category/funds/{id}", "CategoryController@category_funds");
         // user update
 
         Route::get('check_token/', 'UsersController@reset_password');
