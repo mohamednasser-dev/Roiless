@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
     public function getall(Request $request)
     {
-        $category = Category::where('type','cat')->select('id', 'title_ar', 'title_en', 'image')->get();
+        $category = Category::where('type','cat')->select('id', 'title_ar', 'title_en', 'image')->with('Funds')->get();
 
         $id = Auth::user()->id;
 

@@ -98,7 +98,7 @@ class fundController extends Controller
 
     public function edit($id)
     {
-        $categories = Category::get();
+        $categories = Category::where('type','cat')->get();
         $fundsinputs = Fundinput::get();
         $fund = Fund::where('id', $id)->first();
         $old_columns = json_decode($fund->columns);
