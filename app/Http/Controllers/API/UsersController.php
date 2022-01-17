@@ -297,7 +297,7 @@ class UsersController extends Controller
             'phone' => 'required',
             'country' => 'required',
             'content' => 'required',
-            'consolution_kind_id' => 'required|exists:consolution_kinds,id',
+//            'consolution_kind_id' => 'required|exists:consolution_kinds,id',
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
