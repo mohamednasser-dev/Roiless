@@ -52,6 +52,16 @@ class FundController extends Controller
             return $this->returnError($e->getCode(), $e->getMessage());
         }
     }
+     public function banks(Request $request)
+    {
+        try {
+            $lang = $request->header('lang');
+                $data = Bank::select('id','name_' . $lang . ' as name', 'image')->get();
+                return msgdata($request, success(), 'fund details success', $data);
+        } catch (Exception $e) {
+            return $this->returnError($e->getCode(), $e->getMessage());
+        }
+    }
 
     public function addfund(Request $request)
     {
