@@ -11,10 +11,10 @@
             </ol>
         </div>
     </div>
-    <div class="title">
-        <a href="{{route('consolutionKind')}} "
-           class="btn btn-info btn-bg">{{trans('admin.consolution.kind')}}</a>
-    </div>
+{{--    <div class="title">--}}
+{{--        <a href="{{route('consolutionKind')}} "--}}
+{{--           class="btn btn-info btn-bg">{{trans('admin.consolution.kind')}}</a>--}}
+{{--    </div>--}}
     <br>
     <div class="card">
         <div class="card-body">
@@ -25,7 +25,7 @@
                         <th class="text-lg-center">{{trans('admin.consolution_name_user')}}</th>
                         <th class="text-lg-center"> {{trans('admin.consolution_email')}}</th>
                         <th class="text-lg-center">{{trans('admin.consolution_phone')}}</th>
-                        <th class="text-lg-center">{{trans('admin.consolution_kind')}}</th>
+{{--                        <th class="text-lg-center">{{trans('admin.consolution_kind')}}</th>--}}
                         <th class="text-lg-center">{{trans('admin.replay.status')}}</th>
                         <th class="text-lg-center">{{trans('admin.consolution_replies')}}</th>
                         <th class="text-lg-center">{{trans('admin.delete')}}</th>
@@ -37,7 +37,7 @@
                     <td class="text-lg-center">{{$consolution->full_name}}</td>
                     <td class="text-lg-center">{{$consolution->email}}</td>
                     <td class="text-lg-center">{{$consolution->phone}}</td>
-                    <td class="text-lg-center">{{$consolution->consolution_kind->name_ar}}</td>
+{{--                    <td class="text-lg-center">{{$consolution->consolution_kind->name_ar}}</td>--}}
                     <td class="text-lg-center">
                         @php
                             $test= \App\Models\reply::where('consolution_id',$consolution->id)->orderby('created_at','DESC')->first();
