@@ -88,7 +88,7 @@ class UserfundsController extends Controller
         $empolyers = Admin::where('type', 'employer')->where('cat_id', auth()->user()->cat_id)->where('id', '<>', auth()->user()->id)->get();
         $banks = Bank::where('status','active')->wherenotnull('parent_id')->orderBy('parent_id','DESC')->get();
         $histories = Fhistory::where('user_fund_id', $id)->where('show_in','web')->orderBy('created_at', 'DESC')->get();
-        if ($requestreview->emp_id == auth()->user()->id || auth()->user()->type == 'admin') {
+        if (auth()->user()->type == 'admin' || $requestreview->emp_id == auth()->user()->id  ) {
 
             $employee_log= 'تم مراجعه تمويل'.$userfund->Users->name;
             store_history(Auth::user()->id , $employee_log);
@@ -247,9 +247,7 @@ class UserfundsController extends Controller
     }
     public function view($id)
     {
-        dd($id);
         $file_name=User_fund::with('Files_img',function($q){$q->select('file_name');})->find($id);
-        dd($file_name);
         $files=storage::disk('public_uploads_fund_file')->getDriver()->getAdapter()->applypathprefix($invoice_id.'/'.$file_name);
         return response()->file($files);
     }
