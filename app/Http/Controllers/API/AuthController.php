@@ -132,7 +132,15 @@ class AuthController extends Controller
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
             //Request is valid, create new user
-            return 'khaled';
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL,"https://smsmisr.com/api/webapi/");
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS,"username=K0WPCrHX&password=8kZKSusuDE&language=2&sender=roilleass&mobile=+201095055833&message=XXX");
+            // Receive server response ...
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $server_output = curl_exec($ch);
+            curl_close ($ch);            
+            return $server_output;
             $data['otp_code'] = '123456';
             $data['fcm_token']=$request->fcm_token;
             $user = User::create($data);
