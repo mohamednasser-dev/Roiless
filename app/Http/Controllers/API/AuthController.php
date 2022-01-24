@@ -132,7 +132,7 @@ class AuthController extends Controller
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
             //Request is valid, create new user
-$url = 'https://smsmisr.com/api/webapi/';
+$url = 'https://smsmisr.com/api/webapi/?';
 $curl = curl_init();
 $fields = array(
     'username' => 'K0WPCrHX',
