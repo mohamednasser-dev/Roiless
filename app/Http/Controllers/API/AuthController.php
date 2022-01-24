@@ -132,6 +132,7 @@ class AuthController extends Controller
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
             //Request is valid, create new user
+            return 'khaled';
             $data['otp_code'] = '123456';
             $data['fcm_token']=$request->fcm_token;
             $user = User::create($data);
