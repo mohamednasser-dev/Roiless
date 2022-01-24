@@ -133,7 +133,7 @@ class AuthController extends Controller
         } else {
             //Request is valid, create new user
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,"https://smsmisr.com/api/webapi/");
+            curl_setopt($ch, CURLOPT_URL,"https://smsmisr.com/api/webapi/?");
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS,"username=K0WPCrHX&password=8kZKSusuDE&language=2&sender=roilleass&mobile=201095055833&message=XXX");
             // Receive server response ...
