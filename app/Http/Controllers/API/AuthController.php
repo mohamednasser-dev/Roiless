@@ -143,6 +143,7 @@ $fields = array(
     'message'  => 'XXX'
 );
 $fields_string = http_build_query($fields);
+dd($fields_string);
 curl_setopt($curl, CURLOPT_URL, $url);
 curl_setopt($curl, CURLOPT_POST, TRUE);
 curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string);
