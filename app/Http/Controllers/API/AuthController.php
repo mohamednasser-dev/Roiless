@@ -133,7 +133,7 @@ class AuthController extends Controller
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
             $data['otp_code'] = rand(100000, 999999);
-            $send = Smsmisr::send("كود التفعيل الخاص بك هوا ".$data['otp_code'], '2'.$request->phone ,null,2);
+            $send = Smsmisr::send("كود التفعيل الخاص بك هوا ".$data['otp_code'], $request->phone ,null,2);
             //Request is valid, create new user
             $data['fcm_token']=$request->fcm_token;
             $user = User::create($data);
