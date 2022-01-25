@@ -27,6 +27,7 @@ use PDF;
 use DB;
 use Teckwei1993\Otp\Otp;
 use Teckwei1993\Otp\Rules\OtpValidate;
+use Ghanem\LaravelSmsmisr\Facades\Smsmisr;
 
 
 class UsersController extends Controller
@@ -314,6 +315,7 @@ class UsersController extends Controller
     {
         $userPhone = Auth::user()->phone;
         $otb = \Otp::generate($userPhone);
+        $send = Smsmisr::send("كود التفعيل الخاص بك هوا ".$otb, $userPhone ,null,2);        
         return msgdata($request, success(), 'otp', $otb);
     }
 

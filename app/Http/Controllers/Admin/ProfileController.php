@@ -39,7 +39,7 @@ class ProfileController extends Controller
                     'phone' => 'required|unique:admins,phone,'.$id,
                 ]);
         }
-        $data['type'] = 'employer';
+        
         $data['image']  = Str::after($employee->image, 'admins_image/');
         if($request->image != null){
             $data['image'] = $this->MoveImage($request->image,'uploads/admins_image');
