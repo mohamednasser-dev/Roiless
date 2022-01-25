@@ -17,7 +17,7 @@ class ServiceController extends Controller
     }
     public function getservicedetailes(Request $request, $id)
     {
-        $service_detailes = Service_details::select(['title_ar','title_en','desc_ar','desc_en'])->find($id);
+        $service_detailes = Service_details::select(['title_ar','title_en','desc_ar','desc_en'])->where('service_id',$id)->first();
         unset($service_detailes['created_at'], $service_detailes['updated_at']);
         return msgdata($request, success(), 'get services detailes success',$service_detailes);
     }
