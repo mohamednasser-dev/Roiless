@@ -10,7 +10,7 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">انشاء خدمه</li>
-                <li class="breadcrumb-item"> <a href="{{route('services')}}">{{trans('admin.services')}} </a></li>
+                <li class="breadcrumb-item"><a href="{{route('services')}}">{{trans('admin.services')}} </a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
@@ -24,34 +24,41 @@
                     <h4 class="card-title">{{trans('admin.service_info')}}</h4>
                     <hr>
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.service_address_in_arabic')}}</label>
+                        <label for="example-text-input"
+                               class="col-md-2 col-form-label">{{trans('admin.service_address_in_arabic')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('title_ar',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
 
                     <div class="form-group m-t-40 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.service_address_in_english')}}</label>
+                        <label for="example-text-input"
+                               class="col-md-2 col-form-label">{{trans('admin.service_address_in_english')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('title_en',null,["class"=>"form-control" ,"required"]) }}
                         </div>
                     </div>
+                    <div class="card m-b-20">
+                        <div id="" class="form-group row">
+                            <div class='col-sm-6'>
+                                <input  name="rows[0][title_ar]" class="form-control" type="text" step ="0.01"  placeholder="ادخل العنوان بالعربيه">
+                                <input  name="rows[0][title_en]" class="form-control" type="text" step ="0.01"  placeholder="ادخل العنوان بالانجليزي">
+
+                            </div>
+                            <br>
+                            <div class='col-sm-6'>
+                                <input  name="rows[0][desc_ar]" class="form-control" type="text" step ="0.01"  placeholder="ادخل التفاصيل بالعربيه">
+                                <input  name="rows[0][desc_en]" class="form-control" type="text" step ="0.01"  placeholder="ادخل التفاصيل بالانجليزي">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-lg-12 col-md-6">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">{{trans('admin.service_image')}}</h4>
                                     <input type="file" name="image" id="input-file-now" class="dropify"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card m-b-20">
-                        <div class="card-header" style='text-align:right'><strong> {{trans('admin.service_detailes')}} </strong>
-                            <div class="card-body parent" style='text-align:right' id="parent">
-                                <button type='button' class="btn btn-success" value='Add Button' id='addButton'>
-                                    <i class="fa fa-plus"></i></button>
-                                <div class="panel" style='text-align:right'>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +135,7 @@
                             "</div>" +
                             "</br>" +
                             "</br>" +
-                        "<div class='col-sm-6'>" +
+                            "<div class='col-sm-6'>" +
                             "<input  name='rows[" + i + "][desc_ar]' class='form-control' type='text' step ='0.01'  placeholder='ادخل العنوان بالعربيه'>" +
 
                             "</div>" +

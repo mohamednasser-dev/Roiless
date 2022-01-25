@@ -14,8 +14,8 @@
     </div>
     <!-- /.card-header -->
     <div class="title">
-        <a href="{{route('services.details.create',$id)}} "
-           class="btn btn-info btn-bg">{{trans('admin.add_new_detailes_service')}}</a>
+{{--        <a href="{{route('services.details.create',$id)}} "--}}
+{{--           class="btn btn-info btn-bg">{{trans('admin.add_new_detailes_service')}}</a>--}}
     </div>
     <br>
     <div class="row">
@@ -39,8 +39,8 @@
                     <td class="text-lg-center ">
                         <a class='btn btn-info btn-circle' title="{{trans('admin.edit')}}"
                            href="{{route('services.details.edit',$services_detail->id)}}"><i class="fa fa-edit"></i></a>
-                        <a class='btn btn-danger btn-circle' title="{{trans('admin.delete')}}" onclick="return confirm('هل انت متكد من حذف تقاصيل الخدمه')"
-                           href="{{route('services.details.delete',$services_detail->id)}}"><i class="fa fa-trash"></i></a>
+{{--                        <a class='btn btn-danger btn-circle' title="{{trans('admin.delete')}}" onclick="return confirm('هل انت متكد من حذف تقاصيل الخدمه')"--}}
+{{--                           href="{{route('services.details.delete',$services_detail->id)}}"><i class="fa fa-trash"></i></a>--}}
                     </td>
                 </tr>
             @endforeach
