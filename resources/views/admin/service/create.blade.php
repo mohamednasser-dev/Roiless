@@ -42,12 +42,17 @@
                         <div id="" class="form-group row">
                             <div class='col-sm-6'>
                                 <input  name="rows[0][title_ar]" class="form-control" type="text" step ="0.01"  placeholder="ادخل العنوان بالعربيه">
+                                <br>
+                                <br>
                                 <input  name="rows[0][title_en]" class="form-control" type="text" step ="0.01"  placeholder="ادخل العنوان بالانجليزي">
 
                             </div>
                             <br>
+                            <br>
                             <div class='col-sm-6'>
                                 <input  name="rows[0][desc_ar]" class="form-control" type="text" step ="0.01"  placeholder="ادخل التفاصيل بالعربيه">
+                                <br>
+                                <br>
                                 <input  name="rows[0][desc_en]" class="form-control" type="text" step ="0.01"  placeholder="ادخل التفاصيل بالانجليزي">
                             </div>
                         </div>
