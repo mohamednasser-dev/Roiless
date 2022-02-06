@@ -3,7 +3,7 @@
 use App\Models\Investment;
 use Illuminate\Database\Seeder;
 
-class InvestmentsSeeder extends Seeder
+class InvestmentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
