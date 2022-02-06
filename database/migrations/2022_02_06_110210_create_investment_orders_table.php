@@ -22,6 +22,7 @@ class CreateInvestmentOrdersTable extends Migration
             $table->string('name');
             $table->string('phone');
             $table->string('address');
+            $table->string('profites');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
