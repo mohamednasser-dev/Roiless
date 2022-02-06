@@ -19,7 +19,7 @@ class InvestmentsSeeder extends Seeder
         ]);
         Investment::Create([
             'name_en'=>'certificate Investment',
-            'name_ar'=>'استثمار شهاده',
+            'name_ar'=>'استثمار شهادة',
             'value'=>'10'
         ]);
         Investment::Create([
