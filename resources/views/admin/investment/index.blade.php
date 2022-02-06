@@ -9,18 +9,17 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">{{trans('admin.funds')}}</h3>
+            <h3 class="text-themecolor">{{trans('admin.investments_orders')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.funds')}}</li>
+                <li class="breadcrumb-item">{{trans('admin.investments')}}</li>
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>
     <div class="title">
-        <a href="{{route('fund.create')}} "
-           class="btn btn-info btn-bg">{{trans('admin.add_fund')}}</a>
+
     </div>
     <br>
     <div class="card">
@@ -29,14 +28,20 @@
                 <table id="myTable" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>{{trans('admin.name')}}</th>
+                        <th class="text-center">{{trans('admin.name')}}</th>
+                        <th class="text-center">{{trans('admin.amount')}}</th>
+                        <th class="text-center">{{trans('admin.actions')}}</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($data as $row)
                         <tr>
                             <td class="text-lg-center">{{$row->name}}</td>
-
+                            <td class="text-lg-center">{{$row->amount}}</td>
+                            <td class="text-lg-center ">
+                                <a class='btn btn-info btn-circle' title="مراجعه"
+                                   href="{{route('investments.view',$row->id)}}"><i class="fa fa-eye"></i></a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -46,7 +51,45 @@
     </div>
 @endsection
 @section('scripts')
+    <script type="text/javascript">
+        function update_active(el) {
+            if (el.checked)
+                var featured = '1';
+            else
+                var featured = '0';
 
+            $.post('{{ route('fund.change.featured') }}', {
+                _token: '{{ csrf_token() }}',
+                id: el.value,
+                status: featured
+            }, function (data) {
+                if (featured == 1) {
+                    toastr.success("{{trans('admin.Appearance')}}");
+                } else {
+                    toastr.error("{{trans('admin.deAppearance')}}");
+                }
+            });
+        }
+
+        function update_apperance(el) {
+            if (el.checked)
+                var appearance = '1';
+            else
+                var appearance = '0';
+
+            $.post('{{ route('fund.change.appearance') }}', {
+                _token: '{{ csrf_token() }}',
+                id: el.value,
+                status: appearance
+            }, function (data) {
+                if (appearance == 1) {
+                    toastr.success("{{trans('admin.active')}}");
+                } else {
+                    toastr.error("{{trans('admin.deactive')}}");
+                }
+            });
+        }
+    </script>
     <script src="{{asset('../assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{asset('../assets/plugins/bootstrap/js/popper.min.js')}}"></script>
@@ -73,7 +116,39 @@
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <!-- end - This is for export functionality only -->
-
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "columnDefs": [{
+                        "visible": false,
+                        "targets": 2
+                    }],
+                    "order": [
+                        [2, 'asc']
+                    ],
+                    "displayLength": 25,
+                    "drawCallback": function (settings) {
+                        var api = this.api();
+                        var rows = api.rows({
+                            page: 'current'
+                        }).nodes();
+                        var last = null;
+                        api.column(2, {
+                            page: 'current'
+                        }).data().each(function (group, i) {
+                            if (last !== group) {
+                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                                last = group;
+                            }
+                        });
+                    }
+                });
+                // Order by the grouping
+            });
+        });
+    </script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->

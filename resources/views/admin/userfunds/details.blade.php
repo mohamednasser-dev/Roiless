@@ -2,8 +2,7 @@
 @section('styles')
     <link href="{{asset('/assets/plugins/Magnific-Popup-master/dist/magnific-popup.css')}}" rel="stylesheet">
     <link href="{{asset('/css/pages/user-card.css')}}" rel="stylesheet">
-    {{--    <link href="{{asset('/css/style.css')}}" rel="stylesheet">--}}
-    <link href="{{asset('/css/detailesstyle.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/style.css')}}" rel="stylesheet">
 
 @endsection
 @section('content')

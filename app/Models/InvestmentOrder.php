@@ -11,4 +11,9 @@ class InvestmentOrder extends Model
     {
         return $this->hasMany(InvestmentImages::class, 'investment_order_id', 'id');
     }
+    public function Users()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
 }

@@ -125,7 +125,7 @@
                 @can('investments')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('investments')}}" aria-expanded="false"><i
-                                class="mdi mdi-settings"></i><span class="hide-menu"></span>{{trans('admin.setting')}}
+                                class="mdi mdi-settings"></i><span class="hide-menu"></span>{{trans('admin.investments_orders')}}
                         </a>
                     </li>
                 @endcan

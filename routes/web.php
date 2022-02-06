@@ -217,8 +217,8 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
     // investment
     Route::group(['namespace' => 'Admin'], function () {
-        Route::resource('/notifications', 'NotificationsController');
         Route::get('/Investment/all', 'InvestmentOrderController@index')->name('investments');
+        Route::get('/Investment/{id}', 'InvestmentOrderController@view')->name('investments.view');
     });
 });
 
