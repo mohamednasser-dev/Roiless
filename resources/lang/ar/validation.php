@@ -163,7 +163,11 @@ return [
         'password_confirmation'=>'تاكيد الباسورد مطلوب',
         'phone'=>'رقم الهاتف',
         'role_id'=>'الصلاحيه',
-        'cat_id'=>'القسم',
+        'investment_id'=>'الرقم التعريفي للاستثمار',
+        'investment_type'=>'نوع للاستثمار',
+        'amount'=>'الكميه',
+        'address'=>'العنوان',
+        'images'=>'المرفقات',
 
 
 

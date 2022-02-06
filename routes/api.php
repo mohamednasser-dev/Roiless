@@ -98,5 +98,10 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::get("/users/consolutions/delete/{id}", "ConsolutionController@Delete");
         //notification  NotificationController
         Route::get("/get_notification", "NotificationController@getall");
+
+
+        //investments
+        Route::get("All/Investments", "InvestmentOrderController@allInvestments");
+        Route::post("Order/Investment", "InvestmentOrderController@OrderInvestment");
     });
 });
