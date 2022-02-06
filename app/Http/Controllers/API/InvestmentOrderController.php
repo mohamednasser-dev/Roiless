@@ -27,10 +27,9 @@ class InvestmentOrderController extends Controller
             'name' => 'required|string|max:255',
             'phone' => 'required|numeric',
             'address' => 'required|string|max:255',
-            'profites' => 'required',
-            'images' => 'array|min:1',
+            'profites' => 'required|min:1',
+            'images' => 'required|array|min:1',
         ]);
-
         if ($validator->fails()) {
             return msgdata($request, failed(), $validator->messages()->first(), (object)[]);
         }
