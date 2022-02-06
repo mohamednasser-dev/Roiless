@@ -27,6 +27,7 @@ class PermissionSeeder extends Seeder
             'notifications',
             'communication',
             'Setting',
+            'investments',
         ];
         foreach ($Permissions as $Permission) {
             Permission::create(['name' => $Permission, 'guard_name'=>'admin']);

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 
 // Route::post('/login_user', 'Admin\LoginController@login')->name('login_user');
-
+Route::get('cache', function () {
+    Artisan::call('config:cache');
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    return 'here';
+});
 Route::group(['middleware' => ['auth:admin']], function() {
   Route::resource('roles','Admin\RoleController');
     Route::post('/roles/update{id}', 'Admin\RoleController@update')->name('roles.custom.update');
@@ -207,6 +215,11 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('export', 'ImportExportController@export')->name('export');
     Route::get('export/user_fund', 'ImportExportController@export_userfund')->name('export_userfund');
 
+    // investment
+    Route::group(['namespace' => 'Admin'], function () {
+        Route::resource('/notifications', 'NotificationsController');
+        Route::get('/Investment/all', 'InvestmentOrderController@index')->name('investments');
+    });
 });
 
 Route::get('change_lang/{lang}', 'HomeController@change_lang')->name('change_lang');

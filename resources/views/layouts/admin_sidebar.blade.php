@@ -122,6 +122,13 @@
                             </span>{{trans('admin.communication')}}</a>
                     </li>
                 @endcan
+                @can('investments')
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{route('investments')}}" aria-expanded="false"><i
+                                class="mdi mdi-settings"></i><span class="hide-menu"></span>{{trans('admin.setting')}}
+                        </a>
+                    </li>
+                @endcan
                 @can('Setting')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('Setting.edit')}}" aria-expanded="false"><i

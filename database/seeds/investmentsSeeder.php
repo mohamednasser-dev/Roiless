@@ -13,19 +13,23 @@ class investmentsSeeder extends Seeder
     public function run()
     {
         Investment::Create([
-            'name'=>'deposit',
+            'name_en'=>'deposit Investment',
+            'name_ar'=>'استثمار ودائع',
             'value'=>'10'
         ]);
         Investment::Create([
-            'name'=>'certificate',
+            'name_en'=>'certificate Investment',
+            'name_ar'=>'استثمار شهاده',
             'value'=>'10'
         ]);
         Investment::Create([
-            'name'=>'Market',
+            'name_en'=>'Market Investment',
+            'name_ar'=>'استثمار بورصه',
             'value'=>'15'
         ]);
         Investment::Create([
-            'name'=>'direct',
+            'name_en'=>'direct Investment',
+            'name_ar'=>'استثمار مباشر',
             'value'=>'25'
         ]);
     }
