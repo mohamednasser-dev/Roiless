@@ -59,7 +59,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">
-                        <h5>{{trans('admin.pdf_preview')}}</h5>
+                        <h3>{{trans('admin.pdf_preview')}}</h3>
                     </div>
                     <div id="image-popups" class="row">
                         @foreach($data->Images as $file)
