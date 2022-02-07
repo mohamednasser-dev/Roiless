@@ -36,7 +36,7 @@ class InvestmentOrderController extends Controller
         $user_id = auth()->user()->id;
         unset($data['images']);
         $data['user_id'] = $user_id;
-        $investment=InvestmentOrder::create($data);
+        $investment = InvestmentOrder::create($data);
         foreach ($request['images'] as $row) {
             $image = uploadImage($row, 'Investments');
             InvestmentImages::create([
@@ -47,5 +47,11 @@ class InvestmentOrderController extends Controller
 
         return msgdata($request, success(), 'data Created Successfully', $data);
 
+    }
+
+    public function user_investments(Request $request)
+    {
+        $data = InvestmentOrder::where('user_id', auth()->user()->id)->get();
+        return msgdata($request, success(), 'your investments', $data);
     }
 }

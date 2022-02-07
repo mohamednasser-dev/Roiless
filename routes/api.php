@@ -85,10 +85,13 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::post('otp_validate', 'UsersController@otp_validate');
         // inbox
         Route::post('make/inbox', 'InboxController@store');
-        // userFunds
+
+        // user account
         Route::get('/userfunds', 'UserfundsController@index');
-        // userFundsHistory
         Route::get('/userFundsHistory/{id}', 'UserFundsHistoryController@index');
+        Route::get('/user/investments', 'InvestmentOrderController@user_investments');
+
+
         //consolutions
         Route::get("/users/consolutions/data", "UsersController@consolutions_data");
         Route::post("/users/consolutions/store", "UsersController@consolutions_store");
