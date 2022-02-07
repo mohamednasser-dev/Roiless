@@ -124,7 +124,21 @@
                 @endcan
                 @can('investments')
                     <li>
-                        <a class="waves-effect waves-dark" href="{{route('investments')}}" aria-expanded="false"><i
+                        <a class="waves-effect waves-dark" href="{{route('investmentType')}}" aria-expanded="false"><i
+                                class="mdi mdi-key"></i><span class="hide-menu"></span>{{trans('admin.investments.type')}}
+                        </a>
+                    </li>
+                @endcan
+                @can('investments')
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{route('investment')}}" aria-expanded="false"><i
+                                class="mdi mdi-key"></i><span class="hide-menu"></span>{{trans('admin.investments')}}
+                        </a>
+                    </li>
+                @endcan
+                @can('investments')
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{route('investments.orders')}}" aria-expanded="false"><i
                                 class="mdi mdi-key"></i><span class="hide-menu"></span>{{trans('admin.investments_orders')}}
                         </a>
                     </li>

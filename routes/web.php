@@ -215,14 +215,29 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('export', 'ImportExportController@export')->name('export');
     Route::get('export/user_fund', 'ImportExportController@export_userfund')->name('export_userfund');
 
+    // investmentType
+    Route::group(['namespace' => 'Admin'], function () {
+        Route::get('/investmentType', 'InvestmentTypeController@index')->name('investmentType');
+        Route::get('/investmentType/create', 'InvestmentTypeController@create')->name('investmentType.create');
+        Route::post('/investmentType/store', 'InvestmentTypeController@store')->name('investmentType.store');
+        Route::get('/investmentType/edit/{id}', 'InvestmentTypeController@edit')->name('investmentType.edit');
+        Route::post('/investmentType/update/{id}', 'InvestmentTypeController@update')->name('investmentType.update');
+        Route::get('/investmentType/delete/{id}', 'InvestmentTypeController@delete')->name('investmentType.delete');
+    });
     // investment
     Route::group(['namespace' => 'Admin'], function () {
-        Route::get('/Investment/all', 'InvestmentOrderController@index')->name('investments');
-        Route::get('/Investment/{id}', 'InvestmentOrderController@view')->name('investments.view');
+        Route::get('/investment', 'InvestmentController@index')->name('investment');
+        Route::get('/investment/create', 'InvestmentController@create')->name('investment.create');
+        Route::post('/investment/store', 'InvestmentController@store')->name('investment.store');
+        Route::get('/investment/edit/{id}', 'InvestmentController@edit')->name('investment.edit');
+        Route::post('/investment/update/{id}', 'InvestmentController@update')->name('investment.update');
+        Route::get('/investment/delete/{id}', 'InvestmentController@delete')->name('investment.delete');
     });
+
+    // investment order
     Route::group(['namespace' => 'Admin'], function () {
-        Route::get('/Investment/all', 'InvestmentOrderController@index')->name('investments');
-        Route::get('/Investment/{id}', 'InvestmentOrderController@view')->name('investments.view');
+        Route::get('order/Investment/all', 'InvestmentOrderController@index')->name('investments.orders');
+        Route::get('order/Investment/{id}', 'InvestmentOrderController@view')->name('investments.order.view');
     });
 });
 

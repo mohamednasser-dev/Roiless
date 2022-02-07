@@ -4,19 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InvestmentRequest;
+use App\Http\Requests\InvestmentTyprReques;
 use App\Models\Investment;
+use App\Models\InvestmentType;
 use Illuminate\Http\Request;
 
-class InvestmentController extends Controller
+class InvestmentTypeController extends Controller
 {
+
     public $objectName;
     public $folderView;
 
-    public function __construct(Investment $model)
+    public function __construct(InvestmentType $model)
     {
         $this->middleware('permission:investments');
         $this->objectName = $model;
-        $this->folderView = 'admin.investment.';
+        $this->folderView = 'admin.investmentType.';
     }
 
     public function index()
@@ -30,12 +33,11 @@ class InvestmentController extends Controller
         return view($this->folderView . 'create');
     }
 
-    public function store(InvestmentRequest $request)
+    public function store(InvestmentTyprReques $request)
     {
         $data = $request->validated();
-        $data['image'] = uploadImage($request->image,'investment' );
-         $this->objectName::create($data);
-        return redirect()->route('investment')->with('success','تم الاضافه بنجاح');
+        $this->objectName::create($data);
+        return redirect()->route('investmentType')->with('success','تم الاضافه بنجاح');
     }
 
     public function edit($id)
@@ -43,15 +45,12 @@ class InvestmentController extends Controller
         $data = $this->objectName::findorfail($id);
         return view($this->folderView . 'edit', compact('data'));
     }
-    public function update(InvestmentRequest $request,$id){
+    public function update(InvestmentTyprReques $request,$id){
 
         $data = $request->validated();
         $item = $this->objectName->find($id);
-        if ($request->hasFile('image')) {
-            $data['image'] = uploadImage($request->image,'investment' );
-        }
         $item->update($data);
-        return redirect()->route('investment')->with('success','تم التعديل بنجاح');
+        return redirect()->route('investmentType')->with('success','تم التعديل بنجاح');
 
     }
     public function delete(Request $request, $id)

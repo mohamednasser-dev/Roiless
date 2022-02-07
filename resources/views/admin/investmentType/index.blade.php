@@ -1,6 +1,6 @@
 @extends('admin_temp')
 @section('styles')
-    <link href="{{asset('../assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+<link href="{{asset('../assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
@@ -9,17 +9,18 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">{{trans('admin.investments_orders')}}</h3>
+            <h3 class="text-themecolor">{{trans('admin.investment.type')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.investments')}}</li>
+                <li class="breadcrumb-item">{{trans('admin.funds')}}</li>
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
     </div>
     <div class="title">
-
+        <a href="{{route('investmentType.create')}} "
+           class="btn btn-info btn-bg">{{trans('admin.add_investment.type')}}</a>
     </div>
     <br>
     <div class="card">
@@ -27,23 +28,27 @@
             <div class="table-responsive m-t-5">
                 <table id="myTable" class="table table-bordered table-striped">
                     <thead>
-                    <tr>
-                        <th class="text-center">{{trans('admin.name')}}</th>
-                        <th class="text-center">{{trans('admin.amount')}}</th>
-                        <th class="text-center">{{trans('admin.actions')}}</th>
-                    </tr>
+                        <tr>
+                            <th class="text-center">{{trans('admin.name_in_arabic')}}</th>
+                            <th class="text-center">{{trans('admin.name_in_english')}}</th>
+                            <th  class="text-center" >{{trans('admin.actions')}}</th>
+
+                        </tr>
                     </thead>
                     <tbody>
                     @foreach($data as $row)
-                        <tr>
-                            <td class="text-lg-center">{{$row->name}}</td>
-                            <td class="text-lg-center">{{$row->amount}}</td>
-                            <td class="text-lg-center ">
-                                <a class='btn btn-info btn-circle' title="مراجعه"
-                                   href="{{route('investments.order.view',$row->id)}}"><i class="fa fa-eye"></i></a>
-                            </td>
-                        </tr>
-                    @endforeach
+                <tr>
+                    <td class="text-lg-center">{{$row->name_ar}}</td>
+                    <td class="text-lg-center">{{$row->name_en}}</td>
+                    <td class="text-lg-center ">
+                        <a class='btn btn-info btn-circle' title="تعديل"
+                           href="{{ route('investmentType.edit', $row->id )}}"><i class="fa fa-edit"></i></a>
+                        <a class='btn btn-danger btn-circle' title="حذف"
+                           onclick="return confirm('هل انت متكد من حذف الخدمه')"
+                           href="{{ route('investmentType.delete' ,$row->id) }}"><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            @endforeach
                     </tbody>
                 </table>
             </div>
@@ -70,7 +75,6 @@
                 }
             });
         }
-
         function update_apperance(el) {
             if (el.checked)
                 var appearance = '1';
@@ -90,10 +94,10 @@
             });
         }
     </script>
-    <script src="{{asset('../assets/plugins/jquery/jquery.min.js')}}"></script>
+       <script src="{{asset('../assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{asset('../assets/plugins/bootstrap/js/popper.min.js')}}"></script>
-    {{--    <script src="{{asset('../assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>--}}
+{{--    <script src="{{asset('../assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>--}}
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="{{asset('js/perfect-scrollbar.jquery.min.js')}}"></script>
     <!--Wave Effects -->
@@ -117,37 +121,37 @@
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <!-- end - This is for export functionality only -->
     <script>
-        $(document).ready(function () {
-            $('#myTable').DataTable();
-            $(document).ready(function () {
-                var table = $('#example').DataTable({
-                    "columnDefs": [{
-                        "visible": false,
-                        "targets": 2
-                    }],
-                    "order": [
-                        [2, 'asc']
-                    ],
-                    "displayLength": 25,
-                    "drawCallback": function (settings) {
-                        var api = this.api();
-                        var rows = api.rows({
-                            page: 'current'
-                        }).nodes();
-                        var last = null;
-                        api.column(2, {
-                            page: 'current'
-                        }).data().each(function (group, i) {
-                            if (last !== group) {
-                                $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                                last = group;
-                            }
-                        });
-                    }
-                });
-                // Order by the grouping
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                "columnDefs": [{
+                    "visible": false,
+                    "targets": 2
+                }],
+                "order": [
+                    [2, 'asc']
+                ],
+                "displayLength": 25,
+                "drawCallback": function(settings) {
+                    var api = this.api();
+                    var rows = api.rows({
+                        page: 'current'
+                    }).nodes();
+                    var last = null;
+                    api.column(2, {
+                        page: 'current'
+                    }).data().each(function(group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                            last = group;
+                        }
+                    });
+                }
             });
+            // Order by the grouping
         });
+    });
     </script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
