@@ -62,9 +62,21 @@
                                 @if($data['value'] != "null")
                                     @php $inputnow = \App\Models\Fundinput::where('slug',$data['name'])->first(); @endphp
                                     <div class="col-6">
-                                        <h3 class="control-label">{{$inputnow->name ?? 'اسم البنك'}}</h3>
+                                        <h3 class="control-label">{{$inputnow->name}}</h3>
                                         <input type="text" id="firstName" class="form-control"
-                                               value="@if($inputnow)   {{ $data['value'] }} @else  @php $name = \App\Models\Bank::whereId($data['value'])->first()->name_ar;  @endphp {{$name}} @endif "
+                                               @if($data['name'] == 'bank_id')
+                                               @php $value = json_decode($data['value'], true) ;
+                                                 $result = "";
+                                               @endphp
+                                               @foreach( $value as $row)
+                                               @php
+                                                   $bank =  \App\Models\Bank::find($row['id']);
+                                                    $result = $result .' - '.$bank->name_ar @endphp
+                                               @endforeach
+                                               value="{{$result}}"
+                                               @else
+                                               value="{{ $data['value'] }}"
+                                               @endif
                                                readonly>
                                     </div>
                                 @endif
@@ -72,16 +84,16 @@
                         </div>
                         <hr>
                         @if($requestreview->Selected_Bank)
-                        <h3>{{trans('admin.bank_data')}}</h3>
-                        <div class="row">
-                            <div class="col-6">
-                                <h3 class="control-label">اسم البنك</h3>
-                                <input type="text" id="firstName" class="form-control"
-                                       value="{{ $requestreview->Selected_Bank->name_ar}} "
-                                       readonly>
+                            <h3>{{trans('admin.bank_data')}}</h3>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h3 class="control-label">اسم البنك</h3>
+                                    <input type="text" id="firstName" class="form-control"
+                                           value="{{ $requestreview->Selected_Bank->name_ar}} "
+                                           readonly>
+                                </div>
                             </div>
-                        </div>
-                            @endif
+                        @endif
                     </div>
                 </div>
             </div>
@@ -121,7 +133,8 @@
 
                                                             @if($history->status == 'finail_rejected' & $history->type == 'user') {{trans('admin.finail_rejected')}} @endif
 
-                                                            @if($history->status == 'accept' & $history->type == 'emp' )  {{trans('admin.emp_accept')}} {{$history->ُEmployer->name}} و التحويل الي البنوك @endif
+                                                            @if($history->status == 'accept' & $history->type == 'emp' )  {{trans('admin.emp_accept')}} {{$history->ُEmployer->name}}
+                                                            و التحويل الي البنوك @endif
 
                                                             @if($history->status == 'return') {{trans('admin.emp_return')}} {{$history->ُEmployer->name}} {{trans('admin.to')}} {{$history->ُEmployerReturned->name}}     @endif
                                                         </h4>
@@ -279,7 +292,8 @@
                                 <input type="text" class="form-control" name="note_en" required>
                                 <br>
                                 <label class="control-label"> البنوك </label>
-                                <select class="select2 m-b-10 select2-multiple" name="banks[]" style="width: 100%" required
+                                <select class="select2 m-b-10 select2-multiple" name="banks[]" style="width: 100%"
+                                        required
                                         multiple="multiple" data-placeholder="Choose">
                                     @foreach($banks as $bank)
                                         <optgroup>

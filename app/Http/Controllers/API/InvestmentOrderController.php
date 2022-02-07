@@ -52,7 +52,7 @@ class InvestmentOrderController extends Controller
 
     public function user_investments(Request $request)
     {
-        $data = InvestmentOrder::where('user_id', auth()->user()->id)->get();
+        $data = InvestmentOrder::with('Investments')->where('user_id', auth()->user()->id)->get();
         return msgdata($request, success(), 'your investments', $data);
     }
     public function make_calculation(Request $request)

@@ -24,8 +24,8 @@
             <tr>
                 <th class="text-lg-center">{{trans('admin.address_in_arabic')}}</th>
                 <th class="text-lg-center">{{trans('admin.address_in_english')}}</th>
-                <th class="text-lg-center">{{trans('admin.content_in_arabic')}}</th>
-                <th class="text-lg-center">{{trans('admin.content_in_english')}}</th>
+{{--                <th class="text-lg-center">{{trans('admin.content_in_arabic')}}</th>--}}
+{{--                <th class="text-lg-center">{{trans('admin.content_in_english')}}</th>--}}
                 <th class="text-lg-center">{{trans('admin.Measures')}}</th>
             </tr>
             </thead>
@@ -34,8 +34,8 @@
                 <tr>
                     <td class="text-lg-center">{{$services_detail->title_ar}}</td>
                     <td class="text-lg-center">{{$services_detail->title_en}}</td>
-                    <td class="text-lg-center">{{$services_detail->desc_ar}}</td>
-                    <td class="text-lg-center">{{$services_detail->desc_en}}</td>
+{{--                    <td class="text-lg-center">{{$services_detail->desc_ar}}</td>--}}
+{{--                    <td class="text-lg-center">{{$services_detail->desc_en}}</td>--}}
                     <td class="text-lg-center ">
                         <a class='btn btn-info btn-circle' title="{{trans('admin.edit')}}"
                            href="{{route('services.details.edit',$services_detail->id)}}"><i class="fa fa-edit"></i></a>

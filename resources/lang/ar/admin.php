@@ -1,6 +1,8 @@
 <?php
 return [
     //new
+    'services_desc_ar' => 'تفاصيل الخدمة بالعربية',
+    'services_desc_en' => 'تفاصيل الخدمة بالانجليزية',
     'basic_investment_image' => 'صوره الاستثمار الاساسية',
     'basic_all_cat_image' => 'صوره كل الاقسام الاساسية',
     'bank_data' => 'بيانات البنك',
