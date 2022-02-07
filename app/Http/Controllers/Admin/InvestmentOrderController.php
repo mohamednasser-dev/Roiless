@@ -15,7 +15,7 @@ class InvestmentOrderController extends Controller
     {
         $this->middleware('permission:investments');
         $this->objectName = $model;
-        $this->folderView = 'admin.investment.';
+        $this->folderView = 'admin.investmentOrder.';
     }
 
     public function index()

@@ -220,6 +220,10 @@ Route::group(['middleware' => ['auth:admin']], function () {
         Route::get('/Investment/all', 'InvestmentOrderController@index')->name('investments');
         Route::get('/Investment/{id}', 'InvestmentOrderController@view')->name('investments.view');
     });
+    Route::group(['namespace' => 'Admin'], function () {
+        Route::get('/Investment/all', 'InvestmentOrderController@index')->name('investments');
+        Route::get('/Investment/{id}', 'InvestmentOrderController@view')->name('investments.view');
+    });
 });
 
 Route::get('change_lang/{lang}', 'HomeController@change_lang')->name('change_lang');
