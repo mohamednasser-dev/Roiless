@@ -81,7 +81,7 @@ class SettingController extends Controller
             $file_name = $this->MoveImage($request->file('logo'), 'uploads/setting');
             $data['logo'] = $file_name;
         } else {
-            unset($data['logo'], $data['phones']);
+            unset($data['logo']);
         }
         if ($request->hasFile('all_category_image')) {
             $file_name = $this->MoveImage($request->file('all_category_image'), 'uploads/setting');
@@ -100,16 +100,19 @@ class SettingController extends Controller
         } else {
             $data['show_otp'] = 0;
         }
+        unset($data['phones']);
         Setting::where('id', $id)->update($data);
-
         if ($request->phones) {
             SettingInfo::where('type', 'phone')->delete();
             foreach ($request->phones as $phone) {
-                SettingInfo::create([
-                    'setting_id' => $id,
-                    'type' => 'phone',
-                    'phone' => $phone,
-                ]);
+                $exist = SettingInfo::where('type', 'phone')->where('phone',$phone)->first();
+                if(!$exist){
+                    SettingInfo::create([
+                        'setting_id' => $id,
+                        'type' => 'phone',
+                        'phone' => $phone,
+                    ]);
+                }
             }
         }
         if ($request->adress) {
