@@ -42,6 +42,8 @@ class SettingController extends Controller
                 'logo' => '',
                 'about_us_ar' => "",
                 'about_us_en' => "",
+                'all_category_image' => "",
+                'invest_image' => "",
                 'phone' => ""
             ]);
         }
@@ -66,9 +68,10 @@ class SettingController extends Controller
                 'instagram' => '',
                 'twitter' => '',
                 'linkedin' => '',
+                'all_category_image' => '',
+                'invest_image' => '',
                 'logo' => '',
             ]);
-
         $setting = Setting::find($id);
         if (!$setting) {
             // Alert::warning('خطاء', 'هذا الاعداد ليس موجو');
@@ -79,6 +82,18 @@ class SettingController extends Controller
             $data['logo'] = $file_name;
         } else {
             unset($data['logo'], $data['phones']);
+        }
+        if ($request->hasFile('all_category_image')) {
+            $file_name = $this->MoveImage($request->file('all_category_image'), 'uploads/setting');
+            $data['all_category_image'] = $file_name;
+        } else {
+            unset($data['all_category_image']);
+        }
+        if ($request->hasFile('invest_image')) {
+            $file_name = $this->MoveImage($request->file('invest_image'), 'uploads/setting');
+            $data['invest_image'] = $file_name;
+        } else {
+            unset($data['invest_image']);
         }
         if ($request->show_otp == '1') {
             $data['show_otp'] = 1;
@@ -98,7 +113,6 @@ class SettingController extends Controller
             }
         }
         if ($request->adress) {
-
             foreach ($request->adress as $adress) {
                 SettingInfo::create([
                     'setting_id' => $id,
@@ -109,7 +123,6 @@ class SettingController extends Controller
                 ]);
             }
         }
-
         activity('admin')->log('تم تحديث الاعدادات بنجاح');
         DB::commit();
         // Alert::success('تمت العمليه', 'تم التحديث بنجاح');
@@ -119,7 +132,7 @@ class SettingController extends Controller
 
     public function delete($id)
     {
-        $address=SettingInfo::findorfail($id);
+        $address = SettingInfo::findorfail($id);
         $address->delete();
         return redirect()->back()->with('success', trans('تم حذف العنوان بنجاح'));
     }

@@ -26,7 +26,7 @@
                     <h4 class="card-title">{{trans('admin.website_info')}}</h4>
                     <hr>
                     <div class="row">
-                        <div class="col-lg-12 col-md-6">
+                        <div class="col-lg-4 col-md-12">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">{{trans('admin.website_logo')}}</h4>
@@ -35,6 +35,26 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{trans('admin.basic_all_cat_image')}}</h4>
+                                    <input type="file" name="all_category_image" data-default-file="{{$setting->all_category_image}}"
+                                           id="input-file-now" class="dropify"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{trans('admin.basic_investment_image')}}</h4>
+                                    <input type="file" name="invest_image" data-default-file="{{$setting->invest_image}}"
+                                           id="input-file-now" class="dropify"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-12 col-md-6">
                             <div class="form-group m-t-40 row">
                                 <label for="example-text-input"
