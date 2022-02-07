@@ -3,7 +3,12 @@
 use App\User;
 use App\Models\Adminhistory;
 use Illuminate\Support\Facades\Validator;
-
+function uploadImage($file, $dir)
+{
+    $image = time() . uniqid() . '.' . $file->getClientOriginalExtension();
+    $file->move(public_path('uploads'). '/' . $dir, $image);
+    return $image;
+}
 // send fcm notification
  function send_notification($title, $body, $details,$image, $data, $token)
 {
@@ -228,7 +233,7 @@ if (!function_exists('HttpPost')) {
     function HttpPost($url_path, $data = [])
     {
         $apiURL = 'https://accept.paymob.com/api/'.$url_path;
-                
+
         // Create curl resource
         $ch = curl_init($apiURL);
 
@@ -248,5 +253,5 @@ if (!function_exists('HttpPost')) {
         // Close curl resource to free up system resources
         curl_close($ch);
         return json_decode($output);
-    }    
+    }
 }
