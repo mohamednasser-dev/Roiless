@@ -54,4 +54,11 @@ class InvestmentOrderController extends Controller
         $data = InvestmentOrder::where('user_id', auth()->user()->id)->get();
         return msgdata($request, success(), 'your investments', $data);
     }
+    public function make_calculation(Request $request)
+    {
+        $invest = Investment::findOrFail($request->investment_id);
+        $value = $invest->value;
+        $data['result'] = 100;
+        return msgdata($request, success(), 'your investments', $data);
+    }
 }

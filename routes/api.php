@@ -105,6 +105,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 
         //investments
         Route::get("All/Investments", "InvestmentOrderController@allInvestments");
+        Route::post("investment/calculation", "InvestmentOrderController@make_calculation");
         Route::post("Order/Investment", "InvestmentOrderController@OrderInvestment");
     });
 });
