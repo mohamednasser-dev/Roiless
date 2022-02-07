@@ -215,6 +215,15 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('export', 'ImportExportController@export')->name('export');
     Route::get('export/user_fund', 'ImportExportController@export_userfund')->name('export_userfund');
 
+    // investmentType
+    Route::group(['namespace' => 'Admin'], function () {
+        Route::get('/investmentType', 'InvestmentTypeController@index')->name('investmentType');
+        Route::get('/investmentType/create', 'InvestmentTypeController@create')->name('investmentType.create');
+        Route::post('/investmentType/store', 'InvestmentTypeController@store')->name('investmentType.store');
+        Route::get('/investmentType/edit/{id}', 'InvestmentTypeController@edit')->name('investmentType.edit');
+        Route::post('/investmentType/update/{id}', 'InvestmentTypeController@update')->name('investmentType.update');
+        Route::get('/investmentType/delete/{id}', 'InvestmentTypeController@delete')->name('investmentType.delete');
+    });
     // investment
     Route::group(['namespace' => 'Admin'], function () {
         Route::get('/investment', 'InvestmentController@index')->name('investment');
