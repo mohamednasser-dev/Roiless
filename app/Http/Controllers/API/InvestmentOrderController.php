@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Investment;
 use App\Models\InvestmentImages;
 use App\Models\InvestmentOrder;
+use App\Models\InvestmentType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -60,5 +61,10 @@ class InvestmentOrderController extends Controller
         $value = $invest->value;
         $data['result'] = 100;
         return msgdata($request, success(), 'your investments', $data);
+    }
+    public function types(Request $request)
+    {
+        $invest = InvestmentType::all();
+        return msgdata($request, success(), 'your investments', $invest);
     }
 }

@@ -6,11 +6,11 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">{{trans('admin.add_investment.type')}}</h3>
+            <h3 class="text-themecolor">{{trans('admin.add')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.add_investment.type')}}</li>
+                <li class="breadcrumb-item">{{trans('admin.add')}}</li>
                 <li class="breadcrumb-item"><a href="{{route('investmentType')}}">{{trans('admin.investments.type')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
