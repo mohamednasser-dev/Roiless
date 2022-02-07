@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.funds')}}</li>
+                <li class="breadcrumb-item">{{trans('admin.investment')}}</li>
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
