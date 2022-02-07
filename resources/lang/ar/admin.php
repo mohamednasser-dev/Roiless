@@ -1,6 +1,8 @@
 <?php
 return [
     //new
+    'basic_investment_image' => 'صوره الاستثمار الاساسية',
+    'basic_all_cat_image' => 'صوره كل الاقسام الاساسية',
     'bank_data' => 'بيانات البنك',
     'show_otp' => 'اظهار رقم الـ otp',
     'show_user_fund' => 'المشاهده',

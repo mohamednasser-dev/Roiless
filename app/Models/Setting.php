@@ -17,6 +17,20 @@ class Setting extends Model
         else
             return asset('/uploads/setting/logo.png') ;
     }
+    public function getAllCategoryImageAttribute($img)
+    {
+        if ($img)
+            return asset('/uploads/setting') . '/' . $img;
+        else
+            return asset('/uploads/setting/default.png') ;
+    }
+    public function getInvestImageAttribute($img)
+    {
+        if ($img)
+            return asset('/uploads/setting') . '/' . $img;
+        else
+            return asset('/uploads/setting/default.png') ;
+    }
     public function Phones(){
        return $this->hasMany(SettingInfo::class,'setting_id','id')->where('type','phone')
            ->select('id','setting_id','type','phone');
