@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Validation\Rule;
 
 class InvestmentRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class InvestmentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +26,17 @@ class InvestmentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name_ar' => 'required|string|max:255',
+            'name_en' => 'required|string|max:255',
+            'value' => 'required|string|max:255',
+            'image' => [
+                'nullable',
+                'mimes:jpeg,jpg,png',
+                Rule::requiredIf(function() {
+                    return Request::routeIs('investment.store');
+                })
+            ],
+
         ];
     }
 }

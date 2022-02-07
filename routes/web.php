@@ -217,12 +217,18 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
     // investment
     Route::group(['namespace' => 'Admin'], function () {
-        Route::get('/Investment/all', 'InvestmentOrderController@index')->name('investments');
-        Route::get('/Investment/{id}', 'InvestmentOrderController@view')->name('investments.view');
+        Route::get('/investment', 'InvestmentController@index')->name('investment');
+        Route::get('/investment/create', 'InvestmentController@create')->name('investment.create');
+        Route::post('/investment/store', 'InvestmentController@store')->name('investment.store');
+        Route::get('/investment/edit/{id}', 'InvestmentController@edit')->name('investment.edit');
+        Route::post('/investment/update/{id}', 'InvestmentController@update')->name('investment.update');
+        Route::get('/investment/delete/{id}', 'InvestmentController@delete')->name('investment.delete');
     });
+
+    // investment order
     Route::group(['namespace' => 'Admin'], function () {
-        Route::get('/Investment/all', 'InvestmentOrderController@index')->name('investments');
-        Route::get('/Investment/{id}', 'InvestmentOrderController@view')->name('investments.view');
+        Route::get('order/Investment/all', 'InvestmentOrderController@index')->name('investments.orders');
+        Route::get('order/Investment/{id}', 'InvestmentOrderController@view')->name('investments.order.view');
     });
 });
 
