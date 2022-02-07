@@ -50,6 +50,18 @@
                         <input type="text" id="firstName" class="form-control" value="{{$data->profites}}"
                                readonly>
                     </div>
+                    <div class="col-6">
+                        <h3 class="control-label">{{trans('admin.investment_type')}}</h3>
+                        <input type="text" id="firstName" class="form-control" value="{{$data->investment_type}}"
+                               readonly>
+                    </div>
+
+                    <div class="col-6">
+                        <h3 class="control-label">{{trans('admin.Investment')}}</h3>
+                        <input type="text" id="firstName" class="form-control" value="{{$data->Investments->name_ar}}"
+                               readonly>
+                    </div>
+
                 </div>
             </div>
         </div>

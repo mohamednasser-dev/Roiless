@@ -15,5 +15,9 @@ class InvestmentOrder extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+    public function Investments()
+    {
+        return $this->belongsTo(Investment::class, 'investment_id', 'id');
+    }
 
 }

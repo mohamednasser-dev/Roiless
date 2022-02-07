@@ -80,6 +80,8 @@ return [
     'amount' => 'القيمه',
     'orderd_by' => 'طلب بواسطه',
     'investments_view' => 'مراجه الاستثمار',
+    'investment_type' => 'نوع الاستثمار',
+    'Investment' => 'الاستثمار',
     'investments_data' => ' بيانات الاستثمار',
     'profites' => 'اشهر الربح',
     'employee_count' => 'الموظفين',
