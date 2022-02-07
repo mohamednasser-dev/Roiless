@@ -324,7 +324,12 @@ return [
     'opretion_success' => 'تمت العمليه بنجاح',
     'Deleted' => 'الحذف',
     'adress' => 'العناوين',
-
+    'investments.type' => 'انواع الاستثمار',
+    'investment.type' => 'نوع الاستثمار',
+    'add_investment.type' => 'اضافه نوع الاستثمار',
+    'investment' => 'الاستثمارات',
+    'add_investment' => 'اضافه الاستثمار',
+    'value' => 'القيمه',
     // end sweet alert
 
 
