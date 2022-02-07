@@ -14,7 +14,7 @@ class UpdateInvestmentOrdderTable extends Migration
     public function up()
     {
         Schema::table('investment_orders', function (Blueprint $table) {
-            $table->double('payout_amount');
+            $table->double('payout_amount')->default(0);
             $table->enum('status',['pinding','accepted','rejected'])->default('pinding');
         });
     }
