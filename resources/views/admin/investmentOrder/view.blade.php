@@ -16,7 +16,7 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">{{trans('admin.investments')}}</li>
-                <li class="breadcrumb-item active"><a href="{{route('investments')}}">{{trans('admin.investments_orders')}}</a></li>
+                <li class="breadcrumb-item active"><a href="{{route('investments.orders')}}">{{trans('admin.investments_orders')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
