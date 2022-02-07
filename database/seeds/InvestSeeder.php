@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Investment;
 use Illuminate\Database\Seeder;
+use App\Models\Investment;
 
-class InvestmentsSeeder extends Seeder
+class InvestSeeder extends Seeder
 {
     /**
      * Run the database seeds.
