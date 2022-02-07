@@ -39,6 +39,7 @@ class InvestmentOrderController extends Controller
         $investment=InvestmentOrder::create($data);
         foreach ($request['images'] as $row) {
             $image = uploadImage($row, 'Investments');
+            dd($image);
             InvestmentImages::create([
                 'investment_order_id' => $investment['id'],
                 'image' => $image,
