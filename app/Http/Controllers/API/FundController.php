@@ -34,7 +34,7 @@ class FundController extends Controller
             $Funddetailes->columns = json_decode($Funddetailes->columns);
 
             $colums = $Funddetailes->columns;
-            $colums[count($colums)] = 'bank_id';
+//            $colums[count($colums)] = 'bank_id';
             $Funddetailes->columns= $colums;
 
             if ($Funddetailes) {
