@@ -180,7 +180,7 @@ class UsersController extends Controller
             $user = User::where('phone', $request->phone)->first();
             if (!empty($user)) {
                 $otb = \Otp::generate($user->phone);
-                $send = Smsmisr::send("كود إستعادة كلمة المرور الخاصة بك ".$otb, $userPhone ,null,2);
+                $send = Smsmisr::send("كود إستعادة كلمة المرور الخاصة بك ".$otb, $user->phone ,null,2);
                 $user->update([
                     'otp_code' => $otb,
                 ]);
