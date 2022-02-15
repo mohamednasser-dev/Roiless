@@ -89,7 +89,7 @@ class UserfundsController extends Controller
         $user = User::find($user_id);
         $empolyers = Admin::where('type', 'employer')->where('cat_id', auth()->user()->cat_id)->where('id', '<>', auth()->user()->id)->get();
         $banks = Bank::where('status', 'active')->wherenotnull('parent_id')->orderBy('parent_id', 'DESC')->get();
-        $main_banks = Bank::where('status', 'active')->where('parent_id',null)->orderBy('created_at', 'DESC')->get();
+        $main_banks = Bank::whereHas('Branches')->where('status', 'active')->where('parent_id',null)->orderBy('created_at', 'DESC')->get();
         $histories = Fhistory::where('user_fund_id', $id)->where('show_in', 'web')->orderBy('created_at', 'DESC')->get();
         if (auth()->user()->type == 'admin' || $requestreview->emp_id == auth()->user()->id) {
 

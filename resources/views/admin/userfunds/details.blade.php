@@ -298,7 +298,7 @@
                                     @foreach($main_banks as $main_bank)
                                         <optgroup label="{{$main_bank->name_ar}}" style="color: darkgreen;">
                                             @foreach($main_bank->Branches as $bank)
-                                                <option value="{{$bank->id}}">{{$bank->name_ar}}</option>
+                                                <option style="color: darkred;" value="{{$bank->id}}">{{$bank->name_ar}}</option>
                                             @endforeach
                                         </optgroup>
                                     @endforeach
