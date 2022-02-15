@@ -20,11 +20,11 @@ class Bank extends Authenticatable
     protected static $logName = 'bank';
 
     // Only defined attribute will store in log while any change
-    protected static $logAttributes = [ 'name' , 'email', 'password'];
+    protected static $logAttributes = ['name', 'email', 'password'];
 
     protected static $recordEvent = ['created_at', 'updated_at'];
 
-    protected static $ignoreChangedAttributes = ['password' , 'updated_at'];
+    protected static $ignoreChangedAttributes = ['password', 'updated_at'];
 
     protected static $logOnlyDirty = true;
 
@@ -39,7 +39,7 @@ class Bank extends Authenticatable
         if ($img)
             return asset('/uploads/banks_image') . '/' . $img;
         else
-            return asset('/uploads/banks_image/default.png') ;
+            return asset('/uploads/banks_image/default.png');
     }
 
     public function notifications()
@@ -51,11 +51,15 @@ class Bank extends Authenticatable
     {
         return $this->hasMany(User_fund::class, 'bank_id', 'id');
     }
-    public function Branches(){
-        return $this -> hasMany(Bank::class,'parent_id');
+
+    public function Branches()
+    {
+        return $this->hasMany(Bank::class, 'parent_id');
     }
-    public function All_fund(){
-        return $this -> hasMany(Bank::class,'parent_id');
+
+    public function All_fund()
+    {
+        return $this->hasMany(Bank::class, 'parent_id');
     }
 }
 

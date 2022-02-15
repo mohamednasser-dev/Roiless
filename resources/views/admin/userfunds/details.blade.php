@@ -295,9 +295,11 @@
                                 <select class="select2 m-b-10 select2-multiple" name="banks[]" style="width: 100%"
                                         required
                                         multiple="multiple" data-placeholder="Choose">
-                                    @foreach($banks as $bank)
-                                        <optgroup>
-                                            <option value="{{$bank->id}}">{{$bank->name_ar}}</option>
+                                    @foreach($main_banks as $main_bank)
+                                        <optgroup label="{{$main_bank->name_ar}}" style="color: darkgreen;">
+                                            @foreach($main_bank->Branches as $bank)
+                                                <option value="{{$bank->id}}">{{$bank->name_ar}}</option>
+                                            @endforeach
                                         </optgroup>
                                     @endforeach
                                 </select>

@@ -31,19 +31,20 @@
                     <td class="text-lg-center">{{$userfund->Fund->name_ar}}</td>
                     <td class="text-lg-center">{{$userfund->ُEmployer->name}}</td>
                     <td class="text-lg-center ">
-{{--                        @if(is_null($userfund->bank_id))--}}
-{{--                            <a class='btn btn-info btn-circle' title="تفاصيل"--}}
-{{--                               href="{{route('request.review',$userfund->id)}}"><i class="fa fa-eye"></i></a>--}}
-{{--                        @endif--}}
-                      @if(is_null($userfund->bank_id))
-                                <a class='btn btn-danger btn-circle' title="المراجعه"
-                                   href="{{route('bankChonsen',$userfund->id)}}"><i class="fa fa-eye"></i></a>
-                            @elseif(($userfund->bank_id == auth()->user()->id) )
-                                <a class='btn btn-info btn-circle' title="متابعه"
-                                  href="{{route('request.review',$userfund->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                            @else
-                                {{$userfund->banks->name_ar}}
-                            @endif
+                        {{--                        @if(is_null($userfund->bank_id))--}}
+                        {{--                            <a class='btn btn-info btn-circle' title="تفاصيل"--}}
+                        {{--                               href="{{route('request.review',$userfund->id)}}"><i class="fa fa-eye"></i></a>--}}
+                        {{--                        @endif--}}
+                        @if(is_null($userfund->bank_id))
+                            <a class='btn btn-danger btn-circle' title="المراجعه"
+                               href="{{route('bankChonsen',$userfund->id)}}"><i class="fa fa-eye"></i></a>
+                        @elseif(($userfund->bank_id == auth()->user()->id) )
+                            <a class='btn btn-info btn-circle' title="متابعه"
+                               href="{{route('request.review',$userfund->id)}}"><i
+                                    class="fa fa-pencil-square-o"></i></a>
+                        @else
+                            {{$userfund->banks->name_ar}}
+                        @endif
 
                     </td>
                 </tr>

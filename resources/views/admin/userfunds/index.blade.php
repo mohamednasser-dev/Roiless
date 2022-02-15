@@ -69,10 +69,10 @@
                             @can('Employers')
                             <a href="{{route('review',['id'=>$usefund->id,'type'=>'show'])}}" class="btn btn-success">{{trans('admin.view')}}</a>
                             @endcan
-                               
+
                            </td>
                             <td class="text-lg-center ">
-                             
+
                                 @if($usefund->user_status !='finail_rejected')
                                     @if(is_null($usefund->emp_id))
                                         <a class='btn btn-danger btn-circle' title="المراجعه"
@@ -139,7 +139,7 @@
                         "targets": 2
                     }],
                     "order": [
-                        [2, 'desc']
+                        [0, 'desc']
                     ],
                     "displayLength": 25,
                     "drawCallback": function (settings) {

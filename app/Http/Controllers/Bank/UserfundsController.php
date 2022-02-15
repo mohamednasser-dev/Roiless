@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Bank;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\Notification;
 use App\Models\User_Notification;
 use App\Models\Bank_User_Fund;
@@ -27,7 +28,12 @@ class UserfundsController extends Controller
 
     public function index()
     {
-        $userFundBank = Bank_User_Fund::where('bank_id', \Auth::guard('bank')->user()->id)->pluck('user_fund_id');
+        if (\Auth::guard('bank')->user()->parent_id == null) {
+            $my_chiled_banks = Bank::where('parent_id', \Auth::guard('bank')->user()->id)->pluck('id');
+            $userFundBank = Bank_User_Fund::whereIn('bank_id', $my_chiled_banks)->pluck('user_fund_id');
+        } else {
+            $userFundBank = Bank_User_Fund::where('bank_id', \Auth::guard('bank')->user()->id)->pluck('user_fund_id');
+        }
         $bank_id = auth()->guard('bank')->user()->id;
         $userfunds = User_fund::whereIn('id', $userFundBank)->orderby('created_at', 'DESC')->get();
 
@@ -36,15 +42,14 @@ class UserfundsController extends Controller
 
     public function details($id)
     {
-
         $userfund = User_fund::find($id);
-
         if (!$userfund) {
             Alert::warning('تنبية', 'لا يوجد طلب تمويل');
             return redirect()->back();
         }
-        if ($userfund->bank_id == auth()->user()->id) {
-            return view($this->folderView . 'details', compact('userfund'));
+        if ($userfund->bank_id == auth()->user()->id || auth()->user()->parent_id == null ) {
+            $fund_banks = Bank_User_Fund::where('user_fund_id',$userfund->id)->get();
+            return view($this->folderView . 'details', compact('userfund','fund_banks'));
         } else {
             Alert::warning('تنبية', 'لا يمكنك الدخول الي هذا الطلب');
             return redirect()->route('bank.home');
@@ -92,31 +97,32 @@ class UserfundsController extends Controller
         $body = 'body_ar' . $user->lang;
         $details = 'details_' . $user->lang;
         send_notification($notification->$title, $notification->$body, $notification->$details, null, null, $fcm_tokens);
-        Bank_User_Fund::where('user_fund_id',$id)->delete();
+        Bank_User_Fund::where('user_fund_id', $id)->delete();
         Alert::success('تمت العمليه', 'تم  هذا التمويل  بنجاح');
         return redirect()->route('funds.request');
     }
+
     public function bankChonsen($id)
     {
         if (User_fund::where('id', $id)->whereNull('bank_id')->exists()) {
-            User_fund::where('id', $id)->update(['bank_id' => auth()->user()->id]);
-            activity('admin')->log('تم اضافه هذا التمويل للبنك بنجاح');
-
-
-            $data_web['type'] = 'bank';
-            $data_web['bank_id'] = auth()->user()->id;
-            $data_web['show_in'] = 'web';
-            $data_web['status'] = 'pending';
-            $data_web['user_fund_id'] = $id;
-            Fhistory::create($data_web);
-
-            Alert::success('تمت العمليه', 'تم اضافه هذا التمويل  بنجاح');
+            if (auth()->user()->parent_id != null) {
+                User_fund::where('id', $id)->update(['bank_id' => auth()->user()->id]);
+                activity('admin')->log('تم اضافه هذا التمويل للبنك بنجاح');
+                $data_web['type'] = 'bank';
+                $data_web['bank_id'] = auth()->user()->id;
+                $data_web['show_in'] = 'web';
+                $data_web['status'] = 'pending';
+                $data_web['user_fund_id'] = $id;
+                Fhistory::create($data_web);
+                Alert::success('تمت العمليه', 'تم اضافه هذا التمويل  بنجاح');
+            }
             return redirect()->route('request.review', $id);
         } else {
             Alert::warning('تمت العمليه', 'تم تحويل هذا الطلب بالفعل الي بنك اخر');
             return redirect()->back();
         }
     }
+
     public function redirectEmployer(Request $request, $id)
     {
         $bank_id = auth()->guard('bank')->user()->id;
@@ -162,10 +168,10 @@ class UserfundsController extends Controller
         $body = 'body_ar' . $user->lang;
         $details = 'details_' . $user->lang;
         send_notification($notification->$title, $notification->$body, $notification->$details, null, null, $fcm_tokens);
-        $user_fund_id->bank_id = null ;
+        $user_fund_id->bank_id = null;
         $user_fund_id->save();
         User_fund::where('id', $id)->update(['bank_id' => null]);
-        Bank_User_Fund::where('user_fund_id',$id)->delete();
+        Bank_User_Fund::where('user_fund_id', $id)->delete();
         Alert::success('عملية ناجحة', 'تم تحويل طلب المراجعه مره اخري الي الموظف ');
         return redirect()->route('funds.request');
     }

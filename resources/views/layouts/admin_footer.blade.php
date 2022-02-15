@@ -23,8 +23,8 @@
         <script src="{{ asset('/js/perfect-scrollbar.jquery.min.js') }}"></script>
         <!--Wave Effects -->
         <script src="{{ asset('/js/waves.js') }}"></script>
-        
-        
+
+
         <!--Menu sidebar -->
         <script src="{{ asset('/js/sidebarmenu.js') }}"></script>
         <!--Custom JavaScript -->
@@ -68,7 +68,7 @@
         <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-     
+
 
         <script>
             $(document).ready(function() {
@@ -89,7 +89,7 @@
                         "targets": 2
                     }],
                     "order": [
-                        [2, 'asc']
+                        [0, 'desc']
                     ],
                     "displayLength": 25,
                     "drawCallback": function(settings) {
