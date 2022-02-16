@@ -155,11 +155,11 @@ class AuthController extends Controller
         $user = User::where('id', Auth::user()->id)->first();
         if ($user) {
             $otp_code = rand(100000, 999999);
-            $data->otp_code = $otp_code;
+            $user->otp_code = $otp_code;
             Smsmisr::send("كود التفعيل الخاص بك هوا " . $otp_code, $request->phone, null, 2);
             $user->save();
-            $data['status'] = true;
-            return msgdata("", success(), 'code send successfully again', $data);
+            $final_data['status'] = true;
+            return msgdata("", success(), 'code send successfully again', $final_data);
         } else {
             return response()->json(['status' => 401, 'msg' => 'you should set valid auth token']);
         }
