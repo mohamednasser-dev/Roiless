@@ -64,13 +64,13 @@ class AuthController extends Controller
                 Auth::guard('user-api')->logout();
                 return msgdata($request, not_active(), 'Your_Account_NotActive', null);
             }
-            if($request->fcm_token){
-                User::where('id',$user->id)->update([ 'fcm_token'=>$request->fcm_token]);
+            if ($request->fcm_token) {
+                User::where('id', $user->id)->update(['fcm_token' => $request->fcm_token]);
             }
-            $user_data = User::where('id', $user->id)->select( 'id' , 'image' , 'name', 'email', 'phone','otp_code')->first();
+            $user_data = User::where('id', $user->id)->select('id', 'image', 'name', 'email', 'phone', 'otp_code')->first();
             $user_data->token_api = $token;
 
-            return msgdata($request, success(), 'login_success',  $user_data);
+            return msgdata($request, success(), 'login_success', $user_data);
         } catch (Exception $e) {
             return $this->returnError($e->getCode(), $e->getMessage());
         }
@@ -133,27 +133,47 @@ class AuthController extends Controller
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
             $data['otp_code'] = rand(100000, 999999);
-            $send = Smsmisr::send("كود التفعيل الخاص بك هوا ".$data['otp_code'], $request->phone ,null,2);
+            $send = Smsmisr::send("كود التفعيل الخاص بك هوا " . $data['otp_code'], $request->phone, null, 2);
             //Request is valid, create new user
-            $data['fcm_token']=$request->fcm_token;
+            $data['fcm_token'] = $request->fcm_token;
             $user = User::create($data);
             if ($user) {
                 $token = Auth::guard('user-api')->attempt(['phone' => $request->phone, 'password' => $password]);
-                $user_data = User::where('id', $user->id)->select( 'id' , 'image' , 'name', 'email', 'phone','otp_code')->first();
+                $user_data = User::where('id', $user->id)->select('id', 'image', 'name', 'email', 'phone', 'otp_code')->first();
                 $user_data->token_api = $token;
-                return msgdata($request, success(), 'login_success',  $user_data);
+                return msgdata($request, success(), 'login_success', $user_data);
             }
         }
     }
+
+    public function resend_otp(Request $request)
+    {
+        $data = $request->only(['phone', 'name']);
+        $validator = Validator::make($data, [
+            'phone' => 'required',
+        ]);
+        $user = User::where('id', Auth::user()->id)->first();
+        if ($user) {
+            $otp_code = rand(100000, 999999);
+            $data->otp_code = $otp_code;
+            Smsmisr::send("كود التفعيل الخاص بك هوا " . $otp_code, $request->phone, null, 2);
+            $user->save();
+            $data['status'] = true;
+            return msgdata("", success(), 'code send successfully again', $data);
+        } else {
+            return response()->json(['status' => 401, 'msg' => 'you should set valid auth token']);
+        }
+    }
+
     public function check_otp($code)
     {
-        $user = User::where('id',Auth::user()->id)->where('otp_code', $code)->first();
-        if($user){
-            $user->verified = 1 ;
-            $user->save() ;
+        $user = User::where('id', Auth::user()->id)->where('otp_code', $code)->first();
+        if ($user) {
+            $user->verified = 1;
+            $user->save();
             $data['status'] = true;
             return msgdata("", success(), ' successfully activated', $data);
-        }else{
+        } else {
             return response()->json(['status' => 401, 'msg' => 'this code is invalid']);
         }
     }
