@@ -85,17 +85,18 @@ class UsersController extends Controller
                     'email' => $request->email
                 ]);
             } else {
+                $otb = \Otp::generate($request->phone );
                 $user->update([
-                    'otp_code' => 123456,
+                    'otp_code' => $otb,
                 ]);
                 //send here by sms api ...
                 if (empty($request->otp_code)) {
+                    Smsmisr::send("كود التفعيل الخاص بك هوا " . $otb, $request->phone, null, 2);
                     $data['status'] = true;
-
-                    return msgdata($request, success(), 'please send otp_code', $data);
+                    $data['otp_code'] = $otb;
+                    return msgdata($request, success(), 'otp code sent successfully to new phone', $data);
                 } else {
                     if ($request->otp_code == Auth::user()->otp_code) {
-
                         $user->update([
                             'name' => $request->name,
                             'email' => $request->email,
@@ -186,7 +187,7 @@ class UsersController extends Controller
                 ]);
                 $data['status'] = true;
                 $data['otp_code'] = $otb;
-                return msgdata($request, success(), 'please send otp_code', $data);
+                return msgdata($request, success(), 'otp code sent successfully', $data);
             } else {
                 $data['status'] = false;
                 return msgdata($request, failed(), 'this user not found', $data);
@@ -317,7 +318,7 @@ class UsersController extends Controller
     {
         $userPhone = Auth::user()->phone;
         $otb = \Otp::generate($userPhone);
-        $send = Smsmisr::send("كود التفعيل الخاص بك هوا ".$otb, $userPhone ,null,2);        
+        $send = Smsmisr::send("كود التفعيل الخاص بك هوا ".$otb, $userPhone ,null,2);
         return msgdata($request, success(), 'otp', $otb);
     }
 
@@ -328,7 +329,7 @@ class UsersController extends Controller
         $otp = $request->otp;
         $result = \Otp::validate($userPhone, $otp);
         if ($result->status == true){
-            return msgdata($request, success(),'','');
+            return msgdata($request, success(),'this otp is valied','');
         }else{
             return msgdata($request, failed(),$result->error,'');
         }
