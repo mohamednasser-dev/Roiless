@@ -22,7 +22,8 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
     Route::post("/login", "AuthController@login");
     Route::post("/Register", "AuthController@Register");
     Route::post("/loginasguest", "AuthController@loginasguest");
-
+    Route::post("/resend_otp", "AuthController@resend_otp");
+    
     Route::post('forgot/password', 'UsersController@forgot_password_post')->name('forgot.password');
     Route::post('update/forgot_password', 'UsersController@reset_password_forget');
     // setting
@@ -42,7 +43,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         // home page and services
         Route::get("/home", "HomeController@getall");
         Route::get("/auth/check_otp/{code}", "AuthController@check_otp");
-        Route::post("/resend_otp", "AuthController@resend_otp");
+
 
         Route::get("/get_data_profile", "UsersController@getDataProfile");
 

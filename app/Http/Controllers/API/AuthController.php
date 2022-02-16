@@ -152,7 +152,7 @@ class AuthController extends Controller
         $validator = Validator::make($data, [
             'phone' => 'required',
         ]);
-        $user = User::where('id', Auth::user()->id)->first();
+        $user = User::where('phone', $request->phone)->first();
         if ($user) {
             $otp_code = rand(100000, 999999);
             $user->otp_code = $otp_code;
