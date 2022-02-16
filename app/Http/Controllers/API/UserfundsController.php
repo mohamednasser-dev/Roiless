@@ -15,13 +15,20 @@ class UserfundsController extends Controller
         $user = auth()->user()->id;
         $lang = $request->header('lang');
         Session()->put('api_lang', $lang);
-        $userfunds = User_fund::select(['id','user_id','fund_id','dataform','user_status','fund_amount','cost','created_at'])
-        ->where('user_id', $user)->with('Fund_details')->with('Users')->orderby('created_at','DESC')->get();
-//        ->map(function($data){
-//        $data->fund_amount = number_format((float)($data->fund_amount), 3) ;
-//        return $data;
-//    });
-        $userfunds->makeHidden(['emp_id', 'bank_id']);
+        $userfunds = User_fund::select(['id', 'user_id', 'fund_id', 'dataform', 'user_status', 'fund_amount', 'cost', 'created_at'])
+            ->where('user_id', $user)->with('Fund_details')->with('Users')->orderby('created_at', 'DESC')->get()
+            ->map(function ($data) {
+                $full_name = "";
+                foreach (json_decode($data->dataform, true) as $row) {
+                    if ($row['name'] == 'full_name') {
+                        $full_name = $row['value'];
+                    }
+                }
+                $data->full_name = $full_name;
+                return $data;
+            });
+
+
         return msgdata($request, success(), 'get all user funds ', $userfunds);
 
     }
