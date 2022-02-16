@@ -23,7 +23,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
     Route::post("/Register", "AuthController@Register");
     Route::post("/loginasguest", "AuthController@loginasguest");
     Route::post("/resend_otp", "AuthController@resend_otp");
-    
+
     Route::post('forgot/password', 'UsersController@forgot_password_post')->name('forgot.password');
     Route::post('update/forgot_password', 'UsersController@reset_password_forget');
     // setting

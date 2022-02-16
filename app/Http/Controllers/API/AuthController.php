@@ -162,7 +162,7 @@ class AuthController extends Controller
             $final_data['otp_code'] = $otp_code;
             return msgdata("", success(), 'code send successfully again', $final_data);
         } else {
-            return response()->json(['status' => 401, 'msg' => 'you should set valid auth token']);
+            return response()->json(['status' => 401, 'msg' => 'phone number invalid']);
         }
     }
 
