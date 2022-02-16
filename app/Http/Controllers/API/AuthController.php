@@ -159,6 +159,7 @@ class AuthController extends Controller
             Smsmisr::send("كود التفعيل الخاص بك هوا " . $otp_code, $request->phone, null, 2);
             $user->save();
             $final_data['status'] = true;
+            $final_data['otp_code'] = $otp_code;
             return msgdata("", success(), 'code send successfully again', $final_data);
         } else {
             return response()->json(['status' => 401, 'msg' => 'you should set valid auth token']);
