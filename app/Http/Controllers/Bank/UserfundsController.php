@@ -138,7 +138,7 @@ class UserfundsController extends Controller
             'details_en' => 'min:6|max:255',
         ]);
         $user_fund_id = User_fund::findOrfail($id);
-        $data['status'] = 'reject';
+        $data['status'] = 'rejected';
         $data['type'] = 'bank';
         $data['show_in'] = 'web';
         $data['user_fund_id'] = $id;
@@ -151,7 +151,7 @@ class UserfundsController extends Controller
         $data_app['bank_id'] = auth()->user()->id;
         $data_app['type'] = 'bank';
         $data_app['show_in'] = 'app';
-        $data_app['status'] = 'reject';
+        $data_app['status'] = 'rejected';
         $data_app['user_fund_id'] = $id;
         Fhistory::create($data_app);
         $notification = Notification::create([
