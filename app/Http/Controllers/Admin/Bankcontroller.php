@@ -30,7 +30,7 @@ class Bankcontroller extends Controller
         $active_banks = Bank::where('status', 'active')->get();
         return view($this->folderView . 'banks', compact('banks', 'active_banks'));
     }
-    
+
     public function show($id)
     {
         $banks = Bank::where('id', $id)->first();
@@ -55,7 +55,7 @@ class Bankcontroller extends Controller
             [
                 'name_ar' => 'required|max:255',
                 'name_en' => 'required|max:255',
-                'email' => 'required|unique:banks,email|email',
+                'email' => 'required|unique:banks,email,',
                 'phone' => 'required|unique:banks,phone',
                 'image' => 'required',
                 'password' => 'required|min:6|confirmed',
@@ -105,7 +105,7 @@ class Bankcontroller extends Controller
                 [
                     'name_ar' => 'required|max:255,' . $id,
                     'name_en' => 'required|max:255,' . $id,
-                    'email' => 'required|email|unique:users,email,' . $id,
+                    'email' => 'required|email|unique:banks,email,' . $id,
                     'password' => 'required|min:6|confirmed',
                 ]);
         } else {
@@ -113,7 +113,7 @@ class Bankcontroller extends Controller
                 [
                     'name_ar' => 'required|max:255,' . $id,
                     'name_en' => 'required|max:255,' . $id,
-                    'email' => 'required|email|unique:users,email,' . $id,
+                    'email' => 'required|email|unique:banks,email,' . $id,
                 ]);
         }
         if ($request['password'] != null && $request['password_confirmation'] != null) {
@@ -171,7 +171,7 @@ class Bankcontroller extends Controller
                 }
                 Bank::wherein('id', $branch_id)->update([
                     'status' => "unactive",
-                ]);   
+                ]);
                 $bank_log = 'تم الغاء تفعيل بنك ' . $bank->name_ar;
                 store_history(Auth::user()->id, $bank_log);
                 return redirect()->back();
