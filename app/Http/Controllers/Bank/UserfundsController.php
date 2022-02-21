@@ -108,8 +108,8 @@ class UserfundsController extends Controller
             if (auth()->user()->parent_id != null) {
                 User_fund::where('id', $id)->update(['bank_id' => auth()->user()->id]);
                 activity('admin')->log('تم اضافه هذا التمويل للبنك بنجاح');
-                $data_web['note_ar'] = 'تم استلام البنك '.auth()->user()->name_ar.'التمويل';
-                $data_web['note_en'] = 'Bank '.auth()->user()->name_en.' received fund';
+                $data_web['note_ar'] = 'تم استلام البنك '.auth()->user()->name_ar.' التمويل ';
+                $data_web['note_en'] = 'Bank '.auth()->user()->name_en.' received fund ';
                 $data_web['type'] = 'bank';
                 $data_web['bank_id'] = auth()->user()->id;
                 $data_web['show_in'] = 'web';
