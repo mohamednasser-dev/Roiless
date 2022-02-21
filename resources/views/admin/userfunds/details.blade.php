@@ -176,25 +176,73 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        @foreach($requestreview->Files_img as $key => $file)
-            <div class="mySlides">
-                <div class="numbertext">{{$key +1}} / {{count($requestreview->Files_img)}}</div>
-                <img src="{{asset('/uploads/fund_file').'/'.$file->file_name}}" class="img-fluid" style="width:100%">
-            </div>
-        @endforeach
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
-        <a class="next" onclick="plusSlides(1)">❯</a>
-        <div class="row">
-            @foreach($requestreview->Files_img as $key => $file)
-                <div class="column">
-                    <img class="demo cursor" src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
-                         style="width:100%"
-                         onclick="currentSlide({{$key+1}})" alt="The Woods">
+
+    {{--Start fund photos --}}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h5>{{trans('admin.img_preview')}}</h5>
+                    </div>
+
+                <!-- <div id="image-popups" class="row">
+                        @foreach($requestreview->Files_img as $key => $file)
+                    <div class="col-lg-2 col-md-4">
+                        <a href="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
+                                   data-effect="mfp-zoom-in"><img
+                                        src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
+                                        class="img-responsive"/></a>
+                            </div>
+                        @endforeach
+                    </div> -->
+                    @if(count($requestreview->Files_img)>0)
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+
+                            </ol>
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    @foreach($requestreview->Files_img as $key => $file)
+                                        @if ($key == 0)
+                                            @continue
+                                        @endif
+                                        <img class="d-block w-100"
+                                             src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
+                                             alt="First slide">
+                                        @if ($key == 1)
+                                            @break
+                                        @endif
+                                    @endforeach
+                                </div>
+                                @foreach($requestreview->Files_img as $key => $file)
+                                    @if($loop->iteration  <= 1)
+                                        <div class="carousel-item">
+                                            <img class="d-block w-100"
+                                                 src="{{asset('/uploads/fund_file').'/'.$file->file_name}}"
+                                                 alt="Second slide">
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                               data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                               data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    @endif
                 </div>
-            @endforeach
+            </div>
         </div>
     </div>
+    {{--end fund photos --}}
     <div class="row">
         <div class="col-12">
             <div class="card">
