@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth:admin']], function() {
     Route::post('/roles/update{id}', 'Admin\RoleController@update')->name('roles.custom.update');
 });
 
-Route::get('/', 'HomeController@landing')->name('landing');
+Route::get('/', 'Front\HomeController@index')->name('landing');
 
 Route::group(['middleware' => 'guest', 'namespace' => 'Admin\Auth'], function () {
     Route::get('c_panel/login', 'LoginController@login')->name('login');
