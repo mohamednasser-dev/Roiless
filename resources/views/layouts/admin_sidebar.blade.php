@@ -4,10 +4,10 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                    <li>
-                        <a class="waves-effect waves-dark" href="{{route('home')}}" aria-expanded="false"><i
-                                class="mdi mdi-home"></i><span class="hide-menu"></span>{{trans('admin.home_page')}}</a>
-                    </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="{{route('home')}}" aria-expanded="false"><i
+                            class="mdi mdi-home"></i><span class="hide-menu"></span>{{trans('admin.home_page')}}</a>
+                </li>
                 @can('Users')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('users.index')}}" aria-expanded="false"><i
@@ -43,7 +43,8 @@
                     </li>
                 @endcan
                 @can('Client Funds')
-                    <li><a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-cash-multiple"></i><span
+                    <li><a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i
+                                class="mdi mdi-cash-multiple"></i><span
                                 class="hide-menu">{{trans('admin.Required_funds')}}</span></a>
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="{{route('userfunds')}}">{{trans('admin.Required_funds')}}</a></li>
@@ -99,7 +100,7 @@
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('notifications.index')}}"
                            aria-expanded="false"><i class="far fa-envelope"></i>
-                                <span class="hide-menu"></span>{{trans('admin.notification')}}</a>
+                            <span class="hide-menu"></span>{{trans('admin.notification')}}</a>
                     </li>
                 @endcan
                 @can('communication')
@@ -125,7 +126,8 @@
                 @can('investments')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('investmentType')}}" aria-expanded="false"><i
-                                class="mdi mdi-key"></i><span class="hide-menu"></span>{{trans('admin.investments.type')}}
+                                class="mdi mdi-key"></i><span
+                                class="hide-menu"></span>{{trans('admin.investments.type')}}
                         </a>
                     </li>
                 @endcan
@@ -139,10 +141,17 @@
                 @can('investments')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('investments.orders')}}" aria-expanded="false"><i
-                                class="mdi mdi-key"></i><span class="hide-menu"></span>{{trans('admin.investments_orders')}}
+                                class="mdi mdi-key"></i><span
+                                class="hide-menu"></span>{{trans('admin.investments_orders')}}
                         </a>
                     </li>
                 @endcan
+                <li class="nav-small-cap">Banko - بانكو</li>
+                <li>
+                    <a class="waves-effect waves-dark" href="{{url('/admin/sellers')}}" aria-expanded="false"><i
+                            class="mdi mdi-key"></i><span class="hide-menu"></span>{{trans('admin.sellers')}}
+                    </a>
+                </li>
                 @can('Setting')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('Setting.edit')}}" aria-expanded="false"><i
@@ -159,7 +168,7 @@
 <div class="page-wrapper">
 
 
-<!-- ============================================================== -->
+    <!-- ============================================================== -->
     <!-- Container fluid  -->
     <!-- ============================================================== -->
     <div class="container-fluid">

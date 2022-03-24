@@ -1,6 +1,8 @@
 <?php
 return [
     //new
+
+    'sellers' => 'التجار',
     'services_desc_ar' => 'تفاصيل الخدمة بالعربية',
     'services_desc_en' => 'تفاصيل الخدمة بالانجليزية',
     'basic_investment_image' => 'صوره الاستثمار الاساسية',
@@ -12,8 +14,15 @@ return [
     'view' => 'مشاهده',
     'order_status' => 'حالة الطلب',
     'select all' => 'تحديد الكل',
-    'type_message_here' => 'اكتب الرد هنا',
     'deselect all' => 'الغاء التحديد',
+
+
+
+
+
+
+
+    'type_message_here' => 'اكتب الرد هنا',
     'show_question' => 'عرض السؤال',
     'sure' => 'هل تريد تحويل كافة طلبات هذا البنك الي بنك اخر؟',
     'trans_bank' => 'اختر البنك',
