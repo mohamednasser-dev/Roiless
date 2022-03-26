@@ -2,6 +2,9 @@
 return [
     //new
 
+    'add_new_seller' => 'اضافه تاجر جديد',
+    'seller_info' => 'بيانات التاجر',
+    'seller_image' => 'صورة التاجر',
     'sellers' => 'التجار',
     'services_desc_ar' => 'تفاصيل الخدمة بالعربية',
     'services_desc_en' => 'تفاصيل الخدمة بالانجليزية',

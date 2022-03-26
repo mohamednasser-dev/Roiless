@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SellerRequest;
 use App\Models\Seller;
 use Illuminate\Http\Request;
 use App\Models\Slider;
@@ -34,35 +35,31 @@ class SellerController extends Controller
      */
     public function create()
     {
-        return view ('admin.sliders.add' );
-
+        return view('admin.sellers.add');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SellerRequest $request)
     {
-        if($request->file('image') == Null) {
-            // Alert::warning('خطأ', 'اعد المحاوله مره اخري');
-            return redirect()->route('sliders')->with(['error' => 'Error']);
+        $data = $request->validated();
+        if ($request->image) {
+            if ($request->hasFile('image')) {
+                $data['image'] = $this->saveImage($request->file('image'), 'uploads/sellers');
+            }
         }
-        $file_name = $this->saveImage($request->file('image'),'uploads/slider' );
-        $Slider = Slider::create([
-            'image' => $file_name,
-        ]);
-        activity('admin')->log('تم اضافه الاعلان بنجاح');
-        // Alert::success('تمت العمليه', 'تم اضافه الاعلان بنجاح');
-        return redirect()->route('sliders')->with('success',trans('تم اضافه الاعلان بنجاح'));;
+        Seller::create($data);
+        return redirect()->route('admin.sellers')->with('success', 'تم الاضافه بنجاح');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -73,52 +70,50 @@ class SellerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-       $Slider=Slider::findOrFail($id);
-
-       return view ('admin.sliders.edit',compact('Slider') );
+        $data = Seller::findOrFail($id);
+        return view('admin.sellers.edit', compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SellerRequest $request, $id)
     {
-        $Slider = Slider::findOrFail($id);
-        $file_name = Str::after($Slider->image, 'slider/');
-        $image = $request->file('image');
-        if ($image != null) {
-            $file_name = $this->MoveImage($image, 'uploads/slider');
+        $data = $request->validated();
+        if ($request->image) {
+            if ($request->hasFile('image')) {
+                $data['image'] = $this->saveImage($request->file('image'), 'uploads/sellers');
+            }
         }
-        $Slider->update([
-            'image' => $file_name,
-        ]);
-        activity('admin')->log('تم تحديث الاعلان بنجاح');
-        // Alert::success('تمت العمليه', 'تم تعديل الاعلان بنجاح');
-        return redirect()->route('sliders')->with('success',trans('تم تعديل الاعلان بنجاح'));;
+        if ($request->password == null) {
+            unset($data['password']);
+        }
+        Seller::where('id', $id)->update($data);
+        return redirect()->route('admin.sellers')->with('success', 'تم التعديل بنجاح');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $Slider=Slider::findOrFail($id);
+        $Slider = Slider::findOrFail($id);
         $Slider->delete();
         activity('admin')->log('تم حذف الاعلان بنجاح');
         // Alert::success('تمت العمليه', 'تم حذف الاعلان بنجاح');
-         return redirect()->route('sliders')->with('success',trans('تم حذف الاعلان بنجاح'));;
+        return redirect()->route('sliders')->with('success', trans('تم حذف الاعلان بنجاح'));;
 
     }
 }

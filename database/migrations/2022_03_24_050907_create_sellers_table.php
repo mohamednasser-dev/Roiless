@@ -17,7 +17,7 @@ class CreateSellersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone')->index();
-            $table->string('image')->nullable();
+            $table->string('image')->default('default-seller.jpg');
             $table->string('email')->unique();
             $table->enum('status', ['pending','accepted','rejected'])->default('accepted');
             $table->enum('active', ['0', '1'])->default('1');

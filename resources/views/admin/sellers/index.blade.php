@@ -20,8 +20,8 @@
     </div>
     <!-- /.card-header -->
     <div class="title">
-        <a href="{{ route('categories.add') }}"
-           class="btn btn-info btn-bg">{{trans('admin.add_new_cat')}}</a>
+        <a href="{{ route('admin.sellers.create') }}"
+           class="btn btn-info btn-bg">{{trans('admin.add_new_seller')}}</a>
     </div>
     <br>
     <div class="card">
@@ -30,11 +30,11 @@
                 <table id="myTable" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>{{trans('admin.image')}}</th>
-                        <th>{{trans('admin.name')}}</th>
-                        <th>{{trans('admin.email')}}</th>
-                        <th>{{trans('admin.phone')}}</th>
-                        <th>{{trans('admin.actions')}}</th>
+                        <th class="text-lg-center " >{{trans('admin.image')}}</th>
+                        <th class="text-lg-center " >{{trans('admin.name')}}</th>
+                        <th class="text-lg-center " >{{trans('admin.email')}}</th>
+                        <th class="text-lg-center " >{{trans('admin.phone')}}</th>
+                        <th class="text-lg-center " >{{trans('admin.actions')}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -42,7 +42,7 @@
                         <tr>
                             <td class="text-lg-center ">
                                 <div class="pro-img">
-                                    <img style="height: 40px;width: 40px; border-radius: 50%" src="{{$row->image}}">
+                                    <img style="height: 40px;width: 40px; border-radius: 50%" src="{{$row->image_path}}">
                                 </div>
                             </td>
                             <td class="text-lg-center">{{ $row->name }}</td>
@@ -50,10 +50,10 @@
                             <td class="text-lg-center">{{ $row->phone }}</td>
                             <td class="text-lg-center ">
                                 <a class='btn btn-info btn-circle' title="تعديل"
-                                   href="{{ route('categories.edit', $row->id )}}"><i class="fa fa-edit"></i></a>
+                                   href="{{ route('admin.sellers.edit', $row->id )}}"><i class="fa fa-edit"></i></a>
                                 <a class='btn btn-danger btn-circle' title="حذف"
                                    onclick="return confirm('هل انت متكد من حذف الخدمه')"
-                                   href="{{ route('categories.delete' ,$row->id) }}"><i class="fa fa-trash"></i></a>
+                                   href="{{ route('admin.sellers.delete' ,$row->id) }}"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

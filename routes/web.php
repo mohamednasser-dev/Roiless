@@ -216,7 +216,11 @@ Route::group(['middleware' => ['auth:admin']], function () {
         //sellers
         Route::group(['prefix' => 'admin/sellers'], function () {
             Route::get('/', 'SellerController@index')->name('admin.sellers');
-            Route::get('create', 'SellerController@view')->name('admin.sellers.create');
+            Route::get('/create', 'SellerController@create')->name('admin.sellers.create');
+            Route::post('/store', 'SellerController@store')->name('admin.sellers.store');
+            Route::get('/edit/{id}', 'SellerController@edit')->name('admin.sellers.edit');
+            Route::post('/update/{id}', 'SellerController@update')->name('admin.sellers.update');
+            Route::get('/delete/{id}', 'SellerController@destroy')->name('admin.sellers.delete');
         });
     });
 

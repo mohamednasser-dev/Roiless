@@ -146,7 +146,7 @@
                         </a>
                     </li>
                 @endcan
-                <li class="nav-small-cap">Banko - بانكو</li>
+                <li style="text-align: center;" class="nav-small-cap">Banko - بانكو</li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{url('/admin/sellers')}}" aria-expanded="false"><i
                             class="mdi mdi-key"></i><span class="hide-menu"></span>{{trans('admin.sellers')}}
@@ -166,8 +166,6 @@
     <!-- End Sidebar scroll-->
 </aside>
 <div class="page-wrapper">
-
-
     <!-- ============================================================== -->
     <!-- Container fluid  -->
     <!-- ============================================================== -->
