@@ -1,7 +1,7 @@
 @php($title='الصفحه الرئيسيه')
 @extends('seller.layouts.app')
 @section('title')
-    MyKom
+    الصفحة الرئيسية للتاجر
 @endsection
 @section('breadcrumb')
     <div class="d-flex align-items-baseline flex-wrap mr-5">
@@ -16,10 +16,14 @@
                 <div class="card-body">
                     <span class="svg-icon svg-icon-success svg-icon-3x">
                         <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Home\Globe.svg-->
-                        <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Food\Bottle1.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Food\Bottle1.svg--><svg
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                 <rect x="0" y="0" width="24" height="24"/>
-                                <path d="M6.2,9.73333333 L8.7,6.4 C8.88885438,6.14819416 9.1852427,6 9.5,6 L14.5,6 C14.8147573,6 15.1111456,6.14819416 15.3,6.4 L17.8,9.73333333 C17.9298221,9.9064295 18,10.1169631 18,10.3333333 L18,21 C18,22.1045695 17.1045695,23 16,23 L8,23 C6.8954305,23 6,22.1045695 6,21 L6,10.3333333 C6,10.1169631 6.07017787,9.9064295 6.2,9.73333333 Z M9,12 C8.44771525,12 8,12.4477153 8,13 L8,20 C8,20.5522847 8.44771525,21 9,21 L10,21 C10.5522847,21 11,20.5522847 11,20 L11,13 C11,12.4477153 10.5522847,12 10,12 L9,12 Z" fill="#000000"/>
+                                <path
+                                    d="M6.2,9.73333333 L8.7,6.4 C8.88885438,6.14819416 9.1852427,6 9.5,6 L14.5,6 C14.8147573,6 15.1111456,6.14819416 15.3,6.4 L17.8,9.73333333 C17.9298221,9.9064295 18,10.1169631 18,10.3333333 L18,21 C18,22.1045695 17.1045695,23 16,23 L8,23 C6.8954305,23 6,22.1045695 6,21 L6,10.3333333 C6,10.1169631 6.07017787,9.9064295 6.2,9.73333333 Z M9,12 C8.44771525,12 8,12.4477153 8,13 L8,20 C8,20.5522847 8.44771525,21 9,21 L10,21 C10.5522847,21 11,20.5522847 11,20 L11,13 C11,12.4477153 10.5522847,12 10,12 L9,12 Z"
+                                    fill="#000000"/>
                                 <rect fill="#000000" opacity="0.3" x="9" y="1" width="6" height="3" rx="1"/>
                             </g>
                         </svg>
@@ -28,22 +32,38 @@
                         <!--end::Svg Icon-->
                     </span>
                     <div class="text-dark font-weight-bolder font-size-h2 mt-3">7</div>
-                    <a class="text-muted font-weight-bold font-size-lg mt-1">عدد المنتجات</a>
+                    <a class="text-muted font-weight-bold font-size-lg mt-1">اجمالي المنتجات</a>
+                    {{--                    ---}}
+                    {{--                    <a href="{{url('/products/create')}}" class="text-muted font-weight-bold font-size-lg mt-1">(اضافة جديد)</a>--}}
+
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card card-custom gutter-b" style="height: 150px">
                 <div class="card-body">
-                    <span class="svg-icon svg-icon-success svg-icon-3x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Design\Color.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <rect x="0" y="0" width="24" height="24"/>
-                            <path d="M12,21 C15.8659932,21 19,17.8659932 19,14 C19,11.4226712 16.6666667,8.08933783 12,4 C7.33333333,8.08933783 5,11.4226712 5,14 C5,17.8659932 8.13400675,21 12,21 Z" fill="#000000"/>
-                        </g>
-                    </svg><!--end::Svg Icon-->
+                    <span class="svg-icon svg-icon-success svg-icon-3x">
+                        <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Home\Globe.svg-->
+                        <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Food\Bottle1.svg--><svg
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <rect x="0" y="0" width="24" height="24"/>
+                                <path
+                                    d="M6.2,9.73333333 L8.7,6.4 C8.88885438,6.14819416 9.1852427,6 9.5,6 L14.5,6 C14.8147573,6 15.1111456,6.14819416 15.3,6.4 L17.8,9.73333333 C17.9298221,9.9064295 18,10.1169631 18,10.3333333 L18,21 C18,22.1045695 17.1045695,23 16,23 L8,23 C6.8954305,23 6,22.1045695 6,21 L6,10.3333333 C6,10.1169631 6.07017787,9.9064295 6.2,9.73333333 Z M9,12 C8.44771525,12 8,12.4477153 8,13 L8,20 C8,20.5522847 8.44771525,21 9,21 L10,21 C10.5522847,21 11,20.5522847 11,20 L11,13 C11,12.4477153 10.5522847,12 10,12 L9,12 Z"
+                                    fill="#000000"/>
+                                <rect fill="#000000" opacity="0.3" x="9" y="1" width="6" height="3" rx="1"/>
+                            </g>
+                        </svg>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <!--end::Svg Icon-->
                     </span>
-                    <div class="text-dark font-weight-bolder font-size-h2 mt-3">8</div>
-                    <a class="text-muted font-weight-bold font-size-lg mt-1">عدد العلامات التجارية</a>
+                    <div class="text-dark font-weight-bolder font-size-h2 mt-3">7</div>
+                    <a class="text-muted font-weight-bold font-size-lg mt-1">اجمالي المنتجات المباعه</a>
+                    {{--                    ---}}
+                    {{--                    <a href="{{url('/products/create')}}" class="text-muted font-weight-bold font-size-lg mt-1">(اضافة جديد)</a>--}}
+
                 </div>
             </div>
         </div>
@@ -68,7 +88,7 @@
                         <!--end::Svg Icon-->
                     </span>
                     <div class="text-dark font-weight-bolder font-size-h2 mt-3">9</div>
-                    <a class="text-muted font-weight-bold font-size-lg mt-1">عدد الطلبات</a>
+                    <a class="text-muted font-weight-bold font-size-lg mt-1">اجمالي المبيعات</a>
                 </div>
             </div>
         </div>
@@ -92,13 +112,13 @@
                         <!--end::Svg Icon-->
                     </span>
                     <div class="text-dark font-weight-bolder font-size-h2 mt-3">25</div>
-                    <a class="text-muted  font-weight-bold font-size-lg mt-1">عدد العملاء</a>
+                    <a class="text-muted  font-weight-bold font-size-lg mt-1">اجمالي الاقساط المتبقيه </a>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-12">
             <!--begin::Advance Table Widget 4-->
             <div class="card card-custom card-stretch gutter-b">
                 <!--begin::Header-->
@@ -151,52 +171,6 @@
                 <!--end::Body-->
             </div>
             <!--end::Advance Table Widget 4-->
-        </div>
-        <div class="col-lg-4">
-            <div class="card card-custom card-stretch gutter-b">
-                <div class="card-header border-0">
-                    <h3 class="card-title font-weight-bolder text-dark">احدث العملاء</h3>
-                    <div class="card-toolbar">
-                        <div class="dropdown dropdown-inline">
-                            <a href="#" class="btn btn-success font-weight-bolder font-size-sm mr-3">كل العملاء</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body pt-2">
-                    <div class="table-responsive">
-                        <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
-                            <tbody>
-{{--                            @if(count($newest_customers) >0)--}}
-{{--                                @foreach($newest_customers as $row)--}}
-{{--                                    <tr>--}}
-{{--                                        <td class="pl-0 py-8">--}}
-{{--                                            <div class="d-flex align-items-center">--}}
-{{--                                                <div class="symbol symbol-50 flex-shrink-0 mr-4">--}}
-{{--                                                    <div class="symbol symbol-40 symbol-sm flex-shrink-0">--}}
-{{--                                                        <img class="" src="{{$row->image}}"--}}
-{{--                                                             alt="photo">--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                                <div>--}}
-{{--                                                    <a href="javascript:void(this)"--}}
-{{--                                                       class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">{{$row->name}}</a>--}}
-{{--                                                    <span--}}
-{{--                                                        class="text-muted font-weight-bold d-block">{{$row->phone}}</span>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </td>--}}
-{{--                                        <td>--}}
-{{--                                        <span--}}
-{{--                                            class="text-dark-75 font-weight-bolder d-block font-size-lg">{{$row->created_at->format('Y-m-d')}}</span>--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
-{{--                                @endforeach--}}
-{{--                            @endif--}}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 @endsection

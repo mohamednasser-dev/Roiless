@@ -12,8 +12,8 @@
         <div class="text-dark order-2 order-md-1">
 
             {{--            <span class="text-muted font-weight-bold mr-2">{{\Carbon\Carbon::now()->year}}</span>--}}
-            <a href="{{settings('copyright')}}" title="{{settings('copyright')}}" target="_blank"
-               class="text-dark-75 text-hover-primary">{{settings('copyright')}}</a>
+{{--            <a href="{{settings('copyright')}}" title="{{settings('copyright')}}" target="_blank"--}}
+{{--               class="text-dark-75 text-hover-primary">{{settings('copyright')}}</a>--}}
         </div>
         <!--end::Copyright-->
         <!--begin::Nav-->
@@ -49,23 +49,19 @@
                 <i class="symbol-badge bg-success"></i>
             </div>
             <div class="d-flex flex-column">
-                <a class="font-weight-bold font-size-h5 text-dark-75 text-hover-success">{{auth()->user()->name}}</a>
+                <a class="font-weight-bold font-size-h5 text-dark-75 text-hover-success">{{auth()->guard('seller')->user()->name}}</a>
                 <div class="navi mt-2">
                     <a class="navi-item">
-
-                        <span class="navi-text text-muted text-hover-success">{{auth()->user()->email}}</span>
+                        <span class="navi-text text-muted text-hover-success">{{auth()->guard('seller')->user()->email}}</span>
                         </span>
                     </a>
-
-
-                            <a href="{{route('logout')}}"
+                            <a href="{{route('seller.logout')}}"
                                class="btn btn-sm btn-light-success font-weight-bolder py-2 px-5">تسجيل
                                 الخروج</a>
                     <br>
-
                     @can('update-admins')
                     <br>
-                            <a href="{{route('admins.edit',auth()->user()->id)}}"
+                            <a href="{{route('admins.edit',auth()->guard('seller')->user()->id)}}"
                                class="btn btn-sm btn-light-info font-weight-bolder py-2 px-5">تعديل الصفحه الشخصيه</a>
                     @endcan
                 </div>
@@ -74,7 +70,6 @@
         <!--end::Header-->
         <!--begin::Separator-->
         <div class="separator separator-dashed mt-8 mb-5"></div>
-
     </div>
     <!--end::Content-->
 </div>

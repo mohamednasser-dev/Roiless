@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Bank\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -13,6 +13,8 @@ class LoginController extends Controller
             return redirect(route('bank.home'));
         }elseif (Auth::guard('web')->check()) {
             return redirect(route('home'));
+        }elseif (Auth::guard('seller')->check()) {
+            return redirect(route('seller.home'));
         }
         return view('bank.auth.login');
     }

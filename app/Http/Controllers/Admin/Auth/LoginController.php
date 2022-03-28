@@ -4,45 +4,51 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+
 class LoginController extends Controller
 {
-    public function login() {
-         if (Auth::guard('bank')->check()) {
+    public function login()
+    {
+        if (Auth::guard('bank')->check()) {
             return redirect(route('bank.home'));
-        }elseif (Auth::guard('admin')->check()) {
+        } elseif (Auth::guard('web')->check()) {
             return redirect(route('home'));
+        } elseif (Auth::guard('seller')->check()) {
+            return redirect(route('seller.home'));
         }
         return view('admin.auth.login');
     }
 
-    public function loginAdmin(Request $request) {
+    public function loginAdmin(Request $request)
+    {
 
-        $remeber= $request->Remember==1? true:false ;
+        $remeber = $request->Remember == 1 ? true : false;
 
-        if(Auth::guard('admin')->attempt( ['email'=>$request->email,'password'=>$request->password ],$remeber) ){
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $remeber)) {
             //Check if active user or not
 
-            if(Auth::guard('admin')->user()->status != 'active'){
+            if (Auth::guard('admin')->user()->status != 'active') {
                 Auth::guard('admin')->logout();
                 session()->flash('danger', trans('admin.not_auth'));
                 return redirect()->route('login');
-            }else{
-              //  activity('admin')->log('Login Successfully');
-/*
-                activity('admin')
-                    ->causedBy(Auth::guard('admin')->user()->id)
-                    ->log('Login Successfully');
-  */
+            } else {
+                //  activity('admin')->log('Login Successfully');
+                /*
+                                activity('admin')
+                                    ->causedBy(Auth::guard('admin')->user()->id)
+                                    ->log('Login Successfully');
+                  */
                 return redirect()->route('home');
             }
-        }else{
-            session()->flash('danger',trans('admin.invaldemailorpassword'));
+        } else {
+            session()->flash('danger', trans('admin.invaldemailorpassword'));
             return redirect(route('login'));
         }
     }
 
-    public function logout(){
+    public function logout()
+    {
         Auth::guard('admin')->logout();
         /*
         activity('admin')->log('Logout Successfully');

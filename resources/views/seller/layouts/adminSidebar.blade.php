@@ -14,11 +14,25 @@
                     <span class="menu-text">الصفحة الرئيسية</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu @if( Request::segment(1)== 'brands' or Request::segment(1)== 'brand_products' ) menu-item-open @endif"
+            <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'products') menu-item-open @endif"
                 aria-haspopup="true" data-menu-toggle="hover">
-                <a href="{{route('brands')}}" class="menu-link menu-toggle">
+                <a href="{{route('seller.products')}}" class="menu-link menu-toggle">
                     <i class="menu-icon flaticon2-drop"></i>
                     <span class="menu-text">المنتجات</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'products') menu-item-open @endif"
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('seller.products')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon2-drop"></i>
+                    <span class="menu-text">الاقساط</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'products') menu-item-open @endif"
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('seller.products')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon2-drop"></i>
+                    <span class="menu-text">الملف الشخصي</span>
                 </a>
             </li>
         </ul>
@@ -48,11 +62,11 @@
                          id="kt_quick_user_toggle">
                         {{--                        <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>--}}
                         <span
-                            class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{auth()->user()->name}}</span>
+                            class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{auth()->guard('seller')->user()->name}}</span>
                         <span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
-											<span class="symbol-label font-size-h5 font-weight-bold">
-                                            </span>
-										</span>
+                            <span class="symbol-label font-size-h5 font-weight-bold">
+                            </span>
+                        </span>
                     </div>
                 </div>
                 <!--end::User-->

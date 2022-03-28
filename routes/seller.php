@@ -7,6 +7,8 @@ Route::group([ 'prefix' => "seller",'namespace' => 'Seller','as'=>'seller'], fun
     Route::get('/', 'HomeController@index')->name('.landing');
     //auth
     Route::get('/login', 'AuthController@index')->name('.login');
-    Route::post('/login', 'AuthController@login')->name('.login.store');
+    Route::get('/logout', 'AuthController@logout')->name('.logout');
+    Route::post('/login/store', 'AuthController@login')->name('.login.store');
     Route::get('/home', 'HomeController@home')->name('.home');
+    Route::get('/products', 'HomeController@products')->name('.products');
 });
