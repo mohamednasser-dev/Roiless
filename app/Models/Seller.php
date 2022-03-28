@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Seller extends Model
+class Seller extends Authenticatable
 {
     protected $guarded = [];
     protected $appends = ['image_path'];

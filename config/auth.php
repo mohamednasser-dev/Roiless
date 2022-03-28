@@ -58,6 +58,11 @@ return [
             'provider' => 'banks',
             'hash' => false,
         ],
+        'seller' => [
+            'driver' => 'session',
+            'provider' => 'sellers',
+            'hash' => false,
+        ],
 
         'user-api' => [
             'driver' => 'jwt',
@@ -97,6 +102,10 @@ return [
         'banks' => [
             'driver' => 'eloquent',
             'model' => App\Models\Bank::class,
+        ],
+        'sellers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Seller::class,
         ],
 
         // 'users' => [

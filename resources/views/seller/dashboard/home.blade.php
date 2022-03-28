@@ -27,7 +27,7 @@
                         </span>
                         <!--end::Svg Icon-->
                     </span>
-                    <div class="text-dark font-weight-bolder font-size-h2 mt-3">{{$data['products']}}</div>
+                    <div class="text-dark font-weight-bolder font-size-h2 mt-3">7</div>
                     <a class="text-muted font-weight-bold font-size-lg mt-1">عدد المنتجات</a>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                         </g>
                     </svg><!--end::Svg Icon-->
                     </span>
-                    <div class="text-dark font-weight-bolder font-size-h2 mt-3">{{$data['brands']}}</div>
+                    <div class="text-dark font-weight-bolder font-size-h2 mt-3">8</div>
                     <a class="text-muted font-weight-bold font-size-lg mt-1">عدد العلامات التجارية</a>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                         </svg>
                         <!--end::Svg Icon-->
                     </span>
-                    <div class="text-dark font-weight-bolder font-size-h2 mt-3">{{$data['orders']}}</div>
+                    <div class="text-dark font-weight-bolder font-size-h2 mt-3">9</div>
                     <a class="text-muted font-weight-bold font-size-lg mt-1">عدد الطلبات</a>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                         </svg>
                         <!--end::Svg Icon-->
                     </span>
-                    <div class="text-dark font-weight-bolder font-size-h2 mt-3">{{$data['customers']}}</div>
+                    <div class="text-dark font-weight-bolder font-size-h2 mt-3">25</div>
                     <a class="text-muted  font-weight-bold font-size-lg mt-1">عدد العملاء</a>
                 </div>
             </div>
@@ -166,32 +166,32 @@
                     <div class="table-responsive">
                         <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
                             <tbody>
-                            @if(count($newest_customers) >0)
-                                @foreach($newest_customers as $row)
-                                    <tr>
-                                        <td class="pl-0 py-8">
-                                            <div class="d-flex align-items-center">
-                                                <div class="symbol symbol-50 flex-shrink-0 mr-4">
-                                                    <div class="symbol symbol-40 symbol-sm flex-shrink-0">
-                                                        <img class="" src="{{$row->image}}"
-                                                             alt="photo">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <a href="javascript:void(this)"
-                                                       class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">{{$row->name}}</a>
-                                                    <span
-                                                        class="text-muted font-weight-bold d-block">{{$row->phone}}</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                        <span
-                                            class="text-dark-75 font-weight-bolder d-block font-size-lg">{{$row->created_at->format('Y-m-d')}}</span>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endif
+{{--                            @if(count($newest_customers) >0)--}}
+{{--                                @foreach($newest_customers as $row)--}}
+{{--                                    <tr>--}}
+{{--                                        <td class="pl-0 py-8">--}}
+{{--                                            <div class="d-flex align-items-center">--}}
+{{--                                                <div class="symbol symbol-50 flex-shrink-0 mr-4">--}}
+{{--                                                    <div class="symbol symbol-40 symbol-sm flex-shrink-0">--}}
+{{--                                                        <img class="" src="{{$row->image}}"--}}
+{{--                                                             alt="photo">--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                                <div>--}}
+{{--                                                    <a href="javascript:void(this)"--}}
+{{--                                                       class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">{{$row->name}}</a>--}}
+{{--                                                    <span--}}
+{{--                                                        class="text-muted font-weight-bold d-block">{{$row->phone}}</span>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </td>--}}
+{{--                                        <td>--}}
+{{--                                        <span--}}
+{{--                                            class="text-dark-75 font-weight-bolder d-block font-size-lg">{{$row->created_at->format('Y-m-d')}}</span>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                @endforeach--}}
+{{--                            @endif--}}
                             </tbody>
                         </table>
                     </div>
