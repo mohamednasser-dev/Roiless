@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->foreign('seller_id')->references('id')->on('sellers')->onDelete('restrict');
             $table->integer('viewed_by')->unsigned()->nullable();
             $table->foreign('viewed_by')->references('id')->on('admins')->onDelete('restrict');
-            $table->integer('cat_id')->unsigned();
+            $table->integer('cat_id')->unsigned()->nullable();
             $table->foreign('cat_id')->references('id')->on('categories')->onDelete('restrict');
             $table->double('price')->default(0);
             $table->string('image');

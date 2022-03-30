@@ -17,21 +17,28 @@
             <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'products') menu-item-open @endif"
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{route('seller.products')}}" class="menu-link menu-toggle">
-                    <i class="menu-icon flaticon2-drop"></i>
+                    <i class="menu-icon flaticon2-shopping-cart"></i>
                     <span class="menu-text">المنتجات</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'products') menu-item-open @endif"
+            <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'installments') menu-item-open @endif"
                 aria-haspopup="true" data-menu-toggle="hover">
-                <a href="{{route('seller.products')}}" class="menu-link menu-toggle">
-                    <i class="menu-icon flaticon2-drop"></i>
+                <a href="{{route('seller.installments')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon2-shopping-cart-1"></i>
+                    <span class="menu-text">الطلبات</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'installments') menu-item-open @endif"
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('seller.installments')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon2-crisp-icons-1"></i>
                     <span class="menu-text">الاقساط</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'products') menu-item-open @endif"
+            <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'profile') menu-item-open @endif"
                 aria-haspopup="true" data-menu-toggle="hover">
-                <a href="{{route('seller.products')}}" class="menu-link menu-toggle">
-                    <i class="menu-icon flaticon2-drop"></i>
+                <a href="{{route('seller.profile')}}" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon-avatar"></i>
                     <span class="menu-text">الملف الشخصي</span>
                 </a>
             </li>

@@ -45,7 +45,7 @@
         <!--begin::Header-->
         <div class="d-flex align-items-center mt-5">
             <div class="symbol symbol-100 mr-5">
-                <div class="symbol-label" style="background-image:url('uploads/users/default.png')"></div>
+                <div class="symbol-label" style="background-image:url('default-user.jpg')"></div>
                 <i class="symbol-badge bg-success"></i>
             </div>
             <div class="d-flex flex-column">
@@ -77,7 +77,7 @@
 <!--begin::Scrolltop-->
 <div id="kt_scrolltop" class="scrolltop">
 			<span class="svg-icon">
-				<!--begin::Svg Icon | path:seller_assets/assets/media/svg/icons/Navigation/Up-2.svg-->
+				<!--begin::Svg Icon | path:{{url('/')}}/seller_assets/assets/media/svg/icons/Navigation/Up-2.svg-->
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                      height="24px" viewBox="0 0 24 24" version="1.1">
 					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -148,20 +148,20 @@
     };</script>
 <!--end::Global Config-->
 <!--begin::Global Theme Bundle(used by all pages)-->
-<script src="seller_assets/assets/plugins/global/plugins.bundle.js"></script>
-<script src="seller_assets/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
-<script src="seller_assets/assets/js/scripts.bundle.js"></script>
+<script src="{{url('/')}}/seller_assets/assets/plugins/global/plugins.bundle.js"></script>
+<script src="{{url('/')}}/seller_assets/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+<script src="{{url('/')}}/seller_assets/assets/js/scripts.bundle.js"></script>
 <!--end::Global Theme Bundle-->
 <!--begin::Page Vendors(used by this page)-->
-<script src="seller_assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+<script src="{{url('/')}}/seller_assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 <script src="https://maps.google.com/maps/api/js?key=AIzaSyBTGnKT7dt597vo9QgeQ7BFhvSRP4eiMSM"></script>
-<script src="seller_assets/assets/plugins/custom/gmaps/gmaps.js"></script>
+<script src="{{url('/')}}/seller_assets/assets/plugins/custom/gmaps/gmaps.js"></script>
 <!--end::Page Vendors-->
 <!--begin::Page Scripts(used by this page)-->
-<script src="seller_assets/assets/js/pages/widgets.js"></script>
+<script src="{{url('/')}}/seller_assets/assets/js/pages/widgets.js"></script>
 <!--begin::Page Scripts(used by this page)-->
-<script src="seller_assets/assets/plugins/custom/uppy/uppy.bundle.js"></script>
-<script src="seller_assets/assets/js/pages/crud/file-upload/uppy.js"></script>
+<script src="{{url('/')}}/seller_assets/assets/plugins/custom/uppy/uppy.bundle.js"></script>
+<script src="{{url('/')}}/seller_assets/assets/js/pages/crud/file-upload/uppy.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
 @yield('script')

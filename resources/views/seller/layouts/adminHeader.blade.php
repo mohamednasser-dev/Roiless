@@ -9,19 +9,19 @@
     <link rel="canonical" href="https://keenthemes.com/metronic" />
 
     <!--begin::Page Vendors Styles(used by this page)-->
-    <link href="seller_assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.rtl.css" rel="stylesheet" type="text/css" />
-    <link href="seller_assets/assets/plugins/custom/uppy/uppy.bundle.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="{{url('/')}}/seller_assets/assets/plugins/custom/fullcalendar/fullcalendar.bundle.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="{{url('/')}}/seller_assets/assets/plugins/custom/uppy/uppy.bundle.rtl.css" rel="stylesheet" type="text/css" />
     <!--end::Page Vendors Styles-->
     <!--begin::Global Theme Styles(used by all pages)-->
-    <link href="seller_assets/assets/plugins/global/plugins.bundle.rtl.css" rel="stylesheet" type="text/css" />
-    <link href="seller_assets/assets/plugins/custom/prismjs/prismjs.bundle.rtl.css" rel="stylesheet" type="text/css" />
-    <link href="seller_assets/assets/css/style.bundle.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="{{url('/')}}/seller_assets/assets/plugins/global/plugins.bundle.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="{{url('/')}}/seller_assets/assets/plugins/custom/prismjs/prismjs.bundle.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="{{url('/')}}/seller_assets/assets/css/style.bundle.rtl.css" rel="stylesheet" type="text/css" />
     <!--end::Global Theme Styles-->
     <!--begin::Layout Themes(used by all pages)-->
-    <link href="seller_assets/assets/css/themes/layout/header/base/light.rtl.css" rel="stylesheet" type="text/css" />
-    <link href="seller_assets/assets/css/themes/layout/header/menu/light.rtl.css" rel="stylesheet" type="text/css" />
-    <link href="seller_assets/assets/css/themes/layout/brand/dark.rtl.css" rel="stylesheet" type="text/css" />
-    <link href="seller_assets/assets/css/themes/layout/aside/dark.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="{{url('/')}}/seller_assets/assets/css/themes/layout/header/base/light.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="{{url('/')}}/seller_assets/assets/css/themes/layout/header/menu/light.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="{{url('/')}}/seller_assets/assets/css/themes/layout/brand/dark.rtl.css" rel="stylesheet" type="text/css" />
+    <link href="{{url('/')}}/seller_assets/assets/css/themes/layout/aside/dark.rtl.css" rel="stylesheet" type="text/css" />
     <!--end::Layout Themes-->
     <!--begin yajra datatable-->
 
@@ -58,7 +58,7 @@
         <!--begin::Topbar Mobile Toggle-->
         <button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
 					<span class="svg-icon svg-icon-xl">
-						<!--begin::Svg Icon | path:seller_assets/assets/media/svg/icons/General/User.svg-->
+						<!--begin::Svg Icon | path:{{url('/')}}/seller_assets/assets/media/svg/icons/General/User.svg-->
 						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 								<polygon points="0 0 24 0 24 24 0 24" />
@@ -89,7 +89,7 @@
                 <!--begin::Toggle-->
                 <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
 							<span class="svg-icon svg-icon svg-icon-xl">
-								<!--begin::Svg Icon | path:seller_assets/assets/media/svg/icons/Navigation/Angle-double-left.svg-->
+								<!--begin::Svg Icon | path:{{url('/')}}/seller_assets/assets/media/svg/icons/Navigation/Angle-double-left.svg-->
 								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 									<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 										<polygon points="0 0 24 0 24 24 0 24" />

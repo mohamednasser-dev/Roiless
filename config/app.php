@@ -178,7 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         BaklySystems\PayMob\PayMobServiceProvider::class,
-
+        Yajra\DataTables\DataTablesServiceProvider::class,
     ],
 
     /*

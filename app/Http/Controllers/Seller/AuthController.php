@@ -37,7 +37,7 @@ class AuthController extends Controller
 //            }
             return redirect()->route('seller.home');
         } else {
-            session()->flash('danger', trans('seller.invaldemailorpassword'));
+            session()->flash('danger', trans('bank.invaldemailorpassword'));
             return redirect(route('seller.login'));
         }
     }
