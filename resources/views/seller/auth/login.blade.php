@@ -52,17 +52,17 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
                 <!--begin::Aside header-->
                 <a href="#" class="text-center mb-10">
-                    <img src="seller_assets/assets/media/logos/logo-letter-1.png" class="max-h-70px" alt="" />
+                    <img src="{{url('/')}}/banko/media/logo/stores/3/Aman_Logo_1_.png" class="max-h-70px" alt="" />
                 </a>
                 <!--end::Aside header-->
                 <!--begin::Aside title-->
-                <h3 class="font-weight-bolder text-center font-size-h4 font-size-h1-lg" style="color: #986923;">Discover Amazing Metronic
-                    <br />with great build tools</h3>
+{{--                <h3 class="font-weight-bolder text-center font-size-h4 font-size-h1-lg" style="color: #986923;">Discover Amazing Metronic--}}
+{{--                    <br />with great build tools</h3>--}}
                 <!--end::Aside title-->
             </div>
             <!--end::Aside Top-->
             <!--begin::Aside Bottom-->
-            <div class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center" style="background-image: url(seller_assets/assets/media/svg/illustrations/login-visual-1.svg)"></div>
+            <div class="aside-img d-flex flex-row-fluid bgi-no-repeat bgi-position-y-bottom bgi-position-x-center" style="background-image: url(/seller_login_image.png)"></div>
             <!--end::Aside Bottom-->
         </div>
         <!--begin::Aside-->
@@ -79,7 +79,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         @include('layouts.messages')
                         <!--begin::Title-->
                         <div class="pb-13 pt-lg-0 pt-5">
-                            <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Welcome to Metronic</h3>
+                            <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">اهلا بك !</h3>
 {{--                            <span class="text-muted font-weight-bold font-size-h4">New Here?--}}
 {{--									<a href="javascript:;" id="kt_login_signup" class="text-primary font-weight-bolder">Create an Account</a></span>--}}
                         </div>
@@ -94,13 +94,13 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="form-group">
                             <div class="d-flex justify-content-between mt-n5">
                                 <label class="font-size-h6 font-weight-bolder text-dark pt-5">كلمة المرور</label>
-                                <a href="javascript:;" class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5" id="kt_login_forgot">Forgot Password ?</a>
+{{--                                <a href="javascript:;" class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5" id="kt_login_forgot">Forgot Password ?</a>--}}
                             </div>
                             <input class="form-control form-control-solid h-auto py-6 px-6 rounded-lg" type="password" required name="password" autocomplete="off" />
                         </div>
                         <!--end::Form group-->
                         <!--begin::Action-->
-                        <div class="pb-lg-0 pb-5">
+                        <div class="pb-lg-0 pb-5" style="text-align: center;">
                             <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">تسجيل الدخول</button>
                         </div>
                         <!--end::Action-->
@@ -164,8 +164,8 @@ License: You must have a valid license purchased only from themeforest(the above
                     <form class="form" novalidate="novalidate" id="kt_login_forgot_form">
                         <!--begin::Title-->
                         <div class="pb-13 pt-lg-0 pt-5">
-                            <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Forgotten Password ?</h3>
-                            <p class="text-muted font-weight-bold font-size-h4">Enter your email to reset your password</p>
+{{--                            <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Forgotten Password ?</h3>--}}
+                            <p class="text-muted font-weight-bold font-size-h4">ادخل كلمة المرور</p>
                         </div>
                         <!--end::Title-->
                         <!--begin::Form group-->
@@ -188,12 +188,9 @@ License: You must have a valid license purchased only from themeforest(the above
             <!--begin::Content footer-->
             <div class="d-flex justify-content-lg-start justify-content-center align-items-end py-7 py-lg-0">
                 <div class="text-dark-50 font-size-lg font-weight-bolder mr-10">
-                    <span class="mr-1">2020©</span>
-                    <a href="http://keenthemes.com/metronic" target="_blank" class="text-dark-75 text-hover-primary">Keenthemes</a>
+                    <span class="mr-1">2022©</span>
+                    <a href="http://keenthemes.com/metronic" target="_blank" class="text-dark-75 text-hover-primary">onclick</a>
                 </div>
-                <a href="#" class="text-primary font-weight-bolder font-size-lg">Terms</a>
-                <a href="#" class="text-primary ml-5 font-weight-bolder font-size-lg">Plans</a>
-                <a href="#" class="text-primary ml-5 font-weight-bolder font-size-lg">Contact Us</a>
             </div>
             <!--end::Content footer-->
         </div>
