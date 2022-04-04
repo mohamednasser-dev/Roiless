@@ -215,12 +215,25 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
         //sellers
         Route::group(['prefix' => 'admin/sellers'], function () {
-            Route::get('/', 'SellerController@index')->name('admin.sellers');
-            Route::get('/create', 'SellerController@create')->name('admin.sellers.create');
-            Route::post('/store', 'SellerController@store')->name('admin.sellers.store');
-            Route::get('/edit/{id}', 'SellerController@edit')->name('admin.sellers.edit');
-            Route::post('/update/{id}', 'SellerController@update')->name('admin.sellers.update');
-            Route::get('/delete/{id}', 'SellerController@destroy')->name('admin.sellers.delete');
+            Route::get('/', 'Banko\SellerController@index')->name('admin.sellers');
+            Route::get('/create', 'Banko\SellerController@create')->name('admin.sellers.create');
+            Route::post('/store', 'Banko\SellerController@store')->name('admin.sellers.store');
+            Route::get('/edit/{id}', 'Banko\SellerController@edit')->name('admin.sellers.edit');
+            Route::post('/update/{id}', 'Banko\SellerController@update')->name('admin.sellers.update');
+            Route::get('/delete/{id}', 'Banko\SellerController@destroy')->name('admin.sellers.delete');
+        });
+
+        //seller Requests to add a product
+        Route::group(['prefix' => 'admin/product/requests'], function () {
+            Route::get('/', 'Banko\ProductRequestController@index')->name('admin.product.requests');
+            Route::get('/show/{id}', 'Banko\ProductRequestController@show')->name('admin.product.requests.show');
+            Route::get('/change_status/{status}/{id}', 'Banko\ProductRequestController@change_status')->name('admin.product_requests.change_status');
+
+            Route::get('/create', 'Banko\ProductRequestController@create')->name('admin.product.requests.create');
+            Route::post('/store', 'Banko\ProductRequestController@store')->name('admin.product.requests.store');
+            Route::get('/edit/{id}', 'Banko\ProductRequestController@edit')->name('admin.product.requests.edit');
+            Route::post('/update/{id}', 'Banko\ProductRequestController@update')->name('admin.product.requests.update');
+            Route::get('/delete/{id}', 'Banko\ProductRequestController@destroy')->name('admin.product.requests.delete');
         });
     });
 

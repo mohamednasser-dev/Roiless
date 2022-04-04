@@ -2,6 +2,8 @@
 return [
 
     //new
+    'product_details' => 'product details',
+    'add_product_requests' => 'Requests to add a product',
     'show_question'=>'show question',
     'type_message_here'=>'Type your message here',
     'Appearance_is_enabled' => 'The employee has been activated',

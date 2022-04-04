@@ -152,6 +152,20 @@
                             class="mdi mdi-key"></i><span class="hide-menu"></span>{{trans('admin.sellers')}}
                     </a>
                 </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="{{url('/admin/product/requests')}}"
+                       aria-expanded="false"><i
+                            class="mdi mdi-key"></i><span class="hide-menu">
+
+                            @php
+                                $product_requests = \App\Models\Product::where('status','pending')->get()->count();
+                            @endphp
+                            @if( $product_requests > 0)
+                                <span class="label label-rouded label-danger pull-right">{{$product_requests}}</span>
+                            @endif
+                        </span>{{trans('admin.add_product_requests')}}
+                    </a>
+                </li>
                 @can('Setting')
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('Setting.edit')}}" aria-expanded="false"><i

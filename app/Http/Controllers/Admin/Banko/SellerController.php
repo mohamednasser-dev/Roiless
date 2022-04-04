@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Banko;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SellerRequest;
@@ -25,7 +25,7 @@ class SellerController extends Controller
     public function index()
     {
         $data = Seller::get();
-        return view('admin.sellers.index', compact('data'));
+        return view('admin.banko.sellers.index', compact('data'));
     }
 
     /**
@@ -35,7 +35,7 @@ class SellerController extends Controller
      */
     public function create()
     {
-        return view('admin.sellers.add');
+        return view('admin.banko.sellers.add');
     }
 
     /**
@@ -77,7 +77,7 @@ class SellerController extends Controller
     public function edit($id)
     {
         $data = Seller::findOrFail($id);
-        return view('admin.sellers.edit', compact('data'));
+        return view('admin.banko.sellers.edit', compact('data'));
     }
 
     /**

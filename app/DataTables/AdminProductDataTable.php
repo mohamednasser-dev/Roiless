@@ -4,13 +4,14 @@ namespace App\DataTables;
 
 use App\Models\Product;
 
+use Carbon\Carbon;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ProductDataTable extends DataTable
+class AdminProductDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -24,9 +25,12 @@ class ProductDataTable extends DataTable
             return datatables()
                 ->eloquent($query)
                 ->editColumn('image', '<img class="img-thumbnail" src="{{$image_path}}" style="height: 75px; width: 75px;">')
-                ->addColumn('status', 'seller.dashboard.products.parts.status')
-                ->addColumn('action', 'seller.dashboard.products.parts.action')
-                ->rawColumns(['action', 'image']);
+                ->editColumn('created_at', function($data){ $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->format('d-m-Y H:i a'); return $formatedDate; })
+                ->addColumn('seller_id',function (Product $product) {
+                    return $product->Seller->name;})
+                ->addColumn('status', 'admin.banko.product_request.parts.status')
+                ->addColumn('action', 'admin.banko.product_request.parts.action')
+                ->rawColumns(['action','status', 'image']);
         }
     }
 
@@ -38,7 +42,7 @@ class ProductDataTable extends DataTable
      */
     public function query(Product $model)
     {
-        return $model->newQuery()->orderBy('created_at','desc');
+        return $model->newQuery()->where('status','pending')->orderBy('created_at','desc');
     }
 
     /**
@@ -72,11 +76,13 @@ class ProductDataTable extends DataTable
     {
         return [
             Column::make('image')->title('الصورة'),
-            Column::make('name')->title('الاسم'),
+            Column::make('seller_id')->name('Seller.name')->title('اسم التاجر'),
+            Column::make('name')->title('اسم المنتج'),
             Column::make('price')->title('السعر'),
             Column::make('quantity')->title('الكمية'),
-            Column::make('status')->title('حالة طلب نشر المنتج'),
-            Column::make('action')->title('الاجرائات'),
+            Column::make('created_at')->title('تاريخ الانشاء'),
+            Column::make('action')->title('تفاصيل المنتج'),
+            Column::make('status')->title('الموافقه على نشر المنتج'),
         ];
     }
 

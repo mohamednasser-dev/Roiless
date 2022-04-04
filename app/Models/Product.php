@@ -26,4 +26,9 @@ class Product extends Model
             return $this->name_en;
         }
     }
+
+    public function Seller()
+    {
+        return $this->belongsTo(Seller::class, 'seller_id', 'id');
+    }
 }

@@ -18,6 +18,8 @@ return [
     'order_status' => 'حالة الطلب',
     'select all' => 'تحديد الكل',
     'deselect all' => 'الغاء التحديد',
+    'add_product_requests' => 'طلبات اضافة منتج',
+    'product_details' => 'تفاصيل المنتج',
 
 
 
