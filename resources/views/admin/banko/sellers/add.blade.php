@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-sm-12">
             {{ Form::open( ['route'  => ['admin.sellers.store'],'method'=>'post' , 'class'=>'form','files'=>true] ) }}
-            @include('admin.sellers.form')
+            @include('admin.banko.sellers.form')
             {{ Form::close() }}
         </div>
     </div>

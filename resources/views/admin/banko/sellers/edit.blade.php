@@ -22,7 +22,7 @@
                     <h4 class="card-title">{{trans('admin.user_info')}}</h4>
                     <hr>
                     {!! Form::model($data, ['route' => ['admin.sellers.update',$data->id] , 'method'=>'post','files'=> true]) !!}
-                    @include('admin.sellers.form')
+                    @include('admin.banko.sellers.form')
                     {{ Form::close() }}
                 </div>
             </div>

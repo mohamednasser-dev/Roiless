@@ -26,7 +26,7 @@ class ProductDataTable extends DataTable
                 ->editColumn('image', '<img class="img-thumbnail" src="{{$image_path}}" style="height: 75px; width: 75px;">')
                 ->addColumn('status', 'seller.dashboard.products.parts.status')
                 ->addColumn('action', 'seller.dashboard.products.parts.action')
-                ->rawColumns(['action', 'image']);
+                ->rawColumns(['action', 'image','status']);
         }
     }
 
