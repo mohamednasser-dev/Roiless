@@ -85,6 +85,35 @@
                     </div>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 class="card-title align-items-start flex-column mb-5">
+                                    <div class="d-flex">
+                                        <div>
+                                            <h4 class="card-title"><span class="lstick"></span>وصف المنتج بالعربية</h4></div>
+                                    </div>
+
+                                </h3>
+                                <div class="table-responsive">
+                                    {{$data->body_ar}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h3 class="card-title align-items-start flex-column mb-5">
+                                    <div class="d-flex">
+                                        <div>
+                                            <h4 class="card-title"><span class="lstick"></span>وصف المنتج بالانجليزية</h4></div>
+                                    </div>
+                                </h3>
+                                <div class="table-responsive">
+                                    {{$data->body_en}}
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
             <!--end::Card-->
         </div>
         <div class="col-md-3 " id="kt_profile_aside">

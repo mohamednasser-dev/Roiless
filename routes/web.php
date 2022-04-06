@@ -223,6 +223,17 @@ Route::group(['middleware' => ['auth:admin']], function () {
             Route::get('/delete/{id}', 'Banko\SellerController@destroy')->name('admin.sellers.delete');
         });
 
+        //products/categories Requests to add a product
+        Route::group(['prefix' => 'admin/sections'], function () {
+            Route::get('/', 'Banko\SectionsController@index')->name('sections');
+            Route::get('/create', 'Banko\SectionsController@create')->name('sections.add');
+            Route::get('/create_custom/{id}', 'Banko\SectionsController@create_custom')->name('sections.add_custom');
+            Route::post('/store', 'Banko\SectionsController@store')->name('sections.store');
+            Route::get('/show/{id}', 'Banko\SectionsController@show')->name('sections.show');
+            Route::get('/edit/{id}', 'Banko\SectionsController@edit')->name('sections.edit');
+            Route::put('/update/{id}', 'Banko\SectionsController@update')->name('sections.update');
+            Route::get('/delete/{id}', 'Banko\SectionsController@destroy')->name('sections.delete');
+        });
         //seller Requests to add a product
         Route::group(['prefix' => 'admin/product/requests'], function () {
             Route::get('/', 'Banko\ProductRequestController@index')->name('admin.product.requests');

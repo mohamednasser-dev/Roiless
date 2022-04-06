@@ -52,7 +52,6 @@ class SellerController extends Controller
                 $data['image'] = $this->saveImage($request->file('image'), 'uploads/sellers');
             }
         }
-        $data['password'] = bcrypt(request('password'));
         Seller::create($data);
         return redirect()->route('admin.sellers')->with('success', 'تم الاضافه بنجاح');
     }
@@ -95,10 +94,8 @@ class SellerController extends Controller
                 $data['image'] = $this->saveImage($request->file('image'), 'uploads/sellers');
             }
         }
-        if ($request->password == null) {
+        if (!$request->password) {
             unset($data['password']);
-        }else{
-            $data['password'] = bcrypt(request('password'));
         }
         Seller::where('id', $id)->update($data);
         return redirect()->route('admin.sellers')->with('success', 'تم التعديل بنجاح');

@@ -153,6 +153,11 @@
                     </a>
                 </li>
                 <li>
+                    <a class="waves-effect waves-dark" href="{{url('/admin/sections')}}" aria-expanded="false"><i
+                            class="mdi mdi-key"></i><span class="hide-menu"></span>اقسام المنتجات
+                    </a>
+                </li>
+                <li>
                     <a class="waves-effect waves-dark" href="{{url('/admin/product/requests')}}"
                        aria-expanded="false"><i
                             class="mdi mdi-key"></i><span class="hide-menu">

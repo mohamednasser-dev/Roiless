@@ -8,6 +8,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Benefit;
 use App\Models\Product;
 use App\Models\ProductBenefit;
+use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -33,7 +34,13 @@ class ProductsController extends Controller
     public function create()
     {
         $benefits = Benefit::all();
-        return view('seller.' . $this->viewPath . '.create', compact('benefits'));
+        $sections = Section::where('parent_id',null)->get();
+        return view('seller.' . $this->viewPath . '.create', compact('benefits','sections'));
+    }
+    public function get_sub_sections($id)
+    {
+        $data = Section::where('parent_id',$id)->get();
+        return view('seller.' . $this->viewPath . '.parts.sub_sections', compact('data'));
     }
 
     public function store(ProductRequest $request)
@@ -51,9 +58,7 @@ class ProductsController extends Controller
         $data['seller_id'] = auth()->guard('seller')->user()->id;
         $product = Product::create($data);
         if ($request->benefits) {
-
             foreach ($request->benefits as $key => $row) {
-
                 $product_benefit_row['benefit_id'] = $key;
                 $product_benefit_row['product_id'] = $product->id;
                 $product_benefit_row['ratio'] = $row;

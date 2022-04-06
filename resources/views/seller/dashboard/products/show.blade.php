@@ -93,7 +93,9 @@
                                                 <!--begin::Symbol-->
                                                 <!--end::Symbol-->
                                                 {{$row->Benefit->name}}</td>
-                                            <td class="text-primary border-top-0 pr-0 py-4 text-right align-middle"> {{$row->ratio}} %</td>
+                                            <td class="text-primary border-top-0 pr-0 py-4 text-right align-middle"> {{$row->ratio}}
+                                                %
+                                            </td>
                                             <td class="text-primary border-top-0 pr-0 py-4 text-right align-middle"></td>
                                             <td class="text-primary border-top-0 pr-0 py-4 text-right align-middle"></td>
                                             <td class="text-primary border-top-0 pr-0 py-4 text-right align-middle"></td>
@@ -101,6 +103,28 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                        <div class="col-md-10">
+                            <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="card-title align-items-start flex-column mb-5">
+                                <span class="card-label font-weight-bolder text-dark mb-1">وصف المنتج بالعربية</span>
+                            </h3>
+                            <div class="table-responsive">
+                                {{$data->body_ar}}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="card-title align-items-start flex-column mb-5">
+                                <span class="card-label font-weight-bolder text-dark mb-1">وصف المنتج بالانجليزية</span>
+                            </h3>
+                            <div class="table-responsive">
+                                {{$data->body_en}}
+                            </div>
+                        </div>
                             </div>
                         </div>
                     </div>
@@ -139,69 +163,69 @@
             </div>
             <!--end::List Widget 17-->
             <!--begin::List Widget 21-->
-{{--            <div class="card card-custom gutter-b">--}}
-{{--                <!--begin::Header-->--}}
-{{--                <div class="card-header border-0 pt-5">--}}
-{{--                    <h3 class="card-title align-items-start flex-column mb-5">--}}
-{{--                        <span class="card-label font-weight-bolder text-dark mb-1">صور اضافية للمنتج</span>--}}
-{{--                    </h3>--}}
-{{--                </div>--}}
-{{--                <!--end::Header-->--}}
-{{--                <!--begin::Body-->--}}
-{{--                <div class="card-body pt-2">--}}
-{{--                    <!--begin::Item-->--}}
-{{--                    <div class="d-flex mb-8">--}}
-{{--                        <!--begin::Symbol-->--}}
-{{--                        <div class="symbol symbol-150 symbol-2by3 flex-shrink-0 mr-4">--}}
-{{--                            <div class="d-flex flex-column">--}}
-{{--                                <div class="symbol-label mb-3" style="background-image: url('{{url('/')}}/default-image.png')"></div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <!--end::Symbol-->--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex mb-8">--}}
-{{--                        <!--begin::Symbol-->--}}
-{{--                        <div class="symbol symbol-150 symbol-2by3 flex-shrink-0 mr-4">--}}
-{{--                            <div class="d-flex flex-column">--}}
-{{--                                <div class="symbol-label mb-3" style="background-image: url('{{url('/')}}/default-image.png')"></div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <!--end::Symbol-->--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex mb-8">--}}
-{{--                        <!--begin::Symbol-->--}}
-{{--                        <div class="symbol symbol-150 symbol-2by3 flex-shrink-0 mr-4">--}}
-{{--                            <div class="d-flex flex-column">--}}
-{{--                                <div class="symbol-label mb-3" style="background-image: url('{{url('/')}}/default-image.png')"></div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <!--end::Symbol-->--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex mb-8">--}}
-{{--                        <!--begin::Symbol-->--}}
-{{--                        <div class="symbol symbol-150 symbol-2by3 flex-shrink-0 mr-4">--}}
-{{--                            <div class="d-flex flex-column">--}}
-{{--                                <div class="symbol-label mb-3" style="background-image: url('{{url('/')}}/default-image.png')"></div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <!--end::Symbol-->--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex mb-8">--}}
-{{--                        <!--begin::Symbol-->--}}
-{{--                        <div class="symbol symbol-150 symbol-2by3 flex-shrink-0 mr-4">--}}
-{{--                            <div class="d-flex flex-column">--}}
-{{--                                <div class="symbol-label mb-3" style="background-image: url('{{url('/')}}/default-image.png')"></div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <!--end::Symbol-->--}}
-{{--                    </div>--}}
-{{--                    <!--end::Item-->--}}
-{{--                    <!--begin::Item-->--}}
-{{--                    <!--end::Item-->--}}
-{{--                </div>--}}
-{{--                <!--end::Body-->--}}
-{{--            </div>--}}
-            <!--end::List Widget 21-->
+        {{--            <div class="card card-custom gutter-b">--}}
+        {{--                <!--begin::Header-->--}}
+        {{--                <div class="card-header border-0 pt-5">--}}
+        {{--                    <h3 class="card-title align-items-start flex-column mb-5">--}}
+        {{--                        <span class="card-label font-weight-bolder text-dark mb-1">صور اضافية للمنتج</span>--}}
+        {{--                    </h3>--}}
+        {{--                </div>--}}
+        {{--                <!--end::Header-->--}}
+        {{--                <!--begin::Body-->--}}
+        {{--                <div class="card-body pt-2">--}}
+        {{--                    <!--begin::Item-->--}}
+        {{--                    <div class="d-flex mb-8">--}}
+        {{--                        <!--begin::Symbol-->--}}
+        {{--                        <div class="symbol symbol-150 symbol-2by3 flex-shrink-0 mr-4">--}}
+        {{--                            <div class="d-flex flex-column">--}}
+        {{--                                <div class="symbol-label mb-3" style="background-image: url('{{url('/')}}/default-image.png')"></div>--}}
+        {{--                            </div>--}}
+        {{--                        </div>--}}
+        {{--                        <!--end::Symbol-->--}}
+        {{--                    </div>--}}
+        {{--                    <div class="d-flex mb-8">--}}
+        {{--                        <!--begin::Symbol-->--}}
+        {{--                        <div class="symbol symbol-150 symbol-2by3 flex-shrink-0 mr-4">--}}
+        {{--                            <div class="d-flex flex-column">--}}
+        {{--                                <div class="symbol-label mb-3" style="background-image: url('{{url('/')}}/default-image.png')"></div>--}}
+        {{--                            </div>--}}
+        {{--                        </div>--}}
+        {{--                        <!--end::Symbol-->--}}
+        {{--                    </div>--}}
+        {{--                    <div class="d-flex mb-8">--}}
+        {{--                        <!--begin::Symbol-->--}}
+        {{--                        <div class="symbol symbol-150 symbol-2by3 flex-shrink-0 mr-4">--}}
+        {{--                            <div class="d-flex flex-column">--}}
+        {{--                                <div class="symbol-label mb-3" style="background-image: url('{{url('/')}}/default-image.png')"></div>--}}
+        {{--                            </div>--}}
+        {{--                        </div>--}}
+        {{--                        <!--end::Symbol-->--}}
+        {{--                    </div>--}}
+        {{--                    <div class="d-flex mb-8">--}}
+        {{--                        <!--begin::Symbol-->--}}
+        {{--                        <div class="symbol symbol-150 symbol-2by3 flex-shrink-0 mr-4">--}}
+        {{--                            <div class="d-flex flex-column">--}}
+        {{--                                <div class="symbol-label mb-3" style="background-image: url('{{url('/')}}/default-image.png')"></div>--}}
+        {{--                            </div>--}}
+        {{--                        </div>--}}
+        {{--                        <!--end::Symbol-->--}}
+        {{--                    </div>--}}
+        {{--                    <div class="d-flex mb-8">--}}
+        {{--                        <!--begin::Symbol-->--}}
+        {{--                        <div class="symbol symbol-150 symbol-2by3 flex-shrink-0 mr-4">--}}
+        {{--                            <div class="d-flex flex-column">--}}
+        {{--                                <div class="symbol-label mb-3" style="background-image: url('{{url('/')}}/default-image.png')"></div>--}}
+        {{--                            </div>--}}
+        {{--                        </div>--}}
+        {{--                        <!--end::Symbol-->--}}
+        {{--                    </div>--}}
+        {{--                    <!--end::Item-->--}}
+        {{--                    <!--begin::Item-->--}}
+        {{--                    <!--end::Item-->--}}
+        {{--                </div>--}}
+        {{--                <!--end::Body-->--}}
+        {{--            </div>--}}
+        <!--end::List Widget 21-->
         </div>
         <!--end::Aside-->
         <!--begin::Layout-->

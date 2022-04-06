@@ -39,8 +39,38 @@
         var avatar1 = new KTImageInput('kt_image_1');
     </script>
     <script>
-        $(document).ready(function() {
-            $(document).on('submit', 'form', function() {
+        // tagging support
+        $('#kt_select2_1_modal').select2({
+            placeholder: "اختر القسم الرئيسي",
+            tags: true
+        });
+    </script>
+    <script>
+        // tagging support
+        $('#kt_select2_2_modal').select2({
+            placeholder: "اختر القسم الفرعي",
+            tags: true
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#kt_select2_1_modal').change(function () {
+                var level = $(this).val();
+                $.ajax({
+                    url: "{{url('/')}}/seller/products/get_sub_sections/" + level,
+                    dataType: 'html',
+                    type: 'get',
+                    success: function (data) {
+                        $('#sub_section_cont').show();
+                        $('#kt_select2_2_modal').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(document).on('submit', 'form', function () {
                 $('button').attr('disabled', 'disabled');
             });
         });

@@ -121,7 +121,7 @@ return [
     'image' => 'الصوره',
     'actions' => 'الاجرائات',
     'add_category' => 'اضافه قسم',
-    'add_category_success' => 'تم اضافه قسم بنجاح',
+    'add_category_success' => 'تم اضافه القسم بنجاح',
     'edit_category_success' => 'تم تعديل القسم بنجاح',
     'categories_edit' => 'تعديل القسم',
 

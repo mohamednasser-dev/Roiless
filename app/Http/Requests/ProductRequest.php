@@ -28,6 +28,8 @@ class ProductRequest extends FormRequest
         return [
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
+            'body_ar' => 'nullable|string',
+            'body_en' => 'nullable|string',
             'price' => 'required|string|max:255',
             'quantity' => 'required|numeric',
             'benefits' => 'nullable|array',
