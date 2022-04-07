@@ -239,6 +239,8 @@ Route::group(['middleware' => ['auth:admin']], function () {
             Route::get('/', 'Banko\ProductRequestController@index')->name('admin.product.requests');
             Route::get('/show/{id}', 'Banko\ProductRequestController@show')->name('admin.product.requests.show');
             Route::get('/change_status/{status}/{id}', 'Banko\ProductRequestController@change_status')->name('admin.product_requests.change_status');
+            Route::post('/change_status/accept', 'Banko\ProductRequestController@accept_product')->name('admin.product_requests.accept');
+            Route::post('/change_status/reject', 'Banko\ProductRequestController@reject_product')->name('admin.product_requests.reject');
 
             Route::get('/create', 'Banko\ProductRequestController@create')->name('admin.product.requests.create');
             Route::post('/store', 'Banko\ProductRequestController@store')->name('admin.product.requests.store');

@@ -25,6 +25,10 @@ class ProductDataTable extends DataTable
                 ->eloquent($query)
                 ->editColumn('image', '<img class="img-thumbnail" src="{{$image_path}}" style="height: 75px; width: 75px;">')
                 ->addColumn('status', 'seller.dashboard.products.parts.status')
+                ->addColumn('section_id',function (Product $product) {
+                    return ($product->Section)?$product->Section->title: '';})
+                ->addColumn('sub_section_id',function (Product $product) {
+                    return ($product->SubSection)?$product->SubSection->title: '';})
                 ->addColumn('action', 'seller.dashboard.products.parts.action')
                 ->rawColumns(['action', 'image','status']);
         }
@@ -73,6 +77,8 @@ class ProductDataTable extends DataTable
         return [
             Column::make('image')->title('الصورة'),
             Column::make('name')->title('الاسم'),
+            Column::make('section_id')->name('Section.title')->title('القسم الرئيسي'),
+            Column::make('sub_section_id')->name('SubSection.title')->title('القسم الفرعي'),
             Column::make('price')->title('السعر'),
             Column::make('quantity')->title('الكمية'),
             Column::make('status')->title('حالة طلب نشر المنتج'),

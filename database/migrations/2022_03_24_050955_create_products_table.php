@@ -29,7 +29,7 @@ class CreateProductsTable extends Migration
             $table->string('image');
             $table->integer('quantity')->default(1);
             $table->enum('status', ['pending','accepted','rejected'])->default('pending');
-            $table->enum('type', ['with_installment','without_installment'])->default('with_installment');
+            $table->enum('type', ['direct_installment','not_direct_installment'])->default('direct_installment');
             $table->timestamps();
         });
     }

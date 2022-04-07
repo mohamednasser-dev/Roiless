@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateProductsTable extends Migration
+class UpdateProductAcceptTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,9 @@ class UpdateProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->bigInteger('section_id')->unsigned()->nullable()->after('name_en');
-            $table->foreign('section_id')->references('id')->on('sections')->onDelete('restrict');
-            $table->bigInteger('sub_section_id')->unsigned()->nullable()->after('name_en');
-            $table->foreign('sub_section_id')->references('id')->on('sections')->onDelete('restrict');
+            $table->integer('category_id')->unsigned()->nullable()->after('status');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('restrict');
+            $table->text('reject_reason')->nullable()->after('status');
         });
     }
 

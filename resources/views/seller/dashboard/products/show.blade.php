@@ -61,73 +61,111 @@
                                     <span class="font-weight-bolder mb-2">كمية المنتج</span>
                                     <span class="opacity-70">{{$data->quantity}}</span>
                                 </div>
+                                @if($data->Section)
+                                    <div class="d-flex flex-column flex-root">
+                                        <span class="font-weight-bolder mb-2">القسم الرئيسي</span>
+                                        <span class="opacity-70">{{$data->Section->title}}</span>
+                                    </div>
+                                @endif
+                                @if($data->SubSection)
+                                    <div class="d-flex flex-column flex-root">
+                                        <span class="font-weight-bolder mb-2">القسم الفرعي</span>
+                                        <span class="opacity-70">{{$data->SubSection->title}}</span>
+                                    </div>
+                                @endif
+
                                 <div class="d-flex flex-column flex-root">
-                                    <span class="font-weight-bolder mb-2"></span>
-                                    <span class="opacity-70"></span>
+                                    <span class="font-weight-bolder mb-2">نوع التقسيط</span>
+                                    <span class="opacity-70">@if($data->type == 'direct_installment')   تقسيط مباشر@else
+                                            تقسيط غير مباشر @endif </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- end: Invoice header-->
                     <!-- begin: Invoice body-->
-                    <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
-                        <div class="col-md-10">
-                            <h3 class="card-title align-items-start flex-column mb-5">
-                                <span class="card-label font-weight-bolder text-dark mb-1">فوائد التقسيط</span>
-                            </h3>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th class="pl-0 font-weight-bold text-muted text-uppercase"></th>
-                                        <th class="text-right font-weight-bold text-muted text-uppercase"></th>
-                                        <th class="text-right font-weight-bold text-muted text-uppercase"></th>
-                                        <th class="text-right font-weight-bold text-muted text-uppercase"></th>
-                                        <th class="text-right font-weight-bold text-muted text-uppercase"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($benefits as $row)
-                                        <tr class="font-weight-boldest">
-                                            <td class="border-0 pl-0 pt-7 d-flex align-items-center">
-                                                <!--begin::Symbol-->
-                                                <!--end::Symbol-->
-                                                {{$row->Benefit->name}}</td>
-                                            <td class="text-primary border-top-0 pr-0 py-4 text-right align-middle"> {{$row->ratio}}
-                                                %
-                                            </td>
-                                            <td class="text-primary border-top-0 pr-0 py-4 text-right align-middle"></td>
-                                            <td class="text-primary border-top-0 pr-0 py-4 text-right align-middle"></td>
-                                            <td class="text-primary border-top-0 pr-0 py-4 text-right align-middle"></td>
+                    @if(count($benefits) > 0)
+                        <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                            <div class="col-md-10">
+                                <h3 class="card-title align-items-start flex-column mb-5">
+                                    <span class="card-label font-weight-bolder text-dark mb-1">فوائد التقسيط</span>
+                                </h3>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th class="pl-0 font-weight-bold text-muted text-uppercase"></th>
+                                            <th class="text-right font-weight-bold text-muted text-uppercase"></th>
+                                            <th class="text-right font-weight-bold text-muted text-uppercase"></th>
+                                            <th class="text-right font-weight-bold text-muted text-uppercase"></th>
+                                            <th class="text-right font-weight-bold text-muted text-uppercase"></th>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($benefits as $row)
+                                            <tr class="font-weight-boldest">
+                                                <td class="border-0 pl-0 pt-7 d-flex align-items-center">
+                                                    <!--begin::Symbol-->
+                                                    <!--end::Symbol-->
+                                                    {{$row->Benefit->name}}</td>
+                                                <td class="text-primary border-top-0 pr-0 py-4 text-right align-middle"> {{$row->ratio}}
+                                                    %
+                                                </td>
+                                                <td class="text-primary border-top-0 pr-0 py-4 text-right align-middle"></td>
+                                                <td class="text-primary border-top-0 pr-0 py-4 text-right align-middle"></td>
+                                                <td class="text-primary border-top-0 pr-0 py-4 text-right align-middle"></td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
                         <div class="col-md-10">
                             <div class="row">
-                        <div class="col-md-6">
-                            <h3 class="card-title align-items-start flex-column mb-5">
-                                <span class="card-label font-weight-bolder text-dark mb-1">وصف المنتج بالعربية</span>
-                            </h3>
-                            <div class="table-responsive">
-                                {{$data->body_ar}}
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <h3 class="card-title align-items-start flex-column mb-5">
-                                <span class="card-label font-weight-bolder text-dark mb-1">وصف المنتج بالانجليزية</span>
-                            </h3>
-                            <div class="table-responsive">
-                                {{$data->body_en}}
-                            </div>
-                        </div>
+                                <div class="col-md-6">
+                                    <h3 class="card-title align-items-start flex-column mb-5">
+                                        <span
+                                            class="card-label font-weight-bolder text-dark mb-1">وصف المنتج بالعربية</span>
+                                    </h3>
+                                    <div class="table-responsive">
+                                        {{$data->body_ar}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h3 class="card-title align-items-start flex-column mb-5">
+                                        <span class="card-label font-weight-bolder text-dark mb-1">وصف المنتج بالانجليزية</span>
+                                    </h3>
+                                    <div class="table-responsive">
+                                        {{$data->body_en}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    @if(count($data->Images) > 0)
+                        <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                            <div class="col-md-10">
+                                <h3 class="card-title align-items-start flex-column mb-5">
+                                    <span class="card-label font-weight-bolder text-dark mb-1">صور المنتج</span>
+                                </h3>
+                                @if($data->Images)
+                                    <div class="row">
+                                        <div class="carousel-item active">
+                                            <div class="col-12">
+                                                @foreach($data->Images as $c)
+                                                    <img class="p-2" style="height: 150px; width: 150px;"
+                                                         src="{{$c->image_path}}">
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
             <!--end::Card-->

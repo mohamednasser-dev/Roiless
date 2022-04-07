@@ -28,6 +28,10 @@ class AdminProductDataTable extends DataTable
                 ->editColumn('created_at', function($data){ $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->format('d-m-Y H:i a'); return $formatedDate; })
                 ->addColumn('seller_id',function (Product $product) {
                     return $product->Seller->name;})
+                ->addColumn('section_id',function (Product $product) {
+                    return ($product->Section)?$product->Section->title: '';})
+                ->addColumn('sub_section_id',function (Product $product) {
+                    return ($product->SubSection)?$product->SubSection->title: '';})
                 ->addColumn('status', 'admin.banko.product_request.parts.status')
                 ->addColumn('action', 'admin.banko.product_request.parts.action')
                 ->rawColumns(['action','status', 'image']);
@@ -77,6 +81,8 @@ class AdminProductDataTable extends DataTable
         return [
             Column::make('image')->title('الصورة'),
             Column::make('seller_id')->name('Seller.name')->title('اسم التاجر'),
+            Column::make('section_id')->name('Section.title')->title('القسم الرئيسي'),
+            Column::make('sub_section_id')->name('SubSection.title')->title('القسم الفرعي'),
             Column::make('name')->title('اسم المنتج'),
             Column::make('price')->title('السعر'),
             Column::make('quantity')->title('الكمية'),

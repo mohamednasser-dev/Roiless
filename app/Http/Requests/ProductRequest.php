@@ -33,6 +33,9 @@ class ProductRequest extends FormRequest
             'price' => 'required|string|max:255',
             'quantity' => 'required|numeric',
             'benefits' => 'nullable|array',
+            'section_id' => 'required|exists:sections,id',
+            'sub_section_id' => 'nullable|exists:sections,id',
+            'type' => 'required|in:direct_installment,not_direct_installment',
             'image' => [
                 'nullable',
                 'mimes:jpeg,jpg,png',

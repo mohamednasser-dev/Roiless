@@ -311,7 +311,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
                             <button type="submit" class="btn btn-primary">اختيار</button>
                         </div>
                     </form>
@@ -354,7 +354,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
                             <button type="submit" class="btn btn-primary">اختيار</button>
                         </div>
                     </form>
@@ -384,7 +384,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
                             <button type="submit" class="btn btn-primary">اختيار</button>
                         </div>
                     </form>
@@ -414,7 +414,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
                             <button type="submit" class="btn btn-primary">اختيار</button>
                         </div>
                     </form>

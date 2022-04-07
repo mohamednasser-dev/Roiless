@@ -42,8 +42,8 @@ class SectionsController extends Controller
 
         $Category = Section::create([
             'title_ar' => $request->title_ar,
-            'parent_id'=> $request->parent_id ,
             'title_en' => $request->title_en,
+            'parent_id'=> $request->parent_id ,
             'image' => $file_name,
         ]);
         activity('admin')->log(trans('admin.add_category'));

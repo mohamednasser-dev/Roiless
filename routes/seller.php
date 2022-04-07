@@ -32,7 +32,9 @@ Route::group(['prefix' => "seller", 'namespace' => 'Seller', 'as' => 'seller'], 
             Route::get('/show/{id}', 'ProductsController@show')->name('.products.show');
             Route::get('/edit/{id}', 'ProductsController@edit')->name('.products.edit');
             Route::post('/update/{id}', 'ProductsController@update')->name('.products.update');
+            Route::post('/upload/images', 'ProductsController@uploadImages')->name('.products.upload_images');
             Route::get('/delete/{id}', 'ProductsController@delete')->name('.products.delete');
+            Route::get('/image_delete/{id}', 'ProductsController@image_delete')->name('.product.image.delete');
         });
         Route::group(['prefix' => 'installments'], function () {
             Route::get('/', 'ProductsController@index')->name('.installments');

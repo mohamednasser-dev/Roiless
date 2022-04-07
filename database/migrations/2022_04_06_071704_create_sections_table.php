@@ -18,7 +18,7 @@ class CreateSectionsTable extends Migration
             $table->string('title_ar');
             $table->string('title_en');
             $table->string('image')->nullable();
-            $table->bigInteger('parent_id'))->unsigned()->nullable();
+            $table->bigInteger('parent_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

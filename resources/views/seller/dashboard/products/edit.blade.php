@@ -32,14 +32,5 @@
     </div>
 @endsection
 @section('script')
-    <script !src="">
-        var avatar1 = new KTImageInput('kt_image_1');
-    </script>
-    <script>
-        $(document).ready(function () {
-            $(document).on('submit', 'form', function () {
-                $('button').attr('disabled', 'disabled');
-            });
-        });
-    </script>
+
 @endsection

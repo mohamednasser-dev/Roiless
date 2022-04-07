@@ -20,12 +20,15 @@ class Authenticate extends Middleware
             return route('login_user');
         }
         */
-//
+
 //        if(\Auth::guard('web')->check()) {
-//            return redirect()->route('admin_login');
+//            return redirect()->route('login');
 //        } else if(\Auth::guard('bank')->check()) {
-//            return redirect()->route('bank_login');
-//        } else
-//            return redirect()->route('admin_login');
+//            return redirect()->route('bank.login');
+//        } else if(\Auth::guard('seller')->check()) {
+//            return redirect()->route('seller.login');
+//        } else{
+//            return redirect()->route('login');
+//        }
     }
 }

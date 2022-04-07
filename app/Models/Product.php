@@ -31,4 +31,18 @@ class Product extends Model
     {
         return $this->belongsTo(Seller::class, 'seller_id', 'id');
     }
+
+    public function Section()
+    {
+        return $this->belongsTo(Section::class, 'section_id', 'id');
+    }
+    public function SubSection()
+    {
+        return $this->belongsTo(Section::class, 'sub_section_id', 'id');
+    }
+
+    public function Images()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id', 'id');
+    }
 }
