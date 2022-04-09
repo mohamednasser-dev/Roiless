@@ -10,7 +10,7 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">انشاء اعلان</li>
-                <li class="breadcrumb-item"><a href="{{route('sliders')}}">{{trans('admin.advertisment')}}</a></li>
+                <li class="breadcrumb-item"><a href="{{route('sliders')}}">صور العرض</a></li>
                 <li class="breadcrumb-item active"><a href="{{('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>

@@ -40,7 +40,8 @@ Route::group(['prefix' => "seller", 'namespace' => 'Seller', 'as' => 'seller'], 
             Route::get('/', 'ProductsController@index')->name('.installments');
         });
         Route::group(['prefix' => 'profile'], function () {
-            Route::get('/', 'ProductsController@index')->name('.profile');
+            Route::get('/', 'HomeController@profile')->name('.profile');
+            Route::post('/update', 'HomeController@update_profile')->name('.profile.update');
         });
     });
 });

@@ -32,9 +32,10 @@ class AdminProductDataTable extends DataTable
                     return ($product->Section)?$product->Section->title: '';})
                 ->addColumn('sub_section_id',function (Product $product) {
                     return ($product->SubSection)?$product->SubSection->title: '';})
+                ->addColumn('stars', 'admin.banko.product_request.parts.stars')
                 ->addColumn('status', 'admin.banko.product_request.parts.status')
                 ->addColumn('action', 'admin.banko.product_request.parts.action')
-                ->rawColumns(['action','status', 'image']);
+                ->rawColumns(['action','status', 'image','stars']);
         }
     }
 
@@ -46,7 +47,8 @@ class AdminProductDataTable extends DataTable
      */
     public function query(Product $model)
     {
-        return $model->newQuery()->where('status','pending')->orderBy('created_at','desc');
+        $key = $this->key;
+        return $model->newQuery()->where('status',$key)->orderBy('created_at','desc');
     }
 
     /**
@@ -87,6 +89,7 @@ class AdminProductDataTable extends DataTable
             Column::make('price')->title('السعر'),
             Column::make('quantity')->title('الكمية'),
             Column::make('created_at')->title('تاريخ الانشاء'),
+            Column::make('stars')->title('الظهور في الرئيسية'),
             Column::make('action')->title('تفاصيل المنتج'),
             Column::make('status')->title('الموافقه على نشر المنتج'),
         ];

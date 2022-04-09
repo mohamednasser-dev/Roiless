@@ -102,7 +102,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::post('/sliders/store', 'Admin\sliderController@store')->name('sliders.store');
     Route::get('/sliders/edit/{id}', 'Admin\sliderController@edit')->name('sliders.edit');
     Route::put('/sliders/update/{id}', 'Admin\sliderController@update')->name('sliders.update');
-    Route::get('/sliders/delete/{id}', 'Admin\sliderController@destroy')->name('slidersbanks.funds.delete');
+    Route::get('/sliders/delete/{id}', 'Admin\sliderController@destroy')->name('sliders.delete');
 
     //categories
     Route::get('/categories', 'Admin\categoriesController@index')->name('categories');
@@ -236,8 +236,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
         });
         //seller Requests to add a product
         Route::group(['prefix' => 'admin/product/requests'], function () {
-            Route::get('/', 'Banko\ProductRequestController@index')->name('admin.product.requests');
+            Route::get('/{status}', 'Banko\ProductRequestController@index')->name('admin.product.requests');
             Route::get('/show/{id}', 'Banko\ProductRequestController@show')->name('admin.product.requests.show');
+            Route::get('/make_star/{id}/{stars}', 'Banko\ProductRequestController@make_star')->name('admin.product.requests.make_star');
             Route::get('/change_status/{status}/{id}', 'Banko\ProductRequestController@change_status')->name('admin.product_requests.change_status');
             Route::post('/change_status/accept', 'Banko\ProductRequestController@accept_product')->name('admin.product_requests.accept');
             Route::post('/change_status/reject', 'Banko\ProductRequestController@reject_product')->name('admin.product_requests.reject');

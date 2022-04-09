@@ -20,9 +20,9 @@ class ProductRequestController extends Controller
 
     use offerTrait;
 
-    public function index(AdminProductDataTable $dataTable)
+    public function index(AdminProductDataTable $dataTable,$status)
     {
-        return $dataTable->render('admin.banko.product_request.index');
+        return $dataTable->with('key',$status)->render('admin.banko.product_request.index');
     }
 
     public function show($id)
@@ -31,6 +31,14 @@ class ProductRequestController extends Controller
         $categories = Category::where('type', 'cat')->get();
         $benefits = ProductBenefit::where('product_id', $id)->get();
         return view('admin.banko.product_request.show', compact('data', 'benefits','categories'));
+    }
+    public function make_star($id,$stars)
+    {
+        $data = Product::findOrFail($id);
+        $data->stars = $stars;
+        $data->save();
+
+        return redirect()->back()->with('success','تم تعديل حالة الظهور في الصفحة الرئيسية بنجاح');
     }
 
     public function change_status($status, $id)

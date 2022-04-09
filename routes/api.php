@@ -18,6 +18,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     //api_token_authentication
 });
 Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
+    //front banko
+    Route::group(['prefix' => 'banko'], function () {
+        Route::get("/home", "Banko\HomeController@home");
+        Route::get("/product/details/{id}", "Banko\ProductController@details");
+        //Order
+        Route::post("/order/create", "Banko\OrderController@make_order");
+        Route::get("/my_orders/{user_id}", "Banko\OrderController@my_orders");
+
+        Route::get("/profile/get/{user_id}", "Banko\ProfileController@get");
+        Route::post("/profile/update/{user_id}", "Banko\ProfileController@update");
+    });
+
+
+
 //user
     Route::post("/login", "AuthController@login");
     Route::post("/Register", "AuthController@Register");

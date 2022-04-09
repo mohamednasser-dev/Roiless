@@ -149,18 +149,23 @@
                 <li style="text-align: center;" class="nav-small-cap">Banko - بانكو</li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{url('/admin/sellers')}}" aria-expanded="false"><i
-                            class="mdi mdi-key"></i><span class="hide-menu"></span>{{trans('admin.sellers')}}
+                            class="mdi mdi-incognito"></i><span class="hide-menu"></span>{{trans('admin.sellers')}}
                     </a>
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{url('/admin/sections')}}" aria-expanded="false"><i
-                            class="mdi mdi-key"></i><span class="hide-menu"></span>اقسام المنتجات
+                            class="mdi mdi-image-filter-none"></i><span class="hide-menu"></span>اقسام المنتجات
                     </a>
                 </li>
                 <li>
-                    <a class="waves-effect waves-dark" href="{{url('/admin/product/requests')}}"
+                    <a class="waves-effect waves-dark" href="{{url('/sliders')}}" aria-expanded="false"><i
+                            class="mdi mdi-image-filter-none"></i><span class="hide-menu"></span>صور العرض
+                    </a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="{{url('/admin/product/requests/pending')}}"
                        aria-expanded="false"><i
-                            class="mdi mdi-key"></i><span class="hide-menu">
+                            class="mdi mdi-bookmark-plus"></i><span class="hide-menu">
 
                             @php
                                 $product_requests = \App\Models\Product::where('status','pending')->get()->count();
@@ -169,6 +174,20 @@
                                 <span class="label label-rouded label-danger pull-right">{{$product_requests}}</span>
                             @endif
                         </span>{{trans('admin.add_product_requests')}}
+                    </a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="{{url('/admin/product/requests/accepted')}}"
+                       aria-expanded="false"><i
+                            class="mdi mdi-bookmark-check"></i><span class="hide-menu">
+                        </span>المنتجات المقبولة
+                    </a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="{{url('/admin/product/requests/rejected')}}"
+                       aria-expanded="false"><i
+                            class="mdi mdi-bookmark-remove"></i><span class="hide-menu">
+                        </span>المنتجات المرفوضة
                     </a>
                 </li>
                 @can('Setting')

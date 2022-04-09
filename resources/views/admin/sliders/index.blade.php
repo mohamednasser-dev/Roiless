@@ -2,11 +2,11 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">الاعلانات</h3>
+            <h3 class="text-themecolor">صور العرض</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">الاعلانات</li>
+                <li class="breadcrumb-item">صور العرض</li>
                 <li class="breadcrumb-item active"><a href="{{route('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
@@ -14,7 +14,7 @@
     <!-- /.card-header -->
     <div class="title">
         <a href="{{ route('sliders.add') }}"
-           class="btn btn-info btn-bg">أضافة اعلان جديد</a>
+           class="btn btn-info btn-bg">أضافة صورة عرض جديد</a>
     </div>
     <br>
     <div class="row">
@@ -29,20 +29,15 @@
             <tbody>
             @foreach($Sliders as $slider)
                 <tr>
-
                     <td class="text-lg-center ">
                         <div class="pro-img m-t-20"><img style="height: 80px;" src="{{ $slider->image}}"></div>
                     </td>
                     <td class="text-lg-center ">
-
-
                         <a class='btn btn-info btn-circle' title="تعديل"
                            href="{{ route('sliders.edit', $slider->id )}}"><i class="fa fa-edit"></i></a>
-
                         <a class='btn btn-danger btn-circle' title="حذف"
                            onclick="return confirm('هل انت متكد من حذف الاعلان')"
                            href="{{ route('sliders.delete' ,$slider->id) }}"><i class="fa fa-trash"></i></a>
-
                     </td>
                 </tr>
             @endforeach

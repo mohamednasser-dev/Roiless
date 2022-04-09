@@ -26,4 +26,16 @@ class Section extends Model
             return $this->title_en;
         }
     }
+
+    public function Child()
+    {
+        return $this->hasMany(Section::class,'parent_id');
+    }
+
+    public function Products()
+    {
+        return $this->hasMany(Product::class,'section_id')->where('status','accepted');
+    }
+
+
 }

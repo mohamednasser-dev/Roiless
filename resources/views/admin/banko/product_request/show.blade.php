@@ -189,6 +189,7 @@
                     <div>
                         <!--begin::Item-->
                         <div class="row">
+                            @if($data->status == 'rejected' || $data->status == 'pindin')
                             <div class="col-md-6">
                                 <a @if($data->type =='direct_installment')
                                    href="{{route('admin.product_requests.change_status',['status'=>'accepted','id'=>$data->id])}}"
@@ -199,6 +200,8 @@
                                     <i class="fa fa-check"> </i>
                                 </a>
                             </div>
+                            @endif
+                            @if($data->status == 'accepted' || $data->status == 'pindin')
                             <div class="col-md-6">
                                 <a  href="javascript:void(0);" data-toggle="modal" data-target="#reject_modal"
                                    class="btn btn-danger">
@@ -206,6 +209,7 @@
                                     <i class="fa fa-close"> </i>
                                 </a>
                             </div>
+                                @endif
                         </div>
                     </div>
                 </div>
