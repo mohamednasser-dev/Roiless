@@ -33,9 +33,9 @@ class AdminProductDataTable extends DataTable
                 ->addColumn('sub_section_id',function (Product $product) {
                     return ($product->SubSection)?$product->SubSection->title: '';})
                 ->addColumn('stars', 'admin.banko.product_request.parts.stars')
-                ->addColumn('status', 'admin.banko.product_request.parts.status')
+//                ->addColumn('status', 'admin.banko.product_request.parts.status')
                 ->addColumn('action', 'admin.banko.product_request.parts.action')
-                ->rawColumns(['action','status', 'image','stars']);
+                ->rawColumns(['action', 'image','stars']);
         }
     }
 
@@ -91,7 +91,7 @@ class AdminProductDataTable extends DataTable
             Column::make('created_at')->title('تاريخ الانشاء'),
             Column::make('stars')->title('الظهور في الرئيسية'),
             Column::make('action')->title('تفاصيل المنتج'),
-            Column::make('status')->title('الموافقه على نشر المنتج'),
+//            Column::make('status')->title('الموافقه على نشر المنتج'),
         ];
     }
 
