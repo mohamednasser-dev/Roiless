@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class Seller extends Authenticatable
 {
     use Notifiable;
+    protected $hidden = ['password','created_at','updated_at'];
     protected $guarded = [];
     protected $appends = ['image_path'];
 
