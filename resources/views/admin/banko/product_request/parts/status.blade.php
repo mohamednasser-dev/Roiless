@@ -1,5 +1,5 @@
 <div class="row">
-    @if($status == 'rejected' || $status == 'pindin')
+    @if($status == 'rejected' || $status == 'pending')
         <div class="col-md-6">
             <a href="{{route('admin.product_requests.change_status',['status'=>'accepted','id'=>$id])}}"
                class="btn btn-success">موافقة
@@ -7,7 +7,7 @@
             </a>
         </div>
     @endif
-    @if($status == 'accepted' || $status == 'pindin')
+    @if($status == 'accepted' || $status == 'pending')
         <div class="col-md-6">
             <a href="{{route('admin.product_requests.change_status',['status'=>'rejected','id'=>$id])}}"
                class="btn btn-danger">

@@ -14,7 +14,7 @@ class UpdateImageInvestment extends Migration
     public function up()
     {
         Schema::table('investments', function (Blueprint $table) {
-            $table->string('image');
+            $table->string('image')->nullable();
         });
     }
 
