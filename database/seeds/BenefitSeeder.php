@@ -122,7 +122,7 @@ class BenefitSeeder extends Seeder
                             $benefit_data['product_id'] = $product->id;
                             $benefit_data['benefit_id'] = $benefit->id;
                             $benefit_data['ratio'] = $benefit->id;
-                            ProductBenefit::updateOrCreate($benefit_data);
+                            ProductBenefit::Create($benefit_data);
                         }
                     }
                 }else{
