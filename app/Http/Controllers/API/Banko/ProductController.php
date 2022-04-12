@@ -13,7 +13,7 @@ class ProductController extends Controller
 
     public function details(Request $request, $id)
     {
-        $data = Product::with(['Seller', 'Section', 'SubSection'])->where('status', 'accepted')->where('stars', 1)->find($id);
+        $data = Product::with(['Seller', 'Section', 'SubSection','Images'])->where('status', 'accepted')->find($id);
         if ($data) {
             return msgdata($request, success(), 'تم عرض البيانات', $data);
         } else {

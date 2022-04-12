@@ -44,7 +44,7 @@ class ProductRequestController extends Controller
     public function change_status($status, $id)
     {
         Product::whereId($id)->update(['status' => $status]);
-        return redirect()->route('admin.product.requests')->with('success', 'تم تعديل حالة المنتج بنجاح');
+        return redirect()->route('admin.product.requests','pending')->with('success', 'تم تعديل حالة المنتج بنجاح');
     }
 
     public function accept_product(Request $request)
@@ -56,7 +56,7 @@ class ProductRequestController extends Controller
             ]);
 
         Product::whereId($request->id)->update(['status' => 'accepted','category_id'=>$request->category_id]);
-        return redirect()->route('admin.product.requests')->with('success', 'تم قبول نشر المنتج بنجاح');
+        return redirect()->route('admin.product.requests','pending')->with('success', 'تم قبول نشر المنتج بنجاح');
     }
     public function reject_product(Request $request)
     {
@@ -66,7 +66,7 @@ class ProductRequestController extends Controller
                 'reject_reason' => 'required|string',
             ]);
         Product::whereId($request->id)->update(['status' => 'rejected','reject_reason'=>$request->reject_reason]);
-        return redirect()->route('admin.product.requests')->with('success', 'تم رفض نشر المنتج وارسال سبب الرفض');
+        return redirect()->route('admin.product.requests','pending')->with('success', 'تم رفض نشر المنتج وارسال سبب الرفض');
     }
 
 }

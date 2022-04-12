@@ -189,19 +189,20 @@
                     <div>
                         <!--begin::Item-->
                         <div class="row">
-                            @if($data->status == 'rejected' || $data->status == 'pindin')
+                            @if($data->status == 'rejected' || $data->status == 'pending')
                             <div class="col-md-6">
-                                <a @if($data->type =='direct_installment')
-                                   href="{{route('admin.product_requests.change_status',['status'=>'accepted','id'=>$data->id])}}"
+                                <a
+                                    @if($data->type =='direct_installment')
+                                        href="{{route('admin.product_requests.change_status',['status'=>'accepted','id'=>$data->id])}}"
                                    @else
-                                   href="javascript:void(0);" data-toggle="modal" data-target="#accept_modal"
+                                        href="javascript:void(0);" data-toggle="modal" data-target="#accept_modal"
                                    @endif
                                    class="btn btn-success">موافقة
                                     <i class="fa fa-check"> </i>
                                 </a>
                             </div>
                             @endif
-                            @if($data->status == 'accepted' || $data->status == 'pindin')
+                            @if($data->status == 'accepted' || $data->status == 'pending')
                             <div class="col-md-6">
                                 <a  href="javascript:void(0);" data-toggle="modal" data-target="#reject_modal"
                                    class="btn btn-danger">

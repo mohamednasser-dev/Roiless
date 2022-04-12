@@ -22,12 +22,6 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
     Route::group(['prefix' => 'banko'], function () {
         Route::get("/home", "Banko\HomeController@home");
         Route::get("/product/details/{id}", "Banko\ProductController@details");
-        //Order
-        Route::post("/order/create", "Banko\OrderController@make_order");
-        Route::get("/my_orders/{user_id}", "Banko\OrderController@my_orders");
-
-        Route::get("/profile/get/{user_id}", "Banko\ProfileController@get");
-        Route::post("/profile/update/{user_id}", "Banko\ProfileController@update");
     });
 
 
@@ -53,6 +47,16 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 
 
     Route::group(['middleware' => ['jwt.verify']], function () {
+
+        Route::group(['prefix' => 'banko'], function () {
+            //Order
+            Route::get("/my_orders", "Banko\OrderController@my_orders");
+            Route::post("/order/create", "Banko\OrderController@make_order");
+            //profile
+            Route::get("/profile/get", "Banko\ProfileController@get");
+            Route::post("/profile/update", "Banko\ProfileController@update");
+        });
+
         Route::post("/logout", "AuthController@logout");
         // home page and services
         Route::get("/home", "HomeController@getall");

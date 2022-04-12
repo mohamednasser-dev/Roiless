@@ -10,17 +10,17 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
-    public function my_orders(Request $request, $user_id)
+    public function my_orders(Request $request)
     {
-        $data = Order::with(['Product'])->where('user_id', $user_id)->get();
+        $user = auth()->user();
+        $data = Order::with(['Product'])->where('user_id', $user->id)->get();
         return msgdata($request, failed(), 'تم عرض البيانات بنجاح', $data);
     }
 
     public function make_order(Request $request)
     {
-//        $user = auth()->user();
+        $user = auth()->user();
         $rules = [
-            'user_id' => 'required|exists:users,id',
             'product_id' => 'required|exists:products,id',
             'installment_type' => 'required|in:direct_installment,not_direct_installment',
             'benefit' => 'nullable',
@@ -32,7 +32,7 @@ class OrderController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
-            $data['user_id'] = $request->user_id;
+            $data['user_id'] = $user->id;
             $data['product_id'] = $request->product_id;
             $data['installment_type'] = $request->installment_type;
             $data['benefit'] = $request->benefit;
