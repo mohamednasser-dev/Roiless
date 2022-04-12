@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'email'  => 'user@user.com',
             'type'  => 'user',
             'status'  => 'active',
+            'verified'  => 1,
             'password'  => bcrypt('123456'),
 
 

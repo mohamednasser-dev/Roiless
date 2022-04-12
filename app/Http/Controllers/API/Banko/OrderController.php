@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\Banko;
 
+use App\Models\OrderInstallment;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class OrderController extends Controller
         $rules = [
             'product_id' => 'required|exists:products,id',
             'installment_type' => 'required|in:direct_installment,not_direct_installment',
-            'benefit' => 'nullable',
+            'benefit_id' => 'nullable|exists:product_benefits,id',
             'monthly_amount' => 'nullable',
             'price' => 'required',
             'total' => 'required',
@@ -40,6 +41,15 @@ class OrderController extends Controller
             $data['price'] = $request->price;
             $data['total'] = $request->total;
             $order = Order::create($data);
+            //generate order installments if direct installment
+//            foreach ($dates as $row){
+//
+//            }
+//            $installment_data['order_id'] = $order->id;
+//            $installment_data['amount'] = $amount;
+//            $installment_data['collection_date'] = $collection_date;
+//            OrderInstallment::create($installment_data);
+            //end generated installments
             return msgdata($request, success(), 'تم اضافة الطلب بنجاح', $order);
         }
     }
