@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Benefit;
 use App\Models\Section;
+use App\Models\Seller;
 
 class BenefitSeeder extends Seeder
 {
@@ -78,5 +79,16 @@ class BenefitSeeder extends Seeder
                 Section::updateOrCreate($row);
             }
         }
+
+
+        Seller::updateOrCreate([
+            'name' => 'admin',
+            'phone' => '012',
+            'image' => 'default-seller.jpg',
+            'email' => 'seller@seller.com',
+            'status' => 'accepted',
+            'active' => '1',
+            'password' => '123456',
+        ]);
     }
 }
