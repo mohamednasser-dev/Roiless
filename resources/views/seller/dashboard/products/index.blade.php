@@ -22,17 +22,20 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-                        <a href="{{route('seller.products.create')}}"
-                           class="btn btn-sm btn-light-success font-weight-bolder mr-2">
-                            <i class="fa fa-plus"></i>اضـافـه</a>
+            <a href="{{route('seller.products.create')}}"
+               class="btn btn-sm btn-light-success font-weight-bolder mr-2">
+                <i class="fa fa-plus"></i>اضـافـه</a>
         </div>
         <div class="card-body">
-            {!! $dataTable->table() !!}
+            <div class="table-responsive">
+                {!! $dataTable->table() !!}
+            </div>
         </div>
     </div>
 
     <!-- Modal-->
-    <div class="modal fade" id="rejectReasonModal" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal fade" id="rejectReasonModal" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop"
+         aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -45,8 +48,9 @@
                     <textarea type="text" class="form-control" id="txt_reason" name="reason" rows="10"></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">الغاء</button>
-{{--                    <button type="button" class="btn btn-primary font-weight-bold">تم</button>--}}
+                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">الغاء
+                    </button>
+                    {{--                    <button type="button" class="btn btn-primary font-weight-bold">تم</button>--}}
                 </div>
             </div>
         </div>

@@ -10,6 +10,11 @@ class Order extends Model
 
     public function Product()
     {
-        return $this->belongsTo(Product::class, 'product_id')->with(['Seller','Section','SubSection']);
+        return $this->belongsTo(Product::class, 'product_id','id')->with(['Seller','Section','SubSection']);
+    }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'user_id','id');
     }
 }

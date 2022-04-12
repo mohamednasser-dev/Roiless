@@ -7,7 +7,7 @@
         <ul class="menu-nav">
             <li class="menu-item @if(request()->segment(1) == 'dashboard') menu-item-active  @endif"
                 aria-haspopup="true">
-                <a href="{{url('/dashboard')}}" class="menu-link">
+                <a href="{{url('/seller/home')}}" class="menu-link">
                     <i class="menu-icon flaticon-home">
                         <span></span>
                     </i>
@@ -23,7 +23,7 @@
             </li>
             <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'installments') menu-item-open @endif"
                 aria-haspopup="true" data-menu-toggle="hover">
-                <a href="{{route('seller.installments')}}" class="menu-link menu-toggle">
+                <a href="{{route('seller.orders')}}" class="menu-link menu-toggle">
                     <i class="menu-icon flaticon2-shopping-cart-1"></i>
                     <span class="menu-text">الطلبات</span>
                 </a>

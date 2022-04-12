@@ -14,27 +14,26 @@ class BenefitSeeder extends Seeder
     {
         $data = [
             [
-                'id' => 1,
+                'id' => 6,
                 'name_ar' => '6 شهور',
                 'name_en' => '6 months',
-                'monthes_count' => '6',
+                'months_count' => '6',
             ], [
-                'id' => 2,
+                'id' => 12,
                 'name_ar' => '12 شهر',
                 'name_en' => '12 months',
-                'monthes_count' => '12',
+                'months_count' => '12',
             ], [
-                'id' => 3,
+                'id' => 18,
                 'name_ar' => '18 شهر',
                 'name_en' => '18 months',
-                'monthes_count' => '18',
+                'months_count' => '18',
             ], [
-                'id' => 4,
+                'id' => 24,
                 'name_ar' => '24 شهر',
                 'name_en' => '24 months',
-                'monthes_count' => '24',
+                'months_count' => '24',
             ],
-
         ];
         foreach ($data as $get) {
             Benefit::updateOrCreate($get);

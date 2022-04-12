@@ -135,35 +135,7 @@
                     <div class="tab-content">
                         <!--begin::Table-->
                         <div class="table-responsive">
-                            <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
-                                <thead>
-                                <tr class="text-left text-uppercase">
-                                    <th style="min-width: 100px" class="pl-7">
-                                        <span class="text-dark-75"> بيانات العميل</span>
-                                    </th>
-                                    <th style="min-width: 100px" class="pl-7">
-                                        <span class="text-dark-75">رقم الطلب</span>
-                                    </th>
-                                    <th style="min-width: 100px" class="pl-7">
-                                        <span class="text-dark-75">قيمة الطلب</span>
-                                    </th>
-                                    <th style="min-width: 130px" class="pl-7">
-                                        <span class="text-dark-75">تاريخ الانشاء</span>
-                                    </th>
-                                    <th style="min-width: 100px" class="pl-7">
-                                        <span class="text-dark-75">حالة الطلب</span>
-                                    </th>
-                                    <th style="min-width: 80px" class="pl-7">
-                                        <span class="text-dark-75"> الاجرائات</span>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {{--                                @foreach($newest_orders as $row)--}}
-                                {{--                                --}}
-                                {{--                                @endforeach--}}
-                                </tbody>
-                            </table>
+                            {!! $dataTable->table() !!}
                         </div>
                         <!--end::Table-->
                     </div>
@@ -173,4 +145,7 @@
             <!--end::Advance Table Widget 4-->
         </div>
     </div>
+@endsection
+@section('script')
+    {!! $dataTable->scripts() !!}
 @endsection

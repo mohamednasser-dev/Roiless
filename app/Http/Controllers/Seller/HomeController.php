@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Seller;
 
+use App\DataTables\OrderDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -16,9 +17,11 @@ class HomeController extends Controller
     {
         return view('seller.index');
     }
-    public function home()
+
+
+    public function home(OrderDataTable $dataTable)
     {
-        return view('seller.dashboard.home');
+        return $dataTable->render('seller.dashboard.home');
     }
 
 

@@ -26,7 +26,7 @@ class CreateProductsTable extends Migration
             $table->integer('cat_id')->unsigned()->nullable();
             $table->foreign('cat_id')->references('id')->on('categories')->onDelete('restrict');
             $table->double('price')->default(0);
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->integer('quantity')->default(1);
             $table->enum('status', ['pending','accepted','rejected'])->default('pending');
             $table->enum('type', ['direct_installment','not_direct_installment'])->default('direct_installment');

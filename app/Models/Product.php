@@ -45,4 +45,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class, 'product_id', 'id');
     }
+
+    public function Benefit()
+    {
+        return $this->hasMany(ProductBenefit::class, 'product_id', 'id')->with('Benefit');
+    }
 }

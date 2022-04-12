@@ -21,7 +21,6 @@ Route::group(['prefix' => "seller", 'namespace' => 'Seller', 'as' => 'seller'], 
     Route::get('/logout', 'AuthController@logout')->name('.logout');
     Route::post('/login/store', 'AuthController@login')->name('.login.store');
 
-
     Route::group(['middleware' => 'auth:seller'], function () {
         Route::get('/home', 'HomeController@home')->name('.home');
         Route::group(['prefix' => 'products'], function () {
@@ -36,12 +35,17 @@ Route::group(['prefix' => "seller", 'namespace' => 'Seller', 'as' => 'seller'], 
             Route::get('/delete/{id}', 'ProductsController@delete')->name('.products.delete');
             Route::get('/image_delete/{id}', 'ProductsController@image_delete')->name('.product.image.delete');
         });
-        Route::group(['prefix' => 'installments'], function () {
-            Route::get('/', 'ProductsController@index')->name('.installments');
+        Route::group(['prefix' => 'installments','as'=>'.installments'], function () {
+            Route::get('/', 'ProductsController@index');
         });
-        Route::group(['prefix' => 'profile'], function () {
-            Route::get('/', 'HomeController@profile')->name('.profile');
-            Route::post('/update', 'HomeController@update_profile')->name('.profile.update');
+        Route::group(['prefix' => 'profile','as'=>'.profile'], function () {
+            Route::get('/', 'HomeController@profile');
+            Route::post('/update', 'HomeController@update_profile')->name('.update');
         });
+        Route::group(['prefix' => 'orders','as'=>'.orders'], function () {
+            Route::get('/', 'OrderController@index');
+            Route::get('/change_status/{status}/{id}', 'OrderController@change_status')->name('.change_status');
+        });
+
     });
 });

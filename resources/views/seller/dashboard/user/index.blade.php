@@ -1,7 +1,7 @@
 @php($title='العملاء')
 @extends('adminLayouts.app')
 @section('title')
-   {{$title}}
+    {{$title}}
 @endsection
 @section('header')
 @endsection
@@ -35,14 +35,18 @@
                     </div>
                     <div class="col-md-6 text-right">
                         @can('create-users')
-                            <a href="{{route('users.create')}}" class="btn btn-sm btn-light-success font-weight-bolder mr-2">
+                            <a href="{{route('users.create')}}"
+                               class="btn btn-sm btn-light-success font-weight-bolder mr-2">
                                 <i class="fa fa-plus"></i>اضـافـه</a>
                         @endcan
                     </div>
                 </div>
             </div>
             <div class="card-body">
-            {!! $dataTable->table() !!}
+                <div class="table-responsive">
+                    {!! $dataTable->table() !!}
+                </div>
+            </div>
         </form>
     </div>
 @endsection
@@ -68,10 +72,11 @@
                 }
             });
         }
+
         function phonelimit(string) {
             var first_string = string.substring(0);
             var int_string = parseInt(first_string);
-            if(int_string == 0){
+            if (int_string == 0) {
                 $("#phone").val('');
                 return false;
             }
@@ -81,6 +86,7 @@
                 alert('عفوا رقم الجوال 10 اراقم فقط');
             }
         }
+
         function removeSpaces(string) {
             return string.split(' ').join('');
         }
