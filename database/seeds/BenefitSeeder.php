@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Benefit;
+use App\Models\Section;
 
 class BenefitSeeder extends Seeder
 {
@@ -12,7 +13,7 @@ class BenefitSeeder extends Seeder
      */
     public function run()
     {
-        $data = [
+        $benefit_data = [
             [
                 'id' => 6,
                 'name_ar' => '6 شهور',
@@ -35,8 +36,47 @@ class BenefitSeeder extends Seeder
                 'months_count' => '24',
             ],
         ];
-        foreach ($data as $get) {
+        foreach ($benefit_data as $get) {
             Benefit::updateOrCreate($get);
+        }
+
+
+
+        //sections
+        $data = [
+            [
+                'title_ar' => 'الاجهزة الكهربية',
+                'title_en' => 'electrical appliances',
+            ],
+            [
+                'title_ar' => 'الاجهزة الالكترونية',
+                'title_en' => 'electronic devices',
+            ],
+            [
+                'title_ar' => 'موضة',
+                'title_en' => 'fashion',
+            ],
+        ];
+        foreach ($data as $get) {
+            Section::updateOrCreate($get);
+        }
+        $sections = Section::where('parent_id', null)->get();
+        foreach ($sections as $section) {
+            $sub_data = [
+                [
+                    'title_ar' => 'القسم الفرعي الاول',
+                    'title_en' => 'First subsection',
+                    'parent_id' => $section->id,
+                ],
+                [
+                    'title_ar' => 'القسم الفرعي الثاني',
+                    'title_en' => 'Second subsection',
+                    'parent_id' => $section->id,
+                ],
+            ];
+            foreach ($sub_data as $row) {
+                Section::updateOrCreate($row);
+            }
         }
     }
 }
