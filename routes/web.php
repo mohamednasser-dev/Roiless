@@ -258,5 +258,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
 });
 
 Route::get('change_lang/{lang}', 'HomeController@change_lang')->name('change_lang');
+if(env('APP_ENV') == 'production'){
+    URL::forceScheme('https');
+}
 
-//URL::forceScheme('https');

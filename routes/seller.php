@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use \Illuminate\Support\Facades\URL;
 
 Route::group(['prefix' => "seller", 'namespace' => 'Seller', 'as' => 'seller'], function () {
     Route::get('/', 'HomeController@index')->name('.landing');
@@ -49,3 +49,6 @@ Route::group(['prefix' => "seller", 'namespace' => 'Seller', 'as' => 'seller'], 
 
     });
 });
+if(env('APP_ENV') == 'production'){
+    URL::forceScheme('https');
+}
