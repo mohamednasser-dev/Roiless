@@ -21,7 +21,7 @@ Route::group(['prefix' => "seller", 'namespace' => 'Seller', 'as' => 'seller'], 
     Route::get('/logout', 'AuthController@logout')->name('.logout');
     Route::post('/login/store', 'AuthController@login')->name('.login.store');
 
-    Route::group(['middleware' => 'auth:seller'], function () {
+    Route::group(['middleware' => ['auth:seller','checkssl']], function () {
         Route::get('/home', 'HomeController@home')->name('.home');
         Route::group(['prefix' => 'products'], function () {
             Route::get('/', 'ProductsController@index')->name('.products');

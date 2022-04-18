@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+use \Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -257,3 +258,5 @@ Route::group(['middleware' => ['auth:admin']], function () {
 });
 
 Route::get('change_lang/{lang}', 'HomeController@change_lang')->name('change_lang');
+
+//URL::forceScheme('https');
