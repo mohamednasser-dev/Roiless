@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use \Illuminate\Support\Facades\URL;
 
+if(env('APP_ENV') == 'production'){
+    URL::forceScheme('https');
+}
+
 Route::group(['prefix' => "seller", 'namespace' => 'Seller', 'as' => 'seller'], function () {
     Route::get('/', 'HomeController@index')->name('.landing');
     //auth
@@ -49,6 +53,4 @@ Route::group(['prefix' => "seller", 'namespace' => 'Seller', 'as' => 'seller'], 
 
     });
 });
-if(env('APP_ENV') == 'production'){
-    URL::forceScheme('https');
-}
+

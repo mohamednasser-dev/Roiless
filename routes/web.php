@@ -17,6 +17,9 @@ use \Illuminate\Support\Facades\URL;
 
 // Auth::routes();
 
+if(env('APP_ENV') == 'production'){
+    URL::forceScheme('https');
+}
 
 // Route::post('/login_user', 'Admin\LoginController@login')->name('login_user');
 Route::get('cache', function () {
@@ -258,7 +261,4 @@ Route::group(['middleware' => ['auth:admin']], function () {
 });
 
 Route::get('change_lang/{lang}', 'HomeController@change_lang')->name('change_lang');
-if(env('APP_ENV') == 'production'){
-    URL::forceScheme('https');
-}
 
