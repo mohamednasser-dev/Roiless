@@ -23,9 +23,12 @@ class ProductsController extends Controller
     private $image_path = 'products';
     protected $paginate = 30;
 
-    public function index(ProductDataTable $dataTable)
+//ProductDataTable $dataTable
+    public function index()
     {
-        return $dataTable->render('seller.' . $this->viewPath . '.index');
+        $data = Product::where('seller_id',auth()->guard('seller')->user()->id)->get();
+        return view('seller.' . $this->viewPath . '.index',compact('data'));
+
     }
 
     use offerTrait;

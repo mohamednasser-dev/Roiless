@@ -25,12 +25,66 @@
                 <div>
                     <h4 class="card-title"><span class="lstick"></span>الطلبات الجديدة</h4></div>
             </div>
-            {!! $dataTable->table() !!}
+{{--            {!! $dataTable->table() !!}--}}
+            <div class="table-responsive m-t-5">
+            <table id="myTable" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th class="text-lg-center">الصورة</th>
+                    <th class="text-lg-center">اسم التاجر</th>
+                    <th class="text-lg-center">اسم المنتج</th>
+                    <th class="text-lg-center">القسم الرئيسي</th>
+                    <th class="text-lg-center">القسم الفرعي</th>
+                    <th class="text-lg-center">السعر</th>
+                    <th class="text-lg-center">الكمية</th>
+                    <th class="text-lg-center">تاريخ الانشاء</th>
+                    <th class="text-lg-center">الظهور في الرئيسية</th>
+                    <th class="text-lg-center">تفاصيل المنتج</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($data as $key => $row)
+                    <tr>
+                        <td class="text-lg-center"><img style="width: 100px;" src="{{$row->image_path}}"></td>
+                        <td class="text-lg-center">{{$row->Seller->name}}</td>
+                        <td class="text-lg-center">{{$row->name}}</td>
+                        <td class="text-lg-center">{{($row->Section)?$row->Section->title: ''}}</td>
+                        <td class="text-lg-center">{{($row->SubSection)?$row->SubSection->title: ''}}</td>
+                        <td class="text-lg-center">{{$row->price}}</td>
+                        <td class="text-lg-center">{{$row->quantity}}</td>
+                        <td class="text-lg-center">{{$row->created_at->format('Y-m-d')}}</td>
+                        <td class="text-lg-center">
+
+
+                            @if($row->stars == 0)
+                                <a href="{{route('admin.product.requests.make_star',['id'=>$row->id,'stars'=>1])}}" title="جعل المنتج يظهر في الصفحة الرئيسية"
+                                   class="btn btn-warning">
+                                    <i class="fas fa-star"></i>
+                                </a>
+                            @else
+                                <a href="{{route('admin.product.requests.make_star',['id'=>$row->id,'stars'=>1])}}" title="حذف المنتج من الظهور في الصفحة الرئيسية"
+                                   class="btn btn-danger">
+                                    <i class="fas fa-star"></i>
+                                </a>
+                            @endif
+
+                        </td>
+                        <td class="text-lg-center">
+                            <a href="{{route('admin.product.requests.show',$row->id)}}" title="{{trans('admin.product_details')}}"
+                               class="btn btn-info">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            </div>
         </div>
     </div>
 @endsection
 @section('scripts')
-    {!! $dataTable->scripts() !!}
+{{--    {!! $dataTable->scripts() !!}--}}
     <script type="text/javascript">
         function update_active(el) {
             if (el.checked) {

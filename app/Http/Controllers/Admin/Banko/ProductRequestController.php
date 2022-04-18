@@ -22,7 +22,10 @@ class ProductRequestController extends Controller
 
     public function index(AdminProductDataTable $dataTable,$status)
     {
-        return $dataTable->with('key',$status)->render('admin.banko.product_request.index');
+//        return $dataTable->with('key',$status)->render('admin.banko.product_request.index');
+
+        $data = Product::where('status',$status)->get();
+        return view('admin.banko.product_request.index',compact('data'));
     }
 
     public function show($id)
