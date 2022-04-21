@@ -35,6 +35,28 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{trans('admin.type')}} </h4>
+                                        <select name="type" class="form-control">
+                                            <option value="product">{{trans('admin.product')}}</option>
+                                            <option value="fund">{{trans('admin.fund')}}</option>
+                                            <option value="investment">{{trans('admin.investment')}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{trans('admin.t_id')}} </h4>
+                                        <input type="text" name="t_ids" placeholder="1" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div style="text-align: center" class="row">
                             <div class="col-md-12" style="text-align:center;">

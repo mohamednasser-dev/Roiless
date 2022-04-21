@@ -42,7 +42,28 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{trans('admin.type')}} </h4>
+                                        <select name="type" class="form-control">
+                                            <option @if($fund->type == "product") selected @endif value="product">{{trans('admin.product')}}</option>
+                                            <option @if($fund->type == "fund") selected @endif value="fund">{{trans('admin.fund')}}</option>
+                                            <option @if($fund->type == "investment") selected @endif value="investment">{{trans('admin.investment')}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{trans('admin.t_id')}} </h4>
+                                        <input type="text" name="t_id" placeholder="1" value="{{$Slider->t_ids}}" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div style="text-align: center" class="row">
                             <div class="col-md-12" style="text-align:center;">
                                 <button type="submit" style=" background-color:#0d3d0b; border:none;" class="btn btn-success">تعديل</button>

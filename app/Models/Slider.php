@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Slider extends Model
 {
     protected $fillable = [
-        'image'
+        'image',
+        'type',
+        't_ids'
     ];
 
     public function getImageAttribute($img)

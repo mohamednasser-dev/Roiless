@@ -53,6 +53,8 @@ class sliderController extends Controller
         $file_name = $this->saveImage($request->file('image'),'uploads/slider' );
         $Slider = Slider::create([
             'image' => $file_name,
+            'type'  => $request->input('type'),
+            't_ids'  => $request->input('t_ids'),
         ]);
         activity('admin')->log('تم اضافه الاعلان بنجاح');
         // Alert::success('تمت العمليه', 'تم اضافه الاعلان بنجاح');
@@ -100,6 +102,8 @@ class sliderController extends Controller
         }
         $Slider->update([
             'image' => $file_name,
+            'type'  => $request->input('type'),
+            't_ids'  => $request->input('t_ids'),
         ]);
         activity('admin')->log('تم تحديث الاعلان بنجاح');
         // Alert::success('تمت العمليه', 'تم تعديل الاعلان بنجاح');

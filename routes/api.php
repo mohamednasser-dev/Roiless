@@ -21,7 +21,12 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
     //front banko
     Route::group(['prefix' => 'banko'], function () {
         Route::get("/home", "Banko\HomeController@home");
+        Route::get("/funds", "Banko\HomeController@funds");
+        Route::get("/slider", "Banko\HomeController@slider");
+        Route::get("/investment", "Banko\HomeController@investment");
         Route::get("/product/details/{id}", "Banko\ProductController@details");
+        Route::get("/funds/details/{id}", "Banko\HomeController@f_details");
+        Route::get("/investment/details/{id}", "Banko\HomeController@i_details");
     });
 
 
