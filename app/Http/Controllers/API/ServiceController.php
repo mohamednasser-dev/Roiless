@@ -12,7 +12,7 @@ class ServiceController extends Controller
 {
     public function getallservices(Request $request)
     {
-        $Services = Services::select(['id','title_ar','title_en', 'image'])->get();
+        $Services = Services::select(['id','title_ar','title_en', 'image'])->with('Services')->get();
         return msgdata($request, success(), 'get services sucess',$Services);
     }
     public function getservicedetailes(Request $request, $id)
