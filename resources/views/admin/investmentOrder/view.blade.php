@@ -74,91 +74,105 @@
         <div class="card col-12 ">
             <div class="card-body  center">
                 @if($data->status == 'pinding')
-                    <a href="{{route('investment.change_status',['status'=>'accepted','id'=>$data->id])}}" class="btn btn-success">
+                    <a href="{{route('investment.change_status',['status'=>'accepted','id'=>$data->id])}}"
+                       class="btn btn-success">
                         {{trans('admin.fund_accept')}}
                     </a>
-                    <a href="{{route('investment.change_status',['status'=>'rejected','id'=>$data->id])}}" class="btn btn-danger">
+                    <a href="{{route('investment.change_status',['status'=>'rejected','id'=>$data->id])}}"
+                       class="btn btn-danger">
                         {{trans('admin.user_transfer')}}
                     </a>
                 @elseif($data->status == 'accepted')
-                    <label class="text-success" >تم المافقه على الطلب</label>
-                    <a href="{{route('investment.change_status',['status'=>'rejected','id'=>$data->id])}}" class="btn btn-danger">
+                    <label class="text-success">تم المافقه على الطلب</label>
+                    <a href="{{route('investment.change_status',['status'=>'rejected','id'=>$data->id])}}"
+                       class="btn btn-danger">
                         {{trans('admin.user_transfer')}}
                     </a>
                 @elseif($data->status == 'rejected')
-                    <a href="{{route('investment.change_status',['status'=>'accepted','id'=>$data->id])}}" class="btn btn-success">
+                    <a href="{{route('investment.change_status',['status'=>'accepted','id'=>$data->id])}}"
+                       class="btn btn-success">
                         {{trans('admin.fund_accept')}}
                     </a>
-                    <label class="text-danger" >تم رفض الطلب</label>
+                    <label class="text-danger">تم رفض الطلب</label>
                 @endif
 
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-title">
-                        <h5>{{trans('admin.invest_images')}}</h5>
-                    </div>
-                <!-- <div id="image-popups" class="row">
+    @if(count($data->Images) > 1)
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h5>{{trans('admin.invest_images')}}</h5>
+                        </div>
+                    <!-- <div id="image-popups" class="row">
                         @foreach($data->Images as $key => $file)
-                    <div class="col-lg-2 col-md-4">
-                        <a href="{{asset('/uploads/Investments').'/'.$file->image}}"
+                        <div class="col-lg-2 col-md-4">
+                            <a href="{{asset('/uploads/Investments').'/'.$file->image}}"
                                    data-effect="mfp-zoom-in"><img
                                         src="{{asset('/uploads/Investments').'/'.$file->image}}"
                                         class="img-responsive"/></a>
                             </div>
                         @endforeach
-                    </div> -->
-                    @if(count($data->Images)>0)
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
+                        </div> -->
+                        @if(count($data->Images)>0)
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
 
-                            </ol>
+                                </ol>
 
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        @foreach($data->Images as $key => $file)
+                                            @if ($key == 0)
+                                                @continue
+                                            @endif
+                                            <img class="d-block w-100"
+                                                 src="{{asset('/uploads/Investments').'/'.$file->image}}"
+                                                 alt="First slide">
+                                            @if ($key == 1)
+                                                @break
+                                            @endif
+                                        @endforeach
+                                    </div>
                                     @foreach($data->Images as $key => $file)
-                                        @if ($key == 0)
-                                            @continue
-                                        @endif
-                                        <img class="d-block w-100"
-                                             src="{{asset('/uploads/Investments').'/'.$file->image}}"
-                                             alt="First slide">
-                                        @if ($key == 1)
-                                            @break
+                                        @if($loop->iteration  <= 1)
+                                            <div class="carousel-item">
+                                                <img class="d-block w-100"
+                                                     src="{{asset('/uploads/Investments').'/'.$file->image}}"
+                                                     alt="Second slide">
+                                            </div>
                                         @endif
                                     @endforeach
                                 </div>
-                                @foreach($data->Images as $key => $file)
-                                    @if($loop->iteration  <= 1)
-                                        <div class="carousel-item">
-                                            <img class="d-block w-100"
-                                                 src="{{asset('/uploads/Investments').'/'.$file->image}}"
-                                                 alt="Second slide">
-                                        </div>
-                                    @endif
-                                @endforeach
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                   data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                   data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                               data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                               data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                    @endif
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    @else
+        <div id="image-popups" class="row">
+            @foreach($data->Images as $file)
+                <div class="col-12">
+                    <img class="center" src="{{asset('/uploads/Investments').'/'.$file->image}}"
+                         style=" height:500px;">
+                </div>
+            @endforeach
+        </div>
+    @endif
 @endsection
 @section('scripts')
     <script src="{{asset('js/custom.min.js')}}"></script>

@@ -30,6 +30,7 @@
                     <tr>
                         <th class="text-center">{{trans('admin.name')}}</th>
                         <th class="text-center">{{trans('admin.amount')}}</th>
+                        <th class="text-center">حالة الطلب</th>
                         <th class="text-center">{{trans('admin.actions')}}</th>
                     </tr>
                     </thead>
@@ -38,6 +39,14 @@
                         <tr>
                             <td class="text-lg-center">{{$row->name}}</td>
                             <td class="text-lg-center">{{$row->amount}}</td>
+                            <td class="text-lg-center">
+                                @if($row->status == 'pinding')
+                                @elseif($row->status == 'accepted')
+                                    <label class="text-success">تم المافقه على الطلب</label>
+                                @elseif($row->status == 'rejected')
+                                    <label class="text-danger">تم رفض الطلب</label>
+                                @endif
+                            </td>
                             <td class="text-lg-center ">
                                 <a class='btn btn-info btn-circle' title="مراجعه"
                                    href="{{route('investments.order.view',$row->id)}}"><i class="fa fa-eye"></i></a>
