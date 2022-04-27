@@ -216,6 +216,8 @@ Route::group(['middleware' => ['auth:admin']], function () {
         // investment order
         Route::get('order/Investment/all', 'InvestmentOrderController@index')->name('investments.orders');
         Route::get('order/Investment/{id}', 'InvestmentOrderController@view')->name('investments.order.view');
+        Route::get('order/Investment/change_status/{status}/{id}', 'InvestmentOrderController@change_status')->name('investment.change_status');
+
 
         //sellers
         Route::group(['prefix' => 'admin/sellers'], function () {

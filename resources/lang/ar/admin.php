@@ -1,7 +1,7 @@
 <?php
 return [
     //new
-
+    'invest_images' => 'صور بيانات العميل',
     'add_new_seller' => 'اضافه تاجر جديد',
     'seller_info' => 'بيانات التاجر',
     'seller_image' => 'صورة التاجر',

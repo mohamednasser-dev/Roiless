@@ -23,10 +23,21 @@ class InvestmentOrderController extends Controller
         $data = $this->objectName::with('Images')->get();
         return view($this->folderView . 'index', compact('data'));
     }
-    public function view($id){
-        $data=$this->objectName::findorfail($id);
+
+    public function view($id)
+    {
+        $data = $this->objectName::findorfail($id);
         $data->with('images')->get();
         return view($this->folderView . 'view', compact('data'));
+
+    }
+
+    public function change_status($status, $id)
+    {
+        $data = $this->objectName::findorfail($id);
+        $data->status = $status;
+        $data->save();
+        return redirect()->back()->with('success', 'تم تغيير الحالة بنجاح');
 
     }
 }
