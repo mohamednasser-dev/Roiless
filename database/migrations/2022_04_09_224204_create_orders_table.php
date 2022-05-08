@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->bigInteger('product_id')->unsigned();
+            $table->integer('months_count')->default(0);
             $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
             $table->enum('installment_type',['direct_installment','not_direct_installment'])->default('direct_installment');
             $table->double('benefit')->nullable();

@@ -1,6 +1,10 @@
 <?php
 return [
     //new
+    'collected' => 'تم تحصيل المبلغ',
+    'not_collected' => 'في انتظار التحصيل',
+    'direct_installment' => 'تقسيط مباشر',
+    'not_direct_installment' => 'تقسيط غير مباشر',
     'invest_images' => 'صور بيانات العميل',
     'add_new_seller' => 'اضافه تاجر جديد',
     'seller_info' => 'بيانات التاجر',

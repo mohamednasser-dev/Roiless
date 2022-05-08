@@ -21,18 +21,25 @@
                     <span class="menu-text">المنتجات</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'installments') menu-item-open @endif"
+            <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'orders') menu-item-open @endif"
                 aria-haspopup="true" data-menu-toggle="hover">
                 <a href="{{route('seller.orders')}}" class="menu-link menu-toggle">
                     <i class="menu-icon flaticon2-shopping-cart-1"></i>
                     <span class="menu-text">الطلبات</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'installments') menu-item-open @endif"
+            <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'installments'  && Request::segment(3)== 'pending' ) menu-item-open @endif"
                 aria-haspopup="true" data-menu-toggle="hover">
-                <a href="{{route('seller.installments')}}" class="menu-link menu-toggle">
+                <a href="{{route('seller.installments',['status'=>'pending'])}}" class="menu-link menu-toggle">
                     <i class="menu-icon flaticon2-crisp-icons-1"></i>
-                    <span class="menu-text">الاقساط</span>
+                    <span class="menu-text">الاقساط الغير محصلة</span>
+                </a>
+            </li>
+            <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'installments' && Request::segment(3)== 'collected' ) menu-item-open @endif"
+                aria-haspopup="true" data-menu-toggle="hover">
+                <a href="{{route('seller.installments',['status'=>'collected'])}}" class="menu-link menu-toggle">
+                    <i class="menu-icon flaticon2-check-mark"></i>
+                    <span class="menu-text">الاقساط المحصلة</span>
                 </a>
             </li>
             <li class="menu-item menu-item-submenu @if( Request::segment(2)== 'profile') menu-item-open @endif"

@@ -40,11 +40,12 @@ Route::group(['prefix' => "seller", 'namespace' => 'Seller', 'as' => 'seller'], 
             Route::get('/image_delete/{id}', 'ProductsController@image_delete')->name('.product.image.delete');
         });
         Route::group(['prefix' => 'installments','as'=>'.installments'], function () {
-            Route::get('/', 'ProductsController@index');
+            Route::get('/{status}', 'InstallmentController@index');
+            Route::get('/change_status/{status}/{id}', 'InstallmentController@change_status')->name('.change_status');
         });
         Route::group(['prefix' => 'profile','as'=>'.profile'], function () {
             Route::get('/', 'HomeController@profile');
-            Route::post('/update', 'HomeController@update_profile')->name('.update');
+            Route::post('/update/{id}', 'HomeController@update_profile')->name('.update');
         });
         Route::group(['prefix' => 'orders','as'=>'.orders'], function () {
             Route::get('/', 'OrderController@index');

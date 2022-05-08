@@ -28,7 +28,6 @@ class ProductsController extends Controller
     {
         $data = Product::where('seller_id',auth()->guard('seller')->user()->id)->get();
         return view('seller.' . $this->viewPath . '.index',compact('data'));
-
     }
 
     use offerTrait;

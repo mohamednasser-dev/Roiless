@@ -2,6 +2,9 @@
 return [
 
     //new
+    'not_collected' => 'wait to collect',
+    'direct_installment' => 'direct installment',
+    'not_direct_installment' => 'not direct installment',
     'product_details' => 'product details',
     'add_product_requests' => 'Requests to add a product',
     'show_question'=>'show question',

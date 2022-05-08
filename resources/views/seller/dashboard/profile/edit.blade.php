@@ -13,7 +13,7 @@
         <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
         <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
             <li class="breadcrumb-item">
-                <a href="{{route('admin')}}"
+                <a href="{{route('seller.home')}}"
                    class="text-muted">الصفحة الرئيسية</a>
             </li>
 
@@ -22,17 +22,15 @@
     </div>
 @endsection
 @section('content')
-    @can('update-admins')
     <div class="card">
         <div class="card-body">
             <h3>تعديل الملف الشخصي</h3>
-            <form method="post" action="{{route('seller.profile.update',$data->id)}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('seller.profile.update',auth()->guard('seller')->user()->id)}}" enctype="multipart/form-data">
                 @csrf
-                @include('dashboard.profile.form')
+                @include('seller.dashboard.profile.form')
             </form>
         </div>
     </div>
-    @endcan
 @endsection
 @section('script')
     <script>

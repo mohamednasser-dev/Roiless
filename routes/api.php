@@ -50,12 +50,13 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
     Route::get("/payment/fail", "PayMobController@failed")->name('failed');
 
 
-
+    Route::post("banko/order/calculate/installment", "Banko\OrderController@calculate_installment");
     Route::group(['middleware' => ['jwt.verify']], function () {
 
         Route::group(['prefix' => 'banko'], function () {
             //Order
             Route::get("/my_orders", "Banko\OrderController@my_orders");
+
             Route::post("/order/create", "Banko\OrderController@make_order");
             //profile
             Route::get("/profile/get", "Banko\ProfileController@get");

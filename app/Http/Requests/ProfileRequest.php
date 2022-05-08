@@ -31,20 +31,18 @@ class ProfileRequest extends FormRequest
                 'required',
                 'email',
                 'max:191',
-                Rule::unique('admins', 'email')->ignore(auth()->user()->id)
+                Rule::unique('admins', 'email')->ignore(auth()->guard('seller')->user()->id)
             ],
             'phone' => [
                 'required',
                 'numeric',
-                Rule::unique('admins', 'phone')->ignore(auth()->user()->id)
+                Rule::unique('admins', 'phone')->ignore(auth()->guard('seller')->user()->id)
             ],
             'password' => [
                 'nullable',
+                'confirmed',
                 'min:6',
-                'max:191',
-                Rule::requiredIf(function() {
-                    return Request::routeIs('admins.store');
-                })
+                'max:191'
             ],
         ];
     }

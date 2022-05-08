@@ -4,6 +4,12 @@ namespace App\Http\Controllers\Seller;
 
 use App\DataTables\OrderDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProfileRequest;
+use App\Models\Order;
+use App\Models\OrderInstallment;
+use App\Models\Product;
+use App\Models\Seller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
@@ -18,16 +24,17 @@ class HomeController extends Controller
         return view('seller.index');
     }
 
-
     public function home(OrderDataTable $dataTable)
     {
-        return $dataTable->render('seller.dashboard.home');
-    }
-
-
-    public function viewprofile(Request $request)
-    {
-        return view('viewprofile');
+        $seller_id = auth()->guard('seller')->user()->id ;
+        $data['products'] = Product::where('seller_id',$seller_id)->count();
+        $data['remain_installments'] = OrderInstallment::seller()->accepted()->where('status','pending')->count();
+        $data['sum_collected_installments'] = OrderInstallment::seller()->accepted()->where('status','collected')->sum('amount');
+        $data['bayed_products'] = Order::where('status','accepted')
+            ->seller()->count();
+        //for newest orders in home page
+        $newest_orders = Order::seller()->orderBy('created_at','desc')->get()->take(5);
+        return view('seller.dashboard.home',compact('data','newest_orders'));
     }
 
     public function change_lang(Request $request,$lang)
@@ -42,43 +49,15 @@ class HomeController extends Controller
     //profile
     public function profile()
     {
-        return view('seller.dashboard.profile.edit');
+        $data = Seller::findOrFail(auth()->guard('seller')->user()->id);
+        return view('seller.dashboard.profile.edit',compact('data'));
     }
 
     public function update_profile(ProfileRequest $request, $id)
     {
-        $data = $request->all();
-        $validator = Validator::make($data,
-            [
-                'name' => 'required|max:191|min:3',
-                'email' => [
-                    'required',
-                    'email',
-                    'max:191',
-                    Rule::unique('admins', 'email')->ignore(auth()->user()->id)
-                ],
-                'phone' => [
-                    'required',
-                    'numeric',
-                    Rule::unique('admins', 'phone')->ignore(auth()->user()->id)
-                ],
-                'password' => [
-                    'nullable',
-                    'min:6',
-                    'max:191',
-                    Rule::requiredIf(function() {
-                        return \Illuminate\Support\Facades\Request::routeIs('admins.store');
-                    })
-                ],
-            ]
-        );
-        if ($validator->fails()) {
-            return msgdata($request, failed(), $validator->messages()->first(), (object)[]);
-        }
-
+        $data = $request->validated();
         // Get and Check Data
-        $data = $this->model->findOrfail($id);
-
+        $data = Seller::findOrfail($id);
         // Get data from request
         $inputs = $request->validated();
         // Set Password if exist inputs data
@@ -87,8 +66,7 @@ class HomeController extends Controller
         } else {
             unset($inputs['password']);
         }
-        $updated = $data->update($inputs);
-
-        return redirect()->route($this->route)->with('success', 'تم تعديل الملف الشخصي بنجاح');
+        $data->update($inputs);
+        return redirect()->back()->with('success', 'تم تعديل الملف الشخصي بنجاح');
     }
 }
