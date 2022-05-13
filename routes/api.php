@@ -24,6 +24,10 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::get("/funds", "Banko\HomeController@funds");
         Route::get("/slider", "Banko\HomeController@slider");
         Route::get("/investment", "Banko\HomeController@investment");
+        Route::get("products_cat", "Banko\HomeController@products_cat");
+        Route::get("products_cat/{id}", "Banko\HomeController@products_cats");
+        Route::get("products_cat/{id}/products", "Banko\HomeController@cat_pro");
+        Route::get("seller/{id}/products", "Banko\HomeController@seller_pro");
         Route::get("/product/details/{id}", "Banko\ProductController@details");
         Route::get("/funds/details/{id}", "Banko\HomeController@f_details");
         Route::get("/investment/details/{id}", "Banko\HomeController@i_details");
