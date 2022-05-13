@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Fund;
 use App\Models\Investment;
 use App\Models\Product;
+use App\Models\Seller;
 use App\Models\Section;
 use App\Models\Slider;
 use App\Models\User_Notification;
@@ -37,6 +38,26 @@ class HomeController extends Controller
     public function investment(Request $request)
     {
         $data['investment'] = Investment::all();
+        return msgdata($request, success(), 'تم عرض البيانات', $data);
+    }
+    public function products_cat(Request $request)
+    {
+        $data['categories'] = Section::where('parent_id',null)->with(['Child','Products'])->get();
+        return msgdata($request, success(), 'تم عرض البيانات', $data);
+    }
+    public function products_cats(Request $request,$id)
+    {
+        $data['categories'] = Section::find($id)->Child;
+        return msgdata($request, success(), 'تم عرض البيانات', $data);
+    }
+    public function cat_pro(Request $request,$id)
+    {
+        $data['products'] = Section::find($id)->Products;
+        return msgdata($request, success(), 'تم عرض البيانات', $data);
+    }
+    public function seller_pro(Request $request,$id)
+    {
+        $data['products'] = Seller::find($id)->Products;
         return msgdata($request, success(), 'تم عرض البيانات', $data);
     }
     public function f_details(Request $request,$id)

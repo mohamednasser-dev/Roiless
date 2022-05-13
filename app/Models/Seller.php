@@ -27,4 +27,8 @@ class Seller extends Authenticatable
             $this->attributes['password'] = bcrypt($password);
         }
     }
+    public function Products()
+    {
+        return $this->hasMany(Product::class,'section_id')->where('status','accepted');
+    }    
 }
