@@ -129,7 +129,7 @@
                         <span class="card-label font-weight-bolder text-dark">احدث الطلبات</span>
                     </h3>
                     <div class="card-toolbar">
-                        <a href="#" class="btn btn-success font-weight-bolder font-size-sm mr-3">كل
+                        <a href="{{route('seller.orders')}}" class="btn btn-success font-weight-bolder font-size-sm mr-3">كل
                             الطلبات</a>
                     </div>
                 </div>

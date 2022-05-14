@@ -31,7 +31,7 @@
                         <th class="text-lg-center">اسم المستخدم</th>
                         <th class="text-lg-center">نوع التقسيط</th>
                         <th class="text-lg-center">سعر المنتج بدون اقساط</th>
-                        <th class="text-lg-center">سعر المنتج بالقساط</th>
+                        <th class="text-lg-center">سعر المنتج بالاقساط</th>
                         <th class="text-lg-center">حالة الطلب</th>
                         <th class="text-lg-center">الموافقة</th>
 {{--                        <th class="text-lg-center">تفاصيل الطلب</th>--}}

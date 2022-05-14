@@ -42,17 +42,25 @@ class HomeController extends Controller
     }
     public function products_cat(Request $request)
     {
-        $data['categories'] = Section::where('parent_id',null)->with(['Child','Products'])->get();
+//        ,'Products'
+        $data = Section::where('parent_id',null)->with(['Child'])->get();
         return msgdata($request, success(), 'تم عرض البيانات', $data);
     }
-    public function products_cats(Request $request,$id)
+    public function category_child(Request $request,$id)
     {
-        $data['categories'] = Section::find($id)->Child;
+        $data  = Section::find($id)->Child;
         return msgdata($request, success(), 'تم عرض البيانات', $data);
     }
-    public function cat_pro(Request $request,$id)
+    public function cat_pro(Request $request)
     {
-        $data['products'] = Section::find($id)->Products;
+//        $data = Section::find($id)->Products;
+        $data = Product::when(request('section_id'), function ($q) {
+                return $q->where('section_id', request('section_id'));
+            })
+            ->when(request('sub_section_id'), function ($q) {
+            return $q->where('sub_section_id', request('sub_section_id'));
+        })->paginate(15);
+
         return msgdata($request, success(), 'تم عرض البيانات', $data);
     }
     public function seller_pro(Request $request,$id)

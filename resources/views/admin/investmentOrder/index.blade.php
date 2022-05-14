@@ -42,7 +42,7 @@
                             <td class="text-lg-center">
                                 @if($row->status == 'pinding')
                                 @elseif($row->status == 'accepted')
-                                    <label class="text-success">تم المافقه على الطلب</label>
+                                    <label class="text-success">تم الموافقه على الطلب</label>
                                 @elseif($row->status == 'rejected')
                                     <label class="text-danger">تم رفض الطلب</label>
                                 @endif
