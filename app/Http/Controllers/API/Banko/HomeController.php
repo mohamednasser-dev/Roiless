@@ -54,7 +54,7 @@ class HomeController extends Controller
     }
     public function cat_pro(Request $request)
     {
-        $result = Product::when(request('section_id'), function ($q) {
+        $result = Product::where('status','accepted')->when(request('section_id'), function ($q) {
                 return $q->where('section_id', request('section_id'));
             })
             ->when(request('sub_section_id'), function ($q) {
@@ -63,10 +63,11 @@ class HomeController extends Controller
         $result = (ProductResource::collection($result))->response()->getData(true);
         return msgdata($request, success(), 'تم عرض البيانات', $result);
     }
-    public function seller_pro(Request $request,$id)
+    public function seller_products(Request $request,$id)
     {
-        $data['products'] = Seller::find($id)->Products;
-        return msgdata($request, success(), 'تم عرض البيانات', $data);
+        $result = Product::where('status','accepted')->where('seller_id',$id)->with('SellerInfo')->inRandomOrder()->take(10)->get();
+        $result = (ProductResource::collection($result));
+        return msgdata($request, success(), 'تم عرض البيانات', $result);
     }
     public function f_details(Request $request,$id)
     {
