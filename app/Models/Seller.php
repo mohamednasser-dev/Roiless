@@ -11,7 +11,7 @@ class Seller extends Authenticatable
     use Notifiable;
     protected $hidden = ['password','created_at','updated_at'];
     protected $guarded = [];
-    protected $appends = ['image_path'];
+    protected $appends = ['image_path','product_count'];
 
     public function getImagePathAttribute($image)
     {
@@ -19,6 +19,12 @@ class Seller extends Authenticatable
             return asset('uploads/sellers') . '/' . $this->image;
         }
         return asset('uploads/sellers/default-seller.jpg');
+    }
+
+    public function getProductCountAttribute()
+    {
+        $count = $this->Products->count();
+        return $count;
     }
 
     public function setPasswordAttribute($password)
@@ -30,5 +36,5 @@ class Seller extends Authenticatable
     public function Products()
     {
         return $this->hasMany(Product::class,'section_id')->where('status','accepted');
-    }    
+    }
 }

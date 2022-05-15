@@ -32,6 +32,12 @@ class Product extends Model
         return $this->belongsTo(Seller::class, 'seller_id', 'id');
     }
 
+    public function SellerInfo()
+    {
+        return $this->belongsTo(Seller::class, 'seller_id', 'id')
+            ->select('id','name','phone','email','image');
+    }
+
     public function Section()
     {
         return $this->belongsTo(Section::class, 'section_id', 'id');

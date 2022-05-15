@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Banko;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Fund;
 use App\Models\Investment;
@@ -53,15 +54,14 @@ class HomeController extends Controller
     }
     public function cat_pro(Request $request)
     {
-//        $data = Section::find($id)->Products;
-        $data = Product::when(request('section_id'), function ($q) {
+        $result = Product::when(request('section_id'), function ($q) {
                 return $q->where('section_id', request('section_id'));
             })
             ->when(request('sub_section_id'), function ($q) {
             return $q->where('sub_section_id', request('sub_section_id'));
-        })->paginate(15);
-
-        return msgdata($request, success(), 'تم عرض البيانات', $data);
+        })->with('SellerInfo')->paginate(15);
+        $result = (ProductResource::collection($result))->response()->getData(true);
+        return msgdata($request, success(), 'تم عرض البيانات', $result);
     }
     public function seller_pro(Request $request,$id)
     {
