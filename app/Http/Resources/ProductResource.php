@@ -30,6 +30,7 @@ class ProductResource extends JsonResource
             'sub_section' => $this->SubSection,
 //            'seller_product_count' => $this->SellerInfo->Products->count(),
             'seller' => $this->SellerInfo->makeHidden('Products'),
+            'benefits' => $this->Benefit,
 
         ];
     }
