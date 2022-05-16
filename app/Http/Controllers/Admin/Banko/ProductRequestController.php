@@ -6,6 +6,7 @@ use App\DataTables\AdminProductDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SellerRequest;
 use App\Models\Category;
+use App\Models\Fund;
 use App\Models\Product;
 use App\Models\ProductBenefit;
 use App\Models\Seller;
@@ -31,9 +32,9 @@ class ProductRequestController extends Controller
     public function show($id)
     {
         $data = Product::findOrFail($id);
-        $categories = Category::where('type', 'cat')->get();
+        $funds = Fund::where('appearance', '1')->where('deleted', '0')->get();
         $benefits = ProductBenefit::where('product_id', $id)->get();
-        return view('admin.banko.product_request.show', compact('data', 'benefits','categories'));
+        return view('admin.banko.product_request.show', compact('data', 'benefits','funds'));
     }
     public function make_star($id,$stars)
     {
@@ -55,10 +56,10 @@ class ProductRequestController extends Controller
         $data = $this->validate(request(),
             [
                 'id' => 'required|exists:products,id',
-                'category_id' => 'required|exists:categories,id',
+                'fund_id' => 'required|exists:funds,id',
             ]);
 
-        Product::whereId($request->id)->update(['status' => 'accepted','category_id'=>$request->category_id]);
+        Product::whereId($request->id)->update(['status' => 'accepted','fund_id'=>$request->fund_id]);
         return redirect()->route('admin.product.requests','pending')->with('success', 'تم قبول نشر المنتج بنجاح');
     }
     public function reject_product(Request $request)

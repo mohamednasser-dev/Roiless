@@ -203,14 +203,14 @@
                             </div>
                             @endif
                             @if($data->status == 'accepted' || $data->status == 'pending')
-                            <div class="col-md-6">
-                                <a  href="javascript:void(0);" data-toggle="modal" data-target="#reject_modal"
-                                   class="btn btn-danger">
-                                    رفض
-                                    <i class="fa fa-close"> </i>
-                                </a>
-                            </div>
-                                @endif
+                                <div class="col-md-6">
+                                    <a  href="javascript:void(0);" data-toggle="modal" data-target="#reject_modal"
+                                       class="btn btn-danger">
+                                        رفض
+                                        <i class="fa fa-close"> </i>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -234,11 +234,11 @@
                     <div class="col-md-12">
                         <div class="form-group has-success">
                             <label class="control-label"> اختر قسم التمويل </label>
-                            <select class="select2 m-b-10 select2-multiple" name="category_id" style="width: 100%"
+                            <select class="select2 m-b-10 select2-multiple" name="fund_id" style="width: 100%"
                                     required data-placeholder="اختر قسم التمويل">
-                                @if(count($categories) > 0)
-                                    @foreach($categories as $cat)
-                                        <option value="{{$cat->id}}"> {{$cat->title_ar}}</option>
+                                @if(count($funds) > 0)
+                                    @foreach($funds as $fund)
+                                        <option value="{{$fund->id}}"> {{$fund->name_ar}} ( {{$fund->Category->title_ar}} )</option>
                                     @endforeach
                                 @endif
                             </select>

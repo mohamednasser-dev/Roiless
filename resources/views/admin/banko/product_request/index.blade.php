@@ -38,7 +38,7 @@
                     <th class="text-lg-center">السعر</th>
                     <th class="text-lg-center">الكمية</th>
                     <th class="text-lg-center">تاريخ الانشاء</th>
-                    <th class="text-lg-center">الظهور في الرئيسية</th>
+{{--                    <th class="text-lg-center">الظهور في الرئيسية</th>--}}
                     <th class="text-lg-center">تفاصيل المنتج</th>
                 </tr>
                 </thead>
@@ -53,22 +53,19 @@
                         <td class="text-lg-center">{{$row->price}}</td>
                         <td class="text-lg-center">{{$row->quantity}}</td>
                         <td class="text-lg-center">{{$row->created_at->format('Y-m-d')}}</td>
-                        <td class="text-lg-center">
-
-
-                            @if($row->stars == 0)
-                                <a href="{{route('admin.product.requests.make_star',['id'=>$row->id,'stars'=>1])}}" title="جعل المنتج يظهر في الصفحة الرئيسية"
-                                   class="btn btn-warning">
-                                    <i class="fas fa-star"></i>
-                                </a>
-                            @else
-                                <a href="{{route('admin.product.requests.make_star',['id'=>$row->id,'stars'=>1])}}" title="حذف المنتج من الظهور في الصفحة الرئيسية"
-                                   class="btn btn-danger">
-                                    <i class="fas fa-star"></i>
-                                </a>
-                            @endif
-
-                        </td>
+{{--                        <td class="text-lg-center">--}}
+{{--                            @if($row->stars == 0)--}}
+{{--                                <a href="{{route('admin.product.requests.make_star',['id'=>$row->id,'stars'=>1])}}" title="جعل المنتج يظهر في الصفحة الرئيسية"--}}
+{{--                                   class="btn btn-warning">--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                </a>--}}
+{{--                            @else--}}
+{{--                                <a href="{{route('admin.product.requests.make_star',['id'=>$row->id,'stars'=>1])}}" title="حذف المنتج من الظهور في الصفحة الرئيسية"--}}
+{{--                                   class="btn btn-danger">--}}
+{{--                                    <i class="fas fa-star"></i>--}}
+{{--                                </a>--}}
+{{--                            @endif--}}
+{{--                        </td>--}}
                         <td class="text-lg-center">
                             <a href="{{route('admin.product.requests.show',$row->id)}}" title="{{trans('admin.product_details')}}"
                                class="btn btn-info">
