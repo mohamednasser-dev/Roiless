@@ -26,6 +26,7 @@ class ProductResource extends JsonResource
             'type' => $this->type,
             'fund_id' => $this->fund_id,
             'seller_id' => $this->seller_id,
+            'images' => $this->Images,
             'section' => $this->Section,
             'sub_section' => $this->SubSection,
 //            'seller_product_count' => $this->SellerInfo->Products->count(),
