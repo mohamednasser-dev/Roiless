@@ -35,6 +35,6 @@ class Seller extends Authenticatable
     }
     public function Products()
     {
-        return $this->hasMany(Product::class,'section_id')->where('status','accepted');
+        return $this->hasMany(Product::class,'seller_id')->where('status','accepted');
     }
 }
