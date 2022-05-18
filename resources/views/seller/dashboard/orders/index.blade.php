@@ -32,6 +32,7 @@
                         <th class="text-lg-center">نوع التقسيط</th>
                         <th class="text-lg-center">سعر المنتج بدون اقساط</th>
                         <th class="text-lg-center">سعر المنتج بالاقساط</th>
+                        <th class="text-lg-center">تاريخ الطلب</th>
                         <th class="text-lg-center">حالة الطلب</th>
                         <th class="text-lg-center">الموافقة</th>
 {{--                        <th class="text-lg-center">تفاصيل الطلب</th>--}}
@@ -46,6 +47,7 @@
                             <td class="text-lg-center">{{$row->type_name}}</td>
                             <td class="text-lg-center">{{$row->price}}</td>
                             <td class="text-lg-center">{{$row->total}}</td>
+                            <td class="text-lg-center">{{$row->created_at->format('Y-m-d g:i a')}}</td>
                             <td class="text-lg-center">
                                 {{$row->status_name}}
                             </td>

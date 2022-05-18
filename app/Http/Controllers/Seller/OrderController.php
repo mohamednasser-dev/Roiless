@@ -28,7 +28,7 @@ class OrderController extends Controller
 
     public function index()
     {
-        $data = Order::seller()->paginate(20);
+        $data = Order::orderBy('created_at','desc')->seller()->paginate(20);
         return view('seller.' . $this->viewPath . '.index',compact('data'));
     }
 
