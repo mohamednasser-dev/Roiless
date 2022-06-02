@@ -4,12 +4,9 @@ namespace App\Http\Controllers\Admin\Banko;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SellerRequest;
-use App\Models\Seller;
-use Illuminate\Http\Request;
-use App\Models\Slider;
 use App\Traits\offerTrait;
+use App\Models\Seller;
 use Str;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class SellerController extends Controller
 {
@@ -109,11 +106,11 @@ class SellerController extends Controller
      */
     public function destroy($id)
     {
-        $Slider = Slider::findOrFail($id);
+        $Slider = Seller::findOrFail($id);
         $Slider->delete();
-        activity('admin')->log('تم حذف الاعلان بنجاح');
+        activity('admin')->log('تم حذف التاجر بنجاح');
         // Alert::success('تمت العمليه', 'تم حذف الاعلان بنجاح');
-        return redirect()->route('sliders')->with('success', trans('تم حذف الاعلان بنجاح'));;
+        return redirect()->route('admin.sellers')->with('success', trans('تم حذف التاجر بنجاح'));;
 
     }
 }

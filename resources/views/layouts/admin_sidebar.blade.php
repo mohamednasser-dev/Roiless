@@ -158,7 +158,7 @@
                 <li style="text-align: center;" class="nav-small-cap">Banko - بانكو</li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{url('/admin/sellers')}}" aria-expanded="false"><i
-                            class="mdi mdi-incognito"></i><span class="hide-menu"></span>{{trans('admin.sellers')}}
+                            class="mdi mdi-folder-multiple-image"></i><span class="hide-menu"></span>{{trans('admin.sellers')}}
                     </a>
                 </li>
                 <li>
@@ -168,14 +168,13 @@
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{url('/sliders')}}" aria-expanded="false"><i
-                            class="mdi mdi-image-filter-none"></i><span class="hide-menu"></span>صور العرض
+                            class="mdi mdi-folder-multiple-image"></i><span class="hide-menu"></span>{{trans('admin.sliders')}}
                     </a>
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{url('/admin/product/requests/pending')}}"
                        aria-expanded="false"><i
                             class="mdi mdi-bookmark-plus"></i><span class="hide-menu">
-
                             @php
                                 $product_requests = \App\Models\Product::where('status','pending')->get()->count();
                             @endphp

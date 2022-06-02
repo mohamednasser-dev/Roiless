@@ -2,6 +2,11 @@
 return [
 
     //new
+    'choose_type' => 'choose type',
+    'edit_advertisment' => 'edit slider',
+    'sliders' => 'sliders',
+    'type' => 'type',
+    'target' => 'target',
     'not_collected' => 'wait to collect',
     'direct_installment' => 'direct installment',
     'not_direct_installment' => 'not direct installment',

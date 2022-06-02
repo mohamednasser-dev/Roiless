@@ -1,6 +1,12 @@
 <?php
 return [
     //new
+    'choose_type' => 'اختر النوع',
+
+    'edit_advertisment' => 'تعديل صورة العرض',
+    'sliders' => 'صور العرض',
+    'type' => 'النوع',
+    'target' => 'الهدف',
     'collected' => 'تم تحصيل المبلغ',
     'not_collected' => 'في انتظار التحصيل',
     'direct_installment' => 'تقسيط مباشر',
@@ -212,7 +218,7 @@ return [
 
     //end setting
 
-    'create_advertisment' => 'انشاء اعلان',
+    'create_advertisment' => 'أضافة صورة عرض جديد',
     'advertisment' => 'اعلان',
     'iamge' => 'صوره',
     'password_confirmation' => 'تاكيد كلمه المرور',

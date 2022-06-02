@@ -9,8 +9,8 @@
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">انشاء اعلان</li>
-                <li class="breadcrumb-item"><a href="{{route('sliders')}}">صور العرض</a></li>
+                <li class="breadcrumb-item">{{trans('admin.create_advertisment')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('sliders')}}">{{trans('admin.sliders')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{('home')}}">{{trans('admin.home_page')}}</a></li>
             </ol>
         </div>
@@ -19,17 +19,14 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body wizard-content">
-
                 <form class="tab-wizard wizard-circle" method="POST" action="{{ route('sliders.store') }}" enctype="multipart/form-data">
                    @csrf
                     <section>
-
-
                         <div class="row">
                             <div class="col-lg-12 col-md-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">{{trans('admin.iamge')}} </h4>
+                                        <h4 class="card-title">{{trans('admin.image')}} </h4>
                                         <input type="file" name="image" id="input-file-now" class="dropify"/>
                                     </div>
                                 </div>
@@ -40,8 +37,8 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">{{trans('admin.type')}} </h4>
-                                        <select name="type" class="form-control">
-                                            <option value="product">{{trans('admin.product')}}</option>
+                                        <select name="type" class="custom-select col-12">
+                                            <option value="product">{{trans('admin.choose_type')}}</option>
                                             <option value="fund">{{trans('admin.fund')}}</option>
                                             <option value="investment">{{trans('admin.investment')}}</option>
                                         </select>
@@ -51,7 +48,7 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">{{trans('admin.t_id')}} </h4>
+                                        <h4 class="card-title">{{trans('admin.target')}} </h4>
                                         <input type="text" name="t_ids" placeholder="1" class="form-control">
                                     </div>
                                 </div>
