@@ -21,7 +21,7 @@ class HomeController extends Controller
     public function home(Request $request)
     {
         $data['categories'] = Section::where('parent_id',null)->with(['Child','Products'])->get();
-        $data['sliders'] = Slider::get();
+        $data['sliders'] = Slider::where('city_id',$request->header('city_id'))->get();
         $data['funds'] = Fund::with(['Category'])->where('featured','1')->where('deleted','0')->get();
         $data['stars_products'] = Product::with(['Seller','Section','SubSection'])->where('status','accepted')->where('stars',1)->get();
         return msgdata($request, success(), 'تم عرض البيانات', $data);

@@ -27,7 +27,8 @@ class ProfileController extends Controller
             'phone' => 'required|string|unique:users,phone,' . $user->id,
             'image' => 'nullable|image',
             'email' => 'nullable|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|confirmed'
+            'password' => 'nullable|confirmed',
+            'city_id' => 'nullable|exists:cities,id'
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
