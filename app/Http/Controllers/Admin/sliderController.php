@@ -22,7 +22,7 @@ class sliderController extends Controller
      */
     public function index()
     {
-            $Sliders = Slider::all();
+            $Sliders = Slider::where('city_id',auth()->user()->city_id)->get();
         return view ('admin.sliders.index' , compact('Sliders'));
 
     }
@@ -46,12 +46,19 @@ class sliderController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $this->validate(request(),
+            [
+                'image' => 'required|image',
+                'type' => 'required',
+                't_ids' => 'required',
+            ]);
         if($request->file('image') == Null) {
             // Alert::warning('خطأ', 'اعد المحاوله مره اخري');
             return redirect()->route('sliders')->with(['error' => 'Error']);
         }
         $file_name = $this->saveImage($request->file('image'),'uploads/slider' );
-        $Slider = Slider::create([
+        Slider::create([
+            'city_id' => auth()->user()->city_id,
             'image' => $file_name,
             'type'  => $request->input('type'),
             't_ids'  => $request->input('t_ids'),

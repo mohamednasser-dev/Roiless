@@ -26,7 +26,7 @@ class Bankcontroller extends Controller
 
     public function index()
     {
-        $banks = Bank::whereNull('parent_id')->orderBy('name_en', 'desc')->get();
+        $banks = Bank::where('city_id',auth()->user()->city_id)->whereNull('parent_id')->orderBy('name_en', 'desc')->get();
         $active_banks = Bank::where('status', 'active')->get();
         return view($this->folderView . 'banks', compact('banks', 'active_banks'));
     }
@@ -74,6 +74,7 @@ class Bankcontroller extends Controller
             } else {
                 $data['parent_id'] = $id;
             }
+            $data['city_id'] = auth()->user()->city_id;
             $bank = Bank::create($data);
             $notification = $request['notification'];
             $banks = new Bank();

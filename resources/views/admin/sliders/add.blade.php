@@ -37,7 +37,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">{{trans('admin.type')}} </h4>
-                                        <select name="type" class="custom-select col-12">
+                                        <select name="type" class="custom-select col-12" required >
                                             <option value="product">{{trans('admin.choose_type')}}</option>
                                             <option value="fund">{{trans('admin.fund')}}</option>
                                             <option value="investment">{{trans('admin.investment')}}</option>
@@ -49,7 +49,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">{{trans('admin.target')}} </h4>
-                                        <input type="text" name="t_ids" placeholder="1" class="form-control">
+                                        <input type="text" name="t_ids" required class="form-control">
                                     </div>
                                 </div>
                             </div>

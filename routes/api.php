@@ -36,6 +36,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
 
 
 //user
+    Route::get("/cities", "HomeController@cities");
     Route::post("/login", "AuthController@login");
     Route::post("/Register", "AuthController@Register");
     Route::post("/loginasguest", "AuthController@loginasguest");

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\City;
 use App\Models\Setting;
 use App\Models\Slider;
 use App\Models\User_Notification;
@@ -62,5 +64,11 @@ class HomeController extends Controller
                 return msgdata($request, success(), 'success_data', $setting);
             }
         }
+    }
+
+    public function cities(Request $request)
+    {
+        $data = City::get();
+        return msgdata($request, success(), 'data shown successfully', $data);
     }
 }

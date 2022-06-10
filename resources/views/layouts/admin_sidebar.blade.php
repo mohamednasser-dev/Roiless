@@ -157,6 +157,11 @@
                 @endcan
                 <li style="text-align: center;" class="nav-small-cap">Banko - بانكو</li>
                 <li>
+                    <a class="waves-effect waves-dark" href="{{route('cities')}}" aria-expanded="false"><i
+                            class="mdi mdi-folder-multiple-image"></i><span class="hide-menu"></span>{{trans('admin.cities')}}
+                    </a>
+                </li>
+                <li>
                     <a class="waves-effect waves-dark" href="{{url('/admin/sellers')}}" aria-expanded="false"><i
                             class="mdi mdi-folder-multiple-image"></i><span class="hide-menu"></span>{{trans('admin.sellers')}}
                     </a>

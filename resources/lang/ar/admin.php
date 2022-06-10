@@ -1,6 +1,11 @@
 <?php
 return [
     //new
+    'create_city' => 'انشاء دولة جديدة',
+    'country_code' => 'كود الدولة',
+    'name_ar' => 'اسم الدولة بالعربية',
+    'name_en' => 'اسم الدولة بالانجليزية',
+    'cities' => 'الدول',
     'choose_type' => 'اختر النوع',
 
     'edit_advertisment' => 'تعديل صورة العرض',

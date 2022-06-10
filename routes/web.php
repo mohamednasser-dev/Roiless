@@ -135,6 +135,13 @@ Route::group(['middleware' => ['auth:admin']], function () {
         Route::post('/services/store_serv_update/{id}', 'ServiceController@detupdate')->name('services.details.update');
         Route::get('/services/deletes_serv_detail/{id}', 'ServiceController@detdestroy')->name('services.details.delete');
 
+        Route::get('/cities', 'CityController@index')->name('cities');
+        Route::get('cities/create', 'CityController@create')->name('cities.add');
+        Route::post('/cities/store', 'CityController@store')->name('cities.store');
+        Route::get('/cities/edit/{id}', 'CityController@edit')->name('cities.edit');
+        Route::post('/cities/update/{id}', 'CityController@update')->name('cities.update');
+        Route::get('/cities/delete/{id}', 'CityController@destroy')->name('cities.delete');
+
 
         //notifications
         Route::resource('/notifications', 'NotificationsController');
@@ -260,7 +267,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
     // export data
     Route::get('export', 'ImportExportController@export')->name('export');
     Route::get('export/user_fund', 'ImportExportController@export_userfund')->name('export_userfund');
+    Route::get('change_city/{id}', 'HomeController@change_city')->name('change_city');
 });
 
 Route::get('change_lang/{lang}', 'HomeController@change_lang')->name('change_lang');
+
 

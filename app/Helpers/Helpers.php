@@ -221,6 +221,11 @@ function not_active()
 {
     return 405;
 }
+function cities()
+{
+    $data = \App\Models\City::get();
+    return $data;
+}
 
 
 function upload($file, $dir)

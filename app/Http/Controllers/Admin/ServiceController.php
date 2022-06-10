@@ -101,37 +101,25 @@ class ServiceController extends Controller
                 'image' => '',
 
             ]);
-
-        try
-        {
+        try{
             DB::beginTransaction();
-
             $Service = $this->objectName::find($id);
             if (!$Service){
-                // Alert::warning('خطاء', 'هذه الخدمه ليست موجوه');
+            // Alert::warning('خطاء', 'هذه الخدمه ليست موجوه');
             return redirect()->route(' $this->folderView')->with('danger',trans('هذه الخدمه ليست موجوه'));
             }
-            
-
             if($request->hasFile('image')) {
                 $file_name = $this->MoveImage($request->file('image'),'uploads/services' );
                 $data['image'] = $file_name;
             }
-
             $this->objectName::where('id',$id)->update($data);
-
-
             DB::commit();
             // Alert::success('تمت العمليه', 'تم التحديث بنجاح');
             return redirect()->route('services')->with('success',trans('تم التحديث بنجاح'));
-
         } catch (\Exception $ex) {
-
             DB::rollback();
             Alert::warning('هنالك خطاء', 'لم يتم التحديث');
-
             return redirect()->route('services');
-
         }
     }
 

@@ -40,6 +40,9 @@ class Admin extends Authenticatable
     public function activity() {
         return $this->belongsTo('App\Models\Admin', 'id', 'causer_id');
     }
+    public function city() {
+        return $this->belongsTo('App\Models\City',  'city_id');
+    }
 
     public function getImageAttribute($img)
     {

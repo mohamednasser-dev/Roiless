@@ -2,6 +2,11 @@
 return [
 
     //new
+    'create_city' => 'create new city',
+    'country_code' => 'country code',
+    'name_ar' => 'name arabic',
+    'name_en' => 'name english',
+    'cities' => 'cities',
     'choose_type' => 'choose type',
     'edit_advertisment' => 'edit slider',
     'sliders' => 'sliders',

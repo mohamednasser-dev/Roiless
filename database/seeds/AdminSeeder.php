@@ -14,7 +14,8 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $role = Role::create(['name' => 'owner','guard_name'=> 'admin']);
+        $city = \App\Models\City::first();
+        $role = Role::create(['name' => 'owner', 'guard_name' => 'admin']);
 
         $permissions = Permission::pluck('id', 'id')->all();
 
@@ -29,6 +30,7 @@ class AdminSeeder extends Seeder
             'type' => 'admin',
             'status' => 'active',
             'role_id' => $role->id,
+            'city_id' => $city->id,
             'password' => bcrypt('123456'),
         ]);
         $admin->assignRole($role);
