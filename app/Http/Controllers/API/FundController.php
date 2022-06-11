@@ -39,7 +39,7 @@ class FundController extends Controller
 
             if ($Funddetailes) {
                 $data['Funddetailes'] = $Funddetailes;
-                $bank = Bank::where('parent_id',null)->select('id','name_' . $lang . ' as name', 'image')->get();
+                $bank = Bank::where('city_id',$request->header('city_id'))->where('parent_id',null)->select('id','name_' . $lang . ' as name', 'image')->get();
                 $data['banks'] = $bank;
 
                 $fields = Company_field::select('id', 'name_' . $lang . ' as name')->get();

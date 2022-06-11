@@ -12,13 +12,23 @@
         <!--begin::Form-->
         <form method="POST" action="{{route('seller.login.store') }}" class="form">
         @csrf
-        @include('layouts.errors')
-        @include('layouts.messages')
+
         <!--begin::Title-->
             <div class="pb-13 pt-lg-0 pt-5">
-                <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">اهلا بك !</h3>
+                            <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
+                                <!--begin::Aside header-->
+                                <a href="#" class="text-center mb-10">
+                                    <img src="{{url('/')}}/banko/media/logo/stores/3/Aman_Logo_1_.png" class="max-h-70px" alt="" />
+                                </a>
+                                <!--end::Aside header-->
+                                <!--begin::Aside title-->
+                            <!--end::Aside title-->
+                            </div>
+                <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg" style="text-align: center;">تسجيل الدخول</h3>
                 {{--                            <span class="text-muted font-weight-bold font-size-h4">New Here?--}}
                 {{--									<a href="javascript:;" id="kt_login_signup" class="text-primary font-weight-bolder">Create an Account</a></span>--}}
+                @include('layouts.errors')
+                @include('layouts.messages')
             </div>
             <!--begin::Title-->
             <!--begin::Form group-->
