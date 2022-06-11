@@ -87,10 +87,15 @@ class SectionsController extends Controller
 
     public function destroy($id)
     {
-        $category = Section::findOrFail($id);
-        $category->delete();
-        activity('admin')->log('تم حذف القسم بنجاح');
+        try {
+            $category = Section::findOrFail($id);
+            $category->delete();
+            activity('admin')->log('تم حذف القسم بنجاح');
 //        Alert::success('تمت العمليه', 'تم الحذف بنجاح');
-        return redirect()->route('sections')->with('success', 'تم الحذف بنجاح');
+            return redirect()->route('sections')->with('success', 'تم الحذف بنجاح');
+        }catch (\Exception $ex){
+            return redirect()->route('sections')->with('danger', 'لم يتم الحذف لوجود منتجات داخل القسم المختار');
+
+        }
     }
 }
