@@ -270,7 +270,7 @@ class UsersController extends Controller
 
     public function getDataProfile(Request $request)
     {
-        $user = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone')->first();
+        $user = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone','city_id')->first();
         $user->fcm_token = $request->fcm_token;
         $user->save();
         $user['token_api'] = null;
