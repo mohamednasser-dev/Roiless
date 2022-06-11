@@ -80,12 +80,14 @@ class UsersController extends Controller
         } else {
             //check phone change
             if ($request->phone == Auth::user()->phone) {
+
                 $user->update([
                     'name' => $request->name,
                     'email' => $request->email,
                     'city_id' => $request->city_id
                 ]);
             } else {
+
                 $otb = \Otp::generate($request->phone );
                 $user->update([
                     'otp_code' => $otb,
@@ -110,7 +112,7 @@ class UsersController extends Controller
                     }
                 }
             }
-            $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone')->first();
+            $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone','city_id')->first();
             $user_data['token_api'] = null;
             $user_data['otp_code'] = null;
             if ($user) {
