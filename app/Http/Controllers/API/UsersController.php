@@ -63,7 +63,6 @@ class UsersController extends Controller
 
     public function updateProfile(Request $request)
     {
-
         $id = Auth::user()->id;
         $user = User::find($id);
         if (!$user)
@@ -73,6 +72,7 @@ class UsersController extends Controller
             'email' => 'required|email|unique:users,email,' . $id,
             'phone' => 'required|unique:users,phone,' . $id,
             'otp_code' => '',
+            'city_id' => 'required|exists:cities,id'
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -82,7 +82,8 @@ class UsersController extends Controller
             if ($request->phone == Auth::user()->phone) {
                 $user->update([
                     'name' => $request->name,
-                    'email' => $request->email
+                    'email' => $request->email,
+                    'city_id' => $request->city_id
                 ]);
             } else {
                 $otb = \Otp::generate($request->phone );
@@ -101,13 +102,13 @@ class UsersController extends Controller
                             'name' => $request->name,
                             'email' => $request->email,
                             'phone' => $request->phone,
+                            'city_id' => $request->city_id,
                             'otp_code' => null,
                         ]);
                     } else {
                         return response()->json(msg($request, failed(), 'update_profile_warning'));
                     }
                 }
-
             }
             $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone')->first();
             $user_data['token_api'] = null;
@@ -158,7 +159,7 @@ class UsersController extends Controller
                     $imageName = $this->MoveImage($request->image, 'uploads/users_images');
                 }
                 $user->update(['image' => $imageName]);
-                $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone')->first();
+                $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone','city_id')->first();
                 $user_data['token_api'] = null;
                 $user_data['otp_code'] = null;
                 if ($user) {
