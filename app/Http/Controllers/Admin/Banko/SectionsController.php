@@ -94,7 +94,7 @@ class SectionsController extends Controller
 //        Alert::success('تمت العمليه', 'تم الحذف بنجاح');
             return redirect()->route('sections')->with('success', 'تم الحذف بنجاح');
         }catch (\Exception $ex){
-            return redirect()->route('sections')->with('danger', 'لم يتم الحذف لوجود منتجات داخل القسم المختار');
+            return redirect()->route('sections')->with('danger', 'لم يتم الحذف لوجود اقسام فرعية أو منتجات داخل القسم المختار');
 
         }
     }
