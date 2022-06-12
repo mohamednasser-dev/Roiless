@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Mail\UserRestPasswordApi;
+use App\Models\City;
 use Carbon\Carbon;
 use Str;
 use App\Cases;
@@ -39,6 +40,7 @@ class AuthController extends Controller
     {
         try {
             $rules = [
+                'city_id' => 'required|exists:cities,id',
                 'phone' => 'required|exists:users,phone',
                 'password' => 'required',
                 'fcm_token' => '',
@@ -47,6 +49,10 @@ class AuthController extends Controller
             if ($validator->fails()) {
                 return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
             }
+            //remove first zero in phone
+            $request->phone = ltrim($request->phone, "0");
+            $city = City::findOrFail($request->city_id);
+            $request->phone = $city->country_code . $request->phone ;
             $credentials = $request->only(['phone', 'password']);
             //to check the type of user not admine
             $credentials['type'] = "user";
@@ -81,6 +87,7 @@ class AuthController extends Controller
         $data = $request->all();
         $validator = Validator::make($data, [
             'name' => 'required|string',
+            'city_id' => 'required|exists:cities,id',
             'phone' => 'required|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:6|max:50'
@@ -90,6 +97,10 @@ class AuthController extends Controller
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         }
         //Request is valid, create new user
+        $request->phone = ltrim($request->phone, "0");
+        $city = City::findOrFail($request->city_id);
+        $data['phone'] = $city->country_code . $request->phone ;
+        unset($data['city_id']);
         $data['password'] = bcrypt($request->password);
         $user = User::create($data);
         if ($user) {
@@ -97,7 +108,6 @@ class AuthController extends Controller
             $user->token_api = $token;
             //User created, return success response
             return msgdata($request, success(), 'login_success', array('user' => $user));
-
         }
     }
 
@@ -121,11 +131,18 @@ class AuthController extends Controller
 
     public function loginasguest(Request $request)
     {
-        $data = $request->only(['phone', 'name']);
+
+        $data = $request->all();
+        $request->phone = ltrim($request->phone, "0");
+        $city = City::findOrFail($request->city_id);
+        $data['phone'] = $city->country_code . $request->phone ;
+        $request->phone = $city->country_code . $request->phone ;
         $validator = Validator::make($data, [
             'name' => 'required|string',
+            'city_id' => 'required|exists:cities,id',
             'phone' => 'required|unique:users,phone',
         ]);
+
         $password = Str::random(8);
         $data['password'] = bcrypt($password);
         //Request is valid, create new user
@@ -150,8 +167,12 @@ class AuthController extends Controller
     {
         $data = $request->only(['phone', 'name']);
         $validator = Validator::make($data, [
+            'city_id' => 'required|exists:cities,id',
             'phone' => 'required',
         ]);
+        $request->phone = ltrim($request->phone, "0");
+        $city = City::findOrFail($request->city_id);
+        $request->phone = $city->country_code . $request->phone ;
         $user = User::where('phone', $request->phone)->first();
         if ($user) {
             $otp_code = \Otp::generate($request->phone);
