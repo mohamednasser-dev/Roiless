@@ -88,7 +88,7 @@ class UsersController extends Controller
                 ]);
             } else {
 
-                $otb = \Otp::generate($request->phone );
+                $otb = \Otp::generate($request->phone);
                 $user->update([
                     'otp_code' => $otb,
                 ]);
@@ -112,7 +112,7 @@ class UsersController extends Controller
                     }
                 }
             }
-            $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone','city_id')->first();
+            $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone', 'city_id')->first();
             $user_data['token_api'] = null;
             $user_data['otp_code'] = null;
             if ($user) {
@@ -120,6 +120,26 @@ class UsersController extends Controller
             } else {
                 return response()->json(msg($request, failed(), 'update_profile_warning'));
             }
+        }
+    }
+
+    public function update_city(Request $request)
+    {
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        if (!$user)
+            return response()->json(['status' => 401, 'msg' => 'User Not Found']);
+        $rules = [
+            'city_id' => 'required|exists:cities,id'
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        } else {
+            $user->update([
+                'city_id' => $request->city_id
+            ]);
+            return msgdata($request, success(), 'update_profile_success', (object)[]);
         }
     }
 
@@ -133,15 +153,18 @@ class UsersController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
-              $id = Auth::user()->id;
+            $id = Auth::user()->id;
             $user = User::find($id);
             if ($request->password == $request->password_confirmation) {
-                $user->update([ 'password' => Hash::make($request->password) ]);
+                $user->update(['password' => Hash::make($request->password)]);
                 $data['status'] = true;
                 return msgdata($request, success(), 'update password successfuly', $data);
-            } else { return response()->json(['status' => 401, 'msg' => 'o']); }
+            } else {
+                return response()->json(['status' => 401, 'msg' => 'o']);
+            }
         }
     }
+
     public function update_image(Request $request)
     {
         $id = Auth::user()->id;
@@ -161,7 +184,7 @@ class UsersController extends Controller
                     $imageName = $this->MoveImage($request->image, 'uploads/users_images');
                 }
                 $user->update(['image' => $imageName]);
-                $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone','city_id')->first();
+                $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone', 'city_id')->first();
                 $user_data['token_api'] = null;
                 $user_data['otp_code'] = null;
                 if ($user) {
@@ -184,7 +207,7 @@ class UsersController extends Controller
             $user = User::where('phone', $request->phone)->first();
             if (!empty($user)) {
                 $otb = \Otp::generate($user->phone);
-                $send = Smsmisr::send("كود إستعادة كلمة المرور الخاصة بك ".$otb, $user->phone ,null,2);
+                $send = Smsmisr::send("كود إستعادة كلمة المرور الخاصة بك " . $otb, $user->phone, null, 2);
                 $user->update([
                     'otp_code' => $otb,
                 ]);
@@ -273,7 +296,7 @@ class UsersController extends Controller
 
     public function getDataProfile(Request $request)
     {
-        $user = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone','city_id')->first();
+        $user = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone', 'city_id')->first();
         $user->fcm_token = $request->fcm_token;
         $user->save();
         $user['token_api'] = null;
@@ -321,7 +344,7 @@ class UsersController extends Controller
     {
         $userPhone = Auth::user()->phone;
         $otb = \Otp::generate($userPhone);
-        $send = Smsmisr::send("كود التفعيل الخاص بك هوا ".$otb, $userPhone ,null,2);
+        $send = Smsmisr::send("كود التفعيل الخاص بك هوا " . $otb, $userPhone, null, 2);
         return msgdata($request, success(), 'otp', $otb);
     }
 
@@ -331,10 +354,10 @@ class UsersController extends Controller
         $userPhone = Auth::user()->phone;
         $otp = $request->otp;
         $result = \Otp::validate($userPhone, $otp);
-        if ($result->status == true){
-            return msgdata($request, success(),'this otp is valied','');
-        }else{
-            return msgdata($request, failed(),$result->error,'');
+        if ($result->status == true) {
+            return msgdata($request, success(), 'this otp is valied', '');
+        } else {
+            return msgdata($request, failed(), $result->error, '');
         }
     }
 }

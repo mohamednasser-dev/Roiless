@@ -32,9 +32,6 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::get("/funds/details/{id}", "Banko\HomeController@f_details");
         Route::get("/investment/details/{id}", "Banko\HomeController@i_details");
     });
-
-
-
 //user
     Route::get("/cities", "HomeController@cities");
     Route::post("/login", "AuthController@login");
@@ -53,15 +50,12 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
     Route::get("/payment/response", "PayMobController@processedCallback")->name('response');
     Route::get("/payment/success", "PayMobController@succeeded")->name('succeeded');
     Route::get("/payment/fail", "PayMobController@failed")->name('failed');
-
-
     Route::post("banko/order/calculate/installment", "Banko\OrderController@calculate_installment");
     Route::group(['middleware' => ['jwt.verify']], function () {
 
         Route::group(['prefix' => 'banko'], function () {
             //Order
             Route::get("/my_orders", "Banko\OrderController@my_orders");
-
             Route::post("/order/create", "Banko\OrderController@make_order");
             //profile
             Route::get("/profile/get", "Banko\ProfileController@get");
@@ -108,6 +102,7 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
         Route::post("/funds/updateUserFund/{id}", "FundController@updateUserFund");
         //user update
         Route::post("/update_profile", "UsersController@updateProfile");
+        Route::post("/update_city", "UsersController@update_city");
         Route::post("/update_lang", "UsersController@updatelang");
         Route::post("/user/update_image", "UsersController@update_image");
         Route::get('check_token/', 'UsersController@reset_password');
