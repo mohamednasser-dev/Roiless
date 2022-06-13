@@ -62,7 +62,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
     Route::post('users/actived', 'Admin\usersController@update_Actived')->name('users.actived');
 
-    //viewprofile routes
+    //view profile routes
     Route::post('employer/update', 'Admin\ProfileController@update')->name('employers.update');
     Route::post('employer/update/password', 'Admin\ProfileController@updatepassword')->name('employers.update.password');
     Route::post('employer/update/image', 'Admin\ProfileController@updateimage')->name('employers.update.image');
@@ -272,4 +272,6 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
 Route::get('change_lang/{lang}', 'HomeController@change_lang')->name('change_lang');
 
-
+Route::post("/payment/{payway}/{id}/{user_id}", "API\FundController@payway")->name('pay_way');
+Route::get("/payment/success", "API\PayMobController@succeeded")->name('succeeded');
+Route::get("/payment/fail", "API\PayMobController@failed")->name('failed');

@@ -52,8 +52,11 @@ class AuthController extends Controller
             //remove first zero in phone
             $request->phone = ltrim($request->phone, "0");
             $city = City::findOrFail($request->city_id);
-            $request->phone = $city->country_code . $request->phone ;
-            $credentials = $request->only(['phone', 'password']);
+                $user_phone = $city->country_code . $request->phone ;
+            $request->phone = $user_phone;
+
+//            $credentials = $request->only(['phone', 'password'])
+                $credentials = ['phone'=>$user_phone ,'password'=> $request->password];
             //to check the type of user not admine
             $credentials['type'] = "user";
             $token = Auth::guard('user-api')->attempt($credentials);
@@ -165,7 +168,7 @@ class AuthController extends Controller
 
     public function resend_otp(Request $request)
     {
-        $data = $request->only(['phone', 'name']);
+        $data = $request->all();
         $validator = Validator::make($data, [
             'city_id' => 'required|exists:cities,id',
             'phone' => 'required',

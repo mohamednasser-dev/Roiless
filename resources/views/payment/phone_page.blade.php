@@ -46,7 +46,7 @@
                     <div class="col-md-12 mb-4" style="cursor: pointer">
                         <div class="card">
                             <form class="needs-validation" method="POST" id="payment-form"
-                                  action="{{route('payWay',['wallet',$id,$user_id])}}">
+                                  action="{{route('pay_way',['wallet',$id,$user_id])}}">
                                 <div class="card-body">
                                     {{ csrf_field() }}
                                     <label>phone number</label>

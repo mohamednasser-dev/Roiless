@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use BaklySystems\PayMob\Facades\PayMob;
@@ -113,9 +113,9 @@ class PayMobController extends Controller
      * @param  object  $order
      * @return void
      */
-    protected function succeeded($order)
+    protected function succeeded()
     {
-        # code...
+        return response()->json(['message' => 'Payment succeeded'], 200);
     }
 
     /**
@@ -146,9 +146,9 @@ class PayMobController extends Controller
      * @param  object  $order
      * @return void
      */
-    protected function failed($order)
+    protected function failed()
     {
-        # code...
+        return response()->json(['message' => 'Payment failed'], 403);
     }
 
     /**
@@ -189,15 +189,15 @@ class PayMobController extends Controller
             $history_app_data['note_ar'] = 'تم دفع الرسوم';
             $history_app_data['note_en'] = 'Fund Cost Has Been Paid';
             Fhistory::create($history_app_data);
-            return redirect('/payment/success');
+            return redirect()->route('succeeded');
         } elseif ($isSuccess && $isVoided) { // transaction voided.
-            return redirect('/payment/fail');
+            return redirect()->route('failed');
         } elseif ($isSuccess && $isRefunded) { // transaction refunded.
-            return redirect('/payment/fail');
+            return redirect()->route('failed');
         } elseif (!$isSuccess) { // transaction failed.
-            return redirect('/payment/fail');
+            return redirect()->route('failed');
         }else{
-            return redirect('/payment/fail');
+            return redirect()->route('failed');
         }
         //return redirect('/payment/fail');
         //return response()->json(['success' => true], 200);

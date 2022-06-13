@@ -45,12 +45,21 @@ Route::group(['namespace' => 'API', 'middleware' => ['api']], function () {
     Route::get('/setting', 'SettingController@index');
     //Payment
     Route::get("/payment/{id}/{user_id}", "FundController@DoPayment");
+
+    //payway
     Route::post("/payment/show/phone_page/{payway}/{id}/{user_id}", "FundController@show_phone_page")->name('show_phone_page');
-    Route::post("/payment/{payway}/{id}/{user_id}", "FundController@payway")->name('payWay');
+
+    Route::post("/payment/{payway}/{id}/{user_id}", "FundController@payway")->name('fawate');
     Route::get("/payment/response", "PayMobController@processedCallback")->name('response');
-    Route::get("/payment/success", "PayMobController@succeeded")->name('succeeded');
-    Route::get("/payment/fail", "PayMobController@failed")->name('failed');
+
     Route::post("banko/order/calculate/installment", "Banko\OrderController@calculate_installment");
+
+
+    //myfatoorah
+    Route::post('/myfatoorah/payment/{id}/{user_id}', 'MyfatoorahController@paywith')->name('myfatoorah');
+    Route::get('myfatoorah-status', 'MyfatoorahController@getPaymentStatus')->name('myfatoorah-status');
+    Route::get('myfatoorah-oncomplate', 'MyfatoorahController@oncomplate')->name('myfatoorah-oncomplate');
+
     Route::group(['middleware' => ['jwt.verify']], function () {
 
         Route::group(['prefix' => 'banko'], function () {

@@ -45,7 +45,7 @@
                     <div class="col-md-12 mb-4" style="cursor: pointer">
                         <div class="card">
                             <div class="card-body">
-                                <form class="needs-validation" method="POST" id="payment-form" action="{{route('payWay',['visa',$order->id,$user->id])}}">
+                                <form class="needs-validation" method="POST" id="payment-form" action="{{route('pay_way',['visa',$order->id,$user->id])}}">
                                     {{ csrf_field() }}
                                     <button class="btn btn-block" type="submit">
                                         <img src="{{url('/payment')}}/meza-visa.png"/>
@@ -68,25 +68,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 mb-4" style="cursor: pointer">
+                    <div class="col-md-12 lg-12" >
                         <div class="card">
                             <div class="card-body">
-                                <form class="needs-validation" method="POST" id="payment-form" action="{{route('payWay',['visa',$order->id,$user->id])}}">
+                                <form class="needs-validation" method="POST" id="payment-form" action="{{route('myfatoorah',[$order->id,$user->id])}}">
                                     {{ csrf_field() }}
                                     <button class="btn btn-block" type="submit">
-                                        <img src="{{url('/payment')}}/my_fatora_logo.png"/>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-4" style="cursor: pointer">
-                        <div class="card">
-                            <div class="card-body">
-                                <form class="needs-validation" method="POST" id="payment-form" action="{{route('show_phone_page',['wallet',$order->id,$user->id])}}">
-                                    {{ csrf_field() }}
-                                    <button class="btn btn-block" type="submit">
-                                        <img width="100%" src="{{url('/payment')}}/my_fatora_mobile_logo.png"/>
+                                        <img style="width: 100%;" src="{{url('/payment')}}/my_fatoorah.png"/>
                                     </button>
                                 </form>
                             </div>
