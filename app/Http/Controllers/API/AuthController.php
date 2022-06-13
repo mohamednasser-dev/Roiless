@@ -38,7 +38,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        try {
+
             $rules = [
                 'city_id' => 'required|exists:cities,id',
                 'phone' => 'required|exists:users,phone',
@@ -56,6 +56,7 @@ class AuthController extends Controller
             $request->phone = $user_phone;
 
 //            $credentials = $request->only(['phone', 'password'])
+
                 $credentials = ['phone'=>$user_phone ,'password'=> $request->password];
             //to check the type of user not admine
             $credentials['type'] = "user";
@@ -80,9 +81,7 @@ class AuthController extends Controller
             $user_data->token_api = $token;
 
             return msgdata($request, success(), 'login_success', $user_data);
-        } catch (Exception $e) {
-            return $this->returnError($e->getCode(), $e->getMessage());
-        }
+
     }
 
     public function Register(Request $request)
