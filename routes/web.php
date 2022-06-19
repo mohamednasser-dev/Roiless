@@ -36,6 +36,8 @@ Route::group(['middleware' => ['auth:admin']], function () {
 });
 
 Route::get('/', 'Front\HomeController@index')->name('landing');
+Route::get("funds",'Front\HomeController@funds');
+Route::get("funds/{id}",'Front\HomeController@getfund');
 
 Route::group(['middleware' => 'guest', 'namespace' => 'Admin\Auth'], function () {
     Route::get('c_panel/login', 'LoginController@login')->name('login');
@@ -275,3 +277,4 @@ Route::get('change_lang/{lang}', 'HomeController@change_lang')->name('change_lan
 Route::post("/payment/{payway}/{id}/{user_id}", "API\FundController@payway")->name('pay_way');
 Route::get("/payment/success", "API\PayMobController@succeeded")->name('succeeded');
 Route::get("/payment/fail", "API\PayMobController@failed")->name('failed');
+
