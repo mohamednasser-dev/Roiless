@@ -3,6 +3,16 @@
 use App\User;
 use App\Models\Adminhistory;
 use Illuminate\Support\Facades\Validator;
+function GetField($field)
+{
+    $text = ['full_name','phone','email','address','city','country','company_name','company_phone','company_address','annual_income','fund_amount','Company_activity','annual_sales','Required_fund_amount','property_financed','car_financed'];
+    $select = ['company_type'];
+    $name = \App\Models\Fundinput::where('slug',$field)->first();
+    if (in_array($field, $text)) {
+        return '<div class="col-md-6"><label class="label" for="'.$field.'">'.$name->name.'*</label><input id="'.$field.'" class="form-control" name="'.$field.'" type="text" required></div>';
+    }elseif (in_array($field, $select)) {
+        return '<div class="col-md-6"> <label class="label" for="company_type">مجال الشركة*</label> <select name="company_type" class="form-control" required id="company_type"> <option value="1">فرد</option> <option value="2">توصية</option> <option value="3">تكافل</option> <option value="4">مساهمة</option> <option value="5">مسؤلية محدودة</option> </select> </div> '; }
+}
 function uploadImage($file, $dir)
 {
     $image = time() . uniqid() . '.' . $file->getClientOriginalExtension();

@@ -26,6 +26,7 @@ class HomeController extends Controller
     public function getfund($id)
     {
         $data = Fund::find($id);
-        return view('front.showinvestment',compact('data'));
+        $fields = explode(',',str_replace(['[','"',']'],'',$data->columns));
+        return view('front.showinvestment',compact('data','fields'));
     }
 }

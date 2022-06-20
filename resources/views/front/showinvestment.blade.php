@@ -23,9 +23,9 @@ header-menu-3
                         <div class="loan-details-widget bg_white">
                             <form action="document-upload.html">
                                 <div class="row gy-4">
-
-
-
+                                    @foreach($fields as $field)
+                                        {!! GetField($field) !!}                                  
+                                    @endforeach                                     
                                 </div>
                                 <div class="row mt-60">
                                     <div class="col-md-12">
