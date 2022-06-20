@@ -28,7 +28,7 @@
         body :not(i) {
             font-family: 'Tajawal', sans-serif !important;
         }
-    </style>    
+    </style>
 </head>
 
 <body data-spy="scroll" data-offset="70">
@@ -124,7 +124,11 @@
                                 </ul>
                             </li>
                         </ul>
-                        <a class="theme-btn theme-btn-rounded-2 theme-btn-alt" href="loan.html">Get Loan</a>
+                        @if(auth()->guard('web')->check())
+                            <a class="theme-btn theme-btn-rounded-2 theme-btn-alt" href="{{route('front.logout')}}">تسجيل الخروج  ({{ auth()->guard('web')->user()->name }})</a>
+                        @else
+                        <a class="theme-btn theme-btn-rounded-2 theme-btn-alt" href="{{route('front.login')}}">تسجيل الدخول</a>
+                         @endif
                     </div>
                 </div>
             </nav>
@@ -262,8 +266,9 @@
     <script type="text/javascript" src="{{url('New')}}/js/parallax.js"></script>
     <script type="text/javascript" src="{{url('New')}}/js/jquery.parallax-scroll.js"></script>
     <script type="text/javascript" src="{{url('New')}}/js/wow.min.js"></script>
-    
+
     <script type="text/javascript" src="{{url('New')}}/js/custom.js"></script>
+    @include('sweetalert::alert')
 </body>
 
 </html>
