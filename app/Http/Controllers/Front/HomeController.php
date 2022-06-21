@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Consolution;
+use App\Models\Service_details;
+use App\Models\Services;
 use App\Models\Setting;
 use App\Models\SettingInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpOffice\PhpSpreadsheet\Calculation\Web\Service;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\City;
 use App\Models\Category;
@@ -34,27 +37,37 @@ class HomeController extends Controller
         return view('front.index');
     }
 
+    public function services()
+    {
+        $data = Services::get();
+        return view('front.services', compact('data'));
+    }
+
+    public function service_details($id)
+    {
+        $data = Services::findOrFail($id);
+        $service_detailes = Service_details::where('service_id', $id)->first();
+        unset($service_detailes['created_at'], $service_detailes['updated_at']);
+        return view('front.service_details', compact('data', 'service_detailes'));
+    }
+
     public function about_us()
     {
         $data = Setting::findOrFail(1);
-        return view('front.about_us',compact('data'));
+        return view('front.about_us', compact('data'));
     }
 
     public function contact()
     {
-        if(!auth('web')->check()){
-            Alert::warning('تنبية' , 'يجب تسجيل الدخول اولا');
-            return redirect()->back();
-        }
-        $phones = SettingInfo::where('type','phone')->get();
-        $addresses = SettingInfo::where('type','address')->get();
-        return view('front.contact',compact('addresses','phones'));
+        $phones = SettingInfo::where('type', 'phone')->get();
+        $addresses = SettingInfo::where('type', 'address')->get();
+        return view('front.contact', compact('addresses', 'phones'));
     }
 
     public function contact_store(Request $request)
     {
-        if(!auth('web')->check()){
-            Alert::warning('تنبية' , 'يجب تسجيل الدخول اولا');
+        if (!auth('web')->check()) {
+            Alert::warning('تنبية', 'يجب تسجيل الدخول اولا');
             return redirect()->back();
         }
         $user = auth()->user();
@@ -74,7 +87,7 @@ class HomeController extends Controller
             $data['country'] = 'egypt';
 
             $inbox = Consolution::create($data);
-            Alert::success('تم',trans('تم ارسال الرسالة بنجاح'));
+            Alert::success('تم', trans('تم ارسال الرسالة بنجاح'));
             return redirect()->route('landing');
         }
     }
@@ -203,7 +216,6 @@ class HomeController extends Controller
             return redirect()->to(url('loan/pay/' . $user_funds->id . '/' . auth()->user()->id));
         }
     }
-
 
 
     public function DoPayment($id, $user_id)

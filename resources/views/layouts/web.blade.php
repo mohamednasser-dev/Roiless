@@ -93,7 +93,7 @@
                                 <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false"
                                     data-bs-toggle="dropdown"></i>
                                 <ul class="dropdown-menu ">
-                                    <li class="nav-item"><a class="nav-link" href="blog.html">الخدمات</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{route('front.services')}}">الخدمات</a></li>
                                     <li class="nav-item"><a class="nav-link" href="{{route('front.about_us')}}">من نحن</a>
                                     </li>
                                 </ul>
