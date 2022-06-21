@@ -12,16 +12,14 @@ header-menu-3
             </div>
             <div class="row mt-60 gy-4 gy-lg-0">
                 @foreach($data as $fund)
-                    <a href="{{route('front.service_details',$fund->id)}}">
                     <div class="col-lg-3 col-md-6 pb-10">
                         <div class="blog-widget-1 wow fadeInUp" data-wow-delay="0.1s">
                             <img class="w-100" style="height:160px" src="{{$fund->image}}" alt="news image">
                             <div class="blog-content pr-10 pl-10">
-                                <h6>{{$fund->title_ar}}</h6>
+                                <h6><a href="{{route('front.service_details',$fund->id)}}">{{$fund->title_ar}} </a></h6>
                             </div>
                         </div>
                     </div>
-                    </a>
                 @endforeach
             </div>
         </div>
