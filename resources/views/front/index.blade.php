@@ -161,7 +161,7 @@ header-menu-4
             <div class="container">
                 <div class="section-title d-flex flex-wrap justify-content-between text-start align-items-center">
                     <h2 class="mb-3 mb-sm-0 wow fadeInRight">أفضل  أنظمة التمويل والقروض</h2>
-                    <a class="wow fadeInLeft" href="{{url('funds')}}">عرض الكل <i class="arrow_left"></i></a>
+                    <a class="wow fadeInLeft" href="{{url('loans')}}">عرض الكل <i class="arrow_left"></i></a>
                 </div>
                 @php
                     $funds = \App\Models\Fund::where('featured','1')->where('deleted','0')->get();
@@ -172,7 +172,7 @@ header-menu-4
                             <div class="blog-widget-1 wow fadeInUp" data-wow-delay="0.1s">
                                 <img class="w-100" src="{{$fund->image}}" alt="news image">
                                 <div class="blog-content pr-10 pl-10">
-                                    <h6><a href="blog-details.html">{{$fund->name_ar}}</a></h6>
+                                    <h6><a href="{{url('loan/'.$fund->id)}}">{{$fund->name_ar}}</a></h6>
                                 </div>
                             </div>
                         </div>

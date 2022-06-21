@@ -39,8 +39,9 @@ Route::get('/', 'Front\HomeController@index')->name('landing');
 Route::get("/banco/front/login", "Front\HomeController@front_login")->name('front.login');
 Route::get("/banco/front/logout", "Front\HomeController@front_logout")->name('front.logout');
 Route::post("/banco/front/login", "Front\HomeController@store_front_login")->name('front.login.store');
-Route::get("funds",'Front\HomeController@funds');
-Route::get("funds/{id}",'Front\HomeController@getfund');
+Route::get("loans",'Front\HomeController@funds');
+Route::get("loan/{id}",'Front\HomeController@getfund');
+Route::post("loans/create",'Front\HomeController@addfund');
 
 Route::group(['middleware' => 'guest', 'namespace' => 'Admin\Auth'], function () {
     Route::get('c_panel/login', 'LoginController@login')->name('login');

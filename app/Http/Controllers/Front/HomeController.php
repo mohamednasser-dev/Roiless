@@ -6,8 +6,21 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
-use App\Models\Fund;
 use App\Models\City;
+use App\Models\Category;
+use App\Models\Company_field;
+use App\Models\Company_type;
+use App\Models\Fhistory;
+use App\Models\Fund;
+use App\Models\Bank;
+use App\Models\User;
+use App\Models\User_fund;
+use App\Models\Fund_file;
+use Validator;
+use Str;
+use BaklySystems\PayMob\Facades\PayMob;
+use App\Http\Controllers\API\PayMobController;
+use function PHPUnit\Framework\isNull;
 
 class HomeController extends Controller
 {
@@ -64,5 +77,69 @@ class HomeController extends Controller
         Auth::guard('web')->logout();
         Alert::success('تم', 'تم تسجيل الخروج بنجاح');
         return redirect()->back();
+    }
+    public function addfund(Request $request)
+    {
+        $user = auth()->user();
+        $myJSON = json_encode($request->dataform);
+        $rules = [
+            'fund_id' => 'required',
+            'dataform' => 'required',
+            'file' => '',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        } else {
+            $fund = Fund::find($request->fund_id);
+            $user_fund_data['fund_amount'] = $fund->cost;
+            $user_fund_data['dataform'] = json_encode($request->dataform);
+            $user_fund_data['fund_id'] = $request->fund_id;
+            $user_fund_data['user_id'] = $user->id;
+            foreach ($request->dataform as $key => $value) {
+                if ($key == 'fund_amount') {
+                    $user_fund_data['cost'] = $value;
+                } elseif ($key == 'Required_fund_amount') {
+                    $user_fund_data['cost'] = $value;
+                } elseif ($key == 'property_financed') {
+                    $user_fund_data['cost'] = $value;
+                } elseif ($key == 'car_financed') {
+                    $user_fund_data['cost'] = $value;
+                }
+            }
+            $user_funds = User_fund::create($user_fund_data);
+            $history_data['user_fund_id'] = $user_funds->id;
+            $history_data['type'] = 'user';
+            $history_data['show_in'] = 'web';
+            $history_data['status'] = 'pending';
+            $history_data['user_id'] = auth()->user()->id;
+            $history_data['note_ar'] = ' بدايه التمويل';
+            $history_data['note_en'] = 'Starting Fund Request';
+            Fhistory::create($history_data);
+            $history_app_data['user_fund_id'] = $user_funds->id;
+            $history_app_data['type'] = 'user';
+            $history_app_data['show_in'] = 'app';
+            $history_app_data['status'] = 'pending';
+            $history_app_data['user_id'] = auth()->user()->id;
+            $history_app_data['note_ar'] = ' بدايه التمويل';
+            $history_app_data['note_en'] = 'Starting Fund Request';
+            Fhistory::create($history_app_data);
+            if ($request->file != null) {
+                foreach ($request->file as $key => $row) {
+                    // This is Image Information ...
+                    $file = $row;
+                    $ext = $file->getClientOriginalExtension();
+                    $size = $file->getSize();
+                    // Move Image To Folder ..
+                    $fileNewName = 'file' . $size . '_' . time() . '.' . $ext;
+                    $file->move(public_path('uploads/fund_file'), $fileNewName);
+                    $file_data['user_fund_id'] = $user_funds->id;
+                    $file_data['file_ext'] = $ext;
+                    $file_data['file_name'] = $fileNewName;
+                    Fund_file::create($file_data);
+                }
+            }
+            return msgdata($request, success(), 'add user fund successfully', ['fund_id' => $user_funds->id]);
+        }
     }
 }

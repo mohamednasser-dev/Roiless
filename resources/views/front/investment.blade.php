@@ -16,7 +16,7 @@ header-menu-3
                         <div class="blog-widget-1 wow fadeInUp" data-wow-delay="0.1s">
                             <img class="w-100" style="height:160px" src="{{$fund->image}}" alt="news image">
                             <div class="blog-content pr-10 pl-10">
-                                <h6><a href="{{url('funds/'.$fund->id)}}">{{$fund->name_ar}}</a></h6>
+                                <h6><a href="{{url('loan/'.$fund->id)}}">{{$fund->name_ar}}</a></h6>
                             </div>
                         </div>
                     </div>
