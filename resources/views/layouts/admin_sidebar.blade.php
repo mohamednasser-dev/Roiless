@@ -135,14 +135,7 @@
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('investment')}}" aria-expanded="false"><i
                                 class="mdi mdi-key"></i>
-                            <span class="hide-menu">
-                                @php
-                                    $un_accepted_invest_orders = \App\Models\InvestmentOrder::where('status','pinding')->get()->count();
-                                @endphp
-                                @if( $un_accepted_invest_orders > 0)
-                                    <span class="label label-rouded label-danger pull-right">{{$un_accepted_invest_orders}}</span>
-                                @endif
-                            </span>
+
                             {{trans('admin.investments')}}
                         </a>
                     </li>
@@ -151,7 +144,16 @@
                     <li>
                         <a class="waves-effect waves-dark" href="{{route('investments.orders')}}" aria-expanded="false"><i
                                 class="mdi mdi-key"></i><span
-                                class="hide-menu"></span>{{trans('admin.investments_orders')}}
+                                class="hide-menu"></span>
+                            <span class="hide-menu">
+                                @php
+                                    $un_accepted_invest_orders = \App\Models\InvestmentOrder::where('status','pinding')->get()->count();
+                                @endphp
+                                @if( $un_accepted_invest_orders > 0)
+                                    <span class="label label-rouded label-danger pull-right">{{$un_accepted_invest_orders}}</span>
+                                @endif
+                            </span>
+                            {{trans('admin.investments_orders')}}
                         </a>
                     </li>
                 @endcan

@@ -73,20 +73,20 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav menu ms-auto">
                             <li class="nav-item">
-                                <a href="{{url('/')}}" class="nav-link active" >الصفحة الرئيسية</a>
+                                <a href="{{url('/')}}" class="nav-link @if(request()->segment(1) == '') active  @endif " >الصفحة الرئيسية</a>
                             </li>
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="{{url('loans')}}">
+                                <a class="nav-link @if(request()->segment(1) == 'loans') active  @endif" href="{{url('loans')}}">
                                     القروض والتمويلات
                                 </a>
                             </li>
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="{{url('banco/front/investment')}}">
+                                <a class="nav-link @if(request()->segment(3) == 'investment') active  @endif" href="{{url('banco/front/investment')}}">
                                     الإستثمار
                                 </a>
                             </li>
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                <a class="nav-link dropdown-toggle @if(request()->segment(3) == 'services' || request()->segment(1) == 'about_us') active  @endif " href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     صفحات هامة
                                 </a>
@@ -99,7 +99,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="{{route('front.contact')}}">
+                                <a class="nav-link @if(request()->segment(1) == 'contact') active  @endif" href="{{route('front.contact')}}">
                                     الإتصال بنا
                                 </a>
                             </li>
