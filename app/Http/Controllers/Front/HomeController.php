@@ -20,6 +20,7 @@ use Validator;
 use Str;
 use BaklySystems\PayMob\Facades\PayMob;
 use App\Http\Controllers\API\PayMobController;
+use App\Http\Controllers\API\FundController;
 use function PHPUnit\Framework\isNull;
 
 class HomeController extends Controller
@@ -81,6 +82,10 @@ class HomeController extends Controller
     public function addfund(Request $request)
     {
         $user = auth()->user();
+        $data = [];
+        foreach($request->dataform as $key => $value){
+            $data[] = ['name' => $key,'value'=>$value];
+        }
         $myJSON = json_encode($request->dataform);
         $rules = [
             'fund_id' => 'required',
@@ -93,18 +98,18 @@ class HomeController extends Controller
         } else {
             $fund = Fund::find($request->fund_id);
             $user_fund_data['fund_amount'] = $fund->cost;
-            $user_fund_data['dataform'] = json_encode($request->dataform);
+            $user_fund_data['dataform'] = json_encode($data);
             $user_fund_data['fund_id'] = $request->fund_id;
             $user_fund_data['user_id'] = $user->id;
-            foreach ($request->dataform as $key => $value) {
-                if ($key == 'fund_amount') {
-                    $user_fund_data['cost'] = $value;
-                } elseif ($key == 'Required_fund_amount') {
-                    $user_fund_data['cost'] = $value;
-                } elseif ($key == 'property_financed') {
-                    $user_fund_data['cost'] = $value;
-                } elseif ($key == 'car_financed') {
-                    $user_fund_data['cost'] = $value;
+            foreach ($data as $row) {
+                if ($row['name'] == 'fund_amount') {
+                    $user_fund_data['cost'] = $row['value'];
+                } elseif ($row['name'] == 'Required_fund_amount') {
+                    $user_fund_data['cost'] = $row['value'];
+                } elseif ($row['name'] == 'property_financed') {
+                    $user_fund_data['cost'] = $row['value'];
+                } elseif ($row['name'] == 'car_financed') {
+                    $user_fund_data['cost'] = $row['value'];
                 }
             }
             $user_funds = User_fund::create($user_fund_data);
@@ -139,7 +144,7 @@ class HomeController extends Controller
                     Fund_file::create($file_data);
                 }
             }
-            return msgdata($request, success(), 'add user fund successfully', ['fund_id' => $user_funds->id]);
+            return redirect()->to(url('api/payment/'.$user_funds->id.'/'.auth()->user()->id));
         }
     }
 }

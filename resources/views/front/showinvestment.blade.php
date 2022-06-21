@@ -21,7 +21,7 @@ header-menu-3
 
                     <div class="col-lg-9">
                         <div class="loan-details-widget bg_white">
-                            <form action="{{url('fund/create')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{url('loan/create')}}" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="fund_id" value="{{$data->id}}">
                                 <div class="row gy-4">
@@ -30,7 +30,7 @@ header-menu-3
                                     @endforeach   
                                     <div class="col-md-6"> 
                                         <label class="label" for="company_type">مجال الشركة*</label>
-                                        <input type="file" name="file">
+                                        <input type="file" multiple name="file[]">
                                     </div>                                  
                                 </div>
                                 <div class="row mt-60">
