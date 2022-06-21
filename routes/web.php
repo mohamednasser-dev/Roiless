@@ -42,7 +42,7 @@ Route::post("/banco/front/login", "Front\HomeController@store_front_login")->nam
 
 Route::get("loans",'Front\HomeController@funds');
 Route::get("loan/{id}",'Front\HomeController@getfund');
-Route::post("loans/create",'Front\HomeController@addfund');
+Route::post("loan/create",'Front\HomeController@addfund');
 
 Route::get("funds", 'Front\HomeController@funds');
 Route::get("funds/{id}", 'Front\HomeController@getfund');
