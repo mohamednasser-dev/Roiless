@@ -17,7 +17,7 @@ use \Illuminate\Support\Facades\URL;
 
 // Auth::routes();
 
-if(env('APP_ENV') == 'production'){
+if (env('APP_ENV') == 'production') {
     URL::forceScheme('https');
 }
 
@@ -39,9 +39,17 @@ Route::get('/', 'Front\HomeController@index')->name('landing');
 Route::get("/banco/front/login", "Front\HomeController@front_login")->name('front.login');
 Route::get("/banco/front/logout", "Front\HomeController@front_logout")->name('front.logout');
 Route::post("/banco/front/login", "Front\HomeController@store_front_login")->name('front.login.store');
+
 Route::get("loans",'Front\HomeController@funds');
 Route::get("loan/{id}",'Front\HomeController@getfund');
 Route::post("loans/create",'Front\HomeController@addfund');
+
+Route::get("funds", 'Front\HomeController@funds');
+Route::get("funds/{id}", 'Front\HomeController@getfund');
+Route::get("/banco/front/investment/{id}", "Front\InvestmentController@investment_details")->name('front.investment.details');
+
+    Route::post("/banco/front/investment/store", "Front\InvestmentController@store")->name('front.investment.store');
+
 
 Route::group(['middleware' => 'guest', 'namespace' => 'Admin\Auth'], function () {
     Route::get('c_panel/login', 'LoginController@login')->name('login');

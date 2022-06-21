@@ -136,6 +136,23 @@
     </header>
     <!-- Header end-->
 
+    @if(Session::has('success'))
+        <div class="alert alert-success">
+            <p>{{ Session('success') }}</p>
+        </div>
+    @endif
+    @if(Session::has('danger'))
+        <div class="alert alert-danger">
+            <p>{{ Session('danger') }}</p>
+        </div>
+    @endif
+
+    @if(Session::has('flash_message'))
+        <script>
+            swal("Great Job","{{Session::get('flash_message')}}", "success");
+        </script>
+
+    @endif
 
 @yield('main')
 
@@ -268,6 +285,7 @@
     <script type="text/javascript" src="{{url('New')}}/js/wow.min.js"></script>
 
     <script type="text/javascript" src="{{url('New')}}/js/custom.js"></script>
+    @yield('scripts')
     @include('sweetalert::alert')
 </body>
 

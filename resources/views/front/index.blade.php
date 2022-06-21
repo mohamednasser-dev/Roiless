@@ -197,7 +197,7 @@ header-menu-4
                             <div class="blog-widget-1 wow fadeInUp" data-wow-delay="0.1s">
                                 <img class="w-100" style="height: 150px !important;" src="{{$fund->image}}" alt="news image">
                                 <div class="blog-content pr-10 pl-10">
-                                    <h6><a href="blog-details.html">{{$fund->name_ar}}</a></h6>
+                                    <h6><a href="{{route('front.investment.details',$fund->id)}}">{{$fund->name_ar}}</a></h6>
                                 </div>
                             </div>
                         </div>
