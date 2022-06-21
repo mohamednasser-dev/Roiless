@@ -186,7 +186,7 @@ header-menu-4
             <div class="container">
                 <div class="section-title d-flex flex-wrap justify-content-between text-start align-items-center">
                     <h2 class="mb-3 mb-sm-0 wow fadeInRight">أفضل أنظمة الإستثمار</h2>
-                    <a class="wow fadeInLeft" href="blog.html">عرض الكل <i class="arrow_left"></i></a>
+                    <a class="wow fadeInLeft" href="{{url('banco/front/investment')}}">عرض الكل <i class="arrow_left"></i></a>
                 </div>
                 @php
                     $funds = \App\Models\Investment::limit(10)->get();
