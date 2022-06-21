@@ -73,6 +73,11 @@
                             <form action="{{route('front.contact.store')}}" method="POST">
                                 @csrf
                                 <div class="row">
+                                    @if(!auth()->guard('web')->check())
+                                        <div class="col-md-12 mt-20">
+                                            <label for="form-text" style="color: red;">يجب تسجيل الدخول اولا , لارسال رسالة للادارة !</label>
+                                        </div>
+                                    @endif
                                     <div class="col-md-6">
                                         <label for="f-name">الاسم</label>
                                         <input type="text" id="full_name" name="full_name" class="form-control"
@@ -94,7 +99,6 @@
                                                   class="form-control pt-15" placeholder="Your message......"
                                                   required></textarea>
                                     </div>
-
                                     <div class="col-12 mt-35">
                                         <button type="submit" class="theme-btn theme-btn-lg w-100">ارسال الرسالة
                                         </button>
