@@ -21,7 +21,7 @@
 
                     <div class="col-lg-9">
                         <div class="loan-details-widget bg_white">
-                            <form action="{{route('front.investment.store')}}" method="post" files="true" >
+                            <form action="{{route('front.investment.store')}}" method="post" files="true" enctype="multipart/form-data" >
                                 @csrf
                                 <div class="row gy-4">
                                     <input type="hidden" name="investment_id" value="{{$data->id}}">
