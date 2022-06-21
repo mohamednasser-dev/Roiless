@@ -7,6 +7,7 @@ use BaklySystems\PayMob\Facades\PayMob;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Fhistory;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PayMobController extends Controller
 {
@@ -113,9 +114,14 @@ class PayMobController extends Controller
      * @param  object  $order
      * @return void
      */
-    protected function succeeded()
+    protected function succeeded(Request $request)
     {
-        return response()->json(['message' => 'Payment succeeded'], 200);
+        if ($request->wantsJson()) {
+            return response()->json(['message' => 'Payment succeeded'], 200);
+        } else {
+            Alert::success('تم', 'تم تسجيل بيانات التمويل بنجاح');
+            return redirect()->to(url('/')); 
+        }        
     }
 
     /**

@@ -144,7 +144,13 @@ class HomeController extends Controller
                     Fund_file::create($file_data);
                 }
             }
-            return redirect()->to(url('api/payment/'.$user_funds->id.'/'.auth()->user()->id));
+            return redirect()->to(url('loan/pay/'.$user_funds->id.'/'.auth()->user()->id));
         }
+    }
+    public function DoPayment($id, $user_id)
+    {
+        $order = User_fund::find($id);
+        $user = User::find($user_id);
+        return view('payment.paymentMethods', compact('order', 'user'));
     }
 }
