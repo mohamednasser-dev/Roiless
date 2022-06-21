@@ -76,52 +76,32 @@
                                 <a href="{{url('/')}}" class="nav-link active" >الصفحة الرئيسية</a>
                             </li>
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="{{url('funds')}}">
-                                    القروض
+                                <a class="nav-link dropdown-toggle" href="{{url('loans')}}">
+                                    القروض والتمويلات
                                 </a>
                             </li>
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="career.html" role="button"
+                                <a class="nav-link dropdown-toggle" href="{{url('banco/front/investment')}}">
+                                    الإستثمار
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown submenu">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Job Pages
-                                </a>
-                                <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false"
-                                    data-bs-toggle="dropdown"></i>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="career.html">Career</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="job-post.html">Jobs</a>
-                                    </li>
-                                    <li class="nav-item"><a class="nav-link" href="job-application.html">Job
-                                            Application</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    Pages
+                                    صفحات هامة
                                 </a>
                                 <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false"
                                     data-bs-toggle="dropdown"></i>
                                 <ul class="dropdown-menu ">
-                                    <li class="nav-item"><a class="nav-link" href="card.html">Cards</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="error.html">404 Error</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="blog.html">الخدمات</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="blog-details.html">من نحن</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="blog.html" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Blog
+                                <a class="nav-link dropdown-toggle" href="{{url('contact')}}">
+                                    الإتصال بنا
                                 </a>
-                                <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false"
-                                    data-bs-toggle="dropdown"></i>
-                                <ul class="dropdown-menu ">
-                                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog Listing</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="blog-details.html">Blog Details</a>
-                                    </li>
-                                </ul>
                             </li>
                         </ul>
                         @if(auth()->guard('web')->check())

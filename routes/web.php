@@ -45,11 +45,10 @@ Route::get("loan/{id}",'Front\HomeController@getfund');
 Route::post("loan/create",'Front\HomeController@addfund');
 Route::get("loan/pay/{id}/{user_id}",'Front\HomeController@DoPayment');
 
-Route::get("funds", 'Front\HomeController@funds');
-Route::get("funds/{id}", 'Front\HomeController@getfund');
-Route::get("/banco/front/investment/{id}", "Front\InvestmentController@investment_details")->name('front.investment.details');
 
-    Route::post("/banco/front/investment/store", "Front\InvestmentController@store")->name('front.investment.store');
+Route::get("/banco/front/investment",'Front\HomeController@investment');
+Route::get("/banco/front/investment/{id}", "Front\InvestmentController@investment_details")->name('front.investment.details');
+Route::post("/banco/front/investment/store", "Front\InvestmentController@store")->name('front.investment.store');
 
 
 Route::group(['middleware' => 'guest', 'namespace' => 'Admin\Auth'], function () {

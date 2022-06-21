@@ -8,7 +8,7 @@ header-menu-3
     <section class="articles-area pt-125 pb-140">
         <div class="container">
             <div class="section-title d-flex flex-wrap justify-content-between text-start align-items-center">
-                <h2 class="mb-3 mb-sm-0 wow fadeInRight">أنظمة الإستثمار</h2>
+                <h2 class="mb-3 mb-sm-0 wow fadeInRight">أنظمة التمويل والقروض</h2>
             </div>
             <div class="row mt-60 gy-4 gy-lg-0">
                 @foreach($data as $fund)
