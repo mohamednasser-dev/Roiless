@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Consolution;
+use App\Models\Setting;
+use App\Models\SettingInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -31,11 +34,57 @@ class HomeController extends Controller
         return view('front.index');
     }
 
+    public function about_us()
+    {
+        $data = Setting::findOrFail(1);
+        return view('front.about_us',compact('data'));
+    }
+
+    public function contact()
+    {
+        if(!auth('web')->check()){
+            Alert::warning('تنبية' , 'يجب تسجيل الدخول اولا');
+            return redirect()->back();
+        }
+        $phones = SettingInfo::where('type','phone')->get();
+        $addresses = SettingInfo::where('type','address')->get();
+        return view('front.contact',compact('addresses','phones'));
+    }
+
+    public function contact_store(Request $request)
+    {
+        if(!auth('web')->check()){
+            Alert::warning('تنبية' , 'يجب تسجيل الدخول اولا');
+            return redirect()->back();
+        }
+        $user = auth()->user();
+        $data = $request->all();
+        $rules = [
+            'full_name' => 'required|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'content' => 'required|max:255',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        } else {
+            $data['user_id'] = $user->id;
+            $data['type'] = 'contact_us';
+            $data['country'] = 'egypt';
+
+            $inbox = Consolution::create($data);
+            Alert::success('تم',trans('تم ارسال الرسالة بنجاح'));
+            return redirect()->route('landing');
+        }
+    }
+
     public function funds()
     {
         $data = Fund::all();
         return view('front.funds', compact('data'));
     }
+
     public function investment()
     {
         $data = investment::all();
@@ -51,7 +100,7 @@ class HomeController extends Controller
 
     public function front_login()
     {
-        if(Auth::guard('web')->check()){
+        if (Auth::guard('web')->check()) {
             Alert::warning('تنبية', 'لا يمكن اظهار الصفحة المختاره');
             return redirect()->back();
         }
@@ -60,7 +109,7 @@ class HomeController extends Controller
 
     public function store_front_login(Request $request)
     {
-        if(Auth::guard('web')->check()){
+        if (Auth::guard('web')->check()) {
             Alert::warning('تنبية', 'لا يمكن اظهار الصفحة المختاره');
             return redirect()->back();
         }
@@ -85,12 +134,13 @@ class HomeController extends Controller
         Alert::success('تم', 'تم تسجيل الخروج بنجاح');
         return redirect()->back();
     }
+
     public function addfund(Request $request)
     {
         $user = auth()->user();
         $data = [];
-        foreach($request->dataform as $key => $value){
-            $data[] = ['name' => $key,'value'=>$value];
+        foreach ($request->dataform as $key => $value) {
+            $data[] = ['name' => $key, 'value' => $value];
         }
         $myJSON = json_encode($request->dataform);
         $rules = [
@@ -150,9 +200,12 @@ class HomeController extends Controller
                     Fund_file::create($file_data);
                 }
             }
-            return redirect()->to(url('loan/pay/'.$user_funds->id.'/'.auth()->user()->id));
+            return redirect()->to(url('loan/pay/' . $user_funds->id . '/' . auth()->user()->id));
         }
     }
+
+
+
     public function DoPayment($id, $user_id)
     {
         $order = User_fund::find($id);

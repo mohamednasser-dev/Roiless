@@ -36,6 +36,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
 });
 
 Route::get('/', 'Front\HomeController@index')->name('landing');
+Route::get('/about_us', 'Front\HomeController@about_us')->name('front.about_us');
+Route::get('/contact', 'Front\HomeController@contact')->name('front.contact');
+Route::post('/contact/store', 'Front\HomeController@contact_store')->name('front.contact.store');
 Route::get("/banco/front/login", "Front\HomeController@front_login")->name('front.login');
 Route::get("/banco/front/logout", "Front\HomeController@front_logout")->name('front.logout');
 Route::post("/banco/front/login", "Front\HomeController@store_front_login")->name('front.login.store');
