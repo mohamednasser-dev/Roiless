@@ -18,7 +18,7 @@ use App\Models\Company_field;
 use App\Models\Company_type;
 use App\Models\Fhistory;
 use App\Models\Fund;
-use App\Models\investment;
+use App\Models\Investment;
 use App\Models\Bank;
 use App\Models\User;
 use App\Models\User_fund;
@@ -100,7 +100,7 @@ class HomeController extends Controller
 
     public function investment()
     {
-        $data = investment::all();
+        $data = Investment::all();
         return view('front.investment', compact('data'));
     }
 
