@@ -25,11 +25,11 @@ header-menu-4
                     <div class="col-lg-7 pt-100 pt-lg-200 pb-lg-200 pb-100">
                         <div class="banner-content pb-20 pt-20">
 
-                            <h1 class="wow fadeInUp" data-wow-delay="0.1s">قارن بين أفضل البنوك وأحصل على أقل فوائد ممكنة</h1>
+                            <h1 class="wow fadeInUp" data-wow-delay="0.1s">{{ __('front.Compair') }}</h1>
 
                             <a href="loan.html"
                                 class="wow fadeInUp mt-50 theme-btn theme-btn-rounded-2 theme-btn-lg theme-btn-alt"
-                                data-wow-delay="0.3s">حمل التطبيق الأن
+                                data-wow-delay="0.3s">{{ __('front.downloadapp') }}
                                 <i class="arrow_left"></i></a>
                         </div>
                     </div>
@@ -164,7 +164,7 @@ header-menu-4
                     <a class="wow fadeInLeft" href="{{url('loans')}}">عرض الكل <i class="arrow_left"></i></a>
                 </div>
                 @php
-                    $funds = \App\Models\Fund::where('featured','1')->where('deleted','0')->get();
+                    $funds = \App\Models\Fund::select('id','name_'.app()->getLocale().' as name','image')->where('featured','1')->where('deleted','0')->get();
                 @endphp
                 <div class="row mt-60 gy-4 gy-lg-0">
                     @foreach($funds as $fund)
@@ -172,7 +172,7 @@ header-menu-4
                             <div class="blog-widget-1 wow fadeInUp" data-wow-delay="0.1s">
                                 <img class="w-100" src="{{$fund->image}}" alt="news image">
                                 <div class="blog-content pr-10 pl-10">
-                                    <h6><a href="{{url('loan/'.$fund->id)}}">{{$fund->name_ar}}</a></h6>
+                                    <h6><a href="{{url('loan/'.$fund->id)}}">{{$fund->name}}</a></h6>
                                 </div>
                             </div>
                         </div>
@@ -189,7 +189,7 @@ header-menu-4
                     <a class="wow fadeInLeft" href="{{url('banco/front/investment')}}">عرض الكل <i class="arrow_left"></i></a>
                 </div>
                 @php
-                    $funds = \App\Models\Investment::limit(10)->get();
+                    $funds = \App\Models\Investment::select('id','name_'.app()->getLocale().' as name','image')->limit(10)->get();
                 @endphp
                 <div class="row mt-60 gy-4 gy-lg-0">
                     @foreach($funds as $fund)
@@ -197,7 +197,7 @@ header-menu-4
                             <div class="blog-widget-1 wow fadeInUp" data-wow-delay="0.1s">
                                 <img class="w-100" style="height: 150px !important;" src="{{$fund->image}}" alt="news image">
                                 <div class="blog-content pr-10 pl-10">
-                                    <h6><a href="{{route('front.investment.details',$fund->id)}}">{{$fund->name_ar}}</a></h6>
+                                    <h6><a href="{{route('front.investment.details',$fund->id)}}">{{$fund->name}}</a></h6>
                                 </div>
                             </div>
                         </div>

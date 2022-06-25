@@ -1,6 +1,9 @@
 <!DOCTYPE HTML>
+@if(app()->getLocale() == 'en')
+<html lang="en-US" dir="ltr">
+@else
 <html lang="en-US" dir="rtl">
-
+@endif
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -8,6 +11,21 @@
     <title>Banca - Banking & Business Loan Bootstrap-5 HTML Template</title>
     <link rel="shortcut icon" href="{{url('New')}}/img/favicon.png" type="image/x-icon">
 
+    @if(app()->getLocale() == 'en')
+    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/bootstrap.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/elegant-icons.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/all.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/animate.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/slick.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/slick-theme.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/nice-select.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/animate.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/jquery.fancybox.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/nouislider.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/default.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/style.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/responsive.css" media="all"/>    
+    @else
     <!-- CSS here -->
     <link rel="stylesheet" type="text/css" href="{{url('New')}}/css/bootstrap.rtl.min.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="{{url('New')}}/css/elegant-icons.min.css" media="all"/>
@@ -23,6 +41,7 @@
     <link rel="stylesheet" type="text/css" href="{{url('New')}}/css/style.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="{{url('New')}}/css/responsive.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="{{url('New')}}/css/rtl.css" media="all"/>
+    @endif
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 
@@ -76,40 +95,39 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav menu ms-auto">
                         <li class="nav-item">
-                            <a href="{{url('/')}}" class="nav-link @if(request()->segment(1) == '') active  @endif ">الصفحة
-                                الرئيسية</a>
+                            <a href="{{url('/')}}" class="nav-link @if(request()->segment(1) == '') active  @endif ">{{__('front.home')}}</a>
                         </li>
                         <li class="nav-item dropdown submenu">
                             <a class="nav-link @if(request()->segment(1) == 'loans') active  @endif"
                                href="{{url('loans')}}">
-                                القروض والتمويلات
+                                {{__('front.loans')}}
                             </a>
                         </li>
                         <li class="nav-item dropdown submenu">
                             <a class="nav-link @if(request()->segment(3) == 'investment') active  @endif"
                                href="{{url('banco/front/investment')}}">
-                                الإستثمار
+                                {{__('front.invest')}}
                             </a>
                         </li>
                         <li class="nav-item dropdown submenu">
                             <a class="nav-link dropdown-toggle @if(request()->segment(3) == 'services' || request()->segment(1) == 'about_us') active  @endif "
                                href="javascript:void($this);" role="button"
                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                صفحات هامة
+                                {{__('front.important')}}
                             </a>
                             <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false"
                                data-bs-toggle="dropdown"></i>
                             <ul class="dropdown-menu ">
-                                <li class="nav-item"><a class="nav-link" href="{{route('front.services')}}">الخدمات</a>
+                                <li class="nav-item"><a class="nav-link" href="{{route('front.services')}}">{{__('front.services')}}</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="{{route('front.about_us')}}">من نحن</a>
+                                <li class="nav-item"><a class="nav-link" href="{{route('front.about_us')}}">{{__('front.about')}}</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown submenu">
                             <a class="nav-link @if(request()->segment(1) == 'contact') active  @endif"
                                href="{{route('front.contact')}}">
-                                الإتصال بنا
+                                {{__('front.contact')}}
                             </a>
                         </li>
                         @if(app()->getLocale() == 'en')
@@ -135,11 +153,11 @@
                                 <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false"
                                    data-bs-toggle="dropdown"></i>
                                 <ul class="dropdown-menu ">
-                                    <li class="nav-item"><a class="nav-link" href="{{route('front.profile')}}">الملف
-                                            الشخصي</a>
+                                    <li class="nav-item"><a class="nav-link" href="{{route('front.profile')}}">
+                                        {{__('bank.profile')}}
+                                    </a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="{{route('front.logout')}}">تسجيل
-                                            الخروج</a>
+                                    <li class="nav-item"><a class="nav-link" href="{{route('front.logout')}}">{{__('bank.logout')}}</a>
                                     </li>
                                 </ul>
                             </li>
