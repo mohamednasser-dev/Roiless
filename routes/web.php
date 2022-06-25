@@ -53,6 +53,13 @@ Route::get("/banco/front/profile/password_page", "Front\HomeController@password_
 Route::post("/banco/front/profile/update_password", "Front\HomeController@update_password")->name('front.profile.update_password');
 Route::post("/banco/front/profile/code_verify", "Front\HomeController@code_verify")->name('front.profile.code_verify');
 Route::get("/banco/front/profile/change_password", "Front\HomeController@change_password")->name('front.change_password');
+//front orders
+Route::get("/banco/front/profile/my_funds", "Front\OrdersController@my_funds")->name('front.my_funds');
+Route::get("/banco/front/my_fund/details/{id}", "Front\OrdersController@fund_detail")->name('front.fund_detail');
+//front investment
+Route::get("/banco/front/profile/my_investments", "Front\OrdersController@my_investments")->name('front.my_investments');
+Route::get("/banco/front/profile/investment_details/{id}", "Front\OrdersController@investment_details")->name('front.investment_details');
+
 
 Route::get("loans", 'Front\HomeController@funds');
 Route::get("loan/{id}", 'Front\HomeController@getfund');

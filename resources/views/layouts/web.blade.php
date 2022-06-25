@@ -123,9 +123,13 @@
                                     <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false"
                                        data-bs-toggle="dropdown"></i>
                                     <ul class="dropdown-menu ">
-                                        <li class="nav-item"><a class="nav-link" href="{{route('front.services')}}">الخدمات</a>
+                                        <li class="nav-item"><a
+                                                class="nav-link @if(request()->segment(3) == 'services') active  @endif "
+                                                href="{{route('front.services')}}">الخدمات</a>
                                         </li>
-                                        <li class="nav-item"><a class="nav-link" href="{{route('front.about_us')}}">من
+                                        <li class="nav-item"><a
+                                                class="nav-link @if( request()->segment(1) == 'about_us') active  @endif"
+                                                href="{{route('front.about_us')}}">من
                                                 نحن</a>
                                         </li>
                                     </ul>
@@ -151,7 +155,7 @@
                                 @endif
                                 @if(auth()->guard('web')->check())
                                     <li class="nav-item dropdown submenu">
-                                        <a class="nav-link dropdown-toggle @if(request()->segment(3) == 'services' || request()->segment(1) == 'about_us') active  @endif "
+                                        <a class="nav-link dropdown-toggle @if(request()->segment(3) == 'profile') active  @endif "
                                            href="javascript:void($this);" role="button"
                                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             {{ auth()->guard('web')->user()->name }}
@@ -159,7 +163,9 @@
                                         <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false"
                                            data-bs-toggle="dropdown"></i>
                                         <ul class="dropdown-menu ">
-                                            <li class="nav-item"><a class="nav-link" href="{{route('front.profile')}}">
+                                            <li class="nav-item"><a
+                                                    class="nav-link @if(request()->segment(3) == 'profile') active  @endif"
+                                                    href="{{route('front.profile')}}">
                                                     الملف الشخصي
                                                 </a>
                                             </li>

@@ -8,6 +8,7 @@ class User_fund extends Model
 {
     protected $guarded = [];
 
+    protected $appends = ['user_status_text','payment_text'];
     public function Fund()
     {
         return $this->belongsTo(Fund::class, 'fund_id');
@@ -56,6 +57,39 @@ class User_fund extends Model
     {
         return $this->belongsTo(User::class, 'user_id')->select('id','name','phone');
     }
+    public function getUserStatusTextAttribute()
+    {
+        if ($this->user_status == 'pending') {
+            return 'جاري';
+        } elseif ($this->user_status == 'rejected') {
+            return 'مرفوض';
+        } elseif ($this->user_status == 'user_editing') {
+            return 'تم التعديل من جهة المستخدم';
+        } elseif ($this->user_status == 'payed') {
+            return 'مدفوع';
+        } elseif ($this->user_status == 'payed_success') {
+            return 'الدفع مقبول';
+        }elseif ($this->user_status == 'payed_rejected') {
+            return 'الدفع مرفوض';
+        }elseif ($this->user_status == 'payed_success') {
+            return 'مدفوع';
+        }elseif ($this->user_status == 'payed_success') {
+            return 'مدفوع';
+        }elseif ($this->user_status == 'finail_accept') {
+            return 'مقبول نهائيا';
+        }elseif ($this->user_status == 'finail_rejected') {
+            return 'مرفوض نهائيا';
+        }
+    }
+    public function getPaymentTextAttribute()
+    {
+        if ($this->payment == 'paid') {
+            return 'مدفوع';
+        } elseif ($this->payment == 'not paid') {
+            return 'غير مدفوع';
+        }
+    }
+
 
 
 }

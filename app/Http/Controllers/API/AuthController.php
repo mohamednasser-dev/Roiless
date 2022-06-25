@@ -38,15 +38,17 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+
         //remove first zero in phone
         $request->phone = ltrim($request->phone, "0");
         $city = City::findOrFail($request->city_id);
         $user_phone = $city->country_code . $request->phone;   //+201094641332
         $request->phone = $user_phone;
         //$credentials = $request->only(['phone', 'password'])
+
         $rules = [
             'city_id' => 'required|exists:cities,id',
-            'phone' => 'required|exists:users,phone',
+            'phone' => 'required',
             'password' => 'required',
             'fcm_token' => '',
         ];

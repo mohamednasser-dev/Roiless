@@ -63,14 +63,13 @@ header-menu-4
                         </div>
                     </div>
                     <div class="col-lg-6 offset-lg-1 mt-35" style="text-align-last: center;">
-                        <button class="theme-btn theme-btn-lg wow fadeInUp" type="submit" style="visibility: visible; animation-name: fadeInUp;">
+                        <a href="{{route('front.my_funds')}}" class="theme-btn theme-btn-lg wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                             طلباتي / تمويلاتي
-                        </button>
+                        </a>
                         &nbsp; &nbsp;
-                        <button class="theme-btn theme-btn-lg wow fadeInUp" type="submit" style="visibility: visible; animation-name: fadeInUp;">
+                        <a href="{{route('front.my_investments')}}" class="theme-btn theme-btn-lg wow fadeInUp"  style="visibility: visible; animation-name: fadeInUp;">
                             استثماراتي
-                        </button>
-
+                        </a>
                     </div>
                 </div>
             </div>
