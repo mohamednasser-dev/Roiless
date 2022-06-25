@@ -8,14 +8,11 @@ use App\Models\Service_details;
 use App\Models\Services;
 use App\Models\Setting;
 use App\Models\SettingInfo;
+use Ghanem\LaravelSmsmisr\Facades\Smsmisr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PhpOffice\PhpSpreadsheet\Calculation\Web\Service;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\City;
-use App\Models\Category;
-use App\Models\Company_field;
-use App\Models\Company_type;
 use App\Models\Fhistory;
 use App\Models\Fund;
 use App\Models\Investment;
@@ -25,10 +22,8 @@ use App\Models\User_fund;
 use App\Models\Fund_file;
 use Validator;
 use Str;
-use BaklySystems\PayMob\Facades\PayMob;
-use App\Http\Controllers\API\PayMobController;
-use App\Http\Controllers\API\FundController;
-use function PHPUnit\Framework\isNull;
+use Teckwei1993\Otp\Otp;
+use Teckwei1993\Otp\Rules\OtpValidate;
 
 class HomeController extends Controller
 {
@@ -36,11 +31,16 @@ class HomeController extends Controller
     {
         return view('front.index');
     }
+
     public function profile()
     {
-        $id = auth()->user()->id ;
+        if (!auth('web')->check()) {
+            Alert::warning('تنبية', 'يجب تسجيل الدخول اولا');
+            return redirect()->route('landing');
+        }
+        $id = auth()->user()->id;
         $data = User::findOrFail($id);
-        return view('front.profile',compact('data'));
+        return view('front.profile', compact('data'));
     }
 
     public function services()
@@ -74,7 +74,7 @@ class HomeController extends Controller
     {
         if (!auth('web')->check()) {
             Alert::warning('تنبية', 'يجب تسجيل الدخول اولا');
-            return redirect()->back();
+            return redirect()->route('landing');
         }
         $user = auth()->user();
         $data = $request->all();
@@ -93,10 +93,103 @@ class HomeController extends Controller
             $data['country'] = 'egypt';
 
             $inbox = Consolution::create($data);
-            Alert::success('تم', trans('تم ارسال الرسالة بنجاح'));
+            Alert::success('تم', 'تم ارسال الرسالة بنجاح');
             return redirect()->route('landing');
         }
     }
+
+    public function update_profile(Request $request)
+    {
+        if (!auth('web')->check()) {
+            Alert::warning('تنبية', 'يجب تسجيل الدخول اولا');
+            return redirect()->route('landing');
+        }
+        $user = auth()->user();
+        //remove first zero in phone
+        $request->phone = ltrim($request->phone, "0");
+        $city = City::findOrFail($request->city_id);
+        $user_phone = $request->phone;
+        $basic_phone = $city->country_code . $request->phone;
+        $request->phone = $basic_phone;
+        //check phone change
+        $data = $this->validate(request(),
+            [
+                'name' => 'required|regex:/^[\pL\s\-]+$/u',
+                'email' => 'required|email|unique:users,email,' . $user->id,
+                'phone' => 'required|unique:users,phone,' . $user->id,
+                'city_id' => 'required|exists:cities,id'
+            ]);
+        //check phone change
+        if ($request->phone == auth('web')->user()->phone) {
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'city_id' => $request->city_id
+            ]);
+        } else {
+            $otb = \Otp::generate($request->phone);
+            $user->update([
+                'otp_code' => $otb,
+            ]);
+            //send here by sms api ...
+            if (empty($request->otp_code)) {
+                if (env('production')) {
+                    Smsmisr::send("كود التفعيل الخاص بك هوا " . $otb, $request->phone, null, 2);
+                }
+                $data['status'] = true;
+                $data['otp_code'] = $otb;
+                $data['phone'] = $user_phone;
+                Alert::success('عملية ناجحه', 'تم ارسال كود التحقق بنجاح');
+                return view('front.otp_verify', compact('data', 'otb'));
+            }
+        }
+        alert::success('عملية ناجحه','تم تحديث الملف الشخصي بنجاح');
+        return redirect()->route('landing');
+    }
+
+    public function code_verify(Request $request)
+    {
+        if (!auth('web')->check()) {
+            Alert::warning('تنبية', 'يجب تسجيل الدخول اولا');
+            return redirect()->route('landing');
+        }
+        $user = auth()->user();
+        //remove first zero in phone
+        $request->phone = ltrim($request->phone, "0");
+        $city = City::findOrFail($request->city_id);
+        $user_phone = $request->phone;
+        $basic_phone = $city->country_code . $request->phone;
+        $request->phone = $basic_phone;
+        //check phone change
+        $data = $this->validate(request(),
+            [
+                'name' => 'required|regex:/^[\pL\s\-]+$/u',
+                'email' => 'required|email|unique:users,email,' . $user->id,
+                'phone' => 'required|unique:users,phone,' . $user->id,
+                'city_id' => 'required|exists:cities,id',
+                'otp_code' => 'required|numeric',
+            ]);
+        $validated_otp = \Otp::validate($request->phone, $request->otp_code);
+        if ($validated_otp->status == true) {
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'user_phone' => $user_phone,
+                'phone' => $request->phone,
+                'city_id' => $request->city_id,
+                'otp_code' => null,
+            ]);
+        } else {
+            Alert::warning('تنبية','كود التفعيل خطأ');
+            $data['phone'] = $user_phone;
+            $otb = $request->otp_code;
+            return view('front.otp_verify', compact('data', 'otb'));
+        }
+        alert::success('عملية ناجحه','تم تحديث الملف الشخصي بنجاح');
+        return redirect()->route('landing');
+
+    }
+
 
     public function funds()
     {
@@ -121,7 +214,7 @@ class HomeController extends Controller
     {
         if (Auth::guard('web')->check()) {
             Alert::warning('تنبية', 'لا يمكن اظهار الصفحة المختاره');
-            return redirect()->back();
+            return redirect()->route('landing');
         }
         return view('front.login');
     }
@@ -130,7 +223,7 @@ class HomeController extends Controller
     {
         if (Auth::guard('web')->check()) {
             Alert::warning('تنبية', 'لا يمكن اظهار الصفحة المختاره');
-            return redirect()->back();
+            return redirect()->route('landing');
         }
         $remeber = $request->Remember == 1 ? true : false;
         //remove first zero in phone

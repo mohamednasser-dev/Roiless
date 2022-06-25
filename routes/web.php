@@ -45,15 +45,17 @@ Route::get("/banco/front/login", "Front\HomeController@front_login")->name('fron
 Route::get("/banco/front/logout", "Front\HomeController@front_logout")->name('front.logout');
 Route::post("/banco/front/login", "Front\HomeController@store_front_login")->name('front.login.store');
 Route::get("/banco/front/profile", "Front\HomeController@profile")->name('front.profile');
-Route::post("/banco/front/profile/update", "Front\HomeController@updae_profile")->name('front.profile.update');
+Route::get("/banco/front/otp_verify", "Front\HomeController@otp_verify")->name('front.otp_verify.page');
+Route::post("/banco/front/profile/update", "Front\HomeController@update_profile")->name('front.profile.update');
+Route::post("/banco/front/profile/code_verify", "Front\HomeController@code_verify")->name('front.profile.code_verify');
 
-Route::get("loans",'Front\HomeController@funds');
-Route::get("loan/{id}",'Front\HomeController@getfund');
-Route::post("loan/create",'Front\HomeController@addfund');
-Route::get("loan/pay/{id}/{user_id}",'Front\HomeController@DoPayment');
+Route::get("loans", 'Front\HomeController@funds');
+Route::get("loan/{id}", 'Front\HomeController@getfund');
+Route::post("loan/create", 'Front\HomeController@addfund');
+Route::get("loan/pay/{id}/{user_id}", 'Front\HomeController@DoPayment');
 
 
-Route::get("/banco/front/investment",'Front\HomeController@investment');
+Route::get("/banco/front/investment", 'Front\HomeController@investment');
 Route::get("/banco/front/investment/{id}", "Front\InvestmentController@investment_details")->name('front.investment.details');
 Route::post("/banco/front/investment/store", "Front\InvestmentController@store")->name('front.investment.store');
 

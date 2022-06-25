@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Mail\UserRestPasswordApi;
+use App\Models\City;
 use App\Models\Consolution;
 use App\Models\consolution_kind;
 use Carbon\Carbon;
@@ -67,6 +68,12 @@ class UsersController extends Controller
         $user = User::find($id);
         if (!$user)
             return response()->json(['status' => 401, 'msg' => 'User Not Found']);
+
+        //remove first zero in phone
+        $request->phone = ltrim($request->phone, "0");
+        $city = City::findOrFail($request->city_id);
+        $user_phone = $request->phone;
+        $request->phone = $city->country_code . $request->phone ;
         $rules = [
             'name' => 'required|regex:/^[\pL\s\-]+$/u',
             'email' => 'required|email|unique:users,email,' . $id,
@@ -80,7 +87,6 @@ class UsersController extends Controller
         } else {
             //check phone change
             if ($request->phone == Auth::user()->phone) {
-
                 $user->update([
                     'name' => $request->name,
                     'email' => $request->email,
@@ -103,6 +109,7 @@ class UsersController extends Controller
                         $user->update([
                             'name' => $request->name,
                             'email' => $request->email,
+                            'user_phone' => $user_phone,
                             'phone' => $request->phone,
                             'city_id' => $request->city_id,
                             'otp_code' => null,

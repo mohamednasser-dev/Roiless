@@ -1,13 +1,19 @@
 <?php
 return [
     //new
+
+    'warning' => 'تنبية',
+    'otp_code_wrong' => 'كود التفعيل خطأ',
+    'profile_updated_s' => 'تم تحديث الملف الشخصي بنجاح',
+
+    'done_operation' => 'عملية ناجحه',
+    'otp_code_sent_s' => 'تم ارسال كود التحقق بنجاح',
     'create_city' => 'انشاء دولة جديدة',
     'country_code' => 'كود الدولة',
     'name_ar' => 'اسم الدولة بالعربية',
     'name_en' => 'اسم الدولة بالانجليزية',
     'cities' => 'الدول',
     'choose_type' => 'اختر النوع',
-
     'edit_advertisment' => 'تعديل صورة العرض',
     'sliders' => 'صور العرض',
     'type' => 'النوع',
@@ -35,11 +41,6 @@ return [
     'deselect all' => 'الغاء التحديد',
     'add_product_requests' => 'طلبات اضافة منتج',
     'product_details' => 'تفاصيل المنتج',
-
-
-
-
-
 
 
     'type_message_here' => 'اكتب الرد هنا',

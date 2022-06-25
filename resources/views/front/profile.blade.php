@@ -34,6 +34,11 @@ header-menu-4
                                         <input type="text" value="{{$data->name}}" id="form-phone" name="name" class="form-control"
                                                required>
                                     </div>
+                                    <div class="col-md-12 mt-20">
+                                        <label for="form-sub">البريد الإلكتروني</label>
+                                        <input type="email" value="{{$data->email}}" id="form-phone" name="email" class="form-control"
+                                               required>
+                                    </div>
                                     <div class="col-md-4 mt-20">
                                         <label for="form-sub">الدولة</label>
                                         <select name="city_id" required class="form-control">
@@ -44,13 +49,8 @@ header-menu-4
                                     </div>
                                     <div class="col-md-8 mt-20">
                                         <label for="form-sub">رقم الهاتف</label>
-                                        <input type="text" value="{{$data->phone}}" id="form-phone" name="phone" class="form-control"
+                                        <input type="text" value="{{$data->user_phone}}" id="form-phone" name="phone" class="form-control"
                                                required>
-                                    </div>
-                                    <div class="col-md-12 mt-20">
-                                        <label for="form-sub">كلمة المرور</label>
-                                        <input type="password" id="form-sub" name="password" class="form-control"
-                                              required>
                                     </div>
                                     <div class="col-12 mt-35">
                                         <button type="submit" class="theme-btn theme-btn-lg w-100">تعديل</button>

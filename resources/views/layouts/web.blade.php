@@ -24,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/nouislider.min.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/default.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/style.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/responsive.css" media="all"/>    
+    <link rel="stylesheet" type="text/css" href="{{url('New/En')}}/css/responsive.css" media="all"/>
     @else
     <!-- CSS here -->
     <link rel="stylesheet" type="text/css" href="{{url('New')}}/css/bootstrap.rtl.min.css" media="all"/>
@@ -156,10 +156,10 @@
                                    data-bs-toggle="dropdown"></i>
                                 <ul class="dropdown-menu ">
                                     <li class="nav-item"><a class="nav-link" href="{{route('front.profile')}}">
-                                        {{__('bank.profile')}}
+                                        الملف الشخصي
                                     </a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="{{route('front.logout')}}">تسجيل خروج</a>
+                                    <li class="nav-item"><a class="nav-link" href="{{route('front.logout')}}">تسجيل الخروج</a>
                                     </li>
                                 </ul>
                             </li>
@@ -346,8 +346,8 @@ body{top:0px!important;}
 }
 #goog-gt-tt {
     display: none !important;
-}    
-</style> 
+}
+</style>
 @endif
 
 </body>

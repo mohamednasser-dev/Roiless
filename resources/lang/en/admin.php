@@ -2,6 +2,8 @@
 return [
 
     //new
+    'done_operation' => 'successful operation',
+    'otp_code_sent_s' => 'otp code sent successfully to new phone',
     'create_city' => 'create new city',
     'country_code' => 'country code',
     'name_ar' => 'name arabic',
