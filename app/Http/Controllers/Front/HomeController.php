@@ -36,6 +36,12 @@ class HomeController extends Controller
     {
         return view('front.index');
     }
+    public function profile()
+    {
+        $id = auth()->user()->id ;
+        $data = User::findOrFail($id);
+        return view('front.profile',compact('data'));
+    }
 
     public function services()
     {

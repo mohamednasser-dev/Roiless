@@ -44,6 +44,8 @@ Route::post('/contact/store', 'Front\HomeController@contact_store')->name('front
 Route::get("/banco/front/login", "Front\HomeController@front_login")->name('front.login');
 Route::get("/banco/front/logout", "Front\HomeController@front_logout")->name('front.logout');
 Route::post("/banco/front/login", "Front\HomeController@store_front_login")->name('front.login.store');
+Route::get("/banco/front/profile", "Front\HomeController@profile")->name('front.profile');
+Route::post("/banco/front/profile/update", "Front\HomeController@updae_profile")->name('front.profile.update');
 
 Route::get("loans",'Front\HomeController@funds');
 Route::get("loan/{id}",'Front\HomeController@getfund');
