@@ -47,7 +47,12 @@ Route::post("/banco/front/login", "Front\HomeController@store_front_login")->nam
 Route::get("/banco/front/profile", "Front\HomeController@profile")->name('front.profile');
 Route::get("/banco/front/otp_verify", "Front\HomeController@otp_verify")->name('front.otp_verify.page');
 Route::post("/banco/front/profile/update", "Front\HomeController@update_profile")->name('front.profile.update');
+Route::get("/banco/front/generate/otp_password", "Front\HomeController@generate_otp_password")->name('front.generate.otp_password');
+Route::post("/banco/front/password/code_verify", "Front\HomeController@password_code_verify")->name('front.profile.password.code_verify');
+Route::get("/banco/front/profile/password_page", "Front\HomeController@password_page")->name('front.profile.password_page');
+Route::post("/banco/front/profile/update_password", "Front\HomeController@update_password")->name('front.profile.update_password');
 Route::post("/banco/front/profile/code_verify", "Front\HomeController@code_verify")->name('front.profile.code_verify');
+Route::get("/banco/front/profile/change_password", "Front\HomeController@change_password")->name('front.change_password');
 
 Route::get("loans", 'Front\HomeController@funds');
 Route::get("loan/{id}", 'Front\HomeController@getfund');

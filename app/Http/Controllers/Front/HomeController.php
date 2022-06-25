@@ -11,6 +11,7 @@ use App\Models\SettingInfo;
 use Ghanem\LaravelSmsmisr\Facades\Smsmisr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\City;
 use App\Models\Fhistory;
@@ -140,10 +141,10 @@ class HomeController extends Controller
                 $data['otp_code'] = $otb;
                 $data['phone'] = $user_phone;
                 Alert::success('عملية ناجحه', 'تم ارسال كود التحقق بنجاح');
-                return view('front.otp_verify', compact('data', 'otb'));
+                return view('front.otp_verify', compact('data'));
             }
         }
-        alert::success('عملية ناجحه','تم تحديث الملف الشخصي بنجاح');
+        alert::success('عملية ناجحه', 'تم تحديث الملف الشخصي بنجاح');
         return redirect()->route('landing');
     }
 
@@ -180,12 +181,12 @@ class HomeController extends Controller
                 'otp_code' => null,
             ]);
         } else {
-            Alert::warning('تنبية','كود التفعيل خطأ');
+            Alert::warning('تنبية', 'كود التفعيل خطأ');
             $data['phone'] = $user_phone;
             $otb = $request->otp_code;
-            return view('front.otp_verify', compact('data', 'otb'));
+            return view('front.otp_verify', compact('data'));
         }
-        alert::success('عملية ناجحه','تم تحديث الملف الشخصي بنجاح');
+        alert::success('عملية ناجحه', 'تم تحديث الملف الشخصي بنجاح');
         return redirect()->route('landing');
 
     }
@@ -196,6 +197,7 @@ class HomeController extends Controller
         $data = Fund::all();
         return view('front.funds', compact('data'));
     }
+
 
     public function investment()
     {
@@ -323,4 +325,71 @@ class HomeController extends Controller
         $user = User::find($user_id);
         return view('payment.paymentMethods', compact('order', 'user'));
     }
+
+    // change_password
+    public function change_password()
+    {
+        return view('front.change_password');
+    }
+
+    public function generate_otp_password()
+    {
+        $phone = auth('web')->user()->phone;
+        $otb = \Otp::generate($phone);
+        //send here by sms api ...
+        if (env('production')) {
+            Smsmisr::send("كود التفعيل الخاص بك هوا " . $otb, $phone, null, 2);
+        }
+//        Alert::success('عملية ناجحه', 'تم ارسال كود التحقق بنجاح');
+        return view('front.otp_password', compact('otb'));
+    }
+
+    public function password_code_verify(Request $request)
+    {
+        if (!auth('web')->check()) {
+            Alert::warning('تنبية', 'يجب تسجيل الدخول اولا');
+            return redirect()->route('landing');
+        }
+        $user = auth()->user();
+        $data = $this->validate(request(),
+            [
+                'otp_code' => 'required|numeric',
+            ]);
+        $validated_otp = \Otp::validate($user->phone, $request->otp_code);
+        if ($validated_otp->status == true) {
+            alert::success('عملية ناجحه', 'تم التحقق من الكود بنجاح');
+            return redirect()->route('front.profile.password_page');
+        } else {
+            alert::warning('خطأ', 'كود التحقق غير صحيح');
+            return redirect()->back();
+        }
+    }
+
+    public function password_page()
+    {
+        return view('front.change_password');
+    }
+
+    public function update_password(Request $request)
+    {
+        if (!auth('web')->check()) {
+            Alert::warning('تنبية', 'يجب تسجيل الدخول اولا');
+            return redirect()->route('landing');
+        }
+        $user = auth()->user();
+        $rules = [
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        }
+        $user->update(['password' => Hash::make($request->password)]);
+        $data['status'] = true;
+        alert::success('عملية ناجحه', 'تم تحديث رقم المرور بنجاح');
+        return redirect()->route('landing');
+
+    }
+
 }

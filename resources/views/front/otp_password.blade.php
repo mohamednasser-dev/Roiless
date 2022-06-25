@@ -26,24 +26,12 @@
                 <div class="row gy-4 gy-lg-0" style="place-content: center;">
                     <div class="col-lg-6 offset-lg-1" style="text-align-last: center;">
                         <div class="contact-form-widget">
-                            <form action="{{route('front.profile.code_verify')}}" method="POST">
+                            <form action="{{route('front.profile.password.code_verify')}}" method="POST">
                                 @csrf
-                                <input type="hidden" value="{{$data['name']}}" id="form-phone" name="name"
-                                       class="form-control"
-                                       required>
-                                <input type="hidden" value="{{$data['phone']}}" id="form-phone" name="phone"
-                                       class="form-control"
-                                       required>
-                                <input type="hidden" value="{{$data['email']}}" id="form-phone" name="email"
-                                       class="form-control"
-                                       required>
-                                <input type="hidden" value="{{$data['city_id']}}" id="form-phone" name="city_id"
-                                       class="form-control"
-                                       required>
                                 <div class="row">
                                     <div class="col-md-12 mt-20">
                                         <label for="form-sub">كود التحقق</label>
-                                        <input type="number"  id="form-phone" name="otp_code"
+                                        <input type="number" value="{{$otb}}" id="form-phone" name="otp_code"
                                                class="form-control"
                                                required>
                                     </div>

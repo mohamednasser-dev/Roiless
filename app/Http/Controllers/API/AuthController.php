@@ -38,49 +38,45 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-
-            $rules = [
-                'city_id' => 'required|exists:cities,id',
-                'phone' => 'required|exists:users,phone',
-                'password' => 'required',
-                'fcm_token' => '',
-            ];
-            $validator = Validator::make($request->all(), $rules);
-            if ($validator->fails()) {
-                return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
-            }
-            //remove first zero in phone
-            $request->phone = ltrim($request->phone, "0");
-            $city = City::findOrFail($request->city_id);
-                $user_phone = $city->country_code . $request->phone ;
-            $request->phone = $user_phone;
-
-//            $credentials = $request->only(['phone', 'password'])
-
-                $credentials = ['phone'=>$user_phone ,'password'=> $request->password];
-            //to check the type of user not admine
-            $credentials['type'] = "user";
-            $token = Auth::guard('user-api')->attempt($credentials);
-            //return tokin
-            if (!$token) {
-                return $this->returnError('e001', ' بيانات الدخول غير صحيحه');
-            }
-            $user = Auth::guard('user-api')->user();
-            if ($user->verified == '0') {
-                Auth::guard('user-api')->logout();
-                return msgdata($request, not_active(), 'verify_phone_first', null);
-            }
-            if ($user->status !== 'active') {
-                Auth::guard('user-api')->logout();
-                return msgdata($request, not_active(), 'Your_Account_NotActive', null);
-            }
-            if ($request->fcm_token) {
-                User::where('id', $user->id)->update(['fcm_token' => $request->fcm_token]);
-            }
-            $user_data = User::where('id', $user->id)->select('id', 'image', 'name', 'email', 'phone', 'otp_code')->first();
-            $user_data->token_api = $token;
-
-            return msgdata($request, success(), 'login_success', $user_data);
+        //remove first zero in phone
+        $request->phone = ltrim($request->phone, "0");
+        $city = City::findOrFail($request->city_id);
+        $user_phone = $city->country_code . $request->phone;   //+201094641332
+        $request->phone = $user_phone;
+        //$credentials = $request->only(['phone', 'password'])
+        $rules = [
+            'city_id' => 'required|exists:cities,id',
+            'phone' => 'required|exists:users,phone',
+            'password' => 'required',
+            'fcm_token' => '',
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
+        }
+        $credentials = ['phone' => $user_phone, 'password' => $request->password];
+        //to check the type of user not admine
+        $credentials['type'] = "user";
+        $token = Auth::guard('user-api')->attempt($credentials);
+        //return tokin
+        if (!$token) {
+            return $this->returnError('e001', ' بيانات الدخول غير صحيحه');
+        }
+        $user = Auth::guard('user-api')->user();
+        if ($user->verified == '0') {
+            Auth::guard('user-api')->logout();
+            return msgdata($request, not_active(), 'verify_phone_first', null);
+        }
+        if ($user->status !== 'active') {
+            Auth::guard('user-api')->logout();
+            return msgdata($request, not_active(), 'Your_Account_NotActive', null);
+        }
+        if ($request->fcm_token) {
+            User::where('id', $user->id)->update(['fcm_token' => $request->fcm_token]);
+        }
+        $user_data = User::where('id', $user->id)->select('id', 'image', 'name', 'email', 'phone', 'otp_code')->first();
+        $user_data->token_api = $token;
+        return msgdata($request, success(), 'login_success', $user_data);
 
     }
 
@@ -101,7 +97,7 @@ class AuthController extends Controller
         //Request is valid, create new user
         $request->phone = ltrim($request->phone, "0");
         $city = City::findOrFail($request->city_id);
-        $data['phone'] = $city->country_code . $request->phone ;
+        $data['phone'] = $city->country_code . $request->phone;
         unset($data['city_id']);
         $data['password'] = bcrypt($request->password);
         $user = User::create($data);
@@ -137,8 +133,8 @@ class AuthController extends Controller
         $data = $request->all();
         $request->phone = ltrim($request->phone, "0");
         $city = City::findOrFail($request->city_id);
-        $data['phone'] = $city->country_code . $request->phone ;
-        $request->phone = $city->country_code . $request->phone ;
+        $data['phone'] = $city->country_code . $request->phone;
+        $request->phone = $city->country_code . $request->phone;
         $validator = Validator::make($data, [
             'name' => 'required|string',
             'city_id' => 'required|exists:cities,id',
@@ -158,7 +154,7 @@ class AuthController extends Controller
             $user = User::create($data);
             if ($user) {
                 $token = Auth::guard('user-api')->attempt(['phone' => $request->phone, 'password' => $password]);
-                $user_data = User::where('id', $user->id)->select('id', 'image', 'name', 'email', 'phone', 'otp_code','city_id')->first();
+                $user_data = User::where('id', $user->id)->select('id', 'image', 'name', 'email', 'phone', 'otp_code', 'city_id')->first();
                 $user_data->token_api = $token;
                 return msgdata($request, success(), 'login_success', $user_data);
             }
@@ -174,7 +170,7 @@ class AuthController extends Controller
         ]);
         $request->phone = ltrim($request->phone, "0");
         $city = City::findOrFail($request->city_id);
-        $request->phone = $city->country_code . $request->phone ;
+        $request->phone = $city->country_code . $request->phone;
         $user = User::where('phone', $request->phone)->first();
         if ($user) {
             $otp_code = \Otp::generate($request->phone);

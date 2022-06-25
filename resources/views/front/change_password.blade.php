@@ -1,6 +1,6 @@
 @extends('layouts.web')
 @section('header')
-    header-menu-4
+header-menu-4
 @endsection
 @section('main')
     <main>
@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-lg-7 mx-auto">
                             <div class="breadcrumb-content pt-100">
-                                <h1>التحقق من الكود</h1>
+                                <h1>تغيير كلمة المرور</h1>
                             </div>
                         </div>
                     </div>
@@ -26,29 +26,21 @@
                 <div class="row gy-4 gy-lg-0" style="place-content: center;">
                     <div class="col-lg-6 offset-lg-1" style="text-align-last: center;">
                         <div class="contact-form-widget">
-                            <form action="{{route('front.profile.code_verify')}}" method="POST">
+                            <form action="{{route('front.profile.update_password')}}" method="POST">
                                 @csrf
-                                <input type="hidden" value="{{$data['name']}}" id="form-phone" name="name"
-                                       class="form-control"
-                                       required>
-                                <input type="hidden" value="{{$data['phone']}}" id="form-phone" name="phone"
-                                       class="form-control"
-                                       required>
-                                <input type="hidden" value="{{$data['email']}}" id="form-phone" name="email"
-                                       class="form-control"
-                                       required>
-                                <input type="hidden" value="{{$data['city_id']}}" id="form-phone" name="city_id"
-                                       class="form-control"
-                                       required>
                                 <div class="row">
                                     <div class="col-md-12 mt-20">
-                                        <label for="form-sub">كود التحقق</label>
-                                        <input type="number"  id="form-phone" name="otp_code"
-                                               class="form-control"
+                                        <label for="form-sub">كلمة المرور الجديدة</label>
+                                        <input type="password"  id="form-phone" name="password" class="form-control"
+                                               required>
+                                    </div>
+                                    <div class="col-md-12 mt-20">
+                                        <label for="form-sub">تأكيد كلمة المرور الجديدة</label>
+                                        <input type="password" id="form-phone" name="password_confirmation" class="form-control"
                                                required>
                                     </div>
                                     <div class="col-12 mt-35">
-                                        <button type="submit" class="theme-btn theme-btn-lg w-100">تحقق</button>
+                                        <button type="submit" class="theme-btn theme-btn-lg w-100">تعديل</button>
                                     </div>
                                 </div>
                             </form>

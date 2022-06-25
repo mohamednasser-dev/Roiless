@@ -55,9 +55,22 @@ header-menu-4
                                     <div class="col-12 mt-35">
                                         <button type="submit" class="theme-btn theme-btn-lg w-100">تعديل</button>
                                     </div>
+                                    <div class="col-12 mt-35">
+                                        <a onclick=" return confirm('سيتم ارسال رمز التحقق الى رقم الهاتف خاصتك')" href="{{route('front.generate.otp_password')}}">تغيير كلمة المرور</a>
+                                    </div>
                                 </div>
                             </form>
                         </div>
+                    </div>
+                    <div class="col-lg-6 offset-lg-1 mt-35" style="text-align-last: center;">
+                        <button class="theme-btn theme-btn-lg wow fadeInUp" type="submit" style="visibility: visible; animation-name: fadeInUp;">
+                            طلباتي / تمويلاتي
+                        </button>
+                        &nbsp; &nbsp;
+                        <button class="theme-btn theme-btn-lg wow fadeInUp" type="submit" style="visibility: visible; animation-name: fadeInUp;">
+                            استثماراتي
+                        </button>
+
                     </div>
                 </div>
             </div>
