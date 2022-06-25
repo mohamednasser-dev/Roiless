@@ -42,6 +42,8 @@
     <link rel="stylesheet" type="text/css" href="{{url('New')}}/css/responsive.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="{{url('New')}}/css/rtl.css" media="all"/>
     @endif
+
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 
@@ -320,10 +322,34 @@
 <script type="text/javascript" src="{{url('New')}}/js/parallax.js"></script>
 <script type="text/javascript" src="{{url('New')}}/js/jquery.parallax-scroll.js"></script>
 <script type="text/javascript" src="{{url('New')}}/js/wow.min.js"></script>
-
 <script type="text/javascript" src="{{url('New')}}/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @yield('scripts')
 @include('sweetalert::alert')
+@if(app()->getLocale() == 'en')
+<script type="text/javascript">
+$.cookie('googtrans', '/ar/en');
+</script>
+<div id="google_translate_element" style="display: none;"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'ar', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<style type="text/css">
+.goog-te-banner-frame.skiptranslate{display:none!important;}
+body{top:0px!important;}
+.goog-text-highlight {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    box-sizing: border-box;
+}
+#goog-gt-tt {
+    display: none !important;
+}    
+</style> 
+@endif
+
 </body>
 
 </html>
