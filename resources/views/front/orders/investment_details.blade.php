@@ -24,22 +24,22 @@
                                 <div class="col-md-12">
                                     <label class="label">الاسم ثلاثي</label>
                                     <input class="form-control" name="name" value="{{$data->name}}" type="text"
-                                           required>
+                                           readonly>
                                 </div>
                                 <div class="col-md-12">
                                     <label class="label">رقم الهاتف</label>
                                     <input class="form-control" name="phone" value="{{$data->phone}}" type="text"
-                                           required>
+                                           readonly>
                                 </div>
                                 <div class="col-md-12">
                                     <label class="label">مبلغ الاستثمار</label>
                                     <input class="form-control" name="amount" value="{{$data->amount}}" type="text"
-                                           required>
+                                           readonly>
                                 </div>
                                 <div class="col-md-12">
                                     <label class="label">مدة العائد</label>
                                     <input class="form-control" name="amount" value="{{$data->amount}}"
-                                           type="text" required>
+                                           type="text" readonly>
                                 </div>
                                 <h3>صور الهوية</h3>
                                 @foreach($data->Images as $image)
