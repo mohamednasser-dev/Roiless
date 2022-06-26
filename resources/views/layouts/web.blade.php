@@ -164,9 +164,21 @@
                                            data-bs-toggle="dropdown"></i>
                                         <ul class="dropdown-menu ">
                                             <li class="nav-item"><a
-                                                    class="nav-link @if(request()->segment(3) == 'profile') active  @endif"
+                                                    class="nav-link @if(request()->segment(3) == 'profile' && request()->segment(4) == 'my') active  @endif"
                                                     href="{{route('front.profile')}}">
                                                     الملف الشخصي
+                                                </a>
+                                            </li>
+                                            <li class="nav-item"><a
+                                                    class="nav-link @if(request()->segment(4) == 'my_funds') active  @endif"
+                                                    href="{{route('front.my_funds')}}">
+                                                   تمويلاتي
+                                                </a>
+                                            </li>
+                                            <li class="nav-item"><a
+                                                    class="nav-link @if(request()->segment(4) == 'my_investments') active  @endif"
+                                                    href="{{route('front.my_investments')}}">
+                                                   استثماراتي
                                                 </a>
                                             </li>
                                             <li class="nav-item"><a class="nav-link" href="{{route('front.logout')}}">تسجيل
