@@ -17,6 +17,7 @@ use App\Models\City;
 use App\Models\Fhistory;
 use App\Models\Fund;
 use App\Models\Investment;
+use App\Models\Product;
 use App\Models\Bank;
 use App\Models\User;
 use App\Models\User_fund;
@@ -203,6 +204,11 @@ class HomeController extends Controller
     {
         $data = Investment::all();
         return view('front.investment', compact('data'));
+    }
+    public function products()
+    {
+        $data = Product::paginate(40);
+        return view('front.products', compact('data'));
     }
 
     public function getfund($id)

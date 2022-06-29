@@ -72,6 +72,9 @@ Route::get("/banco/front/investment/{id}", "Front\InvestmentController@investmen
 Route::post("/banco/front/investment/store", "Front\InvestmentController@store")->name('front.investment.store');
 
 
+Route::get("/banco/front/products", 'Front\HomeController@products');
+Route::get("/banco/front/products/{id}", "Front\InvestmentController@product_details")->name('front.product.details');
+
 Route::group(['middleware' => 'guest', 'namespace' => 'Admin\Auth'], function () {
     Route::get('c_panel/login', 'LoginController@login')->name('login');
     Route::post('c_panel/login', 'LoginController@loginAdmin')->name('admin.login.store');
