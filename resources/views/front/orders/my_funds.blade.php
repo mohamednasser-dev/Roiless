@@ -31,7 +31,7 @@
                                 @foreach($result as $row)
                                     <li class="mt-0">
                                         <a href="{{route('front.fund_detail',$row->id)}}">
-                                            <div class="single-feature-job wow fadeInUp" data-wow-delay="0.1s">
+                                            <div class="@if($row->payment_text == 'مدفوع') bg-info @else bg-primary @endif single-feature-job wow fadeInUp" data-wow-delay="0.1s">
                                                 <h6 class="job-title">{{$row->fund_details->name_ar}} </h6>
                                                 <h7>{{$row->full_name}}</h7>
                                                 <div class="d-flex flex-wrap">
