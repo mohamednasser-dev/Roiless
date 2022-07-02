@@ -52,6 +52,7 @@
                     font-family: 'Tajawal', sans-serif !important;
                 }
             </style>
+            @yield('styles')
         </head>
 
         <body data-spy="scroll" data-offset="70">

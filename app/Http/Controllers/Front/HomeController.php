@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductResource;
 use App\Models\Consolution;
+use App\Models\Product;
+use App\Models\Section;
 use App\Models\Service_details;
 use App\Models\Services;
 use App\Models\Setting;
@@ -31,6 +34,22 @@ class HomeController extends Controller
     public function index()
     {
         return view('front.index');
+    }
+
+    public function section_child($id)
+    {
+        $data = Section::where('parent_id', $id)->get();
+        if (count($data) == 0) {
+            $data = Product::where('status', 'accepted')->where('section_id', $id)->with('SellerInfo')->paginate(15);
+            return view('front.products.section_products', compact('data'));
+        }
+        return view('front.products.section_child', compact('data'));
+    }
+
+    public function section_products($id)
+    {
+        $data = Product::where('status', 'accepted')->where('sub_section_id', $id)->with('SellerInfo')->paginate(1);
+        return view('front.products.section_products', compact('data'));
     }
 
     public function profile()

@@ -8,7 +8,7 @@ class Product extends Model
 {
     protected $guarded = [];
 
-    protected $appends = ['image_path','name'];
+    protected $appends = ['image_path','name','body'];
 
     public function getImagePathAttribute()
     {
@@ -24,6 +24,14 @@ class Product extends Model
             return $this->name_ar;
         } else {
             return $this->name_en;
+        }
+    }
+    public function getBodyAttribute()
+    {
+        if ($locale = \app()->getLocale() == "ar") {
+            return $this->body_ar;
+        } else {
+            return $this->body_en;
         }
     }
 

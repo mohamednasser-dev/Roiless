@@ -59,6 +59,10 @@ Route::get("/banco/front/my_fund/details/{id}", "Front\OrdersController@fund_det
 //front investment
 Route::get("/banco/front/profile/my_investments", "Front\OrdersController@my_investments")->name('front.my_investments');
 Route::get("/banco/front/profile/investment_details/{id}", "Front\OrdersController@investment_details")->name('front.investment_details');
+//front products
+Route::get("/banco/section/child/{id}", "Front\ProductController@section_child")->name('front.section.child');
+Route::get("/banco/section/products/{id}", "Front\ProductController@section_products")->name('front.section.products');
+Route::get("/banco/section/product/details/{id}", "Front\ProductController@product_details")->name('front.section.product_details');
 
 
 Route::get("loans", 'Front\HomeController@funds');

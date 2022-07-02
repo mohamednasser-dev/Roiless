@@ -1,6 +1,6 @@
 @extends('layouts.web')
 @section('header')
-header-menu-4
+    header-menu-4
 @endsection
 @section('main')
     <main>
@@ -9,15 +9,18 @@ header-menu-4
         <section class="banner-area-3 pt-90" id="banner_animation2">
             <div class="bg-slides">
                 <div class="slide" data-parallax='{"x": 220, "y": 0, "rotateZ":0}'>
-                    <img class="wow slideInRight" data-wow-delay='0.2s' src="{{url('New')}}/img/banner/slide-shape-1.png" alt="img">
+                    <img class="wow slideInRight" data-wow-delay='0.2s'
+                         src="{{url('New')}}/img/banner/slide-shape-1.png" alt="img">
                 </div>
                 <div class="slide" data-parallax='{"x": 270, "y": 0, "rotateZ":0}'>
 
-                    <img class="wow slideInRight" data-wow-delay='0.6s' src="{{url('New')}}/img/banner/slide-shape-2.png" alt="img">
+                    <img class="wow slideInRight" data-wow-delay='0.6s'
+                         src="{{url('New')}}/img/banner/slide-shape-2.png" alt="img">
                 </div>
                 <div class="slide" data-parallax='{"x": 330, "y": 0, "rotateZ":0}'>
 
-                    <img class="wow slideInRight" data-wow-delay='1.3s' src="{{url('New')}}/img/banner/slide-shape-3.png" alt="img">
+                    <img class="wow slideInRight" data-wow-delay='1.3s'
+                         src="{{url('New')}}/img/banner/slide-shape-3.png" alt="img">
                 </div>
             </div>
             <div class="container">
@@ -28,8 +31,8 @@ header-menu-4
                             <h1 class="wow fadeInUp" data-wow-delay="0.1s">{{ __('front.Compair') }}</h1>
 
                             <a href="loan.html"
-                                class="wow fadeInUp mt-50 theme-btn theme-btn-rounded-2 theme-btn-lg theme-btn-alt"
-                                data-wow-delay="0.3s">{{ __('front.downloadapp') }}
+                               class="wow fadeInUp mt-50 theme-btn theme-btn-rounded-2 theme-btn-lg theme-btn-alt"
+                               data-wow-delay="0.3s">{{ __('front.downloadapp') }}
                                 <i class="arrow_left"></i></a>
                         </div>
                     </div>
@@ -58,7 +61,8 @@ header-menu-4
                                     </div>
                                     <img src="{{url('New')}}/img/feature/1.svg" width="90px" alt="icon">
                                     <span class="title">تمويل المشتريات</span>
-                                    <h5>عن طريق تمويل المشتريات هتقسّط كل المنتجات اللي تحتاجها بحد ائتماني يوصل لـ 200 ألف ج.م.</h5>
+                                    <h5>عن طريق تمويل المشتريات هتقسّط كل المنتجات اللي تحتاجها بحد ائتماني يوصل لـ 200
+                                        ألف ج.م.</h5>
                                 </div>
                                 <div class="feature-card-widget-3 wow fadeInLeft  card-2" data-wow-delay="0.3s">
                                     <div class="shapes">
@@ -69,7 +73,8 @@ header-menu-4
                                     </div>
                                     <img src="{{url('New')}}/img/feature/2.svg" width="90px" alt="icon">
                                     <span class="title">تمويل المشروعات</span>
-                                    <h5>قدم على تمويل يبدأ من 5000 ج.م ويوصل لـ 200 ألف ج.م للشركات والمشروعات الصغيرة.</h5>
+                                    <h5>قدم على تمويل يبدأ من 5000 ج.م ويوصل لـ 200 ألف ج.م للشركات والمشروعات
+                                        الصغيرة.</h5>
                                 </div>
                                 <div class="feature-card-widget-3 wow fadeInLeft  card-3" data-wow-delay="0.5s">
                                     <div class="shapes">
@@ -83,7 +88,8 @@ header-menu-4
                                     </div>
                                     <img src="{{url('New')}}/img/feature/3.svg" width="90px" alt="icon">
                                     <span class="title">الإستثمار المباشر</span>
-                                    <h5>إستثمر الأن فى بانكو وأحصل على أعلى عائد نزود الوصف هنا شويه علشان يبقى المربعات كلها قد بعض</h5>
+                                    <h5>إستثمر الأن فى بانكو وأحصل على أعلى عائد نزود الوصف هنا شويه علشان يبقى المربعات
+                                        كلها قد بعض</h5>
                                 </div>
                             </div>
                         </div>
@@ -109,18 +115,22 @@ header-menu-4
                             <div class="col-lg-5">
                                 <div class="offers">
                                     <ul>
-                                        <li> <span><i class="icon_check"></i></span>أختار البنك اللى تحبه</li>
-                                        <li> <span><i class="icon_check"></i></span> مبناخدش منك عمولة  </li>
-                                        <li> <span><i class="icon_check"></i></span> بنوفر عليك وقت  </li>
-                                        <li> <span><i class="icon_check"></i></span>أسرع إجراءات </li>
+                                        <li><span><i class="icon_check"></i></span>أختار البنك اللى تحبه</li>
+                                        <li><span><i class="icon_check"></i></span> مبناخدش منك عمولة</li>
+                                        <li><span><i class="icon_check"></i></span> بنوفر عليك وقت</li>
+                                        <li><span><i class="icon_check"></i></span>أسرع إجراءات</li>
                                     </ul>
-                                    <div class="shape"> <img src="{{url('New')}}/img/help-ad/shape.png" alt="shape"></div>
+                                    <div class="shape"><img src="{{url('New')}}/img/help-ad/shape.png" alt="shape">
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-7">
-                                <p class="pt-lg-60">وفرنا عليك وقت ومجهود كبير فى أنك تقارن بين البنوك وتدور على أقل نسبة فوائد على قرضك  دلوقتى هنساعدك تختار افضل بنك تحبه </p>
-                                <p class="py-4">بظبط 3 ايام وهتكون خلصت كل إجراءاتك فى مكان واحد ومتابعة فورية لحالة طلبك بدون عناء السفر والمشاوير للبنك </p>
-                                <p> مش بس وفرنا عليك وقت كبير كان ممكن يضيع احنا كمان وفرنا عليك إجراءات كتير مرهقة مكنتش هتقدر تخلصها لوحدك .</p>
+                                <p class="pt-lg-60">وفرنا عليك وقت ومجهود كبير فى أنك تقارن بين البنوك وتدور على أقل
+                                    نسبة فوائد على قرضك دلوقتى هنساعدك تختار افضل بنك تحبه </p>
+                                <p class="py-4">بظبط 3 ايام وهتكون خلصت كل إجراءاتك فى مكان واحد ومتابعة فورية لحالة
+                                    طلبك بدون عناء السفر والمشاوير للبنك </p>
+                                <p> مش بس وفرنا عليك وقت كبير كان ممكن يضيع احنا كمان وفرنا عليك إجراءات كتير مرهقة
+                                    مكنتش هتقدر تخلصها لوحدك .</p>
                             </div>
                         </div>
                     </div>
@@ -136,7 +146,8 @@ header-menu-4
                     <div class="col-lg-8 mx-auto">
                         <div class="section-title">
                             <h2 class="wow fadeInUp">بنوك وشركات تتعاون معنا لتقديم افضل خدمة </h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.3s"> <span>أكثر من 100+ بنك وشركة</span> يثقون فى بانكو لتسهيل إجراءات   الحصول على <span> القروض والتمويلات</span></p>
+                            <p class="wow fadeInUp" data-wow-delay="0.3s"><span>أكثر من 100+ بنك وشركة</span> يثقون فى
+                                بانكو لتسهيل إجراءات الحصول على <span> القروض والتمويلات</span></p>
                         </div>
                     </div>
                 </div>
@@ -160,7 +171,7 @@ header-menu-4
         <section class="articles-area pt-125 pb-140">
             <div class="container">
                 <div class="section-title d-flex flex-wrap justify-content-between text-start align-items-center">
-                    <h2 class="mb-3 mb-sm-0 wow fadeInRight">أفضل  أنظمة التمويل والقروض</h2>
+                    <h2 class="mb-3 mb-sm-0 wow fadeInRight">أفضل أنظمة التمويل والقروض</h2>
                     <a class="wow fadeInLeft" href="{{url('loans')}}">عرض الكل <i class="arrow_left"></i></a>
                 </div>
                 @php
@@ -181,12 +192,41 @@ header-menu-4
             </div>
         </section>
         <!-- Articales end -->
+
+        <!-- Articales start -->
+        <section class="articles-area pt-125 pb-140">
+            <div class="container">
+                <div class="section-title d-flex flex-wrap justify-content-between text-start align-items-center">
+                    <h2 class="mb-3 mb-sm-0 wow fadeInRight">اقسام المنتجات</h2>
+                    {{--                    <a class="wow fadeInLeft" href="{{url('loans')}}">عرض الكل <i class="arrow_left"></i></a>--}}
+                </div>
+                @php
+                    $sections = \App\Models\Section::where('parent_id',null)->get();
+                @endphp
+                <div class="row mt-60 gy-4 gy-lg-0">
+                    @foreach($sections as $section)
+                        <div class="col-lg-3 col-md-6">
+                            <div class="blog-widget-1 wow fadeInUp" data-wow-delay="0.1s">
+                                <img class="w-100" src="{{$section->image}}" style="height: 190px;" alt="news image">
+                                <div class="blog-content pr-10 pl-10">
+                                    <h6><a href="{{route('front.section.child',$section->id)}}">{{$section->title}}</a>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+        <!-- Articales end -->
+
         <!-- Articales start -->
         <section class="articles-area pb-140">
             <div class="container">
                 <div class="section-title d-flex flex-wrap justify-content-between text-start align-items-center">
                     <h2 class="mb-3 mb-sm-0 wow fadeInRight">أفضل أنظمة الإستثمار</h2>
-                    <a class="wow fadeInLeft" href="{{url('banco/front/investment')}}">عرض الكل <i class="arrow_left"></i></a>
+                    <a class="wow fadeInLeft" href="{{url('banco/front/investment')}}">عرض الكل <i
+                            class="arrow_left"></i></a>
                 </div>
                 @php
                     $funds = \App\Models\Investment::select('id','name_'.app()->getLocale().' as name','image')->limit(10)->get();
@@ -195,9 +235,11 @@ header-menu-4
                     @foreach($funds as $fund)
                         <div class="col-lg-3 col-md-6">
                             <div class="blog-widget-1 wow fadeInUp" data-wow-delay="0.1s">
-                                <img class="w-100" style="height: 150px !important;" src="{{$fund->image}}" alt="news image">
+                                <img class="w-100" style="height: 150px !important;" src="{{$fund->image}}"
+                                     alt="news image">
                                 <div class="blog-content pr-10 pl-10">
-                                    <h6><a href="{{route('front.investment.details',$fund->id)}}">{{$fund->name}}</a></h6>
+                                    <h6><a href="{{route('front.investment.details',$fund->id)}}">{{$fund->name}}</a>
+                                    </h6>
                                 </div>
                             </div>
                         </div>
@@ -221,7 +263,8 @@ header-menu-4
 
                             <div class="shape ">
                                 <div class="box">
-                                    <img class="layer layer2" data-depth="0.5" src="{{url('New')}}/img/faq/Shape.png" alt="shape">
+                                    <img class="layer layer2" data-depth="0.5" src="{{url('New')}}/img/faq/Shape.png"
+                                         alt="shape">
                                 </div>
                                 <div class="circle-shape"></div>
                             </div>
@@ -229,19 +272,19 @@ header-menu-4
 
                             <div class="work-time">
                                 <div class="circle-shape"></div>
-                                ماعدا الجمعة والسبت  <span> 10.00 - 06.00</span>
+                                ماعدا الجمعة والسبت <span> 10.00 - 06.00</span>
                             </div>
                         </div>
 
                         <div class="row mt-4 gy-md-0 gy-3 wow fadeInUp" data-wow-delay="0.4s">
                             <div class="col-md-6">
                                 <a href="tel:01234567890"
-                                    class="theme-btn theme-btn-primary_alt theme-btn-rounded d-flex align-items-center justify-content-center">
+                                   class="theme-btn theme-btn-primary_alt theme-btn-rounded d-flex align-items-center justify-content-center">
                                     <i class="icon_phone"></i> 01234-567890</a>
                             </div>
                             <div class="col-md-6">
                                 <a href="mailto:bancainfo@email.com"
-                                    class="theme-btn theme-btn-primary_alt theme-btn-rounded d-flex align-items-center justify-content-center">
+                                   class="theme-btn theme-btn-primary_alt theme-btn-rounded d-flex align-items-center justify-content-center">
                                     <i class="icon_mail_alt "></i> info@banca.com</a>
                             </div>
                         </div>
@@ -258,7 +301,7 @@ header-menu-4
                                         </h6>
                                     </div>
                                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                                        data-bs-parent="#accordionExample">
+                                         data-bs-parent="#accordionExample">
                                         <div class="faq-body">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
                                                 terry
@@ -277,7 +320,7 @@ header-menu-4
                                         </h6>
                                     </div>
                                     <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
-                                        data-bs-parent="#accordionExample">
+                                         data-bs-parent="#accordionExample">
                                         <div class="faq-body">
                                             <p>- You must be at least 18 years old <br>
                                                 - You must have permanent residence in United States <br>
@@ -304,7 +347,7 @@ header-menu-4
                                         </h6>
                                     </div>
                                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                        data-bs-parent="#accordionExample">
+                                         data-bs-parent="#accordionExample">
                                         <div class="faq-body">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
                                                 terry
@@ -324,7 +367,7 @@ header-menu-4
                                         </h6>
                                     </div>
                                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
-                                        data-bs-parent="#accordionExample">
+                                         data-bs-parent="#accordionExample">
                                         <div class="faq-body">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
                                                 terry
@@ -344,7 +387,7 @@ header-menu-4
                                         </h6>
                                     </div>
                                     <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
-                                        data-bs-parent="#accordionExample">
+                                         data-bs-parent="#accordionExample">
                                         <div class="faq-body">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
                                                 terry
@@ -363,7 +406,7 @@ header-menu-4
                                         </h6>
                                     </div>
                                     <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
-                                        data-bs-parent="#accordionExample">
+                                         data-bs-parent="#accordionExample">
                                         <div class="faq-body">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
                                                 terry
@@ -382,7 +425,7 @@ header-menu-4
                                         </h6>
                                     </div>
                                     <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven"
-                                        data-bs-parent="#accordionExample">
+                                         data-bs-parent="#accordionExample">
                                         <div class="faq-body">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
                                                 terry
@@ -402,7 +445,7 @@ header-menu-4
                                         </h6>
                                     </div>
                                     <div id="collapseEight" class="collapse" aria-labelledby="headingEight"
-                                        data-bs-parent="#accordionExample">
+                                         data-bs-parent="#accordionExample">
                                         <div class="faq-body">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
                                                 terry
@@ -422,7 +465,7 @@ header-menu-4
                                         </h6>
                                     </div>
                                     <div id="collapseNine" class="collapse" aria-labelledby="headingNine"
-                                        data-bs-parent="#accordionExample">
+                                         data-bs-parent="#accordionExample">
                                         <div class="faq-body">
                                             <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
                                                 terry
@@ -457,13 +500,16 @@ header-menu-4
                             </div>
                             <div class="row gy-xl-0 gy-4">
                                 <div class="col-xl-5">
-                                    <div class="cta-content wow fadeInLeft text-center text-xl-start" style="visibility: visible; animation-name: fadeInLeft;">
+                                    <div class="cta-content wow fadeInLeft text-center text-xl-start"
+                                         style="visibility: visible; animation-name: fadeInLeft;">
                                         <h2>حمل تطبيق بانكو الأن</h2>
                                     </div>
                                 </div>
-                                <div class="col-xl-7 d-flex align-items-center flex-wrap justify-content-xl-end justify-content-center">
+                                <div
+                                    class="col-xl-7 d-flex align-items-center flex-wrap justify-content-xl-end justify-content-center">
                                     <a href="#">
-                                        <div class="app-btn mt-3 mt-sm-0 wow fadeInRight" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInRight;">
+                                        <div class="app-btn mt-3 mt-sm-0 wow fadeInRight" data-wow-delay="0.1s"
+                                             style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInRight;">
                                             <i class="fab fa-google-play"></i>
                                             <div class="btn-text">
                                                 <span>GET IT ON</span>
@@ -472,7 +518,8 @@ header-menu-4
                                         </div>
                                     </a>
                                     <a href="#">
-                                        <div class="app-btn mt-3 mt-sm-0 wow fadeInRight" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInRight;">
+                                        <div class="app-btn mt-3 mt-sm-0 wow fadeInRight" data-wow-delay="0.2s"
+                                             style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInRight;">
                                             <i class="fab fa-apple"></i>
                                             <div class="btn-text">
                                                 <span>Downloan on the</span>
