@@ -16,8 +16,8 @@
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
         }
 
         /* Modal Content */
@@ -46,6 +46,7 @@
     </style>
 @endsection
 @section('main')
+    <input type="hidden" required name="_token" id="csrf" value="{{Session::token()}}">
     <main>
         <section class="banner-area-2 pt-200 pb-95" id="banner_animation"
                  style="background-size: auto; background-position: top left;">
@@ -61,8 +62,13 @@
                                     style="font-size: small;">جنية مصري</span></h3>
                             <p class="wow fadeInUp mt-50" data-wow-delay="0.3s">{{$data->body}}</p>
                             @if($data->type == 'direct_installment')
-
                                 <button class="wow fadeInUp theme-btn theme-btn-lg mt-50" id="myBtn">تقسيط</button>
+                            @else
+                                <form action="{{route('banco.product.order.create')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" required name="product_id" value="{{$data->id}}">
+                                    <button type="submit" class="wow fadeInUp theme-btn theme-btn-lg mt-50">">تقسيط</button>
+                                </form>
                             @endif
                         </div>
                     </div>
@@ -187,32 +193,83 @@
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            @foreach($benefits as $row)
-                @if(request()->segment(3) == 'edit')
-                    @php
-                        $benefit =  \App\Models\ProductBenefit::where('benefit_id',$row->id)->where('product_id',$data->id)->first();
-                    @endphp
-                @endif
-                <div class="form-group  col-3">
-                    <label>{{$row->name}} ( % )
-                        <span class="text-danger">*</span>
-                    </label>
-                    <input name="benefits[{{$row->id}}]"
-                           @if(request()->segment(3) == 'edit')
-                           @if($benefit)
-                           value="{{$benefit->ratio}}"
-                           @endif
-                           @endif
-
-                           class="form-control" type="number" step="any"
-                           max="100"/>
-                </div>
-            @endforeach
+            <div class="modal-header">
+                <label class="label mb-4">فترة التقسيط</label>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('banco.product.order.create')}}" method="post">
+                    @csrf
+                    <input type="hidden" name="product_id" id="product_id" value="{{$data->id}}">
+                    <div class="col-md-12" style="text-align: center;">
+                        @foreach($data->Benefit as $row)
+                            <div class="form-check form-check-inline ml-30">
+                                <input class="form-check-input" type="radio" name="product_benefit_id"
+                                       id="product_benefit_id_{{$row->id}}" value="{{$row->id}}">
+                                <label class="form-check-label"
+                                       for="product_benefit_id_{{$row->id}}">{{$row->Benefit->name}}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="col-md-12" style="text-align: center;">
+                        <hr>
+                    </div>
+                    <div class="col-md-12" style="text-align: center; display: none;" id="prices_container">
+                        <div class="emi-amount">
+                            <span>السعر الاساسي</span> &nbsp;&nbsp;
+                            <span class="mt-10" id="basic_price" style="font-weight: 700">000</span>
+                        </div>
+                        <div class="emi-amount">
+                            <span>السعر الاضافي</span>&nbsp;&nbsp;
+                            <span class="mt-10" id="additional_price" style="font-weight: 700">000</span>
+                        </div>
+                        <div class="emi-amount">
+                            <span>السعر الاجمالي</span>&nbsp;&nbsp;
+                            <span class="mt-10" id="total_price" style="font-weight: 700">000</span>
+                        </div>
+                        <div class="emi-amount">
+                            <span>السعر الشهري</span>&nbsp;&nbsp;
+                            <span class="mt-10" id="monthly_price" style="font-weight: 700">000</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="text-align: center;">
+                        <button type="submit" href="personal-details.html" class="theme-btn theme-btn-lg mt-40">تقسيط
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-
     </div>
 @endsection
 @section('scripts')
+    <script>
+        $(document).ready(function () {
+            $('input[name="product_benefit_id"]').change(function () {
+
+                var product_benefit_id = $(this).val();
+                console.log(product_benefit_id);
+                var product_id = $('#product_id').val();
+                console.log(product_id);
+                $.ajax({
+                    url: "{{url('/')}}/banco/product/benefit/calculate",
+                    dataType: 'json',
+                    multiple: true,
+                    type: 'post',
+                    data: {
+                        _token: $("#csrf").val(),
+                        product_id: product_id,
+                        product_benefit_id: product_benefit_id,
+                    },
+                    success: function (data) {
+                        $('#basic_price').text(data.data.basic_price);
+                        $('#additional_price').text(data.data.added_price);
+                        $('#total_price').text(data.data.total_price);
+                        $('#monthly_price').text(data.data.month_amount);
+                    }
+                });
+                $('#prices_container').show();
+            });
+        });
+    </script>
     <script>
         // Get the modal
         var modal = document.getElementById("myModal");
@@ -224,17 +281,17 @@
         var span = document.getElementsByClassName("close")[0];
 
         // When the user clicks the button, open the modal
-        btn.onclick = function() {
+        btn.onclick = function () {
             modal.style.display = "block";
         }
 
         // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
+        span.onclick = function () {
             modal.style.display = "none";
         }
 
         // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }

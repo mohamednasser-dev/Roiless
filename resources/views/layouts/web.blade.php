@@ -182,6 +182,12 @@
                                                    استثماراتي
                                                 </a>
                                             </li>
+                                            <li class="nav-item"><a
+                                                    class="nav-link @if(request()->segment(4) == 'my_orders') active  @endif"
+                                                    href="{{route('front.my_orders')}}">
+                                                    طلباتي
+                                                </a>
+                                            </li>
                                             <li class="nav-item"><a class="nav-link" href="{{route('front.logout')}}">تسجيل
                                                     الخروج</a>
                                             </li>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class OrderInstallment extends Model
 {
     protected $guarded = [];
-    protected $appends = ['status_name'];
+    protected $appends = ['status_name','user_status_name'];
 
     public function Order()
     {
@@ -20,6 +20,15 @@ class OrderInstallment extends Model
             return trans('admin.not_collected');
         } elseif ($this->status == 'collected') {
             return trans('admin.collected');;
+        }
+    }
+
+    public function getUserStatusNameAttribute()
+    {
+        if ($this->status == 'pending') {
+            return 'في انتظار الدفع';
+        } elseif ($this->status == 'collected') {
+            return 'تم الدفع';
         }
     }
 

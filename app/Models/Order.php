@@ -19,6 +19,11 @@ class Order extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function Installments()
+    {
+        return $this->hasMany(OrderInstallment::class,'order_id','id')->orderBy('collection_date','asc');
+    }
+
     public function scopeSeller($query)
     {
         $seller_id = auth()->guard('seller')->user()->id;
@@ -46,4 +51,5 @@ class Order extends Model
             return trans('admin.rejected');;
         }
     }
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Consolution;
 use App\Models\InvestmentOrder;
+use App\Models\Order;
 use App\Models\Service_details;
 use App\Models\Services;
 use App\Models\Setting;
@@ -59,6 +60,18 @@ class OrdersController extends Controller
         $user_id = auth('web')->user()->id;
         $result = InvestmentOrder::with('Investments')->where('user_id', $user_id)->orderBy('created_at','desc')->get();
         return view('front.orders.my_investments', compact('result'));
+    }
+    public function my_orders()
+    {
+        $user_id = auth('web')->user()->id;
+        $result = Order::where('user_id', $user_id)->orderBy('created_at','desc')->paginate(25);
+        return view('front.orders.my_orders', compact('result'));
+    }
+    public function order_details($id)
+    {
+        $user_id = auth('web')->user()->id;
+        $row = Order::whereId($id)->where('user_id',$user_id)->first();
+        return view('front.orders.order_details', compact('row'));
     }
     public function investment_details($id)
     {
