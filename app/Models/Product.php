@@ -17,13 +17,13 @@ class Product extends Model
         }
         return asset('default-image.png');
     }
-    public function getImageAttribute()
-    {
-        if (!empty($this->image)) {
-            return asset('uploads/products') . '/' . $this->image;
-        }
-        return asset('default-image.png');
-    }
+//    public function getImageAttribute($image)
+//    {
+//        if (!empty($image)) {
+//            return asset('uploads/products') . '/' . $image;
+//        }
+//        return asset('default-image.png');
+//    }
 
     public function getNameAttribute()
     {
