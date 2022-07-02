@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProductResource;
 use App\Models\Consolution;
 use App\Models\Product;
 use App\Models\Section;
@@ -20,15 +19,11 @@ use App\Models\City;
 use App\Models\Fhistory;
 use App\Models\Fund;
 use App\Models\Investment;
-use App\Models\Product;
-use App\Models\Bank;
 use App\Models\User;
 use App\Models\User_fund;
 use App\Models\Fund_file;
 use Validator;
 use Str;
-use Teckwei1993\Otp\Otp;
-use Teckwei1993\Otp\Rules\OtpValidate;
 
 class HomeController extends Controller
 {
@@ -224,6 +219,7 @@ class HomeController extends Controller
         $data = Investment::all();
         return view('front.investment', compact('data'));
     }
+
     public function products()
     {
         $data = Product::paginate(40);

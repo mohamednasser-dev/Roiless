@@ -254,34 +254,34 @@
         </section>
         <!-- Articales end -->
         <!-- Articales start -->
-        <section class="articles-area pb-140">
-            <div class="container">
-                <div class="section-title d-flex flex-wrap justify-content-between text-start align-items-center">
-                    <h2 class="mb-3 mb-sm-0 wow fadeInRight">المنتجات</h2>
-                    <a class="wow fadeInLeft" href="{{url('banco/front/products')}}">عرض الكل <i class="arrow_left"></i></a>
-                </div>
-                @php
-                    $products = \App\Models\Product::select('id','name_ar','image','price')->where('status','accepted')->limit(10)->get();
-                @endphp
-                <div class="row mt-60 gy-4 gy-lg-0">
-                    @foreach($products as $product)
-                        <div class="col-lg-3 col-md-6">
-                            <a href="{{route('front.investment.details',$product->id)}}">
-                                <div class="blog-widget-1 wow fadeInUp" data-wow-delay="0.1s">
-                                    <img class="w-100" style="height: 150px !important;" src="{{$product->image}}"
-                                         alt="news image">
-                                    <div class="blog-content pr-10 pl-10">
-                                        <h6>
-                                            <a href="{{route('front.investment.details',$product->id)}}">{{$product->name_ar}}</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </section>
+{{--        <section class="articles-area pb-140">--}}
+{{--            <div class="container">--}}
+{{--                <div class="section-title d-flex flex-wrap justify-content-between text-start align-items-center">--}}
+{{--                    <h2 class="mb-3 mb-sm-0 wow fadeInRight">المنتجات</h2>--}}
+{{--                    <a class="wow fadeInLeft" href="{{url('banco/front/products')}}">عرض الكل <i class="arrow_left"></i></a>--}}
+{{--                </div>--}}
+{{--                @php--}}
+{{--                    $products = \App\Models\Product::select('id','name_ar','image','price')->where('status','accepted')->limit(10)->get();--}}
+{{--                @endphp--}}
+{{--                <div class="row mt-60 gy-4 gy-lg-0">--}}
+{{--                    @foreach($products as $product)--}}
+{{--                        <div class="col-lg-3 col-md-6">--}}
+{{--                            <a href="{{route('front.investment.details',$product->id)}}">--}}
+{{--                                <div class="blog-widget-1 wow fadeInUp" data-wow-delay="0.1s">--}}
+{{--                                    <img class="w-100" style="height: 150px !important;" src="{{$product->image}}"--}}
+{{--                                         alt="news image">--}}
+{{--                                    <div class="blog-content pr-10 pl-10">--}}
+{{--                                        <h6>--}}
+{{--                                            <a href="{{route('front.investment.details',$product->id)}}">{{$product->name_ar}}</a>--}}
+{{--                                        </h6>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                    @endforeach--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
         <!-- Articales end -->
 
 
