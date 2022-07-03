@@ -76,7 +76,7 @@ class AuthController extends Controller
         if ($request->fcm_token) {
             User::where('id', $user->id)->update(['fcm_token' => $request->fcm_token]);
         }
-        $user_data = User::where('id', $user->id)->select('id', 'image', 'name', 'email', 'phone', 'otp_code')->first();
+        $user_data = User::where('id', $user->id)->select('id', 'image', 'name', 'email', 'phone','user_phone', 'otp_code')->first();
         $user_data->token_api = $token;
         return msgdata($request, success(), 'login_success', $user_data);
 
@@ -161,7 +161,7 @@ class AuthController extends Controller
             $user = User::create($data);
             if ($user) {
                 $token = Auth::guard('user-api')->attempt(['phone' => $request->phone, 'password' => $password]);
-                $user_data = User::where('id', $user->id)->select('id', 'image', 'name', 'email', 'phone', 'otp_code', 'city_id')->first();
+                $user_data = User::where('id', $user->id)->select('id', 'image', 'name', 'email', 'phone','user_phone', 'otp_code', 'city_id')->first();
                 $user_data->token_api = $token;
                 return msgdata($request, success(), 'login_success', $user_data);
             }

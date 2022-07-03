@@ -69,7 +69,7 @@ class UsersController extends Controller
         $request_data = $request->all() ;
         if (!$user)
             return response()->json(['status' => 401, 'msg' => 'User Not Found']);
-        
+
         //remove first zero in phone
         $request_data['phone'] = ltrim($request_data['phone'], "0");
         $city = City::findOrFail($request->city_id);
@@ -119,7 +119,7 @@ class UsersController extends Controller
                     }
                 }
             }
-            $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone', 'city_id')->first();
+            $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone', 'user_phone', 'city_id')->first();
             $user_data['token_api'] = null;
             $user_data['otp_code'] = null;
             if ($user) {
@@ -191,7 +191,7 @@ class UsersController extends Controller
                     $imageName = $this->MoveImage($request->image, 'uploads/users_images');
                 }
                 $user->update(['image' => $imageName]);
-                $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone', 'city_id')->first();
+                $user_data = User::where('id', Auth::user()->id)->select('id', 'image', 'name', 'email', 'phone', 'user_phone', 'city_id')->first();
                 $user_data['token_api'] = null;
                 $user_data['otp_code'] = null;
                 if ($user) {
