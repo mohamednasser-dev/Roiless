@@ -69,7 +69,7 @@ class UsersController extends Controller
         $request_data = $request->all() ;
         if (!$user)
             return response()->json(['status' => 401, 'msg' => 'User Not Found']);
-
+        
         //remove first zero in phone
         $request_data['phone'] = ltrim($request_data['phone'], "0");
         $city = City::findOrFail($request->city_id);
@@ -87,21 +87,20 @@ class UsersController extends Controller
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
             //check phone change
-            if ($request->phone == Auth::user()->phone) {
+            if ($request_data['phone'] == Auth::user()->phone) {
                 $user->update([
                     'name' => $request->name,
                     'email' => $request->email,
                     'city_id' => $request->city_id
                 ]);
             } else {
-
-                $otb = \Otp::generate($request->phone);
+                $otb = \Otp::generate($request_data['phone']);
                 $user->update([
                     'otp_code' => $otb,
                 ]);
                 //send here by sms api ...
                 if (empty($request->otp_code)) {
-                    Smsmisr::send("كود التفعيل الخاص بك هوا " . $otb, $request->phone, null, 2);
+                    Smsmisr::send("كود التفعيل الخاص بك هوا " . $otb, $request_data['phone'], null, 2);
                     $data['status'] = true;
                     $data['otp_code'] = $otb;
                     return msgdata($request, success(), 'otp code sent successfully to new phone', $data);
@@ -111,7 +110,7 @@ class UsersController extends Controller
                             'name' => $request->name,
                             'email' => $request->email,
                             'user_phone' => $user_phone,
-                            'phone' => $request->phone,
+                            'phone' => $request_data['phone'],
                             'city_id' => $request->city_id,
                             'otp_code' => null,
                         ]);
