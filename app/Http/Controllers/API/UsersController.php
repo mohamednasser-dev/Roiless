@@ -66,6 +66,7 @@ class UsersController extends Controller
     {
         $id = Auth::user()->id;
         $user = User::find($id);
+        $request = $request->all() ;
         if (!$user)
             return response()->json(['status' => 401, 'msg' => 'User Not Found']);
 
@@ -81,7 +82,7 @@ class UsersController extends Controller
             'otp_code' => '',
             'city_id' => 'required|exists:cities,id'
         ];
-        $validator = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request, $rules);
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
