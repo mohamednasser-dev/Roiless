@@ -85,10 +85,16 @@ class AuthController extends Controller
     public function Register(Request $request)
     {
         $data = $request->all();
+        //Request is valid, create new user
+        $request->phone = ltrim($request->phone, "0");
+        $city = City::findOrFail($request->city_id);
+        $user_phone = $request->phone ;
+        $data['phone'] = $city->country_code . $request->phone;
+
         $validator = Validator::make($data, [
             'name' => 'required|string',
             'city_id' => 'required|exists:cities,id',
-            'phone' => 'required|unique:users',
+            'phone' => 'required|unique:users,phone',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:6|max:50'
         ]);
@@ -96,12 +102,10 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         }
-        //Request is valid, create new user
-        $request->phone = ltrim($request->phone, "0");
-        $city = City::findOrFail($request->city_id);
-        $data['phone'] = $city->country_code . $request->phone;
+
         unset($data['city_id']);
         $data['password'] = bcrypt($request->password);
+        $data['user_phone'] = $user_phone;
         $user = User::create($data);
         if ($user) {
             $token = Auth::guard('user-api')->attempt(['email' => $request->email, 'password' => $request->password]);
@@ -135,6 +139,7 @@ class AuthController extends Controller
         $data = $request->all();
         $request->phone = ltrim($request->phone, "0");
         $city = City::findOrFail($request->city_id);
+        $user_phone = $request->phone ;
         $data['phone'] = $city->country_code . $request->phone;
         $request->phone = $city->country_code . $request->phone;
         $validator = Validator::make($data, [
@@ -142,7 +147,6 @@ class AuthController extends Controller
             'city_id' => 'required|exists:cities,id',
             'phone' => 'required|unique:users,phone',
         ]);
-
         $password = Str::random(8);
         $data['password'] = bcrypt($password);
         //Request is valid, create new user
@@ -153,6 +157,7 @@ class AuthController extends Controller
             $send = Smsmisr::send("كود التفعيل الخاص بك هوا " . $data['otp_code'], $request->phone, null, 2);
             //Request is valid, create new user
             $data['fcm_token'] = $request->fcm_token;
+            $data['user_phone'] = $user_phone;
             $user = User::create($data);
             if ($user) {
                 $token = Auth::guard('user-api')->attempt(['phone' => $request->phone, 'password' => $password]);
