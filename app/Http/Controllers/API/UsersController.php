@@ -66,15 +66,15 @@ class UsersController extends Controller
     {
         $id = Auth::user()->id;
         $user = User::find($id);
-        $request = $request->all() ;
+        $request_data = $request->all() ;
         if (!$user)
             return response()->json(['status' => 401, 'msg' => 'User Not Found']);
 
         //remove first zero in phone
-        $request->phone = ltrim($request->phone, "0");
+        $request_data['phone'] = ltrim($request_data['phone'], "0");
         $city = City::findOrFail($request->city_id);
-        $user_phone = $request->phone;
-        $request->phone = $city->country_code . $request->phone ;
+        $user_phone = $request_data['phone'];
+        $request_data['phone'] = $city->country_code . $request_data['phone'] ;
         $rules = [
             'name' => 'required|regex:/^[\pL\s\-]+$/u',
             'email' => 'required|email|unique:users,email,' . $id,
@@ -82,7 +82,7 @@ class UsersController extends Controller
             'otp_code' => '',
             'city_id' => 'required|exists:cities,id'
         ];
-        $validator = Validator::make($request, $rules);
+        $validator = Validator::make($request_data, $rules);
         if ($validator->fails()) {
             return response()->json(['status' => 401, 'msg' => $validator->messages()->first()]);
         } else {
